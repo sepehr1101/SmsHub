@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsHub.Core", "SmHub.Core\SmsHub.Core.csproj", "{CA85CDE3-31FD-47F5-9CA3-21BEFC8E5630}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsHub.Rahyab", "SmsHub.Rahyab\SmsHub.Rahyab.csproj", "{3B97B8B8-F794-4D81-97E4-AAA2D965D40F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsHub.Kavenegar", "SmsHub.Kavenegar\SmsHub.Kavenegar.csproj", "{4EE5AEFD-C7B3-4FD1-971A-21CF8FE2559F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsHub.Rahyab.Test", "SmsHub.Rahyab.Test\SmsHub.Rahyab.Test.csproj", "{02211C74-87B9-48E5-BAA6-D348F116FEF0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsHub.SimpleTest", "SmsHub.SimpleTest\SmsHub.SimpleTest.csproj", "{1F3EC653-4C6B-425E-B63F-20CF998F5678}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsHub.WebTest", "SmsHub.WebTest\SmsHub.WebTest.csproj", "{DDC354F9-9B94-4A32-928A-5D26517FF6FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA85CDE3-31FD-47F5-9CA3-21BEFC8E5630}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA85CDE3-31FD-47F5-9CA3-21BEFC8E5630}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA85CDE3-31FD-47F5-9CA3-21BEFC8E5630}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA85CDE3-31FD-47F5-9CA3-21BEFC8E5630}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B97B8B8-F794-4D81-97E4-AAA2D965D40F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B97B8B8-F794-4D81-97E4-AAA2D965D40F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B97B8B8-F794-4D81-97E4-AAA2D965D40F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B97B8B8-F794-4D81-97E4-AAA2D965D40F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EE5AEFD-C7B3-4FD1-971A-21CF8FE2559F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EE5AEFD-C7B3-4FD1-971A-21CF8FE2559F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EE5AEFD-C7B3-4FD1-971A-21CF8FE2559F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EE5AEFD-C7B3-4FD1-971A-21CF8FE2559F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02211C74-87B9-48E5-BAA6-D348F116FEF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02211C74-87B9-48E5-BAA6-D348F116FEF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02211C74-87B9-48E5-BAA6-D348F116FEF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02211C74-87B9-48E5-BAA6-D348F116FEF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F3EC653-4C6B-425E-B63F-20CF998F5678}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F3EC653-4C6B-425E-B63F-20CF998F5678}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F3EC653-4C6B-425E-B63F-20CF998F5678}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F3EC653-4C6B-425E-B63F-20CF998F5678}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDC354F9-9B94-4A32-928A-5D26517FF6FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDC354F9-9B94-4A32-928A-5D26517FF6FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDC354F9-9B94-4A32-928A-5D26517FF6FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDC354F9-9B94-4A32-928A-5D26517FF6FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {20416211-C1DC-496C-9322-6C3FFC0CE46F}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SmHub.Core\SmsHub.Core.csproj" />
+    <ProjectReference Include="..\SmsHub.Rahyab\SmsHub.Rahyab.csproj" />
+  </ItemGroup>
+
+
+</Project>
