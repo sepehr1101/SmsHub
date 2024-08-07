@@ -6,4 +6,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Contexts\Commands\" />
+    <Folder Include="Contexts\UnitOfWork\" />
+    <Folder Include="Contexts\Queries\" />
+    <Folder Include="DbLogger\" />
+    <Folder Include="DbSeeder\" />
+    <Folder Include="Interceptors\" />
+    <Folder Include="Migrations\" />
+    <Folder Include="Utils\" />
+  </ItemGroup>
+
 </Project>

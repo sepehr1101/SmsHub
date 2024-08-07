@@ -6,4 +6,21 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="BaseDomainEntities\" />
+    <Folder Include="BaseValueObjects\" />
+    <Folder Include="BaseValidations\" />
+    <Folder Include="Providers\Kavenegar\Models\" />
+    <Folder Include="Providers\Kavenegar\Entities\" />
+    <Folder Include="Providers\Kavenegar\Exceptions\" />
+    <Folder Include="BaseExceptions\" />
+    <Folder Include="Providers\Kavenegar\Constants\" />
+    <Folder Include="Providers\Kavenegar\ValueObjects\" />
+    <Folder Include="Providers\Magfa3000\Constants\" />
+    <Folder Include="Providers\Magfa3000\Entities\" />
+    <Folder Include="Providers\Magfa3000\Exceptions\" />
+    <Folder Include="Providers\Magfa3000\Models\" />
+    <Folder Include="Providers\Magfa3000\ValueObjects\" />
+  </ItemGroup>
+
 </Project>

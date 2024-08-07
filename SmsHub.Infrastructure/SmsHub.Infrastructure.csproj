@@ -6,4 +6,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="BaseHttp\" />
+    <Folder Include="Contracts\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="AuthServices\" />
+    <Folder Include="Providers\Kavenegar\Http\" />
+    <Folder Include="Providers\Kavenegar\EntityMapping\" />
+    <Folder Include="Providers\Magfa3000\EntityMapping\" />
+    <Folder Include="Providers\Magfa3000\Http\" />
+  </ItemGroup>
+
 </Project>
