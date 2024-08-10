@@ -8,22 +8,28 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{D1E25902-F97D-4839-B6A0-209800653597}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cmd", "Cmd", "{7BF220E9-CDD2-4B5D-A1CB-C670AB173B43}"
+	ProjectSection(SolutionItems) = preProject
+		..\DnTips.VahidNasiri\DntSite\src\DntSite.Web\_build.cmd = ..\DnTips.VahidNasiri\DntSite\src\DntSite.Web\_build.cmd
+		..\DnTips.VahidNasiri\DntSite\src\DntSite.Web\_publish.cmd = ..\DnTips.VahidNasiri\DntSite\src\DntSite.Web\_publish.cmd
+		..\DnTips.VahidNasiri\DntSite\src\DntSite.Web\_restore.cmd = ..\DnTips.VahidNasiri\DntSite\src\DntSite.Web\_restore.cmd
+		..\DnTips.VahidNasiri\DntSite\src\DntSite.Web\_run-debug.cmd = ..\DnTips.VahidNasiri\DntSite\src\DntSite.Web\_run-debug.cmd
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegrationTests", "IntegrationTests", "{14158F3E-B405-4A18-B477-9A1FC554C341}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{FFE55C72-93D2-47ED-8E73-4292285FFAFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsHub.Api", "SmsHub.Api\SmsHub.Api.csproj", "{C5DF0A93-AD5A-49DA-83B2-456EFF4E88F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsHub.Api", "SmsHub.Api\SmsHub.Api.csproj", "{C5DF0A93-AD5A-49DA-83B2-456EFF4E88F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsHub.Persistence", "SmsHub.Persistance\SmsHub.Persistence.csproj", "{A90510AA-1853-44A4-A53E-395A38614402}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsHub.Persistence", "SmsHub.Persistance\SmsHub.Persistence.csproj", "{A90510AA-1853-44A4-A53E-395A38614402}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsHub.Common", "SmsHub.Common\SmsHub.Common.csproj", "{7C95ABD7-BF69-45EF-B587-866FB5A993EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsHub.Common", "SmsHub.Common\SmsHub.Common.csproj", "{7C95ABD7-BF69-45EF-B587-866FB5A993EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsHub.Domain", "SmsHub.Domain\SmsHub.Domain.csproj", "{83330F26-0FFF-43F6-8737-BAF2C2461FCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsHub.Domain", "SmsHub.Domain\SmsHub.Domain.csproj", "{83330F26-0FFF-43F6-8737-BAF2C2461FCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsHub.Infrastructure", "SmsHub.Infrastructure\SmsHub.Infrastructure.csproj", "{73C2BB2E-E3BC-4D36-B363-503B112B4306}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsHub.Infrastructure", "SmsHub.Infrastructure\SmsHub.Infrastructure.csproj", "{73C2BB2E-E3BC-4D36-B363-503B112B4306}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsHub.Application", "SmsHub.Application\SmsHub.Application.csproj", "{0AF8A6B8-A3C1-4604-941D-DCCC35692411}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsHub.Application", "SmsHub.Application\SmsHub.Application.csproj", "{0AF8A6B8-A3C1-4604-941D-DCCC35692411}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{BE5C62F8-86A8-44FB-BAE6-396F616860BF}"
 EndProject
@@ -38,6 +44,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kavenegar", "Kavenegar", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Magfa3000", "Magfa3000", "{F996BAFE-8A5D-4E9F-97E9-076996BD8CB6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsHub.UnitTests.Domain", "SmsHub.UnitTests.Domain\SmsHub.UnitTests.Domain.csproj", "{E86080AA-6C98-4FBF-9214-CEF8E6C4FBC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsHub.IntegrationTests.Api", "SmsHub.IntegrationTests.Api\SmsHub.IntegrationTests.Api.csproj", "{404710F3-D72C-49B9-A439-FF035569FA1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsHub.UnitTests.Infrastructure", "SmsHub.UnitTests.Infrastructure\SmsHub.UnitTests.Infrastructure.csproj", "{4EB4432A-41AE-479D-9973-D53313776210}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsHub.UnitTests.Application", "SmsHub.UnitTests.Application\SmsHub.UnitTests.Application.csproj", "{A4F7B4F0-9104-4443-87F1-8E7C37D38B78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsHub.UnitTests.Persistence", "SmsHub.UnitTests.Persistence\SmsHub.UnitTests.Persistence.csproj", "{59D2A0CD-4642-4922-A70D-65ECB5AF0081}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,10 +64,6 @@ Global
 		{C5DF0A93-AD5A-49DA-83B2-456EFF4E88F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5DF0A93-AD5A-49DA-83B2-456EFF4E88F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5DF0A93-AD5A-49DA-83B2-456EFF4E88F3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{51264788-C2C9-459D-8594-6453D781B460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{51264788-C2C9-459D-8594-6453D781B460}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{51264788-C2C9-459D-8594-6453D781B460}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{51264788-C2C9-459D-8594-6453D781B460}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A90510AA-1853-44A4-A53E-395A38614402}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A90510AA-1853-44A4-A53E-395A38614402}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A90510AA-1853-44A4-A53E-395A38614402}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -72,6 +84,26 @@ Global
 		{0AF8A6B8-A3C1-4604-941D-DCCC35692411}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AF8A6B8-A3C1-4604-941D-DCCC35692411}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AF8A6B8-A3C1-4604-941D-DCCC35692411}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E86080AA-6C98-4FBF-9214-CEF8E6C4FBC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E86080AA-6C98-4FBF-9214-CEF8E6C4FBC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E86080AA-6C98-4FBF-9214-CEF8E6C4FBC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E86080AA-6C98-4FBF-9214-CEF8E6C4FBC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{404710F3-D72C-49B9-A439-FF035569FA1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{404710F3-D72C-49B9-A439-FF035569FA1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{404710F3-D72C-49B9-A439-FF035569FA1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{404710F3-D72C-49B9-A439-FF035569FA1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EB4432A-41AE-479D-9973-D53313776210}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EB4432A-41AE-479D-9973-D53313776210}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EB4432A-41AE-479D-9973-D53313776210}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EB4432A-41AE-479D-9973-D53313776210}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4F7B4F0-9104-4443-87F1-8E7C37D38B78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4F7B4F0-9104-4443-87F1-8E7C37D38B78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4F7B4F0-9104-4443-87F1-8E7C37D38B78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4F7B4F0-9104-4443-87F1-8E7C37D38B78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59D2A0CD-4642-4922-A70D-65ECB5AF0081}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59D2A0CD-4642-4922-A70D-65ECB5AF0081}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59D2A0CD-4642-4922-A70D-65ECB5AF0081}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59D2A0CD-4642-4922-A70D-65ECB5AF0081}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,7 +112,6 @@ Global
 		{14158F3E-B405-4A18-B477-9A1FC554C341} = {D1E25902-F97D-4839-B6A0-209800653597}
 		{FFE55C72-93D2-47ED-8E73-4292285FFAFD} = {D1E25902-F97D-4839-B6A0-209800653597}
 		{C5DF0A93-AD5A-49DA-83B2-456EFF4E88F3} = {0C28B916-070B-4F7B-9226-4D9843C2C26D}
-		{51264788-C2C9-459D-8594-6453D781B460} = {51CEBF95-5AAB-4DBD-A73E-F5C787464FBE}
 		{A90510AA-1853-44A4-A53E-395A38614402} = {0C28B916-070B-4F7B-9226-4D9843C2C26D}
 		{7C95ABD7-BF69-45EF-B587-866FB5A993EC} = {0C28B916-070B-4F7B-9226-4D9843C2C26D}
 		{83330F26-0FFF-43F6-8737-BAF2C2461FCC} = {0C28B916-070B-4F7B-9226-4D9843C2C26D}
@@ -89,6 +120,11 @@ Global
 		{DE9F2511-05CA-4FEB-B757-B5B11D59A212} = {B46CB721-3B4D-4E81-BD14-8281B45C7FDE}
 		{C67DE790-994B-4A10-A81E-8E54618708B6} = {DE9F2511-05CA-4FEB-B757-B5B11D59A212}
 		{F996BAFE-8A5D-4E9F-97E9-076996BD8CB6} = {DE9F2511-05CA-4FEB-B757-B5B11D59A212}
+		{E86080AA-6C98-4FBF-9214-CEF8E6C4FBC6} = {FFE55C72-93D2-47ED-8E73-4292285FFAFD}
+		{404710F3-D72C-49B9-A439-FF035569FA1D} = {14158F3E-B405-4A18-B477-9A1FC554C341}
+		{4EB4432A-41AE-479D-9973-D53313776210} = {FFE55C72-93D2-47ED-8E73-4292285FFAFD}
+		{A4F7B4F0-9104-4443-87F1-8E7C37D38B78} = {FFE55C72-93D2-47ED-8E73-4292285FFAFD}
+		{59D2A0CD-4642-4922-A70D-65ECB5AF0081} = {FFE55C72-93D2-47ED-8E73-4292285FFAFD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7B76544C-4686-41B3-8D63-1F256465FA03}
