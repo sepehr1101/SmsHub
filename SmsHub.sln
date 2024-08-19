@@ -44,15 +44,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kavenegar", "Kavenegar", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Magfa3000", "Magfa3000", "{F996BAFE-8A5D-4E9F-97E9-076996BD8CB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsHub.UnitTests.Domain", "SmsHub.UnitTests.Domain\SmsHub.UnitTests.Domain.csproj", "{E86080AA-6C98-4FBF-9214-CEF8E6C4FBC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsHub.UnitTests.Domain", "SmsHub.UnitTests.Domain\SmsHub.UnitTests.Domain.csproj", "{E86080AA-6C98-4FBF-9214-CEF8E6C4FBC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsHub.IntegrationTests.Api", "SmsHub.IntegrationTests.Api\SmsHub.IntegrationTests.Api.csproj", "{404710F3-D72C-49B9-A439-FF035569FA1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsHub.IntegrationTests.Api", "SmsHub.IntegrationTests.Api\SmsHub.IntegrationTests.Api.csproj", "{404710F3-D72C-49B9-A439-FF035569FA1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsHub.UnitTests.Infrastructure", "SmsHub.UnitTests.Infrastructure\SmsHub.UnitTests.Infrastructure.csproj", "{4EB4432A-41AE-479D-9973-D53313776210}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsHub.UnitTests.Infrastructure", "SmsHub.UnitTests.Infrastructure\SmsHub.UnitTests.Infrastructure.csproj", "{4EB4432A-41AE-479D-9973-D53313776210}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsHub.UnitTests.Application", "SmsHub.UnitTests.Application\SmsHub.UnitTests.Application.csproj", "{A4F7B4F0-9104-4443-87F1-8E7C37D38B78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsHub.UnitTests.Application", "SmsHub.UnitTests.Application\SmsHub.UnitTests.Application.csproj", "{A4F7B4F0-9104-4443-87F1-8E7C37D38B78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsHub.UnitTests.Persistence", "SmsHub.UnitTests.Persistence\SmsHub.UnitTests.Persistence.csproj", "{59D2A0CD-4642-4922-A70D-65ECB5AF0081}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsHub.UnitTests.Persistence", "SmsHub.UnitTests.Persistence\SmsHub.UnitTests.Persistence.csproj", "{59D2A0CD-4642-4922-A70D-65ECB5AF0081}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Monitoring", "Monitoring", "{C93447F9-F002-4129-9CCF-EE463B6945EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
