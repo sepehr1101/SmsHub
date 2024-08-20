@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace SmsHub.Domain.Providers.Kavenegar.Entities.Responses
 {
-    public class BaseResponse
+    public partial class LookupDto
     {
-        public int Status { get; set; }
-        public string Message { get; set; }
+
+        public class Rootobject
+        {
+            public BaseResponse Return { get; set; }
+            public LookupDto[] entries { get; set; }
+        }
 
     }
 }

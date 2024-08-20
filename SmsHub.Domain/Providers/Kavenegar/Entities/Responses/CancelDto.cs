@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace SmsHub.Domain.Providers.Kavenegar.Entities.Responses
 {
-    public class BaseResponse
+    public class CancelDto
     {
-        public int Status { get; set; }
-        public string Message { get; set; }
-
+        public long MessageId { get; set; }
+        public int Status { get; set; } 
+        public string StatusText{ get; set; }
     }
 }

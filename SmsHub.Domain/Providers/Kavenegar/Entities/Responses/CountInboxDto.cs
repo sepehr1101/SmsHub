@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace SmsHub.Domain.Providers.Kavenegar.Entities.Responses
 {
-    public class BaseResponse
+    public class CountInboxDto
     {
-        public int Status { get; set; }
-        public string Message { get; set; }
-
+        public long StartDate { get; set; }
+        public long EndDate { get; set; }
+        public long SumCount {  get; set; }
     }
 }

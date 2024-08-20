@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace SmsHub.Domain.Providers.Kavenegar.Entities.Responses
 {
-    public class BaseResponse
+    public class InfoResponse
     {
-        public int Status { get; set; }
-        public string Message { get; set; }
-
+        public long RemainCredit { get; set; }
+        public string ExpireDate {  get; set; }
+        public string Type { get; set; }
     }
 }
