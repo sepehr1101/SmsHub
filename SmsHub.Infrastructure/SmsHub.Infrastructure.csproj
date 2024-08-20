@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Compile Remove="BaseHttp\Request\RestExtension.Body.cs" />
+    <Compile Remove="BaseHttp\Request\RestExtensions.Url.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +22,10 @@
     <Folder Include="Providers\Kavenegar\EntityMapping\" />
     <Folder Include="Providers\Magfa3000\EntityMapping\" />
     <Folder Include="Providers\Magfa3000\Http\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="BaseHttp\Request\RestExtensions.Url.cs" />
   </ItemGroup>
 
 </Project>
