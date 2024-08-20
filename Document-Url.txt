@@ -1,0 +1,2 @@
+The pdf document is exported upon below url:
+https://messaging.magfa.com/ui/?public/wiki/api/http_v2
