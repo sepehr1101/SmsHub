@@ -11,7 +11,6 @@
     <Folder Include="BaseValueObjects\" />
     <Folder Include="BaseValidations\" />
     <Folder Include="Providers\Kavenegar\Models\" />
-    <Folder Include="Providers\Kavenegar\Entities\" />
     <Folder Include="Providers\Kavenegar\Exceptions\" />
     <Folder Include="BaseExceptions\" />
     <Folder Include="Providers\Kavenegar\ValueObjects\" />
