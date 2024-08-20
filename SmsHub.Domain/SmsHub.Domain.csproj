@@ -14,7 +14,6 @@
     <Folder Include="Providers\Kavenegar\Entities\" />
     <Folder Include="Providers\Kavenegar\Exceptions\" />
     <Folder Include="BaseExceptions\" />
-    <Folder Include="Providers\Kavenegar\Constants\" />
     <Folder Include="Providers\Kavenegar\ValueObjects\" />
     <Folder Include="Providers\Magfa3000\Constants\" />
     <Folder Include="Providers\Magfa3000\Entities\" />
