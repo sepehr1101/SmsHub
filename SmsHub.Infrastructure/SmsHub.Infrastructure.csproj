@@ -7,7 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="BaseHttp\" />
+    <Compile Remove="BaseHttp\Request\RestExtension.Body.cs" />
+    <Compile Remove="BaseHttp\Request\RestExtensions.Url.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="BaseHttp\Response\" />
+    <Folder Include="BaseHttp\Serializers\Json\" />
+    <Folder Include="BaseHttp\Serializers\Xml\" />
     <Folder Include="Contracts\" />
     <Folder Include="Exceptions\" />
     <Folder Include="AuthServices\" />
@@ -15,6 +22,10 @@
     <Folder Include="Providers\Kavenegar\EntityMapping\" />
     <Folder Include="Providers\Magfa3000\EntityMapping\" />
     <Folder Include="Providers\Magfa3000\Http\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="BaseHttp\Request\RestExtensions.Url.cs" />
   </ItemGroup>
 
 </Project>
