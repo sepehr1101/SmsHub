@@ -43,6 +43,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kavenegar", "Kavenegar", "{
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Magfa3000", "Magfa3000", "{F996BAFE-8A5D-4E9F-97E9-076996BD8CB6}"
+	ProjectSection(SolutionItems) = preProject
+		Document-Url.txt = Document-Url.txt
+		C:\Users\ASUS\Desktop\سيستم_های پيام_دهی مگفا - ويکی_سرويس HTTP v2.pdf = C:\Users\ASUS\Desktop\سيستم_های پيام_دهی مگفا - ويکی_سرويس HTTP v2.pdf
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsHub.UnitTests.Domain", "SmsHub.UnitTests.Domain\SmsHub.UnitTests.Domain.csproj", "{E86080AA-6C98-4FBF-9214-CEF8E6C4FBC6}"
 EndProject
