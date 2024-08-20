@@ -7,7 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="BaseHttp\" />
+    <Compile Remove="BaseHttp\Request\RestExtension.Body.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="BaseHttp\Response\" />
+    <Folder Include="BaseHttp\Serializers\Json\" />
+    <Folder Include="BaseHttp\Serializers\Xml\" />
     <Folder Include="Contracts\" />
     <Folder Include="Exceptions\" />
     <Folder Include="AuthServices\" />
