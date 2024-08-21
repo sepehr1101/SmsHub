@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmsHub.Domain.Providers.Kavenegar.Entities.Responses
+namespace SmsHub.Domain.Providers.Kavenegar.Entities.Requests
 {
-    public class BaseResponse
+    public class InfoDto
     {
+      //
     }
 }
