@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmsHub.Domain.Providers.Magfa3000.Entities.Requests
+namespace SmsHub.Domain.Providers.Asanak.Entities.Requests
 {
-    public class Messages
+    public class GetCreditDto
     {
-        public int Count { get; set; }
-        
+      //nothing
     }
 }
