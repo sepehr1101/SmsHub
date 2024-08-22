@@ -12,20 +12,29 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="BaseHttp\Authenticators\Contracts\" />
+    <Folder Include="BaseHttp\Interceptors\" />
     <Folder Include="BaseHttp\Response\" />
     <Folder Include="BaseHttp\Serializers\Json\" />
     <Folder Include="BaseHttp\Serializers\Xml\" />
     <Folder Include="Contracts\" />
     <Folder Include="Exceptions\" />
     <Folder Include="AuthServices\" />
-    <Folder Include="Providers\Kavenegar\Http\" />
+    <Folder Include="Implementations\" />
     <Folder Include="Providers\Kavenegar\EntityMapping\" />
+    <Folder Include="Providers\Kavenegar\Http\Contracts\" />
+    <Folder Include="Providers\Kavenegar\Http\Implementations\" />
     <Folder Include="Providers\Magfa3000\EntityMapping\" />
-    <Folder Include="Providers\Magfa3000\Http\" />
+    <Folder Include="Providers\Magfa3000\Http\Contracts\" />
+    <Folder Include="Providers\Magfa3000\Http\Implementations\" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="BaseHttp\Request\RestExtensions.Url.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
   </ItemGroup>
 
 </Project>

@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmsHub.Infrastructure.BaseHttp.Request
+namespace SmsHub.Infrastructure.BaseHttp.Authenticators.Implementation
 {
-    internal static partial class RestExtensions
+    internal class JwtAuthenticator
     {
-        internal HttpRequest
     }
 }
