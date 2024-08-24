@@ -40,6 +40,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kavenegar", "Kavenegar", "{C67DE790-994B-4A10-A81E-8E54618708B6}"
 	ProjectSection(SolutionItems) = preProject
 		C:\Users\ASUS\Desktop\postman collection.json = C:\Users\ASUS\Desktop\postman collection.json
+		RestUrl-Kavenegar.txt = RestUrl-Kavenegar.txt
+		C:\Users\ASUS\Desktop\خدمات پیام کوتاه کاوه نگار _ مستندات ارسال پیامک.pdf = C:\Users\ASUS\Desktop\خدمات پیام کوتاه کاوه نگار _ مستندات ارسال پیامک.pdf
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Magfa3000", "Magfa3000", "{F996BAFE-8A5D-4E9F-97E9-076996BD8CB6}"

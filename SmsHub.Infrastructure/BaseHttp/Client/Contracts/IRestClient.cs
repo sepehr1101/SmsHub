@@ -2,8 +2,8 @@
 
 namespace SmsHub.Infrastructure.BaseHttp.Client.Contracts
 {
-    internal interface IRestClient
+    public interface IRestClient
     {
-        RestClient Create(string url);
+        RestClient Create(Uri uri);
     }
 }

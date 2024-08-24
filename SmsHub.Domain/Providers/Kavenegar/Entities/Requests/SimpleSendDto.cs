@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SmsHub.Domain.Providers.Kavenegar.Entities.Requests
+﻿namespace SmsHub.Domain.Providers.Kavenegar.Entities.Requests
 {
     public class SimpleSendDto
     {
@@ -15,8 +9,5 @@ namespace SmsHub.Domain.Providers.Kavenegar.Entities.Requests
         public string @Type { get; set; }
         public long LocalId { get; set; }
         public short Hide { get; set; }
-
-
-
     }
 }

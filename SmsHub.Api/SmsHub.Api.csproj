@@ -10,4 +10,15 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\Providers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SmsHub.Application\SmsHub.Application.csproj" />
+    <ProjectReference Include="..\SmsHub.Common\SmsHub.Common.csproj" />
+    <ProjectReference Include="..\SmsHub.Domain\SmsHub.Domain.csproj" />
+    <ProjectReference Include="..\SmsHub.Infrastructure\SmsHub.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
