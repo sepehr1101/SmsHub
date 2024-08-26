@@ -40,6 +40,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kavenegar", "Kavenegar", "{C67DE790-994B-4A10-A81E-8E54618708B6}"
 	ProjectSection(SolutionItems) = preProject
 		C:\Users\ASUS\Desktop\postman collection.json = C:\Users\ASUS\Desktop\postman collection.json
+		RestUrl-Kavenegar.txt = RestUrl-Kavenegar.txt
+		C:\Users\ASUS\Desktop\خدمات پیام کوتاه کاوه نگار _ مستندات ارسال پیامک.pdf = C:\Users\ASUS\Desktop\خدمات پیام کوتاه کاوه نگار _ مستندات ارسال پیامک.pdf
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Magfa3000", "Magfa3000", "{F996BAFE-8A5D-4E9F-97E9-076996BD8CB6}"
@@ -59,6 +61,26 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsHub.UnitTests.Persistence", "SmsHub.UnitTests.Persistence\SmsHub.UnitTests.Persistence.csproj", "{59D2A0CD-4642-4922-A70D-65ECB5AF0081}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Monitoring", "Monitoring", "{C93447F9-F002-4129-9CCF-EE463B6945EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AtieDadePardaz2000", "AtieDadePardaz2000", "{56F4E895-A5AB-4E72-80D9-EAADB4FF283A}"
+	ProjectSection(SolutionItems) = preProject
+		Note.txt = Note.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rahyab1000", "Rahyab1000", "{AEBF40F5-6F7D-4A67-AFA7-4A726A81830D}"
+	ProjectSection(SolutionItems) = preProject
+		Note.txt = Note.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ArmaqanRahTalaii5000", "ArmaqanRahTalaii5000", "{DDB190EA-0C8D-4888-B2B3-255E54CF9957}"
+	ProjectSection(SolutionItems) = preProject
+		Note.txt = Note.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Asanak", "Asanak", "{2E2A56CA-F3F3-4BCC-BDF0-87AA36B6381D}"
+	ProjectSection(SolutionItems) = preProject
+		C:\Users\ASUS\Downloads\Documents\webservice.pdf = C:\Users\ASUS\Downloads\Documents\webservice.pdf
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -131,6 +153,10 @@ Global
 		{4EB4432A-41AE-479D-9973-D53313776210} = {FFE55C72-93D2-47ED-8E73-4292285FFAFD}
 		{A4F7B4F0-9104-4443-87F1-8E7C37D38B78} = {FFE55C72-93D2-47ED-8E73-4292285FFAFD}
 		{59D2A0CD-4642-4922-A70D-65ECB5AF0081} = {FFE55C72-93D2-47ED-8E73-4292285FFAFD}
+		{56F4E895-A5AB-4E72-80D9-EAADB4FF283A} = {DE9F2511-05CA-4FEB-B757-B5B11D59A212}
+		{AEBF40F5-6F7D-4A67-AFA7-4A726A81830D} = {DE9F2511-05CA-4FEB-B757-B5B11D59A212}
+		{DDB190EA-0C8D-4888-B2B3-255E54CF9957} = {DE9F2511-05CA-4FEB-B757-B5B11D59A212}
+		{2E2A56CA-F3F3-4BCC-BDF0-87AA36B6381D} = {DE9F2511-05CA-4FEB-B757-B5B11D59A212}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7B76544C-4686-41B3-8D63-1F256465FA03}

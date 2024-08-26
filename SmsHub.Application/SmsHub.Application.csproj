@@ -11,6 +11,10 @@
     <Folder Include="EntityOrFeature\Handlers\" />
     <Folder Include="EntityOrFeature\Validations\" />
     <Folder Include="EntityOrFeature\Queries\" />
+    <Folder Include="Providers\Kavenegar\Commands\" />
+    <Folder Include="Providers\Kavenegar\Handlers\" />
+    <Folder Include="Providers\Kavenegar\Queries\" />
+    <Folder Include="Providers\Kavenegar\Validations\" />
   </ItemGroup>
 
 </Project>
