@@ -1,12 +1,11 @@
 ﻿using SmsHub.Common;
-using SmsHub.Common.Extensions;
-using SmsHub.Infrastructure.BaseHttp.Parameters;
+using System.Collections;
 
 namespace SmsHub.Infrastructure.BaseHttp.Request
 {
     public static partial class RestExtensions
     {
-        public static Uri AddQueryString(this Uri uri, string? query)
+        public static Uri AddQueryToUri(this Uri uri, string? query)
         {
             if (query == null)
             {
@@ -18,34 +17,50 @@ namespace SmsHub.Infrastructure.BaseHttp.Request
 
             return new($"{absoluteUri}{separator}{query}");
         }
-        public static UrlSegmentParamsValues GetUrlSegmentParamsValues(
-       this Uri? baseUri,
-       string resource,
-       Func<string, string> encode,
-       params ParametersCollection[] parametersCollections
-   )
+        public static HttpRequestMessage AddQuery(this HttpRequestMessage request, string key, string value)
         {
-            var assembled = baseUri == null ? "" : resource;
-            var baseUrl = baseUri ?? new Uri(resource);
-
-            var hasResource = !assembled.IsEmpty();
-
-            var parameters = parametersCollections.SelectMany(x => x.GetParameters<UrlSegmentParameter>());
-
-            var builder = new UriBuilder(baseUrl);
-
-            foreach (var parameter in parameters)
+            if (key is null || value is null || request.RequestUri is null)
             {
-                var paramPlaceHolder = $"{{{parameter.Name}}}";
-                var value = Guard.NotNull(parameter.Value!.ToString(), $"URL segment parameter {parameter.Name} value");
-                var paramValue = parameter.Encode ? encode(value) : value;
+                return request;
+            }
+            string query = $"{value}={key}";
+            request.RequestUri = request.RequestUri.AddQueryToUri(query);
+            return request;
+        }
+        public static HttpRequestMessage AddQuery(this HttpRequestMessage request ,object obj, string separator = ",")
+        {
+            obj.NotNull(nameof(obj));
+            request.NotNull(nameof(request));
+           
+            var properties = obj.GetType().GetProperties()
+                .Where(x => x.CanRead)
+                .Where(x => x.GetValue(obj, null) != null)
+                .ToDictionary(x => x.Name, x => x.GetValue(obj, null));
 
-                if (hasResource) assembled = assembled.Replace(paramPlaceHolder, paramValue);
+            var propertyNames = properties
+                .Where(x => !(x.Value is string) && x.Value is IEnumerable)
+                .Select(x => x.Key)
+                .ToList();
 
-                builder.Path = builder.Path.UrlDecode().Replace(paramPlaceHolder, paramValue);
+            foreach (var key in propertyNames)
+            {
+                var valueType = properties[key].GetType();
+                var valueElemType = valueType.IsGenericType
+                                        ? valueType.GetGenericArguments()[0]
+                                        : valueType.GetElementType();
+                if (valueElemType.IsPrimitive || valueElemType == typeof(string))
+                {
+                    var enumerable = properties[key] as IEnumerable;
+                    properties[key] = string.Join(separator, enumerable.Cast<object>());
+                }
             }
 
-            return new UrlSegmentParamsValues(builder.Uri, assembled);
+            var query= string.Join("&", properties
+                .Select(x => string.Concat(
+                    Uri.EscapeDataString(x.Key), "=",
+                    Uri.EscapeDataString(x.Value.ToString()))));
+            request.RequestUri = request?.RequestUri.AddQueryToUri(query);
+            return request;
         }
     }
 }

@@ -22,7 +22,6 @@
     <Folder Include="AuthServices\" />
     <Folder Include="Implementations\" />
     <Folder Include="Providers\Kavenegar\EntityMapping\" />
-    <Folder Include="Providers\Kavenegar\Http\Implementations\" />
     <Folder Include="Providers\Magfa3000\EntityMapping\" />
     <Folder Include="Providers\Magfa3000\Http\Contracts\" />
     <Folder Include="Providers\Magfa3000\Http\Implementations\" />
@@ -34,6 +33,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>

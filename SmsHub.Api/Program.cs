@@ -9,9 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+// DI
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<IRestClient, RestClient>();
 builder.Services.AddScoped<IKavenegarHttpDateService,KavenegarHttpDateService>();
+builder.Services.AddScoped<IKavenegarHttpSendSimpleService,KavenegarHttpSendSimpleService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -33,11 +35,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
-// DI
-
-
-//builder.Services.AddHttpClient<IRestClient>();
-
-//builder.Services.AddScoped<IConfigService, ConfigService>();
-//
