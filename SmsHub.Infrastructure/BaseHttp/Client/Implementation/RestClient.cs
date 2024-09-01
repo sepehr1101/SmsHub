@@ -30,5 +30,10 @@ namespace SmsHub.Infrastructure.BaseHttp.Client.Implementation
             var content = await response.Content.ReadFromJsonAsync<T>();
             return content;
         }
+
+        internal Task<T> Execute<T>()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

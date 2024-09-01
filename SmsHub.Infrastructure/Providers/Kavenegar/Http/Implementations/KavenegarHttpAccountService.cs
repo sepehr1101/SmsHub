@@ -7,7 +7,7 @@ using SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts;
 
 namespace SmsHub.Infrastructure.Providers.Kavenegar.Http.Implementations
 {
-    public class KavenegarHttpAccountService: IKavenegarAccountHttpService
+    public class KavenegarHttpAccountService: IKavenegarHttpAccountService
     {
         private readonly IRestClient _restClient;
         public KavenegarHttpAccountService(IRestClient restClient)

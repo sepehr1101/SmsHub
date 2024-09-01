@@ -23,8 +23,6 @@
     <Folder Include="Implementations\" />
     <Folder Include="Providers\Kavenegar\EntityMapping\" />
     <Folder Include="Providers\Magfa3000\EntityMapping\" />
-    <Folder Include="Providers\Magfa3000\Http\Contracts\" />
-    <Folder Include="Providers\Magfa3000\Http\Implementations\" />
   </ItemGroup>
 
   <ItemGroup>
