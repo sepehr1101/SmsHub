@@ -1,8 +1,9 @@
-﻿namespace SmsHub.Domain.Providers.Magfa3000.Entities.Responses
+﻿using SmsHub.Domain.Providers.Magfa3000.Entities.Base;
+
+namespace SmsHub.Domain.Providers.Magfa3000.Entities.Responses
 {
-    public class StatusesDto
+    public class StatusesDto:ResponseBase
     {
-        public int Status { get; set; }
         public ICollection<DlrsDto> Dlrs { get; set; }
 
     }

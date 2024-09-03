@@ -1,11 +1,12 @@
-﻿namespace SmsHub.Domain.Providers.Magfa3000.Entities.Responses
+﻿using SmsHub.Domain.Providers.Magfa3000.Entities.Base;
+
+namespace SmsHub.Domain.Providers.Magfa3000.Entities.Responses
 {
-    public class SendDto
+    public class SendDto:ResponseBase
     {
-        public int Status { get; set; }
         public ICollection<SendMessageDto> Message {  get; set; }
     }
-    public class SendMessageDto//todo : change class Name
+    public class SendMessageDto
     {
         public int Status { get; set; }
         public long? Id { get; set; }
