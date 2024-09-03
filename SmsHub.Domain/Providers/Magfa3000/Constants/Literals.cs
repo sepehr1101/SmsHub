@@ -8,12 +8,23 @@ namespace SmsHub.Domain.Providers.Magfa3000.Constants
 {
     public class Literals
     {
-        private string BaseUrl { get { return @"https://sms.magfa.com/api/http/sms/v2"; } }
-        private string UserName { get { return @"123456464"; } }
-        private string Domain { get { return @"20003256"; } }
-        private string Password { get { return @"20003256"; } }
-        private string _baseAndKey { get { return $"{BaseUrl}/{UserName}/{Domain}:{Password}/"; } }///???????
-        public string BalanceUri { get { return $"{_baseAndKey}balance.json"; } }
+        public string BaseUrl { get { return @"https://sms.magfa.com/api/http/sms/v2"; } }
+        public string UserName { set { UserName = value; } get { return @"User Name"; } }
+        public string Domain { set { Domain = value; } get { return @"Domain"; } }
+        public string Password { set { Password = value; } get { return @"Passwrod"; } }
+
+
+        public Literals(string userName,string domain,string password)
+        {
+            UserName= userName;
+            Domain = domain;
+            Password= password;
+        }
+
+        public string _baseAndKey { get { return $"{BaseUrl}/{UserName}/{Domain}:{Password}/"; } }///???????
+
+        public  string BalanceUri { get { return $"{_baseAndKey}balance.json"; } }
+
         public string SendUri { get { return $"{_baseAndKey}send.json?senders={0}$recipients={1}&messages={2}"; } }
         public string MidUri { get { return $"{_baseAndKey}mid.json?uid={0}"; } }
         public string StatusesUri { get { return $"{_baseAndKey}statuses.json?mid={0}"; } }
