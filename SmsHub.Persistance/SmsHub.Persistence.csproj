@@ -13,7 +13,6 @@
     <Folder Include="DbLogger\" />
     <Folder Include="DbSeeder\" />
     <Folder Include="Interceptors\" />
-    <Folder Include="Migrations\" />
     <Folder Include="Utils\" />
   </ItemGroup>
 
