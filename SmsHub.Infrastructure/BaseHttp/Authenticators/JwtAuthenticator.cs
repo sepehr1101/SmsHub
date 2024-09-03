@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmsHub.Infrastructure.BaseHttp.Authenticators.Implementation
+namespace SmsHub.Infrastructure.BaseHttp.Authenticators
 {
-    internal class BasicAuthenticator
+    public static partial class Authenticator
     {
     }
 }

@@ -7,10 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="BaseHttp\Authenticators\Contracts\**" />
     <Compile Remove="Contracts\**" />
     <Compile Remove="Implementations\**" />
+    <EmbeddedResource Remove="BaseHttp\Authenticators\Contracts\**" />
     <EmbeddedResource Remove="Contracts\**" />
     <EmbeddedResource Remove="Implementations\**" />
+    <None Remove="BaseHttp\Authenticators\Contracts\**" />
     <None Remove="Contracts\**" />
     <None Remove="Implementations\**" />
   </ItemGroup>
@@ -21,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BaseHttp\Authenticators\Contracts\" />
     <Folder Include="BaseHttp\Interceptors\" />
     <Folder Include="BaseHttp\Response\" />
     <Folder Include="BaseHttp\Serializers\Json\" />
