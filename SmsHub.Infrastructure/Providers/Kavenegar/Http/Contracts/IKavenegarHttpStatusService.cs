@@ -6,7 +6,7 @@ namespace SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts
 {
     public  interface IKavenegarHttpStatusService
     {
-        Task<ResponseGeneric<List<StatusDto>>> Send(KaveRequest.StatusDto statusDto, string apiKey);
+        Task<ResponseGeneric<List<StatusDto>>> Trigger(KaveRequest.StatusDto statusDto, string apiKey);
 
     }
 }

@@ -5,6 +5,6 @@ namespace SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts
 {
     public interface IKavenegarHttpDateService
     {
-        Task<ResponseGeneric<GetDateDto>> GetCurrentDateTime();
+        Task<ResponseGeneric<GetDateDto>> Trigger();
     }
 }

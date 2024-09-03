@@ -15,7 +15,7 @@ namespace SmsHub.Infrastructure.Providers.Kavenegar.Http.Implementations
             _restClient = restClient;
             _restClient.NotNull();
         }
-        public async Task<ResponseGeneric<InfoDto>> GetAccountInfo(string apiKey)
+        public async Task<ResponseGeneric<InfoDto>> Trigger(string apiKey)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, new Literals(apiKey).InfoUri);
             var response = await _restClient.Create(request.RequestUri).Execute<ResponseGeneric<InfoDto>>(request);

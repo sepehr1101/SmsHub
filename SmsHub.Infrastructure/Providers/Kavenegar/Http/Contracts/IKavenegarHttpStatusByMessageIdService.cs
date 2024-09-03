@@ -6,6 +6,6 @@ namespace SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts
 {
     public interface IKavenegarHttpStatusByMessageIdService
     {
-        Task<ResponseGeneric<List<StatusByMessageIdDto>>> Send(KaveRequest.StatusByMessageIdDto statusByMessageId,string apiKey);
+        Task<ResponseGeneric<List<StatusByMessageIdDto>>> Trigger(KaveRequest.StatusByMessageIdDto statusByMessageId,string apiKey);
     }
 }

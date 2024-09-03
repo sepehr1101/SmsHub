@@ -5,6 +5,6 @@ namespace SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts
 {
     public interface IKavenegarHttpAccountService
     {
-        Task<ResponseGeneric<InfoDto>> GetAccountInfo(string apiKey);
+        Task<ResponseGeneric<InfoDto>> Trigger(string apiKey);
     }
 }

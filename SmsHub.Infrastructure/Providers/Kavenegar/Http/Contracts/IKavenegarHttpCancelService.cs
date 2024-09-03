@@ -7,6 +7,6 @@ namespace SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts
 {
     public interface IKavenegarHttpCancelService
     {
-        Task<ResponseGeneric<List<CancelDto>>> Send(KaveRequest.CancelDto cancelDto, string apiKey);
+        Task<ResponseGeneric<List<CancelDto>>> Trigger(KaveRequest.CancelDto cancelDto, string apiKey);
     }
 }

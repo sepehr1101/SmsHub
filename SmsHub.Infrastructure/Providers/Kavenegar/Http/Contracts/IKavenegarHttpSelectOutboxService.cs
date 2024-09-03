@@ -6,6 +6,6 @@ namespace SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts
 {
     public interface IKavenegarHttpSelectOutboxService
     {
-        Task<ResponseGeneric<List<SelectOutboxDto>>> Send(KaveRequest.SelectOutboxDto selectOutboxDto, string apiKey);
+        Task<ResponseGeneric<List<SelectOutboxDto>>> Trigger(KaveRequest.SelectOutboxDto selectOutboxDto, string apiKey);
     }
 }

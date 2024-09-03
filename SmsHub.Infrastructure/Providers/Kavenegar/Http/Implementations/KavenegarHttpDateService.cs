@@ -15,7 +15,7 @@ namespace SmsHub.Infrastructure.Providers.Kavenegar.Http.Implementations
             _restClient = restClient;
             _restClient.NotNull();
         }
-        public async Task<ResponseGeneric<GetDateDto>> GetCurrentDateTime()
+        public async Task<ResponseGeneric<GetDateDto>> Trigger()
         {
             var request = new HttpRequestMessage(HttpMethod.Get, new Literals().GetDateUrl);
             var response = await _restClient.Create(request.RequestUri).Execute<ResponseGeneric<GetDateDto>>(request);

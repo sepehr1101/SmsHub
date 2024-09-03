@@ -6,6 +6,6 @@ namespace SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts
 {
     public interface IKavenegarHttpLookupService
     {
-        Task<ResponseGeneric<List<LookupDto>>> Send(KaveRequest.LookupDto lookupDto, string apiKey);
+        Task<ResponseGeneric<List<LookupDto>>> Trigger(KaveRequest.LookupDto lookupDto, string apiKey);
     }
 }

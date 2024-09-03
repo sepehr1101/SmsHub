@@ -16,7 +16,7 @@ namespace SmsHub.Infrastructure.Providers.Kavenegar.Http.Implementations
             _restClient=restClient; 
         }
 
-        public async Task<ResponseGeneric<List<LookupDto>>> Send(KavenegarRequest.LookupDto lookupDto, string apiKey)
+        public async Task<ResponseGeneric<List<LookupDto>>> Trigger(KavenegarRequest.LookupDto lookupDto, string apiKey)
         {
             var uri = new Literals(apiKey).LookupUri;
             var request=new HttpRequestMessage(HttpMethod.Get, uri);

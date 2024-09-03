@@ -6,6 +6,6 @@ namespace SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts
 {
     public interface IKavenegarHttpSendSimpleService
     {
-        Task<ResponseGeneric<List<SimpleSendDto>>> Send(KaveRequest.SimpleSendDto simpleSendDto, string apiKey);
+        Task<ResponseGeneric<List<SimpleSendDto>>> Trigger(KaveRequest.SimpleSendDto simpleSendDto, string apiKey);
     }
 }
