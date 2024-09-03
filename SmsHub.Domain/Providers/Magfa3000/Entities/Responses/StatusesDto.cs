@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SmsHub.Domain.Providers.Magfa3000.Entities.Base;
 
 namespace SmsHub.Domain.Providers.Magfa3000.Entities.Responses
 {
-    public class StatusesDto
+    public class StatusesDto:ResponseBase
     {
-        public int Status { get; set; }
         public ICollection<DlrsDto> Dlrs { get; set; }
 
     }
@@ -16,6 +11,6 @@ namespace SmsHub.Domain.Providers.Magfa3000.Entities.Responses
     {
         public long Mid { get; set; }
         public int Status { get; set; }
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
     }
 }

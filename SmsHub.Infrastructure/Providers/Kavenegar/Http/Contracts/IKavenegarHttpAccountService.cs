@@ -3,7 +3,7 @@ using SmsHub.Domain.Providers.Kavenegar.Entities.Responses;
 
 namespace SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts
 {
-    public interface IKavenegarAccountHttpService
+    public interface IKavenegarHttpAccountService
     {
         Task<ResponseGeneric<InfoDto>> GetAccountInfo(string apiKey);
     }

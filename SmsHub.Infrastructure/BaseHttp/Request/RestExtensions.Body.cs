@@ -1,5 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Primitives;
+using Newtonsoft.Json;
+using SmsHub.Common;
 using SmsHub.Infrastructure.BaseHttp.Enums;
+using System.Net.Mime;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -38,6 +41,51 @@ namespace SmsHub.Infrastructure.BaseHttp.Request
             var content = new StringContent(bodyJson, encoding, contentType);
             request.Content = content;
             return request;
+        }
+
+        public static HttpRequestMessage AddFormBody<T>(this HttpRequestMessage request, Dictionary<string,T> formDictionary, [Optional] Encoding encoding, string? mediaType=null)
+        {
+            request.NotNull();
+            formDictionary.NotNull();
+            encoding = encoding ?? Encoding.UTF8;
+            mediaType= string.IsNullOrWhiteSpace(mediaType) ? MediaTypeNames.Text.Plain : mediaType;
+            MultipartFormDataContent formContent = new MultipartFormDataContent();
+            foreach (var item in formDictionary)
+            {
+                if(item.Value is null || item.Key is null)
+                {
+                    continue;
+                }
+                if(item.Value is IEnumerable<T>)
+                {
+                    var values = item.Value as IEnumerable<T>;
+                    var sb = new StringBuilder();
+                    sb.Append("[").AppendJoin(',', values).Append("]");
+                    var content = new StringContent(item.Key, encoding, mediaType);
+                    formContent.Add(content, item.Key);
+                }
+                else
+                {
+                    var content = new StringContent(item.Key, encoding, mediaType);
+                    formContent.Add(content, item.Key);
+                }              
+            }
+            request.Content = formContent;
+            return request;
+
+            /*var client = new HttpClient();
+var request = new HttpRequestMessage(HttpMethod.Post, "https://api.kavenegar.com/v1/5575426A68495063786333776662677171397533775377746A5A696475386159574332463078442F7750553D/sms/sendarray.json");
+request.Headers.Add("Cookie", "cookiesession1=678A8C4023F49FF44F4B75F55D3B7902");
+var content = new MultipartFormDataContent();
+content.Add(new StringContent("[\"09134588220\",\"09135742556\"]"), "receptor");
+content.Add(new StringContent("[\"2000550055505\",\"2000550055505\"]"), "sender");
+content.Add(new StringContent("[\"سلام این پیام جهت تست است\",\"سلام این پیام جهت تست است\"]"), "message");
+content.Add(new StringContent("[\"4563324XX\",\"123644YY\"]"), "localmessageids");
+request.Content = content;
+var response = await client.SendAsync(request);
+response.EnsureSuccessStatusCode();
+Console.WriteLine(await response.Content.ReadAsStringAsync());
+*/
         }
 
         //TODO: ADD Xml body
