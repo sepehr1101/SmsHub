@@ -16,7 +16,7 @@ namespace SmsHub.Infrastructure.Providers.Magfa3000.Http.Implementations
             _restClient.NotNull();
         }
 
-        public async Task<BalanceDto> GetBalance(string domain, string username, string password)
+        public async Task<BalanceDto> GetBalances(string domain, string username, string password)
         {
             var request = new HttpRequestMessage(HttpMethod.Get,new Literals().BalanceUri);
             request.AddBasicAuthentication($"{domain}/{username}", password);
