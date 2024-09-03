@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Contracts\**" />
+    <Compile Remove="Implementations\**" />
+    <EmbeddedResource Remove="Contracts\**" />
+    <EmbeddedResource Remove="Implementations\**" />
+    <None Remove="Contracts\**" />
+    <None Remove="Implementations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="BaseHttp\Request\RestExtension.Body.cs" />
     <Compile Remove="BaseHttp\Request\RestExtensions.Url.cs" />
   </ItemGroup>
@@ -17,10 +26,8 @@
     <Folder Include="BaseHttp\Response\" />
     <Folder Include="BaseHttp\Serializers\Json\" />
     <Folder Include="BaseHttp\Serializers\Xml\" />
-    <Folder Include="Contracts\" />
     <Folder Include="Exceptions\" />
     <Folder Include="AuthServices\" />
-    <Folder Include="Implementations\" />
     <Folder Include="Providers\Kavenegar\EntityMapping\" />
     <Folder Include="Providers\Magfa3000\EntityMapping\" />
   </ItemGroup>
