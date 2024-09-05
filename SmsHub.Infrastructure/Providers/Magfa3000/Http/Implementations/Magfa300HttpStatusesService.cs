@@ -13,9 +13,7 @@ namespace SmsHub.Infrastructure.Providers.Magfa3000.Http.Implementations
         public Magfa300HttpStatusesService(IRestClient httpClient)
         {
             _restClient = httpClient;
-        }
-
-    
+        }    
 
         public async Task<Statuses> GetStatuses(string domain, string username, string password)
         {
