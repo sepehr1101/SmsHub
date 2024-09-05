@@ -17,7 +17,7 @@ namespace SmsHub.Infrastructure.Providers.Kavenegar.Http.Implementations
             _restClient = restClient;
         }
 
-        public async Task<ResponseGeneric<List<StatusByMessageIdDto>>> Send(KavenegarRequest.StatusByMessageIdDto statusByMessageIdDto, string apiKey)
+        public async Task<ResponseGeneric<List<StatusByMessageIdDto>>> Trigger(KavenegarRequest.StatusByMessageIdDto statusByMessageIdDto, string apiKey)
         {
             var uri = new Literals(apiKey).StatusByMessageIdUri;
             var request = new HttpRequestMessage(HttpMethod.Get, uri);

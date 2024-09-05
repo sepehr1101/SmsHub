@@ -6,6 +6,6 @@ namespace SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts
 {
     public interface IKavenegarHttpMakettsService
     {
-        Task<ResponseGeneric<List<MakettsDto>>> Send(KaveRequest.MakettsDto makettsDto, string apiKey);
+        Task<ResponseGeneric<List<MakettsDto>>> Trigger(KaveRequest.MakettsDto makettsDto, string apiKey);
     }
 }

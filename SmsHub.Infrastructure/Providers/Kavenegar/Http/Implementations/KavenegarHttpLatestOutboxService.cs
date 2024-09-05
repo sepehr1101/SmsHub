@@ -16,7 +16,7 @@ namespace SmsHub.Infrastructure.Providers.Kavenegar.Http.Implementations
             _restClient = restClient;
         }
 
-        public async Task<ResponseGeneric<List<LatestOutboxDto>>> Send(KavenegarRequest.LatestOutboxDto latestOutboxDto, string apiKey)
+        public async Task<ResponseGeneric<List<LatestOutboxDto>>> Trigger(KavenegarRequest.LatestOutboxDto latestOutboxDto, string apiKey)
         {
             var uri = new Literals(apiKey).LatestOutboxUri;
             var request=new HttpRequestMessage(HttpMethod.Get, uri);

@@ -16,7 +16,7 @@ namespace SmsHub.Infrastructure.Providers.Kavenegar.Http.Implementations
             _restClient = restClient;
         }
 
-        public async Task<ResponseGeneric<List<CountInboxDto>>> Send(KavenegarRequest.CountInboxDto countInboxDto, string apiKey)
+        public async Task<ResponseGeneric<List<CountInboxDto>>> Trigger(KavenegarRequest.CountInboxDto countInboxDto, string apiKey)
         {
             var uri = new Literals(apiKey).CountInboxUri;
             var request = new HttpRequestMessage(HttpMethod.Get, uri);

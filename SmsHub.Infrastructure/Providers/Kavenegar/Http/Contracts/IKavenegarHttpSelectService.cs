@@ -6,6 +6,6 @@ namespace SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts
 {
     public interface IKavenegarHttpSelectService
     {
-        Task<ResponseGeneric<List<SelectDto>>> Send(KaveRequest.SelectDto select, string apiKey);
+        Task<ResponseGeneric<List<SelectDto>>> Trigger(KaveRequest.SelectDto select, string apiKey);
     }
 }

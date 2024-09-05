@@ -16,7 +16,7 @@ namespace SmsHub.Infrastructure.Providers.Kavenegar.Http.Implementations
             _restClient = restClient;
         }
 
-        public async Task<ResponseGeneric<List<CancelDto>>> Send(KaveRequest.CancelDto cancelDto, string apiKey)
+        public async Task<ResponseGeneric<List<CancelDto>>> Trigger(KaveRequest.CancelDto cancelDto, string apiKey)
         {
             var uri = new Literals(apiKey).CancelUri;
             var request=new HttpRequestMessage(HttpMethod.Post, uri);
