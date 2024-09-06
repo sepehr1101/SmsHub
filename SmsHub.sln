@@ -82,6 +82,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Asanak", "Asanak", "{2E2A56
 		C:\Users\ASUS\Downloads\Documents\webservice.pdf = C:\Users\ASUS\Downloads\Documents\webservice.pdf
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsHub.IntegrationTests.Persistance", "SmsHub.IntegrationTests.Persistance\SmsHub.IntegrationTests.Persistance.csproj", "{B5171F96-F816-414C-B9AF-6F4B5291B5D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -132,6 +134,10 @@ Global
 		{59D2A0CD-4642-4922-A70D-65ECB5AF0081}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59D2A0CD-4642-4922-A70D-65ECB5AF0081}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59D2A0CD-4642-4922-A70D-65ECB5AF0081}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5171F96-F816-414C-B9AF-6F4B5291B5D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5171F96-F816-414C-B9AF-6F4B5291B5D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5171F96-F816-414C-B9AF-6F4B5291B5D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5171F96-F816-414C-B9AF-6F4B5291B5D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -157,6 +163,7 @@ Global
 		{AEBF40F5-6F7D-4A67-AFA7-4A726A81830D} = {DE9F2511-05CA-4FEB-B757-B5B11D59A212}
 		{DDB190EA-0C8D-4888-B2B3-255E54CF9957} = {DE9F2511-05CA-4FEB-B757-B5B11D59A212}
 		{2E2A56CA-F3F3-4BCC-BDF0-87AA36B6381D} = {DE9F2511-05CA-4FEB-B757-B5B11D59A212}
+		{B5171F96-F816-414C-B9AF-6F4B5291B5D5} = {14158F3E-B405-4A18-B477-9A1FC554C341}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7B76544C-4686-41B3-8D63-1F256465FA03}
