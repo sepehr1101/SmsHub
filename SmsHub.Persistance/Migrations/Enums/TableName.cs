@@ -1,0 +1,32 @@
+﻿namespace SmsHub.Persistence.Migrations.Enums
+{
+    internal enum TableName
+    {
+        Provider,
+        Line,
+        Consumer,
+        ConsumerLine,
+        ConsumerSafeIp,
+        ContactCategory,
+        ContactNumberCategory,
+        Contact,
+        ContactNumber,
+        TemplateCategory,
+        Template,
+        MessageBatch,
+        MessagesHolder,
+        MessagesDetail,
+        MessageStateCategory,
+        MessageState,
+        ReceivedHolder,//todo
+        ReceivedDetails,//todo
+        LogLevel,//todo
+        InformativeLog,//todo
+        OperationType,//todo
+        DeepLog,//todo
+        PermittedTime,//todo
+        DisallowedPhrase,//todo
+        Config//todo
+        //todo: cost tables
+    }
+}

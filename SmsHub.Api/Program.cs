@@ -2,6 +2,7 @@ using SmsHub.Infrastructure.BaseHttp.Client.Contracts;
 using SmsHub.Infrastructure.BaseHttp.Client.Implementation;
 using SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts;
 using SmsHub.Infrastructure.Providers.Kavenegar.Http.Implementations;
+using SmsHub.Persistence.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,7 @@ builder.Services.AddScoped<IKavenegarHttpSendSimpleService,KavenegarHttpSendSimp
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.UpdateDb(string.Empty);
 
 var app = builder.Build();
 

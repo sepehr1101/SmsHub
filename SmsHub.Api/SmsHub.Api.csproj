@@ -19,6 +19,7 @@
     <ProjectReference Include="..\SmsHub.Common\SmsHub.Common.csproj" />
     <ProjectReference Include="..\SmsHub.Domain\SmsHub.Domain.csproj" />
     <ProjectReference Include="..\SmsHub.Infrastructure\SmsHub.Infrastructure.csproj" />
+    <ProjectReference Include="..\SmsHub.Persistance\SmsHub.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
