@@ -1,6 +1,7 @@
 ﻿using FluentMigrator;
 using SmsHub.Persistence.Extensions;
 using SmsHub.Persistence.Migrations.Enums;
+using System.Reflection;
 
 namespace SmsHub.Persistence.Migrations
 {
@@ -10,14 +11,23 @@ namespace SmsHub.Persistence.Migrations
         string Id = nameof(Id);
         public override void Up()
         {
-            CreateProvider();
-            //todo add all tables
+            var methods =
+               GetType()
+              .GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+              .Where(m => m.Name.StartsWith("Create"))
+              .ToList();
+            methods.ForEach(m => m.Invoke(this, new object[0]));
         }
 
         public override void Down()
         {
-            //todo: delete all tables in here
-            //Delete.Table("Log");
+            var tableNames =
+              GetType()
+             .GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+             .Where(m => m.Name.StartsWith("Create"))
+             .Select(m=>m.Name.Replace("Create",string.Empty))
+             .ToList();
+            tableNames.ForEach(t => Delete.Table(t));
         }
 
         private void CreateProvider()
@@ -31,8 +41,9 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn("BaseUri").AsString(255)
                 .WithColumn("FallbackBaseUri").AsString(255);
         }
-        private void CreateLines()
-        {           
+        private void CreateLine()
+        {
+            Enum.GetName(typeof(TableName), TableName.OperationType);
             Create.Table(nameof(TableName.Line))
                 .WithColumn(Id).AsInt32().PrimaryKey().Identity()
                 .WithColumn("ProviderId").AsInt16()
@@ -142,14 +153,14 @@ namespace SmsHub.Persistence.Migrations
             Create.Table(nameof(TableName.MessagesDetail))
                 .WithColumn(Id).AsInt64().PrimaryKey().Identity()
                 .WithColumn($"{nameof(TableName.MessagesHolder)}{Id}").AsGuid()
-                    .ForeignKey(NamingHelper.Fk(TableName.MessagesHolder, TableName.MessagesDetail), nameof(TableName.MessagesDetail), Id)
+                    .ForeignKey(NamingHelper.Fk(TableName.MessagesDetail, TableName.MessagesHolder), nameof(TableName.MessagesHolder), Id)
                 .WithColumn("Receptor").AsString(15)
                 .WithColumn("ProviderResult").AsInt64()
                 .WithColumn("SendDateTime").AsDateTime()
                 .WithColumn("Text").AsString()
                 .WithColumn("SmsCount").AsInt16();
         }
-        private void MessageStateCategory()
+        private void CreateMessageStateCategory()
         {
             Create.Table(nameof(TableName.MessageStateCategory))
                 .WithColumn(Id).AsInt32().PrimaryKey().Identity()

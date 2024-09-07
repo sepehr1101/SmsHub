@@ -23,7 +23,7 @@ namespace SmsHub.Persistence.Extensions
                 .AddFluentMigratorCore()
                 .ConfigureRunner(rb => rb
                     .AddSqlServer()
-                    .WithGlobalConnectionString(connectionString)
+                    .WithGlobalConnectionString(tmpConnectionString)
                     //.ScanIn(typeof(DbInitialDesign).Assembly).For.Migrations())
                     .ScanIn(Assembly.GetExecutingAssembly()).For.All())
                 .AddLogging(lb => lb.AddFluentMigratorConsole())
