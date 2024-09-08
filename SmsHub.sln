@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cmd", "Cmd", "{7BF220E9-CDD
 		..\DnTips.VahidNasiri\DntSite\src\DntSite.Web\_publish.cmd = ..\DnTips.VahidNasiri\DntSite\src\DntSite.Web\_publish.cmd
 		..\DnTips.VahidNasiri\DntSite\src\DntSite.Web\_restore.cmd = ..\DnTips.VahidNasiri\DntSite\src\DntSite.Web\_restore.cmd
 		..\DnTips.VahidNasiri\DntSite\src\DntSite.Web\_run-debug.cmd = ..\DnTips.VahidNasiri\DntSite\src\DntSite.Web\_run-debug.cmd
+		_scaffold.cmd = _scaffold.cmd
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegrationTests", "IntegrationTests", "{14158F3E-B405-4A18-B477-9A1FC554C341}"
@@ -82,7 +83,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Asanak", "Asanak", "{2E2A56
 		C:\Users\ASUS\Downloads\Documents\webservice.pdf = C:\Users\ASUS\Downloads\Documents\webservice.pdf
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsHub.IntegrationTests.Persistance", "SmsHub.IntegrationTests.Persistance\SmsHub.IntegrationTests.Persistance.csproj", "{B5171F96-F816-414C-B9AF-6F4B5291B5D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsHub.IntegrationTests.Persistance", "SmsHub.IntegrationTests.Persistance\SmsHub.IntegrationTests.Persistance.csproj", "{B5171F96-F816-414C-B9AF-6F4B5291B5D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
