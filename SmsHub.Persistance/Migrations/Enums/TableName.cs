@@ -20,10 +20,10 @@
         MessageState,
         ReceivedHolder,//todo
         ReceivedDetails,//todo
-        LogLevel,//todo
-        InformativeLog,//todo
-        OperationType,//todo
-        DeepLog,//todo
+        LogLevel,
+        InformativeLog,
+        OperationType,
+        DeepLog,
         PermittedTime,//todo
         DisallowedPhrase,//todo
         Config//todo
