@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace SmsHub.Persistence.Models
+﻿namespace SmsHub.Domain.Features.Entities
 {
     public partial class OperationType
     {

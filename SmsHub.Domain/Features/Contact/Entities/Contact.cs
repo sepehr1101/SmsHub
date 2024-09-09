@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace SmsHub.Persistence.Models
+﻿namespace SmsHub.Doamin.Features.Models
 {
     public partial class Contact
     {

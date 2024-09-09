@@ -13,6 +13,7 @@
     <Folder Include="DbLogger\" />
     <Folder Include="DbSeeder\" />
     <Folder Include="Interceptors\" />
+    <Folder Include="Models\" />
     <Folder Include="Utils\" />
   </ItemGroup>
 
@@ -32,6 +33,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SmsHub.Common\SmsHub.Common.csproj" />
+    <ProjectReference Include="..\SmsHub.Domain\SmsHub.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

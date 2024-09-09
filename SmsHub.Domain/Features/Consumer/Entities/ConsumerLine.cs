@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SmsHub.Domain.Features.Consumer.Entities;
 
-namespace SmsHub.Persistence.Models
+namespace SmsHub.Domain.Entities
 {
     public partial class ConsumerLine
     {

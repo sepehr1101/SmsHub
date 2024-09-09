@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace SmsHub.Persistence.Models
+﻿namespace SmsHub.Domain.Features.Consumer.Entities
 {
     public partial class Consumer
     {
