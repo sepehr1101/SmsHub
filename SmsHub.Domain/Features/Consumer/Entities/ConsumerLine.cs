@@ -1,8 +1,9 @@
-﻿using SmsHub.Domain.Features.Consumer.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SmsHub.Domain.Entities
+namespace SmsHub.Domain.Features.Entities
 {
-    public partial class ConsumerLine
+    [Table(nameof(ConsumerLine))]
+    public class ConsumerLine
     {
         public int Id { get; set; }
         public int ConsumerId { get; set; }

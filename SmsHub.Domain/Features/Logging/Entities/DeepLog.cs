@@ -1,6 +1,9 @@
-﻿namespace SmsHub.Domain.Features.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SmsHub.Domain.Features.Entities
 {
-    public partial class DeepLog
+    [Table(nameof(DeepLog))]
+    public class DeepLog
     {
         public long Id { get; set; }
         public int OperationTypeId { get; set; }

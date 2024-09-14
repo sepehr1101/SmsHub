@@ -126,7 +126,8 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn($"{nameof(TableName.TemplateCategory)}{Id}").AsInt32()
                     .ForeignKey(NamingHelper.Fk(TableName.Template, TableName.TemplateCategory), nameof(TableName.TemplateCategory), Id)
                 .WithColumn("IsActive").AsBoolean()
-                .WithColumn("Parameters").AsString(int.MaxValue);                    
+                .WithColumn("Parameters").AsString(int.MaxValue)
+                .WithColumn("MinCredit").AsInt32();                    
         }
         private void CreateMessageBatch()
         {
@@ -223,6 +224,52 @@ namespace SmsHub.Persistence.Migrations
                .WithColumn("Ip").AsAnsiString(64)
                .WithColumn("InsertDateTime").AsDateTime()
                .WithColumn("ClientInfo").AsString(int.MaxValue);
+        }
+        private void CreateDisallowedPhraseGroup()
+        {
+            Create.Table(nameof(TableName.DisallowedPhraseGroup))
+                .WithColumn(Id).AsInt32().PrimaryKey().Identity()
+                .WithColumn("Title").AsString(_255)
+                .WithColumn("Description").AsString(int.MaxValue);
+        }
+        private void CreateDisallowedPhrase()
+        {
+            Create.Table(nameof(TableName.DisallowedPhrase))
+                .WithColumn(Id).AsInt32().PrimaryKey().Identity()
+                .WithColumn($"{nameof(TableName.DisallowedPhraseGroup)}{Id}").AsInt32()
+                    .ForeignKey(NamingHelper.Fk(TableName.DisallowedPhrase, TableName.DisallowedPhraseGroup, Id), nameof(TableName.DisallowedPhraseGroup), Id)
+                .WithColumn("Phrase").AsString(_255);
+        }
+        private void CreateCcSendGroup()
+        {
+            Create.Table(nameof(TableName.CcSendGroup))
+                .WithColumn(Id).AsInt32().PrimaryKey().Identity()
+                .WithColumn("Title").AsString(_255)
+                .WithColumn("Description").AsString(int.MaxValue);
+        }
+        private void CreateCcSend()
+        {
+            Create.Table(nameof(TableName.CcSend))
+                .WithColumn(Id).AsInt32().PrimaryKey().Identity()
+                .WithColumn($"{nameof(TableName.CcSendGroup)}{Id}").AsInt32()
+                    .ForeignKey(NamingHelper.Fk(TableName.CcSend, TableName.CcSendGroup, Id), nameof(TableName.CcSendGroup), Id)
+                .WithColumn("Mobile").AsFixedLengthAnsiString(11);
+        }
+        private void CreatePermittedTimeGroup()
+        {
+            Create.Table(nameof(TableName.PermittedTimeGroup))
+                .WithColumn(Id).AsInt32().PrimaryKey().Identity()
+                .WithColumn("Title").AsString(_255)
+                .WithColumn("Description").AsString(int.MaxValue);
+        }
+        private void CreatePermittedTime()
+        {
+            Create.Table(nameof(TableName.PermittedTime))
+                .WithColumn(Id).AsInt32().PrimaryKey().Identity()
+                .WithColumn($"{nameof(TableName.PermittedTimeGroup)}{Id}").AsInt32()
+                    .ForeignKey(NamingHelper.Fk(TableName.PermittedTime,TableName.PermittedTimeGroup),nameof(TableName.PermittedTimeGroup), Id)
+                .WithColumn("FromTime").AsFixedLengthAnsiString(5)
+                .WithColumn("ToTime").AsFixedLengthAnsiString(5);
         }
     }
 }

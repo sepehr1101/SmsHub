@@ -8,8 +8,6 @@ namespace SmsHub.Domain.Features.EfConfig
     {
         public void Configure(EntityTypeBuilder<Provider> entity)
         {
-            //entity.ToTable("Provider");
-
             entity.HasIndex(e => e.Title, "IX_Unique_Provider_Title")
                 .IsUnique();
 

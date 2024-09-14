@@ -1,6 +1,9 @@
-﻿namespace SmsHub.Domain.Features.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SmsHub.Domain.Features.Entities
 {
-    public partial class MessageState
+    [Table(nameof(MessageState))]
+    public class MessageState
     {
         public long Id { get; set; }
         public int MessageStateCategoryId { get; set; }

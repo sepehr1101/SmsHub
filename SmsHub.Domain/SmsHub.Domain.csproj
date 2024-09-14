@@ -10,18 +10,10 @@
     <Folder Include="BaseDomainEntities\" />
     <Folder Include="BaseValueObjects\" />
     <Folder Include="BaseValidations\" />
-    <Folder Include="Features\Config\Entities\" />
-    <Folder Include="Features\Config\EfConfig\" />
-    <Folder Include="Features\Consumer\EfConfig\" />
-    <Folder Include="Features\Contact\EfConfig\" />
     <Folder Include="Features\Credit\EfConfig\" />
     <Folder Include="Features\Credit\Entities\" />
-    <Folder Include="Features\Line\EfConfig\" />
-    <Folder Include="Features\Logging\EfConfig\" />
     <Folder Include="Features\Receiving\EfConfig\" />
     <Folder Include="Features\Receiving\Entities\" />
-    <Folder Include="Features\Sending\EfConfig\" />
-    <Folder Include="Features\Template\EfConfig\" />
     <Folder Include="Providers\Kavenegar\Models\" />
     <Folder Include="Providers\Kavenegar\Exceptions\" />
     <Folder Include="BaseExceptions\" />
@@ -30,6 +22,11 @@
     <Folder Include="Providers\Magfa3000\Exceptions\" />
     <Folder Include="Providers\Magfa3000\Models\" />
     <Folder Include="Providers\Magfa3000\ValueObjects\" />
+  </ItemGroup>                                                                                                                            
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.33" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.33" />
   </ItemGroup>
 
 </Project>

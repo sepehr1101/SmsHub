@@ -1,6 +1,9 @@
-﻿namespace SmsHub.Domain.Features.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SmsHub.Domain.Features.Entities
 {
-    public partial class ContactCategory
+    [Table(nameof(ContactCategory))]
+    public class ContactCategory
     {
         public ContactCategory()
         {

@@ -1,6 +1,9 @@
-﻿namespace SmsHub.Domain.Features.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SmsHub.Domain.Features.Entities
 {
-    public partial class MessagesHolder
+    [Table(nameof(MessagesHolder))]
+    public class MessagesHolder
     {
         public MessagesHolder()
         {
