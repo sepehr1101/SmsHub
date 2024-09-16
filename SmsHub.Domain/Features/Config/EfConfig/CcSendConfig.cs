@@ -9,14 +9,15 @@ namespace SmsHub.Domain.Features.EfConfig
         public void Configure(EntityTypeBuilder<CcSend> entity)
         {
             entity.Property(e => e.Mobile)
-                .HasMaxLength(11)
-                .IsUnicode(false);
+                  .HasMaxLength(11)
+                  .IsUnicode(false)
+                  .IsFixedLength();
 
-            entity.HasOne(d => d.CcSendGroup)
+            entity.HasOne(d => d.ConfigTypeGroup)
                 .WithMany(p => p.CcSends)
-                .HasForeignKey(d => d.CcSendGroupId)
+                .HasForeignKey(d => d.ConfigTypeGroupId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_CcSend_CcSendGroup_Id");
+                .HasConstraintName("FK_ConfigTypeGroup_REFERS_CcSend_Id");
         }
     }
 }

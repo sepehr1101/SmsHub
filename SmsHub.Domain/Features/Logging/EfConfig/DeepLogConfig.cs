@@ -24,7 +24,7 @@ namespace SmsHub.Domain.Features.Logging.EfConfig
                 .WithMany(p => p.DeepLogs)
                 .HasForeignKey(d => d.OperationTypeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_OperationType_OperationType_Id");
+                .HasConstraintName("FK_OperationType_REFERS_DeepLog_OperationTypeId");
         }
     }
 }

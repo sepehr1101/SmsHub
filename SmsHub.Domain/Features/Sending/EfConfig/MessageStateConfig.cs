@@ -13,13 +13,14 @@ namespace SmsHub.Domain.Features.EfConfig
             entity.HasOne(d => d.MessageStateCategory)
                 .WithMany(p => p.MessageStates)
                 .HasForeignKey(d => d.MessageStateCategoryId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
-
-            entity.HasOne(d => d.MessagesDetailNavigation)
-                .WithMany(p => p.MessageStates)
-                .HasForeignKey(d => d.MessagesDetail)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_MessageState_MessagesDetail_MessagesDetailId");
+                .HasConstraintName("FK_MessageStateCategory_REFERS_MessageState_MessageStateCategoryId");
+
+            //entity.HasOne(d => d.MessagesDetailId)
+            //    .WithMany(p => p.MessageStates)
+            //    .HasForeignKey(d => d.MessagesDetailId)
+            //    .OnDelete(DeleteBehavior.ClientSetNull)
+            //    .HasConstraintName("FK_MessagesDetail_REFERS_MessageState_MessagesDetailId");
         }
     }
 }

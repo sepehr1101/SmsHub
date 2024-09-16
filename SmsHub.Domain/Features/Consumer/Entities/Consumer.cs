@@ -16,5 +16,6 @@ namespace SmsHub.Domain.Features.Entities
         public string ApiKey { get; set; } = null!;
 
         public virtual ICollection<ConsumerLine> ConsumerLines { get; set; }
+        public virtual ICollection<ConsumerSafeIp> ConsumerSafeIps { get; set; }
     }
 }

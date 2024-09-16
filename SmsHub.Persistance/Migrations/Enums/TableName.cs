@@ -24,11 +24,10 @@
         InformativeLog,
         OperationType,
         DeepLog,
-        PermittedTimeGroup,
+        ConfigType,
+        ConfigTypeGroup,
         PermittedTime,
-        DisallowedPhraseGroup,
         DisallowedPhrase,
-        CcSendGroup,
         CcSend,
         Config//todo
         //todo: cost tables

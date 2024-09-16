@@ -13,7 +13,8 @@ namespace SmsHub.Domain.Features.Sending.EfConfig
             entity.HasOne(d => d.Line)
                 .WithMany(p => p.MessageBatches)
                 .HasForeignKey(d => d.LineId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_MessageBatch_REFERS_Line_MessageBatchId");
         }
     }
 }

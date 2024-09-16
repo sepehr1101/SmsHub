@@ -16,7 +16,7 @@ namespace SmsHub.Domain.Features.EfConfig
                 .WithMany(p => p.MessageStateCategories)
                 .HasForeignKey(d => d.Provider)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_MessageStateCategory_Provider_ProviderId");
+                .HasConstraintName("FK_Provider_REFERS_MessageStateCategory_ProviderId");
         }
     }
 }

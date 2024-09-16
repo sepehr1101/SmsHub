@@ -10,11 +10,11 @@ namespace SmsHub.Domain.Features.EfConfig
         {
             entity.Property(e => e.Phrase).HasMaxLength(255);
 
-            entity.HasOne(d => d.DisallowedPhraseGroup)
+            entity.HasOne(d => d.ConfigTypeGroup)
                 .WithMany(p => p.DisallowedPhrases)
-                .HasForeignKey(d => d.DisallowedPhraseGroupId)
+                .HasForeignKey(d => d.ConfigTypeGroupId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_DisallowedPhrase_DisallowedPhraseGroup_Id");
+                .HasConstraintName("FK_ConfigTypeGroup_REFERS_DisallowedPhrase_Id");
         }
     }
 }

@@ -14,6 +14,10 @@ namespace SmsHub.Persistence.Contexts.Implementation
         {
         }
 
+        public virtual DbSet<CcSend> CcSends { get; set; } = null!;
+        public virtual DbSet<Config> Configs { get; set; } = null!;
+        public virtual DbSet<ConfigType> ConfigTypes { get; set; } = null!;
+        public virtual DbSet<ConfigTypeGroup> ConfigTypeGroups { get; set; } = null!;
         public virtual DbSet<Consumer> Consumers { get; set; } = null!;
         public virtual DbSet<ConsumerLine> ConsumerLines { get; set; } = null!;
         public virtual DbSet<ConsumerSafeIp> ConsumerSafeIps { get; set; } = null!;
@@ -22,6 +26,7 @@ namespace SmsHub.Persistence.Contexts.Implementation
         public virtual DbSet<ContactNumber> ContactNumbers { get; set; } = null!;
         public virtual DbSet<ContactNumberCategory> ContactNumberCategories { get; set; } = null!;
         public virtual DbSet<DeepLog> DeepLogs { get; set; } = null!;
+        public virtual DbSet<DisallowedPhrase> DisallowedPhrases { get; set; } = null!;
         public virtual DbSet<InformativeLog> InformativeLogs { get; set; } = null!;
         public virtual DbSet<Line> Lines { get; set; } = null!;
         public virtual DbSet<LogLevel> LogLevels { get; set; } = null!;
@@ -31,15 +36,10 @@ namespace SmsHub.Persistence.Contexts.Implementation
         public virtual DbSet<MessagesDetail> MessagesDetails { get; set; } = null!;
         public virtual DbSet<MessagesHolder> MessagesHolders { get; set; } = null!;
         public virtual DbSet<OperationType> OperationTypes { get; set; } = null!;
+        public virtual DbSet<PermittedTime> PermittedTimes { get; set; } = null!;
         public virtual DbSet<Provider> Providers { get; set; } = null!;
         public virtual DbSet<Template> Templates { get; set; } = null!;
         public virtual DbSet<TemplateCategory> TemplateCategories { get; set; } = null!;
-        public virtual DbSet<DisallowedPhrase> DisallowedPhrases { get; set; } = null!;
-        public virtual DbSet<DisallowedPhraseGroup> DisallowedPhraseGroups { get; set; } = null!;
-        public virtual DbSet<PermittedTime> PermittedTimes { get; set; } = null!;
-        public virtual DbSet<PermittedTimeGroup> PermittedTimeGroups { get; set; } = null!;
-        public virtual DbSet<CcSend> CcSends { get; set; } = null!;
-        public virtual DbSet<CcSendGroup> CcSendGroups { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
