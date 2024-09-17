@@ -14,7 +14,8 @@ namespace SmsHub.Domain.Features.EfConfig
             entity.HasOne(d => d.TemplateCategory)
                 .WithMany(p => p.Templates)
                 .HasForeignKey(d => d.TemplateCategoryId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_TemplateCategory_REFERS_Template_TemplateCategoryId");
         }
     }
 }

@@ -1,3 +1,4 @@
+using SmsHub.Application.Extensions;
 using SmsHub.Infrastructure.BaseHttp.Client.Contracts;
 using SmsHub.Infrastructure.BaseHttp.Client.Implementation;
 using SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts;
@@ -5,7 +6,6 @@ using SmsHub.Infrastructure.Providers.Kavenegar.Http.Implementations;
 using SmsHub.Persistence.Contexts.Implementation;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Extensions;
-using SmsHub.Persistence.Features.Contact;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,8 +18,9 @@ builder.Services.AddHttpClient();
 builder.Services.AddScoped<IRestClient, RestClient>();
 builder.Services.AddScoped<IKavenegarHttpDateService,KavenegarHttpDateService>();
 builder.Services.AddScoped<IKavenegarHttpSendSimpleService,KavenegarHttpSendSimpleService>();
-builder.Services.AddScoped<IUnitOfWork,TestContext>();
-builder.Services.AddScoped<IContactCategoryService,ContactCategoryService>();
+builder.Services.AddPersistenceInjections();
+builder.Services.AddApplicationInjections();
+//builder.Services.AddScoped<IUnitOfWork,TestContext>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

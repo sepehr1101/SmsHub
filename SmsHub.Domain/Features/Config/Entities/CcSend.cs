@@ -3,9 +3,9 @@
     public class CcSend
     {
         public int Id { get; set; }
-        public int CcSendGroupId { get; set; }
+        public int ConfigTypeGroupId { get; set; }
         public string Mobile { get; set; } = null!;
 
-        public virtual CcSendGroup CcSendGroup { get; set; } = null!;
+        public virtual ConfigTypeGroup ConfigTypeGroup { get; set; } = null!;
     }
 }

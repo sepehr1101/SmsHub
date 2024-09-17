@@ -5,6 +5,11 @@ namespace SmsHub.Domain.Features.Entities
     [Table(nameof(Template))]
     public class Template
     {
+        public Template()
+        {
+            Configs = new HashSet<Config>();
+        }
+
         public int Id { get; set; }
         public string Title { get; set; } = null!;
         public int TemplateCategoryId { get; set; }
@@ -13,5 +18,6 @@ namespace SmsHub.Domain.Features.Entities
         public int MinCredit { get; set; }
 
         public virtual TemplateCategory TemplateCategory { get; set; } = null!;
+        public virtual ICollection<Config> Configs { get; set; }
     }
 }

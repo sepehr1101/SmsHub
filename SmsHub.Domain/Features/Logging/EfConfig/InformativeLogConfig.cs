@@ -23,7 +23,7 @@ namespace SmsHub.Domain.Features.Logging.EfConfig
                 .WithMany(p => p.InformativeLogs)
                 .HasForeignKey(d => d.LogLevelId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_InformativeLog_LogLevel_Id");
+                .HasConstraintName("FK_LogLevel_REFERS_InformativeLog_Id");
         }
     }
 }

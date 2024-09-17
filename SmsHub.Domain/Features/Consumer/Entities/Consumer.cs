@@ -8,6 +8,7 @@ namespace SmsHub.Domain.Features.Entities
         public Consumer()
         {
             ConsumerLines = new HashSet<ConsumerLine>();
+            ConsumerSafeIps = new HashSet<ConsumerSafeIp>();
         }
 
         public int Id { get; set; }
@@ -16,5 +17,6 @@ namespace SmsHub.Domain.Features.Entities
         public string ApiKey { get; set; } = null!;
 
         public virtual ICollection<ConsumerLine> ConsumerLines { get; set; }
+        public virtual ICollection<ConsumerSafeIp> ConsumerSafeIps { get; set; }
     }
 }
