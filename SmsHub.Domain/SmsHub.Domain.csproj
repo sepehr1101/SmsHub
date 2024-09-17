@@ -10,19 +10,27 @@
     <Folder Include="BaseDomainEntities\" />
     <Folder Include="BaseValueObjects\" />
     <Folder Include="BaseValidations\" />
-    <Folder Include="Features\Config\PersistenceDto\" />
-    <Folder Include="Features\Consumer\PersistenceDto\" />
-    <Folder Include="Features\Contact\PersistenceDto\" />
+    <Folder Include="Features\Config\PersistenceDto\Commands\" />
+    <Folder Include="Features\Config\PersistenceDto\Queries\" />
+    <Folder Include="Features\Consumer\MediatorDtos\Queries\" />
+    <Folder Include="Features\Contact\MediatorDtos\Commands\" />
+    <Folder Include="Features\Contact\MediatorDtos\Queries\" />
     <Folder Include="Features\Credit\EfConfig\" />
     <Folder Include="Features\Credit\Entities\" />
-    <Folder Include="Features\Credit\PersistenceDto\" />
-    <Folder Include="Features\Line\PersistenceDto\" />
-    <Folder Include="Features\Logging\PersistenceDto\" />
+    <Folder Include="Features\Credit\MediatorDtos\Commands\" />
+    <Folder Include="Features\Credit\MediatorDtos\Queries\" />
+    <Folder Include="Features\Line\MediatorDtos\Commands\" />
+    <Folder Include="Features\Line\MediatorDtos\Queries\" />
+    <Folder Include="Features\Logging\MediatorDtos\Commands\" />
+    <Folder Include="Features\Logging\MediatorDtos\Queries\" />
     <Folder Include="Features\Receiving\EfConfig\" />
     <Folder Include="Features\Receiving\Entities\" />
-    <Folder Include="Features\Receiving\PersistenceDto\" />
-    <Folder Include="Features\Sending\PersistenceDto\" />
-    <Folder Include="Features\Template\PersistenceDto\" />
+    <Folder Include="Features\Receiving\MediatorDtos\Commands\" />
+    <Folder Include="Features\Receiving\MediatorDtos\Queries\" />
+    <Folder Include="Features\Sending\MediatorDtos\Commands\" />
+    <Folder Include="Features\Sending\MediatorDtos\Queries\" />
+    <Folder Include="Features\Template\MediatorDtos\Commands\" />
+    <Folder Include="Features\Template\MediatorDtos\Queries\" />
     <Folder Include="Providers\Kavenegar\Models\" />
     <Folder Include="Providers\Kavenegar\Exceptions\" />
     <Folder Include="BaseExceptions\" />
@@ -34,6 +42,7 @@
   </ItemGroup>                                                                                                                            
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.33" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.33" />
   </ItemGroup>

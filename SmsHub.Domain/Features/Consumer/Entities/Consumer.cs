@@ -8,6 +8,7 @@ namespace SmsHub.Domain.Features.Entities
         public Consumer()
         {
             ConsumerLines = new HashSet<ConsumerLine>();
+            ConsumerSafeIps = new HashSet<ConsumerSafeIp>();
         }
 
         public int Id { get; set; }
