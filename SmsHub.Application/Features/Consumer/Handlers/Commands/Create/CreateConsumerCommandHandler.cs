@@ -21,7 +21,7 @@ namespace SmsHub.Application.Features.Consumer.Handlers.Commands.Create
         }
         public async Task Handle(CreateConsumerDto request, CancellationToken cancellationToken)
         {
-            var consumer = _mapper.Map<Entities.Consumer>(request);  //= new Entities.Consumer() { Id = 0, Description = "Test Description", Title = "Test Title", ApiKey = "test api key" };
+            var consumer = _mapper.Map<Entities.Consumer>(request);
             await _consumerCommandService.Add(consumer);
         }
     }
