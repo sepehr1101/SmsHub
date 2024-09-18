@@ -27,6 +27,10 @@
     <Folder Include="Features\Receiving\Entities\" />
     <Folder Include="Features\Receiving\MediatorDtos\Commands\" />
     <Folder Include="Features\Receiving\MediatorDtos\Queries\" />
+    <Folder Include="Features\Security\EfConfig\" />
+    <Folder Include="Features\Security\Entities\" />
+    <Folder Include="Features\Security\MediatorDtos\Commands\" />
+    <Folder Include="Features\Security\MediatorDtos\Queries\" />
     <Folder Include="Features\Sending\MediatorDtos\Commands\" />
     <Folder Include="Features\Sending\MediatorDtos\Queries\" />
     <Folder Include="Features\Template\MediatorDtos\Commands\" />

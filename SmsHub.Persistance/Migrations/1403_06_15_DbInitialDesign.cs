@@ -276,5 +276,15 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn($"{nameof(TableName.Template)}{Id}").AsInt32()
                     .ForeignKey(NamingHelper.Fk(TableName.Template, TableName.Config), nameof(TableName.Template), Id);
         }
+        private void CreateServerUser()
+        {
+            Create.Table(nameof(TableName.ServerUser))
+                .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(TableName.ServerUser)).Identity()
+                .WithColumn("Username").AsString(_255)
+                .WithColumn("IsAdmin").AsBinary()
+                .WithColumn("CreateDateTime").AsDateTime()
+                .WithColumn("DeleteDateTime").AsDateTime()
+                .WithColumn("ApiKeyHash").AsAnsiString(128);
+        }
     }
 }
