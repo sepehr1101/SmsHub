@@ -12,7 +12,6 @@
     <Folder Include="Contexts\Queries\" />
     <Folder Include="DbLogger\" />
     <Folder Include="DbSeeder\" />
-    <Folder Include="Features\Config\Commands\Create\" />
     <Folder Include="Features\Config\Commands\Delete\" />
     <Folder Include="Features\Config\Commands\Update\" />
     <Folder Include="Features\Config\Queries\List\" />
