@@ -1,4 +1,4 @@
-﻿using SmsHub.Common;
+﻿using SmsHub.Common.Extensions;
 using SmsHub.Domain.Providers.Magfa3000.Constants;
 using SmsHub.Domain.Providers.Magfa3000.Entities.Responses;
 using SmsHub.Infrastructure.BaseHttp.Authenticators;

@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SmsHub.Application.Features.Security.Services.Contracts;
+using SmsHub.Application.Features.Security.Services.Implementations;
 using System.Reflection;
 
 namespace SmsHub.Application.Extensions
@@ -9,6 +11,7 @@ namespace SmsHub.Application.Extensions
         {
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddScoped<IApiKeyFactory, ApiKeyFactory>();
             //services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));

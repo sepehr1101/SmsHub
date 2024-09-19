@@ -40,6 +40,7 @@ namespace SmsHub.Persistence.Contexts.Implementation
         public virtual DbSet<Provider> Providers { get; set; } = null!;
         public virtual DbSet<Template> Templates { get; set; } = null!;
         public virtual DbSet<TemplateCategory> TemplateCategories { get; set; } = null!;
+        public virtual DbSet<ServerUser> ServerUsers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

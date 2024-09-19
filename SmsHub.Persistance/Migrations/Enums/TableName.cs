@@ -29,7 +29,8 @@
         PermittedTime,
         DisallowedPhrase,
         CcSend,
-        Config//todo
+        Config,//todo
         //todo: cost tables
+        ServerUser
     }
 }

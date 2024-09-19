@@ -1,7 +1,7 @@
 ﻿using SmsHub.Common.Exceptions;
 using SmsHub.Common.Literals;
 
-namespace SmsHub.Common
+namespace SmsHub.Common.Extensions
 {
     public static class Guard
     {
