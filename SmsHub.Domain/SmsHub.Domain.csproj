@@ -12,7 +12,6 @@
     <Folder Include="BaseValidations\" />
     <Folder Include="Features\Config\PersistenceDto\Queries\" />
     <Folder Include="Features\Consumer\MediatorDtos\Queries\" />
-    <Folder Include="Features\Contact\MediatorDtos\Commands\" />
     <Folder Include="Features\Contact\MediatorDtos\Queries\" />
     <Folder Include="Features\Credit\EfConfig\" />
     <Folder Include="Features\Credit\Entities\" />

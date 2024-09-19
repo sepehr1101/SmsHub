@@ -19,8 +19,6 @@
     <Folder Include="Features\Consumer\Queries\List\" />
     <Folder Include="Features\Consumer\Queries\Single\" />
     <Folder Include="Features\Consumer\Queries\" />
-    <Folder Include="Features\Contact\Commands\Contracts\" />
-    <Folder Include="Features\Contact\Commands\Implementations\" />
     <Folder Include="Features\Contact\Queries\" />
     <Folder Include="Features\Credit\Commands\" />
     <Folder Include="Features\Credit\Queries\List\" />
