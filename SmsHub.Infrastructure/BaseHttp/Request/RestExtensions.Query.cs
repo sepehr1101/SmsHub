@@ -1,4 +1,4 @@
-﻿using SmsHub.Common;
+﻿using SmsHub.Common.Extensions;
 using System.Collections;
 
 namespace SmsHub.Infrastructure.BaseHttp.Request

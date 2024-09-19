@@ -281,9 +281,9 @@ namespace SmsHub.Persistence.Migrations
             Create.Table(nameof(TableName.ServerUser))
                 .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(TableName.ServerUser)).Identity()
                 .WithColumn("Username").AsString(_255)
-                .WithColumn("IsAdmin").AsBinary()
+                .WithColumn("IsAdmin").AsBoolean()
                 .WithColumn("CreateDateTime").AsDateTime()
-                .WithColumn("DeleteDateTime").AsDateTime()
+                .WithColumn("DeleteDateTime").AsDateTime().Nullable()
                 .WithColumn("ApiKeyHash").AsAnsiString(128);
         }
     }

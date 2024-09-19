@@ -1,4 +1,4 @@
-﻿using SmsHub.Common;
+﻿using SmsHub.Common.Extensions;
 using SmsHub.Domain.Providers.Kavenegar.Constants;
 using SmsHub.Domain.Providers.Kavenegar.Entities.Base;
 using SmsHub.Domain.Providers.Kavenegar.Entities.Responses;

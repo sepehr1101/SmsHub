@@ -19,9 +19,9 @@
     <Folder Include="Features\Consumer\Validations\" />
     <Folder Include="Features\Consumer\Handlers\Queries\" />
     <Folder Include="Features\Consumer\Notifications\" />
-    <Folder Include="Features\Security\Handlers\" />
-    <Folder Include="Features\Security\Mappings\" />
-    <Folder Include="Features\Security\Services\Implementations\" />
+    <Folder Include="Features\Security\Handlers\Commands\Delete\" />
+    <Folder Include="Features\Security\Handlers\Commands\Update\" />
+    <Folder Include="Features\Security\Handlers\Queries\" />
     <Folder Include="Features\Security\Validations\" />
     <Folder Include="Features\Validations\" />
     <Folder Include="Providers\Kavenegar\Commands\" />

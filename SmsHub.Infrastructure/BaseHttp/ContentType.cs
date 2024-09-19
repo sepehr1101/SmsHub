@@ -1,6 +1,6 @@
 ﻿using System.Net.Http.Headers;
-using SmsHub.Common;
 using SmsHub.Common.Exceptions;
+using SmsHub.Common.Extensions;
 using SmsHub.Infrastructure.BaseHttp.Enums;
 
 namespace SmsHub.Infrastructure.BaseHttp

@@ -1,17 +1,11 @@
-﻿using System.Buffers.Binary;
+﻿using SmsHub.Common.Contrats;
+using System.Buffers.Binary;
 using System.Security.Cryptography;
 using System.Text;
+
 namespace SmsHub.Application.Features.Security.Services.Contracts
 {
-    public interface ISecurityOpertions
-    {
-        Task<string> GetSha512Hash(string input);
-        Guid CreateCryptographicallySecureGuid();
-        string EncryptAesGcm(string plain);
-        string DecryptAesGcm(string plain);
-    }
-
-    public class SecurityService : ISecurityOpertions
+    public class SecurityOperations : ISecurityOpertions
     {
         private readonly RandomNumberGenerator _rand = RandomNumberGenerator.Create();
         public async Task<string> GetSha512Hash(string input)

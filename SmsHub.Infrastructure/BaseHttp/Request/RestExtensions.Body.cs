@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using SmsHub.Common;
+using SmsHub.Common.Extensions;
 using SmsHub.Infrastructure.BaseHttp.Enums;
 using System.Net.Mime;
 using System.Runtime.InteropServices;
