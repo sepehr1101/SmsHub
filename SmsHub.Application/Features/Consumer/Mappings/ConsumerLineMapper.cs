@@ -7,7 +7,7 @@ namespace SmsHub.Application.Features.Consumer.Mappings
     public class ConsumerLineMapper : Profile
     {
         public ConsumerLineMapper()
-        {
+        {//todo: introduction to startup
             CreateMap<Entities.ConsumerLine, CreateConsumerLineDto>().ReverseMap();
         }
     }
