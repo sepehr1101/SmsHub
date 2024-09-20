@@ -32,7 +32,6 @@
     <Folder Include="Features\Receiving\Queries\Single\" />
     <Folder Include="Features\Sending\Queries\List\" />
     <Folder Include="Features\Sending\Queries\Single\" />
-    <Folder Include="Features\Template\Commands\" />
     <Folder Include="Features\Template\Queries\List\" />
     <Folder Include="Features\Template\Queries\Single\" />
     <Folder Include="Interceptors\" />

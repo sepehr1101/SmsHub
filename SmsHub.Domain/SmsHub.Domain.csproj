@@ -24,7 +24,6 @@
     <Folder Include="Features\Receiving\MediatorDtos\Commands\" />
     <Folder Include="Features\Receiving\MediatorDtos\Queries\" />
     <Folder Include="Features\Sending\MediatorDtos\Queries\" />
-    <Folder Include="Features\Template\MediatorDtos\Commands\" />
     <Folder Include="Features\Template\MediatorDtos\Queries\" />
     <Folder Include="Providers\Kavenegar\Models\" />
     <Folder Include="Providers\Kavenegar\Exceptions\" />
