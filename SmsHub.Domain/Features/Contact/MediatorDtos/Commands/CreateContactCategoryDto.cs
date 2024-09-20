@@ -6,6 +6,6 @@ namespace SmsHub.Domain.Features.Contact.MediatorDtos.Commands
     {
         public string? Title { get; set; }
         public string? Description { get; set; }
-        public string Css { get; set; }
+        public string? Css { get; set; }
     }
 }
