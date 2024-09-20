@@ -17,7 +17,6 @@
     <Folder Include="Features\Credit\Entities\" />
     <Folder Include="Features\Credit\MediatorDtos\Commands\" />
     <Folder Include="Features\Credit\MediatorDtos\Queries\" />
-    <Folder Include="Features\Line\MediatorDtos\Commands\" />
     <Folder Include="Features\Line\MediatorDtos\Queries\" />
     <Folder Include="Features\Logging\MediatorDtos\Commands\" />
     <Folder Include="Features\Logging\MediatorDtos\Queries\" />

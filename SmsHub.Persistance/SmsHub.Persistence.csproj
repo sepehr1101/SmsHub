@@ -23,7 +23,6 @@
     <Folder Include="Features\Credit\Commands\" />
     <Folder Include="Features\Credit\Queries\List\" />
     <Folder Include="Features\Credit\Queries\Single\" />
-    <Folder Include="Features\Line\Commands\" />
     <Folder Include="Features\Line\Queries\List\" />
     <Folder Include="Features\Line\Queries\Single\" />
     <Folder Include="Features\Logging\Commands\" />
