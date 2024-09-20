@@ -1,1 +1,1 @@
-dotnet ef dbcontext scaffold "Data Source=.;Encrypt=False;Database=Test;Integrated Security=false;User ID=admin;Password=pspihp;" Microsoft.EntityFrameworkCore.SqlServer  --project SmsHub.Persistance
+dotnet ef dbcontext scaffold "Data Source=.;Encrypt=False;Database=Test;Integrated Security=false;User ID=admin;Password=pspihp;" Microsoft.EntityFrameworkCore.SqlServer  --project SmsHub.Persistance --output-dir Scaffold
