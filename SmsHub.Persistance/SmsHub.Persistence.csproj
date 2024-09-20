@@ -25,7 +25,6 @@
     <Folder Include="Features\Credit\Queries\Single\" />
     <Folder Include="Features\Line\Queries\List\" />
     <Folder Include="Features\Line\Queries\Single\" />
-    <Folder Include="Features\Logging\Commands\" />
     <Folder Include="Features\Logging\Queries\List\" />
     <Folder Include="Features\Logging\Queries\Single\" />
     <Folder Include="Features\Receiving\Commands\" />

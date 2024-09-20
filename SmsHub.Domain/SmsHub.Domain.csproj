@@ -18,7 +18,6 @@
     <Folder Include="Features\Credit\MediatorDtos\Commands\" />
     <Folder Include="Features\Credit\MediatorDtos\Queries\" />
     <Folder Include="Features\Line\MediatorDtos\Queries\" />
-    <Folder Include="Features\Logging\MediatorDtos\Commands\" />
     <Folder Include="Features\Logging\MediatorDtos\Queries\" />
     <Folder Include="Features\Receiving\EfConfig\" />
     <Folder Include="Features\Receiving\Entities\" />
