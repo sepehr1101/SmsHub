@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SmsHub.Domain.Features.Entities;
+using Entities= SmsHub.Domain.Features.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace SmsHub.Domain.Features.EfConfig
 {
-    public class TemplateConfig : IEntityTypeConfiguration<Template>
+    public class TemplateConfig : IEntityTypeConfiguration<Entities.Template>
     {
-        public void Configure(EntityTypeBuilder<Template> entity)
+        public void Configure(EntityTypeBuilder<Entities.Template> entity)
         {
 
             entity.Property(e => e.Title).HasMaxLength(255);

@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SmsHub.Domain.Features.Entities;
+using Entities= SmsHub.Domain.Features.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace SmsHub.Domain.Features.EfConfig
 {
-    public class LineConfig : IEntityTypeConfiguration<Line>
+    public class LineConfig : IEntityTypeConfiguration<Entities.Line>
     {
-        public void Configure(EntityTypeBuilder<Line> entity)
+        public void Configure(EntityTypeBuilder<Entities.Line> entity)
         {
             entity.HasIndex(e => e.Number, "UQ_Line_Number")
                     .IsUnique();

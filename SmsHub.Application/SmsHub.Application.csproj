@@ -13,6 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Config\Handlers\Commands\Delete\" />
+    <Folder Include="Features\Config\Handlers\Commands\Update\" />
     <Folder Include="Features\Consumer\Handlers\Commands\Delete\" />
     <Folder Include="Features\Consumer\Handlers\Commands\Update\" />
     <Folder Include="Features\Consumer\Security\" />
