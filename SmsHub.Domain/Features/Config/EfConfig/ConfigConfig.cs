@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SmsHub.Domain.Features.Entities;
+using Entities= SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Domain.Features.EfConfig
 {
-    public class ConfigConfig : IEntityTypeConfiguration<Config>
+    public class ConfigConfig : IEntityTypeConfiguration<Entities.Config>
     {
-        public void Configure(EntityTypeBuilder<Config> entity)
+        public void Configure(EntityTypeBuilder<Entities.Config> entity)
         {
             entity.HasOne(d => d.ConfigTypeGroup)
                    .WithMany(p => p.Configs)
