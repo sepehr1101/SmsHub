@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
-using SmsHub.Application.Features.Security.Services.Contracts;
+using SmsHub.Application.Common.Services.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Security.Dtos;
@@ -29,9 +29,9 @@ namespace SmsHub.Application.Features.Security.Handlers.Commands.Create
             _userCommandService.NotNull(nameof(_userCommandService));
         }
         public async Task<ApiKeyAndHash> Handle(CreateServerUserDto request, CancellationToken cancellationToken)
-        {
-            var apiKeyAndHash = await _apiKeyFactory.Create();
+        {           
             var serverUser = _mapper.Map<ServerUser>(request);
+            var apiKeyAndHash = await _apiKeyFactory.Create(serverUser.Username);
             serverUser.ApiKeyHash = apiKeyAndHash.Hash;
             await _userCommandService.Add(serverUser);
             return apiKeyAndHash;

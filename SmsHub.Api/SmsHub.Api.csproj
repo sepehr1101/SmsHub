@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <Folder Include="Controllers\Providers\" />
+    <Folder Include="Filters\" />
   </ItemGroup>
 
   <ItemGroup>
