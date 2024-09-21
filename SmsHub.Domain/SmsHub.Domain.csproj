@@ -47,6 +47,10 @@
     <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.33" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.33" />
+  </ItemGroup>                                                                                                                            
+
+  <ItemGroup>
+    <ProjectReference Include="..\SmsHub.Common\SmsHub.Common.csproj" />
   </ItemGroup>
 
 </Project>

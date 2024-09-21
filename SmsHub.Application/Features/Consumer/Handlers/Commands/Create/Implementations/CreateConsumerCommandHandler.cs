@@ -4,10 +4,11 @@ using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Features.Consumer.Commands.Contracts;
 using AutoMapper;
 using SmsHub.Common.Extensions;
+using SmsHub.Application.Features.Consumer.Handlers.Commands.Create.Contracts;
 
-namespace SmsHub.Application.Features.Consumer.Handlers.Commands.Create
+namespace SmsHub.Application.Features.Consumer.Handlers.Commands.Create.Implementations
 {
-    public class CreateConsumerCommandHandler : IRequestHandler<CreateConsumerDto>
+    public class CreateConsumerCommandHandler : /*IRequestHandler<CreateConsumerDto>,*/ ICreateConsumerCommandHandler
     {
         private readonly IConsumerCommandService _consumerCommandService;
         private readonly IMapper _mapper;

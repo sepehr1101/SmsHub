@@ -5,6 +5,8 @@ using SmsHub.Persistence.Features.Consumer.Commands.Contracts;
 using SmsHub.Persistence.Features.Consumer.Commands.Implementations;
 using SmsHub.Persistence.Features.Security.Commands.Contracts;
 using SmsHub.Persistence.Features.Security.Commands.Implementations;
+using SmsHub.Persistence.Features.Security.Queries.Contracts;
+using SmsHub.Persistence.Features.Security.Queries.Implementations;
 
 namespace SmsHub.Persistence.Extensions
 {
@@ -15,6 +17,7 @@ namespace SmsHub.Persistence.Extensions
             services.AddScoped<IUnitOfWork, TestContext>();
             services.AddScoped<IConsumerCommandService, ConsumerCommandService>();
             services.AddScoped<IServerUserCommandService, ServerUserCommandService>();
+            services.AddScoped<IServerUserQueryService, ServerUserQueryService>();
         }
     }
 }

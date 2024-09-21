@@ -1,10 +1,10 @@
-﻿using SmsHub.Application.Features.Security.Services.Contracts;
+﻿using SmsHub.Application.Common.Services.Contracts;
 using SmsHub.Common.Contrats;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Security.Dtos;
 using System.Text;
 
-namespace SmsHub.Application.Features.Security.Services.Implementations
+namespace SmsHub.Application.Common.Services.Implementations
 {
     public class ApiKeyFactory : IApiKeyFactory
     {
@@ -14,13 +14,13 @@ namespace SmsHub.Application.Features.Security.Services.Implementations
             _securityOperaions = securityOpertions;
             _securityOperaions.NotNull(nameof(_securityOperaions));
         }
-        public async Task<ApiKeyAndHash> Create()
+        public async Task<ApiKeyAndHash> Create(string username)
         {
+            var base64Username = _securityOperaions.Base64Encode(username);
             var guid = _securityOperaions.CreateCryptographicallySecureGuid();
             StringBuilder sb = new StringBuilder();
-            sb.Append(guid).Replace("-", string.Empty).ToString();
-            var apiKey = sb.ToString();
-            var hashedValue = await _securityOperaions.GetSha512Hash(apiKey);
+            var apiKey= sb.Append(guid).Replace("-", string.Empty).Append(".").Append(base64Username).ToString();
+            var hashedValue = await _securityOperaions.GetSha512Hash(apiKey);           
             return new ApiKeyAndHash(apiKey, hashedValue);
         }
     }
