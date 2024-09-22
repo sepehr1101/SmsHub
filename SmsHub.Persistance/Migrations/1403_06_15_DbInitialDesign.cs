@@ -49,7 +49,6 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn("ProviderId").AsInt16()
                     .ForeignKey(NamingHelper.Fk(TableName.Provider, TableName.Line), nameof(TableName.Provider), Id)
                 .WithColumn("Number").AsString(15).Unique(NamingHelper.Uq(TableName.Line,"Number"))
-                .WithColumn("CredentialType").AsInt16()
                 .WithColumn("Credential").AsString(int.MaxValue);
         }
         private void CreateConsumer()
