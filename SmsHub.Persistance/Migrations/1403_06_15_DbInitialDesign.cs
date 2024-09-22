@@ -34,13 +34,13 @@ namespace SmsHub.Persistence.Migrations
         private void CreateProvider()
         {
             Create.Table(nameof(TableName.Provider))
-                .WithColumn(Id).AsInt16().PrimaryKey(NamingHelper.Pk(TableName.Provider)).Identity()
+                .WithColumn(Id).AsInt16().PrimaryKey(NamingHelper.Pk(TableName.Provider))
                 .WithColumn("Title").AsString(_255).Unique(NamingHelper.Uq(TableName.Provider, "Title"))
                 .WithColumn("Website").AsString(_255).Nullable()
                 .WithColumn("DefaultPreNumber").AsString(15).Nullable()
                 .WithColumn("BatchSize").AsInt32()
                 .WithColumn("BaseUri").AsString(_255)
-                .WithColumn("FallbackBaseUri").AsString(_255);
+                .WithColumn("FallbackBaseUri").AsString(_255).Nullable();
         }
         private void CreateLine()
         {            

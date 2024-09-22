@@ -1,18 +1,20 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using FluentMigrator.Runner;
 using System.Reflection;
+using SmsHub.Persistence.DbSeeder.Contracts;
 
 namespace SmsHub.Persistence.Extensions
 {
     public static class MigrationRunner
     {
-        public static void UpdateDb(this IServiceCollection services, string connectionString)
+        public static void UpdateAndSeedDb(this IServiceCollection services, string connectionString)
         {
             using (var serviceProvider = CreateServices(services, connectionString))
             {
                 using (var scope = serviceProvider.CreateScope())
                 {
                     UpdateDatabase(scope.ServiceProvider);
+                    SeedDatabse(scope.ServiceProvider);
                 }
             }
         }
@@ -34,6 +36,12 @@ namespace SmsHub.Persistence.Extensions
         {
             var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
             runner.MigrateUp();
+
+        }
+        public static void SeedDatabse(IServiceProvider serviceProvider)
+        {
+            var runner= serviceProvider.GetRequiredService<IDataSeedersRunner>();
+            runner.RunAllDataSeeders();
         }
     }
 }

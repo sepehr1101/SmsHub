@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using SmsHub.Domain.Constants;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SmsHub.Domain.Features.Entities
 {
@@ -11,7 +12,7 @@ namespace SmsHub.Domain.Features.Entities
             MessageStateCategories = new HashSet<MessageStateCategory>();
         }
 
-        public short Id { get; set; }
+        public ProviderEnum Id { get; set; }
         public string Title { get; set; } = null!;
         public string? Website { get; set; }
         public string? DefaultPreNumber { get; set; }

@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <Folder Include="DbLogger\" />
-    <Folder Include="DbSeeder\" />
     <Folder Include="Features\Config\Commands\Contracts\" />
     <Folder Include="Features\Config\Commands\Implementations\" />
     <Folder Include="Features\Config\Queries\Contracts\" />
@@ -72,6 +71,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+    <PackageReference Include="Scrutor" Version="4.2.2" />
   </ItemGroup>
 
   <ItemGroup>
