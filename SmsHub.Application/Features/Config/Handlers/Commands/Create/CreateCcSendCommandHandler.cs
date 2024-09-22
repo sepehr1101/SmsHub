@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using SmsHub.Common;
+using SmsHub.Common.Extensions;
 using SmsHub.Persistence.Features.Config.Commands.Create.Contracts;
 using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Config.PersistenceDto.Commands;

@@ -1,23 +1,19 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using SmsHub.Persistence.Contexts.Implementation;
-using SmsHub.Persistence.Contexts.UnitOfWork;
-using SmsHub.Persistence.Features.Consumer.Commands.Contracts;
-using SmsHub.Persistence.Features.Consumer.Commands.Implementations;
-using SmsHub.Persistence.Features.Security.Commands.Contracts;
-using SmsHub.Persistence.Features.Security.Commands.Implementations;
-using SmsHub.Persistence.Features.Security.Queries.Contracts;
-using SmsHub.Persistence.Features.Security.Queries.Implementations;
+using Scrutor;
 
 namespace SmsHub.Persistence.Extensions
 {
     public static class ConfigureServices
     {
         public static void AddPersistenceInjections(this IServiceCollection services)
-        {
-            services.AddScoped<IUnitOfWork, TestContext>();
-            services.AddScoped<IConsumerCommandService, ConsumerCommandService>();
-            services.AddScoped<IServerUserCommandService, ServerUserCommandService>();
-            services.AddScoped<IServerUserQueryService, ServerUserQueryService>();
+        {            
+            services.Scan(scan =>
+                          scan
+                            .FromCallingAssembly()
+                            .AddClasses(publicOnly: false)
+                            .UsingRegistrationStrategy(RegistrationStrategy.Throw)
+                            .AsImplementedInterfaces()
+                            .WithScopedLifetime());
         }
     }
 }

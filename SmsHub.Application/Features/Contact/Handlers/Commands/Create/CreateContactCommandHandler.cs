@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
-using SmsHub.Common;
+using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Contact.MediatorDtos.Commands;
 using SmsHub.Persistence.Features.Contact.Commands.Contracts;
 using Entities = SmsHub.Domain.Features.Entities;
