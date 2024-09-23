@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Scrutor;
 using SmsHub.Application.Common.Services.Contracts;
@@ -17,6 +18,7 @@ namespace SmsHub.Application.Extensions
         {
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
             //services.AddScoped<IApiKeyFactory, ApiKeyFactory>();
             //services.AddScoped<ICreateConsumerCommandHandler, CreateConsumerCommandHandler>();
             //services.AddScoped<IApiKeyValidationHandler, ApiKeyValidationHandler>();

@@ -1,17 +1,19 @@
-﻿using AutoMapper;
+﻿using AutoMapper;   
 using MediatR;
 using SmsHub.Common.Extensions;
 using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Template.MediatorDtos.Commands;
 using SmsHub.Persistence.Features.Template.Commands.Contracts;
+using SmsHub.Application.Features.Template.Handlers.Commands.Create.Contracts;
 
-namespace SmsHub.Application.Features.Template.Handlers.Commands.Create
+namespace SmsHub.Application.Features.Template.Handlers.Commands.Create.Implementations
 {
-    public class CreateTemplateCategoryCommandHandler : IRequestHandler<CreateTemplateCategoryDto>
+    public class CreateTemplateCategoryHandler : ICreateTemplateCategoryHandler
+    /*: IRequestHandler<CreateTemplateCategoryDto>*/
     {
         private readonly IMapper _mapper;
         private readonly ITemplateCategoryCommandService _templateCategoryCommandService;
-        public CreateTemplateCategoryCommandHandler(IMapper mapper, ITemplateCategoryCommandService templateCategoryCommandService)
+        public CreateTemplateCategoryHandler(IMapper mapper, ITemplateCategoryCommandService templateCategoryCommandService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(_mapper));
