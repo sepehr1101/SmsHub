@@ -30,7 +30,7 @@ if (app.Environment.IsDevelopment())
     app.AddSwaggerApp();
 }
 
-app.UseMiddleware<ApiKeyMiddleware>();
+//app.UseMiddleware<ApiKeyMiddleware>();
 
 app.UseHttpsRedirection();
 

@@ -11,6 +11,7 @@ namespace SmsHub.Domain.Features.Entities
         }
 
         public int Id { get; set; }
+        public string Expression { get; set; } = null!;
         public string Title { get; set; } = null!;
         public int TemplateCategoryId { get; set; }
         public bool IsActive { get; set; }
