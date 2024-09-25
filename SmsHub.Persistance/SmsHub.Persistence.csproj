@@ -38,8 +38,6 @@
     <Folder Include="Features\Receiving\Queries\Implementations\" />
     <Folder Include="Features\Sending\Commands\Contracts\" />
     <Folder Include="Features\Sending\Commands\Implementations\" />
-    <Folder Include="Features\Sending\Queries\Contracts\" />
-    <Folder Include="Features\Sending\Queries\Implementations\" />
     <Folder Include="Features\Template\Commands\Contracts\" />
     <Folder Include="Features\Template\Commands\Implementations\" />
     <Folder Include="Features\Template\Queries\Contracts\" />
