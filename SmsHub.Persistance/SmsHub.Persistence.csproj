@@ -22,8 +22,6 @@
     <Folder Include="DbLogger\" />
     <Folder Include="Features\Config\Commands\Contracts\" />
     <Folder Include="Features\Config\Commands\Implementations\" />
-    <Folder Include="Features\Config\Queries\Contracts\" />
-    <Folder Include="Features\Config\Queries\Implementations\" />
     <Folder Include="Features\Contact\Commands\Contracts\" />
     <Folder Include="Features\Contact\Commands\Implementations\" />
     <Folder Include="Features\Contact\Queries\Contracts\" />
