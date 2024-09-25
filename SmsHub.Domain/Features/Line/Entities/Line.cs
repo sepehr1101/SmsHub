@@ -15,7 +15,6 @@ namespace SmsHub.Domain.Features.Entities
         public int Id { get; set; }
         public ProviderEnum ProviderId { get; set; }
         public string Number { get; set; } = null!;
-        public short CredentialType { get; set; }
         public string Credential { get; set; } = null!;
 
         public virtual Provider Provider { get; set; } = null!;

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Entities= SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Features.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace SmsHub.Domain.Features.EfConfig

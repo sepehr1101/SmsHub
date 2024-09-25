@@ -9,12 +9,12 @@ using SmsHub.Persistence.Features.Security.Commands.Contracts;
 
 namespace SmsHub.Application.Features.Security.Handlers.Commands.Create
 {
-    public class CreateServerUserCommandHandler : IRequestHandler<CreateServerUserDto,ApiKeyAndHash>
+    public class CreateServerUserHandler : IRequestHandler<CreateServerUserDto,ApiKeyAndHash>
     {        
         private readonly IMapper _mapper;
         private readonly IApiKeyFactory _apiKeyFactory;
         private readonly IServerUserCommandService _userCommandService;
-        public CreateServerUserCommandHandler(
+        public CreateServerUserHandler(
             IMapper mapper,
             IApiKeyFactory apiKeyFactory,
             IServerUserCommandService serverUserCommandService)

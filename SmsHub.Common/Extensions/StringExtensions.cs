@@ -148,7 +148,10 @@ namespace SmsHub.Common.Extensions
         public static bool IsNotEmpty([NotNullWhen(true)] this string? value) => !string.IsNullOrWhiteSpace(value);
 
         public static string ConcatWithSeperator(this string firstString, string seperator, string secondString) => string.Concat(firstString, seperator, secondString);
-        public static string JoinToString(this IEnumerable<string> strings, string separator) => string.Join(separator, strings);
+        public static string JoinToString(this IEnumerable<string> strings, string separator) => strings.Any()? string.Join(separator, strings):string.Empty;
+        public static string JoinWithTiltSign(this IEnumerable<string> strings) => JoinToString(strings, "~");
+        public static string[] SeperateString(this string arrayOfStrings, string separator)=> arrayOfStrings.Split(separator);
+        public static string[] SeperateWithTiltSign(this string arrayOfStrings) => SeperateString(arrayOfStrings, "~");
 
         static string MakeInitialLowerCase(this string word, CultureInfo culture) => string.Concat(word[..1].ToLower(culture), word[1..]);
 

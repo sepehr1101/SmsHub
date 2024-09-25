@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using AutoMapper;
+using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
+using Scrutor;
 using SmsHub.Application.Common.Services.Contracts;
 using SmsHub.Application.Common.Services.Implementations;
 using SmsHub.Application.Features.Consumer.Handlers.Commands.Create.Contracts;
@@ -15,10 +18,19 @@ namespace SmsHub.Application.Extensions
         {
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddScoped<IApiKeyFactory, ApiKeyFactory>();
-            services.AddScoped<ICreateConsumerCommandHandler, CreateConsumerCommandHandler>();
-            services.AddScoped<IApiKeyValidationHandler, ApiKeyValidationHandler>();
+            services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+            //services.AddScoped<IApiKeyFactory, ApiKeyFactory>();
+            //services.AddScoped<ICreateConsumerCommandHandler, CreateConsumerCommandHandler>();
+            //services.AddScoped<IApiKeyValidationHandler, ApiKeyValidationHandler>();
             //services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
+            services.Scan(scan =>
+                          scan
+                            .FromCallingAssembly()
+                            .AddClasses(publicOnly: false)
+                            .UsingRegistrationStrategy(RegistrationStrategy.Throw)
+                            .AsMatchingInterface()
+                            .WithScopedLifetime());
 
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
             //services.AddSingleton(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));

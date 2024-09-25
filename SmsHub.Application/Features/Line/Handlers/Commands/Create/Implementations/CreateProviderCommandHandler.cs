@@ -4,10 +4,11 @@ using SmsHub.Common.Extensions;
 using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands;
 using SmsHub.Persistence.Features.Line.Commands.Contracts;
+using SmsHub.Application.Features.Line.Handlers.Commands.Create.Contracts;
 
-namespace SmsHub.Application.Features.Line.Handlers.Commands.Create
+namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Implementations
 {
-    public class CreateProviderCommandHandler : IRequestHandler<CreateProviderDto>
+    public class CreateProviderCommandHandler : /*IRequestHandler<CreateProviderDto>,*/ ICreateProviderCommandHandler
     {
         private readonly IMapper _mapper;
         private readonly IProviderCommandService _providerCommandService;

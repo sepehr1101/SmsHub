@@ -49,7 +49,6 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn("ProviderId").AsInt16()
                     .ForeignKey(NamingHelper.Fk(TableName.Provider, TableName.Line), nameof(TableName.Provider), Id)
                 .WithColumn("Number").AsString(15).Unique(NamingHelper.Uq(TableName.Line,"Number"))
-                .WithColumn("CredentialType").AsInt16()
                 .WithColumn("Credential").AsString(int.MaxValue);
         }
         private void CreateConsumer()
@@ -123,6 +122,7 @@ namespace SmsHub.Persistence.Migrations
         {
             Create.Table(nameof(TableName.Template))
                 .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(TableName.Template)).Identity()
+                .WithColumn("Expression").AsString(int.MaxValue)
                 .WithColumn("Title").AsString(_255)
                 .WithColumn($"{nameof(TableName.TemplateCategory)}{Id}").AsInt32()
                     .ForeignKey(NamingHelper.Fk(TableName.TemplateCategory, TableName.Template), nameof(TableName.TemplateCategory), Id)
