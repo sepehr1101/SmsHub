@@ -2,7 +2,7 @@
 {
     public interface IConsumerLineQueryService
     {
-        Task<ICollection<Domain.Features.Entities.Consumer>> Get();
-        Task<Domain.Features.Entities.Consumer> Get(int id);
+        Task<ICollection<Domain.Features.Entities.ConsumerLine>> Get();
+        Task<Domain.Features.Entities.ConsumerLine> Get(int id);
     }
 }
