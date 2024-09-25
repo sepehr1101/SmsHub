@@ -24,8 +24,6 @@
     <Folder Include="Features\Config\Commands\Implementations\" />
     <Folder Include="Features\Contact\Commands\Contracts\" />
     <Folder Include="Features\Contact\Commands\Implementations\" />
-    <Folder Include="Features\Contact\Queries\Contracts\" />
-    <Folder Include="Features\Contact\Queries\Implementations\" />
     <Folder Include="Features\Credit\Commands\Contracts\" />
     <Folder Include="Features\Credit\Commands\Implementations\" />
     <Folder Include="Features\Credit\Queries\Contracts\" />
