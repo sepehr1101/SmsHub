@@ -40,8 +40,6 @@
     <Folder Include="Features\Sending\Commands\Implementations\" />
     <Folder Include="Features\Template\Commands\Contracts\" />
     <Folder Include="Features\Template\Commands\Implementations\" />
-    <Folder Include="Features\Template\Queries\Contracts\" />
-    <Folder Include="Features\Template\Queries\Implementations\" />
     <Folder Include="Interceptors\" />
     <Folder Include="Scaffold\" />
     <Folder Include="Utils\" />
