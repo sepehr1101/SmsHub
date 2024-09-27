@@ -9,22 +9,22 @@ namespace SmsHub.Persistence.Features.Consumer.Queries.Implementations
     public class ConsumerLineQueryService : IConsumerLineQueryService
     {
         private readonly IUnitOfWork _uow;
-        private readonly DbSet<Entities.Consumer> _consumers;
+        private readonly DbSet<Entities.ConsumerLine> consumerLines;
         public ConsumerLineQueryService(IUnitOfWork uow)
         {
             _uow = uow;
-            _consumers = _uow.Set<Entities.Consumer>();
+            consumerLines = _uow.Set<Entities.ConsumerLine>();
         }
-        public async Task<Entities.Consumer> Get(int id)
+        public async Task<Entities.ConsumerLine> Get(int id)
         {
-            var entity = await _consumers.FindAsync(id);
-            entity.NotNull(nameof(Entities.Consumer));
+            var entity = await consumerLines.FindAsync(id);
+            entity.NotNull(nameof(Entities.ConsumerLine));
             return entity;
         }
-        public async Task<ICollection<Entities.Consumer>> Get()
+        public async Task<ICollection<Entities.ConsumerLine>> Get()
         {
-            var entities = await _consumers.AsNoTracking().ToListAsync();
-            entities.NotNull(nameof(Entities.Consumer));
+            var entities = await consumerLines.AsNoTracking().ToListAsync();
+            entities.NotNull(nameof(Entities.ConsumerLine));
             return entities;
         }
     }
