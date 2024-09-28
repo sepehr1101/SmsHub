@@ -7,6 +7,5 @@ namespace SmsHub.Domain.Features.Security.MediatorDtos.Commands
     {
         public string Username { get; set; } = null!;
         public bool IsAdmin { get; set; }
-        public DateTime CreateDateTime { get; set; }
     }
 }

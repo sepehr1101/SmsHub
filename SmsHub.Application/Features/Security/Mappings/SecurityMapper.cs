@@ -8,7 +8,9 @@ namespace SmsHub.Application.Features.Security.Mappings
     {
         public SecurityMapper()
         {
-            CreateMap<ServerUser, CreateServerUserDto>().ReverseMap();
+            CreateMap<ServerUser, CreateServerUserDto>()
+                .ReverseMap()
+                .ForMember(x=> x.CreateDateTime, opt=> opt.MapFrom(s=> DateTime.Now));
         }
     }
 }
