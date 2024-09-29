@@ -81,7 +81,7 @@ namespace SmsHub.Persistence.Contexts.Implementation
             }
             return entity;
         }
-        public async Task<TEntity> FindOrThrowAsync<TEntity, TKey>(params object?[]? keyValues)
+        public async Task<TEntity> FindOrThrowAsync<TEntity>(params object?[]? keyValues)
           where TEntity : class
         {
             var entity = await FindAsync<TEntity>(keyValues);
@@ -91,6 +91,7 @@ namespace SmsHub.Persistence.Contexts.Implementation
             }
             return entity;
         }
+
         class ContextForQueryType<T> : DbContext where T : class
         {
             private readonly DbConnection _connection;

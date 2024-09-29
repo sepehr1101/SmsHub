@@ -2,6 +2,7 @@
 using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Features.Line.Commands.Contracts;
+using SmsHub.Domain.Features.Line.MediatorDtos.Commands;
 
 namespace SmsHub.Persistence.Features.Line.Commands.Implementations
 {

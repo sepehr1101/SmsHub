@@ -22,5 +22,10 @@ namespace SmsHub.Domain.Features.Entities
 
         public virtual ICollection<Line> Lines { get; set; }
         public virtual ICollection<MessageStateCategory> MessageStateCategories { get; set; }
+
+        public void Update()
+        {
+
+        }
     }
 }

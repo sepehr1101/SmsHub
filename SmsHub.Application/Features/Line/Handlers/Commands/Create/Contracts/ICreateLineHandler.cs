@@ -2,8 +2,8 @@
 
 namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Contracts
 {
-    public interface ICreateProviderCommandHandler
+    public interface ICreateLineHandler
     {
-        Task Handle(CreateProviderDto request, CancellationToken cancellationToken);
+        Task Handle(CreateLineDto request, CancellationToken cancellationToken);
     }
 }

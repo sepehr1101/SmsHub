@@ -34,8 +34,6 @@
     <Folder Include="Features\Credit\Queries\Implementations\" />
     <Folder Include="Features\Line\Commands\Contracts\" />
     <Folder Include="Features\Line\Commands\Implementations\" />
-    <Folder Include="Features\Line\Queries\Contracts\" />
-    <Folder Include="Features\Line\Queries\Implementations\" />
     <Folder Include="Features\Logging\Commands\Contracts\" />
     <Folder Include="Features\Logging\Commands\Implementations\" />
     <Folder Include="Features\Logging\Queries\Contracts\" />
