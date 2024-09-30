@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace SmsHub.Domain.Features.Config.PersistenceDto.Commands
+namespace SmsHub.Domain.Features.Config.MediatorDtos.Commands
 {
     public record CreateConfigDto : IRequest//todo: record or class?
     {//todo : null or not?

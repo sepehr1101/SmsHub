@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Entities = SmsHub.Domain.Features.Entities;
-using SmsHub.Domain.Features.Config.PersistenceDto.Commands;
+using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
 
 namespace SmsHub.Application.Features.Config.Mappings
 {

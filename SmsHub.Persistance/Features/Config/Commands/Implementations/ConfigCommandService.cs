@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SmsHub.Persistence.Contexts.UnitOfWork;
-using SmsHub.Persistence.Features.Config.Commands.Create.Contracts;
+using SmsHub.Persistence.Features.Config.Commands.Contracts;
 using Entities = SmsHub.Domain.Features.Entities;
 
-namespace SmsHub.Persistence.Features.Config.Commands.Create.Implementations
+namespace SmsHub.Persistence.Features.Config.Commands.Implementations
 {
-    public class ConfigCommandService: IConfigCommandService
+    public class ConfigCommandService : IConfigCommandService
     {
         private readonly IUnitOfWork _uow;
         private readonly DbSet<Entities.Config> _configs;
@@ -19,9 +19,13 @@ namespace SmsHub.Persistence.Features.Config.Commands.Create.Implementations
         {
             await _configs.AddAsync(config);
         }
-        public async Task Add(ICollection<Entities.Config> configs )
+        public async Task Add(ICollection<Entities.Config> configs)
         {
             await _configs.AddRangeAsync(configs);
+        }
+        public void Delete(Entities.Config config)
+        {
+            _configs.Remove(config);
         }
     }
 }

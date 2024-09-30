@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
-using SmsHub.Domain.Constants;
+﻿using SmsHub.Domain.Constants;
+using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Persistence.Features.Logging.Queries.Contracts
 {

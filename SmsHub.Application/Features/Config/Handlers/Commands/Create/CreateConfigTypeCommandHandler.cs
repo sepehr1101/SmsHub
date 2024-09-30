@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using SmsHub.Domain.Features.Config.PersistenceDto.Commands;
-using SmsHub.Persistence.Features.Config.Commands.Create.Contracts;
+using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
 using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Common.Extensions;
 using MediatR;
+using SmsHub.Persistence.Features.Config.Commands.Contracts;
 
 namespace SmsHub.Application.Features.Config.Handlers.Commands.Create
 {

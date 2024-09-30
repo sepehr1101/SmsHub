@@ -18,7 +18,7 @@ namespace SmsHub.Application.Features.Line.Handlers.Commands.Delete.Implementati
             IProviderQueryService providerQueryService)
         {
             _mapper = mapper;
-            _mapper.NotNull();
+            _mapper.NotNull(nameof(mapper));
 
             _providerCommandService = providerCommandService;
             _providerCommandService.NotNull(nameof(providerCommandService));
@@ -26,7 +26,7 @@ namespace SmsHub.Application.Features.Line.Handlers.Commands.Delete.Implementati
             _providerQueryService = providerQueryService;
             _providerQueryService.NotNull(nameof(providerQueryService));
         }
-        public async Task Handle(DeleteProviderDto deleteProviderDto, CancellationToken cancellationToken)
+        public async Task Handle(DeleteCcSendtDto deleteProviderDto, CancellationToken cancellationToken)
         {
             var provider = await _providerQueryService.Get(deleteProviderDto.Id);
             _providerCommandService.Delete(provider);

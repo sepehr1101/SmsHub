@@ -13,8 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Config\Handlers\Commands\Delete\Contracts\" />
-    <Folder Include="Features\Config\Handlers\Commands\Delete\Implementations\" />
     <Folder Include="Features\Config\Handlers\Commands\Update\Contracts\" />
     <Folder Include="Features\Config\Handlers\Commands\Update\Implementations\" />
     <Folder Include="Features\Config\Handlers\Queries\Contracts\" />

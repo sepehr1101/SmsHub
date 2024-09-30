@@ -4,5 +4,6 @@
     {
         Task Add(Domain.Features.Entities.Line line);
         Task Add(ICollection<Domain.Features.Entities.Line> lines); 
+        void Delete(Domain.Features.Entities.Line line);
     }
 }

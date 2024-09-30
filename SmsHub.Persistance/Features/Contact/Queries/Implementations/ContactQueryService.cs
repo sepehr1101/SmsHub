@@ -25,7 +25,7 @@ namespace SmsHub.Persistence.Features.Contact.Queries.Implementations
         }
         public async Task<Entities.Contact> Get(ProviderEnum id)
         {
-            return await _uow.FindOrThrow<Entities.Contact>(id);
+            return await _uow.FindOrThrowAsync<Entities.Contact>(id);
         }
     }
 }

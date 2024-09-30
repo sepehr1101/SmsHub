@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Constants;
 
 namespace SmsHub.Persistence.Features.Sending.Queries.Implementations
 {
@@ -22,7 +23,7 @@ namespace SmsHub.Persistence.Features.Sending.Queries.Implementations
         {
             return await _messagesHolders.ToListAsync();
         }
-        public async Task<MessagesHolder> Get(int id)
+        public async Task<MessagesHolder> Get(ProviderEnum id)
         {
             return await _uow.FindOrThrowAsync<MessagesHolder>(id);
         }

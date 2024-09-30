@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Features.Template.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.Constants;
 
 namespace SmsHub.Persistence.Features.Template.Queries.Implementations
 {
@@ -22,11 +23,9 @@ namespace SmsHub.Persistence.Features.Template.Queries.Implementations
         {
             return await _templates.ToListAsync();
         }
-        public async Task<Entities.Template> Get(ProvidetEnum id)
+        public async Task<Entities.Template> Get(ProviderEnum id)
         {
-            var entity = await _templates.FindAsync(id);
-            entity.NotNull(nameof(Entities.Template));
-            return entity;
+            return await _uow.FindOrThrowAsync<Entities.Template>(id);
         }
     }
 }

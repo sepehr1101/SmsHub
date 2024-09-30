@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using SmsHub.Domain.Features.Config.PersistenceDto.Commands;
+using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
 using Entities= SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Application.Features.Config.Mappings

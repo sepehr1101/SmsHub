@@ -24,7 +24,7 @@ namespace SmsHub.Api.Controllers.Line.Commands.Delete
         }
 
         [HttpDelete(Name =nameof(Delete))]
-        public async Task<IActionResult> Delete([FromBody] DeleteProviderDto deleteProviderDto, CancellationToken cancellationToken)
+        public async Task<IActionResult> Delete([FromBody] DeleteCcSendtDto deleteProviderDto, CancellationToken cancellationToken)
         {
             await _providerDeleteHandler.Handle(deleteProviderDto, cancellationToken);
             await _uow.SaveChangesAsync(cancellationToken);

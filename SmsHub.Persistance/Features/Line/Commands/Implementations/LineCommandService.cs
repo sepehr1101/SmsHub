@@ -27,5 +27,10 @@ namespace SmsHub.Persistence.Features.Line.Commands.Implementations
         {
             await _lines.AddRangeAsync(lines);
         }
+        public void Delete(Entities.Line line)
+        {
+            _lines.Remove(line);
+        }
+
     }
 }
