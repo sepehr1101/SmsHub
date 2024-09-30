@@ -1,8 +1,10 @@
-﻿namespace SmsHub.Persistence.Features.Line.Queries.Contracts
+﻿using SmsHub.Domain.Constants;
+using Entities =SmsHub. Domain.Features.Entities;
+namespace SmsHub.Persistence.Features.Line.Queries.Contracts
 {
     public interface ILineQueryService
     {
-        Task<ICollection<Domain.Features.Entities.Line>> Get();
-        Task<Domain.Features.Entities.Line> Get(int id);
+        Task<ICollection<Entities.Line>> Get();
+        Task<Entities.Line> Get(ProviderEnum id);
     }
 }

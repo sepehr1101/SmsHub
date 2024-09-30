@@ -1,8 +1,11 @@
-﻿namespace SmsHub.Persistence.Features.Config.Queries.Contracts
+﻿using SmsHub.Domain.Constants;
+using SmsHub.Domain.Features.Entities;
+
+namespace SmsHub.Persistence.Features.Config.Queries.Contracts
 {
     public interface IConfigTypeQueryService
     {
-        Task<ICollection<Domain.Features.Entities.ConfigType>> Get();
-        Task<Domain.Features.Entities.ConfigType> Get(int id);
+        Task<ICollection<ConfigType>> Get();
+        Task<ConfigType> Get(ProviderEnum id);
     }
 }

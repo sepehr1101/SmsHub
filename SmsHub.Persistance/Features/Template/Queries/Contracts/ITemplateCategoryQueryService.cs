@@ -1,8 +1,11 @@
-﻿namespace SmsHub.Persistence.Features.Template.Queries.Contracts
+﻿using SmsHub.Domain.Constants;
+using SmsHub.Domain.Features.Entities;
+
+namespace SmsHub.Persistence.Features.Template.Queries.Contracts
 {
     public interface ITemplateCategoryQueryService
     {
-        Task<ICollection<Domain.Features.Entities.TemplateCategory>> Get();
-        Task<Domain.Features.Entities.TemplateCategory> Get(int id);
+        Task<ICollection<TemplateCategory>> Get();
+        Task<TemplateCategory> Get(ProviderEnum id);
     }
 }

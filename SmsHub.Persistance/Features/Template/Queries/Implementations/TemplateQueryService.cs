@@ -13,15 +13,16 @@ namespace SmsHub.Persistence.Features.Template.Queries.Implementations
         public TemplateQueryService(IUnitOfWork uow)
         {
             _uow = uow;
+            _uow.NotNull(nameof(_uow));
+
             _templates = _uow.Set<Entities.Template>();
+            _templates.NotNull(nameof(_templates));
         }
         public async Task<ICollection<Entities.Template>> Get()
         {
-            var entities = await _templates.AsNoTracking().ToListAsync();
-            entities.NotNull(nameof(Entities.Template));
-            return entities;
+            return await _templates.ToListAsync();
         }
-        public async Task<Entities.Template> Get(int id)
+        public async Task<Entities.Template> Get(ProvidetEnum id)
         {
             var entity = await _templates.FindAsync(id);
             entity.NotNull(nameof(Entities.Template));

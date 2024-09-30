@@ -1,8 +1,11 @@
-﻿namespace SmsHub.Persistence.Features.Logging.Queries.Contracts
+﻿using SmsHub.Domain.Constants;
+using SmsHub.Domain.Features.Entities;
+
+namespace SmsHub.Persistence.Features.Logging.Queries.Contracts
 {
     public interface IOperationTypeQueryService
     {
-        Task<ICollection<Domain.Features.Entities.OperationType>> Get();
-        Task<Domain.Features.Entities.OperationType> Get(int id);
+        Task<ICollection<OperationType>> Get();
+        Task<OperationType> Get(ProviderEnum id);
     }
 }

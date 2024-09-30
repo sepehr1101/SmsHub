@@ -1,8 +1,11 @@
-﻿namespace SmsHub.Persistence.Features.Logging.Queries.Contracts
+﻿using Microsoft.Extensions.Logging;
+using SmsHub.Domain.Constants;
+
+namespace SmsHub.Persistence.Features.Logging.Queries.Contracts
 {
     public interface ILogLevelQueryService
     {
-        Task<ICollection<Domain.Features.Entities.LogLevel>> Get();
-        Task<Domain.Features.Entities.LogLevel> Get(int id);
+        Task<ICollection<LogLevel>> Get();
+        Task<LogLevel> Get(ProviderEnum id);
     }
 }

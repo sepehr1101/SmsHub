@@ -3,6 +3,7 @@ using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Features.Line.Queries.Contracts;
 using Entities= SmsHub.Domain.Features.Entities;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.Constants;
 
 namespace SmsHub.Persistence.Features.Line.Queries.Implementations
 {
@@ -13,20 +14,18 @@ namespace SmsHub.Persistence.Features.Line.Queries.Implementations
         public LineQueryService(IUnitOfWork uow)
         {
             _uow = uow;
+            _uow.NotNull(nameof(_uow));
+
             _lines = _uow.Set<Entities.Line>();
+            _lines.NotNull(nameof(_lines));
         }
         public async Task<ICollection<Entities.Line>> Get()
         {
-            var entities = await _lines.AsNoTracking().ToListAsync();
-            entities.NotNull(nameof(Entities.Line));
-            return entities;
+            return await _lines.ToListAsync();
         }
-        public async Task<Entities.Line> Get(int id)
+        public async Task<Entities.Line> Get(ProviderEnum id)
         {
-            var entity = await _lines.FindAsync(id);
-            entity.NotNull(nameof(Entities.Line));
-            return entity;
+            return await _uow.FindOrThrowAsync<Entities.Line>(id);    
         }
-
     }
 }

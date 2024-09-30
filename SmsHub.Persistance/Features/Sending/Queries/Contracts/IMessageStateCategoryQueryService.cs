@@ -1,8 +1,11 @@
-﻿namespace SmsHub.Persistence.Features.Sending.Queries.Contracts
+﻿using SmsHub.Domain.Constants;
+using SmsHub.Domain.Features.Entities;
+
+namespace SmsHub.Persistence.Features.Sending.Queries.Contracts
 {
     public interface IMessageStateCategoryQueryService
     {
-        Task<ICollection<Domain.Features.Entities.MessageStateCategory>> Get();
-        Task<Domain.Features.Entities.MessageStateCategory> Get(int id);
+        Task<ICollection<MessageStateCategory>> Get();
+        Task<MessageStateCategory> Get(ProviderEnum id);
     }
 }

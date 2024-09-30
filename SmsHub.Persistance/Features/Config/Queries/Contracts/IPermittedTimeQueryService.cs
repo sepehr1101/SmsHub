@@ -1,8 +1,11 @@
-﻿namespace SmsHub.Persistence.Features.Config.Queries.Contracts
+﻿using SmsHub.Domain.Constants;
+using SmsHub.Domain.Features.Entities;
+
+namespace SmsHub.Persistence.Features.Config.Queries.Contracts
 {
     public interface IPermittedTimeQueryService
     {
-        Task<ICollection<Domain.Features.Entities.PermittedTime>> Get();
-        Task<Domain.Features.Entities.PermittedTime> Get(int id);
+        Task<ICollection<PermittedTime>> Get();
+        Task<PermittedTime> Get(ProviderEnum id);
     }
 }

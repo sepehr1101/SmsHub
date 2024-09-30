@@ -1,8 +1,11 @@
-﻿namespace SmsHub.Persistence.Features.Sending.Queries.Contracts
+﻿using SmsHub.Domain.Constants;
+using SmsHub.Domain.Features.Entities;
+
+namespace SmsHub.Persistence.Features.Sending.Queries.Contracts
 {
     public interface IMessagesHolderQueryService
     {
-        Task<ICollection<Domain.Features.Entities.MessagesHolder>> Get();
-        Task<Domain.Features.Entities.MessagesHolder> Get(int id);
+        Task<ICollection<MessagesHolder>> Get();
+        Task<MessagesHolder> Get(ProviderEnum id);
     }
 }

@@ -1,31 +1,31 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Entities= SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Features.Config.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.Constants;
+using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Persistence.Features.Config.Queries.Implementations
 {
     public class ConfigTypeGroupQueryService: IConfigTypeGroupQueryService
     {
         private readonly IUnitOfWork _uow;
-        private readonly DbSet<Entities.ConfigTypeGroup> _configTypeGroups;
+        private readonly DbSet<ConfigTypeGroup> _configTypeGroups;
         public ConfigTypeGroupQueryService(IUnitOfWork uow)
         {
             _uow=uow;
-            _configTypeGroups=_uow.Set<Entities.ConfigTypeGroup>();
+            _uow.NotNull(nameof(_uow));
+
+            _configTypeGroups=_uow.Set<ConfigTypeGroup>();
+            _configTypeGroups.NotNull(nameof(_configTypeGroups));
         }
-        public async Task<ICollection<Entities.ConfigTypeGroup>> Get()
+        public async Task<ICollection<ConfigTypeGroup>> Get()
         {
-            var entities = await _configTypeGroups.AsNoTracking().ToListAsync();
-            entities.NotNull(nameof(Entities.ConfigTypeGroup));
-            return entities;
+            return await _configTypeGroups.ToListAsync();
         }
-        public async Task<Entities.ConfigTypeGroup> Get(int id)
+        public async Task<ConfigTypeGroup> Get(ProviderEnum id)
         {
-            var entity=await _configTypeGroups.FindAsync(id);
-            entity.NotNull(nameof(Entities.ConfigTypeGroup));
-            return entity;
+            return await _uow.FindOrThrowAsync<ConfigTypeGroup>(id);
         }
     }
 }

@@ -1,31 +1,31 @@
 ﻿using SmsHub.Persistence.Features.Logging.Queries.Contracts;
-using Entities = SmsHub.Domain.Features.Entities;
 using Microsoft.EntityFrameworkCore;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Constants;
 
 namespace SmsHub.Persistence.Features.Logging.Queries.Implementations
 {
     public class DeepLogQueryService: IDeepLogQueryService
     {
         private readonly IUnitOfWork _uow;
-        private readonly DbSet<Entities.DeepLog> _deepLogs;
+        private readonly DbSet<DeepLog> _deepLogs;
         public DeepLogQueryService(IUnitOfWork uow)
         {
             _uow = uow;
-            _deepLogs = _uow.Set<Entities.DeepLog>();
+            _uow.NotNull(nameof(_uow));
+
+            _deepLogs = _uow.Set<DeepLog>();
+            _deepLogs.NotNull(nameof(_deepLogs));
         }
-        public async Task<ICollection<Entities.DeepLog>> Get()
+        public async Task<ICollection<DeepLog>> Get()
         {
-            var entities = await _deepLogs.AsNoTracking().ToListAsync();
-            entities.NotNull(nameof(Entities.DeepLog));
-            return entities;
+            return await _deepLogs.ToListAsync();
         }
-        public async Task<Entities.DeepLog> Get(int id)
+        public async Task<DeepLog> Get(ProviderEnum  id)
         {
-            var entity = await _deepLogs.FindAsync(id);
-            entity.NotNull(nameof(Entities.DeepLog));
-            return entity;
+            return await _uow.FindOrThrowAsync<DeepLog>(id);
         }
     }
 }

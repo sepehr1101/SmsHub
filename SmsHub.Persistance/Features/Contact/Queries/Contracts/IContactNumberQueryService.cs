@@ -1,8 +1,11 @@
-﻿namespace SmsHub.Persistence.Features.Contact.Queries.Contracts
+﻿using SmsHub.Domain.Constants;
+using SmsHub.Domain.Features.Entities;
+
+namespace SmsHub.Persistence.Features.Contact.Queries.Contracts
 {
     public interface IContactNumberQueryService
     {
-        Task<ICollection<Domain.Features.Entities.ContactNumber>> Get();
-        Task<Domain.Features.Entities.ContactNumber> Get(int id);
+        Task<ICollection<ContactNumber>> Get();
+        Task<ContactNumber> Get(ProviderEnum id);
     }
 }
