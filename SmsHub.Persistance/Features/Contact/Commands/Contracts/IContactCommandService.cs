@@ -1,8 +1,11 @@
-﻿namespace SmsHub.Persistence.Features.Contact.Commands.Contracts
+﻿using Entities = SmsHub.Domain.Features.Entities;
+
+namespace SmsHub.Persistence.Features.Contact.Commands.Contracts
 {
     public interface IContactCommandService
     {
-        Task Add(Domain.Features.Entities.Contact contact);
-        Task Add(ICollection<Domain.Features.Entities.Contact> contacts);
+        Task Add(Entities.Contact contact);
+        Task Add(ICollection<Entities.Contact> contacts);
+        void Delete(Entities.Contact contact);
     }
 }

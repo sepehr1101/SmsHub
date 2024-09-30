@@ -17,13 +17,10 @@
     <Folder Include="Features\Config\Handlers\Commands\Update\Implementations\" />
     <Folder Include="Features\Config\Handlers\Queries\Contracts\" />
     <Folder Include="Features\Config\Handlers\Queries\Implementations\" />
-    <Folder Include="Features\Consumer\Handlers\Commands\Delete\" />
     <Folder Include="Features\Consumer\Handlers\Commands\Update\" />
     <Folder Include="Features\Consumer\Handlers\Queries\Contracts\" />
     <Folder Include="Features\Consumer\Handlers\Queries\Implementations\" />
     <Folder Include="Features\Consumer\Notifications\" />
-    <Folder Include="Features\Contact\Handlers\Commands\Delete\Contracts\" />
-    <Folder Include="Features\Contact\Handlers\Commands\Delete\Implementations\" />
     <Folder Include="Features\Contact\Handlers\Commands\Update\Contracts\" />
     <Folder Include="Features\Contact\Handlers\Commands\Update\Implementations\" />
     <Folder Include="Features\Contact\Handlers\Queries\Contracts\" />

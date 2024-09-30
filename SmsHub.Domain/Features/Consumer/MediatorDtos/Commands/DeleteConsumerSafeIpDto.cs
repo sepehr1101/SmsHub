@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SmsHub.Domain.Constants;
 
 namespace SmsHub.Domain.Features.Consumer.MediatorDtos.Commands
 {
-    internal class DeleteConsumerSafeIpDto
+    public class DeleteConsumerSafeIpDto
     {
+        public ProviderEnum Id { get; set; }
+
     }
 }

@@ -22,5 +22,9 @@ namespace SmsHub.Persistence.Features.Contact.Commands.Implementations
         {
             await _contacts.AddRangeAsync(contact);
         }
+        public void Delete(Entities.Contact contact)
+        {
+            _contacts.Remove(contact);
+        }
     }
 }

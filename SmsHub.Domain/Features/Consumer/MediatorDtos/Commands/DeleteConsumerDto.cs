@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SmsHub.Domain.Constants;
 
 namespace SmsHub.Domain.Features.Consumer.MediatorDtos.Commands
 {
-    internal class DeleteConsumerDto
+    public class DeleteConsumerDto
     {
+        public ProviderEnum Id{ get; set; }
     }
 }
