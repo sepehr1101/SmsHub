@@ -6,6 +6,6 @@ namespace SmsHub.Persistence.Features.Line.Queries.Contracts
     public interface IProviderQueryService
     {
         Task<ICollection<Provider>> Get();
-        Task<Provider?> Get(ProviderEnum id);
+        Task<Provider> Get(ProviderEnum id);
     }
 }
