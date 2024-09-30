@@ -8,11 +8,11 @@ using SmsHub.Application.Features.Line.Handlers.Commands.Create.Contracts;
 
 namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Implementations
 {
-    public class CreateProviderCommandHandler : /*IRequestHandler<CreateProviderDto>,*/ ICreateProviderCommandHandler
+    public class CreateProviderHandler : /*IRequestHandler<CreateProviderDto>,*/ ICreateProviderHandler
     {
         private readonly IMapper _mapper;
         private readonly IProviderCommandService _providerCommandService;
-        public CreateProviderCommandHandler(IMapper mapper, IProviderCommandService providerCommandService)
+        public CreateProviderHandler(IMapper mapper, IProviderCommandService providerCommandService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(_mapper));

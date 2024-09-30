@@ -1,8 +1,11 @@
-﻿namespace SmsHub.Persistence.Features.Line.Queries.Contracts
+﻿using SmsHub.Domain.Constants;
+using SmsHub.Domain.Features.Entities;
+
+namespace SmsHub.Persistence.Features.Line.Queries.Contracts
 {
     public interface IProviderQueryService
     {
-        Task<ICollection<Domain.Features.Entities.Provider>> Get();
-        Task<Domain.Features.Entities.Provider> Get(int id);
+        Task<ICollection<Provider>> Get();
+        Task<Provider> Get(ProviderEnum id);
     }
 }

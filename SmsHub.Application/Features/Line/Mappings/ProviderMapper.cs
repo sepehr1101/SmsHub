@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Entities= SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Application.Features.Line.Mappings
 {
@@ -8,7 +8,8 @@ namespace SmsHub.Application.Features.Line.Mappings
     {
         public ProviderMapper()
         {
-            CreateMap<Entities.Provider, CreateProviderDto>().ReverseMap();
+            CreateMap<Provider, CreateProviderDto>().ReverseMap();
+            CreateMap<UpdateProviderDto,Provider>().ReverseMap();
         }
     }
 }

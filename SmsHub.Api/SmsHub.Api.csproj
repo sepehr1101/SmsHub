@@ -7,11 +7,54 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\Providers\**" />
+    <Content Remove="Controllers\Providers\**" />
+    <EmbeddedResource Remove="Controllers\Providers\**" />
+    <None Remove="Controllers\Providers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Providers\" />
+    <Folder Include="Controllers\Config\Commands\" />
+    <Folder Include="Controllers\Config\Querries\" />
+    <Folder Include="Controllers\Consumer\Commands\Create\" />
+    <Folder Include="Controllers\Consumer\Commands\Delete\" />
+    <Folder Include="Controllers\Consumer\Commands\Update\" />
+    <Folder Include="Controllers\Consumer\Querries\" />
+    <Folder Include="Controllers\Contact\Commands\Create\" />
+    <Folder Include="Controllers\Contact\Commands\Delete\" />
+    <Folder Include="Controllers\Contact\Commands\Update\" />
+    <Folder Include="Controllers\Contact\Querries\" />
+    <Folder Include="Controllers\Config\Commands\Create\" />
+    <Folder Include="Controllers\Config\Commands\Delete\" />
+    <Folder Include="Controllers\Config\Commands\Update\" />
+    <Folder Include="Controllers\Credit\Commands\Create\" />
+    <Folder Include="Controllers\Credit\Commands\Delete\" />
+    <Folder Include="Controllers\Credit\Commands\Update\" />
+    <Folder Include="Controllers\Credit\Querries\" />
+    <Folder Include="Controllers\Line\Queries\" />
+    <Folder Include="Controllers\Logging\Commands\Create\" />
+    <Folder Include="Controllers\Logging\Commands\Delete\" />
+    <Folder Include="Controllers\Logging\Commands\Update\" />
+    <Folder Include="Controllers\Logging\Querries\" />
+    <Folder Include="Controllers\Receiving\Commands\Create\" />
+    <Folder Include="Controllers\Receiving\Commands\Delete\" />
+    <Folder Include="Controllers\Receiving\Commands\Update\" />
+    <Folder Include="Controllers\Receiving\Querries\" />
+    <Folder Include="Controllers\Security\Commands\Delete\" />
+    <Folder Include="Controllers\Security\Commands\Update\" />
+    <Folder Include="Controllers\Security\Querries\" />
+    <Folder Include="Controllers\Sending\Commands\Create\" />
+    <Folder Include="Controllers\Sending\Commands\Delete\" />
+    <Folder Include="Controllers\Sending\Commands\Update\" />
+    <Folder Include="Controllers\Sending\Querries\" />
+    <Folder Include="Controllers\Template\Commands\Create\" />
+    <Folder Include="Controllers\Template\Commands\Delete\" />
+    <Folder Include="Controllers\Template\Commands\Update\" />
+    <Folder Include="Controllers\Template\Querries\" />
     <Folder Include="Filters\" />
   </ItemGroup>
 

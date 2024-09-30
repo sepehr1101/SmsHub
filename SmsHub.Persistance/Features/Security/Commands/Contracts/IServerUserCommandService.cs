@@ -6,6 +6,6 @@ namespace SmsHub.Persistence.Features.Security.Commands.Contracts
     {
         Task Add(ServerUser user);
         Task Remove(int id);
-        Task UpdateApiKey(int id, string newApiKey);
+        Task UpdateApiKey(int id, string newApiKeyHash);
     }
 }

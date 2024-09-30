@@ -18,7 +18,11 @@ namespace SmsHub.Persistence.Features.Security.Queries.Implementations
             _users = _uow.Set<ServerUser>();
             _users.NotNull(nameof(_users));
         }
-        public async Task<ServerUser> GetByApiKey(string apiKey)
+        public async Task<ServerUser> GetById(int id)
+        {
+            return await _uow.FindOrThrowAsync<ServerUser>(id);
+        }
+        public async Task<ServerUser?> GetByApiKey(string apiKey)
         {
             return await _users.FirstOrDefaultAsync(u => u.ApiKeyHash == apiKey);
         }

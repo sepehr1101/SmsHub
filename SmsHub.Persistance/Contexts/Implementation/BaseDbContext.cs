@@ -6,6 +6,7 @@ using System.Data.Common;
 using EFCore.BulkExtensions;
 using SmsHub.Common.Extensions;
 using System.Transactions;
+using SmsHub.Persistence.Exceptions;
 
 namespace SmsHub.Persistence.Contexts.Implementation
 {
@@ -69,6 +70,26 @@ namespace SmsHub.Persistence.Contexts.Implementation
         {
             var result = await base.SaveChangesAsync();
             return result;
+        }
+        public TEntity FindOrThrow<TEntity>(params object?[]? keyValues)
+            where TEntity : class
+        {
+            var entity = Find<TEntity>(keyValues);
+            if (entity == null)
+            {
+                throw new InvalidIdException();
+            }
+            return entity;
+        }
+        public async Task<TEntity> FindOrThrowAsync<TEntity>(params object?[]? keyValues)
+          where TEntity : class
+        {
+            var entity = await FindAsync<TEntity>(keyValues);
+            if (entity is null)
+            {
+                throw new InvalidIdException();
+            }
+            return entity;
         }
 
         class ContextForQueryType<T> : DbContext where T : class

@@ -20,5 +20,9 @@ namespace SmsHub.Persistence.Contexts.UnitOfWork
         Task<int> ExecuteNonResultQuery(string rawQuery, params string[] parameters);
         Task BulkInsert<T>(IList<T> entities) where T : class;
         Task BulkInsert<T1, T2>(IList<T1> entities1, IList<T2> entities2) where T1 : class where T2 : class;
+
+        TEntity FindOrThrow<TEntity>(params object?[]? keyValues) where TEntity : class;
+        Task<TEntity> FindOrThrowAsync<TEntity>(params object?[]? keyValues) where TEntity : class;
+
     }
 }

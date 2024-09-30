@@ -1,16 +1,18 @@
 ﻿using AutoMapper;
 using MediatR;
 using SmsHub.Application.Common.Services.Contracts;
+using SmsHub.Application.Features.Security.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Security.Dtos;
 using SmsHub.Domain.Features.Security.MediatorDtos.Commands;
 using SmsHub.Persistence.Features.Security.Commands.Contracts;
 
-namespace SmsHub.Application.Features.Security.Handlers.Commands.Create
+namespace SmsHub.Application.Features.Security.Handlers.Commands.Create.Implementations
 {
-    public class CreateServerUserHandler : IRequestHandler<CreateServerUserDto,ApiKeyAndHash>
-    {        
+    public class CreateServerUserHandler : ICreateServerUserHandler
+    /*IRequestHandler<CreateServerUserDto, ApiKeyAndHash>*/
+    {
         private readonly IMapper _mapper;
         private readonly IApiKeyFactory _apiKeyFactory;
         private readonly IServerUserCommandService _userCommandService;
@@ -29,7 +31,7 @@ namespace SmsHub.Application.Features.Security.Handlers.Commands.Create
             _userCommandService.NotNull(nameof(_userCommandService));
         }
         public async Task<ApiKeyAndHash> Handle(CreateServerUserDto request, CancellationToken cancellationToken)
-        {           
+        {
             var serverUser = _mapper.Map<ServerUser>(request);
             var apiKeyAndHash = await _apiKeyFactory.Create(serverUser.Username);
             serverUser.ApiKeyHash = apiKeyAndHash.Hash;

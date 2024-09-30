@@ -28,10 +28,10 @@ namespace SmsHub.Persistence.Features.Security.Commands.Implementations
             var user = await _users.FindAsync(id);
             user.DeleteDateTime = DateTime.Now;
         }
-        public async Task UpdateApiKey(int id, string newApiKey)
+        public async Task UpdateApiKey(int id, string newApiKeyHash)
         {
             var user = await _users.FindAsync(id);
-            user.ApiKeyHash = newApiKey;
+            user.ApiKeyHash = newApiKeyHash;
         }
     }
 }
