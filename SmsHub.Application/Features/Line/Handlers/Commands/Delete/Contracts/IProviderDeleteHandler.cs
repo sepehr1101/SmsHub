@@ -4,6 +4,6 @@ namespace SmsHub.Application.Features.Line.Handlers.Commands.Delete.Contracts
 {
     public interface IProviderDeleteHandler
     {
-        Task Handle(DeleteCcSendtDto deleteProviderDto, CancellationToken cancellationToken);
+        Task Handle(DeleteProviderDto deleteProviderDto, CancellationToken cancellationToken);
     }
 }

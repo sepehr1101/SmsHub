@@ -1,9 +1,15 @@
-﻿using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
+﻿using SmsHub.Domain.Features.Line.MediatorDtos.Commands;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace SmsHub.Application.Features.Config.Handlers.Commands.Delete.Contracts
 {
     public interface ICcSendDeleteHandler
     {
-        Task Handle(DeleteCcSendDto deleteCcSendDto, CancellationToken cancellationToken);
+        Task Handle(DeleteCcSendtDto deleteProviderDto, CancellationToken cancellationToken);
+
     }
 }
