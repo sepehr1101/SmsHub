@@ -9,7 +9,7 @@ namespace SmsHub.Application.Features.Consumer.Mappings
         public ConsumerSafeIpMapper()
         {
             CreateMap<ConsumerSafeIp, CreateConsumerSafeIpDto>().ReverseMap();
-            CreateMap<UpdateConsumerSafeIpDto,ConsumerSafeIp>
+            CreateMap<UpdateConsumerSafeIpDto,ConsumerSafeIp>().ReverseMap();
         }
     }
 }

@@ -18,8 +18,6 @@
     <Folder Include="Features\Consumer\Handlers\Queries\Contracts\" />
     <Folder Include="Features\Consumer\Handlers\Queries\Implementations\" />
     <Folder Include="Features\Consumer\Notifications\" />
-    <Folder Include="Features\Contact\Handlers\Commands\Update\Contracts\" />
-    <Folder Include="Features\Contact\Handlers\Commands\Update\Implementations\" />
     <Folder Include="Features\Contact\Handlers\Queries\Contracts\" />
     <Folder Include="Features\Contact\Handlers\Queries\Implementations\" />
     <Folder Include="Features\Line\Handlers\Queries\Contracts\" />
