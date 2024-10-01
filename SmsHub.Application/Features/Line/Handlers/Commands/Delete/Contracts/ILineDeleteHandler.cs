@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SmsHub.Domain.Features.Line.MediatorDtos.Commands;
 
 namespace SmsHub.Application.Features.Line.Handlers.Commands.Delete.Contracts
 {
-    internal interface ILineDeleteHandler
+    public interface ILineDeleteHandler
     {
+        Task Handle(DeleteLineDto deleteLineDto, CancellationToken cancellationToken);
     }
 }

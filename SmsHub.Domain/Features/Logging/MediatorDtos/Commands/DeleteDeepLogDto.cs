@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SmsHub.Domain.Constants;
 
 namespace SmsHub.Domain.Features.Logging.MediatorDtos.Commands
 {
-    internal class DeleteDeepLogDto
+    public class DeleteDeepLogDto
     {
+        public ProviderEnum Id { get; set; }
     }
 }

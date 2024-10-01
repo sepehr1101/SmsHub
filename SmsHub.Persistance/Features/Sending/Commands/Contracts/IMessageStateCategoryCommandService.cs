@@ -1,8 +1,11 @@
-﻿namespace SmsHub.Persistence.Features.Sending.Commands.Contracts
+﻿using SmsHub.Domain.Features.Entities;
+
+namespace SmsHub.Persistence.Features.Sending.Commands.Contracts
 {
     public interface IMessageStateCategoryCommandService
     {
-        Task Add(Domain.Features.Entities.MessageStateCategory messageStateCategory);
-        Task Add(ICollection<Domain.Features.Entities.MessageStateCategory> messageStateCategories);
+        Task Add(MessageStateCategory messageStateCategory);
+        Task Add(ICollection<MessageStateCategory> messageStateCategories);
+        void Delete(MessageStateCategory messageStateCategory);
     }
 }

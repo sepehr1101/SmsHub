@@ -4,6 +4,7 @@ using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Common.Extensions;
 using MediatR;
 using SmsHub.Persistence.Features.Config.Commands.Contracts;
+using SmsHub.Domain.Features.Config.PersistenceDto.Commands;
 
 namespace SmsHub.Application.Features.Config.Handlers.Commands.Create
 {
