@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Entities= SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Template.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Application.Features.Template.Mappings
 {
@@ -8,7 +8,8 @@ namespace SmsHub.Application.Features.Template.Mappings
     {
         public TemplateCategoryMapping()
         {
-            CreateMap<Entities.TemplateCategory, CreateTemplateCategoryDto>().ReverseMap();
+            CreateMap<TemplateCategory, CreateTemplateCategoryDto>().ReverseMap();
+            CreateMap<UpdateTemplateCategoryDto,TemplateCategory > ().ReverseMap();
         }
     }
 }

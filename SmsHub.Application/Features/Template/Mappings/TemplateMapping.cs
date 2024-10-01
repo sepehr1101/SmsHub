@@ -9,6 +9,7 @@ namespace SmsHub.Application.Features.Template.Mappings
         public TemplateMapping()
         {
             CreateMap<Entities.Template, CreateTemplateDto>().ReverseMap();
+            CreateMap<UpdateTemplateDto, Entities.Template > ().ReverseMap();
         }
     }
 }
