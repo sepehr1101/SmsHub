@@ -9,6 +9,7 @@ namespace SmsHub.Application.Features.Logging.Mapping
         public OperationTypeMapper()
         {
             CreateMap<Entities.OperationType, CreateOperationTypeDto>().ReverseMap();
+            CreateMap<UpdateOperationTypeDto,Entities.OperationType > ().ReverseMap();
         }
     }
 }

@@ -22,14 +22,10 @@
     <Folder Include="Features\Contact\Handlers\Queries\Implementations\" />
     <Folder Include="Features\Line\Handlers\Queries\Contracts\" />
     <Folder Include="Features\Line\Handlers\Queries\Implementations\" />
-    <Folder Include="Features\Logging\Handlers\Commands\Update\Contracts\" />
-    <Folder Include="Features\Logging\Handlers\Commands\Update\Implementations\" />
     <Folder Include="Features\Logging\Handlers\Queries\Contracts\" />
     <Folder Include="Features\Logging\Handlers\Queries\Implementations\" />
     <Folder Include="Features\Security\Handlers\Commands\Delete\Contracts\" />
     <Folder Include="Features\Security\Handlers\Commands\Delete\Implementations\" />
-    <Folder Include="Features\Sending\Handlers\Commands\Update\Contracts\" />
-    <Folder Include="Features\Sending\Handlers\Commands\Update\Implementations\" />
     <Folder Include="Features\Sending\Handlers\Queries\Contracts\" />
     <Folder Include="Features\Sending\Handlers\Queries\Implementations\" />
     <Folder Include="Features\Template\Handlers\Commands\Update\Contracts\" />

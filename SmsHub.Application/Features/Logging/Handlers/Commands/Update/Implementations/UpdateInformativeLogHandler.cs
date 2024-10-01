@@ -1,12 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using SmsHub.Application.Features.Logging.Handlers.Commands.Update.Contracts;
+using SmsHub.Common.Extensions;
+using SmsHub.Domain.Features.Logging.MediatorDtos.Commands;
+using SmsHub.Persistence.Features.Logging.Queries.Contracts;
 
 namespace SmsHub.Application.Features.Logging.Handlers.Commands.Update.Implementations
 {
-    internal class UpdateInformativeLogHandler
+    public class UpdateInformativeLogHandler: IUpdateInformativeLogHandler
     {
+        private readonly IMapper _mapper;
+        private readonly IInformativeLogQueryService _informativeLogQueryService;
+        public UpdateInformativeLogHandler(IMapper mapper, IInformativeLogQueryService informativeLogQueryService)
+        {
+            _mapper = mapper;
+            _mapper.NotNull(nameof(mapper));
+
+            _informativeLogQueryService = informativeLogQueryService;
+            _informativeLogQueryService.NotNull(nameof(informativeLogQueryService));
+        }
+        public async Task Handle(UpdateInformativeLogDto updateInformativeLogDto, CancellationToken cancellationToken)
+        {
+            var informativeLog=await _informativeLogQueryService.Get(updateInformativeLogDto.Id);
+            _mapper.Map(updateInformativeLogDto, informativeLog);
+        }
     }
 }

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SmsHub.Domain.Features.Logging.MediatorDtos.Commands;
 
 namespace SmsHub.Application.Features.Logging.Handlers.Commands.Update.Contracts
 {
-    internal interface IUpdateDeepLogHandler
+    public interface IUpdateDeepLogHandler
     {
+        Task Handle(UpdateDeepLogDto updateDeepLogDto, CancellationToken cancellationToken);
     }
 }

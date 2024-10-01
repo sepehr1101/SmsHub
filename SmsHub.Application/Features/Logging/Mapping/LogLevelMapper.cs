@@ -9,6 +9,7 @@ namespace SmsHub.Application.Features.Logging.Mapping
         public LogLevelMapper()
         {
             CreateMap<Entities.LogLevel, CreateLogLevelDto>().ReverseMap();
+            CreateMap<UpdateLogLevelDto, Entities.LogLevel > ().ReverseMap();
         }
     }
 }
