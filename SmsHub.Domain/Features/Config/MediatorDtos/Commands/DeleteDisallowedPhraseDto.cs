@@ -2,9 +2,9 @@
 
 namespace SmsHub.Domain.Features.Config.MediatorDtos.Commands
 {
-    public  class DeleteDisallowedPhraseDto
+    public class DeleteDisallowedPhraseDto
     {
-        public ProviderEnum Id { get; set; }
+        public int Id { get; set; }
 
     }
 }

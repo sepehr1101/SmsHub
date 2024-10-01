@@ -37,8 +37,6 @@
     <Folder Include="Features\Sending\Handlers\Commands\Update\Implementations\" />
     <Folder Include="Features\Sending\Handlers\Queries\Contracts\" />
     <Folder Include="Features\Sending\Handlers\Queries\Implementations\" />
-    <Folder Include="Features\Template\Handlers\Commands\Delete\Contracts\" />
-    <Folder Include="Features\Template\Handlers\Commands\Delete\Implementations\" />
     <Folder Include="Features\Template\Handlers\Commands\Update\Contracts\" />
     <Folder Include="Features\Template\Handlers\Commands\Update\Implementations\" />
     <Folder Include="Features\Template\Handlers\Queries\Contracts\" />

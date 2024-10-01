@@ -4,7 +4,7 @@ namespace SmsHub.Domain.Features.Contact.MediatorDtos.Commands
 {
     public class DeleteContactNumberDto
     {
-        public ProviderEnum Id { get; set; }
+        public int Id { get; set; }
 
     }
 }

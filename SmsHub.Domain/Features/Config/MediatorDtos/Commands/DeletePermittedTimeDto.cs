@@ -4,7 +4,7 @@ namespace SmsHub.Domain.Features.Config.MediatorDtos.Commands
 {
     public class DeletePermittedTimeDto
     {
-        public ProviderEnum Id { get; set; }
+        public int Id { get; set; }
 
     }
 }

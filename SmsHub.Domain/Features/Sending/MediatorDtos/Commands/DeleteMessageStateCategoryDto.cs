@@ -4,6 +4,6 @@ namespace SmsHub.Domain.Features.Sending.MediatorDtos.Commands
 {
    public class DeleteMessageStateCategoryDto
     {
-        public ProviderEnum Id { get; set; }
+        public int Id { get; set; }
     }
 }

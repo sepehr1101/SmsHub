@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SmsHub.Domain.Features.Template.MediatorDtos.Commands;
 
 namespace SmsHub.Application.Features.Template.Handlers.Commands.Delete.Contracts
 {
-    internal interface ITemplateDeleteHandler
+    public interface ITemplateDeleteHandler
     {
+        Task Handle(DeleteTemplateDto deleteTemplateDto, CancellationToken cancellationToken);
     }
 }

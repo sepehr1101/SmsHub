@@ -6,6 +6,6 @@ namespace SmsHub.Persistence.Features.Config.Queries.Contracts
     public interface ICcSendQueryService
     {
         Task<ICollection<CcSend>> Get();
-        Task<CcSend> Get(ProviderEnum id);
+        Task<CcSend> Get(int id);
     }
 }

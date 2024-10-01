@@ -4,7 +4,7 @@ namespace SmsHub.Domain.Features.Config.MediatorDtos.Commands
 {
     public class DeleteConfigTypDto
     {
-        public ProviderEnum Id { get; set; }
+        public short Id { get; set; }
 
     }
 }

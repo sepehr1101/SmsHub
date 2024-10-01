@@ -23,7 +23,7 @@ namespace SmsHub.Persistence.Features.Config.Queries.Implementations
         {
             return await _ccSends.ToListAsync();
         }
-        public async Task<CcSend> Get(ProviderEnum id)
+        public async Task<CcSend> Get(int id)
         {
             return await _uow.FindOrThrowAsync<CcSend>(id);
          

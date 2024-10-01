@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SmsHub.Domain.Constants;
 
 namespace SmsHub.Domain.Features.Template.MediatorDtos.Commands
 {
-    internal class DeleteTemplateCategoryDto
+    public class DeleteTemplateCategoryDto
     {
+        public int Id { get; set; }
     }
 }

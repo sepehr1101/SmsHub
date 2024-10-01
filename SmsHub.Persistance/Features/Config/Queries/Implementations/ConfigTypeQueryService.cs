@@ -23,7 +23,7 @@ namespace SmsHub.Persistence.Features.Config.Queries.Implementations
         {
            return await _configTypes.ToListAsync();
         }
-        public async Task<ConfigType> Get(ProviderEnum id)
+        public async Task<ConfigType> Get(short id)
         {
             return await _uow.FindOrThrowAsync<ConfigType>(id);
         }

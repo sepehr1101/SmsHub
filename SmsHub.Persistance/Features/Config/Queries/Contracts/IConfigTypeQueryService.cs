@@ -6,6 +6,6 @@ namespace SmsHub.Persistence.Features.Config.Queries.Contracts
     public interface IConfigTypeQueryService
     {
         Task<ICollection<ConfigType>> Get();
-        Task<ConfigType> Get(ProviderEnum id);
+        Task<ConfigType> Get(short id);
     }
 }

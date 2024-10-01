@@ -4,7 +4,7 @@ namespace SmsHub.Domain.Features.Consumer.MediatorDtos.Commands
 {
     public class DeleteConsumerLineDto
     {
-        public ProviderEnum Id { get; set; }
+        public int Id { get; set; }
 
     }
 }

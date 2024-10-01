@@ -23,7 +23,7 @@ namespace SmsHub.Persistence.Features.Config.Queries.Implementations
         { 
             return await _disallowedPhrases.ToListAsync();
         }
-        public async Task<DisallowedPhrase> Get(ProviderEnum id)
+        public async Task<DisallowedPhrase> Get(int id)
         {
          return await _uow.FindOrThrowAsync<DisallowedPhrase>(id);
         }
