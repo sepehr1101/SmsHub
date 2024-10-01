@@ -1,14 +1,15 @@
 ﻿using AutoMapper;
-using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Application.Features.Consumer.Mappings
 {
     public class ConsumerLineMapper : Profile
     {
         public ConsumerLineMapper()
-        {//todo: introduction to startup
-            CreateMap<Entities.ConsumerLine, CreateConsumerLineDto>().ReverseMap();
+        {
+            CreateMap<ConsumerLine, CreateConsumerLineDto>().ReverseMap();
+            CreateMap<UpdateConsumerLineDto, ConsumerLine>().ReverseMap();
         }
     }
 }

@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands;
-using Entities = SmsHub.Domain.Features.Entities;
-
+using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Application.Features.Consumer.Mappings
 {
     public class ConsumerSafeIpMapper:Profile
     {
-        public ConsumerSafeIpMapper()//todo: introduction to startup
+        public ConsumerSafeIpMapper()
         {
-            CreateMap<Entities.ConsumerSafeIp, CreateConsumerSafeIpDto>().ReverseMap();
+            CreateMap<ConsumerSafeIp, CreateConsumerSafeIpDto>().ReverseMap();
+            CreateMap<UpdateConsumerSafeIpDto,ConsumerSafeIp>
         }
     }
 }

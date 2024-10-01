@@ -15,7 +15,6 @@
   <ItemGroup>
     <Folder Include="Features\Config\Handlers\Queries\Contracts\" />
     <Folder Include="Features\Config\Handlers\Queries\Implementations\" />
-    <Folder Include="Features\Consumer\Handlers\Commands\Update\" />
     <Folder Include="Features\Consumer\Handlers\Queries\Contracts\" />
     <Folder Include="Features\Consumer\Handlers\Queries\Implementations\" />
     <Folder Include="Features\Consumer\Notifications\" />
