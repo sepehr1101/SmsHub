@@ -23,7 +23,7 @@ namespace SmsHub.Persistence.Features.Contact.Queries.Implementations
         {
            return await _contactNumberCategories.ToListAsync();
         }
-        public async Task<ContactNumberCategory> Get(ProviderEnum id)
+        public async Task<ContactNumberCategory> Get(int id)
         {
            return await _uow.FindOrThrowAsync<ContactNumberCategory>(id);
         }

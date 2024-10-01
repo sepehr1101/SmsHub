@@ -9,6 +9,7 @@ namespace SmsHub.Application.Features.Line.Mappings
         public LineMapper()
         {
             CreateMap<Entities.Line, CreateLineDto>().ReverseMap();
+            CreateMap<UpdateLineDto, Entities.Line>().ReverseMap();
         }
     }
 }

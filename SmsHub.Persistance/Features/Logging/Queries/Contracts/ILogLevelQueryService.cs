@@ -6,6 +6,6 @@ namespace SmsHub.Persistence.Features.Logging.Queries.Contracts
     public interface ILogLevelQueryService
     {
         Task<ICollection<LogLevel>> Get();
-        Task<LogLevel> Get(ProviderEnum id);
+        Task<LogLevel> Get(int id);
     }
 }

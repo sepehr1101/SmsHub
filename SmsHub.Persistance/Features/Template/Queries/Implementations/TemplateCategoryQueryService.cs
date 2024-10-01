@@ -23,7 +23,7 @@ namespace SmsHub.Persistence.Features.Template.Queries.Implementations
         {
             return await _templateCategories.ToListAsync();
         }
-        public async Task<TemplateCategory> Get(ProviderEnum id)
+        public async Task<TemplateCategory> Get(int id)
         {
             return await _uow.FindOrThrowAsync<TemplateCategory>(id);
         }

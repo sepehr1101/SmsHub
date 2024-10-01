@@ -23,7 +23,7 @@ namespace SmsHub.Persistence.Features.Logging.Queries.Implementations
         {
             return await _operationTypes.ToListAsync();
         }
-        public async Task<OperationType> Get(ProviderEnum id)
+        public async Task<OperationType> Get(int id)
         {
             return await _uow.FindOrThrowAsync<OperationType>(id);
         }

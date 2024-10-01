@@ -6,6 +6,6 @@ namespace SmsHub.Persistence.Features.Logging.Queries.Contracts
     public interface IOperationTypeQueryService
     {
         Task<ICollection<OperationType>> Get();
-        Task<OperationType> Get(ProviderEnum id);
+        Task<OperationType> Get(int id);
     }
 }

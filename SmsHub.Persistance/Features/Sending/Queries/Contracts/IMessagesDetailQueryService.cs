@@ -6,6 +6,6 @@ namespace SmsHub.Persistence.Features.Sending.Queries.Contracts
     public interface IMessagesDetailQueryService
     {
         Task<ICollection<MessagesDetail>> Get();
-        Task<MessagesDetail> Get(ProviderEnum id);
+        Task<MessagesDetail> Get(long id);
     }
 }

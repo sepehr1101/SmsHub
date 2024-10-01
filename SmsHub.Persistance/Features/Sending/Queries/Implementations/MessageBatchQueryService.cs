@@ -23,7 +23,7 @@ namespace SmsHub.Persistence.Features.Sending.Queries.Implementations
         {
            return await _messageBatches.ToListAsync();
         }
-        public async Task<MessageBatch> Get(ProviderEnum id)
+        public async Task<MessageBatch> Get(int id)
         {
             return await _uow.FindOrThrowAsync<MessageBatch>(id);
         }

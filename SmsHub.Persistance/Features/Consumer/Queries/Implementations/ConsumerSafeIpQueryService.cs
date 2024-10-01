@@ -19,7 +19,7 @@ namespace SmsHub.Persistence.Features.Consumer.Queries.Implementations
             _consumerSafeIps=_uow.Set<ConsumerSafeIp>();
             _consumerSafeIps.NotNull(nameof(_consumerSafeIps));
         }
-        public async Task<ConsumerSafeIp> Get(ProviderEnum id)
+        public async Task<ConsumerSafeIp> Get(int id)
         {
           return await _uow.FindOrThrowAsync<ConsumerSafeIp>(id);
         }

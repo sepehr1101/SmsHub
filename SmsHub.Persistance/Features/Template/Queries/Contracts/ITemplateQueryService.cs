@@ -6,6 +6,6 @@ namespace SmsHub.Persistence.Features.Template.Queries.Contracts
     public interface ITemplateQueryService
     {
         Task<ICollection<Entities.Template>> Get();
-        Task<Entities.Template> Get(ProviderEnum id);
+        Task<Entities.Template> Get(int id);
     }
 }

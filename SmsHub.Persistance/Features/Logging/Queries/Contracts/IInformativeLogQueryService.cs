@@ -6,6 +6,6 @@ namespace SmsHub.Persistence.Features.Logging.Queries.Contracts
     public interface IInformativeLogQueryService
     {
         Task<ICollection<InformativeLog>> Get();
-        Task<InformativeLog> Get(ProviderEnum id);
+        Task<InformativeLog> Get(long id);
     }
 }

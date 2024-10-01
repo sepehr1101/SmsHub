@@ -6,6 +6,6 @@ namespace SmsHub.Persistence.Features.Sending.Queries.Contracts
     public interface IMessagesHolderQueryService
     {
         Task<ICollection<MessagesHolder>> Get();
-        Task<MessagesHolder> Get(ProviderEnum id);
+        Task<MessagesHolder> Get(Guid id);
     }
 }

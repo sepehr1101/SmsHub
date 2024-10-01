@@ -19,7 +19,7 @@ namespace SmsHub.Persistence.Features.Consumer.Queries.Implementations
             _consumerLines = _uow.Set<ConsumerLine>();
             _consumerLines.NotNull(nameof(_consumerLines));
         }
-        public async Task<ConsumerLine> Get(ProviderEnum id)
+        public async Task<ConsumerLine> Get(int id)
         {
             return await _uow.FindOrThrowAsync<ConsumerLine>(id);
         }

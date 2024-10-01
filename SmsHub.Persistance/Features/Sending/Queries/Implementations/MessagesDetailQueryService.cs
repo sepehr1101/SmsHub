@@ -24,7 +24,7 @@ namespace SmsHub.Persistence.Features.Sending.Queries.Implementations
         {
             return await _messagesDetails.ToListAsync();
         }
-        public async Task<MessagesDetail> Get(ProviderEnum id)
+        public async Task<MessagesDetail> Get(long id)
         {
             return await _uow.FindOrThrowAsync<MessagesDetail>(id);
         }
