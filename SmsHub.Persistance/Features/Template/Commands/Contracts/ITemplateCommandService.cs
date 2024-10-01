@@ -1,8 +1,11 @@
-﻿namespace SmsHub.Persistence.Features.Template.Commands.Contracts
+﻿using Entities = SmsHub.Domain.Features.Entities;
+
+namespace SmsHub.Persistence.Features.Template.Commands.Contracts
 {
     public interface ITemplateCommandService
     {
-        Task Add(Domain.Features.Entities.Template template);
-        Task Add(ICollection<Domain.Features.Entities.Template> templates);
+        Task Add(Entities.Template template);
+        Task Add(ICollection<Entities.Template> templates);
+        void Delete(Entities.Template template);
     }
 }
