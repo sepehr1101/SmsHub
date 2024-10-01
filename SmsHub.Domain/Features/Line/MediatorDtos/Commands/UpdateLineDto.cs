@@ -2,7 +2,7 @@
 
 namespace SmsHub.Domain.Features.Line.MediatorDtos.Commands
 {
-    public class UpdateLineDto
+    public record UpdateLineDto
     {//todo: check Prop
         public int Id { get; set; }
         public ProviderEnum ProviderId { get; set; }

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
-using Entities = SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Application.Features.Config.Mappings
 {
@@ -8,7 +8,8 @@ namespace SmsHub.Application.Features.Config.Mappings
     {
         public ConfigTypeMapper()
         {
-            CreateMap<Entities.ConfigType, CreateConfigTypeDto>().ReverseMap();
+            CreateMap<ConfigType, CreateConfigTypeDto>().ReverseMap();
+            CreateMap<UpdateConfigTypeDto, ConfigType>().ReverseMap();
         }
     }
 }
