@@ -1,8 +1,11 @@
-﻿namespace SmsHub.Persistence.Features.Logging.Commands.Contracts
+﻿using SmsHub.Domain.Features.Entities;
+
+namespace SmsHub.Persistence.Features.Logging.Commands.Contracts
 {
     public interface IInformativeLogCommandService
     {
-        Task Add(Domain.Features.Entities.InformativeLog informativeLog);
-        Task Add(ICollection<Domain.Features.Entities.InformativeLog> informativeLogs);
+        Task Add(InformativeLog informativeLog);
+        Task Add(ICollection<InformativeLog> informativeLogs);
+        void Delete(InformativeLog informativeLog);
     }
 }

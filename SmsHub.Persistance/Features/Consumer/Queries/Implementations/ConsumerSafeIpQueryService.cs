@@ -1,31 +1,31 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Entities= SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Common.Extensions;
 using SmsHub.Persistence.Features.Consumer.Queries.Contracts;
+using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Constants;
 
 namespace SmsHub.Persistence.Features.Consumer.Queries.Implementations
 {
     public class ConsumerSafeIpQueryService: IConsumerSafeIpQueryService
     {
         private readonly IUnitOfWork _uow;
-        private readonly DbSet<Entities.ConsumerSafeIp> _consumerSafeIps;
+        private readonly DbSet<ConsumerSafeIp> _consumerSafeIps;
         public ConsumerSafeIpQueryService(IUnitOfWork uow)
         {
             _uow= uow;
-            _consumerSafeIps=_uow.Set<Entities.ConsumerSafeIp>();
+            _uow.NotNull(nameof(_uow));
+            
+            _consumerSafeIps=_uow.Set<ConsumerSafeIp>();
+            _consumerSafeIps.NotNull(nameof(_consumerSafeIps));
         }
-        public async Task<Entities.ConsumerSafeIp> Get(int id)
+        public async Task<ConsumerSafeIp> Get(int id)
         {
-            var entity=await _consumerSafeIps.FindAsync(id);
-            entity.NotNull(nameof(Entities.ConsumerSafeIp));
-            return entity;
+          return await _uow.FindOrThrowAsync<ConsumerSafeIp>(id);
         }
-        public async Task<ICollection<Entities.ConsumerSafeIp>> Get()
+        public async Task<ICollection<ConsumerSafeIp>> Get()
         {
-            var entities = await _consumerSafeIps.AsNoTracking().ToListAsync();
-            entities.NotNull(nameof(Entities.ConsumerSafeIp));
-            return entities;
+            return await _consumerSafeIps.ToListAsync();
         }
     }
 }

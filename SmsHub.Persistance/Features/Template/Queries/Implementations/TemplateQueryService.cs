@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Features.Template.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.Constants;
 
 namespace SmsHub.Persistence.Features.Template.Queries.Implementations
 {
@@ -13,19 +14,18 @@ namespace SmsHub.Persistence.Features.Template.Queries.Implementations
         public TemplateQueryService(IUnitOfWork uow)
         {
             _uow = uow;
+            _uow.NotNull(nameof(_uow));
+
             _templates = _uow.Set<Entities.Template>();
+            _templates.NotNull(nameof(_templates));
         }
         public async Task<ICollection<Entities.Template>> Get()
         {
-            var entities = await _templates.AsNoTracking().ToListAsync();
-            entities.NotNull(nameof(Entities.Template));
-            return entities;
+            return await _templates.ToListAsync();
         }
         public async Task<Entities.Template> Get(int id)
         {
-            var entity = await _templates.FindAsync(id);
-            entity.NotNull(nameof(Entities.Template));
-            return entity;
+            return await _uow.FindOrThrowAsync<Entities.Template>(id);
         }
     }
 }

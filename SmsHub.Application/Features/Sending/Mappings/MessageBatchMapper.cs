@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Entities= SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Application.Features.Sending.Mappings
 {
@@ -8,7 +8,8 @@ namespace SmsHub.Application.Features.Sending.Mappings
     {
         public MessageBatchMapper()
         {
-            CreateMap<Entities.MessageBatch, CreateMessageBatchDto>().ReverseMap();
+            CreateMap<MessageBatch, CreateMessageBatchDto>().ReverseMap();
+            CreateMap<UpdateMessageBatchDto, MessageBatch > ().ReverseMap();
         }
     }
 }

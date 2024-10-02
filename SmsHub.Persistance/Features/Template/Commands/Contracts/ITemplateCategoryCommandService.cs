@@ -1,8 +1,11 @@
-﻿namespace SmsHub.Persistence.Features.Template.Commands.Contracts
+﻿using SmsHub.Domain.Features.Entities;
+
+namespace SmsHub.Persistence.Features.Template.Commands.Contracts
 {
     public interface ITemplateCategoryCommandService
     {
-        Task Add(Domain.Features.Entities.TemplateCategory templateCategory);
-        Task Add(ICollection<Domain.Features.Entities.TemplateCategory> templateCategories);
+        Task Add(TemplateCategory templateCategory);
+        Task Add(ICollection<TemplateCategory> templateCategories);
+        void Delete(TemplateCategory templateCategory);
     }
 }

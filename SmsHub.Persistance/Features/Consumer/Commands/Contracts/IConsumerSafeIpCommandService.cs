@@ -1,8 +1,11 @@
-﻿namespace SmsHub.Persistence.Features.Consumer.Commands.Contracts
+﻿using SmsHub.Domain.Features.Entities;
+
+namespace SmsHub.Persistence.Features.Consumer.Commands.Contracts
 {
     public interface IConsumerSafeIpCommandService
     {
-        Task Add(Domain.Features.Entities.ConsumerSafeIp consumerSafeIp);
-        Task Add(ICollection<Domain.Features.Entities.ConsumerSafeIp> consumerSafeIps);
+        Task Add(ConsumerSafeIp consumerSafeIp);
+        Task Add(ICollection<ConsumerSafeIp> consumerSafeIps);
+        void Delete(ConsumerSafeIp consumerSafeIp);
     }
 }

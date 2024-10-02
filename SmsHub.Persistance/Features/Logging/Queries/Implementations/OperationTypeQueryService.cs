@@ -1,31 +1,31 @@
 ﻿using SmsHub.Persistence.Features.Logging.Queries.Contracts;
-using Entities = SmsHub.Domain.Features.Entities;
 using Microsoft.EntityFrameworkCore;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Constants;
 
 namespace SmsHub.Persistence.Features.Logging.Queries.Implementations
 {
-    public class OperationTypeQueryService: IOperationTypeQueryService
+    public class OperationTypeQueryService : IOperationTypeQueryService
     {
         private readonly IUnitOfWork _uow;
-        private readonly DbSet<Entities.OperationType> _operationTypes;
+        private readonly DbSet<OperationType> _operationTypes;
         public OperationTypeQueryService(IUnitOfWork uow)
         {
             _uow = uow;
-            _operationTypes = _uow.Set<Entities.OperationType>();
+            _uow.NotNull(nameof(_uow));
+
+            _operationTypes = _uow.Set<OperationType>();
+            _operationTypes.NotNull(nameof(_operationTypes));
         }
-        public async Task<ICollection<Entities.OperationType>> Get()
+        public async Task<ICollection<OperationType>> Get()
         {
-            var entities = await _operationTypes.AsNoTracking().ToListAsync();
-            entities.NotNull(nameof(Entities.OperationType));
-            return entities;
+            return await _operationTypes.ToListAsync();
         }
-        public async Task<Entities.OperationType> Get(int id)
+        public async Task<OperationType> Get(int id)
         {
-            var entity = await _operationTypes.FindAsync(id);
-            entity.NotNull(nameof(Entities.OperationType));
-            return entity;
+            return await _uow.FindOrThrowAsync<OperationType>(id);
         }
     }
 }

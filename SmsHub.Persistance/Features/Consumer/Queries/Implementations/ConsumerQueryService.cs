@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.Constants;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Features.Consumer.Queries.Contracts;
 using Entities = SmsHub.Domain.Features.Entities;
@@ -13,19 +14,18 @@ namespace SmsHub.Persistence.Features.Consumer.Queries.Implementations
         public ConsumerQueryService(IUnitOfWork uow)
         {
             _uow = uow;
+            _uow.NotNull(nameof(_uow));
+
             _consumers = _uow.Set<Entities.Consumer>();
+            _consumers.NotNull(nameof(_consumers));
         }
         public async Task<Entities.Consumer> Get(int id)
         {
-            var entity = await _consumers.FindAsync(id);
-            entity.NotNull(nameof(Entities.Consumer));
-            return entity;
+            return await _uow.FindOrThrowAsync<Entities.Consumer>(id);
         }
         public async Task<ICollection<Entities.Consumer>> Get()
         {
-            var entities = await _consumers.AsNoTracking().ToListAsync();
-            entities.NotNull(nameof(Entities.Consumer));
-            return entities;
+            return await _consumers.ToListAsync();
         }
     }
 }

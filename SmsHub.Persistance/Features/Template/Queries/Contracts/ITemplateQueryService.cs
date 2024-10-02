@@ -1,8 +1,11 @@
-﻿namespace SmsHub.Persistence.Features.Template.Queries.Contracts
+﻿using SmsHub.Domain.Constants;
+using Entities = SmsHub.Domain.Features.Entities;
+
+namespace SmsHub.Persistence.Features.Template.Queries.Contracts
 {
     public interface ITemplateQueryService
     {
-        Task<ICollection<Domain.Features.Entities.Template>> Get();
-        Task<Domain.Features.Entities.Template> Get(int id);
+        Task<ICollection<Entities.Template>> Get();
+        Task<Entities.Template> Get(int id);
     }
 }

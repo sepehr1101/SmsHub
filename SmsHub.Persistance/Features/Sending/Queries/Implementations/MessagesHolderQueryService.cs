@@ -1,31 +1,31 @@
-﻿using Entities = SmsHub.Domain.Features.Entities;
-using SmsHub.Persistence.Features.Sending.Queries.Contracts;
+﻿using SmsHub.Persistence.Features.Sending.Queries.Contracts;
 using Microsoft.EntityFrameworkCore;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Constants;
 
 namespace SmsHub.Persistence.Features.Sending.Queries.Implementations
 {
     public class MessagesHolderQueryService: IMessagesHolderQueryService
     {
         private readonly IUnitOfWork _uow;
-        private readonly DbSet<Entities.MessagesHolder> _messagesHolders;
+        private readonly DbSet<MessagesHolder> _messagesHolders;
         public MessagesHolderQueryService(IUnitOfWork uow)
         {
             _uow = uow;
-            _messagesHolders = _uow.Set<Entities.MessagesHolder>();
+            _uow.NotNull(nameof(_uow));
+
+            _messagesHolders = _uow.Set<MessagesHolder>();
+            _messagesHolders.NotNull(nameof(_messagesHolders));
         }
-        public async Task<ICollection<Entities.MessagesHolder>> Get()
+        public async Task<ICollection<MessagesHolder>> Get()
         {
-            var entities = await _messagesHolders.AsNoTracking().ToListAsync();
-            entities.NotNull(nameof(Entities.MessagesHolder));
-            return entities;
+            return await _messagesHolders.ToListAsync();
         }
-        public async Task<Entities.MessagesHolder> Get(int id)
+        public async Task<MessagesHolder> Get(Guid id)
         {
-            var entity = await _messagesHolders.FindAsync(id);
-            entity.NotNull(nameof(Entities.MessagesHolder));
-            return entity;
+            return await _uow.FindOrThrowAsync<MessagesHolder>(id);
         }
     }
 }

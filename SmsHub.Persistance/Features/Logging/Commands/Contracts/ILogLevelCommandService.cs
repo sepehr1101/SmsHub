@@ -1,8 +1,11 @@
-﻿namespace SmsHub.Persistence.Features.Logging.Commands.Contracts
+﻿using SmsHub.Domain.Features.Entities;
+
+namespace SmsHub.Persistence.Features.Logging.Commands.Contracts
 {
     public interface ILogLevelCommandService
     {
-        Task Add(Domain.Features.Entities.LogLevel logLevel);
-        Task Add(ICollection<Domain.Features.Entities.LogLevel> logLevels);
+        Task Add(LogLevel logLevel);
+        Task Add(ICollection<LogLevel> logLevels);
+        void Delete(LogLevel logLevel);
     }
 }

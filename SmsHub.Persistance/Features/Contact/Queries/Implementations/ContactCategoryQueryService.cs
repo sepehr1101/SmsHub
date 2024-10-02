@@ -1,31 +1,31 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Entities= SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Features.Contact.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Constants;
 
 namespace SmsHub.Persistence.Features.Contact.Queries.Implementations
 {
     public class ContactCategoryQueryService: IContactCategoryQueryService
     {
         private readonly IUnitOfWork _uow;
-        private readonly DbSet<Entities.ContactCategory> _contactCategories;
+        private readonly DbSet<ContactCategory> _contactCategories;
         public ContactCategoryQueryService(IUnitOfWork uow)
         {
             _uow=uow;
-            _contactCategories=_uow.Set<Entities.ContactCategory>();
+            _uow.NotNull(nameof(_uow));
+
+            _contactCategories=_uow.Set<ContactCategory>();
+            _contactCategories.NotNull(nameof(_contactCategories));
         }
-        public async Task<ICollection<Entities.ContactCategory>> Get()
+        public async Task<ICollection<ContactCategory>> Get()
         {
-            var entities = await _contactCategories.AsNoTracking().ToListAsync();
-            entities.NotNull(nameof(Entities.ContactCategory));
-            return entities;
+           return await _contactCategories.ToListAsync();
         }
-        public async Task<Entities.ContactCategory> Get(int id)
+        public async Task<ContactCategory> Get(int id)
         {
-            var entity=await _contactCategories.FindAsync(id);
-            entity.NotNull(nameof(Entities.ContactCategory));
-            return entity;
+            return await _uow.FindOrThrowAsync<ContactCategory>(id);
         }
 
 

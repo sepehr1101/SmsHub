@@ -1,8 +1,11 @@
-﻿namespace SmsHub.Persistence.Features.Logging.Queries.Contracts
+﻿using SmsHub.Domain.Constants;
+using SmsHub.Domain.Features.Entities;
+
+namespace SmsHub.Persistence.Features.Logging.Queries.Contracts
 {
     public interface IInformativeLogQueryService
     {
-        Task<ICollection<Domain.Features.Entities.InformativeLog>> Get();
-        Task<Domain.Features.Entities.InformativeLog> Get(int id);
+        Task<ICollection<InformativeLog>> Get();
+        Task<InformativeLog> Get(long id);
     }
 }

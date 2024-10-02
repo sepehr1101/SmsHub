@@ -1,31 +1,31 @@
-﻿using Entities = SmsHub.Domain.Features.Entities;
-using SmsHub.Persistence.Features.Sending.Queries.Contracts;
+﻿using SmsHub.Persistence.Features.Sending.Queries.Contracts;
 using Microsoft.EntityFrameworkCore;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Constants;
 
 namespace SmsHub.Persistence.Features.Sending.Queries.Implementations
 {
     public class MessageBatchQueryService: IMessageBatchQueryService
     {
         private readonly IUnitOfWork _uow;
-        private readonly DbSet<Entities.MessageBatch> _messageBatches;
+        private readonly DbSet<MessageBatch> _messageBatches;
         public MessageBatchQueryService(IUnitOfWork uow)
         {
             _uow = uow;
-            _messageBatches = _uow.Set<Entities.MessageBatch>();
+            _uow.NotNull(nameof(_uow));
+
+            _messageBatches = _uow.Set<MessageBatch>();
+            _messageBatches.NotNull(nameof(_messageBatches));
         }
-        public async Task<ICollection<Entities.MessageBatch>> Get()
+        public async Task<ICollection<MessageBatch>> Get()
         {
-            var entities = await _messageBatches.AsNoTracking().ToListAsync();
-            entities.NotNull(nameof(Entities.MessageBatch));
-            return entities;
+           return await _messageBatches.ToListAsync();
         }
-        public async Task<Entities.MessageBatch> Get(int id)
+        public async Task<MessageBatch> Get(int id)
         {
-            var entity = await _messageBatches.FindAsync(id);
-            entity.NotNull(nameof(Entities.MessageBatch));
-            return entity;
+            return await _uow.FindOrThrowAsync<MessageBatch>(id);
         }
     }
 }

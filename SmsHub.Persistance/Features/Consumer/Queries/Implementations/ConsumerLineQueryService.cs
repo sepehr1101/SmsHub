@@ -1,31 +1,31 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Common.Extensions;
 using SmsHub.Persistence.Features.Consumer.Queries.Contracts;
+using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Constants;
 
 namespace SmsHub.Persistence.Features.Consumer.Queries.Implementations
 {
     public class ConsumerLineQueryService : IConsumerLineQueryService
     {
         private readonly IUnitOfWork _uow;
-        private readonly DbSet<Entities.ConsumerLine> consumerLines;
+        private readonly DbSet<ConsumerLine> _consumerLines;
         public ConsumerLineQueryService(IUnitOfWork uow)
         {
             _uow = uow;
-            consumerLines = _uow.Set<Entities.ConsumerLine>();
+            _uow.NotNull(nameof(_uow));
+
+            _consumerLines = _uow.Set<ConsumerLine>();
+            _consumerLines.NotNull(nameof(_consumerLines));
         }
-        public async Task<Entities.ConsumerLine> Get(int id)
+        public async Task<ConsumerLine> Get(int id)
         {
-            var entity = await consumerLines.FindAsync(id);
-            entity.NotNull(nameof(Entities.ConsumerLine));
-            return entity;
+            return await _uow.FindOrThrowAsync<ConsumerLine>(id);
         }
-        public async Task<ICollection<Entities.ConsumerLine>> Get()
+        public async Task<ICollection<ConsumerLine>> Get()
         {
-            var entities = await consumerLines.AsNoTracking().ToListAsync();
-            entities.NotNull(nameof(Entities.ConsumerLine));
-            return entities;
+            return await _consumerLines.ToListAsync();
         }
     }
 }

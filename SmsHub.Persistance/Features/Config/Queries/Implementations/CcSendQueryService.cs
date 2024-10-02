@@ -1,31 +1,32 @@
-﻿using Entities= SmsHub.Domain.Features.Entities;
-using SmsHub.Persistence.Contexts.UnitOfWork;
+﻿using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Features.Config.Queries.Contracts;
 using Microsoft.EntityFrameworkCore;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.Constants;
+using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Persistence.Features.Config.Queries.Implementations
 {
     public class CcSendQueryService: ICcSendQueryService
     {
         private readonly IUnitOfWork _uow;
-        private readonly DbSet<Entities.CcSend> _ccSends;
+        private readonly DbSet<CcSend> _ccSends;
         public CcSendQueryService(IUnitOfWork uow)
         {
             _uow=uow;
-            _ccSends=_uow.Set<Entities.CcSend>();
+            _uow.NotNull(nameof(_uow));
+
+            _ccSends=_uow.Set<CcSend>();
+            _ccSends.NotNull(nameof(_ccSends));
         }
-        public async Task<ICollection<Entities.CcSend>> Get()
+        public async Task<ICollection<CcSend>> Get()
         {
-            var entities = await _ccSends.AsNoTracking().ToListAsync();
-            entities.NotNull(nameof(Entities.CcSend));
-            return entities;
+            return await _ccSends.ToListAsync();
         }
-        public async Task<Entities.CcSend> Get(int id)
+        public async Task<CcSend> Get(int id)
         {
-            var entity=await _ccSends.FindAsync(id);
-            entity.NotNull(nameof(Entities.CcSend));
-            return entity;
+            return await _uow.FindOrThrowAsync<CcSend>(id);
+         
         }
     }
 }

@@ -1,31 +1,31 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Entities= SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Features.Contact.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Constants;
 
 namespace SmsHub.Persistence.Features.Contact.Queries.Implementations
 {
     public class ContactNumberQueryService: IContactNumberQueryService
     {
         private readonly IUnitOfWork _uow;
-        private readonly DbSet<Entities.ContactNumber> _contactNumbers;
+        private readonly DbSet<ContactNumber> _contactNumbers;
         public ContactNumberQueryService(IUnitOfWork uow)
         {
             _uow= uow;
-            _contactNumbers=_uow.Set<Entities.ContactNumber>();
+            _uow.NotNull(nameof(_uow));
+
+            _contactNumbers=_uow.Set<ContactNumber>();
+            _contactNumbers.NotNull(nameof(_contactNumbers));
         }
-        public async Task<ICollection<Entities.ContactNumber>> Get()
+        public async Task<ICollection<ContactNumber>> Get()
         {
-            var entities = await _contactNumbers.AsNoTracking().ToListAsync();
-            entities.NotNull(nameof(Entities.ContactNumber));
-            return entities;
+            return await _contactNumbers.ToListAsync();
         }
-        public async Task<Entities.ContactNumber> Get(int id)
+        public async Task<ContactNumber> Get(int id)
         {
-            var entity=await _contactNumbers.FindAsync(id);
-            entity.NotNull(nameof(Entities.ContactNumber));
-            return entity;
+            return await _uow.FindOrThrowAsync<ContactNumber>(id);
         }
     }
 }

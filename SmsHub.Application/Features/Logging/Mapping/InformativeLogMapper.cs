@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Entities= SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Application.Features.Logging.Mapping
 {
@@ -8,7 +8,8 @@ namespace SmsHub.Application.Features.Logging.Mapping
     {
         public InformativeLogMapper()
         {
-            CreateMap<Entities.InformativeLog, CreateInformativeLogDto>().ReverseMap();
+            CreateMap<InformativeLog, CreateInformativeLogDto>().ReverseMap();
+            CreateMap<UpdateInformativeLogDto, InformativeLog > ().ReverseMap();
         }
     }
 }
