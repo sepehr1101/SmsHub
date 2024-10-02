@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Config.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Application.Features.Config.Mappings
@@ -8,8 +9,9 @@ namespace SmsHub.Application.Features.Config.Mappings
     {
         public ConfigTypeGroupMapper()
         {
-            CreateMap<ConfigTypeGroup, CreateConfigTypeGroupDto>().ReverseMap();
+            CreateMap< CreateConfigTypeGroupDto, ConfigTypeGroup>().ReverseMap();
             CreateMap<UpdateConfigTypeGroupDto, ConfigTypeGroup>().ReverseMap();
+            CreateMap<GetConfigTypeGroupDto, ConfigTypeGroup>().ReverseMap();
         }
     }
 }
