@@ -1,9 +1,9 @@
-﻿using SmsHub.Domain.Constants;
+﻿using MediatR;
 
 namespace SmsHub.Domain.Features.Template.MediatorDtos.Commands
 {
-    public class DeleteTemplateDto
+    public record DeleteTemplateDto : IRequest
     {
-        public int Id { get; set; }
+        public int Id { get; init; }
     }
 }

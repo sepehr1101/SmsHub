@@ -2,9 +2,9 @@
 
 namespace SmsHub.Domain.Features.Config.MediatorDtos.Commands
 {
-    public record CreateCcSendDto : IRequest//todo: record or class?
+    public record CreateCcSendDto : IRequest
     { 
-        public int ConfigTypeGroupId { get; set; }
-        public string? Mobile { get; set; } 
+        public int ConfigTypeGroupId { get; init; }
+        public string Mobile { get; init; } = null!; 
     }
 }

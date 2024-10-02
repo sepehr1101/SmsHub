@@ -1,13 +1,12 @@
 ﻿using MediatR;
 using SmsHub.Domain.Constants;
-using System.Reflection.Metadata.Ecma335;
 
 namespace SmsHub.Domain.Features.Line.MediatorDtos.Commands
 {
     public record CreateLineDto:IRequest
     {
-        public ProviderEnum ProviderId { get; set; }
-        public string? Number { get; set; }
-        public string? Credential { get; set; }
+        public ProviderEnum ProviderId { get; init; }
+        public string? Number { get; init; }
+        public string? Credential { get; init; }
     }
 }

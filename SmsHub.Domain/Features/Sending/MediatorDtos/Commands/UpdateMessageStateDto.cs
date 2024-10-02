@@ -1,10 +1,12 @@
-﻿namespace SmsHub.Domain.Features.Sending.MediatorDtos.Commands
+﻿using MediatR;
+
+namespace SmsHub.Domain.Features.Sending.MediatorDtos.Commands
 {
-    public record UpdateMessageStateDto
-    {//todo: check Prop
-        public long Id { get; set; }
-        public int MessageStateCategoryId { get; set; }
-        public long? MessagesDetailId { get; set; }
-        public DateTime InsertDateTime { get; set; }
+    public record UpdateMessageStateDto : IRequest
+    {
+        public long Id { get; init; }
+        public int MessageStateCategoryId { get; init; }
+        public long? MessagesDetailId { get; init; }
+        public DateTime InsertDateTime { get; init; }
     }
 }

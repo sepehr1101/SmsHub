@@ -4,9 +4,9 @@ namespace SmsHub.Domain.Features.Consumer.MediatorDtos.Commands
 {
     public record CreateConsumerSafeIpDto:IRequest
     {
-        public int ConsumerId { get; set; }
-        public string? FromIp { get; set; } 
-        public string? ToIp { get; set; } 
-        public bool IsV6 { get; set; }
+        public int ConsumerId { get; init; }
+        public string? FromIp { get; init; } 
+        public string? ToIp { get; init; } 
+        public bool IsV6 { get; init; }
     }
 }

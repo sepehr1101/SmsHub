@@ -1,10 +1,12 @@
-﻿namespace SmsHub.Domain.Features.Consumer.MediatorDtos.Commands
+﻿using MediatR;
+
+namespace SmsHub.Domain.Features.Consumer.MediatorDtos.Commands
 {
-    public class UpdateConsumerDto
-    {//todo: check Prop
-        public int Id { get; set; }
-        public string Title { get; set; } = null!;
-        public string Description { get; set; } = null!;
-        public string ApiKey { get; set; } = null!;
+    public record UpdateConsumerDto : IRequest
+    {
+        public int Id { get; init; }
+        public string Title { get; init; } = null!;
+        public string Description { get; init; } = null!;
+        public string ApiKey { get; init; } = null!;
     }
 }

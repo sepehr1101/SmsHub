@@ -2,9 +2,9 @@
 
 namespace SmsHub.Domain.Features.Config.MediatorDtos.Commands
 {
-    public record CreateDisallowedPhraseDto : IRequest//todo: record or class?
+    public record CreateDisallowedPhraseDto : IRequest
     {
-        public int ConfigTypeGroupId { get; set; }
-        public string? Phrase { get; set; } 
+        public int ConfigTypeGroupId { get; init; }
+        public string? Phrase { get; init; } 
     }
 }

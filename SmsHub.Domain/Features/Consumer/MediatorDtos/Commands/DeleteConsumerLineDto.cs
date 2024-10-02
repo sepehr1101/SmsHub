@@ -1,10 +1,10 @@
-﻿using SmsHub.Domain.Constants;
+﻿using MediatR;
 
 namespace SmsHub.Domain.Features.Consumer.MediatorDtos.Commands
 {
-    public class DeleteConsumerLineDto
+    public record DeleteConsumerLineDto : IRequest
     {
-        public int Id { get; set; }
+        public int Id { get; init; }
 
     }
 }

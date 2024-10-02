@@ -4,11 +4,11 @@ namespace SmsHub.Domain.Features.Sending.MediatorDtos.Commands
 {
     public record CreateMessageDetailDto:IRequest
     {
-        public Guid MessagesHolderId { get; set; }
-        public string? Receptor { get; set; } 
-        public long ProviderResult { get; set; }
-        public DateTime SendDateTime { get; set; }
-        public string? Text { get; set; } 
-        public short SmsCount { get; set; }
+        public Guid MessagesHolderId { get; init; }
+        public string? Receptor { get; init; } 
+        public long ProviderResult { get; init; }
+        public DateTime SendDateTime { get; init; }
+        public string? Text { get; init; } 
+        public short SmsCount { get; init; }
     }
 }

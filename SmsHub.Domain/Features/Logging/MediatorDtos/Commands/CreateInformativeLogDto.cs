@@ -4,13 +4,13 @@ namespace SmsHub.Domain.Features.Logging.MediatorDtos.Commands
 {
     public record CreateInformativeLogDto:IRequest
     { 
-        public int LogLevelId { get; set; }
-        public string? Section { get; set; } 
-        public string? Description { get; set; }
-        public Guid? UserId { get; set; }
-        public string? UserInfo { get; set; }
-        public string? Ip { get; set; }
-        public DateTime InsertDateTime { get; set; }
-        public string? ClientInfo { get; set; } 
+        public int LogLevelId { get; init; }
+        public string? Section { get; init; } 
+        public string? Description { get; init; }
+        public Guid? UserId { get; init; }
+        public string? UserInfo { get; init; }
+        public string? Ip { get; init; }
+        public DateTime InsertDateTime { get; init; }
+        public string? ClientInfo { get; init; } 
     }
 }

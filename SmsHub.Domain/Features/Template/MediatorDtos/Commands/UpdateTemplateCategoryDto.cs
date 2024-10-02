@@ -1,9 +1,11 @@
-﻿namespace SmsHub.Domain.Features.Template.MediatorDtos.Commands
+﻿using MediatR;
+
+namespace SmsHub.Domain.Features.Template.MediatorDtos.Commands
 {
-    public record UpdateTemplateCategoryDto
-    {//todo: check Prop
-        public int Id { get; set; }
-        public string Title { get; set; } = null!;
-        public string Description { get; set; } = null!;
+    public record UpdateTemplateCategoryDto : IRequest
+    {
+        public int Id { get; init; }
+        public string Title { get; init; } = null!;
+        public string Description { get; init; } = null!;
     }
 }

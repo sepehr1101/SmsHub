@@ -1,16 +1,18 @@
-﻿namespace SmsHub.Domain.Features.Logging.MediatorDtos.Commands
+﻿using MediatR;
+
+namespace SmsHub.Domain.Features.Logging.MediatorDtos.Commands
 {
-    public record UpdateDeepLogDto
-    {//todo: check Prop
-        public long Id { get; set; }
-        public int OperationTypeId { get; set; }
-        public string PrimaryDb { get; set; } = null!;
-        public string PrimaryTable { get; set; } = null!;
-        public string PrimaryId { get; set; } = null!;
-        public string? ValueBefore { get; set; }
-        public string? ValueAfter { get; set; }
-        public string Ip { get; set; } = null!;
-        public DateTime InsertDateTime { get; set; }
-        public string ClientInfo { get; set; } = null!;
+    public record UpdateDeepLogDto : IRequest
+    {
+        public long Id { get; init; }
+        public int OperationTypeId { get; init; }
+        public string PrimaryDb { get; init; } = null!;
+        public string PrimaryTable { get; init; } = null!;
+        public string PrimaryId { get; init; } = null!;
+        public string? ValueBefore { get; init; }
+        public string? ValueAfter { get; init; }
+        public string Ip { get; init; } = null!;
+        public DateTime InsertDateTime { get; init; }
+        public string ClientInfo { get; init; } = null!;
     }
 }

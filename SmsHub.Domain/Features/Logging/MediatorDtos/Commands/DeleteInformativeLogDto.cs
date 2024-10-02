@@ -1,9 +1,9 @@
-﻿using SmsHub.Domain.Constants;
+﻿using MediatR;
 
 namespace SmsHub.Domain.Features.Logging.MediatorDtos.Commands
 {
-    public class DeleteInformativeLogDto
+    public record DeleteInformativeLogDto : IRequest
     {
-        public long Id { get; set; }
+        public long Id { get; init; }
     }
 }

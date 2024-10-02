@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
 
 namespace SmsHub.Domain.Features.Security.MediatorDtos.Commands
 {
-    internal class DeleteServerUserDto
+    public record DeleteServerUserDto : IRequest
     {
+        public int Id { get; init; }
     }
 }

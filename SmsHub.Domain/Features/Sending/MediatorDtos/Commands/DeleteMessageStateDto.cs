@@ -1,9 +1,9 @@
-﻿using SmsHub.Domain.Constants;
+﻿using MediatR;
 
 namespace SmsHub.Domain.Features.Sending.MediatorDtos.Commands
 {
-    public class DeleteMessageStateDto
+    public record DeleteMessageStateDto : IRequest
     {
-        public long Id { get; set; }
+        public long Id { get; init; }
     }
 }

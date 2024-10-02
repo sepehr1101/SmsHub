@@ -1,10 +1,12 @@
-﻿namespace SmsHub.Domain.Features.Config.MediatorDtos.Commands
+﻿using MediatR;
+
+namespace SmsHub.Domain.Features.Config.MediatorDtos.Commands
 {
-    public record UpdateConfigTypeGroupDto
-    {//todo: check Prop
-        public int Id { get; set; }
-        public short ConfigTypeId { get; set; }
-        public string Title { get; set; } = null!;
-        public string Description { get; set; } = null!;
+    public record UpdateConfigTypeGroupDto : IRequest
+    {
+        public int Id { get; init; }
+        public short ConfigTypeId { get; init; }
+        public string Title { get; init; } = null!;
+        public string Description { get; init; } = null!;
     }
 }
