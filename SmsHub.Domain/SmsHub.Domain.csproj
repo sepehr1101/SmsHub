@@ -10,7 +10,7 @@
     <Folder Include="BaseDomainEntities\" />
     <Folder Include="BaseValueObjects\" />
     <Folder Include="BaseValidations\" />
-    <Folder Include="Features\Config\PersistenceDto\Queries\" />
+    <Folder Include="Features\Config\MediatorDtos\Queries\" />
     <Folder Include="Features\Consumer\MediatorDtos\Queries\" />
     <Folder Include="Features\Contact\MediatorDtos\Queries\" />
     <Folder Include="Features\Credit\EfConfig\" />
@@ -25,7 +25,6 @@
     <Folder Include="Features\Receiving\MediatorDtos\Queries\" />
     <Folder Include="Features\Security\EfConfig\" />
     <Folder Include="Features\Security\MediatorDtos\Queries\" />
-    <Folder Include="Features\Sending\MediatorDtos\Commands\" />
     <Folder Include="Features\Sending\MediatorDtos\Queries\" />
     <Folder Include="Features\Template\MediatorDtos\Queries\" />
     <Folder Include="Providers\Kavenegar\Models\" />

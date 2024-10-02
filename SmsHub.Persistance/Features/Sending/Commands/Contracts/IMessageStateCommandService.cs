@@ -6,5 +6,6 @@ namespace SmsHub.Persistence.Features.Sending.Commands.Contracts
     {
         Task Add(MessageState messageState);
         Task Add(ICollection<MessageState> messageStates);
+        void Delete(MessageState messageState); 
     }
 }

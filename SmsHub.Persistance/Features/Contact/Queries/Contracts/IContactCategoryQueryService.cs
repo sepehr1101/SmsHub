@@ -1,8 +1,11 @@
-﻿namespace SmsHub.Persistence.Features.Contact.Queries.Contracts
+﻿using SmsHub.Domain.Constants;
+using SmsHub.Domain.Features.Entities;
+
+namespace SmsHub.Persistence.Features.Contact.Queries.Contracts
 {
     public interface IContactCategoryQueryService
     {
-        Task<ICollection<Domain.Features.Entities.ContactCategory>> Get();
-        Task<Domain.Features.Entities.ContactCategory> Get(int id);
+        Task<ICollection<ContactCategory>> Get();
+        Task<ContactCategory> Get(int id);
     }
 }

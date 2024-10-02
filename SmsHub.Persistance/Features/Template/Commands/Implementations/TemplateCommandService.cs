@@ -22,5 +22,9 @@ namespace SmsHub.Persistence.Features.Template.Commands.Implementations
         {
             await _templates.AddRangeAsync(templates);
         }
+        public void Delete(Entities.Template template)
+        {
+            _templates.Remove(template);
+        }
     }
 }

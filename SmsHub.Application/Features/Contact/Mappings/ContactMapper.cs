@@ -9,6 +9,7 @@ namespace SmsHub.Application.Features.Contact.Mappings
         public ContactMapper()
         {
             CreateMap<Entities.Contact, CreateContactDto>().ReverseMap();
+            CreateMap<UpdateContactDto, Entities.Contact>().ReverseMap();
         }
     }
 }

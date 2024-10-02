@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using SmsHub.Domain.Features.Config.PersistenceDto.Commands;
-using Entities= SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Application.Features.Config.Mappings
 {
@@ -8,7 +8,8 @@ namespace SmsHub.Application.Features.Config.Mappings
     {
         public PermittedTimeMapper()
         {
-            CreateMap<Entities.PermittedTime, CreatePermittedTimeDto>().ReverseMap();
+            CreateMap<PermittedTime, CreatePermittedTimeDto>().ReverseMap();
+            CreateMap<UpdatePermittedTimeDto, PermittedTime>().ReverseMap();
         }
     }
 }

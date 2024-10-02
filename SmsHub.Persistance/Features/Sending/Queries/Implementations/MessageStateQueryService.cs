@@ -1,31 +1,31 @@
-﻿using Entities = SmsHub.Domain.Features.Entities;
-using SmsHub.Persistence.Features.Sending.Queries.Contracts;
+﻿using SmsHub.Persistence.Features.Sending.Queries.Contracts;
 using Microsoft.EntityFrameworkCore;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Constants;
 
 namespace SmsHub.Persistence.Features.Sending.Queries.Implementations
 {
     public class MessageStateQueryService: IMessageStateQueryService
     {
         private readonly IUnitOfWork _uow;
-        private readonly DbSet<Entities.MessageState> _messageStates;
+        private readonly DbSet<MessageState> _messageStates;
         public MessageStateQueryService(IUnitOfWork uow)
         {
             _uow = uow;
-            _messageStates = _uow.Set<Entities.MessageState>();
+            _uow.NotNull(nameof(_uow));
+
+            _messageStates = _uow.Set<MessageState>();
+            _messageStates.NotNull(nameof(_messageStates));
         }
-        public async Task<ICollection<Entities.MessageState>> Get()
+        public async Task<ICollection<MessageState>> Get()
         {
-            var entities = await _messageStates.AsNoTracking().ToListAsync();
-            entities.NotNull(nameof(Entities.MessageState));
-            return entities;
+          return await _messageStates.ToListAsync();
         }
-        public async Task<Entities.MessageState> Get(int id)
+        public async Task<MessageState> Get(long id)
         {
-            var entity = await _messageStates.FindAsync(id);
-            entity.NotNull(nameof(Entities.MessageState));
-            return entity;
+            return await _uow.FindOrThrowAsync<MessageState>(id);
         }
     }
 }

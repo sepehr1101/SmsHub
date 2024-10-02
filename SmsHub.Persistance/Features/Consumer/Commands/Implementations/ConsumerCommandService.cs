@@ -23,5 +23,9 @@ namespace SmsHub.Persistence.Features.Consumer.Commands.Implementations
         {
             await _consumers.AddRangeAsync(consumers);
         }
+        public void Delete(Entities.Consumer consumer)
+        {
+            _consumers.Remove(consumer);
+        }
     }
 }

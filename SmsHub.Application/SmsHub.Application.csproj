@@ -13,43 +13,21 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Config\Handlers\Commands\Delete\Contracts\" />
-    <Folder Include="Features\Config\Handlers\Commands\Delete\Implementations\" />
-    <Folder Include="Features\Config\Handlers\Commands\Update\Contracts\" />
-    <Folder Include="Features\Config\Handlers\Commands\Update\Implementations\" />
     <Folder Include="Features\Config\Handlers\Queries\Contracts\" />
     <Folder Include="Features\Config\Handlers\Queries\Implementations\" />
-    <Folder Include="Features\Consumer\Handlers\Commands\Delete\" />
-    <Folder Include="Features\Consumer\Handlers\Commands\Update\" />
     <Folder Include="Features\Consumer\Handlers\Queries\Contracts\" />
     <Folder Include="Features\Consumer\Handlers\Queries\Implementations\" />
     <Folder Include="Features\Consumer\Notifications\" />
-    <Folder Include="Features\Contact\Handlers\Commands\Delete\Contracts\" />
-    <Folder Include="Features\Contact\Handlers\Commands\Delete\Implementations\" />
-    <Folder Include="Features\Contact\Handlers\Commands\Update\Contracts\" />
-    <Folder Include="Features\Contact\Handlers\Commands\Update\Implementations\" />
     <Folder Include="Features\Contact\Handlers\Queries\Contracts\" />
     <Folder Include="Features\Contact\Handlers\Queries\Implementations\" />
     <Folder Include="Features\Line\Handlers\Queries\Contracts\" />
     <Folder Include="Features\Line\Handlers\Queries\Implementations\" />
-    <Folder Include="Features\Logging\Handlers\Commands\Delete\Contracts\" />
-    <Folder Include="Features\Logging\Handlers\Commands\Delete\Implementations\" />
-    <Folder Include="Features\Logging\Handlers\Commands\Update\Contracts\" />
-    <Folder Include="Features\Logging\Handlers\Commands\Update\Implementations\" />
     <Folder Include="Features\Logging\Handlers\Queries\Contracts\" />
     <Folder Include="Features\Logging\Handlers\Queries\Implementations\" />
     <Folder Include="Features\Security\Handlers\Commands\Delete\Contracts\" />
     <Folder Include="Features\Security\Handlers\Commands\Delete\Implementations\" />
-    <Folder Include="Features\Sending\Handlers\Commands\Delete\Contracts\" />
-    <Folder Include="Features\Sending\Handlers\Commands\Delete\Implementations\" />
-    <Folder Include="Features\Sending\Handlers\Commands\Update\Contracts\" />
-    <Folder Include="Features\Sending\Handlers\Commands\Update\Implementations\" />
     <Folder Include="Features\Sending\Handlers\Queries\Contracts\" />
     <Folder Include="Features\Sending\Handlers\Queries\Implementations\" />
-    <Folder Include="Features\Template\Handlers\Commands\Delete\Contracts\" />
-    <Folder Include="Features\Template\Handlers\Commands\Delete\Implementations\" />
-    <Folder Include="Features\Template\Handlers\Commands\Update\Contracts\" />
-    <Folder Include="Features\Template\Handlers\Commands\Update\Implementations\" />
     <Folder Include="Features\Template\Handlers\Queries\Contracts\" />
     <Folder Include="Features\Template\Handlers\Queries\Implementations\" />
     <Folder Include="Features\Validations\" />
