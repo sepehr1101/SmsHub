@@ -20,7 +20,7 @@ namespace SmsHub.Application.Features.Consumer.Handlers.Queries.Implementations
         }
         public async Task<ICollection<GetConsumerDto>> Handle()
         {
-         var consumers=   await _consumerQueryService.Get();
+            var consumers = await _consumerQueryService.Get();
             return _mapper.Map<ICollection<GetConsumerDto>>(consumers);
         }
     }

@@ -14,8 +14,6 @@
 
   <ItemGroup>
     <Folder Include="Features\Consumer\Notifications\" />
-    <Folder Include="Features\Contact\Handlers\Queries\Contracts\" />
-    <Folder Include="Features\Contact\Handlers\Queries\Implementations\" />
     <Folder Include="Features\Line\Handlers\Queries\Contracts\" />
     <Folder Include="Features\Line\Handlers\Queries\Implementations\" />
     <Folder Include="Features\Logging\Handlers\Queries\Contracts\" />

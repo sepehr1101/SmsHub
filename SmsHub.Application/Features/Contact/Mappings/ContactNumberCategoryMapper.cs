@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SmsHub.Domain.Features.Contact.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Contact.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Application.Features.Contact.Mappings
@@ -8,8 +9,9 @@ namespace SmsHub.Application.Features.Contact.Mappings
     {
         public ContactNumberCategoryMapper()
         {
-            CreateMap<ContactNumberCategory, CreateContactNumberCategoryDto>().ReverseMap();
+            CreateMap< CreateContactNumberCategoryDto, ContactNumberCategory>().ReverseMap();
             CreateMap<UpdateContactNumberCategoryDto,ContactNumberCategory>().ReverseMap();
+            CreateMap<GetContactNumberCategoryDto,ContactNumberCategory>().ReverseMap();
         }
     }
 }
