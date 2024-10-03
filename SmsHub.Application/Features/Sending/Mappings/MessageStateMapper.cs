@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands;
 using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Features.Sending.MediatorDtos.Queries;
 
 namespace SmsHub.Application.Features.Sending.Mappings
 {
@@ -8,8 +9,9 @@ namespace SmsHub.Application.Features.Sending.Mappings
     {
         public MessageStateMapper()
         {
-            CreateMap<MessageState, CreateMessageStateDto>().ReverseMap();
+            CreateMap<CreateMessageStateDto, MessageState>().ReverseMap();
             CreateMap<UpdateMessageStateDto, MessageState > ().ReverseMap();
+            CreateMap<GetMessageStateDto, MessageState > ().ReverseMap();
         }
     }
 }
