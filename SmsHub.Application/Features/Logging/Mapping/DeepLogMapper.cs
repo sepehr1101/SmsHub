@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Commands;
 using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Features.Logging.MediatorDtos.Queries;
 
 namespace SmsHub.Application.Features.Logging.Mapping
 {
@@ -8,8 +9,9 @@ namespace SmsHub.Application.Features.Logging.Mapping
     {
         public DeepLogMapper()
         {
-            CreateMap<DeepLog, CreateDeepLogDto>().ReverseMap();
+            CreateMap< CreateDeepLogDto, DeepLog>().ReverseMap();
             CreateMap<UpdateDeepLogDto, DeepLog>().ReverseMap();
+            CreateMap<GetDeepLogDto, DeepLog>().ReverseMap();
         }
     }
 }

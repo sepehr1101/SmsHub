@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Entities= SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Logging.MediatorDtos.Queries;
 
 namespace SmsHub.Application.Features.Logging.Mapping
 {
@@ -8,8 +9,9 @@ namespace SmsHub.Application.Features.Logging.Mapping
     {
         public OperationTypeMapper()
         {
-            CreateMap<Entities.OperationType, CreateOperationTypeDto>().ReverseMap();
+            CreateMap< CreateOperationTypeDto, Entities.OperationType>().ReverseMap();
             CreateMap<UpdateOperationTypeDto,Entities.OperationType > ().ReverseMap();
+            CreateMap<GetOperationTypeDto,Entities.OperationType > ().ReverseMap();
         }
     }
 }
