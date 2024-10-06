@@ -1,4 +1,4 @@
-﻿using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands;
+﻿using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Delete;
 
 namespace SmsHub.Application.Features.Consumer.Handlers.Commands.Delete.Contracts
 {

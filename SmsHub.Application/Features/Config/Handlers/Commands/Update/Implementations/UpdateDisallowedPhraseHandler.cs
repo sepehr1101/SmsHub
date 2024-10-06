@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using SmsHub.Application.Features.Config.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
-using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Update;
 using SmsHub.Persistence.Features.Config.Queries.Contracts;
 
 namespace SmsHub.Application.Features.Config.Handlers.Commands.Update.Implementations

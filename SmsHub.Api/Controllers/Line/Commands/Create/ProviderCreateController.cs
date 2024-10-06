@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Line.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
-using SmsHub.Domain.Features.Line.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.Line.Commands.Create

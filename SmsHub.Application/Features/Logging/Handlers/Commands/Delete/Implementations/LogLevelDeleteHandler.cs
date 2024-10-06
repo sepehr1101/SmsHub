@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using SmsHub.Application.Features.Logging.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
-using SmsHub.Domain.Features.Logging.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Delete;
 using SmsHub.Persistence.Features.Logging.Commands.Contracts;
 using SmsHub.Persistence.Features.Logging.Queries.Contracts;
 
