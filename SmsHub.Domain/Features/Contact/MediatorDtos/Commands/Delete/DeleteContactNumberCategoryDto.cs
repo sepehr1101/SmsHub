@@ -1,10 +1,11 @@
-﻿using SmsHub.Domain.Constants;
+﻿using MediatR;
+using SmsHub.Domain.Constants;
 
 namespace SmsHub.Domain.Features.Contact.MediatorDtos.Commands.Delete
 {
-    public class DeleteContactNumberCategoryDto
+    public record DeleteContactNumberCategoryDto : IRequest
     {
-        public int Id { get; set; }
+        public int Id { get; init; }
 
     }
 }

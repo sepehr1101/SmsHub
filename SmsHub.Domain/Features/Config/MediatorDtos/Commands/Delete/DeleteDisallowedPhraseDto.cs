@@ -1,10 +1,10 @@
-﻿using SmsHub.Domain.Constants;
+﻿using MediatR;
 
 namespace SmsHub.Domain.Features.Config.MediatorDtos.Commands.Delete
 {
-    public class DeleteDisallowedPhraseDto
+    public record DeleteDisallowedPhraseDto : IRequest
     {
-        public int Id { get; set; }
+        public int Id { get; init; }
 
     }
 }

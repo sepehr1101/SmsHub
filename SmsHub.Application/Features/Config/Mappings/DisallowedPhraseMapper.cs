@@ -9,8 +9,9 @@ namespace SmsHub.Application.Features.Config.Mappings
     {
         public DisallowedPhraseMapper()
         {
-            CreateMap<DisallowedPhrase, CreateDisallowedPhraseDto>().ReverseMap();
+            CreateMap< CreateDisallowedPhraseDto, DisallowedPhrase>().ReverseMap();
             CreateMap<UpdateDisallowedPhraseDto,DisallowedPhrase>().ReverseMap();
+            CreateMap<GetDisallowedPhraseDto,DisallowedPhrase>().ReverseMap();
         }
     }
 }

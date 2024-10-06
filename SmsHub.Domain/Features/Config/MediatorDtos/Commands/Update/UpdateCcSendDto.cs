@@ -1,9 +1,11 @@
-﻿namespace SmsHub.Domain.Features.Config.MediatorDtos.Commands.Update
+﻿using MediatR;
+
+namespace SmsHub.Domain.Features.Config.MediatorDtos.Commands
 {
-    public record UpdateCcSendDto
-    {//todo: check Prop
-        public int Id { get; set; }
-        public int ConfigTypeGroupId { get; set; }
-        public string Mobile { get; set; } = null!;
+    public record UpdateCcSendDto : IRequest
+    {
+        public int Id { get; init; }
+        public int ConfigTypeGroupId { get; init; }
+        public string Mobile { get; init; } = null!;
     }
 }

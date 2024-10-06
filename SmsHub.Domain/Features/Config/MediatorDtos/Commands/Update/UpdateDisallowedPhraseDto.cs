@@ -1,9 +1,9 @@
-﻿namespace SmsHub.Domain.Features.Config.MediatorDtos.Commands.Update
+﻿namespace SmsHub.Domain.Features.Config.MediatorDtos.Commands
 {
-    public record UpdateDisallowedPhraseDto
-    {//todo: check Prop
-        public int Id { get; set; }
-        public int ConfigTypeGroupId { get; set; }
-        public string Phrase { get; set; } = null!;
+    public record UpdateDisallowedPhraseDto : IRequest
+    {
+        public int Id { get; init; }
+        public int ConfigTypeGroupId { get; init; }
+        public string Phrase { get; init; } = null!;
     }
 }
