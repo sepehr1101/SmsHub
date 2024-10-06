@@ -1,12 +1,13 @@
-﻿using SmsHub.Domain.Constants;
+﻿using MediatR;
+using SmsHub.Domain.Constants;
 
 namespace SmsHub.Domain.Features.Line.MediatorDtos.Commands.Update
 {
-    public record UpdateLineDto
-    {//todo: check Prop
-        public int Id { get; set; }
-        public ProviderEnum ProviderId { get; set; }
-        public string Number { get; set; } = null!;
-        public string Credential { get; set; } = null!;
+    public record UpdateLineDto : IRequest
+    {
+        public int Id { get; init; }
+        public ProviderEnum ProviderId { get; init; }
+        public string Number { get; init; } = null!;
+        public string Credential { get; init; } = null!;
     }
 }

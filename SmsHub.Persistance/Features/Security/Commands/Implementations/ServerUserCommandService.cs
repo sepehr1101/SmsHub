@@ -33,5 +33,9 @@ namespace SmsHub.Persistence.Features.Security.Commands.Implementations
             var user = await _users.FindAsync(id);
             user.ApiKeyHash = newApiKeyHash;
         }
+        public void Delete(ServerUser serverUser)
+        {
+            _users.Remove(serverUser);
+        }
     }
 }

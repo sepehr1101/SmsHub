@@ -9,8 +9,9 @@ namespace SmsHub.Application.Features.Config.Mappings
     {
         public ConfigTypeMapper()
         {
-            CreateMap<ConfigType, CreateConfigTypeDto>().ReverseMap();
+            CreateMap<CreateConfigTypeDto, ConfigType>().ReverseMap();
             CreateMap<UpdateConfigTypeDto, ConfigType>().ReverseMap();
+            CreateMap<GetConfigTypeDto, ConfigType>().ReverseMap();
         }
     }
 }

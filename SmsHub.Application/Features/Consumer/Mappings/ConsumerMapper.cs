@@ -1,4 +1,8 @@
 ﻿using AutoMapper;
+using Entities= SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Features.Consumer.PersistenceDto.Commands;
+using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Consumer.MediatorDtos.Queries;
 using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Update;
@@ -9,8 +13,9 @@ namespace SmsHub.Application.Features.Consumer.Mappings
     {
         public ConsumerMapper()
         {
-            CreateMap<Entities.Consumer, CreateConsumerDto>().ReverseMap();
+            CreateMap< CreateConsumerDto, Entities.Consumer>().ReverseMap();
             CreateMap<UpdateConsumerDto,Entities.Consumer>().ReverseMap();
+            CreateMap<GetConsumerDto,Entities.Consumer>().ReverseMap();
         }
     }
 }

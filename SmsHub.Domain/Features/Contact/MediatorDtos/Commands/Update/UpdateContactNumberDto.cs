@@ -1,10 +1,12 @@
-﻿namespace SmsHub.Domain.Features.Contact.MediatorDtos.Commands.Update
+﻿using MediatR;
+
+namespace SmsHub.Domain.Features.Contact.MediatorDtos.Commands
 {
-    public record UpdateContactNumberDto
-    {//todo: check Prop
-        public int Id { get; set; }
-        public string Number { get; set; } = null!;
-        public int ContactCategoryId { get; set; }
-        public int ContactNumberCategoryId { get; set; }
+    public record UpdateContactNumberDto : IRequest
+    {
+        public int Id { get; init; }
+        public string Number { get; init; } = null!;
+        public int ContactCategoryId { get; init; }
+        public int ContactNumberCategoryId { get; init; }
     }
 }

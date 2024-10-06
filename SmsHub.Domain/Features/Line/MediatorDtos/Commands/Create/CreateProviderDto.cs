@@ -9,8 +9,6 @@ namespace SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create
         public string? DefaultPreNumber { get; init; }
         public int BatchSize { get; init; }
         public string? BaseUri { get; init; }
-        public string? FallbackBaseUri { get; init; }
-
-
+        public string? FallbackBaseUri { get; init; } 
     }
 }

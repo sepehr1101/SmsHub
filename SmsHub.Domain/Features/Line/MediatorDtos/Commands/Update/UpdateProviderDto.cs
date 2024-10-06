@@ -1,15 +1,16 @@
-﻿using SmsHub.Domain.Constants;
+﻿using MediatR;
+using SmsHub.Domain.Constants;
 
 namespace SmsHub.Domain.Features.Line.MediatorDtos.Commands.Update
 {
-    public record UpdateProviderDto
+    public record UpdateProviderDto : IRequest
     {
-        public ProviderEnum Id { get; set; }
+        public ProviderEnum Id { get; init; }
         public string Title { get; init; } = null!;
-        public string? Website { get; set; }
-        public string? DefaultPreNumber { get; set; }
-        public int BatchSize { get; set; }
-        public string BaseUri { get; set; } = null!;
-        public string FallbackBaseUri { get; set; } = null!;
+        public string? Website { get; init; }
+        public string? DefaultPreNumber { get; init; }
+        public int BatchSize { get; init; }
+        public string BaseUri { get; init; } = null!;
+        public string FallbackBaseUri { get; init; } = null!;
     }
 }

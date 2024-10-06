@@ -1,12 +1,14 @@
-﻿namespace SmsHub.Domain.Features.Sending.MediatorDtos.Commands
+﻿using MediatR;
+
+namespace SmsHub.Domain.Features.Sending.MediatorDtos.Commands
 {
-    public record UpdateMessageHolderDto
-    {//todo: check Prop
-        public Guid Id { get; set; }
-        public int MessageBatchId { get; set; }
-        public DateTime InsertDateTime { get; set; }
-        public int RetryCount { get; set; }
-        public int DetailsSize { get; set; }
-        public bool SendDone { get; set; }
+    public record UpdateMessageHolderDto : IRequest
+    {
+        public Guid Id { get; init; }
+        public int MessageBatchId { get; init; }
+        public DateTime InsertDateTime { get; init; }
+        public int RetryCount { get; init; }
+        public int DetailsSize { get; init; }
+        public bool SendDone { get; init; }
     }
 }
