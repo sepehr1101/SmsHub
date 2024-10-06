@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
-using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Update;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
 using SmsHub.Domain.Features.Config.MediatorDtos.Queries;
 

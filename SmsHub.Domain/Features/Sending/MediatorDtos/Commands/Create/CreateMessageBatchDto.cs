@@ -1,8 +1,8 @@
 ﻿using MediatR;
 
-namespace SmsHub.Domain.Features.Sending.MediatorDtos.Commands
+namespace SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create
 {
-    public record CreateMessageBatchDto:IRequest
+    public record CreateMessageBatchDto
     {
         public int HolerSize { get; init; }
         public int AllSize { get; init; }

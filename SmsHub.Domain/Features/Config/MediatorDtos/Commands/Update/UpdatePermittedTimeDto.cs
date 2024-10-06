@@ -1,6 +1,6 @@
 ﻿namespace SmsHub.Domain.Features.Config.MediatorDtos.Commands
 {
-    public record UpdatePermittedTimeDto:IRequest
+    public record UpdatePermittedTimeDto
     {
         public int Id { get; init; }
         public int ConfigTypeGroupId { get; init; }

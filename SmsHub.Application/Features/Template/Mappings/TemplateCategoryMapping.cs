@@ -2,7 +2,7 @@
 using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Template.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create;
-using SmsHub.Domain.Features.Template.MediatorDtos.Commands.Update;
+using SmsHub.Domain.Features.Template.MediatorDtos.Commands;
 
 namespace SmsHub.Application.Features.Template.Mappings
 {
@@ -10,7 +10,7 @@ namespace SmsHub.Application.Features.Template.Mappings
     {
         public TemplateCategoryMapping()
         {
-            CreateMap< CreateTemplateCategoryDto, TemplateCategory>().ReverseMap();
+            CreateMap<Domain.Features.Template.MediatorDtos.Commands.CreateTemplateCategoryDto, TemplateCategory>().ReverseMap();
             CreateMap<UpdateTemplateCategoryDto,TemplateCategory > ().ReverseMap();
             CreateMap<GetTemplateCategoryDto,TemplateCategory > ().ReverseMap();
         }

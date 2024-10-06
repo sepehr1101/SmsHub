@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using SmsHub.Application.Features.Sending.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
-using SmsHub.Domain.Features.Sending.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Delete;
 using SmsHub.Persistence.Features.Sending.Commands.Contracts;
 using SmsHub.Persistence.Features.Sending.Queries.Contracts;
 

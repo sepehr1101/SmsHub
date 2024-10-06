@@ -2,7 +2,8 @@
 using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Create;
-using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Update;
+using SmsHub.Domain.Features.Logging.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Logging.MediatorDtos;
 
 namespace SmsHub.Application.Features.Logging.Mapping
 { 

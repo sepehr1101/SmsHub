@@ -1,4 +1,4 @@
-﻿using SmsHub.Domain.Features.Sending.MediatorDtos.Commands;
+﻿using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 
 namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implementations
 {
