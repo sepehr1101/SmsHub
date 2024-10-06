@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Validators;
-using SmsHub.Domain.Features.Line.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
 
 namespace SmsHub.Application.Features.Line.Validations
 {

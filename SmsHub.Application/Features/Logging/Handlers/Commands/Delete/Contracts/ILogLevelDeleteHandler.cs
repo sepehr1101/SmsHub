@@ -1,4 +1,4 @@
-﻿using SmsHub.Domain.Features.Logging.MediatorDtos.Commands;
+﻿using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Delete;
 
 namespace SmsHub.Application.Features.Logging.Handlers.Commands.Delete.Contracts
 {

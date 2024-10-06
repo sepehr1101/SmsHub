@@ -1,4 +1,4 @@
-﻿using SmsHub.Domain.Features.Line.MediatorDtos.Commands;
+﻿using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Update;
 
 namespace SmsHub.Application.Features.Line.Handlers.Commands.Update.Contracts
 {
