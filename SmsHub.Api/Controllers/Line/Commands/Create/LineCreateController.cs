@@ -6,25 +6,24 @@ using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.Line.Commands.Create
 {
-    [Route("api/Provider")]
+    [Route("api/Line")]
     [ApiController]
-    public class ProviderCreateController : ControllerBase
+    public class LineCreateController : ControllerBase
     {
         private readonly IUnitOfWork _uow;
-        private readonly ICreateProviderHandler _createCommandHandler;
-        public ProviderCreateController(
+        private readonly ICreateLineHandler _createCommandHandler;
+        public LineCreateController(
             IUnitOfWork uow,
-            ICreateProviderHandler createCommandHandler)
+            ICreateLineHandler createCommandHandler)
         {
             _uow = uow;
-            _uow.NotNull(nameof(_uow));
+            _uow.NotNull(nameof(uow));
 
             _createCommandHandler = createCommandHandler;
             _createCommandHandler.NotNull(nameof(_createCommandHandler));
         }
-
         [HttpGet(Name = nameof(Create))]
-        public async Task<IActionResult> Create([FromBody] CreateProviderDto createDto, CancellationToken cancellationToken)
+        public async Task<IActionResult> Create([FromBody] CreateLineDto createDto, CancellationToken cancellationToken)
         {
             await _createCommandHandler.Handle(createDto, cancellationToken);
             await _uow.SaveChangesAsync(cancellationToken);

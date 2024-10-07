@@ -18,7 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Config\Commands\" />
     <Folder Include="Controllers\Config\Querries\" />
     <Folder Include="Controllers\Consumer\Commands\Create\" />
     <Folder Include="Controllers\Consumer\Commands\Delete\" />
@@ -28,9 +27,6 @@
     <Folder Include="Controllers\Contact\Commands\Delete\" />
     <Folder Include="Controllers\Contact\Commands\Update\" />
     <Folder Include="Controllers\Contact\Querries\" />
-    <Folder Include="Controllers\Config\Commands\Create\" />
-    <Folder Include="Controllers\Config\Commands\Delete\" />
-    <Folder Include="Controllers\Config\Commands\Update\" />
     <Folder Include="Controllers\Credit\Commands\Create\" />
     <Folder Include="Controllers\Credit\Commands\Delete\" />
     <Folder Include="Controllers\Credit\Commands\Update\" />

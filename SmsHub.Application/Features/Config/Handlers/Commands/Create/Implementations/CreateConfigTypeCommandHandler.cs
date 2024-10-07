@@ -4,10 +4,11 @@ using SmsHub.Common.Extensions;
 using MediatR;
 using SmsHub.Persistence.Features.Config.Commands.Contracts;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
+using SmsHub.Application.Features.Config.Handlers.Commands.Create.Contracts;
 
 namespace SmsHub.Application.Features.Config.Handlers.Commands.Create.Implementations
 {
-    public class CreateConfigTypeCommandHandler
+    public class CreateConfigTypeCommandHandler:ICreateConfigTypeCommandHandler
     {
         private readonly IConfigTypeCommandService _configTypeCommandService;
         private readonly IMapper _mapper;
