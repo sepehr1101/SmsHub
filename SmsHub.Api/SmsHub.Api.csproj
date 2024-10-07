@@ -26,9 +26,6 @@
     <Folder Include="Controllers\Credit\Commands\Update\" />
     <Folder Include="Controllers\Credit\Querries\" />
     <Folder Include="Controllers\Line\Queries\" />
-    <Folder Include="Controllers\Logging\Commands\Create\" />
-    <Folder Include="Controllers\Logging\Commands\Delete\" />
-    <Folder Include="Controllers\Logging\Commands\Update\" />
     <Folder Include="Controllers\Logging\Querries\" />
     <Folder Include="Controllers\Receiving\Commands\Create\" />
     <Folder Include="Controllers\Receiving\Commands\Delete\" />
