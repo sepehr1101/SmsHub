@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -19,9 +19,6 @@
 
   <ItemGroup>
     <Folder Include="Controllers\Config\Querries\" />
-    <Folder Include="Controllers\Consumer\Commands\Create\" />
-    <Folder Include="Controllers\Consumer\Commands\Delete\" />
-    <Folder Include="Controllers\Consumer\Commands\Update\" />
     <Folder Include="Controllers\Consumer\Querries\" />
     <Folder Include="Controllers\Contact\Commands\Create\" />
     <Folder Include="Controllers\Contact\Commands\Delete\" />
