@@ -11,8 +11,8 @@ namespace SmsHub.Api.Controllers.Sending.Commands.Update
     public class MessageDetailUpdateController : ControllerBase
     {
         private readonly IUnitOfWork _uow;
-        private readonly IUpdateMessageDetailHandler _updateCommandHandler;
-        public MessageDetailUpdateController(IUnitOfWork uow, IUpdateMessageDetailHandler updateCommandHandler)
+        private readonly IMessageDetailUpdateHandler _updateCommandHandler;
+        public MessageDetailUpdateController(IUnitOfWork uow, IMessageDetailUpdateHandler updateCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

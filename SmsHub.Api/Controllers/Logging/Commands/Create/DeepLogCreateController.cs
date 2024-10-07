@@ -11,8 +11,8 @@ namespace SmsHub.Api.Controllers.Logging.Commands.Create
     public class DeepLogCreateController : ControllerBase
     {
         private readonly IUnitOfWork _uow;
-        private readonly ICreateDeepLogCommandHandler _createCommandHandler;
-        public DeepLogCreateController(IUnitOfWork uow, ICreateDeepLogCommandHandler createCommandHandler)
+        private readonly IDeepLogCreateHandler _createCommandHandler;
+        public DeepLogCreateController(IUnitOfWork uow, IDeepLogCreateHandler createCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

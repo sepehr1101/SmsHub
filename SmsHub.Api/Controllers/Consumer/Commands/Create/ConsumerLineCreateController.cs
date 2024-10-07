@@ -11,8 +11,8 @@ namespace SmsHub.Api.Controllers.Consumer.Commands.Create
     public class ConsumerLineCreateController : ControllerBase
     {
         private readonly IUnitOfWork _uow;
-        private readonly ICreateConsumerLineCommandHandler _createCommandHandler;
-        public ConsumerLineCreateController(IUnitOfWork uow, ICreateConsumerLineCommandHandler createCommandHandler)
+        private readonly IConsumerLineCreateHandler _createCommandHandler;
+        public ConsumerLineCreateController(IUnitOfWork uow, IConsumerLineCreateHandler createCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

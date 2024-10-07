@@ -11,8 +11,8 @@ namespace SmsHub.Api.Controllers.Config.Commands.Update
     public class DisallowedPhraseUpdateController : ControllerBase
     {
         private readonly IUnitOfWork _uow;
-        private readonly IUpdateDisallowedPhraseHandler _updateCommandHandler;
-        public DisallowedPhraseUpdateController(IUnitOfWork uow, IUpdateDisallowedPhraseHandler updateCommandHandler)
+        private readonly IDisallowedPhraseUpdateHandler _updateCommandHandler;
+        public DisallowedPhraseUpdateController(IUnitOfWork uow, IDisallowedPhraseUpdateHandler updateCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

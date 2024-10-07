@@ -11,8 +11,8 @@ namespace SmsHub.Api.Controllers.Config.Commands.Create
     public class DisallowedPhraseCreateController : ControllerBase
     {
         private readonly IUnitOfWork _uow;
-        private readonly ICreateDisallowedPhraseCommandHandler _createCommandHandler;
-        public DisallowedPhraseCreateController(IUnitOfWork uow, ICreateDisallowedPhraseCommandHandler createCommandHandler)
+        private readonly IDisallowedPhraseCreateHandler _createCommandHandler;
+        public DisallowedPhraseCreateController(IUnitOfWork uow, IDisallowedPhraseCreateHandler createCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

@@ -11,8 +11,8 @@ namespace SmsHub.Api.Controllers.Logging.Commands.Update
     public class DeepLogUpdateController : ControllerBase
     {
         private readonly IUnitOfWork _uow;
-        private readonly IUpdateDeepLogHandler _updateCommandHandler;
-        public DeepLogUpdateController(IUnitOfWork uow, IUpdateDeepLogHandler updateCommandHandler)
+        private readonly IDeepLogUpdateHandler _updateCommandHandler;
+        public DeepLogUpdateController(IUnitOfWork uow, IDeepLogUpdateHandler updateCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

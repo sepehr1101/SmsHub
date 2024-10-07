@@ -12,10 +12,10 @@ namespace SmsHub.Api.Controllers.Line.Commands.Update
     public class ProviderUpdateController : ControllerBase
     {
         private readonly IUnitOfWork _uow;
-        private readonly IUpdateProviderHandler _updateProviderHandler;
+        private readonly IProviderUpdateHandler _updateProviderHandler;
         public ProviderUpdateController(
             IUnitOfWork uow,
-            IUpdateProviderHandler updateProviderHandler)
+            IProviderUpdateHandler updateProviderHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

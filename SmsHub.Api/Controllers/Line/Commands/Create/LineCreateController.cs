@@ -11,10 +11,10 @@ namespace SmsHub.Api.Controllers.Line.Commands.Create
     public class LineCreateController : ControllerBase
     {
         private readonly IUnitOfWork _uow;
-        private readonly ICreateLineHandler _createCommandHandler;
+        private readonly ILineCreateHandler _createCommandHandler;
         public LineCreateController(
             IUnitOfWork uow,
-            ICreateLineHandler createCommandHandler)
+            ILineCreateHandler createCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

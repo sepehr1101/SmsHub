@@ -11,8 +11,8 @@ namespace SmsHub.Api.Controllers.Config.Commands.Update
     public class PermittedTimeUpdateController : ControllerBase
     {
         private readonly IUnitOfWork _uow;
-        private readonly IUpdatePermittedTimeHandler _updateCommandHandler;
-        public PermittedTimeUpdateController(IUnitOfWork uow, IUpdatePermittedTimeHandler updateCommandHandler)
+        private readonly IPermittedTimeUpdateHandler _updateCommandHandler;
+        public PermittedTimeUpdateController(IUnitOfWork uow, IPermittedTimeUpdateHandler updateCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

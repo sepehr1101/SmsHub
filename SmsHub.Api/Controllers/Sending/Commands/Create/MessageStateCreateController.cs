@@ -11,8 +11,8 @@ namespace SmsHub.Api.Controllers.Sending.Commands.Create
     public class MessageStateCreateController : ControllerBase
     {
         private readonly IUnitOfWork _uow;
-        private readonly ICreateMessageStateCommandHandler _createCommandHandler;
-        public MessageStateCreateController(IUnitOfWork uow, ICreateMessageStateCommandHandler createCommandHandler)
+        private readonly IMessageStateCreateHandler _createCommandHandler;
+        public MessageStateCreateController(IUnitOfWork uow, IMessageStateCreateHandler createCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

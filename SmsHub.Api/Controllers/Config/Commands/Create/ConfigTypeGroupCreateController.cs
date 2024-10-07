@@ -11,10 +11,10 @@ namespace SmsHub.Api.Controllers.Config.Commands.Create
     public class ConfigTypeGroupCreateController : ControllerBase
     {
         private readonly IUnitOfWork _uow;
-        private readonly ICreateConfigTypeGroupCommandHandler _createCommandHandler;
+        private readonly IConfigTypeGroupCreateHandler _createCommandHandler;
         public ConfigTypeGroupCreateController(
             IUnitOfWork uow, 
-            ICreateConfigTypeGroupCommandHandler createCommandHandler)
+            IConfigTypeGroupCreateHandler createCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

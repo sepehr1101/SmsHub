@@ -11,8 +11,8 @@ namespace SmsHub.Api.Controllers.Sending.Commands.Update
     public class MessageBatchUpdateController : ControllerBase
     {
         private readonly IUnitOfWork _uow;
-        private readonly IUpdateMessageBatchHandler _updateCommandHandler;
-        public MessageBatchUpdateController(IUnitOfWork uow, IUpdateMessageBatchHandler updateCommandHandler)
+        private readonly IMessageBatchUpdateHandler _updateCommandHandler;
+        public MessageBatchUpdateController(IUnitOfWork uow, IMessageBatchUpdateHandler updateCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

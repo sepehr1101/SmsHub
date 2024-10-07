@@ -11,8 +11,8 @@ namespace SmsHub.Api.Controllers.Template.Commands.Update
     public class TemplateUpdateController : ControllerBase
     {
         private readonly IUnitOfWork _uow;
-        private readonly IUpdateTemplateHandler _updateCommandHandler;
-        public TemplateUpdateController(IUnitOfWork uow, IUpdateTemplateHandler updateCommandHandler)
+        private readonly ITemplateUpdateHandler _updateCommandHandler;
+        public TemplateUpdateController(IUnitOfWork uow, ITemplateUpdateHandler updateCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

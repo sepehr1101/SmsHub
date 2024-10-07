@@ -11,8 +11,8 @@ namespace SmsHub.Api.Controllers.Contact.Commands.Update
     public class ContactNumberUpdateController : ControllerBase
     {
         private readonly IUnitOfWork _uow;
-        private readonly IUpdateContactNumberHandler _updateCommandHandler;
-        public ContactNumberUpdateController(IUnitOfWork uow, IUpdateContactNumberHandler updateCommandHandler)
+        private readonly IContactNumberUpdateHandler _updateCommandHandler;
+        public ContactNumberUpdateController(IUnitOfWork uow, IContactNumberUpdateHandler updateCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

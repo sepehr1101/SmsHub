@@ -11,8 +11,8 @@ namespace SmsHub.Api.Controllers.Contact.Commands.Create
     public class ContactNumberCreateController : ControllerBase
     {
         private readonly IUnitOfWork _uow;
-        private readonly ICreateContactNumberCommandHandler _createCommandHandler;
-        public ContactNumberCreateController(IUnitOfWork uow, ICreateContactNumberCommandHandler createCommandHandler)
+        private readonly IContactNumberCreatedHandler _createCommandHandler;
+        public ContactNumberCreateController(IUnitOfWork uow, IContactNumberCreatedHandler createCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));
