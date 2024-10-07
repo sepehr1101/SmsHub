@@ -6,11 +6,11 @@ using SmsHub.Persistence.Features.Template.Queries.Contracts;
 
 namespace SmsHub.Application.Features.Template.Handlers.Commands.Update.Implementations
 {
-    public  class UpdateTemplateHandle: IUpdateTemplateHandle
+    public  class UpdateTemplateHandler: IUpdateTemplateHandler
     {
         private readonly IMapper _mapper;
         private readonly ITemplateQueryService _templateQueryService;
-        public UpdateTemplateHandle(IMapper mapper, ITemplateQueryService templateQueryService)
+        public UpdateTemplateHandler(IMapper mapper, ITemplateQueryService templateQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

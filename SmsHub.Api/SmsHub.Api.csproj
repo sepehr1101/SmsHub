@@ -35,9 +35,6 @@
     <Folder Include="Controllers\Security\Commands\Update\" />
     <Folder Include="Controllers\Security\Querries\" />
     <Folder Include="Controllers\Sending\Querries\" />
-    <Folder Include="Controllers\Template\Commands\Create\" />
-    <Folder Include="Controllers\Template\Commands\Delete\" />
-    <Folder Include="Controllers\Template\Commands\Update\" />
     <Folder Include="Controllers\Template\Querries\" />
     <Folder Include="Filters\" />
   </ItemGroup>

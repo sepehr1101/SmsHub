@@ -2,7 +2,7 @@
 
 namespace SmsHub.Application.Features.Template.Handlers.Commands.Update.Contracts
 {
-    public interface IUpdateTemplateHandle
+    public interface IUpdateTemplateHandler
     {
         Task Handle(UpdateTemplateDto updateTemplateDto, CancellationToken cancellationToken);
     }
