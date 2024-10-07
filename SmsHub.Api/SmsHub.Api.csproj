@@ -31,8 +31,6 @@
     <Folder Include="Controllers\Receiving\Commands\Delete\" />
     <Folder Include="Controllers\Receiving\Commands\Update\" />
     <Folder Include="Controllers\Receiving\Querries\" />
-    <Folder Include="Controllers\Security\Commands\Delete\" />
-    <Folder Include="Controllers\Security\Commands\Update\" />
     <Folder Include="Controllers\Security\Querries\" />
     <Folder Include="Controllers\Sending\Querries\" />
     <Folder Include="Controllers\Template\Querries\" />
