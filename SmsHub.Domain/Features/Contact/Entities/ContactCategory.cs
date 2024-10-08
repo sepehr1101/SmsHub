@@ -12,7 +12,7 @@ namespace SmsHub.Domain.Features.Entities
 
         public int Id { get; set; }
         public string Title { get; set; } = null!;
-        public string Description { get; set; } = null!;
+        public string Description { get; set; }
         public string Css { get; set; } = null!;
 
         public virtual ICollection<ContactNumber> ContactNumbers { get; set; }

@@ -7,5 +7,7 @@ namespace SmsHub.Domain.Features.Security.MediatorDtos.Commands
     {
         public string Username { get; init; } = null!;
         public bool IsAdmin { get; init; }
+        public string ApiKeyHash { get; set; } = null!;
+
     }
 }

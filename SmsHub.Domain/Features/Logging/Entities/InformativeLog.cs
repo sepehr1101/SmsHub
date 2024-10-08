@@ -8,7 +8,7 @@ namespace SmsHub.Domain.Features.Entities
         public long Id { get; set; }
         public int LogLevelId { get; set; }
         public string Section { get; set; } = null!;
-        public string Description { get; set; } = null!;
+        public string Description { get; set; }
         public Guid? UserId { get; set; }
         public string? UserInfo { get; set; }
         public string Ip { get; set; } = null!;

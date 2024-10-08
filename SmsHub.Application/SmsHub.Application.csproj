@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <Folder Include="Features\Consumer\Notifications\" />
-    <Folder Include="Features\Validations\" />
     <Folder Include="Providers\Kavenegar\Commands\" />
     <Folder Include="Providers\Kavenegar\Handlers\" />
     <Folder Include="Providers\Kavenegar\Queries\" />
