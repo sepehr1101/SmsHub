@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmsHub.Infrastructure.BaseHttp.Request
 {
-    internal static partial class RestExtensions
+    public static partial class RestExtensions
     {
     }
 }

@@ -10,13 +10,40 @@
     <Folder Include="BaseDomainEntities\" />
     <Folder Include="BaseValueObjects\" />
     <Folder Include="BaseValidations\" />
+    <Folder Include="Features\Credit\EfConfig\" />
+    <Folder Include="Features\Credit\Entities\" />
+    <Folder Include="Features\Credit\MediatorDtos\Commands\Create\" />
+    <Folder Include="Features\Credit\MediatorDtos\Commands\Delete\" />
+    <Folder Include="Features\Credit\MediatorDtos\Commands\Update\" />
+    <Folder Include="Features\Credit\MediatorDtos\Queries\" />
+    <Folder Include="Features\Receiving\EfConfig\" />
+    <Folder Include="Features\Receiving\Entities\" />
+    <Folder Include="Features\Receiving\MediatorDtos\Commands\Create\" />
+    <Folder Include="Features\Receiving\MediatorDtos\Commands\Delete\" />
+    <Folder Include="Features\Receiving\MediatorDtos\Commands\Update\" />
+    <Folder Include="Features\Receiving\MediatorDtos\Queries\" />
+    <Folder Include="Features\Security\EfConfig\" />
+    <Folder Include="Features\Security\MediatorDtos\Queries\" />
+    <Folder Include="Features\Sending\MediatorDtos\Queries\" />
+    <Folder Include="Features\Template\MediatorDtos\Queries\" />
     <Folder Include="Providers\Kavenegar\Models\" />
     <Folder Include="Providers\Kavenegar\Exceptions\" />
     <Folder Include="BaseExceptions\" />
     <Folder Include="Providers\Kavenegar\ValueObjects\" />
+    <Folder Include="Providers\Magfa3000\Entities\Responses\Base\" />
     <Folder Include="Providers\Magfa3000\Exceptions\" />
     <Folder Include="Providers\Magfa3000\Models\" />
     <Folder Include="Providers\Magfa3000\ValueObjects\" />
+  </ItemGroup>                                                                                                                            
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.33" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.33" />
+  </ItemGroup>                                                                                                                            
+
+  <ItemGroup>
+    <ProjectReference Include="..\SmsHub.Common\SmsHub.Common.csproj" />
   </ItemGroup>
 
 </Project>

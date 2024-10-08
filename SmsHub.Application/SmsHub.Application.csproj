@@ -7,10 +7,34 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="EntityOrFeature\Commands\" />
-    <Folder Include="EntityOrFeature\Handlers\" />
-    <Folder Include="EntityOrFeature\Validations\" />
-    <Folder Include="EntityOrFeature\Queries\" />
+    <Compile Remove="Features\Queries\**" />
+    <EmbeddedResource Remove="Features\Queries\**" />
+    <None Remove="Features\Queries\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Consumer\Notifications\" />
+    <Folder Include="Providers\Kavenegar\Commands\" />
+    <Folder Include="Providers\Kavenegar\Handlers\" />
+    <Folder Include="Providers\Kavenegar\Queries\" />
+    <Folder Include="Providers\Kavenegar\Validations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="FluentValidation" Version="11.10.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.10.0" />
+    <PackageReference Include="Handlebars.Net" Version="2.1.6" />
+    <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Scrutor" Version="4.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SmsHub.Common\SmsHub.Common.csproj" />
+    <ProjectReference Include="..\SmsHub.Domain\SmsHub.Domain.csproj" />
+    <ProjectReference Include="..\SmsHub.Infrastructure\SmsHub.Infrastructure.csproj" />
+    <ProjectReference Include="..\SmsHub.Persistance\SmsHub.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

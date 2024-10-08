@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,14 +7,64 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Contexts\Commands\" />
-    <Folder Include="Contexts\UnitOfWork\" />
-    <Folder Include="Contexts\Queries\" />
+    <Compile Remove="Contexts\Commands\**" />
+    <Compile Remove="Contexts\Queries\**" />
+    <Compile Remove="Contexts\UnitOfWork\**" />
+    <EmbeddedResource Remove="Contexts\Commands\**" />
+    <EmbeddedResource Remove="Contexts\Queries\**" />
+    <EmbeddedResource Remove="Contexts\UnitOfWork\**" />
+    <None Remove="Contexts\Commands\**" />
+    <None Remove="Contexts\Queries\**" />
+    <None Remove="Contexts\UnitOfWork\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="DbLogger\" />
-    <Folder Include="DbSeeder\" />
+    <Folder Include="Features\Contact\Commands\Contracts\" />
+    <Folder Include="Features\Contact\Commands\Implementations\" />
+    <Folder Include="Features\Credit\Commands\Contracts\" />
+    <Folder Include="Features\Credit\Commands\Implementations\" />
+    <Folder Include="Features\Credit\Queries\Contracts\" />
+    <Folder Include="Features\Credit\Queries\Implementations\" />
+    <Folder Include="Features\Line\Commands\Contracts\" />
+    <Folder Include="Features\Line\Commands\Implementations\" />
+    <Folder Include="Features\Logging\Commands\Contracts\" />
+    <Folder Include="Features\Logging\Commands\Implementations\" />
+    <Folder Include="Features\Receiving\Commands\Contracts\" />
+    <Folder Include="Features\Receiving\Commands\Implementations\" />
+    <Folder Include="Features\Receiving\Queries\Contracts\" />
+    <Folder Include="Features\Receiving\Queries\Implementations\" />
+    <Folder Include="Features\Sending\Commands\Contracts\" />
+    <Folder Include="Features\Sending\Commands\Implementations\" />
+    <Folder Include="Features\Template\Commands\Contracts\" />
+    <Folder Include="Features\Template\Commands\Implementations\" />
     <Folder Include="Interceptors\" />
-    <Folder Include="Migrations\" />
+    <Folder Include="Scaffold\" />
     <Folder Include="Utils\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EFCore.BulkExtensions" Version="6.8.1" />
+    <PackageReference Include="FluentMigrator" Version="5.2.0" />
+    <PackageReference Include="FluentMigrator.Runner.SqlServer" Version="5.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.33">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.33" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+    <PackageReference Include="Scrutor" Version="4.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SmsHub.Common\SmsHub.Common.csproj" />
+    <ProjectReference Include="..\SmsHub.Domain\SmsHub.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 
 </Project>

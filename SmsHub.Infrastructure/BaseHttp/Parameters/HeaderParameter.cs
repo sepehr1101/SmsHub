@@ -1,12 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SmsHub.Infrastructure.BaseHttp.Enums;
 
 namespace SmsHub.Infrastructure.BaseHttp.Parameters
 {
-    internal class HeaderParameter
-    {
+    public record HeaderParameter : BaseParameter
+    {       
+        public HeaderParameter(string name, string value)
+            : base(
+                name,
+                value,
+                ParameterType.HttpHeader,
+                false
+            )
+        { 
+        }
+
+        public new string Name => base.Name!;
+        public new string Value => (string)base.Value!;
     }
 }
