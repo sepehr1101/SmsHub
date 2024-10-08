@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /SmsHub.Api/Controllers/WeatherForecastController.cs
 /SmsHub.Api/Controllers/WeatherForcastController.cs
+/SmsHub.Api/appsettings.json
