@@ -56,7 +56,7 @@ namespace SmsHub.Persistence.Migrations
             Create.Table(nameof(TableName.Consumer))
                 .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(TableName.Consumer)).Identity()
                 .WithColumn("Title").AsString(_255)
-                .WithColumn("Description").AsString(_1023)
+                .WithColumn("Description").AsString(_1023).Nullable()
                 .WithColumn("ApiKey").AsString(int.MaxValue);
         }
         private void CreateConsumerLine()
@@ -83,7 +83,7 @@ namespace SmsHub.Persistence.Migrations
             Create.Table(nameof(TableName.ContactCategory))
                 .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(TableName.ContactCategory)).Identity()
                 .WithColumn("Title").AsString(_255)
-                .WithColumn("Description").AsString()
+                .WithColumn("Description").AsString(_1023).Nullable()
                 .WithColumn("Css").AsString(_1023);
         }
         private void CreateContactNumberCategory()
@@ -111,14 +111,14 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn($"{nameof(TableName.ContactNumberCategory)}{Id}").AsInt32()
                     .ForeignKey(NamingHelper.Fk(TableName.ContactNumberCategory, TableName.ContactNumber), nameof(TableName.ContactNumberCategory), Id);
         }
-        private void CreateTampleCategory()
+        private void CreateTemplateCategory()
         {
             Create.Table(nameof(TableName.TemplateCategory))
                 .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(TableName.TemplateCategory)).Identity()
                 .WithColumn("Title").AsString(_255)
-                .WithColumn("Description").AsString(_255);
+                .WithColumn("Description").AsString(_255).Nullable();
         }
-        private void CreateTamplate()
+        private void CreateTemplate()
         {
             Create.Table(nameof(TableName.Template))
                 .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(TableName.Template)).Identity()
@@ -197,7 +197,7 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn($"{nameof(TableName.LogLevel)}{Id}").AsInt32()
                     .ForeignKey(NamingHelper.Fk(TableName.LogLevel, TableName.InformativeLog, Id), nameof(TableName.LogLevel),Id)
                 .WithColumn("Section").AsString(_255)
-                .WithColumn("Description").AsString(int.MaxValue)
+                .WithColumn("Description").AsString(int.MaxValue).Nullable()
                 .WithColumn("UserId").AsGuid().Nullable()
                 .WithColumn("UserInfo").AsString(_255).Nullable()
                 .WithColumn("Ip").AsAnsiString(64)
@@ -231,7 +231,7 @@ namespace SmsHub.Persistence.Migrations
             Create.Table(nameof(TableName.ConfigType))
                 .WithColumn(Id).AsInt16().PrimaryKey(NamingHelper.Pk(TableName.ConfigType))
                 .WithColumn("Title").AsString(_255)
-                .WithColumn("Description").AsString(int.MaxValue);
+                .WithColumn("Description").AsString(int.MaxValue).Nullable();
         }
         private void CreateConfigTypeGroup()
         {
@@ -240,7 +240,7 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn($"{nameof(TableName.ConfigType)}{Id}").AsInt16()
                     .ForeignKey(NamingHelper.Fk(TableName.ConfigType,TableName.ConfigTypeGroup, Id), nameof(TableName.ConfigType),Id)
                 .WithColumn("Title").AsString(_255)
-                .WithColumn("Description").AsString(int.MaxValue);
+                .WithColumn("Description").AsString(int.MaxValue).Nullable();
         }
         private void CreateDisallowedPhrase()
         {

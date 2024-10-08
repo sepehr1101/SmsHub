@@ -11,10 +11,10 @@ namespace SmsHub.Api.Controllers.Security.Commands.Create
     public class ServerUserCreateController : ControllerBase
     {
         private readonly IUnitOfWork _uow;
-        private readonly ICreateServerUserHandler _createServerUserHandler;
+        private readonly IServerUserCreateHandler _createServerUserHandler;
         public ServerUserCreateController(
             IUnitOfWork uow,
-            ICreateServerUserHandler createServerUserHandler)
+            IServerUserCreateHandler createServerUserHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

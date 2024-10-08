@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using SmsHub.Application.Common.Base;
 using SmsHub.Domain.Features.Security.MediatorDtos.Commands;
 
 namespace SmsHub.Application.Features.Security.Validations
@@ -7,7 +8,8 @@ namespace SmsHub.Application.Features.Security.Validations
     {
         public ServerUserValidator()
         {
-            RuleFor(x => x.Username).NotEmpty();
+            RuleFor(x => x.Username).NotEmpty().MaximumLength(255);
+            RuleFor(x => x.ApiKeyHash).NotEmpty().MaximumLength(128).Must(ValidationAnsiString.Execute);
         }
     }
 }

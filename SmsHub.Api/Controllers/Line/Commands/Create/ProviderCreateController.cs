@@ -11,10 +11,10 @@ namespace SmsHub.Api.Controllers.Line.Commands.Create
     public class ProviderCreateController : ControllerBase
     {
         private readonly IUnitOfWork _uow;
-        private readonly ICreateProviderHandler _createCommandHandler;
+        private readonly IProviderCreateHandler _createCommandHandler;
         public ProviderCreateController(
             IUnitOfWork uow,
-            ICreateProviderHandler createCommandHandler)
+            IProviderCreateHandler createCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(_uow));
@@ -27,6 +27,7 @@ namespace SmsHub.Api.Controllers.Line.Commands.Create
         public async Task<IActionResult> Create([FromBody] CreateProviderDto createDto, CancellationToken cancellationToken)
         {
             await _createCommandHandler.Handle(createDto, cancellationToken);
+            await _uow.SaveChangesAsync(cancellationToken);
             return Ok();
         }
     }
