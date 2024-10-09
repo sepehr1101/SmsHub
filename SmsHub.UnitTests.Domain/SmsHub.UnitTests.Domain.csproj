@@ -22,4 +22,27 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Config\Dtos\" />
+    <Folder Include="Features\Config\Entities\" />
+    <Folder Include="Features\Consumer\Dtos\" />
+    <Folder Include="Features\Consumer\Entities\" />
+    <Folder Include="Features\Contact\Dtos\" />
+    <Folder Include="Features\Contact\Entities\" />
+    <Folder Include="Features\Credit\Dtos\" />
+    <Folder Include="Features\Credit\Entities\" />
+    <Folder Include="Features\Line\Dtos\" />
+    <Folder Include="Features\Line\Entities\" />
+    <Folder Include="Features\Logging\Dtos\" />
+    <Folder Include="Features\Logging\Entities\" />
+    <Folder Include="Features\Receiving\Dtos\" />
+    <Folder Include="Features\Receiving\Entities\" />
+    <Folder Include="Features\Security\Dtos\" />
+    <Folder Include="Features\Security\Entities\" />
+    <Folder Include="Features\Sending\Dtos\" />
+    <Folder Include="Features\Sending\Entities\" />
+    <Folder Include="Features\Template\Dtos\" />
+    <Folder Include="Features\Template\Entities\" />
+  </ItemGroup>
+
 </Project>
