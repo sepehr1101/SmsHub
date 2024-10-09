@@ -2,6 +2,8 @@
 using FluentMigrator.Runner;
 using System.Reflection;
 using SmsHub.Persistence.DbSeeder.Contracts;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace SmsHub.Persistence.Extensions
 {
@@ -19,8 +21,8 @@ namespace SmsHub.Persistence.Extensions
             }
         }
         private static ServiceProvider CreateServices(IServiceCollection services, string connectionString)
-        {
-            var tmpConnectionString = "Data Source=.;Encrypt=False;Database=Test;Integrated Security=false;User ID=admin;Password=pspihp;";
+        {            
+            var tmpConnectionString = GetConnectionString();
             return services
                 .AddFluentMigratorCore()
                 .ConfigureRunner(rb => rb
@@ -42,6 +44,16 @@ namespace SmsHub.Persistence.Extensions
         {
             var runner= serviceProvider.GetRequiredService<IDataSeedersRunner>();
             runner.RunAllDataSeeders();
+        }
+        private static string? GetConnectionString()
+        {
+            var basePath = Directory.GetCurrentDirectory();
+            var configuration = new ConfigurationBuilder()
+                                    .SetBasePath(basePath)
+                                    .AddJsonFile("appsettings.json")
+                                    .Build();
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
+            return connectionString;
         }
     }
 }
