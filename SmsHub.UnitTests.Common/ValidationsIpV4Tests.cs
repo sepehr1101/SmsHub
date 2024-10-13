@@ -1,6 +1,5 @@
 ﻿using SmsHub.Common.Exceptions;
 using SmsHub.Common.Extensions;
-using Xunit.Sdk;
 
 namespace SmsHub.UnitTests.Common
 {
@@ -9,7 +8,7 @@ namespace SmsHub.UnitTests.Common
         [Fact]
         public void CheckValidIpV4_MoreThan255Section1_InvalidIpException()
         {
-            string ip = "280.300.12.11";
+            string ip = "280.30.12.11";
             var action = () => IpValidations.CheckValidIpV4(ip);
             Assert.Throws<InvalidIpException>(action);
         }
@@ -21,6 +20,7 @@ namespace SmsHub.UnitTests.Common
             var action = () => IpValidations.CheckValidIpV4(ip);
             Assert.Throws<InvalidIpException>(action);
         }
+
         [Fact]
         public void CheckValidIpV4_MoreThan255Section3_InvalidIpException()
         {
@@ -28,6 +28,7 @@ namespace SmsHub.UnitTests.Common
             var action = () => IpValidations.CheckValidIpV4(ip);
             Assert.Throws<InvalidIpException>(action);
         }
+
         [Fact]
         public void CheckValidIpV4_MoreThan255Section4_InvalidIpException()
         {
@@ -35,23 +36,22 @@ namespace SmsHub.UnitTests.Common
             var action = () => IpValidations.CheckValidIpV4(ip);
             Assert.Throws<InvalidIpException>(action);
         }
+
         [Fact]
-        public void CheckValidIpV4_MoreThan4Section_InvalidIpException()
+        public void CheckValidIpV4_MoreThan4Sections_InvalidIpException()
         {
             string ip = "200.10.25.3.25";
             var action = () => IpValidations.CheckValidIpV4(ip);
             Assert.Throws<InvalidIpException>(action);
         }
 
-
         [Fact]
-        public void CheckValidIpV4_NumberAndOtherCharacter_InvalidIpException()
+        public void CheckValidIpV4_NumberAndOtherCharacters_InvalidIpException()
         {
             string ip = "=102.12-.3";
             var action = () => IpValidations.CheckValidIpV4(ip);
             Assert.Throws<InvalidIpException>(action);
         }
-
 
         [Fact]
         public void CheckValidIpV4_JustOneSection_InvalidIpException()
@@ -60,6 +60,7 @@ namespace SmsHub.UnitTests.Common
             var action = () => IpValidations.CheckValidIpV4(ip);
             Assert.Throws<InvalidIpException>(action);
         }
+
         [Fact]
         public void CheckValidIpV4_OneSectionMoreThan255_InvalidIpException()
         {
@@ -69,7 +70,7 @@ namespace SmsHub.UnitTests.Common
         }
 
         [Fact]
-        public void CheckValidIpV4_null_InvalidIpException()
+        public void CheckValidIpV4_Empty_InvalidIpException()
         {
             string ip = "";
             var action = () => IpValidations.CheckValidIpV4(ip);
@@ -85,24 +86,23 @@ namespace SmsHub.UnitTests.Common
         }
 
         [Fact]
-        public void CheckValidIpV4_JustSlash_InvalidIpException()
+        public void CheckValidIpV4_JustBackSlash_InvalidIpException()
         {
-            string ip = "\\";
+            string ip = @"\";
             var action = () => IpValidations.CheckValidIpV4(ip);
             Assert.Throws<InvalidIpException>(action);
         }
-
 
         [Fact]
         public void CheckValidIpV4_TowSectionWithSlash_InvalidIpException()
         {
-            string ip = "600.2/";
+            string ip = @"600.2/";
             var action = () => IpValidations.CheckValidIpV4(ip);
             Assert.Throws<InvalidIpException>(action);
         }
 
         [Fact]
-        public void CheckValidIpV4_OneSectionWithNumberAndOtherSectionNull_InvalidIpException()
+        public void CheckValidIpV4_OneSectionWithNumberAndOtherSectionsNull_InvalidIpException()
         {
             string ip = "10...";
             var action = () => IpValidations.CheckValidIpV4(ip);
@@ -110,33 +110,37 @@ namespace SmsHub.UnitTests.Common
         }
 
         [Fact]
-        public void CheckValidIpV4_4SectionHasNumberAndCharacter_InvalidIpException()
+        public void CheckValidIpV4_4SectionNumberAndCharacter_InvalidIpException()
         {
             string ip = "+10.2.2-5.?5";
             var action = () => IpValidations.CheckValidIpV4(ip);
             Assert.Throws<InvalidIpException>(action);
         }
+
         [Fact]
-        public void CheckValidIpV4_2SectionBy1_InvalidIpException()
+        public void CheckValidIpV4_2Sections_InvalidIpException()
         {
             string ip = "111.1111";
             var action = () => IpValidations.CheckValidIpV4(ip);
             Assert.Throws<InvalidIpException>(action);
         }
+
         [Fact]
-        public void CheckValidIpV4_2FirstSectionMoreThan255_InvalidIpException()
+        public void CheckValidIpV4_First2SectionsMoreThan255_InvalidIpException()
         {
             string ip = "300.280.13.52";
             var action = () => IpValidations.CheckValidIpV4(ip);
             Assert.Throws<InvalidIpException>(action);
         }
+
         [Fact]
-        public void CheckValidIpV4_2SecondSectionMoreThan255_InvalidIpException()
+        public void CheckValidIpV4_SecondSectionMoreThan255_InvalidIpException()
         {
-            string ip = "46.510.230.890";
+            string ip = "46.510.230.89";
             var action = () => IpValidations.CheckValidIpV4(ip);
             Assert.Throws<InvalidIpException>(action);
         }
+
         [Fact]
         public void CheckValidIpV4_OneSectionEqual256_InvalidIpException()
         {
@@ -145,8 +149,6 @@ namespace SmsHub.UnitTests.Common
             Assert.Throws<InvalidIpException>(action);
         }
 
-
-        //Validation Ip Exception
         [Fact]
         public void CheckValidIpV4_4SectionByMore0_ValidIpException()
         {
@@ -158,12 +160,12 @@ namespace SmsHub.UnitTests.Common
             }
             catch
             {
-                Assert.False(false);
+                Assert.True(false);
             }
-
         }
+
         [Fact]
-        public void CheckValidIpV4_AllSection0_ValidIpException()
+        public void CheckValidIpV4_AllSectionsEqualToZero_ValidIpException()
         {
             string ip = "00.0.0.0";
             try
@@ -173,11 +175,12 @@ namespace SmsHub.UnitTests.Common
             }
             catch
             {
-                Assert.False(false);
+                Assert.True(false);
             }
         }
+
         [Fact]
-        public void CheckValidIpV4_AllSection11_ValidIpException()
+        public void CheckValidIpV4_AllSectionsEqualTo1_ValidIpException()
         {
             string ip = "1.1.1.1";
             try
@@ -187,11 +190,12 @@ namespace SmsHub.UnitTests.Common
             }
             catch
             {
-                Assert.False(false);    
+                Assert.True(false);    
             }
         }
+
         [Fact]
-        public void CheckValidIpV4_AllSection255_ValidIpException()
+        public void CheckValidIpV4_AllSectionsEqualTo255_ValidIpException()
         {
             string ip = "255.255.255.255";
             try
@@ -201,7 +205,7 @@ namespace SmsHub.UnitTests.Common
             }
             catch
             {
-                Assert.False (false);
+                Assert.True(false);
             }
         }
     }
