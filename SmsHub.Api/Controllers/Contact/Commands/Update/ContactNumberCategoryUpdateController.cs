@@ -6,7 +6,7 @@ using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.Contact.Commands.Update
 {
-    [Route("api/ContactNumberCategory")]
+    [Route("ContactNumberCategory")]
     [ApiController]
     public class ContactNumberCategoryUpdateController : ControllerBase
     {

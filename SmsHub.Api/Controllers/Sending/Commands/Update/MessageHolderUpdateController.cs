@@ -6,7 +6,7 @@ using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.Sending.Commands.Update
 {
-    [Route("api/MessageHolder")]
+    [Route("MessageHolder")]
     [ApiController]
     public class MessageHolderUpdateController : ControllerBase
     {

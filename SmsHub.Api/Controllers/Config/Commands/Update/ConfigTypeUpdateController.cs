@@ -6,7 +6,7 @@ using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.Config.Commands.Update
 {
-    [Route("api/ConfigType")]
+    [Route("ConfigType")]
     [ApiController]
     public class ConfigTypeUpdateController : ControllerBase
     {

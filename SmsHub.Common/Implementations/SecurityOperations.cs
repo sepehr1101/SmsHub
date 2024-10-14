@@ -3,9 +3,9 @@ using System.Buffers.Binary;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace SmsHub.Application.Features.Security.Services.Contracts
+namespace SmsHub.Common.Implementations
 {
-    public class SecurityOperations : ISecurityOpertions
+    public class SecurityOperations : ISecurityOperations
     {
         private readonly RandomNumberGenerator _rand = RandomNumberGenerator.Create();
         public async Task<string> GetSha512Hash(string input)
@@ -16,7 +16,7 @@ namespace SmsHub.Application.Features.Security.Services.Contracts
             {
                 var byteHash = await hashAlgorithm.ComputeHashAsync(stream);
                 return Convert.ToBase64String(byteHash);
-            }           
+            }
         }
         public string Base64Encode(string plainText)
         {
@@ -35,7 +35,7 @@ namespace SmsHub.Application.Features.Security.Services.Contracts
             _rand.GetBytes(bytes);
             return new Guid(bytes);
         }
-        public string EncryptAesGcm(string plain)
+        public string EncryptAesGcm(string plain="1")
         {
             byte[] plainBytes = Encoding.UTF8.GetBytes(plain);
             int nonceSize = AesGcm.NonceByteSizes.MaxSize;
