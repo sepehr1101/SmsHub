@@ -8,9 +8,9 @@ namespace SmsHub.Application.Common.Entities
     internal class AppUser
     {
         private string _hashedApiKey = null!;
-        private ISecurityOpertions _securityOpertions;
+        private ISecurityOperations _securityOpertions;
         private IHttpContextAccessor _httpContext; 
-        public AppUser(ISecurityOpertions securityOpertions, IHttpContextAccessor httpContext)
+        public AppUser(ISecurityOperations securityOpertions, IHttpContextAccessor httpContext)
         {
             _securityOpertions = securityOpertions;
             _securityOpertions.NotNull(nameof(securityOpertions));

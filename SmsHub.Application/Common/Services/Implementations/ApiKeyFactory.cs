@@ -8,8 +8,8 @@ namespace SmsHub.Application.Common.Services.Implementations
 {
     public class ApiKeyFactory : IApiKeyFactory
     {
-        private readonly ISecurityOpertions _securityOperaions;
-        public ApiKeyFactory(ISecurityOpertions securityOpertions)
+        private readonly ISecurityOperations _securityOperaions;
+        public ApiKeyFactory(ISecurityOperations securityOpertions)
         {
             _securityOperaions = securityOpertions;
             _securityOperaions.NotNull(nameof(_securityOperaions));

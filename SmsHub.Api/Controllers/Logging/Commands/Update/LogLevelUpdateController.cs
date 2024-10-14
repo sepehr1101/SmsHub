@@ -6,7 +6,7 @@ using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.Logging.Commands.Update
 {
-    [Route("api/LogLevel")]
+    [Route("LogLevel")]
     [ApiController]
     public class LogLevelUpdateController : ControllerBase
     {

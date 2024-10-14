@@ -6,7 +6,7 @@ using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.Config.Commands.Update
 {
-    [Route("api/CcSend")]
+    [Route("CcSend")]
     [ApiController]
     public class CcSendUpdateController : ControllerBase
     {
