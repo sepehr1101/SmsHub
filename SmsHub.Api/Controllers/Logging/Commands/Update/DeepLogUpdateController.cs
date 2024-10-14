@@ -6,7 +6,7 @@ using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.Logging.Commands.Update
 {
-    [Route("api/DeepLog")]
+    [Route("DeepLog")]
     [ApiController]
     public class DeepLogUpdateController : ControllerBase
     {

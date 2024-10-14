@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using SmsHub.Application.Features.Security.Services.Contracts;
 using SmsHub.Common.Contrats;
+using SmsHub.Common.Implementations;
 
 namespace SmsHub.Common.Extensions
 {
@@ -8,7 +8,7 @@ namespace SmsHub.Common.Extensions
     {
         public static void AddCommonInjections(this IServiceCollection services)
         {
-            services.AddScoped<ISecurityOpertions, SecurityOperations>();
+            services.AddScoped<ISecurityOperations, SecurityOperations>();
         }
     }
 }

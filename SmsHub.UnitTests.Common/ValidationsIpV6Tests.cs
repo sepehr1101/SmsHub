@@ -173,7 +173,7 @@ namespace SmsHub.UnitTests.Common
             }
             catch
             {
-                Assert.False(false);
+                Assert.True(false);
             }
         }
 
@@ -188,7 +188,7 @@ namespace SmsHub.UnitTests.Common
             }
             catch
             {
-                Assert.False(false);
+                Assert.True(false);
             }
         }
 

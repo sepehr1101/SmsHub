@@ -1,6 +1,6 @@
 ﻿namespace SmsHub.Common.Contrats
 {
-    public interface ISecurityOpertions
+    public interface ISecurityOperations
     {
         Task<string> GetSha512Hash(string plainText);
         Guid CreateCryptographicallySecureGuid();

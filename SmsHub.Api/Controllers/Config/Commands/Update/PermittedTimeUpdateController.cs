@@ -6,7 +6,7 @@ using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.Config.Commands.Update
 {
-    [Route("api/PermittedTime")]
+    [Route("PermittedTime")]
     [ApiController]
     public class PermittedTimeUpdateController : ControllerBase
     {

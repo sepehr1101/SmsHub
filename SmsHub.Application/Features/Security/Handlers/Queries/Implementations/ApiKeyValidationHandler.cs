@@ -7,9 +7,9 @@ namespace SmsHub.Application.Features.Security.Handlers.Queries.Implementations
 {
     public class ApiKeyValidationHandler : IApiKeyValidationHandler
     {
-        private readonly ISecurityOpertions _securityOperations;
+        private readonly ISecurityOperations _securityOperations;
         private readonly IServerUserQueryService _serverUserQueryService;
-        public ApiKeyValidationHandler(ISecurityOpertions securityOpertions, IServerUserQueryService serverUserQueryService)
+        public ApiKeyValidationHandler(ISecurityOperations securityOpertions, IServerUserQueryService serverUserQueryService)
         {
             _securityOperations = securityOpertions;
             _securityOperations.NotNull();
