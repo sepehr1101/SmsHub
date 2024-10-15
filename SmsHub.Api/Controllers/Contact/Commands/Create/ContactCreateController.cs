@@ -6,7 +6,7 @@ using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.Contact.Commands.Create
 {
-    [Route("api/Contact")]
+    [Route(nameof(Contact))]
     [ApiController]
     public class ContactCreateController : ControllerBase
     {
@@ -20,7 +20,9 @@ namespace SmsHub.Api.Controllers.Contact.Commands.Create
             _createCommandHandler = createCommandHandler;
             _createCommandHandler.NotNull(nameof(createCommandHandler));
         }
-        [HttpGet(Name = nameof(Create))]
+
+        [HttpPost]
+        [Route(nameof(Create))]
         public async Task<IActionResult> Create([FromBody] CreateContactDto createDto, CancellationToken cancellationToken)
         {
             await _createCommandHandler.Handle(createDto, cancellationToken);

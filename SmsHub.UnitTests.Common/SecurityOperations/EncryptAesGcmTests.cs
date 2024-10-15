@@ -14,7 +14,6 @@ namespace SmsHub.UnitTests.Common.SecurityOperations
         public void EncryptAesGcm_CheckNumberString_ValidEncrypt()
         {
             string inputEncrypt= "1";
-            string outputEncrypt = "DAAAAA84ve/bNUBPxhqY2xAAAAAA0wUx1uBNWUQq7TrtHcIDUg==";
             var resultEncrypt = _securityOperations.EncryptAesGcm(inputEncrypt);
 
             var resultDecrypt=_securityOperations.DecryptAesGcm( inputEncrypt);
