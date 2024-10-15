@@ -19,7 +19,7 @@ namespace SmsHub.UnitTests.Common.SecurityOperations
         }
         
         [Fact]
-        public void Base64Decode_CheckStringWithUpperAndLowerAndCaracter_ValidDecoding()
+        public void Base64Decode_CheckStringWithUpperAndLowerAndCharacter_ValidDecoding()
         {
             string input = "dGhpcyBJcyBTQU1QTEUgdGV4dCA6KQ==";
             string output = "this Is SAMPLE text :)";
@@ -37,7 +37,7 @@ namespace SmsHub.UnitTests.Common.SecurityOperations
         }
 
         [Fact]
-        public void Base64Decode_CheckBaseInput_ValidDecoding()
+        public void Base64Decode_CheckPersianStringWith_ValidDecoding()
         {
             var input = "2LPZjtmE2KfZhSAhINin24zZhiDbjNmQ2qkg2KzZj9mF2YTZhyDYrNmO2YfYqiDYqtiz2Kog2YXZkNiq2Y/YryDYp9mO2LPYqg==";
             var output = "سَلام ! این یِک جُمله جَهت تست مِتُد اَست";
@@ -46,7 +46,7 @@ namespace SmsHub.UnitTests.Common.SecurityOperations
         }
 
         [Fact]
-        public void Base64Decode_CheckBaseInputWithoutExclamationMark_ValidDecoding()
+        public void Base64Decode_CheckPersianStringWithWithoutExclamationMark_ValidDecoding()
         {
             var input = "2LPZjtmE2KfZhSAg2KfbjNmGINuM2ZDaqSDYrNmP2YXZhNmHINis2Y7Zh9iqINiq2LPYqiDZhdmQ2KrZj9ivINin2Y7Ys9iq";
             var output = "سَلام  این یِک جُمله جَهت تست مِتُد اَست";
