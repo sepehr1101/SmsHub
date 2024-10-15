@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Security.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Security.MediatorDtos.Commands;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.Security.Commands.Create
 {
-    [Route("api/[controller]")]
+    [Route(nameof(ServerUser))]
     [ApiController]
     public class ServerUserCreateController : ControllerBase
     {
@@ -23,7 +24,8 @@ namespace SmsHub.Api.Controllers.Security.Commands.Create
             _createServerUserHandler.NotNull(nameof(createServerUserHandler));
         }
 
-        [HttpPost(Name ="CreateServerUser")]
+        [HttpPost]
+        [Route(nameof(Create))]
         public async Task<IActionResult> Create([FromBody] CreateServerUserDto dto, CancellationToken cancellationToken)
         {
             var apiKeyAndHash= await _createServerUserHandler.Handle(dto, cancellationToken);
