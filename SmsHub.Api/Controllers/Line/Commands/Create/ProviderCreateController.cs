@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Line.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.Line.Commands.Create
 {
-    [Route("api/Provider")]
+    [Route(nameof(Provider))]
     [ApiController]
     public class ProviderCreateController : ControllerBase
     {
@@ -23,7 +24,8 @@ namespace SmsHub.Api.Controllers.Line.Commands.Create
             _createCommandHandler.NotNull(nameof(_createCommandHandler));
         }
 
-        [HttpGet(Name = nameof(Create))]
+        [HttpPost]
+        [Route(nameof(Create))]
         public async Task<IActionResult> Create([FromBody] CreateProviderDto createDto, CancellationToken cancellationToken)
         {
             await _createCommandHandler.Handle(createDto, cancellationToken);

@@ -2,11 +2,12 @@
 using SmsHub.Application.Features.Config.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.Config.Commands.Update
 {
-    [Route("DisallowedPhrase")]
+    [Route(nameof(DisallowedPhrase))]
     [ApiController]
     public class DisallowedPhraseUpdateController : ControllerBase
     {
@@ -20,7 +21,9 @@ namespace SmsHub.Api.Controllers.Config.Commands.Update
             _updateCommandHandler = updateCommandHandler;
             _updateCommandHandler.NotNull(nameof(updateCommandHandler));
         }
-        [HttpGet(Name = nameof(Update))]
+
+        [HttpPost]
+        [Route(nameof(Update))]
         public async Task<IActionResult> Update([FromBody] UpdateDisallowedPhraseDto updateDto, CancellationToken cancellationToken)
         {
             await _updateCommandHandler.Handle(updateDto, cancellationToken);

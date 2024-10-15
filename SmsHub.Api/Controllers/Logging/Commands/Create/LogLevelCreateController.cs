@@ -6,7 +6,7 @@ using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.Logging.Commands.Create
 {
-    [Route("api/LogLevel")]
+    [Route(nameof(LogLevel))]
     [ApiController]
     public class LogLevelCreateController : ControllerBase
     {
@@ -20,7 +20,9 @@ namespace SmsHub.Api.Controllers.Logging.Commands.Create
             _createCommandHandler = createCommandHandler;
             _createCommandHandler.NotNull(nameof(createCommandHandler));
         }
-        [HttpGet(Name = nameof(Create))]
+
+        [HttpPost]
+        [Route(nameof(Create))]
         public async Task<IActionResult> Create([FromBody] CreateLogLevelDto createDto, CancellationToken cancellationToken)
         {
             await _createCommandHandler.Handle(createDto, cancellationToken);

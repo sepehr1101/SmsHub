@@ -6,7 +6,7 @@ using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.Config.Commands.Update
 {
-    [Route("Config")]
+    [Route(nameof(Config))]
     [ApiController]
     public class ConfigUpdateController : ControllerBase
     {
@@ -20,7 +20,9 @@ namespace SmsHub.Api.Controllers.Config.Commands.Update
             _updateCommandHandler = updateCommandHandler;
             _updateCommandHandler.NotNull(nameof(updateCommandHandler));
         }
-        [HttpGet(Name = nameof(Update))]
+
+        [HttpPost]
+        [Route(nameof(Update))]
         public async Task<IActionResult> Update([FromBody] UpdateConfigDto updateDto, CancellationToken cancellationToken)
         {
             await _updateCommandHandler.Handle(updateDto, cancellationToken);

@@ -2,11 +2,12 @@
 using SmsHub.Application.Features.Consumer.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Create;
+using SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.Consumer.Commands.Create
 {
-    [Route("api/ConsumerLine")]
+    [Route(nameof(ConsumerLine))]
     [ApiController]
     public class ConsumerLineCreateController : ControllerBase
     {
@@ -20,7 +21,9 @@ namespace SmsHub.Api.Controllers.Consumer.Commands.Create
             _createCommandHandler = createCommandHandler;
             _createCommandHandler.NotNull(nameof(createCommandHandler));
         }
-        [HttpGet(Name = nameof(Create))]
+
+        [HttpPost]
+        [Route(nameof(Create))]
         public async Task<IActionResult> Create([FromBody] CreateConsumerLineDto createDto, CancellationToken cancellationToken)
         {
             await _createCommandHandler.Handle(createDto, cancellationToken);
