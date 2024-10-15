@@ -9,7 +9,7 @@ namespace SmsHub.Application.Features.Security.Validations
         public ServerUserValidator()
         {
             RuleFor(x => x.Username).NotEmpty().MaximumLength(255);
-            RuleFor(x => x.ApiKeyHash).NotEmpty().MaximumLength(128).Must(ValidationAnsiString.Execute);
+            RuleFor(x => x.ApiKeyHash).NotEmpty().MaximumLength(128).Must(ValidationAnsiString.ValidateAnsi);
         }
     }
 }

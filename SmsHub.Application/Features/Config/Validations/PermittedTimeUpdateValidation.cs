@@ -8,8 +8,13 @@ namespace SmsHub.Application.Features.Config.Validations
     {
         public PermittedTimeUpdateValidation()
         {
-            RuleFor(x => x.FromTime).NotEmpty().Length(5).Must(ValidationAnsiString.Execute);
-            RuleFor(x => x.ToTime).NotEmpty().Length(5).Must(ValidationAnsiString.Execute);
+            RuleFor(x => x.FromTime).NotEmpty().Length(5) 
+                .Must(ValidationAnsiString.ValidateAnsi) 
+                .Must(ValidationAnsiString.CheckTime);
+
+            RuleFor(x => x.ToTime).NotEmpty().Length(5)
+                .Must(ValidationAnsiString.ValidateAnsi)
+                .Must(ValidationAnsiString.CheckTime);
         }
     }
 }

@@ -8,6 +8,8 @@ namespace SmsHub.Application.Features.Config.Validations
     {
         public CcSendCreateValidator()
         {
+            RuleFor(x => x.Mobile).NotEmpty().Length(11)
+                .Must(ValidationAnsiString.CheckPersianPhoneNumber);
         }
     }
 }
