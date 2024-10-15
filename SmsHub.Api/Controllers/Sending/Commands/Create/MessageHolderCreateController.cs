@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implementations;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.Sending.Commands.Create
 {
-    [Route("api/MessageHolder")]
+    [Route(nameof(MessagesHolder))]
     [ApiController]
     public class MessageHolderCreateController : ControllerBase
     {
@@ -20,7 +21,9 @@ namespace SmsHub.Api.Controllers.Sending.Commands.Create
             _createCommandHandler = createCommandHandler;
             _createCommandHandler.NotNull(nameof(createCommandHandler));
         }
-        [HttpGet(Name = nameof(Create))]
+
+        [HttpPost]
+        [Route(nameof(Create))]
         public async Task<IActionResult> Create([FromBody] CreateMessagesHolderDto createDto, CancellationToken cancellationToken)
         {
             await _createCommandHandler.Handle(createDto, cancellationToken);

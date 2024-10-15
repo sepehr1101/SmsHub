@@ -2,11 +2,12 @@
 using SmsHub.Application.Features.Config.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.Config.Commands.Update
 {
-    [Route("PermittedTime")]
+    [Route(nameof(PermittedTime))]
     [ApiController]
     public class PermittedTimeUpdateController : ControllerBase
     {
@@ -20,7 +21,9 @@ namespace SmsHub.Api.Controllers.Config.Commands.Update
             _updateCommandHandler = updateCommandHandler;
             _updateCommandHandler.NotNull(nameof(updateCommandHandler));    
         }
-        [HttpGet(Name = nameof(Update))]
+
+        [HttpPost]
+        [HttpPost(nameof(Update))]
         public async Task<IActionResult> Update([FromBody] UpdatePermittedTimeDto updateDto, CancellationToken cancellationToken)
         {
             await _updateCommandHandler.Handle(updateDto,cancellationToken);

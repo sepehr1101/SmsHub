@@ -2,11 +2,12 @@
 using SmsHub.Application.Features.Consumer.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Delete;
+using SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.Consumer.Commands.Delete
 {
-    [Route("api/ConsumerSafaIp")]
+    [Route(nameof(ConsumerSafeIp))]
     [ApiController]
     public class ConsumerSafeIpDeleteController : ControllerBase
     {
@@ -20,7 +21,9 @@ namespace SmsHub.Api.Controllers.Consumer.Commands.Delete
             _deleteCommandHandler = deleteCommandHandler;   
             _deleteCommandHandler.NotNull(nameof(deleteCommandHandler));
         }
-        [HttpGet(Name = nameof(Delete))]
+
+        [HttpPost]
+        [HttpPost(nameof(Delete))]
         public async Task<IActionResult> Delete([FromBody] DeleteConsumerSafeIpDto deleteDto, CancellationToken cancellationToken)
         {
             await _deleteCommandHandler.Handle(deleteDto, cancellationToken);

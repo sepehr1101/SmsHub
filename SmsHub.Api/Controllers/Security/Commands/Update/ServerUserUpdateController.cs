@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Security.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.Security.Commands.Update
 {
-    [Route("ServerUser")]
+    [Route(nameof(ServerUser))]
     [ApiController]
     public class ServerUserUpdateController : ControllerBase
     {
@@ -19,7 +20,9 @@ namespace SmsHub.Api.Controllers.Security.Commands.Update
             _updateApiKeyHandler=updateApiKeyHandler;
             _updateApiKeyHandler.NotNull(nameof(updateApiKeyHandler));
         }
-        [HttpGet(Name = nameof(Update))]
+
+        [HttpPost]
+        [Route(nameof(Update))]
         public async Task<IActionResult> Update([FromBody] int id)
         {
             await _updateApiKeyHandler.Handle(id);  

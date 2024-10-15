@@ -2,11 +2,12 @@
 using SmsHub.Application.Features.Consumer.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Delete;
+using SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.Consumer.Commands.Delete
 {
-    [Route("api/ConsumerLine")]
+    [Route(nameof(ConsumerLine))]
     [ApiController]
     public class ConsumerLineDeleteController : ControllerBase
     {
@@ -20,7 +21,9 @@ namespace SmsHub.Api.Controllers.Consumer.Commands.Delete
             _deleteCommandHandler = deleteCommandHadler;
             _deleteCommandHandler.NotNull(nameof(deleteCommandHadler));
         }
-        [HttpGet(Name = nameof(Delete))]
+
+        [HttpPost]
+        [Route(nameof(Delete))]
         public async Task<IActionResult> Delete([FromBody] DeleteConsumerLineDto deleteDto, CancellationToken cancellationToken)
         {
             await _deleteCommandHandler.Handle(deleteDto, cancellationToken);

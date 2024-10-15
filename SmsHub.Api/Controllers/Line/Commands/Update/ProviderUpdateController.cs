@@ -2,12 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Line.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Update;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.Line.Commands.Update
 {
-    [Route("Provider")]
+    [Route(nameof(Provider))]
     [ApiController]
     public class ProviderUpdateController : ControllerBase
     {
@@ -24,7 +25,8 @@ namespace SmsHub.Api.Controllers.Line.Commands.Update
             _updateProviderHandler.NotNull(nameof(updateProviderHandler));
         }
 
-        [HttpPost(Name =nameof(Update))]
+        [HttpPost]
+        [Route(nameof(Update))]
         public async Task<IActionResult> Update([FromBody] UpdateProviderDto updateProviderDto, CancellationToken cancellationToken)
         {
             await _updateProviderHandler.Handle(updateProviderDto, cancellationToken);
