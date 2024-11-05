@@ -20,7 +20,7 @@ builder.Services.AddApplicationInjections();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerService();
-builder.Services.UpdateAndSeedDb(string.Empty);
+builder.Services.UpdateAndSeedDb();
 
 var app = builder.Build();
 
