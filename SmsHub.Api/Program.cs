@@ -33,6 +33,12 @@ if (app.Environment.IsDevelopment())
 //app.UseMiddleware<ApiKeyMiddleware>();
 
 app.UseRouting();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+});
 
 app.UseHttpsRedirection();
 
@@ -40,11 +46,6 @@ app.UseAuthorization();
 
 //app.MapControllers();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-});
+
 
 app.Run();
