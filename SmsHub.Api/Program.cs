@@ -20,7 +20,7 @@ builder.Services.AddApplicationInjections();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerService();
-builder.Services.UpdateAndSeedDb(string.Empty);
+builder.Services.UpdateAndSeedDb();
 
 var app = builder.Build();
 
@@ -33,6 +33,12 @@ if (app.Environment.IsDevelopment())
 //app.UseMiddleware<ApiKeyMiddleware>();
 
 app.UseRouting();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+});
 
 app.UseHttpsRedirection();
 
@@ -40,11 +46,6 @@ app.UseAuthorization();
 
 //app.MapControllers();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-});
+
 
 app.Run();
