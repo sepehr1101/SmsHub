@@ -364,3 +364,6 @@ FodyWeavers.xsd
 /SmsHub.Api/Controllers/WeatherForecastController.cs
 /SmsHub.Api/Controllers/WeatherForcastController.cs
 /SmsHub.Api/appsettings.json
+/SmsHub.IntegrationTests.Persistance/BaseIntegrationTest.cs
+/SmsHub.IntegrationTests.Persistance/ProviderControllerTest.cs
+/SmsHub.IntegrationTests.Persistance/TestEnvironmentWebApplicationFactory.cs
