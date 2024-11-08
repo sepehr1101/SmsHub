@@ -1,11 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="BaseHttp\Authenticators\Contracts\**" />
     <Compile Remove="Contracts\**" />
@@ -17,12 +15,10 @@
     <None Remove="Contracts\**" />
     <None Remove="Implementations\**" />
   </ItemGroup>
-
   <ItemGroup>
     <Compile Remove="BaseHttp\Request\RestExtension.Body.cs" />
     <Compile Remove="BaseHttp\Request\RestExtensions.Url.cs" />
   </ItemGroup>
-
   <ItemGroup>
     <Folder Include="BaseHttp\Interceptors\" />
     <Folder Include="BaseHttp\Response\" />
@@ -33,19 +29,15 @@
     <Folder Include="Providers\Kavenegar\EntityMapping\" />
     <Folder Include="Providers\Magfa3000\EntityMapping\" />
   </ItemGroup>
-
   <ItemGroup>
     <None Include="BaseHttp\Request\RestExtensions.Url.cs" />
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Http" />
+    <PackageReference Include="Newtonsoft.Json" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\SmsHub.Common\SmsHub.Common.csproj" />
     <ProjectReference Include="..\SmsHub.Domain\SmsHub.Domain.csproj" />
   </ItemGroup>
-
 </Project>

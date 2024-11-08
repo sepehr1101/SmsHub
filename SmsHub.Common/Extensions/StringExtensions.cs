@@ -10,7 +10,7 @@ using System.Web;
 
 namespace SmsHub.Common.Extensions
 {
-    public static class StringExtensions
+    public static partial class StringExtensions
     {
         static readonly Regex IsUpperCaseRegex = IsUpperCase();
 

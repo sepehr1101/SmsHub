@@ -89,7 +89,7 @@ namespace SmsHub.Persistence.Extensions
             var runner= serviceProvider.GetRequiredService<IDataSeedersRunner>();
             runner.RunAllDataSeeders();
         }
-        private static Tuple<string,DatabaseCreationParameters> GetConnectionInfo()
+        internal static Tuple<string,DatabaseCreationParameters> GetConnectionInfo()
         {
             var basePath = Directory.GetCurrentDirectory();
             var configuration = new ConfigurationBuilder()

@@ -1,22 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="Controllers\Providers\**" />
     <Content Remove="Controllers\Providers\**" />
     <EmbeddedResource Remove="Controllers\Providers\**" />
     <None Remove="Controllers\Providers\**" />
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" />
   </ItemGroup>
-
   <ItemGroup>
     <Folder Include="Controllers\Config\Querries\" />
     <Folder Include="Controllers\Consumer\Querries\" />
@@ -36,7 +32,6 @@
     <Folder Include="Controllers\Template\Querries\" />
     <Folder Include="Filters\" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\SmsHub.Application\SmsHub.Application.csproj" />
     <ProjectReference Include="..\SmsHub.Common\SmsHub.Common.csproj" />
@@ -44,5 +39,4 @@
     <ProjectReference Include="..\SmsHub.Infrastructure\SmsHub.Infrastructure.csproj" />
     <ProjectReference Include="..\SmsHub.Persistance\SmsHub.Persistence.csproj" />
   </ItemGroup>
-
 </Project>

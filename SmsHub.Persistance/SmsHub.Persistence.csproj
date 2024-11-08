@@ -1,11 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="Contexts\Commands\**" />
     <Compile Remove="Contexts\Queries\**" />
@@ -17,7 +15,6 @@
     <None Remove="Contexts\Queries\**" />
     <None Remove="Contexts\UnitOfWork\**" />
   </ItemGroup>
-
   <ItemGroup>
     <Folder Include="DbLogger\" />
     <Folder Include="Features\Contact\Commands\Contracts\" />
@@ -42,29 +39,25 @@
     <Folder Include="Scaffold\" />
     <Folder Include="Utils\" />
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="EFCore.BulkExtensions" Version="6.8.1" />
-    <PackageReference Include="FluentMigrator" Version="5.2.0" />
-    <PackageReference Include="FluentMigrator.Runner.SqlServer" Version="5.2.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.33">
+    <PackageReference Include="EFCore.BulkExtensions" />
+    <PackageReference Include="FluentMigrator" />
+    <PackageReference Include="FluentMigrator.Runner.SqlServer" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.33" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
-    <PackageReference Include="Scrutor" Version="4.2.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" />
+    <PackageReference Include="Scrutor" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\SmsHub.Common\SmsHub.Common.csproj" />
     <ProjectReference Include="..\SmsHub.Domain\SmsHub.Domain.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
-
 </Project>

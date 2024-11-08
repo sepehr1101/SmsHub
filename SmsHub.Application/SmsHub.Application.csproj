@@ -1,17 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="Features\Queries\**" />
     <EmbeddedResource Remove="Features\Queries\**" />
     <None Remove="Features\Queries\**" />
   </ItemGroup>
-
   <ItemGroup>
     <Folder Include="Features\Consumer\Notifications\" />
     <Folder Include="Providers\Kavenegar\Commands\" />
@@ -19,22 +16,19 @@
     <Folder Include="Providers\Kavenegar\Queries\" />
     <Folder Include="Providers\Kavenegar\Validations\" />
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="13.0.1" />
-    <PackageReference Include="FluentValidation" Version="11.10.0" />
-    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.10.0" />
-    <PackageReference Include="Handlebars.Net" Version="2.1.6" />
-    <PackageReference Include="MediatR" Version="12.4.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Scrutor" Version="4.2.2" />
+    <PackageReference Include="AutoMapper" />
+    <PackageReference Include="FluentValidation" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
+    <PackageReference Include="Handlebars.Net" />
+    <PackageReference Include="MediatR" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" />
+    <PackageReference Include="Scrutor" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\SmsHub.Common\SmsHub.Common.csproj" />
     <ProjectReference Include="..\SmsHub.Domain\SmsHub.Domain.csproj" />
     <ProjectReference Include="..\SmsHub.Infrastructure\SmsHub.Infrastructure.csproj" />
     <ProjectReference Include="..\SmsHub.Persistance\SmsHub.Persistence.csproj" />
   </ItemGroup>
-
 </Project>
