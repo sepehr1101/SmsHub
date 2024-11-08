@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using SmsHub.Domain.Features.Entities;
+using SmsHub.Persistence.Extensions;
 
 namespace SmsHub.Persistence.Contexts.Implementation
 {
@@ -47,17 +47,7 @@ namespace SmsHub.Persistence.Contexts.Implementation
         {
             if (!optionsBuilder.IsConfigured)
             {
-                var basePath = Directory.GetCurrentDirectory();
-                var configuration = new ConfigurationBuilder()
-                                        .SetBasePath(basePath)
-                                        .AddJsonFile("appsettings.json")
-                                        .Build();
-                var connectionString = configuration.GetConnectionString("DefaultConnection");
-                optionsBuilder.UseSqlServer(connectionString);
-
-
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                //optionsBuilder.UseSqlServer("Data Source=.;Encrypt=False;Database=Test;Integrated Security=false;User ID=admin;Password=pspihp;");
+                optionsBuilder.UseSqlServer(MigrationRunner.GetConnectionInfo().Item1);
             }
         }
 

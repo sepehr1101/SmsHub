@@ -1,11 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-  </PropertyGroup>                                                                                                                            
-
+  </PropertyGroup>
   <ItemGroup>
     <Folder Include="BaseDomainEntities\" />
     <Folder Include="BaseValueObjects\" />
@@ -34,16 +32,13 @@
     <Folder Include="Providers\Magfa3000\Exceptions\" />
     <Folder Include="Providers\Magfa3000\Models\" />
     <Folder Include="Providers\Magfa3000\ValueObjects\" />
-  </ItemGroup>                                                                                                                            
-
+  </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="12.4.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.33" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.33" />
-  </ItemGroup>                                                                                                                            
-
+    <PackageReference Include="MediatR" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SmsHub.Common\SmsHub.Common.csproj" />
   </ItemGroup>
-
 </Project>
