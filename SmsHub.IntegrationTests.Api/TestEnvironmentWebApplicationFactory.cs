@@ -3,13 +3,8 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 using SmsHub.Persistence.Contexts.Implementation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SmsHub.Persistence.Extensions;
 using Testcontainers.MsSql;
 
 namespace SmsHub.IntegrationTests.Api
@@ -17,11 +12,14 @@ namespace SmsHub.IntegrationTests.Api
     public class TestEnvironmentWebApplicationFactory
         : WebApplicationFactory<Program>, IAsyncLifetime
     {
+        private static int runSqlInPort = 33911, sqlDefaultPort = 1433;
         private readonly MsSqlContainer _container = new MsSqlBuilder()
                 .WithImage("mcr.microsoft.com/mssql/server:2022-latest")
                 .WithPassword("Strongest_password_2024!")
+                .WithName("DockerTestSmsHub")
+                .WithPortBinding(runSqlInPort, sqlDefaultPort)
                 .Build();
-
+        
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
             builder.ConfigureTestServices(services =>
@@ -38,8 +36,9 @@ namespace SmsHub.IntegrationTests.Api
                 // Register dbcontext with container connection string
                 services.AddDbContext<TestContext>(options =>
                 {
-                    string containerConnectionString = _container.GetConnectionString();
-                    options.UseSqlServer(containerConnectionString);
+                    var connectionString = MigrationRunner.GetConnectionInfo().Item1;
+                    //string containerConnectionString = _container.GetConnectionString();                   
+                    options.UseSqlServer(connectionString);
                 });
             });
         }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SmsHub.Application.Features.Line.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Entities;
@@ -29,8 +30,10 @@ namespace SmsHub.Api.Controllers.Line.Commands.Create
         public async Task<IActionResult> Create([FromBody] CreateProviderDto createDto, CancellationToken cancellationToken)
         {
             await _createCommandHandler.Handle(createDto, cancellationToken);
+            var db = _uow.GetDatabase();
+            var con = db.GetConnectionString();
             await _uow.SaveChangesAsync(cancellationToken);
-            return Ok("Done");
+            return Ok(createDto);
         }
     }
 }

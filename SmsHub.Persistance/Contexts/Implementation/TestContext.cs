@@ -47,7 +47,8 @@ namespace SmsHub.Persistence.Contexts.Implementation
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(MigrationRunner.GetConnectionInfo().Item1);
+                var connectionString = MigrationRunner.GetConnectionInfo().Item1;
+                optionsBuilder.UseSqlServer(connectionString);
             }
         }
 

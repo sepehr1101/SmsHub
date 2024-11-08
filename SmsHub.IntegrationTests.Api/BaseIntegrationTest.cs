@@ -37,7 +37,7 @@ namespace SmsHub.IntegrationTests.Api
                 Encoding.UTF8, "application/json");
 
             var result = await _httpClient.PostAsync(url, stringContent);
-            var content = await result.Content.ReadAsStringAsync();
+            string content = await result.Content.ReadAsStringAsync();
             var returnData = JsonSerializer.Deserialize<TResult>(content, _serializerOptions);
 
             return returnData;

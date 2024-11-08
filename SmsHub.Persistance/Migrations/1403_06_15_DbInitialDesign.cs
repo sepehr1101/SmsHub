@@ -1,4 +1,5 @@
 ﻿using FluentMigrator;
+using FluentMigrator.Runner.Initialization;
 using SmsHub.Persistence.Extensions;
 using SmsHub.Persistence.Migrations.Enums;
 using System.Reflection;
