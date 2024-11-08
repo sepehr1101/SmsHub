@@ -7,9 +7,9 @@
   <ItemGroup>
     <PackageVersion Include="AutoMapper" Version="13.0.1" />
     <PackageVersion Include="coverlet.collector" Version="6.0.0" />
-    <PackageVersion Include="EFCore.BulkExtensions" Version="6.8.1" />
-    <PackageVersion Include="FluentMigrator" Version="5.2.0" />
-    <PackageVersion Include="FluentMigrator.Runner.SqlServer" Version="5.2.0" />
+    <PackageVersion Include="EFCore.BulkExtensions" Version="8.1.1" />
+    <PackageVersion Include="FluentMigrator" Version="6.2.0" />
+    <PackageVersion Include="FluentMigrator.Runner.SqlServer" Version="6.2.0" />
     <PackageVersion Include="FluentValidation" Version="11.10.0" />
     <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="11.10.0" />
     <PackageVersion Include="Handlebars.Net" Version="2.1.6" />
@@ -27,7 +27,7 @@
     <PackageVersion Include="Microsoft.Extensions.Http" Version="8.0.1" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageVersion Include="Scrutor" Version="4.2.2" />
+    <PackageVersion Include="Scrutor" Version="5.0.2" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <PackageVersion Include="Testcontainers.MsSql" Version="4.0.0" />
     <PackageVersion Include="xunit" Version="2.5.3" />

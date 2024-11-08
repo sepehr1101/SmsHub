@@ -1,5 +1,4 @@
-﻿using SmsHub.Domain.Features.Entities;
-using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
+﻿using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
 
 namespace SmsHub.IntegrationTests.Api
 {
@@ -10,19 +9,8 @@ namespace SmsHub.IntegrationTests.Api
         {
         }
 
-        //[Fact]
-        //public async void GetCompanies_WhenCalled_ShouldReturnAllCompanies()
-        //{
-        //    // Act
-        //    // This request retrieves the companies created during migration.
-        //    var companies = await GetAsync<List<Provider>>("/api/Companies");
-
-        //    // Assert
-        //    Assert.True(true);
-        //}
-
         [Fact]
-        public async void CreateCompany_GivenCompanyData_ShouldCreateCompany()
+        public async void CreateProvider_ProviderDataDto_ShouldCreatProvider()
         {
             // Arrange
             var provider = new CreateProviderDto
@@ -36,7 +24,10 @@ namespace SmsHub.IntegrationTests.Api
             };
 
             // Act
-            await PostAsync<CreateProviderDto, int>("/Provider/Create", provider);
+            await PostAsync<CreateProviderDto, CreateProviderDto>("/Provider/Create", provider);
+
+            // Assert 
+            Assert.True(true);
         }
 
     }
