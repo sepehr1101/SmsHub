@@ -31,7 +31,7 @@ namespace SmsHub.Persistence.Extensions
             }
         }
         private static ServiceProvider CreateServices(IServiceCollection services, string connectionString)
-        {  
+        {
             return services
                 .AddFluentMigratorCore()
                 .ConfigureRunner(rb => rb
