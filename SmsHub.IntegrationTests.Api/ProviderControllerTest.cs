@@ -2,9 +2,9 @@
 
 namespace SmsHub.IntegrationTests.Api
 {
-    public class CompaniesControllerTests : BaseIntegrationTest
+    public class ProviderControllerTests : BaseIntegrationTest
     {
-        public CompaniesControllerTests(TestEnvironmentWebApplicationFactory factory)
+        public ProviderControllerTests(TestEnvironmentWebApplicationFactory factory)
             : base(factory)
         {
         }
