@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SmsHub.Application.Features.Config.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Features.Config.MediatorDtos.Queries;
 using SmsHub.Persistence.Features.Config.Queries.Contracts;
 
@@ -18,9 +19,9 @@ namespace SmsHub.Application.Features.Config.Handlers.Queries.Implementations
             _configQueryService = configQueryService;
             _configQueryService.NotNull(nameof(configQueryService));
         }
-        public async Task<GetConfigDto> Handle(int Id)
+        public async Task<GetConfigDto> Handle(IntId Id)
         {
-            var config = await _configQueryService.Get(Id);
+            var config = await _configQueryService.Get(Id.Id);
             return _mapper.Map<GetConfigDto>(config);
         }
     }

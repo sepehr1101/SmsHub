@@ -14,9 +14,6 @@
     <PackageReference Include="Swashbuckle.AspNetCore" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\Config\Querries\" />
-    <Folder Include="Controllers\Consumer\Querries\" />
-    <Folder Include="Controllers\Contact\Querries\" />
     <Folder Include="Controllers\Credit\Commands\Create\" />
     <Folder Include="Controllers\Credit\Commands\Delete\" />
     <Folder Include="Controllers\Credit\Commands\Update\" />
