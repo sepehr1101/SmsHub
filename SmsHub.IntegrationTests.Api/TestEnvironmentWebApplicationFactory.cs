@@ -16,7 +16,7 @@ namespace SmsHub.IntegrationTests.Api
         private readonly MsSqlContainer _container = new MsSqlBuilder()
                 .WithImage("mcr.microsoft.com/mssql/server:2022-latest")
                 .WithPassword("Strongest_password_2024!")
-                .WithName("DockerTestSmsHub")
+                .WithName($"DockerTestSmsHub{Guid.NewGuid()}")
                 .WithPortBinding(runSqlInPort, sqlDefaultPort)
                 .Build();
         
@@ -37,7 +37,7 @@ namespace SmsHub.IntegrationTests.Api
                 services.AddDbContext<TestContext>(options =>
                 {
                     var connectionString = MigrationRunner.GetConnectionInfo().Item1;
-                    //string containerConnectionString = _container.GetConnectionString();                   
+                    //string connectionString = _container.GetConnectionString();                   
                     options.UseSqlServer(connectionString);
                 });
             });
