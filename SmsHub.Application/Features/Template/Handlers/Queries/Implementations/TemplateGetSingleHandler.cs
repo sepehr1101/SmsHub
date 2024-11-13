@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SmsHub.Application.Features.Template.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Features.Template.MediatorDtos.Queries;
 using SmsHub.Persistence.Features.Template.Queries.Contracts;
 
@@ -18,9 +19,9 @@ namespace SmsHub.Application.Features.Template.Handlers.Queries.Implementations
             _templateQueryService = templateQueryService;
             _templateQueryService.NotNull(nameof(templateQueryService));
         }
-        public async Task<GetTemplateDto> Handle(int Id)
+        public async Task<GetTemplateDto> Handle(IntId Id)
         {
-            var template = await _templateQueryService.Get(Id);
+            var template = await _templateQueryService.Get(Id.Id);
             return _mapper.Map<GetTemplateDto>(template);
         }
     }

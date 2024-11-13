@@ -1,12 +1,28 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SmsHub.Application.Features.Sending.Handlers.Queries.Contracts;
+using SmsHub.Common.Extensions;
+using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Features.Sending.MediatorDtos.Queries;
 
 namespace SmsHub.Api.Controllers.Sending.Querries
 {
-    public class MessageHolderGetListController : Controller
+    [Route(nameof(MessagesHolder))]
+    [ApiController]
+    public class MessageHolderGetListController : ControllerBase
     {
-        public IActionResult Index()
+        private readonly IMessageHolderGetListHandler _getListHolder;
+        public MessageHolderGetListController(IMessageHolderGetListHandler getListHolder)
         {
-            return View();
+            _getListHolder = getListHolder;
+            _getListHolder.NotNull(nameof(getListHolder));
+        }
+
+        [HttpPost]
+        [Route(nameof(GetList))]
+        public async Task<ICollection<GetMessageHolderDto>> GetList()
+        {
+            var messageHolders = await _getListHolder.Handle();
+            return messageHolders;
         }
     }
 }

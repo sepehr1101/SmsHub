@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SmsHub.Application.Features.Sending.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Queries;
 using SmsHub.Persistence.Features.Sending.Queries.Contracts;
 
@@ -18,9 +19,9 @@ namespace SmsHub.Application.Features.Sending.Handlers.Queries.Implementations
             _messageStateCategoryQueryService = messageStateCategoryQueryService;
             _messageStateCategoryQueryService.NotNull(nameof(messageStateCategoryQueryService));
         }
-        public async Task<GetMessageStateCategoryDto> Handle(int Id)
+        public async Task<GetMessageStateCategoryDto> Handle(IntId Id)
         {
-            var messageStateCategory = await _messageStateCategoryQueryService.Get(Id);
+            var messageStateCategory = await _messageStateCategoryQueryService.Get(Id.Id);
             return _mapper.Map<GetMessageStateCategoryDto>(messageStateCategory);
         }
     }

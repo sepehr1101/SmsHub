@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SmsHub.Application.Features.Sending.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Queries;
 using SmsHub.Persistence.Features.Sending.Queries.Contracts;
 
@@ -18,9 +19,9 @@ namespace SmsHub.Application.Features.Sending.Handlers.Queries.Implementations
             _messageStateQueryService = messageStateQueryService;
             _messageStateQueryService.NotNull(nameof(messageStateQueryService));
         }
-        public async Task<GetMessageStateDto> Handle(int Id)
+        public async Task<GetMessageStateDto> Handle(IntId Id)
         {
-            var messageState = await _messageStateQueryService.Get(Id);
+            var messageState = await _messageStateQueryService.Get(Id.Id);
             return _mapper.Map<GetMessageStateDto>(messageState);
         }
     }

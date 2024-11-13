@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SmsHub.Domain.BaseDomainEntities.Id
+﻿namespace SmsHub.Domain.BaseDomainEntities.Id
 {
-    internal class GuidId
+    public  record GuidId
     {
+        public Guid Id { get; init; }
     }
 }
