@@ -1,12 +1,28 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SmsHub.Application.Features.Security.Handlers.Queries.Contracts;
+using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.Id;
+using SmsHub.Domain.Features.Security.MediatorDtos.Queries;
 
 namespace SmsHub.Api.Controllers.Security.Querries
 {
-    public class ServerUserGetByIdController : Controller
+    [Route(nameof(Security))]
+    [ApiController]
+    public class ServerUserGetByIdController : ControllerBase
     {
-        public IActionResult Index()
+        private readonly IServerUserGetByIdHandler _getByIdHandler;
+        public ServerUserGetByIdController(IServerUserGetByIdHandler getByIdHandler)
         {
-            return View();
+            _getByIdHandler = getByIdHandler;
+            _getByIdHandler.NotNull(nameof(getByIdHandler));
+        }
+
+        [HttpPost]
+        [Route(nameof(GetById))]
+        public async Task<GetServerUserDto> GetById([FromBody] IntId Id)
+        {
+            var serverUser = await _getByIdHandler.Handle(Id);
+            return serverUser;
         }
     }
 }
