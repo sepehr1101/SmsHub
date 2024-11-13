@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SmsHub.Application.Features.Consumer.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Queries;
 using SmsHub.Persistence.Features.Consumer.Queries.Contracts;
 
@@ -18,9 +19,9 @@ namespace SmsHub.Application.Features.Consumer.Handlers.Queries.Implementations
             _consumerQueryService = consumerQueryService;
             _consumerQueryService.NotNull(nameof(consumerQueryService));
         }
-        public async Task<GetConsumerDto> Handle(int Id)
+        public async Task<GetConsumerDto> Handle(IntId Id)
         {
-           var consumer= await _consumerQueryService.Get(Id);
+           var consumer= await _consumerQueryService.Get(Id.Id);
             return _mapper.Map<GetConsumerDto>(consumer);
         }
     }

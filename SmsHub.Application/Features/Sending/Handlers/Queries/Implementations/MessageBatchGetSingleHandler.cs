@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SmsHub.Application.Features.Sending.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Queries;
 using SmsHub.Persistence.Features.Sending.Queries.Contracts;
 
@@ -18,9 +19,9 @@ namespace SmsHub.Application.Features.Sending.Handlers.Queries.Implementations
             _messageBatchQueryService = messageBatchQueryService;
             _messageBatchQueryService.NotNull(nameof(messageBatchQueryService));
         }
-        public async Task<GetMessageBatchDto> Handle(int Id)
+        public async Task<GetMessageBatchDto> Handle(IntId Id)
         {
-            var messageBatch = await _messageBatchQueryService.Get(Id);
+            var messageBatch = await _messageBatchQueryService.Get(Id.Id);
             return _mapper.Map<GetMessageBatchDto>(messageBatch);
         }
     }

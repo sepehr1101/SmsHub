@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SmsHub.Application.Features.Contact.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Features.Contact.MediatorDtos.Queries;
 using SmsHub.Persistence.Features.Contact.Queries.Contracts;
 
@@ -18,9 +19,9 @@ namespace SmsHub.Application.Features.Contact.Handlers.Queries.Implementations
             _contactQueryService = contactQueryService;
             _contactQueryService.NotNull(nameof(contactQueryService));
         }
-        public async Task<GetContactDto> Handle(int Id)
+        public async Task<GetContactDto> Handle(IntId Id)
         {
-            var contact = await _contactQueryService.Get(Id);
+            var contact = await _contactQueryService.Get(Id.Id);
             return _mapper.Map<GetContactDto>(contact);
         }
     }

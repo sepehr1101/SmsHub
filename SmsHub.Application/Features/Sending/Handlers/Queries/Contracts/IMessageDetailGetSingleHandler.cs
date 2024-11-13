@@ -1,9 +1,10 @@
-﻿using SmsHub.Domain.Features.Sending.MediatorDtos.Queries;
+﻿using SmsHub.Domain.BaseDomainEntities.Id;
+using SmsHub.Domain.Features.Sending.MediatorDtos.Queries;
 
 namespace SmsHub.Application.Features.Sending.Handlers.Queries.Contracts
 {
     public interface IMessageDetailGetSingleHandler
     {
-        Task<GetMessageDetailDto> Handle(int Id);
+        Task<GetMessageDetailDto> Handle(IntId Id);
     }
 }

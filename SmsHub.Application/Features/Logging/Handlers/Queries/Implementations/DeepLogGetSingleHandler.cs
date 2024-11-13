@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SmsHub.Application.Features.Logging.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Queries;
 using SmsHub.Persistence.Features.Logging.Queries.Contracts;
 
@@ -18,9 +19,9 @@ namespace SmsHub.Application.Features.Logging.Handlers.Queries.Implementations
             _deepLogQueryService = deepLogQueryService;
             _deepLogQueryService.NotNull(nameof(deepLogQueryService));
         }
-        public async Task<GetDeepLogDto> Handle(int Id)
+        public async Task<GetDeepLogDto> Handle(IntId Id)
         {
-            var deepLog = await _deepLogQueryService.Get(Id);
+            var deepLog = await _deepLogQueryService.Get(Id.Id);
             return _mapper.Map<GetDeepLogDto>(deepLog);
         }
     }

@@ -5,7 +5,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="BaseDomainEntities\" />
     <Folder Include="BaseValueObjects\" />
     <Folder Include="BaseValidations\" />
     <Folder Include="Features\Credit\EfConfig\" />

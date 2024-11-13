@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SmsHub.Application.Features.Config.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Features.Config.MediatorDtos.Queries;
 using SmsHub.Persistence.Features.Config.Queries.Contracts;
 
@@ -18,9 +19,9 @@ namespace SmsHub.Application.Features.Config.Handlers.Queries.Implementations
             _permittedTimeQueryService = permittedTimeQueryService;
             _permittedTimeQueryService.NotNull(nameof(permittedTimeQueryService));
         }
-        public async Task<GetPermittedTimeDto> Handle(int Id)
+        public async Task<GetPermittedTimeDto> Handle(IntId Id)
         {
-            var permittedTime = await _permittedTimeQueryService.Get(Id);
+            var permittedTime = await _permittedTimeQueryService.Get(Id.Id);
             return _mapper.Map<GetPermittedTimeDto>(permittedTime);
         }
     }

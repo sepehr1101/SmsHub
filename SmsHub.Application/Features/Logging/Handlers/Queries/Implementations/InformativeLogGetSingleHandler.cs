@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SmsHub.Application.Features.Logging.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Queries;
 using SmsHub.Persistence.Features.Logging.Queries.Contracts;
 
@@ -17,9 +18,9 @@ namespace SmsHub.Application.Features.Logging.Handlers.Queries.Implementations
             _informativeLogQueryService = informativeLogQueryService;
             _informativeLogQueryService.NotNull(nameof(informativeLogQueryService));
         }
-        public async Task<GetInforamtaiveLogDto> Handle(int Id)
+        public async Task<GetInforamtaiveLogDto> Handle(IntId Id)
         {
-            var informativeLog = await _informativeLogQueryService.Get(Id);
+            var informativeLog = await _informativeLogQueryService.Get(Id.Id);
             return _mapper.Map<GetInforamtaiveLogDto>(informativeLog);
         }
     }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SmsHub.Application.Features.Security.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Features.Security.MediatorDtos.Queries;
 using SmsHub.Persistence.Features.Security.Queries.Contracts;
 
@@ -18,9 +19,9 @@ namespace SmsHub.Application.Features.Security.Handlers.Queries.Implementations
             _serverUserQueryService = serverUserQueryService;
             _serverUserQueryService.NotNull(nameof(serverUserQueryService));
         }
-        public async Task<GetServerUserDto> Handle(int Id)
+        public async Task<GetServerUserDto> Handle(IntId Id)
         {
-            var serverUser = await _serverUserQueryService.GetById(Id);
+            var serverUser = await _serverUserQueryService.GetById(Id.Id);
             return _mapper.Map<GetServerUserDto>(serverUser);
         }
     }
