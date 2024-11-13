@@ -8,7 +8,7 @@ namespace SmsHub.Api.Controllers.Config.Querries
 {
     [Route(nameof(Config))]
     [ApiController]
-    public class ConfigGetSingleController : Controller
+    public class ConfigGetSingleController : ControllerBase
     {
         private readonly IConfigGetSingleHandler _getSingleHandler;
         public ConfigGetSingleController(IConfigGetSingleHandler getSingleHandler)

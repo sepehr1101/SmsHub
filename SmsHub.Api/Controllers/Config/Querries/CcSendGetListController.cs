@@ -8,7 +8,7 @@ namespace SmsHub.Api.Controllers.Config.Querries
 {
     [Route(nameof(CcSend))]
     [ApiController]
-    public class CcSendGetListController : Controller
+    public class CcSendGetListController : ControllerBase
     {
         private readonly ICcSendGetListHandler _getListHandler;
         public CcSendGetListController(ICcSendGetListHandler getListHandler)

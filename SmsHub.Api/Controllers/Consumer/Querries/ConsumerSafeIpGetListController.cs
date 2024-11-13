@@ -8,7 +8,7 @@ namespace SmsHub.Api.Controllers.Consumer.Querries
 {
     [Route(nameof(ConsumerSafeIp))]
     [ApiController]
-    public class ConsumerSafeIpGetListController : Controller
+    public class ConsumerSafeIpGetListController : ControllerBase
     {
         private readonly IConsumerSafeIpGetListHandler _getListHandler;
         public ConsumerSafeIpGetListController(IConsumerSafeIpGetListHandler getListHandler)

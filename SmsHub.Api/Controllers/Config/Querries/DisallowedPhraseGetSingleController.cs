@@ -9,7 +9,7 @@ namespace SmsHub.Api.Controllers.Config.Querries
 {
     [Route(nameof(DisallowedPhrase))]
     [ApiController]
-    public class DisallowedPhraseGetSingleController : Controller
+    public class DisallowedPhraseGetSingleController : ControllerBase
     {
         private readonly IDisallowedPhraseGetSingleHandler _getSingleHandler;
         public DisallowedPhraseGetSingleController(IDisallowedPhraseGetSingleHandler getSingleHandler)

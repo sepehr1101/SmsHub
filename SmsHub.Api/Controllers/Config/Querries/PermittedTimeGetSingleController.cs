@@ -9,7 +9,7 @@ namespace SmsHub.Api.Controllers.Config.Querries
 {
     [Route(nameof(PermittedTime))]
     [ApiController]
-    public class PermittedTimeGetSingleController : Controller
+    public class PermittedTimeGetSingleController : ControllerBase
     {
         private readonly IPermittedTimeGetSingleHandler _getSingleHandler;
         public PermittedTimeGetSingleController(IPermittedTimeGetSingleHandler getSingleHandler)

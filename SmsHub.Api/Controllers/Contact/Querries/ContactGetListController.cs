@@ -8,7 +8,7 @@ namespace SmsHub.Api.Controllers.Contact.Querries
 {
     [Route(nameof(Contact))]
     [ApiController]
-    public class ContactGetListController : Controller
+    public class ContactGetListController : ControllerBase
     {
         private readonly IContactGetListHandler _getListHandler;
         public ContactGetListController(IContactGetListHandler getListHandler)

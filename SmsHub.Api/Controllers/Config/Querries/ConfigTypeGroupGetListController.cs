@@ -8,7 +8,7 @@ namespace SmsHub.Api.Controllers.Config.Querries
 {
     [Route(nameof(ConfigTypeGroup))]
     [ApiController]
-    public class ConfigTypeGroupGetListController : Controller
+    public class ConfigTypeGroupGetListController : ControllerBase
     {
         private readonly IConfigTypeGroupGetListHandler _getListHandler;
         public ConfigTypeGroupGetListController(IConfigTypeGroupGetListHandler getListHandler)
