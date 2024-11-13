@@ -1,6 +1,5 @@
 ﻿using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
 
-[assembly: CollectionBehavior(DisableTestParallelization = true)]
 namespace SmsHub.IntegrationTests.Api
 {   
     public class ProviderControllerTests : BaseIntegrationTest

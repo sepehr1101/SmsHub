@@ -1,5 +1,8 @@
-﻿namespace SmsHub.Domain.Features.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SmsHub.Domain.Features.Entities
 {
+    [Table(nameof(CcSend))]
     public class CcSend
     {
         public int Id { get; set; }
