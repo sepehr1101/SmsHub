@@ -7,5 +7,6 @@ namespace SmsHub.Persistence.Features.Security.Queries.Contracts
         Task<ServerUser> GetById(int id);
         Task<ServerUser?> GetByApiKey(string apiKey);
         Task<bool> Any(string apiKey);
+        Task<ICollection<ServerUser>> GetAll();
     }
 }

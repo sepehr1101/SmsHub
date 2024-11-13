@@ -30,5 +30,10 @@ namespace SmsHub.Persistence.Features.Security.Queries.Implementations
         {
             return await _users.AnyAsync(u=>u.ApiKeyHash == apiKey);
         }
+        public async Task<ICollection<ServerUser>> GetAll()
+        {
+            return await _users.ToListAsync();
+        }
+
     }
 }

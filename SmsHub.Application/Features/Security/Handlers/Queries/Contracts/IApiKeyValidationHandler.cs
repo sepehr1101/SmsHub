@@ -5,6 +5,6 @@ namespace SmsHub.Application.Features.Security.Handlers.Queries.Contracts
 {
     public interface IApiKeyValidationHandler//:IRequestHandler<string, bool>
     {
-        Task<bool> Handle(StringId apiKey);
+        Task<bool> Handle(string apiKey);
     }
 }
