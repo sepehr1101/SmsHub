@@ -19,9 +19,9 @@ namespace SmsHub.Application.Features.Security.Handlers.Queries.Implementations
             _serverUserQueryService.NotNull();
         }
 
-        public async Task<bool> Handle(StringId apiKey)
+        public async Task<bool> Handle(string apiKey)
         {
-            var apiKeyHashed = await _securityOperations.GetSha512Hash(apiKey.apiKey);
+            var apiKeyHashed = await _securityOperations.GetSha512Hash(apiKey);
             return await _serverUserQueryService.Any(apiKeyHashed);
         }
     }
