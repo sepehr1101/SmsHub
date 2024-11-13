@@ -1,12 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SmsHub.Application.Features.Logging.Handlers.Queries.Contracts;
+using SmsHub.Common.Extensions;
+using SmsHub.Domain.Features.Logging.MediatorDtos.Queries;
 
 namespace SmsHub.Api.Controllers.Logging.Querries
 {
-    public class LogLevelGetListController : Controller
+    [Route(nameof(LogLevel))]
+    [ApiController]
+    public class LogLevelGetListController : ControllerBase
     {
-        public IActionResult Index()
+        private readonly ILogLevelGetListHandler _getListHandler;
+        public LogLevelGetListController(ILogLevelGetListHandler getListHandler)
         {
-            return View();
+            _getListHandler = getListHandler;
+            _getListHandler.NotNull(nameof(getListHandler));
+        }
+
+        [HttpPost]
+        [Route(nameof(GetList))]
+        public async Task<ICollection<GetLogLevelDto>> GetList()
+        {
+            var logLevels = await _getListHandler.Handle();
+            return logLevels;
         }
     }
 }

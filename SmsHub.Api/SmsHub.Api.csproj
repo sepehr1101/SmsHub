@@ -18,12 +18,10 @@
     <Folder Include="Controllers\Credit\Commands\Delete\" />
     <Folder Include="Controllers\Credit\Commands\Update\" />
     <Folder Include="Controllers\Credit\Querries\" />
-    <Folder Include="Controllers\Logging\Querries\" />
     <Folder Include="Controllers\Receiving\Commands\Create\" />
     <Folder Include="Controllers\Receiving\Commands\Delete\" />
     <Folder Include="Controllers\Receiving\Commands\Update\" />
     <Folder Include="Controllers\Receiving\Querries\" />
-    <Folder Include="Controllers\Security\Querries\" />
     <Folder Include="Controllers\Sending\Querries\" />
     <Folder Include="Controllers\Template\Querries\" />
     <Folder Include="Filters\" />

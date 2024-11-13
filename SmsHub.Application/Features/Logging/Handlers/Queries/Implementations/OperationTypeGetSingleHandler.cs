@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SmsHub.Application.Features.Logging.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Queries;
 using SmsHub.Persistence.Features.Logging.Queries.Contracts;
 
@@ -18,9 +19,9 @@ namespace SmsHub.Application.Features.Logging.Handlers.Queries.Implementations
             _operationTypeQueryService = operationTypeQueryService;
             _operationTypeQueryService.NotNull(nameof(operationTypeQueryService));
         }
-        public async Task<GetOperationTypeDto> Handle(int Id)
+        public async Task<GetOperationTypeDto> Handle(IntId Id)
         {
-            var operationType = await _operationTypeQueryService.Get();
+            var operationType = await _operationTypeQueryService.Get(Id.Id);
             return _mapper.Map<GetOperationTypeDto>(operationType);
         }
     }

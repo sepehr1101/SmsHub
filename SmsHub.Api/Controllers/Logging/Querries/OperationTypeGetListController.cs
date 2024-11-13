@@ -1,12 +1,28 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SmsHub.Application.Features.Logging.Handlers.Queries.Contracts;
+using SmsHub.Common.Extensions;
+using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Features.Logging.MediatorDtos.Queries;
 
 namespace SmsHub.Api.Controllers.Logging.Querries
 {
-    public class OperationTypeGetListController : Controller
+    [Route(nameof(OperationType))]
+    [ApiController]
+    public class OperationTypeGetListController : ControllerBase
     {
-        public IActionResult Index()
+        private readonly IOperationTypeGetListHandler _getListHandler;
+        public OperationTypeGetListController(IOperationTypeGetListHandler getListHandler)
         {
-            return View();
+            _getListHandler = getListHandler;
+            _getListHandler.NotNull(nameof(getListHandler));
+        }
+
+        [HttpPost]
+        [Route(nameof(GetList))]
+        public async Task<ICollection<GetOperationTypeDto>> GetList()
+        {
+            var operationTypes = await _getListHandler.Handle();
+            return operationTypes;
         }
     }
 }
