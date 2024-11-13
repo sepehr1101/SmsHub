@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SmsHub.Domain.BaseDomainEntities.Id;
+using SmsHub.Domain.Features.Security.MediatorDtos.Queries;
 
 namespace SmsHub.Application.Features.Security.Handlers.Queries.Contracts
 {
-    internal interface IServerUserGetAllHandler
+    public interface IServerUserGetAllHandler
     {
+        Task<ICollection<GetServerUserDto>> Handle();
     }
 }
