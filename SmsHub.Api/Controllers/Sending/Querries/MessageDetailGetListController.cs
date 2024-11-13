@@ -22,7 +22,7 @@ namespace SmsHub.Api.Controllers.Sending.Querries
         public async Task<ICollection<GetMessageDetailDto>> GetList()
         {
             var messageDetails = await _getListHandler.Handle();
-            return messageDetails
+            return messageDetails;
         }
     }
 }
