@@ -1,6 +1,6 @@
 ﻿using SmsHub.Domain.Features.Contact.MediatorDtos.Commands.Create;
 
-[assembly: CollectionBehavior(DisableTestParallelization = true)]
+//[assembly: CollectionBehavior(DisableTestParallelization = true)]
 namespace SmsHub.IntegrationTests.Api
 {
     public class ContactNumberTest : BaseIntegrationTest

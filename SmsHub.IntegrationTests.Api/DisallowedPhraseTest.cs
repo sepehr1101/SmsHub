@@ -25,7 +25,7 @@ namespace SmsHub.IntegrationTests.Api
                 Title = "First ConfigTypeGroup",
                 Description = "Sample Sentence"
             };
-            var phrase = new CreateDisallowedPhraseDto()
+            var disallowedPhrase = new CreateDisallowedPhraseDto()
             {
                 ConfigTypeGroupId = 1,
                 Phrase = "sample Phrase"
@@ -42,7 +42,7 @@ namespace SmsHub.IntegrationTests.Api
             Assert.True(true);
 
             //Act
-            await PostAsync<CreateDisallowedPhraseDto, CreateDisallowedPhraseDto>("/DisallowedPhrase/Create", phrase);
+            await PostAsync<CreateDisallowedPhraseDto, CreateDisallowedPhraseDto>("/DisallowedPhrase/Create", disallowedPhrase);
             //Assert
             Assert.True(true);
         }
