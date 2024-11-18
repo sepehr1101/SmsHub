@@ -1,5 +1,8 @@
-﻿using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
+﻿using SmsHub.Domain.Constants;
+using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
+using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Delete;
 
+//[assembly: CollectionBehavior(DisableTestParallelization = true)]
 namespace SmsHub.IntegrationTests.Api
 {   
     public class ProviderControllerTests : BaseIntegrationTest
@@ -10,7 +13,7 @@ namespace SmsHub.IntegrationTests.Api
         }
 
         [Fact]
-        public async void CreateProvider_ProviderDataDto_ShouldCreatProvider()
+        public async void CreateProvider_ProviderDataDto_ShouldCreateProvider()
         {
             // Arrange
             var provider = new CreateProviderDto
@@ -31,7 +34,7 @@ namespace SmsHub.IntegrationTests.Api
         }
 
         [Fact]
-        public async void _1_CreateProvider_ProviderDataDto_ShouldCreatProvider()
+        public async void _1_CreateProvider_ProviderDataDto_ShouldCreateProvider()
         {
             // Arrange
             var provider = new CreateProviderDto
@@ -51,5 +54,22 @@ namespace SmsHub.IntegrationTests.Api
             Assert.True(true);
         }
 
+        [Fact]
+        public async void DeleteProvider_ProviderDataDto_ShouldCreateProvider()
+        {
+            // Arrange
+            var deleteProvider = new DeleteProviderDto()
+            {
+                Id=ProviderEnum.Magfa
+            };
+
+            // Act
+            await PostAsync<DeleteProviderDto,DeleteProviderDto>("/Provider/Delete", deleteProvider);
+
+            // Assert 
+            Assert.True(true);
+        }
     }
+
+
 }

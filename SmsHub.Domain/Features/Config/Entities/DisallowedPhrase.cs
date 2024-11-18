@@ -1,5 +1,8 @@
-﻿namespace SmsHub.Domain.Features.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SmsHub.Domain.Features.Entities
 {
+    [Table(nameof(DisallowedPhrase))]
     public class DisallowedPhrase
     {
         public int Id { get; set; }

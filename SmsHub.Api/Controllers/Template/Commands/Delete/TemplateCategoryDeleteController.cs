@@ -9,11 +9,11 @@ namespace SmsHub.Api.Controllers.Template.Commands.Delete
 {
     [Route(nameof(TemplateCategory))]
     [ApiController]
-    public class TemplateCategoryController : ControllerBase
+    public class TemplateCategoryDeleteController : ControllerBase
     {
         private readonly IUnitOfWork _uow;
         private readonly ITemplateCategoryDeleteHandler _deleteCommandHandler;
-        public TemplateCategoryController(IUnitOfWork uow, ITemplateCategoryDeleteHandler deleteCommandHandler)
+        public TemplateCategoryDeleteController(IUnitOfWork uow, ITemplateCategoryDeleteHandler deleteCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));
@@ -28,7 +28,7 @@ namespace SmsHub.Api.Controllers.Template.Commands.Delete
         {
             await _deleteCommandHandler.Handle(deleteDto, cancellationToken);
             await _uow.SaveChangesAsync(cancellationToken);
-            return Ok();
+            return Ok(deleteDto);
         }
     }
 }
