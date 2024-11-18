@@ -25,7 +25,7 @@ namespace SmsHub.IntegrationTests.Api
             builder.ConfigureTestServices(services =>
             {
                 var dbContextServiceDescriptor = services.SingleOrDefault(s =>
-                        s.ServiceType == typeof(DbContextOptions<TestContext>));
+                        s.ServiceType == typeof(DbContextOptions<SmsHubContext>));
 
                 if (dbContextServiceDescriptor is not null)
                 {
@@ -34,7 +34,7 @@ namespace SmsHub.IntegrationTests.Api
                 }
 
                 // Register dbcontext with container connection string
-                services.AddDbContext<TestContext>(options =>
+                services.AddDbContext<SmsHubContext>(options =>
                 {
                     var connectionString = MigrationRunner.GetConnectionInfo().Item1;
                     //string connectionString = _container.GetConnectionString();                   

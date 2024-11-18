@@ -4,13 +4,13 @@ using SmsHub.Persistence.Extensions;
 
 namespace SmsHub.Persistence.Contexts.Implementation
 {
-    public partial class TestContext : BaseDbContext
+    public partial class SmsHubContext : BaseDbContext
     {
-        public TestContext()
+        public SmsHubContext()
         {
         }
 
-        public TestContext(DbContextOptions<TestContext> options)
+        public SmsHubContext(DbContextOptions<SmsHubContext> options)
             : base(options)
         {
         }

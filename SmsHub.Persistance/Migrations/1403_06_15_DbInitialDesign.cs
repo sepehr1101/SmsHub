@@ -169,7 +169,7 @@ namespace SmsHub.Persistence.Migrations
             Create.Table(nameof(TableName.MessageStateCategory))
                 .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(TableName.MessageStateCategory)).Identity()
                 .WithColumn("Title").AsString(_255)
-                .WithColumn($"{nameof(TableName.Provider)}").AsInt16()
+                .WithColumn($"{nameof(TableName.Provider)}{Id}").AsInt16()
                     .ForeignKey(NamingHelper.Fk(TableName.Provider, TableName.MessageStateCategory), nameof(TableName.Provider), Id)
                 .WithColumn("IsError").AsBoolean()
                 .WithColumn("Css").AsString(_1023);
