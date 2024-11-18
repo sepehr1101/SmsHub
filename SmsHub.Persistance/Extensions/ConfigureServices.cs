@@ -7,11 +7,10 @@ namespace SmsHub.Persistence.Extensions
     {
         public static void AddPersistenceInjections(this IServiceCollection services)
         {            
-            services.Scan(scan =>
-                scan
+            services.Scan(scan => scan
                     .FromCallingAssembly()
                     .AddClasses(publicOnly: false)
-                    .UsingRegistrationStrategy(RegistrationStrategy.Skip)
+                    .UsingRegistrationStrategy(RegistrationStrategy.Append)
                     .AsImplementedInterfaces()
                     .WithScopedLifetime());
         }

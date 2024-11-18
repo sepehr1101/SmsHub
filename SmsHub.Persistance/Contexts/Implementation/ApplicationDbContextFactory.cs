@@ -4,9 +4,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace SmsHub.Persistence.Contexts.Implementation
 {
-    public class ApplicationDbContextFactory : IDesignTimeDbContextFactory<TestContext>
+    public class ApplicationDbContextFactory : IDesignTimeDbContextFactory<SmsHubContext>
     {
-        public TestContext CreateDbContext(string[] args)
+        public SmsHubContext CreateDbContext(string[] args)
         {
             var basePath = Directory.GetCurrentDirectory();
             Console.WriteLine($"Using `{basePath}` as the BasePath");
@@ -14,10 +14,10 @@ namespace SmsHub.Persistence.Contexts.Implementation
                                     .SetBasePath(basePath)
                                     .AddJsonFile("appsettings.json")
                                     .Build();
-            var builder = new DbContextOptionsBuilder<TestContext>();
+            var builder = new DbContextOptionsBuilder<SmsHubContext>();
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             builder.UseSqlServer(connectionString);
-            return new TestContext(builder.Options);
+            return new SmsHubContext(builder.Options);
         }
     }
 }

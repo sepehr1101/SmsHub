@@ -22,7 +22,7 @@ namespace SmsHub.IntegrationTests.Api
                 Css = "Sample Css",
                 IsError = true,
                 Title = "Sample Title",
-                Provider = 3
+                ProviderId = 3
             };////invalid dto because ProviderNavigation is invalid(null)
             var line = new CreateLineDto()
             {
@@ -83,7 +83,7 @@ namespace SmsHub.IntegrationTests.Api
                 Css = "Sample Css",
                 IsError = true,
                 Title = "Sample Title",
-                Provider = 3
+                ProviderId = 3
             };////invalid dto because ProviderNavigation is invalid(null)
             var line = new CreateLineDto()
             {

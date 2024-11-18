@@ -1,7 +1,6 @@
 ﻿using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Delete;
 
-//[assembly: CollectionBehavior(DisableTestParallelization = true)]
 namespace SmsHub.IntegrationTests.Api
 {
     public class DisallowedPhraseControllerTest : BaseIntegrationTest

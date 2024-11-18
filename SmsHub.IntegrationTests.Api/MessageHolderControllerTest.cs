@@ -3,7 +3,6 @@ using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Delete;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Queries;
 
-//[assembly: CollectionBehavior(DisableTestParallelization = true)]
 namespace SmsHub.IntegrationTests.Api
 {
     public class MessageHolderControllerTest : BaseIntegrationTest

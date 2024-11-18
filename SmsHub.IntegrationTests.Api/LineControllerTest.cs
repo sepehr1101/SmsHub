@@ -2,7 +2,6 @@
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Delete;
 
-//[assembly: CollectionBehavior(DisableTestParallelization = true)]
 namespace SmsHub.IntegrationTests.Api
 {
     public class LineControllerTest:BaseIntegrationTest
