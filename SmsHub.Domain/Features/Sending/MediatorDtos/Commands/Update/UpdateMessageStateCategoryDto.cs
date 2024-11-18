@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using SmsHub.Domain.Constants;
 
 namespace SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Update
 {
@@ -6,7 +7,7 @@ namespace SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Update
     {
         public int Id { get; init; }
         public string Title { get; init; } = null!;
-        public short Provider { get; init; }
+        public ProviderEnum ProviderId { get; init; }
         public bool IsError { get; init; }
         public string Css { get; init; } = null!;
 

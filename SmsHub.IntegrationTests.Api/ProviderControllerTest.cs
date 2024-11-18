@@ -1,6 +1,7 @@
 ﻿using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Delete;
+using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Update;
 
 //[assembly: CollectionBehavior(DisableTestParallelization = true)]
 namespace SmsHub.IntegrationTests.Api
@@ -65,6 +66,29 @@ namespace SmsHub.IntegrationTests.Api
 
             // Act
             await PostAsync<DeleteProviderDto,DeleteProviderDto>("/Provider/Delete", deleteProvider);
+
+            // Assert 
+            Assert.True(true);
+        }
+
+
+        [Fact]
+        public async void UpdateProvider_ProviderDataDto_ShouldUpdateProvider()
+        {
+            // Arrange
+            var updateProvider = new UpdateProviderDto()
+            {
+                Id=ProviderEnum.Magfa,
+                BaseUri = "http://Updatebaseurl",
+                BatchSize = 10,
+                DefaultPreNumber = "100",
+                FallbackBaseUri = "https://fallbackurl",
+                Title = "Update title",
+                Website = "www.someProvider.ir"
+            };
+
+            // Act
+            await PostAsync<UpdateProviderDto, UpdateProviderDto>("/Provider/Update", updateProvider);
 
             // Assert 
             Assert.True(true);

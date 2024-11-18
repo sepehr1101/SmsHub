@@ -1,5 +1,7 @@
-﻿using SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create;
+﻿using SmsHub.Domain.Features.Template.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Template.MediatorDtos.Commands.Delete;
+using SQLitePCL;
 
 //[assembly: CollectionBehavior(DisableTestParallelization = true)]
 namespace SmsHub.IntegrationTests.Api
@@ -65,6 +67,46 @@ namespace SmsHub.IntegrationTests.Api
             await PostAsync<CreateTemplateDto, CreateTemplateDto>("/Template/Create", template);
 
             await PostAsync<DeleteTemplateDto, DeleteTemplateDto>("/Template/Delete", deleteTemplate);
+
+            //Assert
+            Assert.True(true);
+        }
+        
+        
+        [Fact]
+        public async void UpdateTemplate_TemplateDto_ShouldUpdateTemplate()
+        {
+            //Arrange
+            var templateCategory = new CreateTemplateCategoryDto()
+            {
+                Title = "First TemplateCategory",
+                Description = "Sample Sentence"
+            };
+            var template = new CreateTemplateDto()
+            {
+                Expression = "Sample Expression",
+                Title = "Sample Title",
+                IsActive = true,
+                Parameters = "Sample Parameter",
+                MinCredit = 2,
+                TemplateCategoryId = 1
+            };
+            var updateTemplate = new UpdateTemplateDto()
+            {
+                Id=1,
+                Expression = "Update Expression",
+                Title = "Update Title",
+                IsActive = true,
+                Parameters = "UpdateParameter",
+                MinCredit = 5,
+                TemplateCategoryId = 1
+            };
+
+            //Act
+            await PostAsync<CreateTemplateCategoryDto, CreateTemplateCategoryDto>("/TemplateCategory/Create", templateCategory);
+            await PostAsync<CreateTemplateDto, CreateTemplateDto>("/Template/Create", template);
+
+            await PostAsync<UpdateTemplateDto, UpdateTemplateDto>("/Template/Update", updateTemplate);
 
             //Assert
             Assert.True(true);

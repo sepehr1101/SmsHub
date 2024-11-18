@@ -1,4 +1,5 @@
-﻿using SmsHub.Domain.Features.Contact.MediatorDtos.Commands.Create;
+﻿using SmsHub.Domain.Features.Contact.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Contact.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Contact.MediatorDtos.Commands.Delete;
 
 //[assembly: CollectionBehavior(DisableTestParallelization = true)]
@@ -75,6 +76,47 @@ namespace SmsHub.IntegrationTests.Api
             await PostAsync<CreateContactNumberDto, CreateContactNumberDto>("/ContactNumber/Create", contactNumber);
 
             await PostAsync<DeleteContactNumberDto, DeleteContactNumberDto>("/ContactNumber/Delete", deleteContactNumber);
+           
+            //Assert
+            Assert.True(true);
+        }
+        
+        
+        [Fact]
+        public async void UpdateContactNumber_ContactNumberDto_ShouldUpdateContactNumber()
+        {
+            //Arrange
+            var contactCategory = new CreateContactCategoryDto()
+            {
+                Title = "Sample Title",
+                Css = "Sample Css",
+                Description = "Sample Description"
+            };
+            var contactNumberCategory = new CreateContactNumberCategoryDto()
+            {
+                Title = "Sample Title",
+                Css = "Sample Css"
+            };
+            var contactNumber = new CreateContactNumberDto()
+            {
+                ContactCategoryId = 1,
+                ContactNumberCategoryId = 1,
+                Number = "Sample Number"
+            };
+            var updateContactNumber = new UpdateContactNumberDto()
+            {
+                Id = 1,
+                ContactCategoryId=1,
+                ContactNumberCategoryId=1,
+                Number="Update Number"
+            };
+
+            //Act
+            await PostAsync<CreateContactCategoryDto, CreateContactCategoryDto>("/ContactCategory/Create", contactCategory);
+            await PostAsync<CreateContactNumberCategoryDto, CreateContactNumberCategoryDto>("/ContactNumberCategory/Create", contactNumberCategory);
+            await PostAsync<CreateContactNumberDto, CreateContactNumberDto>("/ContactNumber/Create", contactNumber);
+
+            await PostAsync<UpdateContactNumberDto, UpdateContactNumberDto>("/ContactNumber/Update", updateContactNumber);
            
             //Assert
             Assert.True(true);

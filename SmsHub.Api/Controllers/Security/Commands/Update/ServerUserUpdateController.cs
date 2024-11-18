@@ -26,7 +26,7 @@ namespace SmsHub.Api.Controllers.Security.Commands.Update
         public async Task<IActionResult> Update([FromBody] int id)
         {
             await _updateApiKeyHandler.Handle(id);  
-            return Ok();
+            return Ok(id);
         }
     }
 }

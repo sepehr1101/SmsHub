@@ -1,4 +1,5 @@
-﻿using SmsHub.Domain.Features.Security.MediatorDtos.Commands;
+﻿using SmsHub.Domain.Features.Security.Dtos;
+using SmsHub.Domain.Features.Security.MediatorDtos.Commands;
 
 //[assembly: CollectionBehavior(DisableTestParallelization = true)]
 namespace SmsHub.IntegrationTests.Api
@@ -22,13 +23,9 @@ namespace SmsHub.IntegrationTests.Api
 
             };
             //Act
-            var apiKey = await PostAsync<CreateServerUserDto, string>("/ServerUser/Create", serverUser);
+            var apiKey = await PostAsync<CreateServerUserDto, ApiKeyAndHash>("/ServerUser/Create", serverUser);
             //Arrange
             Assert.True(true);
-
-
-            //everything is Correct but the return of CreateServerUserController in string(hash)
-            //so PostAsync method have error because can't deserialize one string
         }
         
         
@@ -49,15 +46,11 @@ namespace SmsHub.IntegrationTests.Api
             };
 
             //Act
-            var apiKey = await PostAsync<CreateServerUserDto, string>("/ServerUser/Create", serverUser);
+            var apiKey = await PostAsync<CreateServerUserDto, ApiKeyAndHash>("/ServerUser/Create", serverUser);
             await PostAsync<DeleteServerUserDto, DeleteServerUserDto>("/ServerUser/Delete", deleteServerUser);
 
             //Arrange
             Assert.True(true);
-
-
-            //everything is Correct but the return of CreateServerUserController in string(hash)
-            //so PostAsync method have error because can't deserialize one string
         }
     }
 }

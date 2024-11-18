@@ -1,4 +1,5 @@
-﻿using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Create;
+﻿using SmsHub.Domain.Features.Logging.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Delete;
 
 //[assembly: CollectionBehavior(DisableTestParallelization = true)]
@@ -47,6 +48,32 @@ namespace SmsHub.IntegrationTests.Api
             //Act
             await PostAsync<CreateLogLevelDto, CreateLogLevelDto>("/LogLevel/Create", logLevel);
             await PostAsync<DeleteLogLevelDto, DeleteLogLevelDto>("/LogLevel/Delete", deleteLogLevel);
+
+            //Asser
+            Assert.True(true);
+
+        }
+        
+        [Fact]
+        public async void UpdateLogLevel_LogLevelDto_ShouldUpdateLogLevel()
+        {
+            //Arrange
+            var logLevel = new CreateLogLevelDto()
+            {
+                Id = 1,
+                Title = "sample title",
+                Css = "sample Css"
+            };
+            var updateLogLevel = new UpdateLogLevelDto()
+            {
+                Id=1,
+                Title = "Update title",
+                Css = "Update Css"
+            };
+
+            //Act
+            await PostAsync<CreateLogLevelDto, CreateLogLevelDto>("/LogLevel/Create", logLevel);
+            await PostAsync<UpdateLogLevelDto, UpdateLogLevelDto>("/LogLevel/Update", updateLogLevel);
 
             //Asser
             Assert.True(true);

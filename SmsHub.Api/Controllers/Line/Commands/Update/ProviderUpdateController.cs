@@ -31,7 +31,7 @@ namespace SmsHub.Api.Controllers.Line.Commands.Update
         {
             await _updateProviderHandler.Handle(updateProviderDto, cancellationToken);
             await _uow.SaveChangesAsync(cancellationToken);
-            return Ok();
+            return Ok(updateProviderDto);
         }
     }
 }

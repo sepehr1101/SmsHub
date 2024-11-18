@@ -1,4 +1,5 @@
-﻿using SmsHub.Domain.Features.Contact.MediatorDtos.Commands.Create;
+﻿using SmsHub.Domain.Features.Contact.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Contact.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Contact.MediatorDtos.Commands.Delete;
 
 //[assembly: CollectionBehavior(DisableTestParallelization = true)]
@@ -42,6 +43,29 @@ namespace SmsHub.IntegrationTests.Api
             //Act
             await PostAsync<CreateContactDto, CreateContactDto>("/Contact/Create", contact);
             await PostAsync<DeleteContactDto, DeleteContactDto>("/Contact/Delete", deleteContact);
+
+            //Assert
+            Assert.True(true);
+        }
+        
+        
+        [Fact]
+        public async void UpdateContact_ContactDto_ShouldUpdateContact()
+        {
+            //Arrange
+            var contact = new CreateContactDto()
+            {
+                Title = "sample title"
+            };
+            var updateContact = new UpdateContactDto()
+            {
+                Id  =1,
+                Title="Update Title"
+            };
+
+            //Act
+            await PostAsync<CreateContactDto, CreateContactDto>("/Contact/Create", contact);
+            await PostAsync<UpdateContactDto, UpdateContactDto>("/Contact/Update", updateContact);
 
             //Assert
             Assert.True(true);

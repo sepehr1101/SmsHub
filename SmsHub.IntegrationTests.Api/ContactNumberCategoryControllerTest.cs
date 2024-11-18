@@ -1,4 +1,5 @@
-﻿using SmsHub.Domain.Features.Contact.MediatorDtos.Commands.Create;
+﻿using SmsHub.Domain.Features.Contact.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Contact.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Contact.MediatorDtos.Commands.Delete;
 
 //[assembly: CollectionBehavior(DisableTestParallelization = true)]
@@ -47,6 +48,31 @@ namespace SmsHub.IntegrationTests.Api
             //Act
             await PostAsync<CreateContactNumberCategoryDto, CreateContactNumberCategoryDto>("/ContactNumberCategory/Create", contactNumberCategory);
             await PostAsync<DeleteContactNumberCategoryDto, DeleteContactNumberCategoryDto>("/ContactNumberCategory/Delete",deleteContactNumberCategory);
+            
+            //Assert
+            Assert.True(true);
+        }
+        
+        
+        [Fact]
+        public async void UpdateContactNumber_ContactNumberDto_ShouldUpdateContactNumber()
+        {
+            //Arrange
+            var contactNumberCategory = new CreateContactNumberCategoryDto()
+            {
+                Title = "Sample Title",
+                Css = "Sample Css"
+            };
+            var updateContactNumbetCategory = new UpdateContactNumberCategoryDto()
+            {
+                Id=1,
+                Title="Update Title",
+                Css="Update Css"
+            };
+
+            //Act
+            await PostAsync<CreateContactNumberCategoryDto, CreateContactNumberCategoryDto>("/ContactNumberCategory/Create", contactNumberCategory);
+            await PostAsync<UpdateContactNumberCategoryDto, UpdateContactNumberCategoryDto>("/ContactNumberCategory/Update",updateContactNumbetCategory);
             
             //Assert
             Assert.True(true);

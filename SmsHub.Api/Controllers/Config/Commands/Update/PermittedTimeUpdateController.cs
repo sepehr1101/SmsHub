@@ -28,7 +28,7 @@ namespace SmsHub.Api.Controllers.Config.Commands.Update
         {
             await _updateCommandHandler.Handle(updateDto,cancellationToken);
             await _uow.SaveChangesAsync(cancellationToken);
-            return Ok();
+           return Ok(updateDto);
         }
     }
 }

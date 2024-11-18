@@ -1,6 +1,7 @@
 ﻿using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Delete;
+using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Update;
 
 namespace SmsHub.IntegrationTests.Api
 {
@@ -48,6 +49,33 @@ namespace SmsHub.IntegrationTests.Api
             //Act
             await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
             await PostAsync<DeleteLineDto,DeleteLineDto>("/Line/Delete", deleteLine);
+
+            //Assert
+            Assert.True(true);
+        }
+
+
+        [Fact]
+        public async void UpdateLine_LineDto_ShouldUpdateLine()
+        {
+            //Arrange
+            var line = new CreateLineDto
+            {
+                ProviderId =ProviderEnum.Magfa,
+                Credential="string",
+                Number="string"
+            };
+            var updateLine = new UpdateLineDto()
+            {
+                Id =1,
+                ProviderId = ProviderEnum.Magfa,
+                Credential = "Update Credential",
+                Number = "Update Number"
+            };
+
+            //Act
+            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
+            await PostAsync<UpdateLineDto, UpdateLineDto>("/Line/Update",updateLine);
 
             //Assert
             Assert.True(true);

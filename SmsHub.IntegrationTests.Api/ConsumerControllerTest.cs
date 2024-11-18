@@ -1,4 +1,5 @@
-﻿using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Create;
+﻿using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Delete;
 
 //[assembly: CollectionBehavior(DisableTestParallelization = true)]
@@ -48,6 +49,33 @@ namespace SmsHub.IntegrationTests.Api
             //Act
             await PostAsync<CreateConsumerDto, CreateConsumerDto>("/Consumer/Create", consumer);
             await PostAsync<DeleteConsumerDto, DeleteConsumerDto>("/Consumer/Delete",deleteConsumer);
+           
+            //Assert
+            Assert.True(true);
+        }
+        
+        
+        [Fact]
+        public async void UpdateConsumer_ConsumerDto_ShouldUpdateConsumer()
+        {
+            //Arrange
+            var consumer = new CreateConsumerDto()
+            {
+                Title = "Sample Title",
+                ApiKey = "Sample ApiKey",
+                Description = "Sample Description"
+            };
+           var updateConsumer = new UpdateConsumerDto()
+           {
+               Id=1,
+               Title="Update Title",
+               ApiKey="Update ApiKey",
+               Description="Update Description"
+           };
+
+            //Act
+            await PostAsync<CreateConsumerDto, CreateConsumerDto>("/Consumer/Create", consumer);
+            await PostAsync<UpdateConsumerDto, UpdateConsumerDto>("/Consumer/Update",updateConsumer);
            
             //Assert
             Assert.True(true);

@@ -1,4 +1,5 @@
-﻿using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
+﻿using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Delete;
 
 namespace SmsHub.IntegrationTests.Api
@@ -40,7 +41,7 @@ namespace SmsHub.IntegrationTests.Api
             //Assert
             Assert.True(true);
         }
-        
+       
         
         [Fact]
         public async void DeleteDisallowedPhrase_DisallowedPhraseDto_ShouldDeleteDisallowedPhrase()
@@ -73,6 +74,46 @@ namespace SmsHub.IntegrationTests.Api
             await PostAsync<CreateDisallowedPhraseDto, CreateDisallowedPhraseDto>("/DisallowedPhrase/Create", disallowedPhrase);
 
             await PostAsync<DeleteDisallowedPhraseDto, DeleteDisallowedPhraseDto>("/DisallowedPhrase/Delete", deleteDisallowedPhrase);
+
+            //Assert
+            Assert.True(true);
+        }
+
+
+
+        [Fact]
+        public async void UpdateDisallowedPhrase_DisallowedPhraseDto_ShouldUpdateDisallowedPhrase()
+        {
+            //Arrange
+            var configType = new CreateConfigTypeDto()
+            {
+                Title = "First Config",
+                Description = "Sample Sentence"
+            };
+            var configTypeGroup = new CreateConfigTypeGroupDto()
+            {
+                ConfigTypeId = 1,
+                Title = "First ConfigTypeGroup",
+                Description = "Sample Sentence"
+            };
+            var disallowedPhrase = new CreateDisallowedPhraseDto()
+            {
+                ConfigTypeGroupId = 1,
+                Phrase = "sample Phrase"
+            };
+            var updateDisallowedPhrase = new UpdateDisallowedPhraseDto()
+            {
+                Id = 1,
+                ConfigTypeGroupId = 1,
+                Phrase = "Update Phrase"
+            };
+
+            //Act
+            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
+            await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
+            await PostAsync<CreateDisallowedPhraseDto, CreateDisallowedPhraseDto>("/DisallowedPhrase/Create", disallowedPhrase);
+
+            await PostAsync<UpdateDisallowedPhraseDto, UpdateDisallowedPhraseDto>("/DisallowedPhrase/Update", updateDisallowedPhrase);
 
             //Assert
             Assert.True(true);

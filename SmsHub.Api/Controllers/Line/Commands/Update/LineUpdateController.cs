@@ -23,11 +23,11 @@ namespace SmsHub.Api.Controllers.Line.Commands.Update
 
         [HttpPost]
         [Route(nameof(Update))]
-        public async Task<IActionResult> Update([FromBody] UpdateLineDto deleteDto, CancellationToken cancellationToken)
+        public async Task<IActionResult> Update([FromBody] UpdateLineDto updateDto, CancellationToken cancellationToken)
         {
-            await _updateCommandHandler.Handle(deleteDto, cancellationToken);
+            await _updateCommandHandler.Handle(updateDto, cancellationToken);
             await _uow.SaveChangesAsync(cancellationToken);
-            return Ok();
+           return Ok(updateDto);
         }
     }
 }

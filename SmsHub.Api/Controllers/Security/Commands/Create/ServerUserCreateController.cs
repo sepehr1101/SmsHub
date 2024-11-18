@@ -30,7 +30,7 @@ namespace SmsHub.Api.Controllers.Security.Commands.Create
         {
             var apiKeyAndHash= await _createServerUserHandler.Handle(dto, cancellationToken);
             await _uow.SaveChangesAsync(cancellationToken);
-            return Ok(apiKeyAndHash.ApiKey);
+            return Ok(apiKeyAndHash);
         }
     }
 }

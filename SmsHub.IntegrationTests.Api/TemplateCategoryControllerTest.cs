@@ -1,4 +1,5 @@
-﻿using SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create;
+﻿using SmsHub.Domain.Features.Template.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Template.MediatorDtos.Commands.Delete;
 
 //[assembly: CollectionBehavior(DisableTestParallelization = true)]
@@ -46,6 +47,32 @@ namespace SmsHub.IntegrationTests.Api
             //Act
             await PostAsync<CreateTemplateCategoryDto, CreateTemplateCategoryDto>("/TemplateCategory/Create", templateCategory);
             await PostAsync<DeleteTemplateCategoryDto, DeleteTemplateCategoryDto>("/TemplateCategory/Delete", deleteTemplateCategory);
+
+            //Assert
+            Assert.True(true);
+        }
+        
+        
+        
+        [Fact]
+        public async void UpdateTemplateCategory_TemplateCategoryDto_ShouldUpdateTemplateCategory()
+        {
+            //Arrange
+            var templateCategory = new CreateTemplateCategoryDto()
+            {
+                Title = "First TemplateCategory",
+                Description = "Sample Sentence"
+            };
+            var updateTemplateCategory = new UpdateTemplateCategoryDto()
+            {
+                Id=1,
+                Title = "Update TemplateCategory",
+                Description = "Update Sentence"
+            };
+
+            //Act
+            await PostAsync<CreateTemplateCategoryDto, CreateTemplateCategoryDto>("/TemplateCategory/Create", templateCategory);
+            await PostAsync<UpdateTemplateCategoryDto, UpdateTemplateCategoryDto>("/TemplateCategory/Update", updateTemplateCategory);
 
             //Assert
             Assert.True(true);
