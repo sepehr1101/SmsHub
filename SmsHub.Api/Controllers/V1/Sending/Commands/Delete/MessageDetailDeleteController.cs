@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Sending.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Entities;
@@ -9,7 +10,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Delete
 {
     [Route(nameof(MessagesDetail))]
     [ApiController]
-    public class MessageDetailDeleteController : ControllerBase
+    public class MessageDetailDeleteController : BaseController
     {
         private readonly IUnitOfWork _uow;
         private readonly IMessageDetailDeleteHandler _deleteCommandHandler;

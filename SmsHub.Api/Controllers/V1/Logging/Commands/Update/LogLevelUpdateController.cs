@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Logging.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Commands;
@@ -8,7 +9,7 @@ namespace SmsHub.Api.Controllers.V1.Logging.Commands.Update
 {
     [Route(nameof(LogLevel))]
     [ApiController]
-    public class LogLevelUpdateController : ControllerBase
+    public class LogLevelUpdateController : BaseController
     {
         private readonly IUnitOfWork _uow;
         private readonly ILogLevelUpdateHandler _updateCommandHandler;

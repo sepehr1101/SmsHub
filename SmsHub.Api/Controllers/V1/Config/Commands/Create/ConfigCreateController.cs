@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Config.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
@@ -8,7 +9,7 @@ namespace SmsHub.Api.Controllers.V1.Config.Commands.Create
 {
     [Route(nameof(Config))]
     [ApiController]
-    public class ConfigCreateController : ControllerBase
+    public class ConfigCreateController : BaseController
     {
         private readonly IUnitOfWork _uow;
         private readonly IConfigCreateHandler _createCommandHandler;

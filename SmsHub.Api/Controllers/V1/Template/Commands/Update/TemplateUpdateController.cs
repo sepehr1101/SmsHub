@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Template.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Template.MediatorDtos.Commands;
@@ -8,7 +9,7 @@ namespace SmsHub.Api.Controllers.V1.Template.Commands.Update
 {
     [Route(nameof(Template))]
     [ApiController]
-    public class TemplateUpdateController : ControllerBase
+    public class TemplateUpdateController : BaseController
     {
         private readonly IUnitOfWork _uow;
         private readonly ITemplateUpdateHandler _updateCommandHandler;

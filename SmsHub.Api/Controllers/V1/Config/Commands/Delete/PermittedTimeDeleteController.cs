@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Config.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Delete;
@@ -9,7 +10,7 @@ namespace SmsHub.Api.Controllers.V1.Config.Commands.Delete
 {
     [Route(nameof(PermittedTime))]
     [ApiController]
-    public class PermittedTimeDeleteController : ControllerBase
+    public class PermittedTimeDeleteController : BaseController
     {
         private readonly IUnitOfWork _uow;
         private readonly IPermittedTimeDeleteHandler _deleteCommandHandler;

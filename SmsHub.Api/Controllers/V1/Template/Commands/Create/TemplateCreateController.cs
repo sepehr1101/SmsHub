@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Template.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create;
@@ -8,7 +9,7 @@ namespace SmsHub.Api.Controllers.V1.Template.Commands.Create
 {
     [Route(nameof(Template))]
     [ApiController]
-    public class TemplateCreateController : ControllerBase
+    public class TemplateCreateController : BaseController
     {
         private readonly IUnitOfWork _uow;
         private readonly ITemplateCreateHandler _createCommandHandler;

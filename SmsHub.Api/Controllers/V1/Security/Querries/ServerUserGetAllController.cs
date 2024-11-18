@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Security.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Security.MediatorDtos.Queries;
@@ -7,7 +8,7 @@ namespace SmsHub.Api.Controllers.V1.Security.Querries
 {
     [Route(nameof(Security))]
     [ApiController]
-    public class ServerUserGetAllController : ControllerBase
+    public class ServerUserGetAllController : BaseController
     {
         private readonly IServerUserGetAllHandler _getAllHandler;
         public ServerUserGetAllController(IServerUserGetAllHandler getAllHandler)

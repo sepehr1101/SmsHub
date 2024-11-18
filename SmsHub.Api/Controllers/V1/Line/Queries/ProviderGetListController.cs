@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Line.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Entities;
@@ -8,7 +9,7 @@ namespace SmsHub.Api.Controllers.V1.Line.Queries
 {
     [Route(nameof(Provider))]
     [ApiController]
-    public class ProviderGetListController : ControllerBase
+    public class ProviderGetListController : BaseController
     {
         private readonly IProviderGetListHandler _getListHandler;
         public ProviderGetListController(IProviderGetListHandler getListHandler)

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Logging.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.Id;
@@ -9,7 +10,7 @@ namespace SmsHub.Api.Controllers.V1.Logging.Querries
 {
     [Route(nameof(InformativeLog))]
     [ApiController]
-    public class InformativeLogGetSingleController : ControllerBase
+    public class InformativeLogGetSingleController : BaseController
     {
         private readonly IInformativeLogGetSingleHandler _getSingleHandler;
         public InformativeLogGetSingleController(IInformativeLogGetSingleHandler getSingleHandler)

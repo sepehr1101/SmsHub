@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implementations;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Entities;
@@ -9,7 +10,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
 {
     [Route(nameof(MessagesHolder))]
     [ApiController]
-    public class MessageHolderCreateController : ControllerBase
+    public class MessageHolderCreateController : BaseController
     {
         private readonly IUnitOfWork _uow;
         private readonly IMessageHolderCreateHandler _createCommandHandler;

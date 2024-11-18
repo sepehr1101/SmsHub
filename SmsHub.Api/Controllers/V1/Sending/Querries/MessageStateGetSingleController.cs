@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Sending.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.Id;
@@ -9,7 +10,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Querries
 {
     [Route(nameof(MessageState))]
     [ApiController]
-    public class MessageStateGetSingleController : ControllerBase
+    public class MessageStateGetSingleController : BaseController
     {
         private readonly IMessageStateGetSingleHandler _getSingleHandler;
         public MessageStateGetSingleController(IMessageStateGetSingleHandler getSingleHandler)

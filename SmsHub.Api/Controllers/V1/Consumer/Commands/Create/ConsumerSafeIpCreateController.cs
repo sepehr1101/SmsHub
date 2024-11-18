@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Consumer.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Create;
@@ -9,7 +10,7 @@ namespace SmsHub.Api.Controllers.V1.Consumer.Commands.Create
 {
     [Route(nameof(ConsumerSafeIp))]
     [ApiController]
-    public class ConsumerSafeIpCreateController : ControllerBase
+    public class ConsumerSafeIpCreateController : BaseController
     {
         private readonly IUnitOfWork _uow;
         private readonly IConsumeSafeIprCreateHandler _createCommandHandler;

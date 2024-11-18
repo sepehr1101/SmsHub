@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Config.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
@@ -8,7 +9,7 @@ namespace SmsHub.Api.Controllers.V1.Config.Commands.Update
 {
     [Route(nameof(Config))]
     [ApiController]
-    public class ConfigUpdateController : ControllerBase
+    public class ConfigUpdateController : BaseController
     {
         private readonly IUnitOfWork _uow;
         private readonly IConfigUpdateHandler _updateCommandHandler;

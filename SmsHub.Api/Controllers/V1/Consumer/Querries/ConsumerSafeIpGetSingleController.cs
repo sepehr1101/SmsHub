@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Consumer.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.Id;
@@ -9,7 +10,7 @@ namespace SmsHub.Api.Controllers.V1.Consumer.Querries
 {
     [Route(nameof(ConsumerSafeIp))]
     [ApiController]
-    public class ConsumerSafeIpGetSingleController : ControllerBase
+    public class ConsumerSafeIpGetSingleController : BaseController
     {
         private readonly IConsumerSafeIpGetSingleHandler _getSingleHandler;
         public ConsumerSafeIpGetSingleController(IConsumerSafeIpGetSingleHandler getSingleHandler)

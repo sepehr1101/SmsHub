@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Config.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.Id;
@@ -10,7 +11,7 @@ namespace SmsHub.Api.Controllers.V1.Config.Querries
 {
     [Route(nameof(CcSend))]
     [ApiController]
-    public class CcSendGetSingleController : ControllerBase
+    public class CcSendGetSingleController : BaseController
     {
         private readonly ICcSendGetSingleHandler _getSingleHandler;
         public CcSendGetSingleController(ICcSendGetSingleHandler getSingleHandler)

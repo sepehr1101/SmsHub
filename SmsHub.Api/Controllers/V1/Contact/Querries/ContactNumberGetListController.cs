@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Contact.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Contact.MediatorDtos.Queries;
@@ -8,7 +9,7 @@ namespace SmsHub.Api.Controllers.V1.Contact.Querries
 {
     [Route(nameof(ContactNumber))]
     [ApiController]
-    public class ContactNumberGetListController : ControllerBase
+    public class ContactNumberGetListController : BaseController
     {
         private readonly IContactNumberGetListHandler _getListHandler;
         public ContactNumberGetListController(IContactNumberGetListHandler getListHandler)

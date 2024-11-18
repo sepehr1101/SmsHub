@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Config.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Config.MediatorDtos.Queries;
@@ -8,7 +9,7 @@ namespace SmsHub.Api.Controllers.V1.Config.Querries
 {
     [Route(nameof(DisallowedPhrase))]
     [ApiController]
-    public class DisallowedPhraseGetListController : ControllerBase
+    public class DisallowedPhraseGetListController : BaseController
     {
         private readonly IDisallowedPhraseGetListHandler _getListHandler;
         public DisallowedPhraseGetListController(IDisallowedPhraseGetListHandler getListHandler)

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Consumer.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands;
@@ -9,7 +10,7 @@ namespace SmsHub.Api.Controllers.V1.Consumer.Commands.Update
 {
     [Route(nameof(ConsumerLine))]
     [ApiController]
-    public class ConsumerLineUpdateController : ControllerBase
+    public class ConsumerLineUpdateController : BaseController
     {
         private readonly IUnitOfWork _uow;
         private readonly IConsumerLineUpdateHandler _updateCommandHandler;
