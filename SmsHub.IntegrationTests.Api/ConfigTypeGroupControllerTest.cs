@@ -1,17 +1,18 @@
 ﻿using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Delete;
 
+//[assembly: CollectionBehavior(DisableTestParallelization = true)]
 namespace SmsHub.IntegrationTests.Api
 {
-    public class CcSendTest: BaseIntegrationTest
+    public class ConfigTypeGroupControllerTest:BaseIntegrationTest
     {
-        public CcSendTest(TestEnvironmentWebApplicationFactory factory)
-            : base(factory)
+        public ConfigTypeGroupControllerTest(TestEnvironmentWebApplicationFactory factory)
+            :base(factory)
         {
         }
 
         [Fact]
-        public async void CreateCcSend_CcSendDto_ShouldCreateCcSend()
+        public async void CreateConfigTypeGroup_ConfigTypeGroupDto_ShouldCreateConfigTypeGroup()
         {
             //Arrange
             var configType = new CreateConfigTypeDto()
@@ -24,32 +25,18 @@ namespace SmsHub.IntegrationTests.Api
                 ConfigTypeId = 1,
                 Title = "First ConfigTypeGroup",
                 Description = "Sample Sentence"
-            };
-            var ccSend = new CreateCcSendDto()
-            {
-                ConfigTypeGroupId = 1,
-                Mobile = "09131234567"
             };
 
             //Act
             await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
-            //Assert
-            Assert.True(true);
-
-            //Act
             await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
-            //Assert
-            Assert.True(true);
 
-            //Act
-            await PostAsync<CreateCcSendDto, CreateCcSendDto>("/CcSend/Create", ccSend);
             //Assert
             Assert.True(true);
         }
 
-
         [Fact]
-        public async void DeleteCcSend_CcSendDto_ShouldDeleteCcSendDto()
+        public async void DeleteConfigTypeGroup_ConfigTypeGroupDto_ShouldDeleteConfigTypeGroup()
         {
             //Arrange
             var configType = new CreateConfigTypeDto()
@@ -63,25 +50,19 @@ namespace SmsHub.IntegrationTests.Api
                 Title = "First ConfigTypeGroup",
                 Description = "Sample Sentence"
             };
-            var ccSend = new CreateCcSendDto()
-            {
-                ConfigTypeGroupId = 1,
-                Mobile = "09131234567"
-            };
-            var delete_CcSend = new DeleteCcSendDto()
+            var deleteConfigTypeGroup = new DeleteConfigTypeGroupDto()
             {
                 Id=1
             };
+
             //Act
             await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
             await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
-            await PostAsync<CreateCcSendDto, CreateCcSendDto>("/CcSend/Create", ccSend);
 
-            await PostAsync<DeleteCcSendDto, DeleteCcSendDto>("/CcSend/Delete", delete_CcSend);
+            await PostAsync<DeleteConfigTypeGroupDto, DeleteConfigTypeGroupDto>("/ConfigTypeGroup/Delete", deleteConfigTypeGroup);
 
             //Assert
             Assert.True(true);
-
         }
     }
 }

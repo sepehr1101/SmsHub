@@ -27,7 +27,7 @@ namespace SmsHub.Api.Controllers.Config.Commands.Delete
         {
             await _deleteCommandHandler.Handle(deleteDto, cancellationToken);
             await _uow.SaveChangesAsync(cancellationToken);
-            return Ok();
+            return Ok(deleteDto);
         }
     }
 }
