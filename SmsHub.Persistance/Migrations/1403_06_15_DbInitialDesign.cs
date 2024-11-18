@@ -230,7 +230,7 @@ namespace SmsHub.Persistence.Migrations
         private void CreateConfigType()
         {
             Create.Table(nameof(TableName.ConfigType))
-                .WithColumn(Id).AsInt16().PrimaryKey(NamingHelper.Pk(TableName.ConfigType))
+                .WithColumn(Id).AsInt16().PrimaryKey(NamingHelper.Pk(TableName.ConfigType)).Identity()
                 .WithColumn("Title").AsString(_255)
                 .WithColumn("Description").AsString(int.MaxValue).Nullable();
         }

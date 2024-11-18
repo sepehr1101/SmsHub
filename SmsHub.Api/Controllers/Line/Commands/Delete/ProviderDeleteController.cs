@@ -30,7 +30,7 @@ namespace SmsHub.Api.Controllers.Line.Commands.Delete
         {
             await _providerDeleteHandler.Handle(deleteProviderDto, cancellationToken);
             await _uow.SaveChangesAsync(cancellationToken);
-            return Ok();
+            return Ok(deleteProviderDto);
         }
     }
 }

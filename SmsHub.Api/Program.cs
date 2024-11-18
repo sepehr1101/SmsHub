@@ -1,15 +1,25 @@
 using SmsHub.Api.Extensions;
 using SmsHub.Api.Middlewares;
 using SmsHub.Application.Extensions;
+using SmsHub.Application.Features.Contact.Handlers.Commands.Create.Contracts;
+using SmsHub.Application.Features.Contact.Handlers.Commands.Create.Implementations;
 using SmsHub.Common.Extensions;
 using SmsHub.Infrastructure.Extensions;
 using SmsHub.Persistence.Extensions;
+using SmsHub.Persistence.Features.Contact.Commands.Contracts;
+using SmsHub.Persistence.Features.Contact.Commands.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+
+//not found this dependency injection for integration test
+builder.Services.AddScoped<IContactNumberCreatedHandler, ContactNumberCreateHandler>();
+
+
 
 // DI
 builder.Services.AddCommonInjections();
