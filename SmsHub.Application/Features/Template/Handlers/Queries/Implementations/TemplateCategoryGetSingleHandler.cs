@@ -10,18 +10,18 @@ namespace SmsHub.Application.Features.Template.Handlers.Queries.Implementations
     public  class TemplateCategoryGetSingleHandler: ITemplateCategoryGetSingleHandler
     {
         private readonly IMapper _mapper;
-        private readonly ITemplateQueryService _templateQueryService;
-        public TemplateCategoryGetSingleHandler(IMapper mapper, ITemplateQueryService templateQueryService)
+        private readonly ITemplateCategoryQueryService _templateCategoryQueryService;
+        public TemplateCategoryGetSingleHandler(IMapper mapper, ITemplateCategoryQueryService templateCategoryQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
 
-            _templateQueryService = templateQueryService;
-            _templateQueryService.NotNull(nameof(templateQueryService));
+            _templateCategoryQueryService = templateCategoryQueryService;
+            _templateCategoryQueryService.NotNull(nameof(templateCategoryQueryService));
         }
         public async Task<GetTemplateCategoryDto> Handle(IntId Id)
         {
-            var templateCategory = await _templateQueryService.Get(Id.Id);
+            var templateCategory = await _templateCategoryQueryService.Get(Id.Id);
             return _mapper.Map<GetTemplateCategoryDto>(templateCategory);
         }
     }

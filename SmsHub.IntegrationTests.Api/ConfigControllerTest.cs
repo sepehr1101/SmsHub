@@ -1,6 +1,9 @@
-﻿using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
+﻿using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+using SmsHub.Domain.BaseDomainEntities.Id;
+using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Delete;
+using SmsHub.Domain.Features.Config.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create;
 
 //[assembly: CollectionBehavior(DisableTestParallelization = true)]
@@ -54,7 +57,7 @@ namespace SmsHub.IntegrationTests.Api
             await PostAsync<CreateTemplateCategoryDto, CreateTemplateCategoryDto>("/TemplateCategory/Create", templateCategory);
             await PostAsync<CreateTemplateDto, CreateTemplateDto>("/Template/Create", template);
             await PostAsync<CreateConfigDto, CreateConfigDto>("/Config/Create", config);
-            
+
             //Assert
             Assert.True(true);
         }
@@ -95,7 +98,7 @@ namespace SmsHub.IntegrationTests.Api
             };
             var deleteConfig = new DeleteConfigDto()
             {
-                Id=1
+                Id = 1
             };
 
             //Act
@@ -106,12 +109,12 @@ namespace SmsHub.IntegrationTests.Api
             await PostAsync<CreateConfigDto, CreateConfigDto>("/Config/Create", config);
 
             await PostAsync<DeleteConfigDto, DeleteConfigDto>("/Config/Delete", deleteConfig);
-           
+
             //Assert
             Assert.True(true);
         }
-        
-        
+
+
         [Fact]
         public async void UpdateConfig_ConfigDto_ShouldUpdateConfig()
         {
@@ -148,7 +151,7 @@ namespace SmsHub.IntegrationTests.Api
             };
             var updateConfig = new UpdateConfigDto()
             {
-                ConfigTypeGroupId=1,
+                ConfigTypeGroupId = 1,
                 Id = 1,
                 TemplateId = 1
             };
@@ -161,9 +164,131 @@ namespace SmsHub.IntegrationTests.Api
             await PostAsync<CreateConfigDto, CreateConfigDto>("/Config/Create", config);
 
             await PostAsync<UpdateConfigDto, UpdateConfigDto>("/Config/Update", updateConfig);
-           
+
             //Assert
             Assert.True(true);
+        }
+
+
+        [Fact]
+        public async void GetSingleConfig_ConfigDto_ShouldGetSingleConfig()
+        {
+            //Arrange
+            var configType = new CreateConfigTypeDto()
+            {
+                Title = "First Config",
+                Description = "Sample Sentence"
+            };
+            var configTypeGroup = new CreateConfigTypeGroupDto()
+            {
+                ConfigTypeId = 1,
+                Title = "First ConfigTypeGroup",
+                Description = "Sample Sentence"
+            };
+            var templateCategory = new CreateTemplateCategoryDto()
+            {
+                Title = "First TemplateCategory",
+                Description = "Sample Sentence"
+            };
+            var template = new CreateTemplateDto()
+            {
+                Expression = "Sample Expression",
+                Title = "Sample Title",
+                IsActive = true,
+                Parameters = "Sample Parameter",
+                MinCredit = 2,
+                TemplateCategoryId = 1
+            };
+            var config = new CreateConfigDto()
+            {
+                ConfigTypeGroupId = 1,
+                TemplateId = 1
+            };
+            var configId = new IntId()
+            {
+                Id = 1,
+            };
+
+            //Act
+            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
+            await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
+            await PostAsync<CreateTemplateCategoryDto, CreateTemplateCategoryDto>("/TemplateCategory/Create", templateCategory);
+            await PostAsync<CreateTemplateDto, CreateTemplateDto>("/Template/Create", template);
+            await PostAsync<CreateConfigDto, CreateConfigDto>("/Config/Create", config);
+
+            var singleConfig = await PostAsync<IntId, ApiResponseEnvelope<GetConfigDto>>("/Config/GetSingle", configId);
+
+            //Assert
+            Assert.Equal(singleConfig.Data.Id, 1);
+            Assert.Equal(singleConfig.HttpStatusCode, 200);
+        }
+
+
+        [Fact]
+        public async void GetListConfig_ConfigDto_ShouldGetListConfig()
+        {
+            //Arrange
+            var configType = new List<CreateConfigTypeDto>()
+            {
+                new CreateConfigTypeDto(){Title = "First Config", Description = "Sample1 Sentence"},
+                new CreateConfigTypeDto(){Title = "Second Config", Description = "Sample2 Sentence"},
+                new CreateConfigTypeDto(){Title = "Third Config", Description = "Sample3 Sentence"},
+            };
+            var configTypeGroup = new List<CreateConfigTypeGroupDto>()
+            {
+                new CreateConfigTypeGroupDto(){ConfigTypeId = 1,Title = "First ConfigTypeGroup",Description = "Sample1 Sentence"},
+                new CreateConfigTypeGroupDto(){ConfigTypeId = 2,Title = "Second ConfigTypeGroup",Description = "Sample2 Sentence"},
+                new CreateConfigTypeGroupDto(){ConfigTypeId = 2,Title = "Third ConfigTypeGroup",Description = "Sample3 Sentence"},
+                new CreateConfigTypeGroupDto(){ConfigTypeId = 3,Title = "Forth ConfigTypeGroup",Description = "Sample4 Sentence"},
+            };
+            var templateCategory = new List<CreateTemplateCategoryDto>()
+            {
+                new CreateTemplateCategoryDto(){Title = "First TemplateCategory",Description = "Sample1 Sentence"},
+                new CreateTemplateCategoryDto(){Title = "Second TemplateCategory",Description = "Sample2 Sentence"},
+                new CreateTemplateCategoryDto(){Title = "Third TemplateCategory",Description = "Sample3 Sentence"},
+            };
+            var template = new List<CreateTemplateDto>()
+            {
+                new CreateTemplateDto(){Expression = "Sample1 Expression",Title = "Sample1 Title",IsActive = true,Parameters = "Sample1 Parameter",MinCredit = 2,TemplateCategoryId = 1},
+                new CreateTemplateDto(){Expression = "Sample2 Expression",Title = "Sample2 Title",IsActive = true,Parameters = "Sample2 Parameter",MinCredit = 2,TemplateCategoryId = 2},
+                new CreateTemplateDto(){Expression = "Sample3 Expression",Title = "Sample3 Title",IsActive = true,Parameters = "Sample3 Parameter",MinCredit = 2,TemplateCategoryId = 3},
+                new CreateTemplateDto(){Expression = "Sample4 Expression",Title = "Sample4 Title",IsActive = true,Parameters = "Sample4 Parameter",MinCredit = 2,TemplateCategoryId = 3},
+            };
+            var config = new List<CreateConfigDto>()
+            {
+                new CreateConfigDto(){ConfigTypeGroupId = 1,TemplateId = 1},
+                new CreateConfigDto(){ConfigTypeGroupId = 2,TemplateId = 2},
+                new CreateConfigDto(){ConfigTypeGroupId = 3,TemplateId = 2},
+                new CreateConfigDto(){ConfigTypeGroupId = 4,TemplateId = 3},
+            };
+
+            //Act
+            foreach (var item in configType)
+            {
+                await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", item);
+            }
+            foreach (var item in configTypeGroup)
+            {
+                await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", item);
+            }
+            foreach (var item in templateCategory)
+            {
+                await PostAsync<CreateTemplateCategoryDto, CreateTemplateCategoryDto>("/TemplateCategory/Create", item);
+            }
+            foreach (var item in template)
+            {
+                await PostAsync<CreateTemplateDto, CreateTemplateDto>("/Template/Create", item);
+            }
+            foreach (var item in config)
+            {
+                await PostAsync<CreateConfigDto, CreateConfigDto>("/Config/Create", item);
+            }
+
+            var configList = await PostAsync<GetConfigDto, ApiResponseEnvelope<ICollection<GetConfigDto>>>("/Config/GetList", null);
+            
+            //Assert
+            Assert.Equal(configList.Data.Count, 4);
+            Assert.Equal(configList.HttpStatusCode, 200);
         }
     }
 }

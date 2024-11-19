@@ -1,11 +1,9 @@
-﻿using Aban360.Api.Controllers.V1;
-using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+﻿using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Delete;
 using SmsHub.Domain.Features.Config.MediatorDtos.Queries;
-using SmsHub.Domain.Features.Entities;
 
 //[assembly: CollectionBehavior(DisableTestParallelization = true)]
 namespace SmsHub.IntegrationTests.Api
@@ -143,7 +141,7 @@ namespace SmsHub.IntegrationTests.Api
                 ConfigTypeGroupId = 1,
                 Mobile = "09131234567"
             };
-            var getSingleCcSend = new IntId()
+            var ccSendId = new IntId()
             {
                 Id = 1
             };
@@ -153,10 +151,10 @@ namespace SmsHub.IntegrationTests.Api
             await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
             await PostAsync<CreateCcSendDto, CreateCcSendDto>("/CcSend/Create", ccSend);
 
-            var ccSendId = await PostAsync<IntId, ApiResponseEnvelope<GetCcSendDto>>("/CcSend/GetSingle", getSingleCcSend);
+            var singleCcSend = await PostAsync<IntId, ApiResponseEnvelope<GetCcSendDto>>("/CcSend/GetSingle", ccSendId);
 
             //Assert
-            Assert.Equal(ccSendId.Data.Id, 1);
+            Assert.Equal(singleCcSend.Data.Id, 1);
         }
 
 
@@ -198,10 +196,10 @@ namespace SmsHub.IntegrationTests.Api
                 await PostAsync<CreateCcSendDto, CreateCcSendDto>("/CcSend/Create", item);
             }
 
-            var getListCcSend = await PostAsync < GetCcSendDto,ApiResponseEnvelope<ICollection<GetCcSendDto>>> ("/CcSend/GetList", null);
+            var ccSendList = await PostAsync < GetCcSendDto,ApiResponseEnvelope<ICollection<GetCcSendDto>>> ("/CcSend/GetList", null);
 
-            Assert.Equal(getListCcSend.Data.Count, 3);
-            Assert.Equal(getListCcSend.HttpStatusCode,200);
+            Assert.Equal(ccSendList.Data.Count, 3);
+            Assert.Equal(ccSendList.HttpStatusCode,200);
         }
     }
 }

@@ -1,6 +1,9 @@
-﻿using SmsHub.Domain.Features.Contact.MediatorDtos.Commands;
+﻿using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+using SmsHub.Domain.BaseDomainEntities.Id;
+using SmsHub.Domain.Features.Contact.MediatorDtos.Commands;
 using SmsHub.Domain.Features.Contact.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Contact.MediatorDtos.Commands.Delete;
+using SmsHub.Domain.Features.Contact.MediatorDtos.Queries;
 
 //[assembly: CollectionBehavior(DisableTestParallelization = true)]
 namespace SmsHub.IntegrationTests.Api
@@ -25,8 +28,8 @@ namespace SmsHub.IntegrationTests.Api
             //Assert
             Assert.True(true);
         }
-        
-        
+
+
         [Fact]
         public async void DeleteContact_ContactDto_ShouldDeleteContact()
         {
@@ -37,7 +40,7 @@ namespace SmsHub.IntegrationTests.Api
             };
             var deleteContact = new DeleteContactDto()
             {
-                Id=1
+                Id = 1
             };
 
             //Act
@@ -47,8 +50,8 @@ namespace SmsHub.IntegrationTests.Api
             //Assert
             Assert.True(true);
         }
-        
-        
+
+
         [Fact]
         public async void UpdateContact_ContactDto_ShouldUpdateContact()
         {
@@ -59,8 +62,8 @@ namespace SmsHub.IntegrationTests.Api
             };
             var updateContact = new UpdateContactDto()
             {
-                Id  =1,
-                Title="Update Title"
+                Id = 1,
+                Title = "Update Title"
             };
 
             //Act
@@ -69,6 +72,54 @@ namespace SmsHub.IntegrationTests.Api
 
             //Assert
             Assert.True(true);
+        }
+
+
+
+        [Fact]
+        public async void GetSingleContact_ContactDto_ShouldGetSingleContact()
+        {
+            //Arrange
+            var contact = new CreateContactDto()
+            {
+                Title = "sample title"
+            };
+            var contactId = new IntId()
+            {
+                Id = 1
+            };
+
+            //Act
+            await PostAsync<CreateContactDto, CreateContactDto>("/Contact/Create", contact);
+            var singleContact = await PostAsync<IntId, ApiResponseEnvelope<GetContactDto>>("/Contact/GetSingle", contactId);
+
+            //Assert
+            Assert.Equal(singleContact.Data.Id, 1);
+            Assert.Equal(singleContact.HttpStatusCode, 200);
+        }
+
+
+        [Fact]
+        public async void GetListContact_ContactDto_ShouldGetListContact()
+        {
+            //Arrange
+            var contacts = new List<CreateContactDto>()
+            {
+                new CreateContactDto(){Title = "sample1 title"},
+                new CreateContactDto(){Title = "sample2 title"},
+                new CreateContactDto(){Title = "sample3 title"},
+            };
+
+            //Act
+            foreach (var item in contacts)
+            {
+                await PostAsync<CreateContactDto, CreateContactDto>("/Contact/Create", item );
+            }
+            var contactList = await PostAsync<GetContactDto, ApiResponseEnvelope<ICollection<GetContactDto>>>("/Contact/GetList",null);
+
+            //Assert
+            Assert.Equal(contactList.Data.Count, 3);
+            Assert.Equal(contactList.HttpStatusCode, 200);
         }
     }
 }

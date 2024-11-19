@@ -1,6 +1,10 @@
-﻿using SmsHub.Domain.Features.Template.MediatorDtos.Commands;
+﻿using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+using SmsHub.Domain.BaseDomainEntities.Id;
+using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Features.Template.MediatorDtos.Commands;
 using SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Template.MediatorDtos.Commands.Delete;
+using SmsHub.Domain.Features.Template.MediatorDtos.Queries;
 
 //[assembly: CollectionBehavior(DisableTestParallelization = true)]
 namespace SmsHub.IntegrationTests.Api
@@ -51,9 +55,9 @@ namespace SmsHub.IntegrationTests.Api
             //Assert
             Assert.True(true);
         }
-        
-        
-        
+
+
+
         [Fact]
         public async void UpdateTemplateCategory_TemplateCategoryDto_ShouldUpdateTemplateCategory()
         {
@@ -65,7 +69,7 @@ namespace SmsHub.IntegrationTests.Api
             };
             var updateTemplateCategory = new UpdateTemplateCategoryDto()
             {
-                Id=1,
+                Id = 1,
                 Title = "Update TemplateCategory",
                 Description = "Update Sentence"
             };
@@ -76,6 +80,52 @@ namespace SmsHub.IntegrationTests.Api
 
             //Assert
             Assert.True(true);
+        }
+
+
+        [Fact]
+        public async void GetSingleTemplateCategory_TemplateCategoryDto_ShouldGetSingleTemplateCategory()
+        {
+            //Arrange
+            var templateCategory = new CreateTemplateCategoryDto()
+            {
+                Title = "First TemplateCategory",
+                Description = "Sample Sentence"
+            };
+            var templateCategoryId = new IntId()
+            {
+                Id = 1
+            };
+
+            //Act
+            await PostAsync<CreateTemplateCategoryDto, CreateTemplateCategoryDto>("/TemplateCategory/Create", templateCategory);
+            var singleTemplateCategory = await PostAsync<IntId, ApiResponseEnvelope<GetTemplateCategoryDto>>("/TemplateCategory/GetSingle", templateCategoryId);
+
+            //Assert
+            Assert.Equal(singleTemplateCategory.Data.Title, "First TemplateCategory");
+        }
+
+
+        [Fact]
+        public async void GetListTemplateCategory_TemplateCategoryDto_ShouldGetListTemplateCategory()
+        {
+            //Arrange
+            var templateCategories = new List<CreateTemplateCategoryDto>()
+            {
+                new CreateTemplateCategoryDto(){ Title = "First TemplateCategory",Description = "Sample1 Sentence"},
+                new CreateTemplateCategoryDto(){ Title = "Second TemplateCategory",Description = "Sample2 Sentence"},
+                new CreateTemplateCategoryDto(){ Title = "Third TemplateCategory",Description = "Sample3 Sentence"},
+            };
+
+            //Act
+            foreach (var item in templateCategories)
+            {
+                await PostAsync<CreateTemplateCategoryDto, CreateTemplateCategoryDto>("/TemplateCategory/Create", item);
+            }
+            var templateCategoryList = await PostAsync<GetTemplateCategoryDto, ApiResponseEnvelope<ICollection<GetTemplateCategoryDto>>>("/TemplateCategory/GetList", null);
+
+            //Assert
+            Assert.Equal(templateCategoryList.Data.Count, 3);
         }
     }
 }
