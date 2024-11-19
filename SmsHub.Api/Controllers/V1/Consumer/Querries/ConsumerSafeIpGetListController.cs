@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Consumer.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
-using SmsHub.Domain.Features.Consumer.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Api.Controllers.V1.Consumer.Querries
@@ -20,10 +19,10 @@ namespace SmsHub.Api.Controllers.V1.Consumer.Querries
 
         [HttpPost]
         [Route(nameof(GetList))]
-        public async Task<ICollection<GetConsumerSafaIpDto>> GetList()
+        public async Task<IActionResult> GetList()
         {
             var consumerSafeIps = await _getListHandler.Handle();
-            return consumerSafeIps;
+            return Ok(consumerSafeIps);
         }
     }
 }

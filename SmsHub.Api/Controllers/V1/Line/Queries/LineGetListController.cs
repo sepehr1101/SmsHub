@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Line.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
-using SmsHub.Domain.Features.Line.MediatorDtos.Queries;
 
 namespace SmsHub.Api.Controllers.V1.Line.Queries
 {
@@ -19,10 +18,10 @@ namespace SmsHub.Api.Controllers.V1.Line.Queries
 
         [HttpPost]
         [Route(nameof(GetList))]
-        public async Task<ICollection<GetLineDto>> GetList()
+        public async Task<IActionResult> GetList()
         {
             var lines = await _getListHandler.Handle();
-            return lines;
+            return Ok(lines);
         }
     }
 }

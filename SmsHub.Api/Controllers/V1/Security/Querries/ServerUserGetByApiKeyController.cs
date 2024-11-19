@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Security.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.Id;
-using SmsHub.Domain.Features.Security.MediatorDtos.Queries;
 
 namespace SmsHub.Api.Controllers.V1.Security.Querries
 {
@@ -20,10 +19,10 @@ namespace SmsHub.Api.Controllers.V1.Security.Querries
 
         [HttpPost]
         [Route(nameof(GetByApiKey))]
-        public async Task<GetServerUserDto> GetByApiKey([FromBody] StringId apiKey)
+        public async Task<IActionResult> GetByApiKey([FromBody] StringId apiKey)
         {
             var serverUser = await _getByApiKeyHandler.Handle(apiKey);
-            return serverUser;
+            return Ok(serverUser);
         }
     }
 }

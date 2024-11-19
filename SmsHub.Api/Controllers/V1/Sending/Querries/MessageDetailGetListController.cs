@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Sending.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Entities;
-using SmsHub.Domain.Features.Sending.MediatorDtos.Queries;
 
 namespace SmsHub.Api.Controllers.V1.Sending.Querries
 {
@@ -20,10 +19,10 @@ namespace SmsHub.Api.Controllers.V1.Sending.Querries
 
         [HttpPost]
         [Route(nameof(GetList))]
-        public async Task<ICollection<GetMessageDetailDto>> GetList()
+        public async Task<IActionResult> GetList()
         {
             var messageDetails = await _getListHandler.Handle();
-            return messageDetails;
+            return Ok(messageDetails);
         }
     }
 }

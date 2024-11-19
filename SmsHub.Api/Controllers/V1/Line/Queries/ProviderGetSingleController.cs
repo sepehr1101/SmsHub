@@ -4,7 +4,6 @@ using SmsHub.Application.Features.Line.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Entities;
-using SmsHub.Domain.Features.Line.MediatorDtos.Queries;
 
 namespace SmsHub.Api.Controllers.V1.Line.Queries
 {
@@ -21,10 +20,10 @@ namespace SmsHub.Api.Controllers.V1.Line.Queries
 
         [HttpPost]
         [Route(nameof(GetSingle))]
-        public async Task<GetProviderDto> GetSingle([FromBody] ProviderEnum Id)//////todo :type of Id???
+        public async Task<IActionResult> GetSingle([FromBody] ProviderEnum Id)//////todo :type of Id???
         {
             var provider = await _getSingleHandler.Handle(Id);
-            return provider;
+            return Ok(provider);
         }
     }
 }

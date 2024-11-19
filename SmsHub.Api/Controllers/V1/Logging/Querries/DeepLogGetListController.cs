@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Logging.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Entities;
-using SmsHub.Domain.Features.Logging.MediatorDtos.Queries;
 
 namespace SmsHub.Api.Controllers.V1.Logging.Querries
 {
@@ -20,10 +19,10 @@ namespace SmsHub.Api.Controllers.V1.Logging.Querries
 
         [HttpPost]
         [Route(nameof(GetList))]
-        public async Task<ICollection<GetDeepLogDto>> GetList()
+        public async Task<IActionResult> GetList()
         {
             var deepLogs = await _getListHandler.Handle();
-            return deepLogs;
+            return Ok(deepLogs);
         }
     }
 }

@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Template.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
-using SmsHub.Domain.Features.Entities;
-using SmsHub.Domain.Features.Template.MediatorDtos.Queries;
 
 namespace SmsHub.Api.Controllers.V1.Template.Querries
 {
@@ -20,10 +18,10 @@ namespace SmsHub.Api.Controllers.V1.Template.Querries
 
         [HttpPost]
         [Route(nameof(GetList))]
-        public async Task<ICollection<GetTemplateDto>> GetList()
+        public async Task<IActionResult> GetList()
         {
             var Templates = await _getListHandler.Handle();
-            return Templates;
+            return Ok(Templates);
         }
     }
 }

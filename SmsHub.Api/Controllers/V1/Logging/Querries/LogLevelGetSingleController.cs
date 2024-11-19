@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Logging.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.Id;
-using SmsHub.Domain.Features.Logging.MediatorDtos.Queries;
 
 namespace SmsHub.Api.Controllers.V1.Logging.Querries
 {
@@ -20,10 +19,10 @@ namespace SmsHub.Api.Controllers.V1.Logging.Querries
 
         [HttpPost]
         [Route(nameof(GetSingle))]
-        public async Task<GetLogLevelDto> GetSingle([FromBody] IntId Id)
+        public async Task<IActionResult> GetSingle([FromBody] IntId Id)
         {
             var logLevel = await _getSingleHandler.Handle(Id);
-            return logLevel;
+            return Ok(logLevel);
         }
     }
 }
