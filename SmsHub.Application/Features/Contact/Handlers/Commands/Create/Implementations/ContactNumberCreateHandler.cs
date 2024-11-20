@@ -8,7 +8,7 @@ using SmsHub.Application.Features.Contact.Handlers.Commands.Create.Contracts;
 
 namespace SmsHub.Application.Features.Contact.Handlers.Commands.Create.Implementations
 {
-    public class ContactNumberCreateHandler :IContactNumberCreatedHandler
+    public class ContactNumberCreateHandler :IContactNumberCreateHandler
     {
         private readonly IMapper _mapper;
         private readonly IContactNumberCommandService _contactNumberCommandService;

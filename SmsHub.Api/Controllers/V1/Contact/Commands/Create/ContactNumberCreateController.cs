@@ -13,8 +13,8 @@ namespace SmsHub.Api.Controllers.V1.Contact.Commands.Create
     public class ContactNumberCreateController : BaseController
     {
         private readonly IUnitOfWork _uow;
-        private readonly IContactNumberCreatedHandler _createCommandHandler;
-        public ContactNumberCreateController(IUnitOfWork uow, IContactNumberCreatedHandler createCommandHandler)
+        private readonly IContactNumberCreateHandler _createCommandHandler;
+        public ContactNumberCreateController(IUnitOfWork uow, IContactNumberCreateHandler createCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));
