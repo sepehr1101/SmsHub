@@ -8,9 +8,10 @@ using SmsHub.Domain.Features.Sending.MediatorDtos.Queries;
 
 namespace SmsHub.IntegrationTests.Api
 {
+    [CollectionDefinition("ApiIntegrationTests", DisableParallelization = true)]
     public class MessageHolderControllerTest : BaseIntegrationTest
     {
-        public MessageHolderControllerTest(TestEnvironmentWebApplicationFactory factory)
+        public MessageHolderControllerTest(_TestEnvironmentWebApplicationFactory factory)
             : base(factory)
         {
         }

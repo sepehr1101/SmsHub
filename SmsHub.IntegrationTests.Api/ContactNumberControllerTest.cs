@@ -5,12 +5,12 @@ using SmsHub.Domain.Features.Contact.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Contact.MediatorDtos.Commands.Delete;
 using SmsHub.Domain.Features.Contact.MediatorDtos.Queries;
 
-//[assembly: CollectionBehavior(DisableTestParallelization = true)]
 namespace SmsHub.IntegrationTests.Api
 {
+    [CollectionDefinition("ApiIntegrationTests", DisableParallelization = true)]
     public class ContactNumberControllerTest : BaseIntegrationTest
     {
-        public ContactNumberControllerTest(TestEnvironmentWebApplicationFactory factory)
+        public ContactNumberControllerTest(_TestEnvironmentWebApplicationFactory factory)
             : base(factory)
         {
         }

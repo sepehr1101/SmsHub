@@ -5,9 +5,9 @@ using System.Text.Json;
 namespace SmsHub.IntegrationTests.Api
 {
     public abstract class BaseIntegrationTest
-    : IClassFixture<TestEnvironmentWebApplicationFactory>, IDisposable
+    : IClassFixture<_TestEnvironmentWebApplicationFactory>, IDisposable
     {
-        public BaseIntegrationTest(TestEnvironmentWebApplicationFactory factory)
+        public BaseIntegrationTest(_TestEnvironmentWebApplicationFactory factory)
         {
             _serviceScope = factory.Services.CreateScope();
             _httpClient = factory.CreateClient();

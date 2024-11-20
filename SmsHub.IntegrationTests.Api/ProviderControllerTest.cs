@@ -5,12 +5,12 @@ using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Delete;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Update;
 using SmsHub.Domain.Features.Line.MediatorDtos.Queries;
 
-//[assembly: CollectionBehavior(DisableTestParallelization = true)]
 namespace SmsHub.IntegrationTests.Api
 {
+    [CollectionDefinition("ApiIntegrationTests", DisableParallelization = true)]
     public class ProviderControllerTests : BaseIntegrationTest
     {
-        public ProviderControllerTests(TestEnvironmentWebApplicationFactory factory)
+        public ProviderControllerTests(_TestEnvironmentWebApplicationFactory factory)
             : base(factory)
         {
         }

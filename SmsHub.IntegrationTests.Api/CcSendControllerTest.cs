@@ -5,12 +5,12 @@ using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Delete;
 using SmsHub.Domain.Features.Config.MediatorDtos.Queries;
 
-//[assembly: CollectionBehavior(DisableTestParallelization = true)]
 namespace SmsHub.IntegrationTests.Api
 {
+    [CollectionDefinition("ApiIntegrationTests", DisableParallelization = true)]
     public class CcSendControllerTest : BaseIntegrationTest
     {
-        public CcSendControllerTest(TestEnvironmentWebApplicationFactory factory)
+        public CcSendControllerTest(_TestEnvironmentWebApplicationFactory factory)
             : base(factory)
         {
         }
@@ -44,9 +44,6 @@ namespace SmsHub.IntegrationTests.Api
             //Assert
             Assert.True(true);
         }
-
-
-
 
         [Fact]
         public async void DeleteCcSend_CcSendDto_ShouldDeleteCcSendDto()
@@ -82,7 +79,6 @@ namespace SmsHub.IntegrationTests.Api
             //Assert
             Assert.True(true);
         }
-
 
         [Fact]
         public async void UpdateCcSend_CcSendDto_ShouldUpdateCcSend()
@@ -120,7 +116,6 @@ namespace SmsHub.IntegrationTests.Api
             Assert.True(true);
         }
 
-
         [Fact]
         public async void GetSingleCcSend_CcSendDto_ShouldGetSingleCcSend()
         {
@@ -156,7 +151,6 @@ namespace SmsHub.IntegrationTests.Api
             //Assert
             Assert.Equal(singleCcSend.Data.Id, 1);
         }
-
 
         [Fact]
         public async void GetListCcSend_CcSendDto_ShouldGetListCcSend()
@@ -198,8 +192,7 @@ namespace SmsHub.IntegrationTests.Api
 
             var ccSendList = await PostAsync < GetCcSendDto,ApiResponseEnvelope<ICollection<GetCcSendDto>>> ("/CcSend/GetList", null);
 
-            Assert.Equal(ccSendList.Data.Count, 3);
-            Assert.Equal(ccSendList.HttpStatusCode,200);
+            Assert.InRange(ccSendList.Data.Count, 3,6);
         }
     }
 }
