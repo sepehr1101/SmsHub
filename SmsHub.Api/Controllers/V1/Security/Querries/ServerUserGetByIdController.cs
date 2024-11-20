@@ -1,14 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Security.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.Id;
-using SmsHub.Domain.Features.Security.MediatorDtos.Queries;
+using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Api.Controllers.V1.Security.Querries
 {
-    [Route(nameof(Security))]
+    [Route(nameof(ServerUser))]
     [ApiController]
-    public class ServerUserGetByIdController : ControllerBase
+    public class ServerUserGetByIdController : BaseController
     {
         private readonly IServerUserGetByIdHandler _getByIdHandler;
         public ServerUserGetByIdController(IServerUserGetByIdHandler getByIdHandler)
@@ -19,10 +20,10 @@ namespace SmsHub.Api.Controllers.V1.Security.Querries
 
         [HttpPost]
         [Route(nameof(GetById))]
-        public async Task<GetServerUserDto> GetById([FromBody] IntId Id)
+        public async Task<IActionResult> GetById([FromBody] IntId Id)
         {
             var serverUser = await _getByIdHandler.Handle(Id);
-            return serverUser;
+            return Ok(serverUser);
         }
     }
 }

@@ -1,5 +1,9 @@
-﻿using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Create;
+﻿using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+using SmsHub.Domain.BaseDomainEntities.Id;
+using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Delete;
+using SmsHub.Domain.Features.Consumer.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
 
 //[assembly: CollectionBehavior(DisableTestParallelization = true)]
@@ -8,7 +12,7 @@ namespace SmsHub.IntegrationTests.Api
     public class ConsumerLineControllerTest : BaseIntegrationTest
     {
         public ConsumerLineControllerTest(TestEnvironmentWebApplicationFactory factory)
-            :base(factory)
+            : base(factory)
         {
         }
 
@@ -24,24 +28,24 @@ namespace SmsHub.IntegrationTests.Api
             };
             var line = new CreateLineDto()
             {
-                ProviderId=Domain.Constants.ProviderEnum.Kavenegar,
-                Credential="sample Credential",
-                Number="111"
+                ProviderId = Domain.Constants.ProviderEnum.Kavenegar,
+                Credential = "sample Credential",
+                Number = "111"
             };
             var consumerLine = new CreateConsumerLineDto()
             {
                 ConsumerId = 1,
-                LineId=1
+                LineId = 1
             };
 
             //Act
             await PostAsync<CreateConsumerDto, CreateConsumerDto>("/Consumer/Create", consumer);
             await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
             await PostAsync<CreateConsumerLineDto, CreateConsumerLineDto>("/ConsumerLine/Create", consumerLine);
-          
+
             //Assert
             Assert.True(true);
-            
+
         }
 
 
@@ -57,18 +61,18 @@ namespace SmsHub.IntegrationTests.Api
             };
             var line = new CreateLineDto()
             {
-                ProviderId=Domain.Constants.ProviderEnum.Kavenegar,
-                Credential="sample Credential",
-                Number="111"
+                ProviderId = Domain.Constants.ProviderEnum.Kavenegar,
+                Credential = "sample Credential",
+                Number = "111"
             };
             var consumerLine = new CreateConsumerLineDto()
             {
                 ConsumerId = 1,
-                LineId=1
+                LineId = 1
             };
             var deleteConsumerLine = new DeleteConsumerLineDto()
             {
-                Id=1
+                Id = 1
             };
 
             //Act
@@ -79,7 +83,138 @@ namespace SmsHub.IntegrationTests.Api
             await PostAsync<DeleteConsumerLineDto, DeleteConsumerLineDto>("/ConsumerLine/Delete", deleteConsumerLine);
             //Assert
             Assert.True(true);
-            
+
+        }
+
+
+        [Fact]
+        public async void UpdateConsumerLine_ConsumerLineDto_ShouldUpdateConsumerLine()
+        {
+            //Arrange
+            var consumer = new CreateConsumerDto()
+            {
+                Title = "Sample Title",
+                ApiKey = "Sample ApiKey",
+                Description = "Sample Description"
+            };
+            var line = new CreateLineDto()
+            {
+                ProviderId = Domain.Constants.ProviderEnum.Kavenegar,
+                Credential = "sample Credential",
+                Number = "111"
+            };
+            var consumerLine = new CreateConsumerLineDto()
+            {
+                ConsumerId = 1,
+                LineId = 1
+            };
+            var updateConsumerLine = new UpdateConsumerLineDto()
+            {
+                Id = 1,
+                ConsumerId = 1,
+                LineId = 1,
+            };
+
+            //Act
+            await PostAsync<CreateConsumerDto, CreateConsumerDto>("/Consumer/Create", consumer);
+            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
+            await PostAsync<CreateConsumerLineDto, CreateConsumerLineDto>("/ConsumerLine/Create", consumerLine);
+
+            await PostAsync<UpdateConsumerLineDto, UpdateConsumerLineDto>("/ConsumerLine/Update", updateConsumerLine);
+            //Assert
+            Assert.True(true);
+
+        }
+
+
+        [Fact]
+        public async void GetSingleConsumerLine_ConsumerLineDto_ShouldGetSingleConsumerLine()
+        {
+            //Arrange
+            var consumer = new CreateConsumerDto()
+            {
+                Title = "Sample Title",
+                ApiKey = "Sample ApiKey",
+                Description = "Sample Description"
+            };
+            var line = new CreateLineDto()
+            {
+                ProviderId = Domain.Constants.ProviderEnum.Kavenegar,
+                Credential = "sample Credential",
+                Number = "111"
+            };
+            var consumerLine = new CreateConsumerLineDto()
+            {
+                ConsumerId = 1,
+                LineId = 1
+            };
+            var consumerLineId = new IntId()
+            {
+                Id = 1
+            };
+
+            //Act
+            await PostAsync<CreateConsumerDto, CreateConsumerDto>("/Consumer/Create", consumer);
+            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
+            await PostAsync<CreateConsumerLineDto, CreateConsumerLineDto>("/ConsumerLine/Create", consumerLine);
+
+            var singleConsumerLine = await PostAsync<IntId, ApiResponseEnvelope<GetConsumerLineDto>>("/ConsumerLine/GetSingle", consumerLineId);
+
+            //Assert
+            Assert.Equal(singleConsumerLine.Data.Id, 1);
+            Assert.Equal(singleConsumerLine.HttpStatusCode, 200);
+        }
+
+
+
+        [Fact]
+        public async void GetListConsumerLine_ConsumerLineDto_ShouldGetListConsumerLine()
+        {
+            //Arrange
+            var consumers = new List<CreateConsumerDto>()
+            {
+                new CreateConsumerDto(){Title = "Sample1 Title", ApiKey = "Sample1 ApiKey",Description = "Sample1 Description"},
+                new CreateConsumerDto(){Title = "Sample2 Title", ApiKey = "Sample2 ApiKey",Description = "Sample2 Description"},
+                new CreateConsumerDto(){Title = "Sample3 Title", ApiKey = "Sample3 ApiKey",Description = "Sample3 Description"},
+                new CreateConsumerDto(){Title = "Sample4 Title", ApiKey = "Sample4 ApiKey",Description = "Sample4 Description"},
+            };
+
+
+            var lines = new List<CreateLineDto>()
+            {
+               new CreateLineDto() {ProviderId = Domain.Constants.ProviderEnum.Kavenegar,Credential = "sample1 Credential",Number = "111"},
+               new CreateLineDto() {ProviderId = Domain.Constants.ProviderEnum.Magfa,Credential = "sample2 Credential",Number = "150"},
+               new CreateLineDto() {ProviderId = Domain.Constants.ProviderEnum.Magfa,Credential = "sample3 Credential",Number = "125"},
+               new CreateLineDto() {ProviderId = Domain.Constants.ProviderEnum.Kavenegar,Credential = "sample4 Credential",Number = "152"},
+
+             };
+            var consumerLines = new List<CreateConsumerLineDto>()
+            {
+                new CreateConsumerLineDto(){ ConsumerId = 1,LineId = 2},
+                new CreateConsumerLineDto(){ ConsumerId = 3,LineId = 2},
+                new CreateConsumerLineDto(){ ConsumerId = 4,LineId = 3},
+                new CreateConsumerLineDto(){ ConsumerId = 3,LineId = 4},
+            };
+
+            //Act
+            foreach (var item in consumers)
+            {
+                await PostAsync<CreateConsumerDto, CreateConsumerDto>("/Consumer/Create", item);
+            }
+            foreach (var item in lines)
+            {
+                await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", item);
+            }
+            foreach (var item in consumerLines)
+            {
+                await PostAsync<CreateConsumerLineDto, CreateConsumerLineDto>("/ConsumerLine/Create", item);
+            }
+
+            var consumerLineList = await PostAsync<GetConsumerLineDto, ApiResponseEnvelope<ICollection<GetConsumerLineDto>>>("/ConsumerLine/GetList", null);
+
+            //Assert
+            Assert.Equal(consumerLineList.Data.Count, 4);
+            Assert.Equal(consumerLineList.HttpStatusCode, 200);
         }
     }
 }

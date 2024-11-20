@@ -1,15 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Template.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Features.Entities;
-using SmsHub.Domain.Features.Template.MediatorDtos.Queries;
 
 namespace SmsHub.Api.Controllers.V1.Template.Querries
 {
     [Route(nameof(TemplateCategory))]
     [ApiController]
-    public class TemplateCategoryGetSingleController : ControllerBase
+    public class TemplateCategoryGetSingleController : BaseController
     {
         private readonly ITemplateCategoryGetSingleHandler _getSingleHandler;
         public TemplateCategoryGetSingleController(ITemplateCategoryGetSingleHandler getSingleHandler)
@@ -20,10 +20,10 @@ namespace SmsHub.Api.Controllers.V1.Template.Querries
 
         [HttpPost]
         [Route(nameof(GetSingle))]
-        public async Task<GetTemplateCategoryDto> GetSingle([FromBody] IntId Id)
+        public async Task<IActionResult> GetSingle([FromBody] IntId Id)
         {
             var templateCategory = await _getSingleHandler.Handle(Id);
-            return templateCategory;
+            return Ok(templateCategory);
         }
     }
 }

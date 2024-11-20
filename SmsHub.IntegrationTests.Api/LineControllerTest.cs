@@ -1,13 +1,17 @@
-﻿using SmsHub.Domain.Constants;
+﻿using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+using SmsHub.Domain.BaseDomainEntities.Id;
+using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Delete;
+using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Update;
+using SmsHub.Domain.Features.Line.MediatorDtos.Queries;
 
 namespace SmsHub.IntegrationTests.Api
 {
-    public class LineControllerTest:BaseIntegrationTest
+    public class LineControllerTest : BaseIntegrationTest
     {
         public LineControllerTest(TestEnvironmentWebApplicationFactory factory)
-            :base(factory)
+            : base(factory)
         {
         }
 
@@ -17,9 +21,9 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var line = new CreateLineDto
             {
-                ProviderId =ProviderEnum.Magfa,
-                Credential="string",
-                Number="string"
+                ProviderId = ProviderEnum.Magfa,
+                Credential = "string",
+                Number = "string"
             };
 
             //Act
@@ -36,21 +40,99 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var line = new CreateLineDto
             {
-                ProviderId =ProviderEnum.Magfa,
-                Credential="string",
-                Number="string"
+                ProviderId = ProviderEnum.Magfa,
+                Credential = "string",
+                Number = "string"
             };
             var deleteLine = new DeleteLineDto()
+            {
+                Id = 1
+            };
+
+            //Act
+            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
+            await PostAsync<DeleteLineDto, DeleteLineDto>("/Line/Delete", deleteLine);
+
+            //Assert
+            Assert.True(true);
+        }
+
+
+        [Fact]
+        public async void UpdateLine_LineDto_ShouldUpdateLine()
+        {
+            //Arrange
+            var line = new CreateLineDto
+            {
+                ProviderId = ProviderEnum.Magfa,
+                Credential = "string",
+                Number = "string"
+            };
+            var updateLine = new UpdateLineDto()
+            {
+                Id = 1,
+                ProviderId = ProviderEnum.Magfa,
+                Credential = "Update Credential",
+                Number = "Update Number"
+            };
+
+            //Act
+            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
+            await PostAsync<UpdateLineDto, UpdateLineDto>("/Line/Update", updateLine);
+
+            //Assert
+            Assert.True(true);
+        }
+
+
+        [Fact]
+        public async void GetSingleLine_LineDto_ShouldGetSingleLine()
+        {
+            //Arrange
+            var line = new CreateLineDto()
+            {
+                ProviderId = Domain.Constants.ProviderEnum.Kavenegar,
+                Credential = "sample1 Credential",
+                Number = "111"
+            };
+            var lineId = new IntId()
             {
                 Id=1
             };
 
             //Act
             await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
-            await PostAsync<DeleteLineDto,DeleteLineDto>("/Line/Delete", deleteLine);
+
+            var singleLine = await PostAsync<IntId, ApiResponseEnvelope<GetLineDto>>("/Line/GetSingle", lineId);
 
             //Assert
-            Assert.True(true);
+            Assert.Equal(singleLine.Data.Id, 1);
+            Assert.Equal(singleLine.HttpStatusCode, 200);
+        }
+
+
+        [Fact]
+        public async void GetListLine_LineDto_ShouldGetListLine()
+        {
+            //Arrange
+            var lines = new List<CreateLineDto>()
+            {
+               new CreateLineDto() {ProviderId = Domain.Constants.ProviderEnum.Kavenegar,Credential = "sample1 Credential",Number = "111"},
+               new CreateLineDto() {ProviderId = Domain.Constants.ProviderEnum.Magfa,Credential = "sample2 Credential",Number = "150"},
+               new CreateLineDto() {ProviderId = Domain.Constants.ProviderEnum.Magfa,Credential = "sample3 Credential",Number = "125"},
+               new CreateLineDto() {ProviderId = Domain.Constants.ProviderEnum.Kavenegar,Credential = "sample4 Credential",Number = "152"},
+            };
+
+            //Act
+            foreach (var item in lines)
+            {
+                await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", item);
+            }
+            var lineList = await PostAsync<GetLineDto, ApiResponseEnvelope<ICollection<GetLineDto>>>("/Line/GetList", null);
+
+            //Assert
+            Assert.Equal(lineList.Data.Count, 4);
+            Assert.Equal(lineList.HttpStatusCode, 200);
         }
     }
 }

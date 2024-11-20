@@ -1,15 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Consumer.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.Id;
-using SmsHub.Domain.Features.Consumer.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Api.Controllers.V1.Consumer.Querries
 {
     [Route(nameof(ConsumerLine))]
     [ApiController]
-    public class ConsumerLineGetSingleController : ControllerBase
+    public class ConsumerLineGetSingleController : BaseController
     {
         private readonly IConsumerLineGetSingleHandler _getSingleHandler;
         public ConsumerLineGetSingleController(IConsumerLineGetSingleHandler getSingleHandler)
@@ -20,10 +20,10 @@ namespace SmsHub.Api.Controllers.V1.Consumer.Querries
 
         [HttpPost]
         [Route(nameof(GetSingle))]
-        public async Task<GetConsumerLineDto> GetSingle([FromBody] IntId Id)
+        public async Task<IActionResult> GetSingle([FromBody] IntId Id)
         {
             var consumerLine = await _getSingleHandler.Handle(Id);
-            return consumerLine;
+            return Ok(consumerLine);
         }
     }
 }

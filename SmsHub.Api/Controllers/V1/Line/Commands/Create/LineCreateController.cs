@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Line.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
@@ -8,7 +9,7 @@ namespace SmsHub.Api.Controllers.V1.Line.Commands.Create
 {
     [Route(nameof(Line))]
     [ApiController]
-    public class LineCreateController : ControllerBase
+    public class LineCreateController : BaseController
     {
         private readonly IUnitOfWork _uow;
         private readonly ILineCreateHandler _createCommandHandler;

@@ -34,6 +34,7 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
             await _uow.SaveChangesAsync(cancellationToken);
             //return ClientError("خطا در مقادیر");
             return Ok(apiKeyAndHash.ApiKey);
+            return Ok(apiKeyAndHash);
         }
     }
 }

@@ -8,20 +8,26 @@ using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Delete;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Update;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Queries;
 
-//[assembly: CollectionBehavior(DisableTestParallelization = true)]
 namespace SmsHub.IntegrationTests.Api
 {
-    public class MessageDetailControllerTest : BaseIntegrationTest
+    public class MessageStateControllerTest : BaseIntegrationTest
     {
-        public MessageDetailControllerTest(TestEnvironmentWebApplicationFactory factory)
+        public MessageStateControllerTest(TestEnvironmentWebApplicationFactory factory)
             : base(factory)
         {
         }
 
         [Fact]
-        public async void CreateMessageDetailState_MessageDetailDto_ShouldCreateMessageDetail()
+        public async void CreateMessageState_MessageStateDto_ShouldCreateMessageState()
         {
             //Arrange
+            var messageStateCategory = new CreateMessageStateCategoryDto()
+            {
+                Css = "Sample Css",
+                IsError = true,
+                Title = "Sample Title",
+                ProviderId = Domain.Constants.ProviderEnum.Kavenegar
+            };
             var line = new CreateLineDto()
             {
                 ProviderId = Domain.Constants.ProviderEnum.Kavenegar,
@@ -44,13 +50,14 @@ namespace SmsHub.IntegrationTests.Api
                 SendDone = false
             };
 
-
             ////Act
+            await PostAsync<CreateMessageStateCategoryDto, CreateMessageStateCategoryDto>("/MessageStateCategory/Create", messageStateCategory);
             await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
             await PostAsync<CreateMessageBatchDto, CreateMessageBatchDto>("/MessageBatch/Create", messageBatch);
             await PostAsync<CreateMessagesHolderDto, CreateMessagesHolderDto>("/MessagesHolder/Create", messageHolder);
 
             var messagesHolders = await PostAsync<GetMessageHolderDto, ApiResponseEnvelope<ICollection<GetMessageHolderDto>>>("/MessagesHolder/GetList", null);
+
             var messageHolderId = messagesHolders.Data.FirstOrDefault().Id;
             var messageDetail = new CreateMessageDetailDto()
             {
@@ -61,19 +68,31 @@ namespace SmsHub.IntegrationTests.Api
                 SmsCount = 1,
                 Text = "sample Text"
             };
-
+            var messageState = new CreateMessageStateDto()
+            {
+                MessagesDetailId = 1,
+                MessageStateCategoryId = 1,
+                InsertDateTime = DateTime.Now,
+            };
             await PostAsync<CreateMessageDetailDto, CreateMessageDetailDto>("/MessagesDetail/Create", messageDetail);
+            await PostAsync<CreateMessageStateDto, CreateMessageStateDto>("/MessageState/Create", messageState);
 
             //Assert
             Assert.True(true);
         }
 
 
-
         [Fact]
-        public async void DeleteMessageDetailState_MessageDetailDto_ShouldDeleteMessageDetail()
+        public async void DeleteMessageState_MessageStateDto_ShouldDeleteMessageState()
         {
             //Arrange
+            var messageStateCategory = new CreateMessageStateCategoryDto()
+            {
+                Css = "Sample Css",
+                IsError = true,
+                Title = "Sample Title",
+                ProviderId = Domain.Constants.ProviderEnum.Kavenegar
+            };
             var line = new CreateLineDto()
             {
                 ProviderId = Domain.Constants.ProviderEnum.Kavenegar,
@@ -95,42 +114,56 @@ namespace SmsHub.IntegrationTests.Api
                 RetryCount = 1,
                 SendDone = false
             };
-            var deleteMessageDetail = new DeleteMessageDetailDto()
+
+            ////Act
+            await PostAsync<CreateMessageStateCategoryDto, CreateMessageStateCategoryDto>("/MessageStateCategory/Create", messageStateCategory);
+            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
+            await PostAsync<CreateMessageBatchDto, CreateMessageBatchDto>("/MessageBatch/Create", messageBatch);
+            await PostAsync<CreateMessagesHolderDto, CreateMessagesHolderDto>("/MessagesHolder/Create", messageHolder);
+
+            var messagesHolders = await PostAsync<GetMessageHolderDto, ApiResponseEnvelope<ICollection<GetMessageHolderDto>>>("/MessagesHolder/GetList", null);
+
+            var messageHolderId = messagesHolders.Data.FirstOrDefault().Id;
+            var messageDetail = new CreateMessageDetailDto()
+            {
+                MessagesHolderId = messageHolderId,
+                ProviderResult = 12,
+                Receptor = "sample Receptor",
+                SendDateTime = DateTime.Now,
+                SmsCount = 1,
+                Text = "sample Text"
+            };
+            var messageState = new CreateMessageStateDto()
+            {
+                MessagesDetailId = 1,
+                MessageStateCategoryId = 1,
+                InsertDateTime = DateTime.Now,
+            };
+            var deleteMessageState = new DeleteMessageStateDto()
             {
                 Id = 1
             };
-
-            ////Act
-            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
-            await PostAsync<CreateMessageBatchDto, CreateMessageBatchDto>("/MessageBatch/Create", messageBatch);
-            await PostAsync<CreateMessagesHolderDto, CreateMessagesHolderDto>("/MessagesHolder/Create", messageHolder);
-
-            var messagesHolders = await PostAsync<GetMessageHolderDto, ApiResponseEnvelope<ICollection<GetMessageHolderDto>>>("/MessagesHolder/GetList", null);
-            var messageHolderId = messagesHolders.Data.FirstOrDefault().Id;
-            var messageDetail = new CreateMessageDetailDto()
-            {
-                MessagesHolderId = messageHolderId,
-                ProviderResult = 12,
-                Receptor = "sample Receptor",
-                SendDateTime = DateTime.Now,
-                SmsCount = 1,
-                Text = "sample Text"
-            };
-
             await PostAsync<CreateMessageDetailDto, CreateMessageDetailDto>("/MessagesDetail/Create", messageDetail);
+            await PostAsync<CreateMessageStateDto, CreateMessageStateDto>("/MessageState/Create", messageState);
 
-            await PostAsync<DeleteMessageDetailDto, DeleteMessageDetailDto>("/MessagesDetail/Delete", deleteMessageDetail);
+            await PostAsync<DeleteMessageStateDto, DeleteMessageStateDto>("/MessageState/Delete", deleteMessageState);
 
             //Assert
             Assert.True(true);
         }
 
 
-
         [Fact]
-        public async void UpdateMessageDetailState_MessageDetailDto_ShouldUpdateMessageDetail()
+        public async void UpdateMessageState_MessageStateDto_ShouldUpdateMessageState()
         {
             //Arrange
+            var messageStateCategory = new CreateMessageStateCategoryDto()
+            {
+                Css = "Sample Css",
+                IsError = true,
+                Title = "Sample Title",
+                ProviderId = Domain.Constants.ProviderEnum.Kavenegar
+            };
             var line = new CreateLineDto()
             {
                 ProviderId = Domain.Constants.ProviderEnum.Kavenegar,
@@ -154,11 +187,13 @@ namespace SmsHub.IntegrationTests.Api
             };
 
             ////Act
+            await PostAsync<CreateMessageStateCategoryDto, CreateMessageStateCategoryDto>("/MessageStateCategory/Create", messageStateCategory);
             await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
             await PostAsync<CreateMessageBatchDto, CreateMessageBatchDto>("/MessageBatch/Create", messageBatch);
             await PostAsync<CreateMessagesHolderDto, CreateMessagesHolderDto>("/MessagesHolder/Create", messageHolder);
 
             var messagesHolders = await PostAsync<GetMessageHolderDto, ApiResponseEnvelope<ICollection<GetMessageHolderDto>>>("/MessagesHolder/GetList", null);
+
             var messageHolderId = messagesHolders.Data.FirstOrDefault().Id;
             var messageDetail = new CreateMessageDetailDto()
             {
@@ -169,30 +204,39 @@ namespace SmsHub.IntegrationTests.Api
                 SmsCount = 1,
                 Text = "sample Text"
             };
-            await PostAsync<CreateMessageDetailDto, CreateMessageDetailDto>("/MessagesDetail/Create", messageDetail);
-
-
-            var updateMessageDetail = new UpdateMessageDetailDto()
+            var messageState = new CreateMessageStateDto()
+            {
+                MessagesDetailId = 1,
+                MessageStateCategoryId = 1,
+                InsertDateTime = DateTime.Now,
+            };
+            var updateMessageState = new UpdateMessageStateDto()
             {
                 Id = 1,
-                MessagesHolderId = messageHolderId,
-                ProviderResult = 12,
-                Receptor = "sample Receptor",
-                SendDateTime = DateTime.Now,
-                SmsCount = 1,
-                Text = "sample Text"
+                MessagesDetailId = 1,
+                MessageStateCategoryId = 1,
+                InsertDateTime = DateTime.Now,
             };
-            await PostAsync<UpdateMessageDetailDto, UpdateMessageDetailDto>("/MessagesDetail/Update", updateMessageDetail);
+            await PostAsync<CreateMessageDetailDto, CreateMessageDetailDto>("/MessagesDetail/Create", messageDetail);
+            await PostAsync<CreateMessageStateDto, CreateMessageStateDto>("/MessageState/Create", messageState);
+
+            await PostAsync<UpdateMessageStateDto, UpdateMessageStateDto>("/MessageState/Update", updateMessageState);
 
             //Assert
             Assert.True(true);
         }
 
-
         [Fact]
-        public async void GetSingleUpdateMessageDetailState_MessageDetailDto_ShouldGetSingleMessageDetail()
+        public async void GetSingleMessageState_MessageStateDto_ShouldGetSingleMessageState()
         {
             //Arrange
+            var messageStateCategory = new CreateMessageStateCategoryDto()
+            {
+                Css = "Sample Css",
+                IsError = true,
+                Title = "Sample Title",
+                ProviderId = Domain.Constants.ProviderEnum.Kavenegar
+            };
             var line = new CreateLineDto()
             {
                 ProviderId = Domain.Constants.ProviderEnum.Kavenegar,
@@ -216,11 +260,13 @@ namespace SmsHub.IntegrationTests.Api
             };
 
             ////Act
+            await PostAsync<CreateMessageStateCategoryDto, CreateMessageStateCategoryDto>("/MessageStateCategory/Create", messageStateCategory);
             await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
             await PostAsync<CreateMessageBatchDto, CreateMessageBatchDto>("/MessageBatch/Create", messageBatch);
             await PostAsync<CreateMessagesHolderDto, CreateMessagesHolderDto>("/MessagesHolder/Create", messageHolder);
 
-            var messagesHolders = await PostAsync<GetMessageHolderDto,ApiResponseEnvelope<ICollection<GetMessageHolderDto>>>("/MessagesHolder/GetList", null);
+            var messagesHolders = await PostAsync<GetMessageHolderDto, ApiResponseEnvelope<ICollection<GetMessageHolderDto>>>("/MessagesHolder/GetList", null);
+
             var messageHolderId = messagesHolders.Data.FirstOrDefault().Id;
             var messageDetail = new CreateMessageDetailDto()
             {
@@ -231,21 +277,39 @@ namespace SmsHub.IntegrationTests.Api
                 SmsCount = 1,
                 Text = "sample Text"
             };
-            var messageDetailId = new IntId()
+            var messageState = new CreateMessageStateDto()
+            {
+                MessagesDetailId = 1,
+                MessageStateCategoryId = 1,
+                InsertDateTime = DateTime.Now,
+            };
+            var messageStateId = new IntId()
             {
                 Id = 1
             };
             await PostAsync<CreateMessageDetailDto, CreateMessageDetailDto>("/MessagesDetail/Create", messageDetail);
-            var singleMessageDetail = await PostAsync<IntId, ApiResponseEnvelope<GetMessageDetailDto>>("/MessagesDetail/GetSingle", messageDetailId);
+            await PostAsync<CreateMessageStateDto, CreateMessageStateDto>("/MessageState/Create", messageState);
+
+            var singleMessageState = await PostAsync<IntId, ApiResponseEnvelope<GetMessageStateDto>>("/MessageState/GetSingle", messageStateId);
 
             //Assert
-            Assert.Equal(singleMessageDetail.Data.Id, 1);
+            Assert.Equal(singleMessageState.Data.Id, 1);
         }
-        
-        
+
+
         [Fact]
-        public async void GetListUpdateMessageDetailState_MessageDetailDto_ShouldGetListMessageDetail()
+        public async void GetListMessageState_MessageStateDto_ShouldGetListMessageState()
         {
+            //Arrange
+            var messageStateCategories = new List<CreateMessageStateCategoryDto>()
+            {
+                new CreateMessageStateCategoryDto(){Css = "Sample Css",IsError = true,Title = "Sample Title",ProviderId = ProviderEnum.Kavenegar},
+                new CreateMessageStateCategoryDto(){Css = "Sample Css",IsError = true,Title = "Sample Title",ProviderId = ProviderEnum.Kavenegar},
+                new CreateMessageStateCategoryDto(){Css = "Sample Css",IsError = true,Title = "Sample Title",ProviderId = ProviderEnum.Kavenegar},
+            };
+
+            var messageStateCategoryList = await PostAsync<GetMessageStateCategoryDto, ApiResponseEnvelope<ICollection<GetMessageStateCategoryDto>>>("/MessageStateCategory/GetList", null);
+
             //Arrange
             var lines = new List<CreateLineDto>()
             {
@@ -269,6 +333,10 @@ namespace SmsHub.IntegrationTests.Api
             };
 
             //Act
+            foreach (var item in messageStateCategories)
+            {
+                await PostAsync<CreateMessageStateCategoryDto, CreateMessageStateCategoryDto>("/MessageStateCategory/Create", item);
+            }
             foreach (var item in lines)
             {
                 await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", item);
@@ -281,27 +349,39 @@ namespace SmsHub.IntegrationTests.Api
             {
                 await PostAsync<CreateMessagesHolderDto, CreateMessagesHolderDto>("/MessagesHolder/Create", item);
             }
-
             var messagesHolders = await PostAsync<GetMessageHolderDto, ApiResponseEnvelope<ICollection<GetMessageHolderDto>>>("/MessagesHolder/GetList", null);
             var messageHolderId_1 = messagesHolders.Data.FirstOrDefault().Id;
-            var messageHolderId_2 = messagesHolders.Data.Where(x=>x.RetryCount==5).FirstOrDefault().Id;
-            var messageHolderId_3 = messagesHolders.Data.Where(x=>x.RetryCount==3).FirstOrDefault().Id;
-           
+            var messageHolderId_2 = messagesHolders.Data.Where(x => x.RetryCount == 5).FirstOrDefault().Id;
+            var messageHolderId_3 = messagesHolders.Data.Where(x => x.RetryCount == 3).FirstOrDefault().Id;
+
+
+
             var messageDetails = new List<CreateMessageDetailDto>()
             {
                 new CreateMessageDetailDto(){MessagesHolderId = messageHolderId_1,ProviderResult =2,Receptor = "sample1",SendDateTime = DateTime.Now,SmsCount = 1,Text = "sample1 Text"},
                 new CreateMessageDetailDto(){MessagesHolderId = messageHolderId_2,ProviderResult = 3,Receptor = "sample2",SendDateTime = DateTime.Now,SmsCount = 1,Text = "sample2 Text"},
                 new CreateMessageDetailDto(){MessagesHolderId = messageHolderId_3,ProviderResult = 4,Receptor = "sample3",SendDateTime = DateTime.Now,SmsCount = 1,Text = "sample3 Text"},
             };
+            var messageStates = new List<CreateMessageStateDto>()
+            {
+                new CreateMessageStateDto(){MessagesDetailId = 1,MessageStateCategoryId = 2,InsertDateTime = DateTime.Now,},
+                new CreateMessageStateDto(){MessagesDetailId = 2,MessageStateCategoryId = 1,InsertDateTime = DateTime.Now,},
+                new CreateMessageStateDto(){MessagesDetailId = 3,MessageStateCategoryId = 3,InsertDateTime = DateTime.Now,},
+            };
 
             foreach (var item in messageDetails)
             {
                 await PostAsync<CreateMessageDetailDto, CreateMessageDetailDto>("/MessagesDetail/Create", item);
             }
-            var messageDetailList = await PostAsync<GetMessageDetailDto, ApiResponseEnvelope<ICollection<GetMessageDetailDto>>>("/MessagesDetail/GetList", null);
+            foreach (var item in messageStates)
+            {
+                await PostAsync<CreateMessageStateDto, CreateMessageStateDto>("/MessageState/Create", item);
+            }
+
+            var messageStateList = await PostAsync<GetMessageStateDto, ApiResponseEnvelope<ICollection<GetMessageStateDto>>>("/MessageState/GetList", null);
 
             //Assert
-            Assert.Equal(messageDetailList.Data.Count, 3);
+            Assert.Equal(messageStateList.Data.Count, 3);
         }
     }
 }

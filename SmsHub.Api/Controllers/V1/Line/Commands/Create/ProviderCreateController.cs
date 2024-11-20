@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmsHub.Application.Features.Line.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
@@ -10,7 +11,7 @@ namespace SmsHub.Api.Controllers.V1.Line.Commands.Create
 {
     [Route(nameof(Provider))]
     [ApiController]
-    public class ProviderCreateController : ControllerBase
+    public class ProviderCreateController : BaseController
     {
         private readonly IUnitOfWork _uow;
         private readonly IProviderCreateHandler _createCommandHandler;

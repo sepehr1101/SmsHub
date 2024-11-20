@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Template.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Entities;
@@ -9,7 +10,7 @@ namespace SmsHub.Api.Controllers.V1.Template.Commands.Delete
 {
     [Route(nameof(TemplateCategory))]
     [ApiController]
-    public class TemplateCategoryDeleteController : ControllerBase
+    public class TemplateCategoryDeleteController : BaseController
     {
         private readonly IUnitOfWork _uow;
         private readonly ITemplateCategoryDeleteHandler _deleteCommandHandler;

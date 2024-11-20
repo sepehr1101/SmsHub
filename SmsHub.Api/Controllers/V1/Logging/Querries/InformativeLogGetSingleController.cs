@@ -1,15 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Logging.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Features.Entities;
-using SmsHub.Domain.Features.Logging.MediatorDtos.Queries;
 
 namespace SmsHub.Api.Controllers.V1.Logging.Querries
 {
     [Route(nameof(InformativeLog))]
     [ApiController]
-    public class InformativeLogGetSingleController : ControllerBase
+    public class InformativeLogGetSingleController : BaseController
     {
         private readonly IInformativeLogGetSingleHandler _getSingleHandler;
         public InformativeLogGetSingleController(IInformativeLogGetSingleHandler getSingleHandler)
@@ -20,10 +20,10 @@ namespace SmsHub.Api.Controllers.V1.Logging.Querries
 
         [HttpPost]
         [Route(nameof(GetSingle))]
-        public async Task<GetInforamtaiveLogDto> GetSingle([FromBody] IntId Id)
+        public async Task<IActionResult> GetSingle([FromBody] IntId Id)
         {
             var informativeLog = await _getSingleHandler.Handle(Id);
-            return informativeLog;
+            return Ok(informativeLog);
         }
     }
 }

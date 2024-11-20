@@ -1,14 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Sending.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Entities;
-using SmsHub.Domain.Features.Sending.MediatorDtos.Queries;
 
 namespace SmsHub.Api.Controllers.V1.Sending.Querries
 {
     [Route(nameof(MessagesDetail))]
     [ApiController]
-    public class MessageDetailGetListController : ControllerBase
+    public class MessageDetailGetListController : BaseController
     {
         private readonly IMessageDetailGetListHandler _getListHandler;
         public MessageDetailGetListController(IMessageDetailGetListHandler getListHandler)
@@ -19,10 +19,10 @@ namespace SmsHub.Api.Controllers.V1.Sending.Querries
 
         [HttpPost]
         [Route(nameof(GetList))]
-        public async Task<ICollection<GetMessageDetailDto>> GetList()
+        public async Task<IActionResult> GetList()
         {
             var messageDetails = await _getListHandler.Handle();
-            return messageDetails;
+            return Ok(messageDetails);
         }
     }
 }

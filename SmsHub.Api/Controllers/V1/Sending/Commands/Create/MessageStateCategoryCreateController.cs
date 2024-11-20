@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Sending.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Entities;
@@ -9,7 +10,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
 {
     [Route(nameof(MessageStateCategory))]
     [ApiController]
-    public class MessageStateCategoryCreateController : ControllerBase
+    public class MessageStateCategoryCreateController : BaseController
     {
         private readonly IUnitOfWork _uow;
         private readonly IMessageStateCategoryCreateHandler _createCommandHandler;

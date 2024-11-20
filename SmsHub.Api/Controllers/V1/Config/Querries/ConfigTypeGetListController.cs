@@ -1,14 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Config.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
-using SmsHub.Domain.Features.Config.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Api.Controllers.V1.Config.Querries
 {
     [Route(nameof(ConfigType))]
     [ApiController]
-    public class ConfigTypeGetListController : ControllerBase
+    public class ConfigTypeGetListController : BaseController
     {
         private readonly IConfigTypeGetListHandler _getListHandler;
         public ConfigTypeGetListController(IConfigTypeGetListHandler getListHandler)
@@ -19,10 +19,10 @@ namespace SmsHub.Api.Controllers.V1.Config.Querries
 
         [HttpPost]
         [Route(nameof(GetList))]
-        public async Task<ICollection<GetConfigTypeDto>> GetList()
+        public async Task<IActionResult> GetList()
         {
             var ConfigTypes = await _getListHandler.Handle();
-            return ConfigTypes;
+            return Ok(ConfigTypes);
         }
     }
 }

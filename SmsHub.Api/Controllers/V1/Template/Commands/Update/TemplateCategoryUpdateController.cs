@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Template.Handlers.Commands.Delete.Contracts;
 using SmsHub.Application.Features.Template.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
@@ -10,7 +11,7 @@ namespace SmsHub.Api.Controllers.V1.Template.Commands.Update
 {
     [Route(nameof(TemplateCategory))]
     [ApiController]
-    public class TemplateCategoryUpdateController : ControllerBase
+    public class TemplateCategoryUpdateController : BaseController
     {
         private readonly IUnitOfWork _uow;
         private readonly ITemplateCategoryUpdateHandler _updateCommandHandler;
@@ -29,7 +30,7 @@ namespace SmsHub.Api.Controllers.V1.Template.Commands.Update
         {
             await _updateCommandHandler.Handle(updateDto, cancellationToken);
             await _uow.SaveChangesAsync(cancellationToken);
-            return Ok();
+            return Ok(updateDto);   
         }
     }
 }

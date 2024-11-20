@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Security.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Entities;
@@ -8,7 +9,7 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Update
 {
     [Route(nameof(ServerUser))]
     [ApiController]
-    public class ServerUserUpdateController : ControllerBase
+    public class ServerUserUpdateController : BaseController
     {
         private readonly IUnitOfWork _uow;
         private readonly IServerUserApiKeyRenewalHandler _updateApiKeyHandler;
@@ -25,8 +26,8 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Update
         [Route(nameof(Update))]
         public async Task<IActionResult> Update([FromBody] int id)
         {
-            await _updateApiKeyHandler.Handle(id);
-            return Ok();
+            await _updateApiKeyHandler.Handle(id);  
+            return Ok(id);
         }
     }
 }

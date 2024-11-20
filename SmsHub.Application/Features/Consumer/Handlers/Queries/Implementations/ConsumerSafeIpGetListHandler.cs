@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
+using SmsHub.Application.Features.Consumer.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Queries;
 using SmsHub.Persistence.Features.Consumer.Queries.Contracts;
 
 namespace SmsHub.Application.Features.Consumer.Handlers.Queries.Implementations
 {
-    public class ConsumerSafeIpGetListHandler
+    public class ConsumerSafeIpGetListHandler: IConsumerSafeIpGetListHandler
     {
         private readonly IMapper _mapper;
         private readonly IConsumerSafeIpQueryService _consumerSafeIpQueryService;

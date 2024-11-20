@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Logging.Handlers.Commands.Create.Contracts;
 using SmsHub.Application.Features.Logging.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
@@ -11,7 +12,7 @@ namespace SmsHub.Api.Controllers.V1.Logging.Commands.Delete
 {
     [Route(nameof(DeepLog))]
     [ApiController]
-    public class DeepLogDeleteController : ControllerBase
+    public class DeepLogDeleteController : BaseController
     {
         private readonly IUnitOfWork _uow;
         private readonly IDeepLogDeleteHandler _deleteCommandHandler;

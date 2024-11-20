@@ -1,14 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Contact.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
-using SmsHub.Domain.Features.Contact.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Api.Controllers.V1.Contact.Querries
 {
     [Route(nameof(ContactCategory))]
     [ApiController]
-    public class ContactCategoryGetListController : ControllerBase
+    public class ContactCategoryGetListController : BaseController
     {
         private readonly IContactCategoryGetListHandler _getListHandler;
         public ContactCategoryGetListController(IContactCategoryGetListHandler getListHandler)
@@ -19,10 +19,10 @@ namespace SmsHub.Api.Controllers.V1.Contact.Querries
 
         [HttpPost]
         [Route(nameof(GetList))]
-        public async Task<ICollection<GetContactCategoryDto>> GetList()
+        public async Task<IActionResult> GetList()
         {
             var contactCategories = await _getListHandler.Handle();
-            return contactCategories;
+            return Ok(contactCategories);
         }
     }
 }

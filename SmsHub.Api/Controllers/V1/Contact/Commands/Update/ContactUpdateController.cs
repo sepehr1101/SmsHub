@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Contact.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Contact.MediatorDtos.Commands;
@@ -8,7 +9,7 @@ namespace SmsHub.Api.Controllers.V1.Contact.Commands.Update
 {
     [Route(nameof(Contact))]
     [ApiController]
-    public class ContactUpdateController : ControllerBase
+    public class ContactUpdateController : BaseController
     {
         private readonly IUnitOfWork _uow;
         private readonly IContactUpdateHandler _updateCommandHandler;
@@ -27,7 +28,7 @@ namespace SmsHub.Api.Controllers.V1.Contact.Commands.Update
         {
             await _updateCommandHandler.Handle(updateDto, cancellationToken);
             await _uow.SaveChangesAsync(cancellationToken);
-            return Ok();
+           return Ok(updateDto);
         }
     }
 }
