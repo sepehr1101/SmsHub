@@ -21,13 +21,13 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var configType = new CreateConfigTypeDto()
             {
-                Title = "First Config",
+                Title = "sample Config",
                 Description = "Sample Sentence"
             };
             var configTypeGroup = new CreateConfigTypeGroupDto()
             {
                 ConfigTypeId = 1,
-                Title = "First ConfigTypeGroup",
+                Title = "sample ConfigTypeGroup",
                 Description = "Sample Sentence"
             };
             var ccSend = new CreateCcSendDto()
@@ -51,13 +51,13 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var configType = new CreateConfigTypeDto()
             {
-                Title = "First Config",
+                Title = "sample Config",
                 Description = "Sample Sentence"
             };
             var configTypeGroup = new CreateConfigTypeGroupDto()
             {
                 ConfigTypeId = 1,
-                Title = "First ConfigTypeGroup",
+                Title = "sample ConfigTypeGroup",
                 Description = "Sample Sentence"
             };
             var ccSend = new CreateCcSendDto()
@@ -86,13 +86,13 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var configType = new CreateConfigTypeDto()
             {
-                Title = "First Config",
+                Title = "sample Config",
                 Description = "Sample Sentence"
             };
             var configTypeGroup = new CreateConfigTypeGroupDto()
             {
                 ConfigTypeId = 1,
-                Title = "First ConfigTypeGroup",
+                Title = "sample ConfigTypeGroup",
                 Description = "Sample Sentence"
             };
             var ccSend = new CreateCcSendDto()
@@ -122,13 +122,13 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var configType = new CreateConfigTypeDto()
             {
-                Title = "First Config",
+                Title = "sample Config",
                 Description = "Sample Sentence"
             };
             var configTypeGroup = new CreateConfigTypeGroupDto()
             {
                 ConfigTypeId = 1,
-                Title = "First ConfigTypeGroup",
+                Title = "sample ConfigTypeGroup",
                 Description = "Sample Sentence"
             };
             var ccSend = new CreateCcSendDto()

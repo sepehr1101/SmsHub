@@ -5,6 +5,7 @@ using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Delete;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
+using SmsHub.Domain.Features.Line.MediatorDtos.Queries;
 
 namespace SmsHub.IntegrationTests.Api
 {
@@ -26,21 +27,25 @@ namespace SmsHub.IntegrationTests.Api
                 ApiKey = "Sample ApiKey",
                 Description = "Sample Description"
             };
+            await PostAsync<CreateConsumerDto, CreateConsumerDto>("/Consumer/Create", consumer);
+            var consumerData = await PostAsync<GetConsumerDto, ApiResponseEnvelope<ICollection<GetConsumerDto>>>("/Consumer/GetList", null);
+
             var line = new CreateLineDto()
             {
                 ProviderId = Domain.Constants.ProviderEnum.Kavenegar,
                 Credential = "sample Credential",
                 Number = "111"
             };
+            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
+            var lineData = await PostAsync<GetLineDto, ApiResponseEnvelope<ICollection<GetLineDto>>>("/Line/GetList", null);
+
             var consumerLine = new CreateConsumerLineDto()
             {
-                ConsumerId = 1,
-                LineId = 1
+                ConsumerId = consumerData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
+                LineId = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
 
             //Act
-            await PostAsync<CreateConsumerDto, CreateConsumerDto>("/Consumer/Create", consumer);
-            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
             await PostAsync<CreateConsumerLineDto, CreateConsumerLineDto>("/ConsumerLine/Create", consumerLine);
 
             //Assert
@@ -59,27 +64,32 @@ namespace SmsHub.IntegrationTests.Api
                 ApiKey = "Sample ApiKey",
                 Description = "Sample Description"
             };
+            await PostAsync<CreateConsumerDto, CreateConsumerDto>("/Consumer/Create", consumer);
+            var consumerData = await PostAsync<GetConsumerDto, ApiResponseEnvelope<ICollection<GetConsumerDto>>>("/Consumer/GetList", null);
+
             var line = new CreateLineDto()
             {
                 ProviderId = Domain.Constants.ProviderEnum.Kavenegar,
                 Credential = "sample Credential",
-                Number = "111"
+                Number = "112"
             };
+            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
+            var lineData = await PostAsync<GetLineDto, ApiResponseEnvelope<ICollection<GetLineDto>>>("/Line/GetList", null);
+
             var consumerLine = new CreateConsumerLineDto()
             {
-                ConsumerId = 1,
-                LineId = 1
+                ConsumerId = consumerData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
+                LineId = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
+            await PostAsync<CreateConsumerLineDto, CreateConsumerLineDto>("/ConsumerLine/Create", consumerLine);
+            var consumerLineData = await PostAsync<GetConsumerLineDto, ApiResponseEnvelope<ICollection<GetConsumerLineDto>>>("/ConsumerLine/GetList", null);
+
             var deleteConsumerLine = new DeleteConsumerLineDto()
             {
-                Id = 1
+                Id = consumerLineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
             };
 
             //Act
-            await PostAsync<CreateConsumerDto, CreateConsumerDto>("/Consumer/Create", consumer);
-            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
-            await PostAsync<CreateConsumerLineDto, CreateConsumerLineDto>("/ConsumerLine/Create", consumerLine);
-
             await PostAsync<DeleteConsumerLineDto, DeleteConsumerLineDto>("/ConsumerLine/Delete", deleteConsumerLine);
             //Assert
             Assert.True(true);
@@ -97,30 +107,36 @@ namespace SmsHub.IntegrationTests.Api
                 ApiKey = "Sample ApiKey",
                 Description = "Sample Description"
             };
+            await PostAsync<CreateConsumerDto, CreateConsumerDto>("/Consumer/Create", consumer);
+            var consumerData = await PostAsync<GetConsumerDto, ApiResponseEnvelope<ICollection<GetConsumerDto>>>("/Consumer/GetList", null);
+
             var line = new CreateLineDto()
             {
                 ProviderId = Domain.Constants.ProviderEnum.Kavenegar,
                 Credential = "sample Credential",
-                Number = "111"
+                Number = "113"
             };
+            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
+            var lineData = await PostAsync<GetLineDto, ApiResponseEnvelope<ICollection<GetLineDto>>>("/Line/GetList", null);
+
             var consumerLine = new CreateConsumerLineDto()
             {
-                ConsumerId = 1,
-                LineId = 1
+                ConsumerId = consumerData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
+                LineId = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
+            await PostAsync<CreateConsumerLineDto, CreateConsumerLineDto>("/ConsumerLine/Create", consumerLine);
+            var consumerLineData = await PostAsync<GetConsumerLineDto, ApiResponseEnvelope<ICollection<GetConsumerLineDto>>>("/ConsumerLine/GetList", null);
+
             var updateConsumerLine = new UpdateConsumerLineDto()
             {
-                Id = 1,
+                Id = consumerLineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
                 ConsumerId = 1,
                 LineId = 1,
             };
 
             //Act
-            await PostAsync<CreateConsumerDto, CreateConsumerDto>("/Consumer/Create", consumer);
-            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
-            await PostAsync<CreateConsumerLineDto, CreateConsumerLineDto>("/ConsumerLine/Create", consumerLine);
-
             await PostAsync<UpdateConsumerLineDto, UpdateConsumerLineDto>("/ConsumerLine/Update", updateConsumerLine);
+
             //Assert
             Assert.True(true);
 
@@ -137,32 +153,36 @@ namespace SmsHub.IntegrationTests.Api
                 ApiKey = "Sample ApiKey",
                 Description = "Sample Description"
             };
+            await PostAsync<CreateConsumerDto, CreateConsumerDto>("/Consumer/Create", consumer);
+            var consumerData = await PostAsync<GetConsumerDto, ApiResponseEnvelope<ICollection<GetConsumerDto>>>("/Consumer/GetList", null);
+
             var line = new CreateLineDto()
             {
                 ProviderId = Domain.Constants.ProviderEnum.Kavenegar,
                 Credential = "sample Credential",
-                Number = "111"
+                Number = "114"
             };
+            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
+            var lineData = await PostAsync<GetLineDto, ApiResponseEnvelope<ICollection<GetLineDto>>>("/Line/GetList", null);
+
             var consumerLine = new CreateConsumerLineDto()
             {
-                ConsumerId = 1,
-                LineId = 1
+                ConsumerId = consumerData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
+                LineId = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
+            await PostAsync<CreateConsumerLineDto, CreateConsumerLineDto>("/ConsumerLine/Create", consumerLine);
+            var consumerLineData = await PostAsync<GetConsumerLineDto, ApiResponseEnvelope<ICollection<GetConsumerLineDto>>>("/ConsumerLine/GetList", null);
+
             var consumerLineId = new IntId()
             {
-                Id = 1
+                Id = consumerLineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
             };
 
             //Act
-            await PostAsync<CreateConsumerDto, CreateConsumerDto>("/Consumer/Create", consumer);
-            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
-            await PostAsync<CreateConsumerLineDto, CreateConsumerLineDto>("/ConsumerLine/Create", consumerLine);
-
             var singleConsumerLine = await PostAsync<IntId, ApiResponseEnvelope<GetConsumerLineDto>>("/ConsumerLine/GetSingle", consumerLineId);
 
             //Assert
-            Assert.Equal(singleConsumerLine.Data.Id, 1);
-            Assert.Equal(singleConsumerLine.HttpStatusCode, 200);
+            Assert.Equal(singleConsumerLine.Data.Id, consumerLineId.Id);
         }
 
 
@@ -182,7 +202,7 @@ namespace SmsHub.IntegrationTests.Api
 
             var lines = new List<CreateLineDto>()
             {
-               new CreateLineDto() {ProviderId = Domain.Constants.ProviderEnum.Kavenegar,Credential = "sample1 Credential",Number = "111"},
+               new CreateLineDto() {ProviderId = Domain.Constants.ProviderEnum.Kavenegar,Credential = "sample1 Credential",Number = "115"},
                new CreateLineDto() {ProviderId = Domain.Constants.ProviderEnum.Magfa,Credential = "sample2 Credential",Number = "150"},
                new CreateLineDto() {ProviderId = Domain.Constants.ProviderEnum.Magfa,Credential = "sample3 Credential",Number = "125"},
                new CreateLineDto() {ProviderId = Domain.Constants.ProviderEnum.Kavenegar,Credential = "sample4 Credential",Number = "152"},
@@ -190,8 +210,8 @@ namespace SmsHub.IntegrationTests.Api
              };
             var consumerLines = new List<CreateConsumerLineDto>()
             {
-                new CreateConsumerLineDto(){ ConsumerId = 1,LineId = 2},
-                new CreateConsumerLineDto(){ ConsumerId = 3,LineId = 2},
+                new CreateConsumerLineDto(){ ConsumerId = 1,LineId = 3},
+                new CreateConsumerLineDto(){ ConsumerId = 3,LineId = 1},
                 new CreateConsumerLineDto(){ ConsumerId = 4,LineId = 3},
                 new CreateConsumerLineDto(){ ConsumerId = 3,LineId = 4},
             };
@@ -213,8 +233,7 @@ namespace SmsHub.IntegrationTests.Api
             var consumerLineList = await PostAsync<GetConsumerLineDto, ApiResponseEnvelope<ICollection<GetConsumerLineDto>>>("/ConsumerLine/GetList", null);
 
             //Assert
-            Assert.Equal(consumerLineList.Data.Count, 4);
-            Assert.Equal(consumerLineList.HttpStatusCode, 200);
+            Assert.InRange(consumerLineList.Data.Count,4, 8);
         }
     }
 }

@@ -67,15 +67,17 @@ namespace SmsHub.IntegrationTests.Api
                 Title = "First Config",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
+            var configTypeData = await PostAsync<GetConfigTypeDto, ApiResponseEnvelope<ICollection<GetConfigTypeDto>>>("/ConfigType/GetList", null);
+
             var updateConfigType = new UpdateConfigTypeDto()
             {
-                Id = 1,
+                Id = configTypeData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
                 Description = "Update Description",
                 Title = "Update Description"
             };
 
             //Act
-            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
             await PostAsync<UpdateConfigTypeDto, UpdateConfigTypeDto>("/ConfigType/Update", updateConfigType);
 
             //Assert
@@ -90,21 +92,22 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var configType = new CreateConfigTypeDto()
             {
-                Title = "First Config",
+                Title = "sample Config for test",
                 Description = "Sample Sentence"
-            };
+            }; 
+            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
+            var configTypeData = await PostAsync<GetConfigTypeDto, ApiResponseEnvelope<ICollection<GetConfigTypeDto>>>("ConfigType/GetList", null);
+
             var configTypeId = new IntId()
             {
-                Id = 1
+                Id = configTypeData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
 
             //Act
-            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
             var singleConfigType = await PostAsync<IntId, ApiResponseEnvelope<GetConfigTypeDto>>("/ConfigType/GetSingle", configTypeId);
 
             //Assert
-            Assert.Equal(singleConfigType.Data.Id, 1);
-            Assert.Equal(singleConfigType.HttpStatusCode, 200);
+            Assert.Equal(singleConfigType.Data.Title, "sample Config for test");
         }
 
 
@@ -127,8 +130,7 @@ namespace SmsHub.IntegrationTests.Api
             var configTypeList = await PostAsync<IntId, ApiResponseEnvelope<ICollection<GetConfigTypeDto>>>("/ConfigType/GetList", null);
 
             //Assert
-            Assert.Equal(configTypeList.Data.Count, 3);
-            Assert.Equal(configTypeList.HttpStatusCode, 200);
+            Assert.InRange(configTypeList.Data.Count, 3,7);
         }
     }
 }

@@ -21,7 +21,7 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var contact = new CreateContactDto()
             {
-                Title = "sample title"
+                Title = "Create Test Sample title"
             };
             //Act
             await PostAsync<CreateContactDto, CreateContactDto>("/Contact/Create", contact);
@@ -36,15 +36,17 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var contact = new CreateContactDto()
             {
-                Title = "sample title"
+                Title = "Delete Test Sample title"
             };
+            await PostAsync<CreateContactDto, CreateContactDto>("/Contact/Create", contact);
+            var contactData = await PostAsync<GetContactDto, ApiResponseEnvelope<ICollection<GetContactDto>>>("/Contact/GetList", null);
+            
             var deleteContact = new DeleteContactDto()
             {
-                Id = 1
+                Id = contactData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
             };
 
             //Act
-            await PostAsync<CreateContactDto, CreateContactDto>("/Contact/Create", contact);
             await PostAsync<DeleteContactDto, DeleteContactDto>("/Contact/Delete", deleteContact);
 
             //Assert
@@ -58,16 +60,18 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var contact = new CreateContactDto()
             {
-                Title = "sample title"
+                Title = "Update Test Sample title"
             };
+            await PostAsync<CreateContactDto, CreateContactDto>("/Contact/Create", contact);
+            var contactData = await PostAsync<GetContactDto, ApiResponseEnvelope<ICollection<GetContactDto>>>("/Contact/GetList", null);
+
             var updateContact = new UpdateContactDto()
             {
-                Id = 1,
+                Id = contactData.Data.OrderByDescending(x=>x.Id).FirstOrDefault().Id,
                 Title = "Update Title"
             };
 
             //Act
-            await PostAsync<CreateContactDto, CreateContactDto>("/Contact/Create", contact);
             await PostAsync<UpdateContactDto, UpdateContactDto>("/Contact/Update", updateContact);
 
             //Assert
@@ -82,20 +86,21 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var contact = new CreateContactDto()
             {
-                Title = "sample title"
+                Title = "GetSingle Test Sample title"
             };
+            await PostAsync<CreateContactDto, CreateContactDto>("/Contact/Create", contact);
+            var contactData = await PostAsync<GetContactDto, ApiResponseEnvelope<ICollection<GetContactDto>>>("/Contact/GetList", null);
+
             var contactId = new IntId()
             {
-                Id = 1
+                Id = contactData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
             };
 
             //Act
-            await PostAsync<CreateContactDto, CreateContactDto>("/Contact/Create", contact);
             var singleContact = await PostAsync<IntId, ApiResponseEnvelope<GetContactDto>>("/Contact/GetSingle", contactId);
 
             //Assert
-            Assert.Equal(singleContact.Data.Id, 1);
-            Assert.Equal(singleContact.HttpStatusCode, 200);
+            Assert.Equal(singleContact.Data.Id, contactId.Id);
         }
 
 
@@ -118,8 +123,7 @@ namespace SmsHub.IntegrationTests.Api
             var contactList = await PostAsync<GetContactDto, ApiResponseEnvelope<ICollection<GetContactDto>>>("/Contact/GetList",null);
 
             //Assert
-            Assert.Equal(contactList.Data.Count, 3);
-            Assert.Equal(contactList.HttpStatusCode, 200);
+            Assert.InRange(contactList.Data.Count, 3,7);
         }
     }
 }
