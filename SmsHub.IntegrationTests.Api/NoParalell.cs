@@ -1,3 +1,4 @@
-﻿namespace SmsHub.IntegrationTests.Api
+﻿[assembly: CollectionBehavior(DisableTestParallelization = true)]
+namespace SmsHub.IntegrationTests.Api
 {
 }

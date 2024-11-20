@@ -30,18 +30,6 @@ namespace SmsHub.IntegrationTests.Api
 
             return data;
         }
-        
-        //public async Task<TResult?> GetAsync<TData,TResult>(string url,TData data)
-        //{
-        //    var stringContent = new StringContent(JsonSerializer.Serialize(data),
-        //        Encoding.UTF8, "application/json");
-
-        //    var result = await _httpClient.GetAsync(url);
-        //    var content = await result.Content.ReadAsStringAsync();
-        //    var returnData = JsonSerializer.Deserialize<TResult>(content, _serializerOptions);
-
-        //    return returnData;
-        //}
 
         public async Task<TResult?> PostAsync<TData, TResult>(string url, TData data)
         {

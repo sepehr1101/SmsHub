@@ -21,6 +21,7 @@ namespace SmsHub.IntegrationTests.Api
             // Arrange
             var provider = new CreateProviderDto
             {
+            //  Id=ProviderEnum.Kavenegar,//todo: assume we gave it id,how can create new ProviderEnum
                 BaseUri = "http://baseurl",
                 BatchSize = 10,
                 DefaultPreNumber = "2000",
@@ -107,26 +108,14 @@ namespace SmsHub.IntegrationTests.Api
             var singleProvider = await PostAsync<ProviderEnum, ApiResponseEnvelope<GetProviderDto>>("/Provider/GetSingle", providerId);
 
             // Assert 
-            Assert.Equal(singleProvider.Data.Id, providerId);
+            Assert.Equal(singleProvider.Data.Title, "مگفا");
         }
 
 
         [Fact]
         public async void GetListProvider_ProviderDataDto_ShouldGetListProvider()
         {
-            // Arrange
-            //var providers = new List<CreateProviderDto>()
-            //{
-            //     new CreateProviderDto(){BaseUri = "http://baseurl1",BatchSize = 10,DefaultPreNumber = "2000",FallbackBaseUri = "https://fallbackurl",Title = "title1",Website = "www.someProvider1.ir"},
-            //     new CreateProviderDto(){BaseUri = "http://baseurl2",BatchSize = 8,DefaultPreNumber = "220",FallbackBaseUri = "https://fallbackurl",Title = "title2",Website = "www.someProvider2.ir"},
-            //     new CreateProviderDto(){BaseUri = "http://baseurl3",BatchSize = 12,DefaultPreNumber = "1500",FallbackBaseUri = "https://fallbackurl",Title = "title3",Website = "www.someProvider3.ir"},
-            //};
-
-            //// Act
-            //foreach (var item in providers)
-            //{
-            //    await PostAsync<CreateProviderDto, CreateProviderDto>("/Provider/Create", item);
-            //}
+           //Act
             var providerList = await PostAsync<GetProviderDto, ApiResponseEnvelope<ICollection<GetProviderDto>>>("/Provider/GetList", null);
 
             // Assert 
