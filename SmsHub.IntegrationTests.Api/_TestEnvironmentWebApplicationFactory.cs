@@ -9,7 +9,7 @@ using Testcontainers.MsSql;
 
 namespace SmsHub.IntegrationTests.Api
 {
-    public class TestEnvironmentWebApplicationFactory
+    public class _TestEnvironmentWebApplicationFactory
         : WebApplicationFactory<Program>, IAsyncLifetime
     {
         private static int runSqlInPort = 33911, sqlDefaultPort = 1433;
