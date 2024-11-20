@@ -1,17 +1,15 @@
 ﻿using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.BaseDomainEntities.Id;
-using SmsHub.Domain.Features.Entities;
-using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Update;
 using SmsHub.Domain.Features.Security.Dtos;
 using SmsHub.Domain.Features.Security.MediatorDtos.Commands;
 using SmsHub.Domain.Features.Security.MediatorDtos.Queries;
 
-//[assembly: CollectionBehavior(DisableTestParallelization = true)]
 namespace SmsHub.IntegrationTests.Api
 {
+    [CollectionDefinition("ApiIntegrationTests", DisableParallelization = true)]
     public class ServerUserControllerTest : BaseIntegrationTest
     {
-        public ServerUserControllerTest(TestEnvironmentWebApplicationFactory factory)
+        public ServerUserControllerTest(_TestEnvironmentWebApplicationFactory factory)
             : base(factory)
         {
         }

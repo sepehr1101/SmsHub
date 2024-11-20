@@ -7,12 +7,12 @@ using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Delete;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Queries;
 
-//[assembly:CollectionBehavior(DisableTestParallelization =true)]
 namespace SmsHub.IntegrationTests.Api
 {
+    [CollectionDefinition("ApiIntegrationTests", DisableParallelization = true)]
     public class InformativeLogControllerTest : BaseIntegrationTest
     {
-        public InformativeLogControllerTest(TestEnvironmentWebApplicationFactory factory)
+        public InformativeLogControllerTest(_TestEnvironmentWebApplicationFactory factory)
             : base(factory)
         {
         }

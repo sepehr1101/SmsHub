@@ -4,14 +4,13 @@ using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Delete;
 using SmsHub.Domain.Features.Config.MediatorDtos.Queries;
-using SmsHub.Domain.Features.Entities;
 
-//[assembly: CollectionBehavior(DisableTestParallelization = true)]
 namespace SmsHub.IntegrationTests.Api
 {
+    [CollectionDefinition("ApiIntegrationTests", DisableParallelization = true)]
     public class PermittedTimeControllerTest : BaseIntegrationTest
     {
-        public PermittedTimeControllerTest(TestEnvironmentWebApplicationFactory factory)
+        public PermittedTimeControllerTest(_TestEnvironmentWebApplicationFactory factory)
             : base(factory)
         {
         }

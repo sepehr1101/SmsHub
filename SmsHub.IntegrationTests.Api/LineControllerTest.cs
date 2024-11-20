@@ -8,9 +8,10 @@ using SmsHub.Domain.Features.Line.MediatorDtos.Queries;
 
 namespace SmsHub.IntegrationTests.Api
 {
+    [CollectionDefinition("ApiIntegrationTests", DisableParallelization = true)]
     public class LineControllerTest : BaseIntegrationTest
     {
-        public LineControllerTest(TestEnvironmentWebApplicationFactory factory)
+        public LineControllerTest(_TestEnvironmentWebApplicationFactory factory)
             : base(factory)
         {
         }
