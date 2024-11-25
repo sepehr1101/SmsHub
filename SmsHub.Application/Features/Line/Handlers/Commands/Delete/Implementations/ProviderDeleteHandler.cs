@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using SmsHub.Application.Features.Line.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Delete;
@@ -12,10 +13,12 @@ namespace SmsHub.Application.Features.Line.Handlers.Commands.Delete.Implementati
         private readonly IMapper _mapper;
         private readonly IProviderCommandService _providerCommandService;
         private readonly IProviderQueryService _providerQueryService;
+        private readonly IValidator<DeleteProviderDto> _validator;
         public ProviderDeleteHandler(
             IMapper mapper,
             IProviderCommandService providerCommandService,
-            IProviderQueryService providerQueryService)
+            IProviderQueryService providerQueryService,
+            IValidator<DeleteProviderDto> validator)
         {
             _mapper = mapper;
             _mapper.NotNull();
@@ -25,9 +28,18 @@ namespace SmsHub.Application.Features.Line.Handlers.Commands.Delete.Implementati
 
             _providerQueryService = providerQueryService;
             _providerQueryService.NotNull(nameof(providerQueryService));
+
+            _validator = validator;
+            _validator.NotNull(nameof(validator));
         }
         public async Task Handle(DeleteProviderDto deleteProviderDto, CancellationToken cancellationToken)
         {
+            var validationResult = await _validator.ValidateAsync(deleteProviderDto, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                throw new InvalidDataException();
+            }
+
             var provider = await _providerQueryService.Get(deleteProviderDto.Id);
             _providerCommandService.Delete(provider);
         }

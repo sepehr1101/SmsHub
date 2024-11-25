@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using SmsHub.Application.Features.Contact.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Contact.MediatorDtos.Commands;
@@ -10,16 +11,26 @@ namespace SmsHub.Application.Features.Contact.Handlers.Commands.Update.Implement
     {
         private readonly IMapper _mapper;
         private readonly IContactQueryService _contactQueryService;
-        public ContactUpdateHandler(IMapper mapper, IContactQueryService contactQueryService)
+        private readonly IValidator<UpdateContactDto> _validator;
+        public ContactUpdateHandler(IMapper mapper, IContactQueryService contactQueryService, IValidator<UpdateContactDto> validator)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
 
             _contactQueryService = contactQueryService;
             _contactQueryService.NotNull(nameof(contactQueryService));
+
+            _validator = validator;
+            _validator.NotNull(nameof(validator));
         }
         public async Task Handle(UpdateContactDto updateContactDto, CancellationToken cancellationToken)
         {
+            var validationResult = await _validator.ValidateAsync(updateContactDto, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                throw new InvalidDataException();
+            }
+
             var contact = await _contactQueryService.Get(updateContactDto.Id);
             _mapper.Map(updateContactDto, contact);
         }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using SmsHub.Application.Features.Logging.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Delete;
@@ -7,15 +8,17 @@ using SmsHub.Persistence.Features.Logging.Queries.Contracts;
 
 namespace SmsHub.Application.Features.Logging.Handlers.Commands.Delete.Implementations
 {
-    public class DeepLogDeleteHandler: IDeepLogDeleteHandler
+    public class DeepLogDeleteHandler : IDeepLogDeleteHandler
     {
         private readonly IMapper _mapper;
         private readonly IDeepLogCommandService _deepLogCommandService;
         private readonly IDeepLogQueryService _deepLogQueryService;
+        private readonly IValidator<DeleteDeepLogDto> _validator;
         public DeepLogDeleteHandler(
-            IMapper mapper, 
+            IMapper mapper,
             IDeepLogCommandService deepLogCommandService,
-            IDeepLogQueryService deepLogQueryService)
+            IDeepLogQueryService deepLogQueryService,
+            IValidator<DeleteDeepLogDto> validator)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
@@ -25,10 +28,19 @@ namespace SmsHub.Application.Features.Logging.Handlers.Commands.Delete.Implement
 
             _deepLogQueryService = deepLogQueryService;
             _deepLogQueryService.NotNull(nameof(deepLogQueryService));
+
+            _validator = validator;
+            _validator.NotNull(nameof(validator));
         }
         public async Task Handle(DeleteDeepLogDto deleteDeepLogDto, CancellationToken cancellationToken)
         {
-            var deepLog=await _deepLogQueryService.Get(deleteDeepLogDto.Id);
+            var validationResult = await _validator.ValidateAsync(deleteDeepLogDto, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                throw new InvalidDataException();
+            }
+
+            var deepLog = await _deepLogQueryService.Get(deleteDeepLogDto.Id);
             _deepLogCommandService.Delete(deepLog);
         }
     }

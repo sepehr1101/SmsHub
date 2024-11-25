@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using SmsHub.Application.Features.Sending.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Delete;
@@ -12,10 +13,12 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Delete.Implement
         private readonly IMapper _mapper;
         private readonly IMessageHolderCommandService _messageHolderCommandService;
         private readonly IMessagesHolderQueryService _messagesHolderQueryService;
+        private readonly IValidator<DeleteMessageHolderDto> _validator;
         public MessageHolderDeleteHandler(
             IMapper mapper,
             IMessageHolderCommandService messageHolderCommandService,
-            IMessagesHolderQueryService messagesHolderQueryService)
+            IMessagesHolderQueryService messagesHolderQueryService,
+            IValidator<DeleteMessageHolderDto> validator)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
@@ -25,10 +28,19 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Delete.Implement
 
             _messagesHolderQueryService = messagesHolderQueryService;
             _messagesHolderQueryService.NotNull(nameof(messagesHolderQueryService));
+
+            _validator = validator;
+            _validator.NotNull(nameof(validator));
         }
         public async Task Handle(DeleteMessageHolderDto deleteMessageHolderDto, CancellationToken cancellationToken)
         {
-           var messageHolder=await _messagesHolderQueryService.Get(deleteMessageHolderDto.Id);
+            var validationResult = await _validator.ValidateAsync(deleteMessageHolderDto, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                throw new InvalidDataException();
+            }
+
+            var messageHolder = await _messagesHolderQueryService.Get(deleteMessageHolderDto.Id);
             _messageHolderCommandService.Delete(messageHolder);
         }
     }

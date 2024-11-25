@@ -27,8 +27,8 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Create.Implementa
         }
         public async Task Handle(CreateCcSendDto request, CancellationToken cancellationToken)
         {
-            var validation = await _validator.ValidateAsync(request, cancellationToken);
-            if (!validation.IsValid)
+            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+            if (!validationResult.IsValid)
             {
                 throw new InvalidDataException();
             }
