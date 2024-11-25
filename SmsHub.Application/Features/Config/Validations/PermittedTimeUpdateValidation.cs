@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using SmsHub.Application.Common.Base;
+using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
 
 namespace SmsHub.Application.Features.Config.Validations
@@ -10,11 +11,15 @@ namespace SmsHub.Application.Features.Config.Validations
         {
             RuleFor(x => x.FromTime).NotEmpty().Length(5) 
                 .Must(ValidationAnsiString.ValidateAnsi) 
-                .Must(ValidationAnsiString.CheckTime);
+                .Must(ValidationAnsiString.CheckTime)
+                .WithMessage(MessageResources.ItemNotMoreThan5)
+                .WithMessage(MessageResources.ItemNotNull);
 
             RuleFor(x => x.ToTime).NotEmpty().Length(5)
                 .Must(ValidationAnsiString.ValidateAnsi)
-                .Must(ValidationAnsiString.CheckTime);
+                .Must(ValidationAnsiString.CheckTime)
+                .WithMessage(MessageResources.ItemNotMoreThan5)
+                .WithMessage(MessageResources.ItemNotNull);
         }
     }
 }

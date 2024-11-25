@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
 
 namespace SmsHub.Application.Features.Config.Validations
@@ -7,8 +8,8 @@ namespace SmsHub.Application.Features.Config.Validations
     {
         public ConfigCreateValidator()
         {
-            RuleFor(x=>x.ConfigTypeGroupId).NotEmpty();
-           RuleFor(x=>x.TemplateId).NotEmpty();
+            RuleFor(x => x.ConfigTypeGroupId).NotEmpty().WithMessage(MessageResources.ItemNotNull);
+            RuleFor(x=>x.TemplateId).NotEmpty().WithMessage(MessageResources.ItemNotNull);
         }
     }
 }
