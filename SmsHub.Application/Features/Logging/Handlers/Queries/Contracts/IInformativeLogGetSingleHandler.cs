@@ -5,6 +5,6 @@ namespace SmsHub.Application.Features.Logging.Handlers.Queries.Contracts
 {
     public interface IInformativeLogGetSingleHandler
     {
-        Task<GetInforamtaiveLogDto> Handle(IntId Id);
+        Task<GetInforamtaiveLogDto> Handle(LongId Id);
     }
 }

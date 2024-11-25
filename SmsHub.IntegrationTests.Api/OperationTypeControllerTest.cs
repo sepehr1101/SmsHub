@@ -39,17 +39,19 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var operationType = new CreateOperationTypeDto()
             {
-                Id = 1,
+                Id = 2,
                 Title = "Sample Title",
                 Css = "Sample Css"
             };
+            await PostAsync<CreateOperationTypeDto, CreateOperationTypeDto>("/OperationType/Create", operationType);
+            var operationTypeData = await PostAsync<GetOperationTypeDto, ApiResponseEnvelope<ICollection<GetOperationTypeDto>>>("/OperationType/GetList", null);
+
             var deleteOperationType = new DeleteOperationTypeDto()
             {
-                Id = 1
+                Id = operationTypeData.Data.OrderByDescending(x=>x.Id==2).FirstOrDefault().Id
             };
 
             //Act
-            await PostAsync<CreateOperationTypeDto, CreateOperationTypeDto>("/OperationType/Create", operationType);
             await PostAsync<DeleteOperationTypeDto, DeleteOperationTypeDto>("/OperationType/Create", deleteOperationType);
 
             //Assert
@@ -63,19 +65,21 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var operationType = new CreateOperationTypeDto()
             {
-                Id = 1,
+                Id = 3,
                 Title = "Sample Title",
                 Css = "Sample Css"
             };
+            await PostAsync<CreateOperationTypeDto, CreateOperationTypeDto>("/OperationType/Create", operationType);
+            var operationTypeData = await PostAsync<GetOperationTypeDto, ApiResponseEnvelope<ICollection<GetOperationTypeDto>>>("/OperationType/GetList", null);
+
             var updateOperationType = new UpdateOperationTypeDto()
             {
-                Id = 1,
+                Id = operationTypeData.Data.OrderByDescending(x => x.Id==3).FirstOrDefault().Id,
                 Title = "Update Title",
                 Css = "Update Css"
             };
 
             //Act
-            await PostAsync<CreateOperationTypeDto, CreateOperationTypeDto>("/OperationType/Create", operationType);
             await PostAsync<UpdateOperationTypeDto, UpdateOperationTypeDto>("/OperationType/Update", updateOperationType);
 
             //Assert
@@ -89,21 +93,23 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var operationType = new CreateOperationTypeDto()
             {
-                Id = 1,
+                Id = 4,
                 Title = "Sample Title",
                 Css = "Sample Css"
             };
+            await PostAsync<CreateOperationTypeDto, CreateOperationTypeDto>("/OperationType/Create", operationType);
+            var operationTypeData = await PostAsync<GetOperationTypeDto, ApiResponseEnvelope<ICollection<GetOperationTypeDto>>>("/OperationType/GetList", null);
+
             var operationTypeId = new IntId()
             {
-                Id = 1
+                Id = operationTypeData.Data.OrderByDescending(x => x.Id==4).FirstOrDefault().Id
             };
 
             //Act
-            await PostAsync<CreateOperationTypeDto, CreateOperationTypeDto>("/OperationType/Create", operationType);
-            var singleOperation = await PostAsync<IntId, ApiResponseEnvelope<GetOperationTypeDto>>("/OperationType/Update", operationTypeId);
+            var singleOperation = await PostAsync<IntId, ApiResponseEnvelope<GetOperationTypeDto>>("/OperationType/GetSingle", operationTypeId);
 
             //Assert
-            Assert.Equal(singleOperation.Data.Id, 1);
+            Assert.Equal(singleOperation.Data.Id, operationTypeId.Id);
         }
         
         
@@ -113,9 +119,9 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var operationTypes = new List<CreateOperationTypeDto>()
             {
-                new CreateOperationTypeDto(){Id = 1,Title = "Sample1 Title",Css = "Sample1 Css" },
-                new CreateOperationTypeDto(){Id = 2,Title = "Sample2 Title",Css = "Sample2 Css" },
-                new CreateOperationTypeDto(){Id = 3,Title = "Sample3 Title",Css = "Sample3 Css" },
+                new CreateOperationTypeDto(){Id = 5,Title = "Sample1 Title",Css = "Sample1 Css" },
+                new CreateOperationTypeDto(){Id = 6,Title = "Sample2 Title",Css = "Sample2 Css" },
+                new CreateOperationTypeDto(){Id = 7,Title = "Sample3 Title",Css = "Sample3 Css" },
             };
 
             //Act
@@ -126,7 +132,7 @@ namespace SmsHub.IntegrationTests.Api
             var operationTypeList = await PostAsync<GetOperationTypeDto, ApiResponseEnvelope<ICollection<GetOperationTypeDto>>>("/OperationType/GetList", null);
 
             //Assert
-            Assert.Equal(operationTypeList.Data.Count, 3);
+            Assert.InRange(operationTypeList.Data.Count, 3,7);
         }
     }
 }

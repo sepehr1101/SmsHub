@@ -20,7 +20,7 @@ namespace SmsHub.Api.Controllers.V1.Logging.Querries
 
         [HttpPost]
         [Route(nameof(GetSingle))]
-        public async Task<IActionResult> GetSingle([FromBody] IntId Id)
+        public async Task<IActionResult> GetSingle([FromBody] LongId Id)
         {
             var informativeLog = await _getSingleHandler.Handle(Id);
             return Ok(informativeLog);

@@ -18,7 +18,7 @@ namespace SmsHub.Application.Features.Logging.Handlers.Queries.Implementations
             _informativeLogQueryService = informativeLogQueryService;
             _informativeLogQueryService.NotNull(nameof(informativeLogQueryService));
         }
-        public async Task<GetInforamtaiveLogDto> Handle(IntId Id)
+        public async Task<GetInforamtaiveLogDto> Handle(LongId Id)
         {
             var informativeLog = await _informativeLogQueryService.Get(Id.Id);
             return _mapper.Map<GetInforamtaiveLogDto>(informativeLog);

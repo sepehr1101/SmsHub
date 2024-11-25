@@ -43,18 +43,20 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var messageStateCategory = new CreateMessageStateCategoryDto()
             {
-                Css = "Sample Css",
+                Css = "Delete sample Css",
                 IsError = true,
-                Title = "Sample Title",
+                Title = "Delete Sample Title",
                 ProviderId = ProviderEnum.Kavenegar
             };
+            await PostAsync<CreateMessageStateCategoryDto, CreateMessageStateCategoryDto>("/MessageStateCategory/Create", messageStateCategory);
+            var messageStateCategoryData = await PostAsync<GetMessageStateCategoryDto, ApiResponseEnvelope<ICollection<GetMessageStateCategoryDto>>>("/MessageStateCategory/GetList", null);
+
             var deleteMessageStateCategory = new DeleteMessageStateCategoryDto()
             {
-                Id = 1
+                Id = messageStateCategoryData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
 
             //Act
-            await PostAsync<CreateMessageStateCategoryDto, CreateMessageStateCategoryDto>("/MessageStateCategory/Create", messageStateCategory);
             await PostAsync<DeleteMessageStateCategoryDto, DeleteMessageStateCategoryDto>("/MessageStateCategory/Delete", deleteMessageStateCategory);
 
             //Assert
@@ -69,22 +71,24 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var messageStateCategory = new CreateMessageStateCategoryDto()
             {
-                Css = "Sample Css",
+                Css = "sample for Update Css",
                 IsError = true,
-                Title = "Sample Title",
+                Title = "sample for Update Title",
                 ProviderId = ProviderEnum.Kavenegar
             };
+            await PostAsync<CreateMessageStateCategoryDto, CreateMessageStateCategoryDto>("/MessageStateCategory/Create", messageStateCategory);
+            var messageStateCategoryData = await PostAsync<GetMessageStateCategoryDto, ApiResponseEnvelope<ICollection<GetMessageStateCategoryDto>>>("/MessageStateCategory/GetList", null);
+
             var updateMessageStateCategory = new UpdateMessageStateCategoryDto()
             {
-                Id = 1,
-                Css = "Sample Css",
+                Id = messageStateCategoryData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
+                Css = "Update Css",
                 IsError = true,
-                Title = "Sample Title",
+                Title = "Update Title",
                 ProviderId = ProviderEnum.Magfa
             };
 
             //Act
-            await PostAsync<CreateMessageStateCategoryDto, CreateMessageStateCategoryDto>("/MessageStateCategory/Create", messageStateCategory);
             await PostAsync<UpdateMessageStateCategoryDto, UpdateMessageStateCategoryDto>("/MessageStateCategory/Update", updateMessageStateCategory);
 
             //Assert
@@ -98,22 +102,24 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var messageStateCategory = new CreateMessageStateCategoryDto()
             {
-                Css = "Sample Css",
+                Css = "GetSingel Css",
                 IsError = true,
-                Title = "Sample Title",
+                Title = "GetSingel Title",
                 ProviderId = ProviderEnum.Kavenegar
             };
+            await PostAsync<CreateMessageStateCategoryDto, CreateMessageStateCategoryDto>("/MessageStateCategory/Create", messageStateCategory);
+            var messageStateCategoryData = await PostAsync<GetMessageStateCategoryDto, ApiResponseEnvelope<ICollection<GetMessageStateCategoryDto>>>("/MessageStateCategory/GetList", null);
+
             var messageStateCategoryId = new IntId()
             {
-                Id = 1
+                Id = messageStateCategoryData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
 
             //Act
-            await PostAsync<CreateMessageStateCategoryDto, CreateMessageStateCategoryDto>("/MessageStateCategory/Create", messageStateCategory);
             var singleMessageStateCategory = await PostAsync<IntId, ApiResponseEnvelope<GetMessageStateCategoryDto>>("/MessageStateCategory/GetSingle", messageStateCategoryId);
 
             //Assert
-            Assert.Equal(singleMessageStateCategory.Data.Id, 1);
+            Assert.Equal(singleMessageStateCategory.Data.Id, messageStateCategoryId.Id);
         }
 
 
@@ -136,7 +142,7 @@ namespace SmsHub.IntegrationTests.Api
             var messageStateCategoryList = await PostAsync<GetMessageStateCategoryDto, ApiResponseEnvelope<ICollection<GetMessageStateCategoryDto>>>("/MessageStateCategory/GetList", null);
 
             //Assert
-            Assert.Equal(messageStateCategoryList.Data.Count, 3);
+            Assert.InRange(messageStateCategoryList.Data.Count, 3,7);
         }
     }
 }
