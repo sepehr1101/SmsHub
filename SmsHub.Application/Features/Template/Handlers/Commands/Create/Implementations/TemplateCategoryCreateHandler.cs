@@ -33,12 +33,7 @@ namespace SmsHub.Application.Features.Template.Handlers.Commands.Create.Implemen
             var validationResult = await _validator.ValidateAsync(request, cancellationToken);
             if (!validationResult.IsValid)
             {
-                // ارسال پیام‌های خطا
-                var errorMessages = validationResult.Errors
-                    .Select(error => new { error.PropertyName, error.ErrorMessage });
-
-                throw new ValidationException("خطا در دریافت اطلاعات", validationResult.Errors);
-                //throw new InvalidDataException();
+                throw new InvalidDataException();
             }
 
             var templateCategory = _mapper.Map<Entities.TemplateCategory>(request);

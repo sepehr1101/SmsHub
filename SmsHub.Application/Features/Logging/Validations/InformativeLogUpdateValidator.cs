@@ -20,7 +20,7 @@ namespace SmsHub.Application.Features.Logging.Validations
             RuleFor(x => x.Ip)
                 .NotEmpty().WithMessage(MessageResources.ItemNotNull)
                 .MaximumLength(64).WithMessage(MessageResources.ItemNotMoreThan64)
-                .Must(ValidationAnsiString.ValidateAnsi);//todo: ansi check 64
+                .Must(ValidationAnsiString.ValidateAnsi);
 
             RuleFor(x => x.ClientInfo).NotEmpty().WithMessage(MessageResources.ItemNotNull);
         }

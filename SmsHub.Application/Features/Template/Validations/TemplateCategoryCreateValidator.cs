@@ -9,7 +9,6 @@ namespace SmsHub.Application.Features.Template.Validations
         public TemplateCategoryCreateValidator()
         {
             RuleFor(x => x.Title)
-                .Cascade(CascadeMode.Continue)///todo : 
                 .NotEmpty().WithMessage(MessageResources.ItemNotNull)
                 .MaximumLength(255).WithMessage(MessageResources.ItemNotMoreThan255);
 
