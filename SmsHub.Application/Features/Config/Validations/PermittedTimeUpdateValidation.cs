@@ -5,7 +5,7 @@ using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
 
 namespace SmsHub.Application.Features.Config.Validations
 {
-    internal class PermittedTimeUpdateValidation:AbstractValidator<UpdatePermittedTimeDto>
+    public class PermittedTimeUpdateValidation:AbstractValidator<UpdatePermittedTimeDto>
     {
         public PermittedTimeUpdateValidation()
         {

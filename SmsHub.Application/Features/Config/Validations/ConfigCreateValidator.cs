@@ -4,7 +4,7 @@ using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
 
 namespace SmsHub.Application.Features.Config.Validations
 {
-    internal class ConfigCreateValidator:AbstractValidator<CreateConfigDto>
+    public class ConfigCreateValidator:AbstractValidator<CreateConfigDto>
     {
         public ConfigCreateValidator()
         {

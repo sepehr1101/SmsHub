@@ -4,7 +4,7 @@ using SmsHub.Domain.Features.Logging.MediatorDtos.Commands;
 
 namespace SmsHub.Application.Features.Logging.Validations
 {
-    internal class DeepLogUpdateValidator : AbstractValidator<UpdateDeepLogDto>
+    public class DeepLogUpdateValidator : AbstractValidator<UpdateDeepLogDto>
     {
         public DeepLogUpdateValidator()
         {

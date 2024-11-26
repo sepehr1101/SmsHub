@@ -2,7 +2,7 @@
 
 namespace SmsHub.Application.Features.Line.Validations
 {
-    internal class MagfaCredentialValidator
+    public class MagfaCredentialValidator
     {
         private class MagfaCredntial
         {
@@ -10,7 +10,7 @@ namespace SmsHub.Application.Features.Line.Validations
             public string Username { get; set; }
             public string Password { get; set; }
         }
-        internal bool Validate(string credential)
+        public bool Validate(string credential)
         {
             try
             {

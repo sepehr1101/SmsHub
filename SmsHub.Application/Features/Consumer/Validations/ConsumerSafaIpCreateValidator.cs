@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
 using SmsHub.Domain.Constants;
-using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Create;
 
 namespace SmsHub.Application.Features.Consumer.Validations
 {
-    internal class ConsumerSafaIpCreateValidator:AbstractValidator<UpdateConsumerSafeIpDto>
+    public class ConsumerSafaIpCreateValidator:AbstractValidator<CreateConsumerSafeIpDto>
     {
         public ConsumerSafaIpCreateValidator()
         {

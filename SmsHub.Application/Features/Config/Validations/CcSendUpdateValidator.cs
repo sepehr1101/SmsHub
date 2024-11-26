@@ -5,7 +5,7 @@ using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
 
 namespace SmsHub.Application.Features.Config.Validations
 {
-    internal class CcSendUpdateValidator:AbstractValidator<UpdateCcSendDto>
+    public class CcSendUpdateValidator:AbstractValidator<UpdateCcSendDto>
     {
         public CcSendUpdateValidator()
         {

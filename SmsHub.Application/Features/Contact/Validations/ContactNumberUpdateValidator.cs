@@ -4,7 +4,7 @@ using SmsHub.Domain.Features.Contact.MediatorDtos.Commands;
 
 namespace SmsHub.Application.Features.Contact.Validations
 {
-    internal class ContactNumberUpdateValidator:AbstractValidator<UpdateContactNumberDto>
+    public class ContactNumberUpdateValidator:AbstractValidator<UpdateContactNumberDto>
     {
         public ContactNumberUpdateValidator()
         {

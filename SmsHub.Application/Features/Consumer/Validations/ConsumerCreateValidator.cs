@@ -4,7 +4,7 @@ using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Create;
 
 namespace SmsHub.Application.Features.Consumer.Validations
 {
-    internal class ConsumerCreateValidator : AbstractValidator<CreateConsumerDto>
+    public class ConsumerCreateValidator : AbstractValidator<CreateConsumerDto>
     {
         public ConsumerCreateValidator()
         {

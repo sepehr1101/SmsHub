@@ -4,7 +4,7 @@ using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
 
 namespace SmsHub.Application.Features.Line.Validations
 {
-    internal class ProviderCreateValidator:AbstractValidator<CreateProviderDto>
+    public class ProviderCreateValidator:AbstractValidator<CreateProviderDto>
     {
         public ProviderCreateValidator()
         {

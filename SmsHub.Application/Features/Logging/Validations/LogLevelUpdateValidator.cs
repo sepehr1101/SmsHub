@@ -3,7 +3,7 @@ using SmsHub.Domain.Features.Logging.MediatorDtos.Commands;
 
 namespace SmsHub.Application.Features.Logging.Validations
 {
-    internal class LogLevelUpdateValidator:AbstractValidator<UpdateLogLevelDto>
+    public class LogLevelUpdateValidator:AbstractValidator<UpdateLogLevelDto>
     {
         public LogLevelUpdateValidator()
         {

@@ -4,7 +4,7 @@ using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands;
 
 namespace SmsHub.Application.Features.Consumer.Validations
 {
-    internal class ConsumerSafaIpUpdateValidator:AbstractValidator<UpdateConsumerSafeIpDto>
+    public class ConsumerSafaIpUpdateValidator:AbstractValidator<UpdateConsumerSafeIpDto>
     {
         public ConsumerSafaIpUpdateValidator()
         {

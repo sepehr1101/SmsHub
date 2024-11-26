@@ -3,7 +3,7 @@ using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Create;
 
 namespace SmsHub.Application.Features.Logging.Validations
 {
-    internal class OperationTypeCreateValidator:AbstractValidator<CreateOperationTypeDto>
+    public class OperationTypeCreateValidator:AbstractValidator<CreateOperationTypeDto>
     {
         public OperationTypeCreateValidator()
         {

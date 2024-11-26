@@ -5,7 +5,7 @@ using SmsHub.Domain.Features.Security.MediatorDtos.Commands;
 
 namespace SmsHub.Application.Features.Security.Validations
 {
-    internal class ServerUserValidator: AbstractValidator<CreateServerUserDto>
+    public class ServerUserValidator: AbstractValidator<CreateServerUserDto>
     {
         public ServerUserValidator()
         {

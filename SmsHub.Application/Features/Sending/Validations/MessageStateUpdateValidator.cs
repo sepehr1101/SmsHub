@@ -3,7 +3,7 @@ using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Update;
 
 namespace SmsHub.Application.Features.Sending.Validations
 {
-    internal class MessageStateUpdateValidator : AbstractValidator<UpdateMessageStateDto>
+    public class MessageStateUpdateValidator : AbstractValidator<UpdateMessageStateDto>
     {
     }
 }
