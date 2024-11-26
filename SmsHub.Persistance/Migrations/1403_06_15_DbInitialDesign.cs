@@ -41,7 +41,8 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn("DefaultPreNumber").AsString(15).Nullable()
                 .WithColumn("BatchSize").AsInt32()
                 .WithColumn("BaseUri").AsString(_255)
-                .WithColumn("FallbackBaseUri").AsString(_255).Nullable();
+                .WithColumn("FallbackBaseUri").AsString(_255).Nullable()
+                .WithColumn("CredentialTemplate").AsAnsiString(_255).NotNullable();
         }
         private void CreateLine()
         {            

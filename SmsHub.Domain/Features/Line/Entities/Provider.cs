@@ -19,6 +19,7 @@ namespace SmsHub.Domain.Features.Entities
         public int BatchSize { get; set; }
         public string BaseUri { get; set; } = null!;
         public string? FallbackBaseUri { get; set; }
+        public string CredentialTemplate { get; set; } = default!;
 
         public virtual ICollection<Line> Lines { get; set; }
         public virtual ICollection<MessageStateCategory> MessageStateCategories { get; set; }
