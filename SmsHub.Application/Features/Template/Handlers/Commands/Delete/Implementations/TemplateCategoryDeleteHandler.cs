@@ -13,12 +13,10 @@ namespace SmsHub.Application.Features.Template.Handlers.Commands.Delete.Implemen
         private readonly IMapper _mapper;
         private readonly ITemplateCategoryCommandService _templateCategoryCommandService;
         private readonly ITemplateCategoryQueryService _templateCategoryQueryService;
-        private readonly IValidator<DeleteTemplateCategoryDto> _validator;
         public TemplateCategoryDeleteHandler(
             IMapper mapper,
             ITemplateCategoryCommandService templateCategoryCommandService,
-            ITemplateCategoryQueryService templateCategoryQueryService,
-            IValidator<DeleteTemplateCategoryDto> validator)
+            ITemplateCategoryQueryService templateCategoryQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
@@ -28,18 +26,9 @@ namespace SmsHub.Application.Features.Template.Handlers.Commands.Delete.Implemen
 
             _templateCategoryQueryService = templateCategoryQueryService;
             _templateCategoryQueryService.NotNull(nameof(templateCategoryQueryService));
-
-            _validator = validator;
-            _validator.NotNull(nameof(validator));
         }
         public async Task Handle(DeleteTemplateCategoryDto deleteTemplateCategoryDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(deleteTemplateCategoryDto, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
-
             var templateCategory = await _templateCategoryQueryService.Get(deleteTemplateCategoryDto.Id);
             _templateCategoryCommandService.Delete(templateCategory);
         }

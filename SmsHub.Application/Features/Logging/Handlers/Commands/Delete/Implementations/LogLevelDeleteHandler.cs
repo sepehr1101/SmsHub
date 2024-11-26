@@ -13,12 +13,10 @@ namespace SmsHub.Application.Features.Logging.Handlers.Commands.Delete.Implement
         private readonly IMapper _mapper;
         private readonly ILogLevelCommandService _logLevelCommandService;
         private readonly ILogLevelQueryService _logLevelQueryService;
-        private readonly IValidator<DeleteLogLevelDto> _validator;
         public LogLevelDeleteHandler(
             IMapper mapper,
             ILogLevelCommandService logLevelCommandService,
-            ILogLevelQueryService logLevelQueryService,
-            IValidator<DeleteLogLevelDto> validator)
+            ILogLevelQueryService logLevelQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
@@ -28,18 +26,9 @@ namespace SmsHub.Application.Features.Logging.Handlers.Commands.Delete.Implement
 
             _logLevelQueryService = logLevelQueryService;
             _logLevelQueryService.NotNull(nameof(logLevelQueryService));
-
-            _validator = validator;
-            _validator.NotNull(nameof(validator));
         }
         public async Task Handle(DeleteLogLevelDto deleteLogLevelDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(deleteLogLevelDto, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
-
             var logLevel = await _logLevelQueryService.Get(deleteLogLevelDto.Id);
             _logLevelCommandService.Delete(logLevel);
         }

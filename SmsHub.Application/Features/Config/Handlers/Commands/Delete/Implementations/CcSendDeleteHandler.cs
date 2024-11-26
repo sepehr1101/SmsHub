@@ -13,12 +13,10 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Delete.Implementa
         private readonly IMapper _mapper;
         private readonly ICcSendCommandService _ccSendCommandService;
         private readonly ICcSendQueryService _ccSendQueryService;
-        private readonly IValidator<DeleteCcSendDto> _validator;
         public CcSendDeleteHandler(
             IMapper mapper,
             ICcSendCommandService ccSendCommandService,
-            ICcSendQueryService ccSendQueryService,
-            IValidator<DeleteCcSendDto> validator)
+            ICcSendQueryService ccSendQueryService)
         {
             _mapper=mapper;
             _mapper.NotNull(nameof(mapper));
@@ -28,18 +26,9 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Delete.Implementa
 
             _ccSendQueryService=ccSendQueryService;
             _ccSendQueryService.NotNull(nameof(ccSendQueryService));
-
-            _validator=validator;   
-            _validator.NotNull(nameof(validator));
         }
         public async Task Handle(DeleteCcSendDto deleteCcSendDto, CancellationToken cancellationToken)
         {
-            var validationResult=await _validator.ValidateAsync(deleteCcSendDto, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
-
             var ccSend=await _ccSendQueryService.Get(deleteCcSendDto.Id);
             _ccSendCommandService.Delete(ccSend);
         }

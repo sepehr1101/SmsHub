@@ -13,12 +13,10 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Delete.Implement
         private readonly IMapper _mapper;
         private readonly IMessageStateCategoryCommandService _messageStateCategoryCommandService;
         private readonly IMessageStateCategoryQueryService _messageStateCategoryQueryService;
-        private readonly IValidator<DeleteMessageStateCategoryDto> _validator;
         public MessageStateCategoryDeleteHandler(
             IMapper mapper,
             IMessageStateCategoryCommandService messageStateCategoryCommandService,
-            IMessageStateCategoryQueryService messageStateCategoryQueryService,
-            IValidator<DeleteMessageStateCategoryDto> validator)
+            IMessageStateCategoryQueryService messageStateCategoryQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
@@ -28,18 +26,9 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Delete.Implement
 
             _messageStateCategoryQueryService = messageStateCategoryQueryService;
             _messageStateCategoryQueryService.NotNull(nameof(messageStateCategoryQueryService));
-
-            _validator = validator;
-            _validator.NotNull(nameof(validator));
         }
         public async Task Handle(DeleteMessageStateCategoryDto deleteMessageStateCategoryDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(deleteMessageStateCategoryDto, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
-
             var messageStateCategory = await _messageStateCategoryQueryService.Get(deleteMessageStateCategoryDto.Id);
             _messageStateCategoryCommandService.Delete(messageStateCategory);
         }

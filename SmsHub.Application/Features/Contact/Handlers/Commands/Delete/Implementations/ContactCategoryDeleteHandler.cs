@@ -16,13 +16,11 @@ namespace SmsHub.Application.Features.Contact.Handlers.Commands.Delete.Implement
         private readonly IMapper _mapper;
         private readonly IContactCategoryCommandService _contactCategoryCommandService;
         private readonly IContactCategoryQueryService _contactCategoryQueryService;
-        private readonly IValidator<DeleteContactCategoryDto> _validator;
 
         public ContactCategoryDeleteHandler(
             IMapper mapper,
             IContactCategoryCommandService contactCategoryCommandService,
-            IContactCategoryQueryService contactCategoryQueryService,
-            IValidator<DeleteContactCategoryDto> validator)
+            IContactCategoryQueryService contactCategoryQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
@@ -32,18 +30,9 @@ namespace SmsHub.Application.Features.Contact.Handlers.Commands.Delete.Implement
 
             _contactCategoryQueryService = contactCategoryQueryService;
             _contactCategoryQueryService.NotNull(nameof(contactCategoryQueryService));
-
-            _validator = validator;
-            _validator.NotNull(nameof(_validator));
         }
         public async Task Handle(DeleteContactCategoryDto deleteContactCategoryDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(deleteContactCategoryDto, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
-
             var contactCategory = await _contactCategoryQueryService.Get(deleteContactCategoryDto.Id);
             _contactCategoryCommandService.Delete(contactCategory);
         }

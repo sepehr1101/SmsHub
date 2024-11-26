@@ -13,12 +13,10 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Delete.Implement
         private readonly IMapper _mapper;
         private readonly IMessageStateCommandService _messageStateCommandService;
         private readonly IMessageStateQueryService _messageStateQueryService;
-        private readonly IValidator<DeleteMessageStateDto> _validator;
         public MessageStateDeleteHolder(
             IMapper mapper,
             IMessageStateCommandService messageStateCommandService,
-            IMessageStateQueryService messageStateQueryService,
-            IValidator<DeleteMessageStateDto> validator)
+            IMessageStateQueryService messageStateQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
@@ -28,18 +26,9 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Delete.Implement
 
             _messageStateQueryService = messageStateQueryService;
             _messageStateQueryService.NotNull(nameof(messageStateQueryService));
-
-            _validator = validator;
-            _validator.NotNull(nameof(validator));
         }
         public async Task Handle(DeleteMessageStateDto deleteMessageStateDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(deleteMessageStateDto, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
-
             var messageState = await _messageStateQueryService.Get(deleteMessageStateDto.Id);
             _messageStateCommandService.Delete(messageState);
         }

@@ -13,12 +13,10 @@ namespace SmsHub.Application.Features.Logging.Handlers.Commands.Delete.Implement
         private readonly IMapper _mapper;
         private readonly IDeepLogCommandService _deepLogCommandService;
         private readonly IDeepLogQueryService _deepLogQueryService;
-        private readonly IValidator<DeleteDeepLogDto> _validator;
         public DeepLogDeleteHandler(
             IMapper mapper,
             IDeepLogCommandService deepLogCommandService,
-            IDeepLogQueryService deepLogQueryService,
-            IValidator<DeleteDeepLogDto> validator)
+            IDeepLogQueryService deepLogQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
@@ -28,18 +26,9 @@ namespace SmsHub.Application.Features.Logging.Handlers.Commands.Delete.Implement
 
             _deepLogQueryService = deepLogQueryService;
             _deepLogQueryService.NotNull(nameof(deepLogQueryService));
-
-            _validator = validator;
-            _validator.NotNull(nameof(validator));
         }
         public async Task Handle(DeleteDeepLogDto deleteDeepLogDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(deleteDeepLogDto, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
-
             var deepLog = await _deepLogQueryService.Get(deleteDeepLogDto.Id);
             _deepLogCommandService.Delete(deepLog);
         }

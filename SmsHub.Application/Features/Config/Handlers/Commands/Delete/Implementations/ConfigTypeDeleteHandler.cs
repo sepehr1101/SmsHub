@@ -13,12 +13,10 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Delete.Implementa
         private readonly IMapper _mapper;
         private readonly IConfigTypeCommandService _configTypeCommandService;
         private readonly IConfigTypeQueryService _configTypeQueryService;
-        private readonly IValidator<DeleteConfigTypDto> _validator;
         public ConfigTypeDeleteHandler(
             IMapper mapper,
             IConfigTypeCommandService configTypeCommandService,
-            IConfigTypeQueryService configTypeQueryService,
-            IValidator<DeleteConfigTypDto> validator)
+            IConfigTypeQueryService configTypeQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
@@ -28,18 +26,9 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Delete.Implementa
 
             _configTypeQueryService = configTypeQueryService;
             _configTypeQueryService.NotNull(nameof(configTypeQueryService));
-
-            _validator = validator;
-            _validator.NotNull(nameof(validator));
         }
         public async Task Handle(DeleteConfigTypDto deleteConfigTypDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(deleteConfigTypDto, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
-
             var configType = await _configTypeQueryService.Get(deleteConfigTypDto.Id);
             _configTypeCommandService.Delete(configType);
         }

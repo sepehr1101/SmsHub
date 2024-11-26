@@ -13,12 +13,10 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Delete.Implementa
         private readonly IMapper _mapper;
         private readonly IDisallowedPhraseCommandService _disallowedPhraseCommandService;
         private readonly IDisallowedPhraseQueryService _disallowedPhraseQueryService;
-        private readonly IValidator<DeleteDisallowedPhraseDto> _validator;
         public DisallowedPhraseDeleteHandler(
             IMapper mapper,
             IDisallowedPhraseCommandService disallowedPhraseCommandService,
-            IDisallowedPhraseQueryService disallowedPhraseQueryService,
-            IValidator<DeleteDisallowedPhraseDto> validator)
+            IDisallowedPhraseQueryService disallowedPhraseQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
@@ -28,18 +26,9 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Delete.Implementa
 
             _disallowedPhraseQueryService = disallowedPhraseQueryService;
             _disallowedPhraseQueryService.NotNull(nameof(disallowedPhraseQueryService));
-
-            _validator = validator;
-            _validator.NotNull(nameof(validator));
         }
         public async Task Handle(DeleteDisallowedPhraseDto deleteDisallowedPhraseDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(deleteDisallowedPhraseDto, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
-
             var disallowedPhrase = await _disallowedPhraseQueryService.Get(deleteDisallowedPhraseDto.Id);
             _disallowedPhraseCommandService.Delete(disallowedPhrase);
         }

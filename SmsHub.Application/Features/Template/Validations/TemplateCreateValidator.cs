@@ -5,7 +5,7 @@ using SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create;
 
 namespace SmsHub.Application.Features.Template.Validations
 {
-    internal class TemplateCreateValidator : AbstractValidator<CreateTemplateDto>
+    public class TemplateCreateValidator : AbstractValidator<CreateTemplateDto>
     {
         public TemplateCreateValidator()
         {

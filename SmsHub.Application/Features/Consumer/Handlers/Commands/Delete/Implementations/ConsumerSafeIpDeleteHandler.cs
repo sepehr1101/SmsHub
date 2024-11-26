@@ -14,13 +14,10 @@ namespace SmsHub.Application.Features.Consumer.Handlers.Commands.Delete.Implemen
         private readonly IMapper _mapper;
         private readonly IConsumerSafeIpCommandService _consumerSafeIpCommandService;
         private readonly IConsumerSafeIpQueryService _consumerSafeIpQueryService;
-        private readonly IValidator<DeleteConsumerSafeIpDto> _validator;
-
         public ConsumerSafeIpDeleteHandler(
             IMapper mapper,
             IConsumerSafeIpCommandService consumerSafeIpCommandService,
-            IConsumerSafeIpQueryService consumerSafeIpQueryService,
-            IValidator<DeleteConsumerSafeIpDto> validator)
+            IConsumerSafeIpQueryService consumerSafeIpQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
@@ -30,18 +27,9 @@ namespace SmsHub.Application.Features.Consumer.Handlers.Commands.Delete.Implemen
 
             _consumerSafeIpQueryService = consumerSafeIpQueryService;
             _consumerSafeIpQueryService.NotNull(nameof(consumerSafeIpQueryService));
-
-            _validator = validator;
-            _validator.NotNull(nameof(_validator));
         }
         public async Task Handle(DeleteConsumerSafeIpDto deleteConsumerSafeIpDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(deleteConsumerSafeIpDto, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
-
             var consumerSafeIp = await _consumerSafeIpQueryService.Get(deleteConsumerSafeIpDto.Id);
             _consumerSafeIpCommandService.Delete(consumerSafeIp);
         }

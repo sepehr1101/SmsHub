@@ -16,13 +16,10 @@ namespace SmsHub.Application.Features.Consumer.Handlers.Commands.Delete.Implemen
         private readonly IMapper _mapper;
         private readonly IConsumerCommandService _consumerCommandService;
         private readonly IConsumerQueryService _consumerQueryService;
-        private readonly IValidator<DeleteConsumerDto> _validator;
-
         public ConsumerDeleteHandler(
             IMapper mapper,
             IConsumerCommandService consumerCommandService,
-            IConsumerQueryService consumerQueryService,
-            IValidator<DeleteConsumerDto> validator)
+            IConsumerQueryService consumerQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
@@ -32,18 +29,9 @@ namespace SmsHub.Application.Features.Consumer.Handlers.Commands.Delete.Implemen
 
             _consumerQueryService = consumerQueryService;
             _consumerQueryService.NotNull(nameof(consumerQueryService));
-
-            _validator = validator;
-            _validator.NotNull(nameof(_validator));
         }
         public async Task Handle(DeleteConsumerDto deleteConsumerDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(deleteConsumerDto, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
-
             var consumer = await _consumerQueryService.Get(deleteConsumerDto.Id);
             _consumerCommandService.Delete(consumer);
         }

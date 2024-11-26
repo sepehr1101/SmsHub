@@ -3,7 +3,11 @@ using SmsHub.Domain.Features.Template.MediatorDtos.Commands;
 
 namespace SmsHub.Application.Features.Template.Validations
 {
-    internal class TemplateCategoryUpdateValidator : AbstractValidator<UpdateTemplateCategoryDto>
+    public class TemplateCategoryUpdateValidator : AbstractValidator<UpdateTemplateCategoryDto>
     {
+        public TemplateCategoryUpdateValidator()
+        {
+            
+        }
     }
 }
