@@ -8,9 +8,9 @@ namespace SmsHub.Application.Features.Template.Validations
     {
         public TemplateUpdateValidator()
         {
-            RuleFor(x => x.Title).NotEmpty().MaximumLength(255)
-                .WithMessage(MessageResources.ItemNotMoreThan255)
-                .WithMessage(MessageResources.ItemNotNull);
+            RuleFor(x => x.Title)
+                .NotEmpty().WithMessage(MessageResources.ItemNotNull)
+                .MaximumLength(255).WithMessage(MessageResources.ItemNotMoreThan255);
 
             RuleFor(x => x.Expression).NotEmpty().WithMessage(MessageResources.ItemNotNull);
 

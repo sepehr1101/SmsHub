@@ -8,9 +8,9 @@ namespace SmsHub.Application.Features.Contact.Validations
     {
         public ContactUpdateValidator()
         {
-            RuleFor(x => x.Title).NotEmpty().MaximumLength(255)
-                .WithMessage(MessageResources.ItemNotMoreThan255)
-                .WithMessage(MessageResources.ItemNotNull);
+            RuleFor(x => x.Title)
+                .NotEmpty().WithMessage(MessageResources.ItemNotNull)
+                .MaximumLength(255).WithMessage(MessageResources.ItemNotMoreThan255);
         }
     }
 }

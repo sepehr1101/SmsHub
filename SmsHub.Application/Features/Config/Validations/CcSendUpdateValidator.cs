@@ -9,7 +9,9 @@ namespace SmsHub.Application.Features.Config.Validations
     {
         public CcSendUpdateValidator()
         {
-            RuleFor(x => x.Mobile).NotEmpty().Length(11).WithMessage(MessageResources.ItemNotMoreThan11)
+            RuleFor(x => x.Mobile)
+                .NotEmpty().WithMessage(MessageResources.ItemNotNull)
+                .Length(11).WithMessage(MessageResources.ItemNotMoreThan11)
                 .Must(ValidationAnsiString.CheckPersianPhoneNumber);
         }
     }

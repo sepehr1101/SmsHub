@@ -8,9 +8,9 @@ namespace SmsHub.Application.Features.Config.Validations
     {
         public DisallowedPhraseCreateValidation()
         {
-            RuleFor(x => x.Phrase).NotEmpty().Length(3, 255)
-                .WithMessage(MessageResources.ItemNotLessThan3_NotMoreThan255)
-                .WithMessage(MessageResources.ItemNotNull);
+            RuleFor(x => x.Phrase)
+                .NotEmpty().WithMessage(MessageResources.ItemNotNull)
+                .Length(3, 255).WithMessage(MessageResources.ItemNotLessThan3_NotMoreThan255);
         }
     }
 }

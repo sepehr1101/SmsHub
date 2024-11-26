@@ -5,20 +5,20 @@ using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
 
 namespace SmsHub.Application.Features.Line.Validations
 {
-    public class LineValidator: AbstractValidator<CreateLineDto>
+    public class LineValidator : AbstractValidator<CreateLineDto>
     {
         public LineValidator()
         {
             RuleFor(x => x.Credential).NotEmpty().WithMessage(MessageResources.ItemNotNull);
 
-            RuleFor(x=>x.ProviderId).IsInEnum();
+            RuleFor(x => x.ProviderId).IsInEnum();
 
-            RuleFor(x=>x.Number).NotEmpty().Length(4,15)
-                .WithMessage(MessageResources.ItemNotLessThan4_NotMoreThan15)
-                .WithMessage(MessageResources.ItemNotNull)
+            RuleFor(x => x.Number)
+                .NotEmpty().WithMessage(MessageResources.ItemNotNull)
+                .Length(4, 15).WithMessage(MessageResources.ItemNotLessThan4_NotMoreThan15)
                 .Must(x => long.TryParse(x, out var val) && val > 0);
         }
-      
+
     }
     public class ListCountValidator<T, TCollectionElement> : PropertyValidator<T, IList<TCollectionElement>>
     {

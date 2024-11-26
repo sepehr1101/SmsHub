@@ -8,9 +8,9 @@ namespace SmsHub.Application.Features.Sending.Validations
     {
         public MessageDetailUpdateValidator()
         {
-            RuleFor(x => x.Receptor).NotEmpty().MaximumLength(15)
-                .WithMessage(MessageResources.ItemNotMoreThan15)
-                .WithMessage(MessageResources.ItemNotNull);
+            RuleFor(x => x.Receptor)
+                .NotEmpty().WithMessage(MessageResources.ItemNotNull)
+                .MaximumLength(15).WithMessage(MessageResources.ItemNotMoreThan15);
 
             RuleFor(x => x.Text).NotEmpty().WithMessage(MessageResources.ItemNotNull);
         }
