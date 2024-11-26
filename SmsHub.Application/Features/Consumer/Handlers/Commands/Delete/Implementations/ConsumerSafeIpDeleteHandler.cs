@@ -1,20 +1,22 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using SmsHub.Application.Features.Consumer.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Delete;
 using SmsHub.Persistence.Features.Consumer.Commands.Contracts;
 using SmsHub.Persistence.Features.Consumer.Queries.Contracts;
+using System.Threading;
 
 namespace SmsHub.Application.Features.Consumer.Handlers.Commands.Delete.Implementations
 {
-    public class ConsumerSafeIpDeleteHandler: IConsumerSafeIpDeleteHandler
+    public class ConsumerSafeIpDeleteHandler : IConsumerSafeIpDeleteHandler
     {
         private readonly IMapper _mapper;
         private readonly IConsumerSafeIpCommandService _consumerSafeIpCommandService;
         private readonly IConsumerSafeIpQueryService _consumerSafeIpQueryService;
         public ConsumerSafeIpDeleteHandler(
-            IMapper mapper, 
-            IConsumerSafeIpCommandService consumerSafeIpCommandService, 
+            IMapper mapper,
+            IConsumerSafeIpCommandService consumerSafeIpCommandService,
             IConsumerSafeIpQueryService consumerSafeIpQueryService)
         {
             _mapper = mapper;

@@ -16,11 +16,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 
-//not found this dependency injection for integration test
-builder.Services.AddScoped<IContactNumberCreatedHandler, ContactNumberCreateHandler>();
-
-
-
 // DI
 builder.Services.AddCommonInjections();
 builder.Services.AddInfrastructureInjections();

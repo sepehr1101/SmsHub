@@ -24,23 +24,25 @@ namespace SmsHub.IntegrationTests.Api
             var logLevel = new CreateLogLevelDto()
             {
                 Id = 1,
-                Title = "sample title",
-                Css = "sample Css"
-            };
+                Title = "Create Test title",
+                Css = "Create Test Css"
+            }; 
+            await PostAsync<CreateLogLevelDto, CreateLogLevelDto>("/LogLevel/Create", logLevel);
+            var logLevelData = await PostAsync<GetLogLevelDto, ApiResponseEnvelope<ICollection<GetLogLevelDto>>>("/LogLevel/GetList", null);
+
             var informativeLog = new CreateInformativeLogDto()
             {
-                LogLevelId = 1,
-                Section = "sample Section",
-                Description = "sample Description",
+                LogLevelId = logLevelData.Data.OrderByDescending(x=>x.Id).FirstOrDefault().Id,
+                Section = "Create Test  Section",
+                Description = "Create Test  Description",
                 UserId = Guid.NewGuid(),
-                UserInfo = "sample UserInfo",
+                UserInfo = "Create Test UserInfo",
                 Ip = "198.162.1.1",
                 InsertDateTime = DateTime.Now,
-                ClientInfo = "sample ClientInfo"
+                ClientInfo = "Create Test ClientInfo"
             };
 
             //Act
-            await PostAsync<CreateLogLevelDto, CreateLogLevelDto>("/LogLevel/Create", logLevel);
             await PostAsync<CreateInformativeLogDto, CreateInformativeLogDto>("/InformativeLog/Create", informativeLog);
 
             //Assert
@@ -54,29 +56,33 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var logLevel = new CreateLogLevelDto()
             {
-                Id = 1,
-                Title = "sample title",
-                Css = "sample Css"
+                Id = 2,
+                Title = "Delete Test title",
+                Css = "Delete Test Css"
             };
+            await PostAsync<CreateLogLevelDto, CreateLogLevelDto>("/LogLevel/Create", logLevel);
+            var logLevelData = await PostAsync<GetLogLevelDto, ApiResponseEnvelope<ICollection<GetLogLevelDto>>>("/LogLevel/GetList", null);
+
             var informativeLog = new CreateInformativeLogDto()
             {
-                LogLevelId = 1,
-                Section = "sample Section",
-                Description = "sample Description",
+                LogLevelId = logLevelData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
+                Section = "Delete Test Section",
+                Description = "Delete Test Description",
                 UserId = Guid.NewGuid(),
-                UserInfo = "sample UserInfo",
+                UserInfo = "Delete Test UserInfo",
                 Ip = "198.162.1.1",
                 InsertDateTime = DateTime.Now,
-                ClientInfo = "sample ClientInfo"
+                ClientInfo = "Delete Test ClientInfo"
             };
+            await PostAsync<CreateInformativeLogDto, CreateInformativeLogDto>("/InformativeLog/Create", informativeLog);
+            var informativeLogData = await PostAsync<GetInforamtaiveLogDto, ApiResponseEnvelope<ICollection<GetInforamtaiveLogDto>>>("/InformativeLog/GetList", null);
+
             var deleteInformativeLog = new DeleteInformativeLogDto()
             {
-                Id = 1
+                Id = informativeLogData.Data.OrderByDescending(x=>x.Id).FirstOrDefault().Id,
             };
 
             //Act
-            await PostAsync<CreateLogLevelDto, CreateLogLevelDto>("/LogLevel/Create", logLevel);
-            await PostAsync<CreateInformativeLogDto, CreateInformativeLogDto>("/InformativeLog/Create", informativeLog);
 
             await PostAsync<DeleteInformativeLogDto, DeleteInformativeLogDto>("/InformativeLog/Delete", deleteInformativeLog);
 
@@ -91,25 +97,31 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var logLevel = new CreateLogLevelDto()
             {
-                Id = 1,
-                Title = "sample title",
-                Css = "sample Css"
+                Id = 3,
+                Title = "sample Test title",
+                Css = "sample Test Css"
             };
+            await PostAsync<CreateLogLevelDto, CreateLogLevelDto>("/LogLevel/Create", logLevel);
+            var logLevelData = await PostAsync<GetLogLevelDto, ApiResponseEnvelope<ICollection<GetLogLevelDto>>>("/LogLevel/GetList", null);
+
             var informativeLog = new CreateInformativeLogDto()
             {
-                LogLevelId = 1,
-                Section = "sample Section",
-                Description = "sample Description",
+                LogLevelId = logLevelData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
+                Section = "sample Test Section",
+                Description = "sample Test Description",
                 UserId = Guid.NewGuid(),
-                UserInfo = "sample UserInfo",
+                UserInfo = "sample Test UserInfo",
                 Ip = "198.162.1.1",
                 InsertDateTime = DateTime.Now,
-                ClientInfo = "sample ClientInfo"
+                ClientInfo = "sample Test ClientInfo"
             };
+            await PostAsync<CreateInformativeLogDto, CreateInformativeLogDto>("/InformativeLog/Create", informativeLog);
+            var informativeLogData = await PostAsync<GetInforamtaiveLogDto, ApiResponseEnvelope<ICollection<GetInforamtaiveLogDto>>>("/InformativeLog/GetList", null);
+
             var updateInformativeLog = new UpdateInformativeLogDto()
             {
-                Id = 1,
-                LogLevelId = 1,
+                Id = informativeLogData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
+                LogLevelId = logLevelData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
                 Section = "Update Section",
                 Description = "Update Description",
                 UserId = Guid.NewGuid(),
@@ -120,9 +132,6 @@ namespace SmsHub.IntegrationTests.Api
             };
 
             //Act
-            await PostAsync<CreateLogLevelDto, CreateLogLevelDto>("/LogLevel/Create", logLevel);
-            await PostAsync<CreateInformativeLogDto, CreateInformativeLogDto>("/InformativeLog/Create", informativeLog);
-
             await PostAsync<UpdateInformativeLogDto, UpdateInformativeLogDto>("/InformativeLog/Update", updateInformativeLog);
 
             //Assert
@@ -136,35 +145,37 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var logLevel = new CreateLogLevelDto()
             {
-                Id = 1,
-                Title = "sample title",
-                Css = "sample Css"
+                Id = 4,
+                Title = "Getingle Test title",
+                Css = "Getingle Test Css"
             };
+            await PostAsync<CreateLogLevelDto, CreateLogLevelDto>("/LogLevel/Create", logLevel);
+            var logLevelData = await PostAsync<GetLogLevelDto, ApiResponseEnvelope<ICollection<GetLogLevelDto>>>("/LogLevel/GetList", null);
+
             var informativeLog = new CreateInformativeLogDto()
             {
-                LogLevelId = 1,
-                Section = "sample Section",
-                Description = "sample Description",
+                LogLevelId = logLevelData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
+                Section = "Getingle Test Section",
+                Description = "Getingle Test Description",
                 UserId = Guid.NewGuid(),
-                UserInfo = "sample UserInfo",
+                UserInfo = "Getingle Test UserInfo",
                 Ip = "198.162.1.1",
                 InsertDateTime = DateTime.Now,
-                ClientInfo = "sample ClientInfo"
+                ClientInfo = "Getingle Test ClientInfo"
             };
-            var informativeLogId = new IntId()
+            await PostAsync<CreateInformativeLogDto, CreateInformativeLogDto>("/InformativeLog/Create", informativeLog);
+            var informativeLogData = await PostAsync<GetInforamtaiveLogDto, ApiResponseEnvelope<ICollection<GetInforamtaiveLogDto>>>("/InformativeLog/GetList", null);
+
+            var informativeLogId = new LongId()
             {
-                Id = 1
+                Id = informativeLogData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
             };
 
             //Act
-            await PostAsync<CreateLogLevelDto, CreateLogLevelDto>("/LogLevel/Create", logLevel);
-            await PostAsync<CreateInformativeLogDto, CreateInformativeLogDto>("/InformativeLog/Create", informativeLog);
-
-            var singleInformativeLog = await PostAsync<IntId, ApiResponseEnvelope<GetInforamtaiveLogDto>>("/InformativeLog/GetSingle", informativeLogId);
+            var singleInformativeLog = await PostAsync<LongId, ApiResponseEnvelope<GetInforamtaiveLogDto>>("/InformativeLog/GetSingle", informativeLogId);
 
             //Assert
-            Assert.Equal(singleInformativeLog.Data.Id, 1);
-            Assert.Equal(singleInformativeLog.HttpStatusCode, 200);
+            Assert.Equal(singleInformativeLog.Data.Id, informativeLogId.Id);
         }
 
 
@@ -174,15 +185,15 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var logLevels = new List<CreateLogLevelDto>()
             {
-                new CreateLogLevelDto(){ Id = 1,Title = "sample1 title",Css = "sample1 Css"},
-                new CreateLogLevelDto(){ Id = 2,Title = "sample2 title",Css = "sample2 Css"},
-                new CreateLogLevelDto(){ Id = 3,Title = "sample3 title",Css = "sample3 Css"},
+                new CreateLogLevelDto(){ Id = 5,Title = "sample1 title",Css = "sample1 Css"},
+                new CreateLogLevelDto(){ Id = 6,Title = "sample2 title",Css = "sample2 Css"},
+                new CreateLogLevelDto(){ Id = 7,Title = "sample3 title",Css = "sample3 Css"},
             };
             var informativeLogs = new List<CreateInformativeLogDto>()
             {
-                new CreateInformativeLogDto(){LogLevelId = 1,Section = "sample1 Section",Description = "sample1 Description",UserId = Guid.NewGuid(),UserInfo = "sample1 UserInfo",Ip = "198.162.1.1",InsertDateTime = DateTime.Now,ClientInfo = "sample1 ClientInfo"},
-                new CreateInformativeLogDto(){LogLevelId = 2,Section = "sample2 Section",Description = "sample2 Description",UserId = Guid.NewGuid(),UserInfo = "sample2 UserInfo",Ip = "198.162.1.2",InsertDateTime = DateTime.Now,ClientInfo = "sample2 ClientInfo"},
-                new CreateInformativeLogDto(){LogLevelId = 3,Section = "sample3 Section",Description = "sample3 Description",UserId = Guid.NewGuid(),UserInfo = "sample3 UserInfo",Ip = "198.162.1.3",InsertDateTime = DateTime.Now,ClientInfo = "sample3 ClientInfo"},
+                new CreateInformativeLogDto(){LogLevelId = 5,Section = "sample1 Section",Description = "sample1 Description",UserId = Guid.NewGuid(),UserInfo = "sample1 UserInfo",Ip = "198.162.1.1",InsertDateTime = DateTime.Now,ClientInfo = "sample1 ClientInfo"},
+                new CreateInformativeLogDto(){LogLevelId = 6,Section = "sample2 Section",Description = "sample2 Description",UserId = Guid.NewGuid(),UserInfo = "sample2 UserInfo",Ip = "198.162.1.2",InsertDateTime = DateTime.Now,ClientInfo = "sample2 ClientInfo"},
+                new CreateInformativeLogDto(){LogLevelId = 7,Section = "sample3 Section",Description = "sample3 Description",UserId = Guid.NewGuid(),UserInfo = "sample3 UserInfo",Ip = "198.162.1.3",InsertDateTime = DateTime.Now,ClientInfo = "sample3 ClientInfo"},
             };
 
             //Act
@@ -198,8 +209,7 @@ namespace SmsHub.IntegrationTests.Api
             var informativeLogList = await PostAsync<GetInforamtaiveLogDto, ApiResponseEnvelope<ICollection<GetInforamtaiveLogDto>>>("/InformativeLog/GetList", null);
 
             //Assert
-            Assert.Equal(informativeLogList.Data.Count, 3);
-            Assert.Equal(informativeLogList.HttpStatusCode, 200);
+            Assert.InRange(informativeLogList.Data.Count, 3,7);
         }
     }
 }

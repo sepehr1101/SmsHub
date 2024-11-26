@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using SmsHub.Application.Features.Sending.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Delete;
@@ -28,7 +29,7 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Delete.Implement
         }
         public async Task Handle(DeleteMessageHolderDto deleteMessageHolderDto, CancellationToken cancellationToken)
         {
-           var messageHolder=await _messagesHolderQueryService.Get(deleteMessageHolderDto.Id);
+            var messageHolder = await _messagesHolderQueryService.Get(deleteMessageHolderDto.Id);
             _messageHolderCommandService.Delete(messageHolder);
         }
     }

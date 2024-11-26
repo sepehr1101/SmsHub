@@ -5,6 +5,6 @@ namespace SmsHub.Application.Features.Sending.Handlers.Queries.Contracts
 {
     public interface IMessageDetailGetSingleHandler
     {
-        Task<GetMessageDetailDto> Handle(IntId Id);
+        Task<GetMessageDetailDto> Handle(LongId Id);
     }
 }

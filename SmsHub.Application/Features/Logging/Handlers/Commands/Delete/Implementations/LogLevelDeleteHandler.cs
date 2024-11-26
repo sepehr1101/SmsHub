@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using SmsHub.Application.Features.Logging.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Delete;
@@ -7,19 +8,19 @@ using SmsHub.Persistence.Features.Logging.Queries.Contracts;
 
 namespace SmsHub.Application.Features.Logging.Handlers.Commands.Delete.Implementations
 {
-    public class LogLevelDeleteHandler: ILogLevelDeleteHandler
+    public class LogLevelDeleteHandler : ILogLevelDeleteHandler
     {
         private readonly IMapper _mapper;
         private readonly ILogLevelCommandService _logLevelCommandService;
         private readonly ILogLevelQueryService _logLevelQueryService;
         public LogLevelDeleteHandler(
-            IMapper mapper, 
-            ILogLevelCommandService logLevelCommandService, 
+            IMapper mapper,
+            ILogLevelCommandService logLevelCommandService,
             ILogLevelQueryService logLevelQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
-            
+
             _logLevelCommandService = logLevelCommandService;
             _logLevelCommandService.NotNull(nameof(logLevelQueryService));
 
@@ -28,7 +29,7 @@ namespace SmsHub.Application.Features.Logging.Handlers.Commands.Delete.Implement
         }
         public async Task Handle(DeleteLogLevelDto deleteLogLevelDto, CancellationToken cancellationToken)
         {
-            var logLevel=await _logLevelQueryService.Get(deleteLogLevelDto.Id);
+            var logLevel = await _logLevelQueryService.Get(deleteLogLevelDto.Id);
             _logLevelCommandService.Delete(logLevel);
         }
     }

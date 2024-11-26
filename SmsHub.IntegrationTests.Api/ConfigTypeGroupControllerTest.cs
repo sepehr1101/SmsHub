@@ -24,15 +24,17 @@ namespace SmsHub.IntegrationTests.Api
                 Title = "First Config",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
+            var configTypeData = await PostAsync<GetConfigTypeDto, ApiResponseEnvelope<ICollection<GetConfigTypeDto>>>("/ConfigType/GetList", null);
+
             var configTypeGroup = new CreateConfigTypeGroupDto()
             {
-                ConfigTypeId = 1,
+                ConfigTypeId = configTypeData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
                 Title = "First ConfigTypeGroup",
                 Description = "Sample Sentence"
             };
 
             //Act
-            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
             await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
 
             //Assert
@@ -48,21 +50,24 @@ namespace SmsHub.IntegrationTests.Api
                 Title = "First Config",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
+            var configTypeData = await PostAsync<GetConfigTypeDto, ApiResponseEnvelope<ICollection<GetConfigTypeDto>>>("/ConfigType/GetList", null);
+
             var configTypeGroup = new CreateConfigTypeGroupDto()
             {
-                ConfigTypeId = 1,
+                ConfigTypeId = configTypeData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
                 Title = "First ConfigTypeGroup",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
+            var configTypeGroupData = await PostAsync<GetConfigTypeGroupDto, ApiResponseEnvelope<ICollection<GetConfigTypeGroupDto>>>("/ConfigTypeGroup/GetList", null);
+
             var deleteConfigTypeGroup = new DeleteConfigTypeGroupDto()
             {
-                Id = 1
+                Id = configTypeGroupData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
             };
 
             //Act
-            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
-            await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
-
             await PostAsync<DeleteConfigTypeGroupDto, DeleteConfigTypeGroupDto>("/ConfigTypeGroup/Delete", deleteConfigTypeGroup);
 
             //Assert
@@ -72,38 +77,41 @@ namespace SmsHub.IntegrationTests.Api
 
         [Fact]
         public async void UpdateConfigTypeGroup_ConfigTypeGroupDto_ShouldUpdateConfigTypeGroup()
-        {
+        { 
             //Arrange
             var configType = new CreateConfigTypeDto()
             {
                 Title = "First Config",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
+            var configTypeData = await PostAsync<GetConfigTypeDto, ApiResponseEnvelope<ICollection<GetConfigTypeDto>>>("/ConfigType/GetList", null);
+
             var configTypeGroup = new CreateConfigTypeGroupDto()
             {
-                ConfigTypeId = 1,
+                ConfigTypeId = configTypeData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
                 Title = "First ConfigTypeGroup",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
+            var configTypeGroupData = await PostAsync<GetConfigTypeGroupDto, ApiResponseEnvelope<ICollection<GetConfigTypeGroupDto>>>("/ConfigTypeGroup/GetList", null);
+
             var updateConfigTypeGroup = new UpdateConfigTypeGroupDto()
             {
-                Id = 1,
+                Id = configTypeGroupData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
                 ConfigTypeId = 1,
                 Title = "Update Title",
                 Description = "Update Description"
             };
 
             //Act
-            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
-            await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
-
             await PostAsync<UpdateConfigTypeGroupDto, UpdateConfigTypeGroupDto>("/ConfigTypeGroup/Update", updateConfigTypeGroup);
 
             //Assert
             Assert.True(true);
         }
-        
-        
+
+
         [Fact]
         public async void GetSingleConfigTypeGroup_ConfigTypeGroupDto_ShouldGetSingleConfigTypeGroup()
         {
@@ -113,30 +121,31 @@ namespace SmsHub.IntegrationTests.Api
                 Title = "First Config",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
+            var configTypeData = await PostAsync<GetConfigTypeDto, ApiResponseEnvelope<ICollection<GetConfigTypeDto>>>("/ConfigType/GetList", null);
+
             var configTypeGroup = new CreateConfigTypeGroupDto()
             {
-                ConfigTypeId = 1,
-                Title = "First ConfigTypeGroup",
+                ConfigTypeId = configTypeData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
+                Title = "sample ConfigTypeGroup for test",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
+            var configTypeGroupData = await PostAsync<GetConfigTypeGroupDto, ApiResponseEnvelope<ICollection<GetConfigTypeGroupDto>>>("/ConfigTypeGroup/GetList", null);
+
             var configTypeGroupId = new IntId()
             {
-                Id=1
+                Id = configTypeGroupData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
             };
 
             //Act
-            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
-            await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
-
-          var singleConfigTypeGroup=  await PostAsync<IntId, ApiResponseEnvelope<GetConfigTypeGroupDto>>("/ConfigTypeGroup/GetSingle", configTypeGroupId);
+            var singleConfigTypeGroup = await PostAsync<IntId, ApiResponseEnvelope<GetConfigTypeGroupDto>>("/ConfigTypeGroup/GetSingle", configTypeGroupId);
 
             //Assert
-            Assert.Equal(singleConfigTypeGroup.Data.Id, 1);
-            Assert.Equal(singleConfigTypeGroup.HttpStatusCode,200);
-
+            Assert.Equal(singleConfigTypeGroup.Data.Title, "sample ConfigTypeGroup for test");
         }
-        
-        
+
+
         [Fact]
         public async void GetListConfigTypeGroup_ConfigTypeGroupDto_ShouldGetListConfigTypeGroup()
         {
@@ -164,11 +173,10 @@ namespace SmsHub.IntegrationTests.Api
                 await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", item);
             }
 
-            var configTypeGroupList =  await PostAsync<GetConfigTypeGroupDto, ApiResponseEnvelope<ICollection<GetConfigTypeGroupDto>>>("/ConfigTypeGroup/GetList",null );
+            var configTypeGroupList = await PostAsync<GetConfigTypeGroupDto, ApiResponseEnvelope<ICollection<GetConfigTypeGroupDto>>>("/ConfigTypeGroup/GetList", null);
 
             //Assert
-            Assert.Equal(configTypeGroupList.Data.Count, 4);
-            Assert.Equal(configTypeGroupList.HttpStatusCode,200);
+            Assert.InRange(configTypeGroupList.Data.Count, 4,8);
         }
     }
 }

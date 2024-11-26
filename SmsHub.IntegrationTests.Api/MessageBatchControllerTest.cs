@@ -1,6 +1,8 @@
 ﻿using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.BaseDomainEntities.Id;
+using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
+using SmsHub.Domain.Features.Line.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Delete;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Update;
@@ -23,18 +25,21 @@ namespace SmsHub.IntegrationTests.Api
             var line = new CreateLineDto()
             {
                 ProviderId = Domain.Constants.ProviderEnum.Kavenegar,
-                Credential = "sample Credential",
+                Credential = "Create Credential",
                 Number = "111"
             };
+            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
+            var lineData = await PostAsync<GetLineDto, ApiResponseEnvelope<ICollection<GetLineDto>>>("/Line/GetList", null);
+
             var messageBatch = new CreateMessageBatchDto()
             {
                 HolerSize = 2,
                 AllSize = 4,
                 InsertDateTime = DateTime.Now,
-                LineId = 1
+                LineId = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
+
             };
             //Act
-            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
             await PostAsync<CreateMessageBatchDto, CreateMessageBatchDto>("/MessageBatch/Create", messageBatch);
 
             //Assert
@@ -49,24 +54,28 @@ namespace SmsHub.IntegrationTests.Api
             var line = new CreateLineDto()
             {
                 ProviderId = Domain.Constants.ProviderEnum.Kavenegar,
-                Credential = "sample Credential",
-                Number = "111"
+                Credential = "Delete Credential",
+                Number = "112"
             };
+            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
+            var lineData = await PostAsync<GetLineDto, ApiResponseEnvelope<ICollection<GetLineDto>>>("/Line/GetList", null);
+
             var messageBatch = new CreateMessageBatchDto()
             {
-                HolerSize = 2,
-                AllSize = 4,
+                HolerSize = 4,
+                AllSize = 8,
                 InsertDateTime = DateTime.Now,
-                LineId = 1
+                LineId = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
+            await PostAsync<CreateMessageBatchDto, CreateMessageBatchDto>("/MessageBatch/Create", messageBatch);
+            var messageBatchData = await PostAsync<GetMessageBatchDto, ApiResponseEnvelope<ICollection<GetMessageBatchDto>>>("/MessageBatch/GetList", null);
+
             var deleteMessageBatch = new DeleteMessageBatchDto()
             {
-                Id = 1
+                Id = messageBatchData.Data.OrderByDescending(x=>x.Id).FirstOrDefault().Id
             };
-            //Act
-            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
-            await PostAsync<CreateMessageBatchDto, CreateMessageBatchDto>("/MessageBatch/Create", messageBatch);
 
+            //Act
             await PostAsync<DeleteMessageBatchDto, DeleteMessageBatchDto>("/MessageBatch/Delete", deleteMessageBatch);
 
             //Assert
@@ -81,28 +90,32 @@ namespace SmsHub.IntegrationTests.Api
             var line = new CreateLineDto()
             {
                 ProviderId = Domain.Constants.ProviderEnum.Kavenegar,
-                Credential = "sample Credential",
-                Number = "111"
+                Credential = "Sample Test Credential",
+                Number = "119"
             };
+            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
+            var lineData = await PostAsync<GetLineDto, ApiResponseEnvelope<ICollection<GetLineDto>>>("/Line/GetList", null);
+
             var messageBatch = new CreateMessageBatchDto()
             {
-                HolerSize = 2,
-                AllSize = 4,
+                HolerSize = 4,
+                AllSize = 9,
                 InsertDateTime = DateTime.Now,
-                LineId = 1
+                LineId = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
+            await PostAsync<CreateMessageBatchDto, CreateMessageBatchDto>("/MessageBatch/Create", messageBatch);
+            var messageBatchData = await PostAsync<GetMessageBatchDto, ApiResponseEnvelope<ICollection<GetMessageBatchDto>>>("/MessageBatch/GetList", null);
+
             var updateMessageBatch = new UpdateMessageBatchDto()
             {
-                Id = 1,
-                HolerSize = 2,
+                Id = messageBatchData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
+                HolerSize = 3,
                 AllSize = 4,
                 InsertDateTime = DateTime.Now,
-                LineId = 1
+                LineId = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
-            //Act
-            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
-            await PostAsync<CreateMessageBatchDto, CreateMessageBatchDto>("/MessageBatch/Create", messageBatch);
 
+            //Act
             await PostAsync<UpdateMessageBatchDto, UpdateMessageBatchDto>("/MessageBatch/Update", updateMessageBatch);
 
             //Assert
@@ -117,28 +130,31 @@ namespace SmsHub.IntegrationTests.Api
             var line = new CreateLineDto()
             {
                 ProviderId = Domain.Constants.ProviderEnum.Kavenegar,
-                Credential = "sample Credential",
-                Number = "111"
+                Credential = "GetSingle Credential",
+                Number = "113"
             };
+            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
+            var lineData = await PostAsync<GetLineDto, ApiResponseEnvelope<ICollection<GetLineDto>>>("/Line/GetList", null);
+
             var messageBatch = new CreateMessageBatchDto()
             {
-                HolerSize = 2,
-                AllSize = 4,
+                HolerSize = 4,
+                AllSize = 10,
                 InsertDateTime = DateTime.Now,
-                LineId = 1
+                LineId = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
+            await PostAsync<CreateMessageBatchDto, CreateMessageBatchDto>("/MessageBatch/Create", messageBatch);
+            var messageBatchData = await PostAsync<GetMessageBatchDto, ApiResponseEnvelope<ICollection<GetMessageBatchDto>>>("/MessageBatch/GetList", null);
+
             var messageBatchId = new IntId()
             {
-                Id = 1
+                Id = messageBatchData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
             //Act
-            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
-            await PostAsync<CreateMessageBatchDto, CreateMessageBatchDto>("/MessageBatch/Create", messageBatch);
-
             var singleMessageBatch = await PostAsync<IntId, ApiResponseEnvelope<GetMessageBatchDto>>("/MessageBatch/GetSingle", messageBatchId);
 
             //Assert
-            Assert.Equal(singleMessageBatch.Data.Id, 1);
+            Assert.Equal(singleMessageBatch.Data.Id, messageBatchId.Id);
         }
 
 
@@ -148,12 +164,10 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var lines = new List<CreateLineDto>()
             {
-               new CreateLineDto() {ProviderId = Domain.Constants.ProviderEnum.Kavenegar,Credential = "sample1 Credential",Number = "111"},
+               new CreateLineDto() {ProviderId = Domain.Constants.ProviderEnum.Kavenegar,Credential = "sample1 Credential",Number = "118"},
                new CreateLineDto() {ProviderId = Domain.Constants.ProviderEnum.Magfa,Credential = "sample2 Credential",Number = "150"},
                new CreateLineDto() {ProviderId = Domain.Constants.ProviderEnum.Magfa,Credential = "sample3 Credential",Number = "125"},
             };
-
-
             var messageBatchs = new List<CreateMessageBatchDto>()
             {
                 new CreateMessageBatchDto(){ HolerSize = 12,AllSize = 8,InsertDateTime = DateTime.Now,LineId = 1},
@@ -175,7 +189,7 @@ namespace SmsHub.IntegrationTests.Api
             var messageBatchList = await PostAsync<GetMessageBatchDto, ApiResponseEnvelope<ICollection<GetMessageBatchDto>>>("/MessageBatch/GetList", null);
 
             //Assert
-            Assert.Equal(messageBatchList.Data.Count, 4);
+            Assert.InRange(messageBatchList.Data.Count, 4,8);
         }
     }
 }

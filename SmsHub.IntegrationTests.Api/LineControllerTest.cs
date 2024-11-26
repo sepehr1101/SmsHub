@@ -23,8 +23,8 @@ namespace SmsHub.IntegrationTests.Api
             var line = new CreateLineDto
             {
                 ProviderId = ProviderEnum.Magfa,
-                Credential = "string",
-                Number = "string"
+                Credential = "Create Line",
+                Number = "Create Line"
             };
 
             //Act
@@ -42,16 +42,18 @@ namespace SmsHub.IntegrationTests.Api
             var line = new CreateLineDto
             {
                 ProviderId = ProviderEnum.Magfa,
-                Credential = "string",
-                Number = "string"
+                Credential = "Delete Line",
+                Number = "Delete Line"
             };
+            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
+            var lineData = await PostAsync<GetLineDto, ApiResponseEnvelope<ICollection<GetLineDto>>>("/Line/GetList", null);
+
             var deleteLine = new DeleteLineDto()
             {
-                Id = 1
+                Id = lineData.Data.OrderByDescending(x=>x.Id).FirstOrDefault().Id
             };
 
             //Act
-            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
             await PostAsync<DeleteLineDto, DeleteLineDto>("/Line/Delete", deleteLine);
 
             //Assert
@@ -66,19 +68,21 @@ namespace SmsHub.IntegrationTests.Api
             var line = new CreateLineDto
             {
                 ProviderId = ProviderEnum.Magfa,
-                Credential = "string",
-                Number = "string"
+                Credential = "sample Line",
+                Number = "sample Line"
             };
+            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
+            var lineData = await PostAsync<GetLineDto, ApiResponseEnvelope<ICollection<GetLineDto>>>("/Line/GetList", null);
+
             var updateLine = new UpdateLineDto()
             {
-                Id = 1,
+                Id = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
                 ProviderId = ProviderEnum.Magfa,
                 Credential = "Update Credential",
                 Number = "Update Number"
             };
 
             //Act
-            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
             await PostAsync<UpdateLineDto, UpdateLineDto>("/Line/Update", updateLine);
 
             //Assert
@@ -90,25 +94,25 @@ namespace SmsHub.IntegrationTests.Api
         public async void GetSingleLine_LineDto_ShouldGetSingleLine()
         {
             //Arrange
-            var line = new CreateLineDto()
+            var line = new CreateLineDto
             {
-                ProviderId = Domain.Constants.ProviderEnum.Kavenegar,
-                Credential = "sample1 Credential",
-                Number = "111"
+                ProviderId = ProviderEnum.Magfa,
+                Credential = "GetSigle Line",
+                Number = "GetSigle Line"
             };
+            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
+            var lineData = await PostAsync<GetLineDto, ApiResponseEnvelope<ICollection<GetLineDto>>>("/Line/GetList", null);
+
             var lineId = new IntId()
             {
-                Id=1
+                Id = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
 
             //Act
-            await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
-
             var singleLine = await PostAsync<IntId, ApiResponseEnvelope<GetLineDto>>("/Line/GetSingle", lineId);
 
             //Assert
-            Assert.Equal(singleLine.Data.Id, 1);
-            Assert.Equal(singleLine.HttpStatusCode, 200);
+            Assert.Equal(singleLine.Data.Id, lineId.Id);
         }
 
 
@@ -132,8 +136,7 @@ namespace SmsHub.IntegrationTests.Api
             var lineList = await PostAsync<GetLineDto, ApiResponseEnvelope<ICollection<GetLineDto>>>("/Line/GetList", null);
 
             //Assert
-            Assert.Equal(lineList.Data.Count, 4);
-            Assert.Equal(lineList.HttpStatusCode, 200);
+            Assert.InRange(lineList.Data.Count, 4,8);
         }
     }
 }

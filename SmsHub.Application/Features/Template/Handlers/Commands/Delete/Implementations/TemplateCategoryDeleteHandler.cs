@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using SmsHub.Application.Features.Template.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Template.MediatorDtos.Commands.Delete;
@@ -7,7 +8,7 @@ using SmsHub.Persistence.Features.Template.Queries.Contracts;
 
 namespace SmsHub.Application.Features.Template.Handlers.Commands.Delete.Implementations
 {
-    public class TemplateCategoryDeleteHandler: ITemplateCategoryDeleteHandler
+    public class TemplateCategoryDeleteHandler : ITemplateCategoryDeleteHandler
     {
         private readonly IMapper _mapper;
         private readonly ITemplateCategoryCommandService _templateCategoryCommandService;

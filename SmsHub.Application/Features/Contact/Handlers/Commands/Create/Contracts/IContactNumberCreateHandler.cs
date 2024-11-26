@@ -2,7 +2,7 @@
 
 namespace SmsHub.Application.Features.Contact.Handlers.Commands.Create.Contracts
 {
-    public interface IContactNumberCreatedHandler
+    public interface IContactNumberCreateHandler
     {
         Task Handle(CreateContactNumberDto request, CancellationToken cancellationToken);
     }

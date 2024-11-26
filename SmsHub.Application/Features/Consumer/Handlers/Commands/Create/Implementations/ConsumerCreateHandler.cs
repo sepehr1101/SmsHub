@@ -5,6 +5,7 @@ using AutoMapper;
 using SmsHub.Common.Extensions;
 using SmsHub.Application.Features.Consumer.Handlers.Commands.Create.Contracts;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Create;
+using FluentValidation;
 
 namespace SmsHub.Application.Features.Consumer.Handlers.Commands.Create.Implementations
 {
@@ -12,16 +13,26 @@ namespace SmsHub.Application.Features.Consumer.Handlers.Commands.Create.Implemen
     {
         private readonly IConsumerCommandService _consumerCommandService;
         private readonly IMapper _mapper;
-        public ConsumerCreateHandler(IConsumerCommandService consumerCommandService, IMapper mapper)
+        private readonly IValidator<CreateConsumerDto> _validator;
+        public ConsumerCreateHandler(IConsumerCommandService consumerCommandService, IMapper mapper, IValidator<CreateConsumerDto> validator)
         {
             _consumerCommandService = consumerCommandService;
             _consumerCommandService.NotNull(nameof(_consumerCommandService));
 
             _mapper = mapper;
             _mapper.NotNull(nameof(_mapper));
+
+            _validator = validator;
+            _validator.NotNull(nameof(_validator));
         }
         public async Task Handle(CreateConsumerDto request, CancellationToken cancellationToken)
         {
+            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                throw new InvalidDataException();
+            }
+
             var consumer = _mapper.Map<Entities.Consumer>(request);
             await _consumerCommandService.Add(consumer);
         }

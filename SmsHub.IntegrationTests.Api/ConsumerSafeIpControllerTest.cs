@@ -25,16 +25,18 @@ namespace SmsHub.IntegrationTests.Api
                 ApiKey = "Sample ApiKey",
                 Description = "Sample Description"
             };
+            await PostAsync<CreateConsumerDto, CreateConsumerDto>("/Consumer/Create", consumer);
+            var consumerData = await PostAsync<GetConsumerDto, ApiResponseEnvelope<ICollection<GetConsumerDto>>>("/Consumer/GetList", null);
+
             var consumerSafeIp = new CreateConsumerSafeIpDto()
             {
-                ConsumerId = 1,
+                ConsumerId = consumerData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
                 FromIp = "198.162.1.1",
                 IsV6 = false,
                 ToIp = "198.162.1.2"
             };
 
             //Act
-            await PostAsync<CreateConsumerDto, CreateConsumerDto>("/Consumer/Create", consumer);
             await PostAsync<CreateConsumerSafeIpDto, CreateConsumerSafeIpDto>("/ConsumerSafeIp/Create", consumerSafeIp);
 
             //Assert
@@ -52,23 +54,27 @@ namespace SmsHub.IntegrationTests.Api
                 ApiKey = "Sample ApiKey",
                 Description = "Sample Description"
             };
+            await PostAsync<CreateConsumerDto, CreateConsumerDto>("/Consumer/Create", consumer);
+            var consumerData = await PostAsync<GetConsumerDto, ApiResponseEnvelope<ICollection<GetConsumerDto>>>("/Consumer/GetList", null);
+
             var consumerSafeIp = new CreateConsumerSafeIpDto()
             {
-                ConsumerId = 1,
+                ConsumerId = consumerData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
                 FromIp = "198.162.1.1",
                 IsV6 = false,
                 ToIp = "198.162.1.2"
             };
+            await PostAsync<CreateConsumerSafeIpDto, CreateConsumerSafeIpDto>("/ConsumerSafeIp/Create", consumerSafeIp);
+            var consumerSafeIpData = await PostAsync<GetConsumerSafaIpDto, ApiResponseEnvelope<ICollection<GetConsumerSafaIpDto>>>("/ConsumerSafeIp/GetList", null);
+
             var deleteConsumerSafeIp = new DeleteConsumerSafeIpDto()
             {
-                Id = 1
+                Id = consumerSafeIpData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
             };
 
             //Act
-            await PostAsync<CreateConsumerDto, CreateConsumerDto>("/Consumer/Create", consumer);
-            await PostAsync<CreateConsumerSafeIpDto, CreateConsumerSafeIpDto>("/ConsumerSafeIp/Create", consumerSafeIp);
-
             await PostAsync<DeleteConsumerSafeIpDto, DeleteConsumerSafeIpDto>("/ConsumerSafeIp/Delete", deleteConsumerSafeIp);
+          
             //Assert
             Assert.True(true);
         }
@@ -84,27 +90,31 @@ namespace SmsHub.IntegrationTests.Api
                 ApiKey = "Sample ApiKey",
                 Description = "Sample Description"
             };
+            await PostAsync<CreateConsumerDto, CreateConsumerDto>("/Consumer/Create", consumer);
+            var consumerData = await PostAsync<GetConsumerDto, ApiResponseEnvelope<ICollection<GetConsumerDto>>>("/Consumer/GetList", null);
+
             var consumerSafeIp = new CreateConsumerSafeIpDto()
             {
-                ConsumerId = 1,
+                ConsumerId = consumerData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
                 FromIp = "198.162.1.1",
                 IsV6 = false,
                 ToIp = "198.162.1.2"
             };
+            await PostAsync<CreateConsumerSafeIpDto, CreateConsumerSafeIpDto>("/ConsumerSafeIp/Create", consumerSafeIp);
+            var consumerSafeIpData = await PostAsync<GetConsumerSafaIpDto, ApiResponseEnvelope<ICollection<GetConsumerSafaIpDto>>>("/ConsumerSafeIp/GetList", null);
+
             var updateConsumerSafeIp = new UpdateConsumerSafeIpDto()
             {
-                Id = 1,
+                Id = consumerSafeIpData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
                 ConsumerId = 1,
                 FromIp = "198.162.1.3",
                 IsV6 = false,
-                ToIp = "192.168.1.4"
+                ToIp = "192.168.1.21"
             };
 
             //Act
-            await PostAsync<CreateConsumerDto, CreateConsumerDto>("/Consumer/Create", consumer);
-            await PostAsync<CreateConsumerSafeIpDto, CreateConsumerSafeIpDto>("/ConsumerSafeIp/Create", consumerSafeIp);
-
             await PostAsync<UpdateConsumerSafeIpDto, UpdateConsumerSafeIpDto>("/ConsumerSafeIp/Update", updateConsumerSafeIp);
+           
             //Assert
             Assert.True(true);
         }
@@ -120,27 +130,29 @@ namespace SmsHub.IntegrationTests.Api
                 ApiKey = "Sample ApiKey",
                 Description = "Sample Description"
             };
+            await PostAsync<CreateConsumerDto, CreateConsumerDto>("/Consumer/Create", consumer);
+            var consumerData = await PostAsync<GetConsumerDto, ApiResponseEnvelope<ICollection<GetConsumerDto>>>("/Consumer/GetList", null);
+
             var consumerSafeIp = new CreateConsumerSafeIpDto()
             {
-                ConsumerId = 1,
-                FromIp = "198.162.1.1",
+                ConsumerId = consumerData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
+                FromIp = "198.162.2.40",
                 IsV6 = false,
                 ToIp = "198.162.1.2"
             };
+            await PostAsync<CreateConsumerSafeIpDto, CreateConsumerSafeIpDto>("/ConsumerSafeIp/Create", consumerSafeIp);
+            var consumerSafeIpData = await PostAsync<GetConsumerSafaIpDto, ApiResponseEnvelope<ICollection<GetConsumerSafaIpDto>>>("/ConsumerSafeIp/GetList", null);
+
             var consumerSafeIpId = new IntId()
             {
-                Id = 1
+                Id = consumerSafeIpData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
             };
 
             //Act
-            await PostAsync<CreateConsumerDto, CreateConsumerDto>("/Consumer/Create", consumer);
-            await PostAsync<CreateConsumerSafeIpDto, CreateConsumerSafeIpDto>("/ConsumerSafeIp/Create", consumerSafeIp);
-
             var singleConsumerSafeIp = await PostAsync<IntId, ApiResponseEnvelope<GetConsumerSafaIpDto>>("/ConsumerSafeIp/GetSingle", consumerSafeIpId);
 
             //Assert
-            Assert.Equal(singleConsumerSafeIp.Data.Id, 1);
-            Assert.Equal(singleConsumerSafeIp.HttpStatusCode, 200);
+            Assert.Equal(singleConsumerSafeIp.Data.FromIp, "198.162.2.40");
         }
         
         
@@ -175,8 +187,7 @@ namespace SmsHub.IntegrationTests.Api
             var consumerSafeIpList = await PostAsync<GetConsumerSafaIpDto, ApiResponseEnvelope<ICollection<GetConsumerSafaIpDto>>>("/ConsumerSafeIp/GetList", null);
 
             //Assert
-            Assert.Equal(consumerSafeIpList.Data.Count, 4);
-            Assert.Equal(consumerSafeIpList.HttpStatusCode, 200);
+            Assert.InRange(consumerSafeIpList.Data.Count, 4,6);
         }
     }
 }

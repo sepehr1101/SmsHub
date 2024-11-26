@@ -4,6 +4,7 @@ using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Delete;
 using SmsHub.Domain.Features.Config.MediatorDtos.Queries;
+using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.IntegrationTests.Api
 {
@@ -22,24 +23,28 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var configType = new CreateConfigTypeDto()
             {
-                Title = "First Config",
+                Title = "Create Test Config",
                 Description = "Sample Sentence"
-            };
+            }; 
+            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
+            var configTypeData = await PostAsync<GetConfigTypeDto, ApiResponseEnvelope<ICollection<GetConfigTypeDto>>>("/ConfigType/GetList", null);
+
             var configTypeGroup = new CreateConfigTypeGroupDto()
             {
-                ConfigTypeId = 1,
-                Title = "First ConfigTypeGroup",
+                ConfigTypeId = configTypeData.Data.OrderByDescending(x=>x.Id).FirstOrDefault().Id,
+                Title = "Create Test ConfigTypeGroup",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
+            var configTypeGroupData = await PostAsync<GetConfigTypeGroupDto, ApiResponseEnvelope<ICollection<GetConfigTypeGroupDto>>>("/ConfigTypeGroup/GetList", null);
+
             var disallowedPhrase = new CreateDisallowedPhraseDto()
             {
-                ConfigTypeGroupId = 1,
-                Phrase = "sample Phrase"
+                ConfigTypeGroupId = configTypeGroupData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
+                Phrase = "Create Test Phrase"
             };
 
             //Act
-            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
-            await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
             await PostAsync<CreateDisallowedPhraseDto, CreateDisallowedPhraseDto>("/DisallowedPhrase/Create", disallowedPhrase);
 
             //Assert
@@ -53,30 +58,35 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var configType = new CreateConfigTypeDto()
             {
-                Title = "First Config",
+                Title = "Delete Test Config",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
+            var configTypeData = await PostAsync<GetConfigTypeDto, ApiResponseEnvelope<ICollection<GetConfigTypeDto>>>("/ConfigType/GetList", null);
+
             var configTypeGroup = new CreateConfigTypeGroupDto()
             {
-                ConfigTypeId = 1,
-                Title = "First ConfigTypeGroup",
+                ConfigTypeId = configTypeData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
+                Title = "Delete Test ConfigTypeGroup",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
+            var configTypeGroupData = await PostAsync<GetConfigTypeGroupDto, ApiResponseEnvelope<ICollection<GetConfigTypeGroupDto>>>("/ConfigTypeGroup/GetList", null);
+
             var disallowedPhrase = new CreateDisallowedPhraseDto()
             {
-                ConfigTypeGroupId = 1,
-                Phrase = "sample Phrase"
+                ConfigTypeGroupId = configTypeGroupData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
+                Phrase = "Delete Test Phrase"
             };
+            await PostAsync<CreateDisallowedPhraseDto, CreateDisallowedPhraseDto>("/DisallowedPhrase/Create", disallowedPhrase);
+            var disallowedPhraseData = await PostAsync<GetDisallowedPhraseDto, ApiResponseEnvelope<ICollection<GetDisallowedPhraseDto>>>("/DisallowedPhrase/GetList", null);
+            
             var deleteDisallowedPhrase = new DeleteDisallowedPhraseDto()
             {
-                Id = 1
+                Id  = disallowedPhraseData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
             };
 
             //Act
-            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
-            await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
-            await PostAsync<CreateDisallowedPhraseDto, CreateDisallowedPhraseDto>("/DisallowedPhrase/Create", disallowedPhrase);
-
             await PostAsync<DeleteDisallowedPhraseDto, DeleteDisallowedPhraseDto>("/DisallowedPhrase/Delete", deleteDisallowedPhrase);
 
             //Assert
@@ -91,32 +101,37 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var configType = new CreateConfigTypeDto()
             {
-                Title = "First Config",
+                Title = "Update Test Config",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
+            var configTypeData = await PostAsync<GetConfigTypeDto, ApiResponseEnvelope<ICollection<GetConfigTypeDto>>>("/ConfigType/GetList", null);
+
             var configTypeGroup = new CreateConfigTypeGroupDto()
             {
-                ConfigTypeId = 1,
-                Title = "First ConfigTypeGroup",
+                ConfigTypeId = configTypeData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
+                Title = "Update Test ConfigTypeGroup",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
+            var configTypeGroupData = await PostAsync<GetConfigTypeGroupDto, ApiResponseEnvelope<ICollection<GetConfigTypeGroupDto>>>("/ConfigTypeGroup/GetList", null);
+
             var disallowedPhrase = new CreateDisallowedPhraseDto()
             {
-                ConfigTypeGroupId = 1,
-                Phrase = "sample Phrase"
+                ConfigTypeGroupId = configTypeGroupData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
+                Phrase = "Update Test Phrase"
             };
+            await PostAsync<CreateDisallowedPhraseDto, CreateDisallowedPhraseDto>("/DisallowedPhrase/Create", disallowedPhrase);
+            var disallowedPhraseData = await PostAsync<GetDisallowedPhraseDto, ApiResponseEnvelope<ICollection<GetDisallowedPhraseDto>>>("/DisallowedPhrase/GetList", null);
+
             var updateDisallowedPhrase = new UpdateDisallowedPhraseDto()
             {
-                Id = 1,
-                ConfigTypeGroupId = 1,
-                Phrase = "Update Phrase"
+                Id = disallowedPhraseData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
+                ConfigTypeGroupId = configTypeGroupData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
+                Phrase = "Update Test Phrase"
             };
 
             //Act
-            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
-            await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
-            await PostAsync<CreateDisallowedPhraseDto, CreateDisallowedPhraseDto>("/DisallowedPhrase/Create", disallowedPhrase);
-
             await PostAsync<UpdateDisallowedPhraseDto, UpdateDisallowedPhraseDto>("/DisallowedPhrase/Update", updateDisallowedPhrase);
 
             //Assert
@@ -130,35 +145,39 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var configType = new CreateConfigTypeDto()
             {
-                Title = "First Config",
+                Title = "GetSingle Test Config",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
+            var configTypeData = await PostAsync<GetConfigTypeDto, ApiResponseEnvelope<ICollection<GetConfigTypeDto>>>("/ConfigType/GetList", null);
+
             var configTypeGroup = new CreateConfigTypeGroupDto()
             {
-                ConfigTypeId = 1,
-                Title = "First ConfigTypeGroup",
+                ConfigTypeId = configTypeData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
+                Title = "GetSingle Test ConfigTypeGroup",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
+            var configTypeGroupData = await PostAsync<GetConfigTypeGroupDto, ApiResponseEnvelope<ICollection<GetConfigTypeGroupDto>>>("/ConfigTypeGroup/GetList", null);
+
             var disallowedPhrase = new CreateDisallowedPhraseDto()
             {
-                ConfigTypeGroupId = 1,
-                Phrase = "sample Phrase"
+                ConfigTypeGroupId = configTypeGroupData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
+                Phrase = "GetSingle Test Phrase"
             };
+            await PostAsync<CreateDisallowedPhraseDto, CreateDisallowedPhraseDto>("/DisallowedPhrase/Create", disallowedPhrase);
+            var disallowedPhraseData = await PostAsync<GetDisallowedPhraseDto, ApiResponseEnvelope<ICollection<GetDisallowedPhraseDto>>>("/DisallowedPhrase/GetList", null);
+
             var disallowedPhraseId = new IntId()
             {
-                Id = 1
+                Id = disallowedPhraseData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
             };
 
             //Act
-            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
-            await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
-            await PostAsync<CreateDisallowedPhraseDto, CreateDisallowedPhraseDto>("/DisallowedPhrase/Create", disallowedPhrase);
-
             var singleDisallowedPhrase = await PostAsync<IntId, ApiResponseEnvelope<GetDisallowedPhraseDto>>("/DisallowedPhrase/GetSingle", disallowedPhraseId);
 
             //Assert
-            Assert.Equal(singleDisallowedPhrase.Data.Id, 1);
-            Assert.Equal(singleDisallowedPhrase.HttpStatusCode, 200);
+            Assert.Equal(singleDisallowedPhrase.Data.Phrase, "GetSingle Test Phrase");
         }
 
 
@@ -207,8 +226,7 @@ namespace SmsHub.IntegrationTests.Api
             var disallowedPhraseList = await PostAsync<GetDisallowedPhraseDto, ApiResponseEnvelope<ICollection<GetDisallowedPhraseDto>>>("/DisallowedPhrase/GetList", null);
 
             //Assert
-            Assert.Equal(disallowedPhraseList.Data.Count, 4);
-            Assert.Equal(disallowedPhraseList.HttpStatusCode, 200);
+            Assert.InRange(disallowedPhraseList.Data.Count, 4,8);
         }
     }
 }

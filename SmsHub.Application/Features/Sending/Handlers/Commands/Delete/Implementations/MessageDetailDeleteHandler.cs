@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using SmsHub.Application.Features.Sending.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Delete;
@@ -7,14 +8,14 @@ using SmsHub.Persistence.Features.Sending.Queries.Contracts;
 
 namespace SmsHub.Application.Features.Sending.Handlers.Commands.Delete.Implementations
 {
-    public class MessageDetailDeleteHandler: IMessageDetailDeleteHandler
+    public class MessageDetailDeleteHandler : IMessageDetailDeleteHandler
     {
         private readonly IMapper _mapper;
         private readonly IMessageDetailCommandService _messageDetailCommandService;
         private readonly IMessagesDetailQueryService _messagesDetailQueryService;
         public MessageDetailDeleteHandler(
-            IMapper mapper, 
-            IMessageDetailCommandService messageDetailCommandService, 
+            IMapper mapper,
+            IMessageDetailCommandService messageDetailCommandService,
             IMessagesDetailQueryService messagesDetailQueryService)
         {
             _mapper = mapper;
@@ -28,7 +29,7 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Delete.Implement
         }
         public async Task Handle(DeleteMessageDetailDto deleteMessageDetailDto, CancellationToken cancellationToken)
         {
-            var messageDetail=await _messagesDetailQueryService.Get(deleteMessageDetailDto.Id); 
+            var messageDetail = await _messagesDetailQueryService.Get(deleteMessageDetailDto.Id);
             _messageDetailCommandService.Delete(messageDetail);
         }
     }

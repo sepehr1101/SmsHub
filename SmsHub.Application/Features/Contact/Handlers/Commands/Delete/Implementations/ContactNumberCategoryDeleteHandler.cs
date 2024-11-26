@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using SmsHub.Application.Features.Contact.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Contact.MediatorDtos.Commands.Delete;
@@ -7,14 +8,14 @@ using SmsHub.Persistence.Features.Contact.Queries.Contracts;
 
 namespace SmsHub.Application.Features.Contact.Handlers.Commands.Delete.Implementations
 {
-    public class ContactNumberCategoryDeleteHandler: IContactNumberCategoryDeleteHandler
+    public class ContactNumberCategoryDeleteHandler : IContactNumberCategoryDeleteHandler
     {
         private readonly IMapper _mapper;
         private readonly IContactNumberCategoryCommandService _contactNumberCategoryCommandService;
         private readonly IContactNumberCategoryQueryService _contactNumberCategoryQueryService;
         public ContactNumberCategoryDeleteHandler(
-            IMapper mapper, 
-            IContactNumberCategoryCommandService contactNumberCategoryCommandService, 
+            IMapper mapper,
+            IContactNumberCategoryCommandService contactNumberCategoryCommandService,
             IContactNumberCategoryQueryService contactNumberCategoryQueryService)
         {
             _mapper = mapper;

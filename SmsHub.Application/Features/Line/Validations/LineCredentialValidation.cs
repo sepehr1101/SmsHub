@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmsHub.Application.Features.Line.Validations
 {
-    internal class LineCredentialValidation
+    public class LineCredentialValidation
     {
         
     }

@@ -12,6 +12,7 @@ using Microsoft.VisualBasic;
 using System.Dynamic;
 using System;
 using Newtonsoft.Json;
+using FluentValidation;
 
 namespace SmsHub.Application.Features.Template.Handlers.Commands.Create.Implementations
 {
@@ -20,16 +21,26 @@ namespace SmsHub.Application.Features.Template.Handlers.Commands.Create.Implemen
     {
         private readonly IMapper _mapper;
         private readonly ITemplateCommandService _templateCommandService;
-        public TemplateCreateHandler(IMapper mapper, ITemplateCommandService templateCommandService)
+        private readonly IValidator<CreateTemplateDto> _validator;
+        public TemplateCreateHandler(IMapper mapper, ITemplateCommandService templateCommandService, IValidator<CreateTemplateDto> validator)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(_mapper));
 
             _templateCommandService = templateCommandService;
             _templateCommandService.NotNull(nameof(_templateCommandService));
+
+            _validator = validator;
+            _validator.NotNull(nameof(_validator));
         }
         public async Task Handle(CreateTemplateDto request, CancellationToken cancellationToken)
         {
+            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                throw new InvalidDataException();
+            }
+
             var template = _mapper.Map<Entities.Template>(request);
             template.Parameters = GetTemplateVariables(template.Expression);
             await _templateCommandService.Add(template);
@@ -53,7 +64,7 @@ namespace SmsHub.Application.Features.Template.Handlers.Commands.Create.Implemen
             {
                 dictionary.Add(variableNames.ElementAt(i), string.Empty);
             }
-            var json= JsonConvert.SerializeObject(dictionary);
+            var json = JsonConvert.SerializeObject(dictionary);
             return json;
         }
     }

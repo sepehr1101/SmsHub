@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using SmsHub.Application.Features.Template.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Template.MediatorDtos.Commands.Delete;
@@ -7,7 +8,7 @@ using SmsHub.Persistence.Features.Template.Queries.Contracts;
 
 namespace SmsHub.Application.Features.Template.Handlers.Commands.Delete.Implementations
 {
-    public class TemplateDeleteHandler:  ITemplateDeleteHandler
+    public class TemplateDeleteHandler : ITemplateDeleteHandler
     {
         private readonly IMapper _mapper;
         private readonly ITemplateCommandService _templateCommandService;
@@ -17,13 +18,13 @@ namespace SmsHub.Application.Features.Template.Handlers.Commands.Delete.Implemen
             ITemplateCommandService templateCommandService,
             ITemplateQueryService templateQueryService)
         {
-            _mapper=mapper;
+            _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
 
-            _templateCommandService=templateCommandService; 
+            _templateCommandService = templateCommandService;
             _templateCommandService.NotNull(nameof(templateQueryService));
 
-            _templateQueryService=templateQueryService;
+            _templateQueryService = templateQueryService;
             _templateQueryService.NotNull(nameof(templateQueryService));
         }
         public async Task Handle(DeleteTemplateDto deleteTemplateDto, CancellationToken cancellationToken)

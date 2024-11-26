@@ -1,19 +1,22 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using SmsHub.Application.Features.Contact.Handlers.Commands.Delete.Contracts;
+using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Contact.MediatorDtos.Commands.Delete;
 using SmsHub.Persistence.Features.Contact.Commands.Contracts;
 using SmsHub.Persistence.Features.Contact.Queries.Contracts;
+using System.Threading;
 
 namespace SmsHub.Application.Features.Contact.Handlers.Commands.Delete.Implementations
 {
-    public class ContactDeleteHandler: IContactDeleteHandler
+    public class ContactDeleteHandler : IContactDeleteHandler
     {
         private readonly IMapper _mapper;
         private readonly IContactCommandService _contactCommandService;
         private readonly IContactQueryService _contactQueryService;
         public ContactDeleteHandler(
-            IMapper mapper, 
-            IContactCommandService contactCommandService, 
+            IMapper mapper,
+            IContactCommandService contactCommandService,
             IContactQueryService contactQueryService)
         {
             _mapper = mapper;
@@ -22,7 +25,7 @@ namespace SmsHub.Application.Features.Contact.Handlers.Commands.Delete.Implement
         }
         public async Task Handle(DeleteContactDto deleteContactDto, CancellationToken cancellationToken)
         {
-            var contact=await _contactQueryService.Get(deleteContactDto.Id);
+            var contact = await _contactQueryService.Get(deleteContactDto.Id);
             _contactCommandService.Delete(contact);
         }
     }

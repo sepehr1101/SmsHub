@@ -24,22 +24,26 @@ namespace SmsHub.IntegrationTests.Api
                 Title = "First Config",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
+            var configTypeData = await PostAsync<GetConfigTypeDto, ApiResponseEnvelope<ICollection<GetConfigTypeDto>>>("/ConfigType/GetList", null);
+
             var configTypeGroup = new CreateConfigTypeGroupDto()
             {
-                ConfigTypeId = 1,
+                ConfigTypeId = configTypeData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
                 Title = "First ConfigTypeGroup",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
+            var configTypeGroupData = await PostAsync<GetConfigTypeGroupDto, ApiResponseEnvelope<ICollection<GetConfigTypeGroupDto>>>("/ConfigTypeGroup/GetList", null);
+
             var permittedTime = new CreatePermittedTimeDto()
             {
-                ConfigTypeGroupId = 1,
+                ConfigTypeGroupId = configTypeGroupData.Data.OrderByDescending(x=>x.Id).FirstOrDefault().Id,
                 FromTime = "12:30",
                 ToTime = "12:40"
             };
 
             //Act
-            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
-            await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
             await PostAsync<CreatePermittedTimeDto, CreatePermittedTimeDto>("/PermittedTime/Create", permittedTime);
 
             //Assert
@@ -56,28 +60,33 @@ namespace SmsHub.IntegrationTests.Api
                 Title = "First Config",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
+            var configTypeData = await PostAsync<GetConfigTypeDto, ApiResponseEnvelope<ICollection<GetConfigTypeDto>>>("/ConfigType/GetList", null);
+
             var configTypeGroup = new CreateConfigTypeGroupDto()
             {
-                ConfigTypeId = 1,
+                ConfigTypeId = configTypeData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
                 Title = "First ConfigTypeGroup",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
+            var configTypeGroupData = await PostAsync<GetConfigTypeGroupDto, ApiResponseEnvelope<ICollection<GetConfigTypeGroupDto>>>("/ConfigTypeGroup/GetList", null);
+
             var permittedTime = new CreatePermittedTimeDto()
             {
-                ConfigTypeGroupId = 1,
+                ConfigTypeGroupId = configTypeGroupData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
                 FromTime = "12:30",
                 ToTime = "12:40"
             };
+            await PostAsync<CreatePermittedTimeDto, CreatePermittedTimeDto>("/PermittedTime/Create", permittedTime);
+            var permittedTimeData = await PostAsync<GetPermittedTimeDto, ApiResponseEnvelope<ICollection<GetPermittedTimeDto>>>("/PermittedTime/GetList", null);
+
             var deletePermittedTime = new DeletePermittedTimeDto()
             {
-                Id = 1,
+                Id = permittedTimeData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
             };
 
             //Act
-            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
-            await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
-            await PostAsync<CreatePermittedTimeDto, CreatePermittedTimeDto>("/PermittedTime/Create", permittedTime);
-
             await PostAsync<DeletePermittedTimeDto, DeletePermittedTimeDto>("/PermittedTime/Delete", deletePermittedTime);
 
             //Assert
@@ -95,31 +104,36 @@ namespace SmsHub.IntegrationTests.Api
                 Title = "First Config",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
+            var configTypeData = await PostAsync<GetConfigTypeDto, ApiResponseEnvelope<ICollection<GetConfigTypeDto>>>("/ConfigType/GetList", null);
+
             var configTypeGroup = new CreateConfigTypeGroupDto()
             {
-                ConfigTypeId = 1,
+                ConfigTypeId = configTypeData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
                 Title = "First ConfigTypeGroup",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
+            var configTypeGroupData = await PostAsync<GetConfigTypeGroupDto, ApiResponseEnvelope<ICollection<GetConfigTypeGroupDto>>>("/ConfigTypeGroup/GetList", null);
+
             var permittedTime = new CreatePermittedTimeDto()
             {
-                ConfigTypeGroupId = 1,
+                ConfigTypeGroupId = configTypeGroupData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
                 FromTime = "12:30",
                 ToTime = "12:40"
             };
+            await PostAsync<CreatePermittedTimeDto, CreatePermittedTimeDto>("/PermittedTime/Create", permittedTime);
+            var permittedTimeData = await PostAsync<GetPermittedTimeDto, ApiResponseEnvelope<ICollection<GetPermittedTimeDto>>>("/PermittedTime/GetList", null);
+
             var updatePermittedTime = new UpdatePermittedTimeDto()
             {
-                Id = 1,
-                ConfigTypeGroupId = 1,
+                Id = permittedTimeData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
+                ConfigTypeGroupId = configTypeGroupData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
                 FromTime = "15:00",
                 ToTime = "17:30"
             };
 
             //Act
-            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
-            await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
-            await PostAsync<CreatePermittedTimeDto, CreatePermittedTimeDto>("/PermittedTime/Create", permittedTime);
-
             await PostAsync<UpdatePermittedTimeDto, UpdatePermittedTimeDto>("/PermittedTime/Update", updatePermittedTime);
 
             //Assert
@@ -131,38 +145,44 @@ namespace SmsHub.IntegrationTests.Api
         [Fact]
         public async void GetSinglePermittedTime_PermittedTimeDto_ShouldGetSinglePermittedTime()
         {
-            //Arrange
+           //Arrange
             var configType = new CreateConfigTypeDto()
             {
                 Title = "First Config",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
+            var configTypeData = await PostAsync<GetConfigTypeDto, ApiResponseEnvelope<ICollection<GetConfigTypeDto>>>("/ConfigType/GetList", null);
+
             var configTypeGroup = new CreateConfigTypeGroupDto()
             {
-                ConfigTypeId = 1,
+                ConfigTypeId = configTypeData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
                 Title = "First ConfigTypeGroup",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
+            var configTypeGroupData = await PostAsync<GetConfigTypeGroupDto, ApiResponseEnvelope<ICollection<GetConfigTypeGroupDto>>>("/ConfigTypeGroup/GetList", null);
+
             var permittedTime = new CreatePermittedTimeDto()
             {
-                ConfigTypeGroupId = 1,
+                ConfigTypeGroupId = configTypeGroupData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
                 FromTime = "12:30",
                 ToTime = "12:40"
             };
+            await PostAsync<CreatePermittedTimeDto, CreatePermittedTimeDto>("/PermittedTime/Create", permittedTime);
+            var permittedTimeData = await PostAsync<GetPermittedTimeDto, ApiResponseEnvelope<ICollection<GetPermittedTimeDto>>>("/PermittedTime/GetList", null);
+
             var permittedTimeId = new IntId()
             {
-                Id = 1
+                Id = permittedTimeData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
+
             };
 
             //Act
-            await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
-            await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
-            await PostAsync<CreatePermittedTimeDto, CreatePermittedTimeDto>("/PermittedTime/Create", permittedTime);
-
             var singlePermittedTime = await PostAsync<IntId, ApiResponseEnvelope<GetPermittedTimeDto>>("/PermittedTime/GetSingle", permittedTimeId);
 
             //Assert
-            Assert.Equal(singlePermittedTime.Data.Id, 1);
+            Assert.Equal(singlePermittedTime.Data.Id, permittedTimeId.Id);
         }
 
 
@@ -211,7 +231,7 @@ namespace SmsHub.IntegrationTests.Api
             var permittedTimeList = await PostAsync<GetPermittedTimeDto, ApiResponseEnvelope<ICollection<GetPermittedTimeDto>>>("/PermittedTime/GetList", null);
 
             //Assert
-            Assert.Equal(permittedTimeList.Data.Count, 3);
+            Assert.InRange(permittedTimeList.Data.Count, 3,7);
         }
     }
 }

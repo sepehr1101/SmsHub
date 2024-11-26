@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using SmsHub.Application.Features.Line.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Delete;
@@ -7,14 +8,14 @@ using SmsHub.Persistence.Features.Line.Queries.Contracts;
 
 namespace SmsHub.Application.Features.Line.Handlers.Commands.Delete.Implementations
 {
-    public class LineDeleteHandler: ILineDeleteHandler
+    public class LineDeleteHandler : ILineDeleteHandler
     {
         private readonly IMapper _mapper;
         private readonly ILineCommandService _lineCommandService;
         private readonly ILineQueryService _lineQueryService;
         public LineDeleteHandler(
-            IMapper mapper, 
-            ILineCommandService lineCommandService, 
+            IMapper mapper,
+            ILineCommandService lineCommandService,
             ILineQueryService lineQueryService)
         {
             _mapper = mapper;

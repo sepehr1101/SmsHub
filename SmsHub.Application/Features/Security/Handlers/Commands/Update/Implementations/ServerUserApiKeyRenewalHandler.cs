@@ -1,4 +1,5 @@
-﻿using SmsHub.Application.Common.Services.Contracts;
+﻿using FluentValidation;
+using SmsHub.Application.Common.Services.Contracts;
 using SmsHub.Application.Features.Security.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Security.Dtos;
@@ -12,6 +13,7 @@ namespace SmsHub.Application.Features.Security.Handlers.Commands.Update.Implemen
         private readonly IServerUserCommandService _userCommandService;
         private readonly IServerUserQueryService _userQueryService;
         private readonly IApiKeyFactory _apiKeyFactory;
+        //private readonly IValidator<UpdateServerUserDto> _validator;
         public ServerUserApiKeyRenewalHandler(
             IServerUserCommandService userCommandService,
             IServerUserQueryService userQueryService,

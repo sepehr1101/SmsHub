@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using SmsHub.Application.Features.Sending.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Delete;
@@ -13,8 +14,8 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Delete.Implement
         private readonly IMessageStateCategoryCommandService _messageStateCategoryCommandService;
         private readonly IMessageStateCategoryQueryService _messageStateCategoryQueryService;
         public MessageStateCategoryDeleteHandler(
-            IMapper mapper, 
-            IMessageStateCategoryCommandService messageStateCategoryCommandService, 
+            IMapper mapper,
+            IMessageStateCategoryCommandService messageStateCategoryCommandService,
             IMessageStateCategoryQueryService messageStateCategoryQueryService)
         {
             _mapper = mapper;
@@ -28,7 +29,7 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Delete.Implement
         }
         public async Task Handle(DeleteMessageStateCategoryDto deleteMessageStateCategoryDto, CancellationToken cancellationToken)
         {
-            var messageStateCategory=await _messageStateCategoryQueryService.Get(deleteMessageStateCategoryDto.Id);
+            var messageStateCategory = await _messageStateCategoryQueryService.Get(deleteMessageStateCategoryDto.Id);
             _messageStateCategoryCommandService.Delete(messageStateCategory);
         }
     }

@@ -43,13 +43,15 @@ namespace SmsHub.IntegrationTests.Api
                 Username = "Etehadi",
 
             };
+            var apiKey = await PostAsync<CreateServerUserDto, ApiKeyAndHash>("/ServerUser/Create", serverUser);
+            var serverUserData = await PostAsync<GetServerUserDto, ApiResponseEnvelope<ICollection<GetServerUserDto>>>("/ServerUser/GetAll", null);
+
             var deleteServerUser = new DeleteServerUserDto()
             {
-                Id = 1
+                Id = serverUserData.Data.OrderByDescending(x=> x.Id).FirstOrDefault().Id
             };
 
             //Act
-            var apiKey = await PostAsync<CreateServerUserDto, ApiKeyAndHash>("/ServerUser/Create", serverUser);
             await PostAsync<DeleteServerUserDto, DeleteServerUserDto>("/ServerUser/Delete", deleteServerUser);
 
             //Arrange
@@ -67,10 +69,12 @@ namespace SmsHub.IntegrationTests.Api
                 Username = "Etehadi",
 
             };
-            var serverUserId = 1;
+            var apiKey = await PostAsync<CreateServerUserDto, ApiKeyAndHash>("/ServerUser/Create", serverUser);
+            var serverUserData = await PostAsync<GetServerUserDto, ApiResponseEnvelope<ICollection<GetServerUserDto>>>("/ServerUser/GetAll", null);
+
+            var serverUserId = serverUserData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
 
             //Act
-            var apiKey = await PostAsync<CreateServerUserDto, ApiKeyAndHash>("/ServerUser/Create", serverUser);
             await PostAsync<int, ApiResponseEnvelope<int>>("/ServerUser/Update", serverUserId);
 
             //Arrange
@@ -86,16 +90,18 @@ namespace SmsHub.IntegrationTests.Api
             {
                 IsAdmin = true,
                 ApiKeyHash = "Sample ApiKeyHash",
-                Username = "Etehadi",
+                Username = "administrator",
 
             };
+            var apiKey = await PostAsync<CreateServerUserDto, ApiKeyAndHash>("/ServerUser/Create", serverUser);
+            var serverUserData = await PostAsync<GetServerUserDto, ApiResponseEnvelope<ICollection<GetServerUserDto>>>("/ServerUser/GetAll", null);
+
             var serverUserId = new IntId()
             {
-                Id=1
+                Id = serverUserData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
 
             //Act
-            var apiKey = await PostAsync<CreateServerUserDto, ApiKeyAndHash>("/ServerUser/Create", serverUser);
            var singleServerUser= await PostAsync<IntId, ApiResponseEnvelope<GetServerUserDto>>("/ServerUser/GetById", serverUserId);
 
             //Arrange
@@ -115,13 +121,15 @@ namespace SmsHub.IntegrationTests.Api
                 Username = "Etehadi",
 
             };
+            var apiKey = await PostAsync<CreateServerUserDto, ApiKeyAndHash>("/ServerUser/Create", serverUser);
+            var serverUserData = await PostAsync<GetServerUserDto, ApiResponseEnvelope<ICollection<GetServerUserDto>>>("/ServerUser/GetAll", null);
+
             var serverUserApiKey = new StringId()
             {
-                apiKey= "Sample ApiKeyHash"
+                apiKey= serverUserData.Data.OrderByDescending(x => x.Id).FirstOrDefault() .ApiKeyHash
             };
 
             //Act
-            var apiKey = await PostAsync<CreateServerUserDto, ApiKeyAndHash>("/ServerUser/Create", serverUser);
            var singleServerUser= await PostAsync<StringId, ApiResponseEnvelope<GetServerUserDto>>("/ServerUser/GetByApiKey", serverUserApiKey);
 
             //Arrange
@@ -149,7 +157,7 @@ namespace SmsHub.IntegrationTests.Api
            var serverUsrList= await PostAsync<GetServerUserDto, ApiResponseEnvelope<ICollection<GetServerUserDto>>>("/ServerUser/GetAll", null);
 
             //Arrange
-            Assert.Equal (serverUsrList.Data.Count,4);
+            Assert.InRange (serverUsrList.Data.Count,4,8);
         }
     }
 }

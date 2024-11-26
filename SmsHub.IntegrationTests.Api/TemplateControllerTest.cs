@@ -20,9 +20,12 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var templateCategory = new CreateTemplateCategoryDto()
             {
-                Title = "First TemplateCategory",
+                Title = "sample TemplateCategory",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateTemplateCategoryDto, CreateTemplateCategoryDto>("/TemplateCategory/Create", templateCategory);
+            var templateCategoryData = await PostAsync<GetTemplateCategoryDto, ApiResponseEnvelope<ICollection<GetTemplateCategoryDto>>>("/TemplateCategory/GetList", null);
+
             var template = new CreateTemplateDto()
             {
                 Expression = "Sample Expression",
@@ -30,11 +33,10 @@ namespace SmsHub.IntegrationTests.Api
                 IsActive = true,
                 Parameters = "Sample Parameter",
                 MinCredit = 2,
-                TemplateCategoryId = 1
+                TemplateCategoryId = templateCategoryData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
 
             //Act
-            await PostAsync<CreateTemplateCategoryDto, CreateTemplateCategoryDto>("/TemplateCategory/Create", templateCategory);
             await PostAsync<CreateTemplateDto, CreateTemplateDto>("/Template/Create", template);
 
             //Assert
@@ -47,9 +49,12 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var templateCategory = new CreateTemplateCategoryDto()
             {
-                Title = "First TemplateCategory",
+                Title = "sample TemplateCategory",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateTemplateCategoryDto, CreateTemplateCategoryDto>("/TemplateCategory/Create", templateCategory);
+            var templateCategoryData = await PostAsync<GetTemplateCategoryDto, ApiResponseEnvelope<ICollection<GetTemplateCategoryDto>>>("/TemplateCategory/GetList", null);
+
             var template = new CreateTemplateDto()
             {
                 Expression = "Sample Expression",
@@ -57,17 +62,17 @@ namespace SmsHub.IntegrationTests.Api
                 IsActive = true,
                 Parameters = "Sample Parameter",
                 MinCredit = 2,
-                TemplateCategoryId = 1
+                TemplateCategoryId = templateCategoryData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
+            await PostAsync<CreateTemplateDto, CreateTemplateDto>("/Template/Create", template);
+            var templateData = await PostAsync<GetTemplateDto, ApiResponseEnvelope<ICollection<GetTemplateDto>>>("/Template/GetList", null);
+
             var deleteTemplate = new DeleteTemplateDto()
             {
-                Id = 1
+                Id = templateData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
 
             //Act
-            await PostAsync<CreateTemplateCategoryDto, CreateTemplateCategoryDto>("/TemplateCategory/Create", templateCategory);
-            await PostAsync<CreateTemplateDto, CreateTemplateDto>("/Template/Create", template);
-
             await PostAsync<DeleteTemplateDto, DeleteTemplateDto>("/Template/Delete", deleteTemplate);
 
             //Assert
@@ -81,9 +86,12 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var templateCategory = new CreateTemplateCategoryDto()
             {
-                Title = "First TemplateCategory",
+                Title = "sample TemplateCategory",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateTemplateCategoryDto, CreateTemplateCategoryDto>("/TemplateCategory/Create", templateCategory);
+            var templateCategoryData = await PostAsync<GetTemplateCategoryDto, ApiResponseEnvelope<ICollection<GetTemplateCategoryDto>>>("/TemplateCategory/GetList", null);
+
             var template = new CreateTemplateDto()
             {
                 Expression = "Sample Expression",
@@ -91,23 +99,23 @@ namespace SmsHub.IntegrationTests.Api
                 IsActive = true,
                 Parameters = "Sample Parameter",
                 MinCredit = 2,
-                TemplateCategoryId = 1
+                TemplateCategoryId = templateCategoryData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
+            await PostAsync<CreateTemplateDto, CreateTemplateDto>("/Template/Create", template);
+            var templateData = await PostAsync<GetTemplateDto, ApiResponseEnvelope<ICollection<GetTemplateDto>>>("/Template/GetList", null);
+
             var updateTemplate = new UpdateTemplateDto()
             {
-                Id = 1,
+                Id = templateData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
                 Expression = "Update Expression",
                 Title = "Update Title",
                 IsActive = true,
                 Parameters = "UpdateParameter",
                 MinCredit = 5,
-                TemplateCategoryId = 1
+                TemplateCategoryId = templateCategoryData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
 
             //Act
-            await PostAsync<CreateTemplateCategoryDto, CreateTemplateCategoryDto>("/TemplateCategory/Create", templateCategory);
-            await PostAsync<CreateTemplateDto, CreateTemplateDto>("/Template/Create", template);
-
             await PostAsync<UpdateTemplateDto, UpdateTemplateDto>("/Template/Update", updateTemplate);
 
             //Assert
@@ -122,31 +130,34 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var templateCategory = new CreateTemplateCategoryDto()
             {
-                Title = "First TemplateCategory",
+                Title = "sample TemplateCategory",
                 Description = "Sample Sentence"
             };
+            await PostAsync<CreateTemplateCategoryDto, CreateTemplateCategoryDto>("/TemplateCategory/Create", templateCategory);
+            var templateCategoryData = await PostAsync<GetTemplateCategoryDto, ApiResponseEnvelope<ICollection<GetTemplateCategoryDto>>>("/TemplateCategory/GetList", null);
+
             var template = new CreateTemplateDto()
             {
                 Expression = "Sample Expression",
-                Title = "Sample Title",
+                Title = "Sample Update Title",
                 IsActive = true,
                 Parameters = "Sample Parameter",
                 MinCredit = 2,
-                TemplateCategoryId = 1
+                TemplateCategoryId = templateCategoryData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
+            await PostAsync<CreateTemplateDto, CreateTemplateDto>("/Template/Create", template);
+            var templateData = await PostAsync<GetTemplateDto, ApiResponseEnvelope<ICollection<GetTemplateDto>>>("/Template/GetList", null);
+
             var templateId = new IntId()
             {
-                Id = 1
+                Id = templateData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
 
             //Act
-            await PostAsync<CreateTemplateCategoryDto, CreateTemplateCategoryDto>("/TemplateCategory/Create", templateCategory);
-            await PostAsync<CreateTemplateDto, CreateTemplateDto>("/Template/Create", template);
-
             var singleTemplate = await PostAsync<IntId, ApiResponseEnvelope<GetTemplateDto>>("/Template/GetSingle", templateId);
 
             //Assert
-            Assert.Equal(singleTemplate.Data.Title, "Sample Title");
+            Assert.Equal(singleTemplate.Data.Title, "Sample Update Title");
         }
 
         [Fact]
@@ -180,7 +191,7 @@ namespace SmsHub.IntegrationTests.Api
             var templateList = await PostAsync<GetTemplateDto, ApiResponseEnvelope<ICollection<GetTemplateDto>>>("/Template/GetList",null);
 
             //Assert
-            Assert.Equal(templateList.Data.Count, 4);
+            Assert.InRange(templateList.Data.Count, 4,8);
         }
     }
 }

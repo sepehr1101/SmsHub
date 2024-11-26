@@ -19,7 +19,7 @@ namespace SmsHub.Application.Features.Sending.Handlers.Queries.Implementations
             _messageStateQueryService = messageStateQueryService;
             _messageStateQueryService.NotNull(nameof(messageStateQueryService));
         }
-        public async Task<GetMessageStateDto> Handle(IntId Id)
+        public async Task<GetMessageStateDto> Handle(LongId Id)
         {
             var messageState = await _messageStateQueryService.Get(Id.Id);
             return _mapper.Map<GetMessageStateDto>(messageState);

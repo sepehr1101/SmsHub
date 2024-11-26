@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using SmsHub.Application.Features.Config.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Delete;
@@ -7,13 +8,15 @@ using SmsHub.Persistence.Features.Config.Queries.Contracts;
 
 namespace SmsHub.Application.Features.Config.Handlers.Commands.Delete.Implementations
 {
-    public class DisallowedPhraseDeleteHandler: IDisallowedPhraseDeleteHandler
+    public class DisallowedPhraseDeleteHandler : IDisallowedPhraseDeleteHandler
     {
         private readonly IMapper _mapper;
         private readonly IDisallowedPhraseCommandService _disallowedPhraseCommandService;
         private readonly IDisallowedPhraseQueryService _disallowedPhraseQueryService;
         public DisallowedPhraseDeleteHandler(
-            IMapper mapper, IDisallowedPhraseCommandService disallowedPhraseCommandService, IDisallowedPhraseQueryService disallowedPhraseQueryService)
+            IMapper mapper,
+            IDisallowedPhraseCommandService disallowedPhraseCommandService,
+            IDisallowedPhraseQueryService disallowedPhraseQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
@@ -26,7 +29,7 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Delete.Implementa
         }
         public async Task Handle(DeleteDisallowedPhraseDto deleteDisallowedPhraseDto, CancellationToken cancellationToken)
         {
-            var disallowedPhrase=await _disallowedPhraseQueryService.Get(deleteDisallowedPhraseDto.Id);
+            var disallowedPhrase = await _disallowedPhraseQueryService.Get(deleteDisallowedPhraseDto.Id);
             _disallowedPhraseCommandService.Delete(disallowedPhrase);
         }
     }
