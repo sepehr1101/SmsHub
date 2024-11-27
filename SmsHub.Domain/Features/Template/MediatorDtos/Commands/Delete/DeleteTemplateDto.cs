@@ -2,7 +2,7 @@
 
 namespace SmsHub.Domain.Features.Template.MediatorDtos.Commands.Delete
 {
-    public record DeleteTemplateDto : IRequest
+    public record DeleteTemplateDto  
     {
         public int Id { get; init; }
     }

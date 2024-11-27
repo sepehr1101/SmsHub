@@ -2,7 +2,7 @@
 
 namespace SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Delete
 {
-    public record DeleteLogLevelDto : IRequest
+    public record DeleteLogLevelDto  
     {
         public int Id { get; init; }
     }

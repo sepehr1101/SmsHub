@@ -3,7 +3,7 @@ using SmsHub.Domain.Constants;
 
 namespace SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Update
 {
-    public record UpdateMessageStateCategoryDto : IRequest
+    public record UpdateMessageStateCategoryDto  
     {
         public int Id { get; init; }
         public string Title { get; init; } = null!;

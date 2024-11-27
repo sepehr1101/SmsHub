@@ -2,7 +2,7 @@
 
 namespace SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create
 {
-    public record CreateTemplateDto : IRequest
+    public record CreateTemplateDto  
     {
         public string Expression { get; init; } = null!;
         public string Title { get; init; } = null!;

@@ -2,7 +2,7 @@
 
 namespace SmsHub.Domain.Features.Sending.MediatorDtos.Queries
 {
-    public record GetMessageHolderDto : IRequest
+    public record GetMessageHolderDto  
     {
         public Guid Id { get; init; }
         public int MessageBatchId { get; init; }

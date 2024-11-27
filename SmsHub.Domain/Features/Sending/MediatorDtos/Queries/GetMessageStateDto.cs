@@ -2,7 +2,7 @@
 
 namespace SmsHub.Domain.Features.Sending.MediatorDtos.Queries
 {
-    public record GetMessageStateDto:IRequest
+    public record GetMessageStateDto 
     {
         public long Id { get; init; }
         public int MessageStateCategoryId { get; init; }

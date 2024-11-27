@@ -3,7 +3,7 @@ using SmsHub.Domain.Constants;
 
 namespace SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create
 {
-    public record CreateProviderDto : IRequest
+    public record CreateProviderDto  
     {
         public ProviderEnum Id { get; init; }
         public string Title { get; init; } = null!;

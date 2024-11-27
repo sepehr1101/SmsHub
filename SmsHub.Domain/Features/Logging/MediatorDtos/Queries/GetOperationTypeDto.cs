@@ -2,7 +2,7 @@
 
 namespace SmsHub.Domain.Features.Logging.MediatorDtos.Queries
 {
-    public record GetOperationTypeDto : IRequest
+    public record GetOperationTypeDto  
     {
         public int Id { get; init; }
         public string Title { get; init; } = null!;

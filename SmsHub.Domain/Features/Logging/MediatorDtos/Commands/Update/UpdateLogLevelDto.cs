@@ -2,7 +2,7 @@
 
 namespace SmsHub.Domain.Features.Logging.MediatorDtos.Commands
 {
-    public record UpdateLogLevelDto : IRequest
+    public record UpdateLogLevelDto  
     {
         public int Id { get; init; }
         public string Title { get; init; } = null!;

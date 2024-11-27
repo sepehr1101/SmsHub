@@ -1,10 +1,8 @@
-﻿using MediatR;
-using SmsHub.Domain.Constants;
-using System.ComponentModel;
+﻿using SmsHub.Domain.Constants;
 
 namespace SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create
 {
-    public record CreateLineDto : IRequest
+    public record CreateLineDto 
     {
         public ProviderEnum ProviderId { get; init; }
         public string? Number { get; init; }
