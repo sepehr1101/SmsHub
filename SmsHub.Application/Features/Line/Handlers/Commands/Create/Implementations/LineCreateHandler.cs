@@ -38,7 +38,7 @@ namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Implementati
             var validationResult = await _validator.ValidateAsync(request, cancellationToken);
             if (!validationResult.IsValid)
             {
-                throw new InvalidDataException();
+                throw new InvalidDataException("خطا در اطلاعات ورودی");
             }
 
             var line = _mapper.Map<Entities.Line>(request);
@@ -46,35 +46,64 @@ namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Implementati
         }
         public void ValidationProvider(CreateLineDto createDto)
         {
-            switch (createDto.ProviderId)
+            if (createDto.Credential == null)
             {
-                case ProviderEnum.Magfa:
-                    var resultMagfaDeselialize = JsonConvert.DeserializeObject<MagfaCredentialDto>(createDto.Credential);
-                    if (resultMagfaDeselialize != null)
-                    {
-                        if (resultMagfaDeselialize.Domain == null)
+                throw new ProviderCredentialException("");
+            }
+            else
+            {
+                switch (createDto.ProviderId)
+                {
+                    case ProviderEnum.Magfa:
+                        var resultMagfaDeserialize = DeserializeCredential<MagfaCredentialDto>(createDto.Credential);
+                        if (resultMagfaDeserialize != null)
+                        {
+                            if (string.IsNullOrWhiteSpace(resultMagfaDeserialize.Domain))
+                                throw new ProviderCredentialException("مگفا");
+                            if (string.IsNullOrWhiteSpace(resultMagfaDeserialize.UserName))
+                                throw new ProviderCredentialException("مگفا");
+                            if (string.IsNullOrWhiteSpace(resultMagfaDeserialize.ClientSecret))
+                                throw new ProviderCredentialException("مگفا");
+                        }
+                        else
+                        {
                             throw new ProviderCredentialException("مگفا");
-                        if (resultMagfaDeselialize.UserName == null)
-                            throw new ProviderCredentialException("مگفا");
-                        if (resultMagfaDeselialize.ClientSecret == null)
-                            throw new ProviderCredentialException("مگفا");
-                    }
-                    break;
+                        }
+                        break;
 
-                case ProviderEnum.Kavenegar:
-                    var resultKavenegarDeselialize = JsonConvert.DeserializeObject<KavenegarCredentialDto>(createDto.Credential);
-                    if (resultKavenegarDeselialize != null)
-                    {
-                        if (resultKavenegarDeselialize.apiKey == null)
+                    case ProviderEnum.Kavenegar:
+                        var resultKavenegarDeserialize = DeserializeCredential<KavenegarCredentialDto>(createDto.Credential);
+                        if (resultKavenegarDeserialize != null)
+                        {
+                            if (string.IsNullOrWhiteSpace(resultKavenegarDeserialize.apiKey ))
+                                throw new ProviderCredentialException("کاوه نگار");
+                        }
+                        else
+                        {
                             throw new ProviderCredentialException("کاوه نگار");
-                    }
-                    break;
+                        }
+                        break;
 
-                default:
-                    throw new InvalidDataException();
+                    default:
+                        throw new ProviderCredentialException("");
 
+                }
+            }
+        }
+
+        public T DeserializeCredential<T>(string credential)
+        {
+            T resultDeserialize;
+            try
+            {
+                resultDeserialize = JsonConvert.DeserializeObject<T>(credential);
+            }
+            catch
+            {
+                throw new ProviderCredentialException("");
             }
 
+            return resultDeserialize;
         }
     }
 }
