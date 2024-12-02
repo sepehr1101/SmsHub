@@ -2,7 +2,7 @@
 
 namespace SmsHub.Domain.Features.Contact.MediatorDtos.Commands.Create
 {
-    public record CreateContactCategoryDto:IRequest
+    public record CreateContactCategoryDto 
     {
         public string? Title { get; init; }
         public string Description { get; init; }

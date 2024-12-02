@@ -2,7 +2,7 @@
 
 namespace SmsHub.Domain.Features.Contact.MediatorDtos.Queries
 {
-    public record GetContactNumberCategoryDto : IRequest
+    public record GetContactNumberCategoryDto  
     {
         public int Id { get; init; }
         public string Title { get; init; } = null!;

@@ -2,7 +2,7 @@
 
 namespace SmsHub.Domain.Features.Consumer.MediatorDtos.Queries
 {
-    public record GetConsumerSafaIpDto:IRequest
+    public record GetConsumerSafaIpDto 
     {
         public int Id { get; init; }
         public int ConsumerId { get; init; }

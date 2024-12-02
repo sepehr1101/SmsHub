@@ -2,7 +2,7 @@
 
 namespace SmsHub.Domain.Features.Security.MediatorDtos.Commands
 {
-    public record DeleteServerUserDto : IRequest
+    public record DeleteServerUserDto  
     {
         public int Id { get; init; }
     }

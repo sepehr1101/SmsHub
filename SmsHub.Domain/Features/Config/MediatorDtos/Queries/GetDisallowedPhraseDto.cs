@@ -2,7 +2,7 @@
 
 namespace SmsHub.Domain.Features.Config.MediatorDtos.Queries
 {
-    public record GetDisallowedPhraseDto:IRequest
+    public record GetDisallowedPhraseDto 
     {
         public int Id { get; init; }
         public int ConfigTypeGroupId { get; init; }

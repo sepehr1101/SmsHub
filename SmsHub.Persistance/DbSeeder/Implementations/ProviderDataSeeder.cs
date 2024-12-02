@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Entities;
@@ -35,7 +36,8 @@ namespace SmsHub.Persistence.DbSeeder.Implementations
                 FallbackBaseUri = @"http://10.7.217.99/",
                 Title = "مگفا",
                 Website = "sms.magfa.com",
-                Id=ProviderEnum.Magfa
+                Id=ProviderEnum.Magfa,
+                CredentialTemplate= @"{'Domain': '---', 'UserName': '---' , 'ClientSecret' : '---' }"
             };
             var kavenegar = new Provider()
             {
@@ -45,7 +47,8 @@ namespace SmsHub.Persistence.DbSeeder.Implementations
                 Title = "کاوه نگار",
                 Website = "kavenegar.com",
                 FallbackBaseUri = null,
-                Id=ProviderEnum.Kavenegar
+                Id=ProviderEnum.Kavenegar,
+                CredentialTemplate= @"{'apiKey': '---' }"
             };
             _providers.Add(magfa);
             _providers.Add(kavenegar);

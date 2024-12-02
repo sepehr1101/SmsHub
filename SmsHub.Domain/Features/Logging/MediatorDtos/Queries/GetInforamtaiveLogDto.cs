@@ -2,7 +2,7 @@
 
 namespace SmsHub.Domain.Features.Logging.MediatorDtos.Queries
 {
-    public record GetInforamtaiveLogDto:IRequest
+    public record GetInforamtaiveLogDto 
     {
         public long Id { get; init; }
         public int LogLevelId { get; init; }

@@ -2,7 +2,7 @@
 
 namespace SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Create
 {
-    public record CreateInformativeLogDto:IRequest
+    public record CreateInformativeLogDto 
     { 
         public int LogLevelId { get; init; }
         public string Section { get; init; } = null!;

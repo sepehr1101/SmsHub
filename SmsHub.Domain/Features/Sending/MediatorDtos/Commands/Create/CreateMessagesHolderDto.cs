@@ -2,7 +2,7 @@
 
 namespace SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create
 {
-    public record CreateMessagesHolderDto : IRequest
+    public record CreateMessagesHolderDto  
     {
         public int MessageBatchId { get; init; }
         public DateTime InsertDateTime { get; init; }
