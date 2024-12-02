@@ -14,7 +14,7 @@ namespace SmsHub.Application.Features.Template.Validations
 
             RuleFor(x => x.Expression).NotEmpty().WithMessage(MessageResources.ItemNotNull);
 
-            RuleFor(x => x.Parameters).NotEmpty().WithMessage(MessageResources.ItemNotNull);
+           // RuleFor(x => x.Parameters).NotEmpty().WithMessage(MessageResources.ItemNotNull);
         }
     }
 }
