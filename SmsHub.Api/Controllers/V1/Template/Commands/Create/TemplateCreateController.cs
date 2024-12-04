@@ -8,7 +8,7 @@ using SmsHub.Persistence.Contexts.UnitOfWork;
 namespace SmsHub.Api.Controllers.V1.Template.Commands.Create
 {
     [Route(nameof(Template))]
-    [ApiController]
+    [ApiController]                     
     public class TemplateCreateController : BaseController
     {
         private readonly IUnitOfWork _uow;
