@@ -7,6 +7,7 @@ using Newtonsoft.Json.Linq;
 using SmsHub.Application.Features.Template.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.Id;
+using SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using System.Dynamic;
 using System.Text;
@@ -39,30 +40,50 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
                 Id = templateId
             };
             var template = await _templateGetSingleHandler.Handle(Id);
-
-            Dictionary<string, string> templateProp = new Dictionary<string, string>();
-            var templateValue=JsonConvert.DeserializeObject<Dictionary<string, string>>(template.Parameters);
-
-            var requestBody = await new StreamReader(Request.Body).ReadToEndAsync();
-            var requestBodyValue=JsonConvert.DeserializeObject<Dictionary<string,string>>(requestBody);
+            var templateValue = DeserializeToDictionary(template.Parameters);
             
-            if (!requestBodyValue.Keys.Contains("Mobile"))
+            var requestBody = await new StreamReader(Request.Body).ReadToEndAsync();
+            var requestBodyValue = DeserializeToDictionary(requestBody);
+
+            ValidationData(templateValue, requestBodyValue);
+          
+            string messageToSend = CreateMessageToSend(requestBodyValue, template.Expression);
+
+            return Ok(messageToSend);
+        }
+
+        [NonAction]
+        public Dictionary<string, string> DeserializeToDictionary(string data)
+        {
+            var result = JsonConvert.DeserializeObject<Dictionary<string, string>>(data);
+            return result;
+        }
+
+        [NonAction]
+        public string CreateMessageToSend(Dictionary<string, string> data,string stringTemplate)
+        {
+            foreach (var item in data)
+            {
+                stringTemplate = stringTemplate.Replace("{" + item.Key + "}", item.Value);
+                //if (stringTemplate.Contains(item.Key))
+                //{
+                //  stringTemplate=  stringTemplate.Replace("{" + item.Key + "}", item.Value);
+                //}
+            }
+            return stringTemplate;
+        }
+
+        [NonAction]
+        public async void ValidationData(Dictionary<string, string> template, Dictionary<string, string> requestBody)
+        {
+            if (!requestBody.Keys.Contains("Mobile"))
                 throw new InvalidDataException();
 
-            foreach (var item in templateValue.Keys)
+            foreach (var item in template.Keys)
             {
-                if (!requestBodyValue.ContainsKey(item))
+                if (!requestBody.ContainsKey(item))
                     throw new InvalidDataException();
             }
-
-            foreach (var item in requestBodyValue)
-            {
-                template.Expression.Replace("{" + item.Key + "}", item.Value);
-            }
-
-            string message = template.Expression;
-
-            return Ok(Id);
         }
     }
 }
