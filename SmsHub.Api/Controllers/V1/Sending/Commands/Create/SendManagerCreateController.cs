@@ -55,7 +55,15 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         [NonAction]
         public Dictionary<string, string> DeserializeToDictionary(string data)
         {
-            var result = JsonConvert.DeserializeObject<Dictionary<string, string>>(data);
+            Dictionary<string, string> result = new Dictionary<string, string>();
+            try
+            {
+                result = JsonConvert.DeserializeObject<Dictionary<string, string>>(data);
+            }
+            catch
+            {
+                throw new InvalidDataException();
+            }
             return result;
         }
 
@@ -65,10 +73,6 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
             foreach (var item in data)
             {
                 stringTemplate = stringTemplate.Replace("{" + item.Key + "}", item.Value);
-                //if (stringTemplate.Contains(item.Key))
-                //{
-                //  stringTemplate=  stringTemplate.Replace("{" + item.Key + "}", item.Value);
-                //}
             }
             return stringTemplate;
         }
