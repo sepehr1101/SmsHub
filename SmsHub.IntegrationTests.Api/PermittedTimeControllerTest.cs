@@ -191,8 +191,6 @@ namespace SmsHub.IntegrationTests.Api
         public async void GetListPermittedTime_PermittedTimeDto_ShouldGetListPermittedTime()
         {
             //Arrange
-
-            //Arrange
             var configType = new List<CreateConfigTypeDto>()
             {
                 new CreateConfigTypeDto(){Title = "First Config", Description = "Sample1 Sentence"},
@@ -209,7 +207,7 @@ namespace SmsHub.IntegrationTests.Api
             var permittedTimes = new List<CreatePermittedTimeDto>()
             {
                 new CreatePermittedTimeDto(){ ConfigTypeGroupId = 1,FromTime = "12:30",ToTime = "12:40"},
-                new CreatePermittedTimeDto(){ ConfigTypeGroupId = 2,FromTime = "2:00",ToTime = "2:30"},
+                new CreatePermittedTimeDto(){ ConfigTypeGroupId = 2,FromTime = "14:00",ToTime = "14:30"},
                 new CreatePermittedTimeDto(){ ConfigTypeGroupId = 3,FromTime = "18:15",ToTime = "19:00"},
             };
 
