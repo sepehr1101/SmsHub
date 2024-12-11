@@ -110,10 +110,7 @@ namespace SmsHub.IntegrationTests.Api
             await PostAsync<CreateMessageStateCategoryDto, CreateMessageStateCategoryDto>("/MessageStateCategory/Create", messageStateCategory);
             var messageStateCategoryData = await PostAsync<GetMessageStateCategoryDto, ApiResponseEnvelope<ICollection<GetMessageStateCategoryDto>>>("/MessageStateCategory/GetList", null);
 
-            var messageStateCategoryId = new IntId()
-            {
-                Id = messageStateCategoryData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
-            };
+            IntId messageStateCategoryId = messageStateCategoryData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
 
             //Act
             var singleMessageStateCategory = await PostAsync<IntId, ApiResponseEnvelope<GetMessageStateCategoryDto>>("/MessageStateCategory/GetSingle", messageStateCategoryId);

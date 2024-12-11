@@ -95,10 +95,7 @@ namespace SmsHub.IntegrationTests.Api
                 ApiKey = "Sample ApiKey",
                 Description = "Sample Description"
             };
-            var consumerId = new IntId()
-            {
-                Id = 1
-            };
+            IntId consumerId = 1;
 
             //Act
             await PostAsync<CreateConsumerDto, CreateConsumerDto>("/Consumer/Create", consumer);

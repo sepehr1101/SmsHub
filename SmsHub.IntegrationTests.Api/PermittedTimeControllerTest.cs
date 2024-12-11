@@ -172,11 +172,7 @@ namespace SmsHub.IntegrationTests.Api
             await PostAsync<CreatePermittedTimeDto, CreatePermittedTimeDto>("/PermittedTime/Create", permittedTime);
             var permittedTimeData = await PostAsync<GetPermittedTimeDto, ApiResponseEnvelope<ICollection<GetPermittedTimeDto>>>("/PermittedTime/GetList", null);
 
-            var permittedTimeId = new IntId()
-            {
-                Id = permittedTimeData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
-
-            };
+            IntId permittedTimeId = permittedTimeData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
 
             //Act
             var singlePermittedTime = await PostAsync<IntId, ApiResponseEnvelope<GetPermittedTimeDto>>("/PermittedTime/GetSingle", permittedTimeId);

@@ -243,10 +243,7 @@ namespace SmsHub.IntegrationTests.Api
             await PostAsync<CreateMessageDetailDto, CreateMessageDetailDto>("/MessagesDetail/Create", messageDetail);
             var messageDetailData = await PostAsync<GetMessageDetailDto, ApiResponseEnvelope<ICollection<GetMessageDetailDto>>>("/MessagesDetail/GetList", null);
 
-            var messageDetailId = new LongId()
-            {
-                Id = messageDetailData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
-            };
+            LongId messageDetailId = messageDetailData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
             await PostAsync<CreateMessageDetailDto, CreateMessageDetailDto>("/MessagesDetail/Create", messageDetail);
             var singleMessageDetail = await PostAsync<LongId, ApiResponseEnvelope<GetMessageDetailDto>>("/MessagesDetail/GetSingle", messageDetailId);
 

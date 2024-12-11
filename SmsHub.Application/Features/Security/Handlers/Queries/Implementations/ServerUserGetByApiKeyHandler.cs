@@ -21,7 +21,7 @@ namespace SmsHub.Application.Features.Security.Handlers.Queries.Implementations
         }
         public async Task<GetServerUserDto> Handle(StringId apiKey)
         {
-            var serverUser = await _serverUserQueryService.GetByApiKey(apiKey.apiKey);
+            var serverUser = await _serverUserQueryService.GetByApiKey(apiKey.ApiKey);
             return _mapper.Map<GetServerUserDto>(serverUser);
         }
     }

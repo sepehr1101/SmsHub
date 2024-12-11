@@ -136,10 +136,7 @@ namespace SmsHub.IntegrationTests.Api
                 ConfigTypeGroupId = 1,
                 Mobile = "09131234567"
             };
-            var ccSendId = new IntId()
-            {
-                Id = 1
-            };
+            IntId ccSendId = 1;
 
             //Act
             await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);

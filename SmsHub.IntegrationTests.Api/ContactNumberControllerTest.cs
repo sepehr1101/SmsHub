@@ -170,11 +170,8 @@ namespace SmsHub.IntegrationTests.Api
             };
             await PostAsync<CreateContactNumberDto, CreateContactNumberDto>("/ContactNumber/Create", contactNumber);
             var contactNumberData = await PostAsync<GetContactNumberDto, ApiResponseEnvelope<ICollection<GetContactNumberDto>>>("/ContactNumber/GetList", null);
-            
-            var contactNumberId = new IntId()
-            {
-                Id = contactNumberData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
-            };
+
+            IntId contactNumberId = contactNumberData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
 
             //Act
             var singleContactNumber = await PostAsync<IntId, ApiResponseEnvelope<GetContactNumberDto>>("/ContactNumber/GetSingle", contactNumberId);

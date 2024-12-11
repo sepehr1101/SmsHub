@@ -174,11 +174,7 @@ namespace SmsHub.IntegrationTests.Api
             await PostAsync<CreateConsumerLineDto, CreateConsumerLineDto>("/ConsumerLine/Create", consumerLine);
             var consumerLineData = await PostAsync<GetConsumerLineDto, ApiResponseEnvelope<ICollection<GetConsumerLineDto>>>("/ConsumerLine/GetList", null);
 
-            var consumerLineId = new IntId()
-            {
-                Id = consumerLineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
-            };
-
+            IntId consumerLineId = consumerLineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
             //Act
             var singleConsumerLine = await PostAsync<IntId, ApiResponseEnvelope<GetConsumerLineDto>>("/ConsumerLine/GetSingle", consumerLineId);
 

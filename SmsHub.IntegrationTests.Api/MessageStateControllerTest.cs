@@ -313,11 +313,8 @@ namespace SmsHub.IntegrationTests.Api
             await PostAsync<CreateMessageStateDto, CreateMessageStateDto>("/MessageState/Create", messageState);
             var messageStateData = await PostAsync<GetMessageStateDto, ApiResponseEnvelope<ICollection<GetMessageStateDto>>>("/MessageState/GetList", null);
 
-            var messageStateId = new LongId()
-            {
-                Id = messageStateData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
-            };
-
+            LongId messageStateId = messageStateData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
+            
             //Act
             var singleMessageState = await PostAsync<LongId, ApiResponseEnvelope<GetMessageStateDto>>("/MessageState/GetSingle", messageStateId);
 

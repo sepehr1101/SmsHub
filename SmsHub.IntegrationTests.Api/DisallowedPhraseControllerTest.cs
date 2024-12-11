@@ -168,10 +168,7 @@ namespace SmsHub.IntegrationTests.Api
             await PostAsync<CreateDisallowedPhraseDto, CreateDisallowedPhraseDto>("/DisallowedPhrase/Create", disallowedPhrase);
             var disallowedPhraseData = await PostAsync<GetDisallowedPhraseDto, ApiResponseEnvelope<ICollection<GetDisallowedPhraseDto>>>("/DisallowedPhrase/GetList", null);
 
-            var disallowedPhraseId = new IntId()
-            {
-                Id = disallowedPhraseData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
-            };
+            IntId disallowedPhraseId = disallowedPhraseData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
 
             //Act
             var singleDisallowedPhrase = await PostAsync<IntId, ApiResponseEnvelope<GetDisallowedPhraseDto>>("/DisallowedPhrase/GetSingle", disallowedPhraseId);

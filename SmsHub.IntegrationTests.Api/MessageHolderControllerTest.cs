@@ -190,10 +190,8 @@ namespace SmsHub.IntegrationTests.Api
             await PostAsync<CreateMessagesHolderDto, CreateMessagesHolderDto>("/MessagesHolder/Create", messageHolder);
             var messagesHolders = await PostAsync<GetMessageHolderDto, ApiResponseEnvelope<ICollection<GetMessageHolderDto>>>("/MessagesHolder/GetList", null);
 
-            var messageHolderId = new GuidId()
-            {
-                Id = messagesHolders.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
-            };
+            GuidId messageHolderId = messagesHolders.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
+
             var singleMessageHolder = await PostAsync<GuidId, ApiResponseEnvelope<GetMessageHolderDto>>("/MessagesHolder/GetSingle", messageHolderId);
 
             //Assert
