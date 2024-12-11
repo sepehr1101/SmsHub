@@ -1,6 +1,8 @@
 ﻿using Azure.Core;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using SmsHub.Application.Exceptions;
+using SmsHub.Application.Features.Line.Handlers.Queries.Contracts;
 using SmsHub.Application.Features.Sending.Handlers.Commands.Create.Contracts;
 using SmsHub.Application.Features.Template.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
@@ -13,21 +15,34 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
     {
         private readonly IHttpContextAccessor _contextAccessor;
         private readonly ITemplateGetSingleHandler _templateGetSingleHandler;
-        public SendManagerCreateHandler(IHttpContextAccessor contextAccessor,ITemplateGetSingleHandler templateGetSingleHandler)
+        private readonly ILineGetSingleHandler _lineGetSingleHandler;
+        public SendManagerCreateHandler(IHttpContextAccessor contextAccessor,
+            ITemplateGetSingleHandler templateGetSingleHandler
+            ,ILineGetSingleHandler lineGetSingleHandler)
         {
             _contextAccessor = contextAccessor;
             _contextAccessor.NotNull(nameof(contextAccessor));
 
             _templateGetSingleHandler= templateGetSingleHandler;
             _templateGetSingleHandler.NotNull(nameof(templateGetSingleHandler));
+
+            _lineGetSingleHandler=lineGetSingleHandler;
+            _lineGetSingleHandler.NotNull(nameof(lineGetSingleHandler));
         }
 
-        public async void Handle(int templateId, CancellationToken cancellationToken)
+        public async Task Handle(int templateId,int lineId, CancellationToken cancellationToken)
         {
             IntId id = templateId;
 
             var template = await _templateGetSingleHandler.Handle(id);
             var templateValue = DeserializeToDictionary(template.Parameters);
+            if (templateValue == null)
+                throw new InvalidTemplateException();
+
+            var line = await _lineGetSingleHandler.Handle(lineId);
+            var lineNumber = line.Number;
+            if (lineNumber == null)
+                throw new InvalidLineException();
 
             var requestBody = await new StreamReader(_contextAccessor.HttpContext.Request.Body).ReadToEndAsync();
             var requestBodyValue = DeserializeToDictionary(requestBody);
@@ -55,7 +70,7 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
         {
             foreach (var item in data)
             {
-                stringTemplate.ReplaceCurlyBrace(item.Key, item.Value);
+               stringTemplate= stringTemplate.ReplaceCurlyBrace(item.Key, item.Value);
             }
             return stringTemplate;
         }
@@ -63,13 +78,13 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
         private void ValidationData(Dictionary<string, string> template, Dictionary<string, string> requestBody)
         {
             if (!requestBody.Keys.Contains("Mobile"))
-                throw new InvalidDataException();
+                throw new InvalidMobileException();
 
             //method + foreach
             foreach (var item in template.Keys)
             {
                 if (!requestBody.ContainsKey(item))
-                    throw new InvalidDataException();
+                    throw new InvalidUserDataException();
             }
         }
     }

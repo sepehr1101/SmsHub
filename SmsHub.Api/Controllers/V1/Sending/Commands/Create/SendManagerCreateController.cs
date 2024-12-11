@@ -29,10 +29,10 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
 
 
         [HttpPost]
-        [Route("SendManager/{templateId}")]
-        public async Task<IActionResult> SendManager(int templateId)
+        [Route("SendManager/{templateId}/{lineId}")]
+        public async Task<IActionResult> SendManager(int templateId,int lineId)
         {
-            _sendManagerCreateHandler.Handle(templateId, new CancellationToken());
+            await _sendManagerCreateHandler.Handle(templateId,lineId, new CancellationToken());
             return Ok(templateId);
         }
 

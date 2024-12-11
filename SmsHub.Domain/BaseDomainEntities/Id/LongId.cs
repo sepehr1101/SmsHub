@@ -7,7 +7,7 @@ namespace SmsHub.Domain.BaseDomainEntities.Id
         public long Id { get; private set; }
         public LongId(long id)
         {
-            if (Id == 0)
+            if (id == 0)
                 throw new InvalidIdException();
 
             Id = id;

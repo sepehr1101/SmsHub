@@ -2,6 +2,6 @@
 {
     public interface ISendManagerCreateHandler
     {
-        void Handle(int templateId, CancellationToken cancellationToken);
+        Task Handle(int templateId,int lineId, CancellationToken cancellationToken);
     }
 }

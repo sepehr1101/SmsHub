@@ -8,7 +8,7 @@ namespace SmsHub.Domain.BaseDomainEntities.Id
         public int Id { get; private set; }
         public IntId(int id)
         {
-            if (Id == 0)
+            if (id == 0)
                 throw new InvalidIdException();
          
             Id = id;

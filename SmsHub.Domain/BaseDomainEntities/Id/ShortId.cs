@@ -7,7 +7,7 @@ namespace SmsHub.Domain.BaseDomainEntities.Id
         public short Id { get; private set; }
         public ShortId(short id)
         {
-            if (Id == 0)
+            if (id == 0)
                 throw new InvalidIdException();
 
             Id = id;
