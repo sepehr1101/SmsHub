@@ -172,11 +172,7 @@ namespace SmsHub.IntegrationTests.Api
             await PostAsync<CreatePermittedTimeDto, CreatePermittedTimeDto>("/PermittedTime/Create", permittedTime);
             var permittedTimeData = await PostAsync<GetPermittedTimeDto, ApiResponseEnvelope<ICollection<GetPermittedTimeDto>>>("/PermittedTime/GetList", null);
 
-            var permittedTimeId = new IntId()
-            {
-                Id = permittedTimeData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
-
-            };
+            IntId permittedTimeId = permittedTimeData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
 
             //Act
             var singlePermittedTime = await PostAsync<IntId, ApiResponseEnvelope<GetPermittedTimeDto>>("/PermittedTime/GetSingle", permittedTimeId);
@@ -190,8 +186,6 @@ namespace SmsHub.IntegrationTests.Api
         [Fact]
         public async void GetListPermittedTime_PermittedTimeDto_ShouldGetListPermittedTime()
         {
-            //Arrange
-
             //Arrange
             var configType = new List<CreateConfigTypeDto>()
             {
@@ -209,7 +203,7 @@ namespace SmsHub.IntegrationTests.Api
             var permittedTimes = new List<CreatePermittedTimeDto>()
             {
                 new CreatePermittedTimeDto(){ ConfigTypeGroupId = 1,FromTime = "12:30",ToTime = "12:40"},
-                new CreatePermittedTimeDto(){ ConfigTypeGroupId = 2,FromTime = "2:00",ToTime = "2:30"},
+                new CreatePermittedTimeDto(){ ConfigTypeGroupId = 2,FromTime = "14:00",ToTime = "14:30"},
                 new CreatePermittedTimeDto(){ ConfigTypeGroupId = 3,FromTime = "18:15",ToTime = "19:00"},
             };
 

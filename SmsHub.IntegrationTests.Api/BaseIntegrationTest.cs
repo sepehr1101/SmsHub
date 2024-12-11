@@ -43,6 +43,16 @@ namespace SmsHub.IntegrationTests.Api
             return returnData;
         }
 
+        public async Task<string> PostAsyncWithoutDeserialize<TData>(string url, TData data)
+        {
+            var stringContent = new StringContent(JsonSerializer.Serialize(data),
+                Encoding.UTF8, "application/json");
+
+            var result = await _httpClient.PostAsync(url, stringContent);
+            string content = await result.Content.ReadAsStringAsync();
+            return content;
+        }
+
         public void Dispose()
         {
             _serviceScope.Dispose();

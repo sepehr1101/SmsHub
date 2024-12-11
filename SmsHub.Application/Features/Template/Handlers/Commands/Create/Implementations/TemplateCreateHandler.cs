@@ -42,7 +42,8 @@ namespace SmsHub.Application.Features.Template.Handlers.Commands.Create.Implemen
             }
 
             var template = _mapper.Map<Entities.Template>(request);
-            template.Parameters = GetTemplateVariables(template.Expression);
+            var parameters = GetTemplateVariables(template.Expression);
+            template.Parameters =parameters.Replace("\"","'");
             await _templateCommandService.Add(template);
         }
         private string GetTemplateVariables(string template)

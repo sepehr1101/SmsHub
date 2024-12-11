@@ -2,7 +2,7 @@
 
 namespace SmsHub.Domain.Features.Config.MediatorDtos.Commands
 {
-    public record UpdateConfigDto : IRequest
+    public record UpdateConfigDto  
     {
         public int Id { get; init; }
         public int ConfigTypeGroupId { get; init; }

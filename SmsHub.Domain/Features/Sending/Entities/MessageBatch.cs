@@ -11,7 +11,7 @@ namespace SmsHub.Domain.Features.Entities
         }
 
         public int Id { get; set; }
-        public int HolerSize { get; set; }
+        public int HolderSize { get; set; }
         public int AllSize { get; set; }
         public DateTime InsertDateTime { get; set; }
         public int LineId { get; set; }

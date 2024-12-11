@@ -154,10 +154,7 @@ namespace SmsHub.IntegrationTests.Api
                 ClientInfo = "Test ClientInfo",
                 OperationTypeId = 4
             };
-            var deepLogId = new IntId()
-            {
-                Id = 4
-            };
+            IntId deepLogId = 4;
 
             //Act
             await PostAsync<CreateOperationTypeDto, CreateOperationTypeDto>("/OperationType/Create", operationType);

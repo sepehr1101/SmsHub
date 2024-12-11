@@ -94,10 +94,7 @@ namespace SmsHub.IntegrationTests.Api
                 Title = "GetSingle title",
                 Css = "GetSingleCss"
             };
-            var logLevelId = new IntId()
-            {
-                Id = 4
-            };
+            IntId logLevelId = 4;
 
             //Act
             await PostAsync<CreateLogLevelDto, CreateLogLevelDto>("/LogLevel/Create", logLevel);

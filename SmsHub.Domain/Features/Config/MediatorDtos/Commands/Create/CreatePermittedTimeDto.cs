@@ -2,7 +2,7 @@
 
 namespace SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create
 {
-    public record CreatePermittedTimeDto : IRequest
+    public record CreatePermittedTimeDto  
     {
         public int ConfigTypeGroupId { get; init; }
         public string? FromTime { get; init; }

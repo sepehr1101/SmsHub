@@ -12,5 +12,6 @@ namespace SmsHub.Domain.Features.Line.MediatorDtos.Commands.Update
         public int BatchSize { get; init; }
         public string BaseUri { get; init; } = null!;
         public string FallbackBaseUri { get; init; } = null!;
+        public string CredentialTemplate { get; set; } = default!;
     }
 }

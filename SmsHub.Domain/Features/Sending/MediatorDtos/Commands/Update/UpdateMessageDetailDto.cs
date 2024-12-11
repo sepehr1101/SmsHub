@@ -2,7 +2,7 @@
 
 namespace SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Update
 {
-    public record UpdateMessageDetailDto : IRequest
+    public record UpdateMessageDetailDto  
     {
         public long Id { get; init; }
         public Guid MessagesHolderId { get; init; }

@@ -100,10 +100,7 @@ namespace SmsHub.IntegrationTests.Api
             await PostAsync<CreateOperationTypeDto, CreateOperationTypeDto>("/OperationType/Create", operationType);
             var operationTypeData = await PostAsync<GetOperationTypeDto, ApiResponseEnvelope<ICollection<GetOperationTypeDto>>>("/OperationType/GetList", null);
 
-            var operationTypeId = new IntId()
-            {
-                Id = operationTypeData.Data.OrderByDescending(x => x.Id==4).FirstOrDefault().Id
-            };
+            IntId operationTypeId = operationTypeData.Data.OrderByDescending(x => x.Id == 4).FirstOrDefault().Id;
 
             //Act
             var singleOperation = await PostAsync<IntId, ApiResponseEnvelope<GetOperationTypeDto>>("/OperationType/GetSingle", operationTypeId);

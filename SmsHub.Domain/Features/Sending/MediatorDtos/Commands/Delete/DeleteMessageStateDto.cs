@@ -2,7 +2,7 @@
 
 namespace SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Delete
 {
-    public record DeleteMessageStateDto : IRequest
+    public record DeleteMessageStateDto  
     {
         public long Id { get; init; }
     }

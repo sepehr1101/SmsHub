@@ -98,10 +98,7 @@ namespace SmsHub.IntegrationTests.Api
             await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
             var configTypeData = await PostAsync<GetConfigTypeDto, ApiResponseEnvelope<ICollection<GetConfigTypeDto>>>("ConfigType/GetList", null);
 
-            var configTypeId = new IntId()
-            {
-                Id = configTypeData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
-            };
+            IntId configTypeId = configTypeData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
 
             //Act
             var singleConfigType = await PostAsync<IntId, ApiResponseEnvelope<GetConfigTypeDto>>("/ConfigType/GetSingle", configTypeId);

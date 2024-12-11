@@ -42,7 +42,6 @@ namespace SmsHub.IntegrationTests.Api
                 Expression = "Sample Expression",
                 Title = "Sample Title",
                 IsActive = true,
-                Parameters = "Sample Parameter",
                 MinCredit = 2,
                 TemplateCategoryId = 1
             };
@@ -97,7 +96,6 @@ namespace SmsHub.IntegrationTests.Api
                 Expression = "Sample Expression",
                 Title = "Sample Title",
                 IsActive = true,
-                Parameters = "Sample Parameter",
                 MinCredit = 2,
                 TemplateCategoryId = templateCategoryData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
@@ -160,7 +158,6 @@ namespace SmsHub.IntegrationTests.Api
                 Expression = "Sample Expression",
                 Title = "Sample Title",
                 IsActive = true,
-                Parameters = "Sample Parameter",
                 MinCredit = 2,
                 TemplateCategoryId = templateCategoryData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
@@ -222,7 +219,6 @@ namespace SmsHub.IntegrationTests.Api
                 Expression = "Sample Expression",
                 Title = "Sample Title for Test1230",
                 IsActive = true,
-                Parameters = "Sample Parameter",
                 MinCredit = 2,
                 TemplateCategoryId = templateCategoryData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
@@ -237,11 +233,7 @@ namespace SmsHub.IntegrationTests.Api
             await PostAsync<CreateConfigDto, CreateConfigDto>("/Config/Create", config);
             var configData = await PostAsync<GetConfigDto, ApiResponseEnvelope<List<GetConfigDto>>>("/Config/GetList", null);
 
-            var configId = new IntId()
-            {
-                Id = configData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
-            };
-
+            IntId configId = configData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
 
             var singleConfig = await PostAsync<IntId, ApiResponseEnvelope<GetConfigDto>>("/Config/GetSingle", configId);
 
@@ -275,10 +267,10 @@ namespace SmsHub.IntegrationTests.Api
             };
             var template = new List<CreateTemplateDto>()
             {
-                new CreateTemplateDto(){Expression = "Sample1 Expression",Title = "Sample1 Title",IsActive = true,Parameters = "Sample1 Parameter",MinCredit = 2,TemplateCategoryId = 1},
-                new CreateTemplateDto(){Expression = "Sample2 Expression",Title = "Sample2 Title",IsActive = true,Parameters = "Sample2 Parameter",MinCredit = 2,TemplateCategoryId = 2},
-                new CreateTemplateDto(){Expression = "Sample3 Expression",Title = "Sample3 Title",IsActive = true,Parameters = "Sample3 Parameter",MinCredit = 2,TemplateCategoryId = 3},
-                new CreateTemplateDto(){Expression = "Sample4 Expression",Title = "Sample4 Title",IsActive = true,Parameters = "Sample4 Parameter",MinCredit = 2,TemplateCategoryId = 3},
+                new CreateTemplateDto(){Expression = "Sample1 Expression",Title = "Sample1 Title",IsActive = true,MinCredit = 2,TemplateCategoryId = 1},
+                new CreateTemplateDto(){Expression = "Sample2 Expression",Title = "Sample2 Title",IsActive = true,MinCredit = 2,TemplateCategoryId = 2},
+                new CreateTemplateDto(){Expression = "Sample3 Expression",Title = "Sample3 Title",IsActive = true,MinCredit = 2,TemplateCategoryId = 3},
+                new CreateTemplateDto(){Expression = "Sample4 Expression",Title = "Sample4 Title",IsActive = true,MinCredit = 2,TemplateCategoryId = 3},
             };
             var config = new List<CreateConfigDto>()
             {

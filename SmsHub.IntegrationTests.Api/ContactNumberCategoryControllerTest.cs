@@ -98,10 +98,7 @@ namespace SmsHub.IntegrationTests.Api
             await PostAsync<CreateContactNumberCategoryDto, CreateContactNumberCategoryDto>("/ContactNumberCategory/Create", contactNumberCategory);
             var contactNumberCategoryData = await PostAsync<GetContactNumberCategoryDto, ApiResponseEnvelope<ICollection<GetContactNumberCategoryDto>>>("/ContactNumberCategory/GetList", null);
 
-            var contactNumberCategoryId = new IntId()
-            {
-                Id = contactNumberCategoryData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
-            };
+            IntId contactNumberCategoryId = contactNumberCategoryData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
 
             //Act
             var singleContactNumberCategory = await PostAsync<IntId, ApiResponseEnvelope<GetContactNumberCategoryDto>>("/ContactNumberCategory/GetSingle", contactNumberCategoryId);

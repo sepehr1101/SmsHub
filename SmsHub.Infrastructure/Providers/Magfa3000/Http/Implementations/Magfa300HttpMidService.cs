@@ -19,8 +19,8 @@ namespace SmsHub.Infrastructure.Providers.Magfa3000.Http.Implementations
         {
             var request = new HttpRequestMessage(HttpMethod.Get, new Literals().MidUri);
             request.AddBasicAuthentication($"{domain}/{username}", password);
-            var responce = await _restClient.Create(request.RequestUri).Execute<MagfaRequest.MidDto>();
-            return responce;
+            var response = await _restClient.Create(request.RequestUri).Execute<MagfaRequest.MidDto>();
+            return response;
         }
     }
 }

@@ -2,7 +2,7 @@
 using SmsHub.Domain.Constants;
 namespace SmsHub.Domain.Features.Contact.MediatorDtos.Commands.Delete
 {
-    public record DeleteContactDto : IRequest
+    public record DeleteContactDto  
     {
         public int Id { get; init; }
 

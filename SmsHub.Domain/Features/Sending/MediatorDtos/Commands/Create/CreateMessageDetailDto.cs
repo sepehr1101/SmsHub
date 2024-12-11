@@ -2,7 +2,7 @@
 
 namespace SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create
 {
-    public record CreateMessageDetailDto : IRequest
+    public record CreateMessageDetailDto  
     {
         public Guid MessagesHolderId { get; init; }
         public string Receptor { get; init; } = null!;

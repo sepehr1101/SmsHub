@@ -166,11 +166,7 @@ namespace SmsHub.IntegrationTests.Api
             await PostAsync<CreateInformativeLogDto, CreateInformativeLogDto>("/InformativeLog/Create", informativeLog);
             var informativeLogData = await PostAsync<GetInforamtaiveLogDto, ApiResponseEnvelope<ICollection<GetInforamtaiveLogDto>>>("/InformativeLog/GetList", null);
 
-            var informativeLogId = new LongId()
-            {
-                Id = informativeLogData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
-            };
-
+            LongId informativeLogId = informativeLogData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
             //Act
             var singleInformativeLog = await PostAsync<LongId, ApiResponseEnvelope<GetInforamtaiveLogDto>>("/InformativeLog/GetSingle", informativeLogId);
 

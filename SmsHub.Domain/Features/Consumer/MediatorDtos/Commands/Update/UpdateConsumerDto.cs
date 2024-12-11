@@ -2,7 +2,7 @@
 
 namespace SmsHub.Domain.Features.Consumer.MediatorDtos.Commands
 {
-    public record UpdateConsumerDto : IRequest
+    public record UpdateConsumerDto  
     {
         public int Id { get; init; }
         public string Title { get; init; } = null!;

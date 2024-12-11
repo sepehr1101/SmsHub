@@ -28,10 +28,9 @@ namespace SmsHub.IntegrationTests.Api
 
             var template = new CreateTemplateDto()
             {
-                Expression = "Sample Expression",
+                Expression = "this is a sample template by {UserName} and {Mobile} prop",
                 Title = "Sample Title",
                 IsActive = true,
-                Parameters = "Sample Parameter",
                 MinCredit = 2,
                 TemplateCategoryId = templateCategoryData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
@@ -42,6 +41,8 @@ namespace SmsHub.IntegrationTests.Api
             //Assert
             Assert.True(true);
         }
+
+
 
         [Fact]
         public async void DeleteTemplate_TemplateDto_ShouldDeleteTemplate()
@@ -57,10 +58,9 @@ namespace SmsHub.IntegrationTests.Api
 
             var template = new CreateTemplateDto()
             {
-                Expression = "Sample Expression",
+                Expression = "this is a sample template by {UserName} and {Mobile} prop",
                 Title = "Sample Title",
                 IsActive = true,
-                Parameters = "Sample Parameter",
                 MinCredit = 2,
                 TemplateCategoryId = templateCategoryData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
@@ -94,10 +94,9 @@ namespace SmsHub.IntegrationTests.Api
 
             var template = new CreateTemplateDto()
             {
-                Expression = "Sample Expression",
+                Expression = "this is a sample template by {UserName} and {Mobile} prop",
                 Title = "Sample Title",
                 IsActive = true,
-                Parameters = "Sample Parameter",
                 MinCredit = 2,
                 TemplateCategoryId = templateCategoryData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
@@ -110,7 +109,6 @@ namespace SmsHub.IntegrationTests.Api
                 Expression = "Update Expression",
                 Title = "Update Title",
                 IsActive = true,
-                Parameters = "UpdateParameter",
                 MinCredit = 5,
                 TemplateCategoryId = templateCategoryData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
@@ -138,29 +136,26 @@ namespace SmsHub.IntegrationTests.Api
 
             var template = new CreateTemplateDto()
             {
-                Expression = "Sample Expression",
-                Title = "Sample Update Title",
+                Expression = "this is a sample template by {UserName} and {Mobile} prop",
+                Title = "Sample GetSingle Title",
                 IsActive = true,
-                Parameters = "Sample Parameter",
                 MinCredit = 2,
                 TemplateCategoryId = templateCategoryData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
             };
             await PostAsync<CreateTemplateDto, CreateTemplateDto>("/Template/Create", template);
             var templateData = await PostAsync<GetTemplateDto, ApiResponseEnvelope<ICollection<GetTemplateDto>>>("/Template/GetList", null);
 
-            var templateId = new IntId()
-            {
-                Id = templateData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
-            };
+            IntId templateId = templateData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
 
             //Act
             var singleTemplate = await PostAsync<IntId, ApiResponseEnvelope<GetTemplateDto>>("/Template/GetSingle", templateId);
 
             //Assert
-            Assert.Equal(singleTemplate.Data.Title, "Sample Update Title");
+            Assert.Equal(singleTemplate.Data.Title, "Sample GetSingle Title");
         }
 
         [Fact]
+
         public async void GetListTemplate_TemplateDto_ShouldGetListTemplate()
         {
             //Arrange
@@ -172,10 +167,10 @@ namespace SmsHub.IntegrationTests.Api
             };
             var templates = new List<CreateTemplateDto>()
             {
-                new CreateTemplateDto(){ Expression = "Sample1 Expression",Title = "Sample1 Title",IsActive = true,Parameters = "Sample1 Parameter",MinCredit = 2,TemplateCategoryId = 1},
-                new CreateTemplateDto(){ Expression = "Sample2 Expression",Title = "Sample2 Title",IsActive = true,Parameters = "Sample2 Parameter",MinCredit = 10,TemplateCategoryId = 2},
-                new CreateTemplateDto(){ Expression = "Sample3 Expression",Title = "Sample3 Title",IsActive = true,Parameters = "Sample3 Parameter",MinCredit = 5,TemplateCategoryId = 2},
-                new CreateTemplateDto(){ Expression = "Sample4 Expression",Title = "Sample4 Title",IsActive = true,Parameters = "Sample4 Parameter",MinCredit = 3,TemplateCategoryId = 3},
+                new CreateTemplateDto(){ Expression =  "this is a First sample template by {UserName} and {Mobile} prop",Title = "Sample1 Title",IsActive = true,MinCredit = 2,TemplateCategoryId = 1},
+                new CreateTemplateDto(){ Expression =  "this is a Second sample template by {UserName} and {Mobile} prop",Title = "Sample2 Title",IsActive = true,MinCredit = 10,TemplateCategoryId = 2},
+                new CreateTemplateDto(){ Expression =  "this is a Third sample template by {UserName} and {Mobile} prop",Title = "Sample3 Title",IsActive = true,MinCredit = 5,TemplateCategoryId = 2},
+                new CreateTemplateDto(){ Expression =  "this is a Forth sample template by {UserName} and {Mobile} prop",Title = "Sample4 Title",IsActive = true,MinCredit = 3,TemplateCategoryId = 3},
             };
 
             //Act
@@ -188,10 +183,10 @@ namespace SmsHub.IntegrationTests.Api
                 await PostAsync<CreateTemplateDto, CreateTemplateDto>("/Template/Create", item);
             }
 
-            var templateList = await PostAsync<GetTemplateDto, ApiResponseEnvelope<ICollection<GetTemplateDto>>>("/Template/GetList",null);
+            var templateList = await PostAsync<GetTemplateDto, ApiResponseEnvelope<ICollection<GetTemplateDto>>>("/Template/GetList", null);
 
             //Assert
-            Assert.InRange(templateList.Data.Count, 4,8);
+            Assert.InRange(templateList.Data.Count, 4, 8);
         }
     }
 }

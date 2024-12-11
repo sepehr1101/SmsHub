@@ -2,7 +2,7 @@
 
 namespace SmsHub.Domain.Features.Security.MediatorDtos.Queries
 {
-    public record GetServerUserDto:IRequest
+    public record GetServerUserDto 
     {
         public int Id { get; init; }
         public string Username { get; init; } = null!;

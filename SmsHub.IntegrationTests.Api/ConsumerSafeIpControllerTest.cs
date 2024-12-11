@@ -143,11 +143,7 @@ namespace SmsHub.IntegrationTests.Api
             await PostAsync<CreateConsumerSafeIpDto, CreateConsumerSafeIpDto>("/ConsumerSafeIp/Create", consumerSafeIp);
             var consumerSafeIpData = await PostAsync<GetConsumerSafaIpDto, ApiResponseEnvelope<ICollection<GetConsumerSafaIpDto>>>("/ConsumerSafeIp/GetList", null);
 
-            var consumerSafeIpId = new IntId()
-            {
-                Id = consumerSafeIpData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
-            };
-
+            IntId consumerSafeIpId = consumerSafeIpData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
             //Act
             var singleConsumerSafeIp = await PostAsync<IntId, ApiResponseEnvelope<GetConsumerSafaIpDto>>("/ConsumerSafeIp/GetSingle", consumerSafeIpId);
 

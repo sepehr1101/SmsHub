@@ -96,10 +96,7 @@ namespace SmsHub.IntegrationTests.Api
             var apiKey = await PostAsync<CreateServerUserDto, ApiKeyAndHash>("/ServerUser/Create", serverUser);
             var serverUserData = await PostAsync<GetServerUserDto, ApiResponseEnvelope<ICollection<GetServerUserDto>>>("/ServerUser/GetAll", null);
 
-            var serverUserId = new IntId()
-            {
-                Id = serverUserData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
-            };
+            IntId serverUserId = serverUserData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
 
             //Act
            var singleServerUser= await PostAsync<IntId, ApiResponseEnvelope<GetServerUserDto>>("/ServerUser/GetById", serverUserId);
@@ -124,10 +121,7 @@ namespace SmsHub.IntegrationTests.Api
             var apiKey = await PostAsync<CreateServerUserDto, ApiKeyAndHash>("/ServerUser/Create", serverUser);
             var serverUserData = await PostAsync<GetServerUserDto, ApiResponseEnvelope<ICollection<GetServerUserDto>>>("/ServerUser/GetAll", null);
 
-            var serverUserApiKey = new StringId()
-            {
-                apiKey= serverUserData.Data.OrderByDescending(x => x.Id).FirstOrDefault() .ApiKeyHash
-            };
+            StringId serverUserApiKey = serverUserData.Data.OrderByDescending(x => x.Id).FirstOrDefault().ApiKeyHash;
 
             //Act
            var singleServerUser= await PostAsync<StringId, ApiResponseEnvelope<GetServerUserDto>>("/ServerUser/GetByApiKey", serverUserApiKey);

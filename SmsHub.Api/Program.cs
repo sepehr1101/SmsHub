@@ -14,6 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddHttpContextAccessor();
 
 
 // DI
@@ -33,7 +34,9 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.AddSwaggerApp();
+    app.UseDeveloperExceptionPage();    
 }
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 //app.UseMiddleware<ApiKeyMiddleware>();
 

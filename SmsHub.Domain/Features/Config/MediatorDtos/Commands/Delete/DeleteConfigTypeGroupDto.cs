@@ -2,7 +2,7 @@
 
 namespace SmsHub.Domain.Features.Config.MediatorDtos.Commands.Delete
 {
-    public record DeleteConfigTypeGroupDto : IRequest
+    public record DeleteConfigTypeGroupDto  
     {
         public int Id { get; init; }
 

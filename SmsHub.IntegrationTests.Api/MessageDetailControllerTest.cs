@@ -1,4 +1,5 @@
-﻿using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+﻿using Microsoft.Identity.Client.Platforms.Features.DesktopOs.Kerberos;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Line.MediatorDtos.Queries;
@@ -24,8 +25,8 @@ namespace SmsHub.IntegrationTests.Api
             var line = new CreateLineDto()
             {
                 ProviderId = Domain.Constants.ProviderEnum.Kavenegar,
-                Credential = "Create Credential",
-                Number = "110"
+                Credential  = "{'apiKey': '---'}",
+                Number = "15221"
             };
             await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
             var lineData = await PostAsync<GetLineDto, ApiResponseEnvelope<ICollection<GetLineDto>>>("/Line/GetList", null);
@@ -78,8 +79,8 @@ namespace SmsHub.IntegrationTests.Api
             var line = new CreateLineDto()
             {
                 ProviderId = Domain.Constants.ProviderEnum.Kavenegar,
-                Credential = "sample Credential",
-                Number = "111"
+                Credential = "{'apiKey': '---'}",
+                Number = "15220"
             };
             await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
             var lineData = await PostAsync<GetLineDto, ApiResponseEnvelope<ICollection<GetLineDto>>>("/Line/GetList", null);
@@ -138,8 +139,8 @@ namespace SmsHub.IntegrationTests.Api
             var line = new CreateLineDto()
             {
                 ProviderId = Domain.Constants.ProviderEnum.Kavenegar,
-                Credential = "sample Test for update Credential",
-                Number = "128"
+                Credential = "{'apiKey': '---'}",
+                Number = "15223"
             };
             await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
             var lineData = await PostAsync<GetLineDto, ApiResponseEnvelope<ICollection<GetLineDto>>>("/Line/GetList", null);
@@ -203,8 +204,8 @@ namespace SmsHub.IntegrationTests.Api
             var line = new CreateLineDto()
             {
                 ProviderId = Domain.Constants.ProviderEnum.Kavenegar,
-                Credential = "sample Credential",
-                Number = "113"
+                Credential = "{'apiKey': '---'}",
+                Number = "15226"
             };
             await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
             var lineData = await PostAsync<GetLineDto, ApiResponseEnvelope<ICollection<GetLineDto>>>("/Line/GetList", null);
@@ -242,10 +243,7 @@ namespace SmsHub.IntegrationTests.Api
             await PostAsync<CreateMessageDetailDto, CreateMessageDetailDto>("/MessagesDetail/Create", messageDetail);
             var messageDetailData = await PostAsync<GetMessageDetailDto, ApiResponseEnvelope<ICollection<GetMessageDetailDto>>>("/MessagesDetail/GetList", null);
 
-            var messageDetailId = new LongId()
-            {
-                Id = messageDetailData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
-            };
+            LongId messageDetailId = messageDetailData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
             await PostAsync<CreateMessageDetailDto, CreateMessageDetailDto>("/MessagesDetail/Create", messageDetail);
             var singleMessageDetail = await PostAsync<LongId, ApiResponseEnvelope<GetMessageDetailDto>>("/MessagesDetail/GetSingle", messageDetailId);
 
@@ -260,9 +258,9 @@ namespace SmsHub.IntegrationTests.Api
             //Arrange
             var lines = new List<CreateLineDto>()
             {
-               new CreateLineDto() {ProviderId = Domain.Constants.ProviderEnum.Kavenegar,Credential = "sample1 Credential",Number = "119"},
-               new CreateLineDto() {ProviderId = Domain.Constants.ProviderEnum.Magfa,Credential = "sample2 Credential",Number = "150"},
-               new CreateLineDto() {ProviderId = Domain.Constants.ProviderEnum.Magfa,Credential = "sample3 Credential",Number = "125"},
+               new CreateLineDto() {ProviderId = Domain.Constants.ProviderEnum.Kavenegar,Credential =  "{'apiKey': '---'}",Number = "15224"},
+               new CreateLineDto() {ProviderId = Domain.Constants.ProviderEnum.Magfa,Credential = "{'Domain': '---', 'UserName': '---' , 'ClientSecret' : '---' }",Number = "15228"},
+               new CreateLineDto() {ProviderId = Domain.Constants.ProviderEnum.Magfa,Credential ="{'Domain': '---', 'UserName': '---' , 'ClientSecret' : '---' }",Number = "15227"},
             };
             var messageBatchs = new List<CreateMessageBatchDto>()
             {
