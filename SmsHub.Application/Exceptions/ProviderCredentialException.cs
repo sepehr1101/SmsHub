@@ -8,8 +8,6 @@
         {
             _ProviderName = providerName;
         }
-       // private static string BaseMessage => "احراز هویت _Provider {0}_ ناصحیح است";
-
 
     }
 

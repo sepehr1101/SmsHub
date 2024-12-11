@@ -145,10 +145,7 @@ namespace SmsHub.IntegrationTests.Api
             await PostAsync<CreateTemplateDto, CreateTemplateDto>("/Template/Create", template);
             var templateData = await PostAsync<GetTemplateDto, ApiResponseEnvelope<ICollection<GetTemplateDto>>>("/Template/GetList", null);
 
-            var templateId = new IntId()
-            {
-                Id = templateData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
-            };
+            IntId templateId = templateData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
 
             //Act
             var singleTemplate = await PostAsync<IntId, ApiResponseEnvelope<GetTemplateDto>>("/Template/GetSingle", templateId);

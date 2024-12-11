@@ -67,6 +67,11 @@ namespace SmsHub.Common.Extensions
             return encoded?.Replace("+", "%20");
         }
 
+        public static string ReplaceCurlyBrace(this string stringTemplate, string oldValue,string newValue)
+        {
+            stringTemplate = stringTemplate.Replace("{" + oldValue + "}", newValue); 
+            return stringTemplate;
+        }
         public static string RemoveUnderscoresAndDashes(this string input) => input.Replace("_", "").Replace("-", "");
 
         public static string ToPascalCase(this string lowercaseAndUnderscoredWord, CultureInfo culture)
@@ -148,9 +153,9 @@ namespace SmsHub.Common.Extensions
         public static bool IsNotEmpty([NotNullWhen(true)] this string? value) => !string.IsNullOrWhiteSpace(value);
 
         public static string ConcatWithSeperator(this string firstString, string seperator, string secondString) => string.Concat(firstString, seperator, secondString);
-        public static string JoinToString(this IEnumerable<string> strings, string separator) => strings.Any()? string.Join(separator, strings):string.Empty;
+        public static string JoinToString(this IEnumerable<string> strings, string separator) => strings.Any() ? string.Join(separator, strings) : string.Empty;
         public static string JoinWithTiltSign(this IEnumerable<string> strings) => JoinToString(strings, "~");
-        public static string[] SeperateString(this string arrayOfStrings, string separator)=> arrayOfStrings.Split(separator);
+        public static string[] SeperateString(this string arrayOfStrings, string separator) => arrayOfStrings.Split(separator);
         public static string[] SeperateWithTiltSign(this string arrayOfStrings) => SeperateString(arrayOfStrings, "~");
 
         static string MakeInitialLowerCase(this string word, CultureInfo culture) => string.Concat(word[..1].ToLower(culture), word[1..]);
@@ -198,35 +203,35 @@ namespace SmsHub.Common.Extensions
         const string RAddSpaces3 = "([A-Z]+)([A-Z][a-z])";
 
 #if NET7_0_OR_GREATER
-    [GeneratedRegex(RIsUpperCase)]
-    private static partial Regex IsUpperCase();
+        [GeneratedRegex(RIsUpperCase)]
+        private static partial Regex IsUpperCase();
 
-    [GeneratedRegex(RAddUnderscore1)]
-    private static partial Regex AddUnderscores1();
+        [GeneratedRegex(RAddUnderscore1)]
+        private static partial Regex AddUnderscores1();
 
-    [GeneratedRegex(RAddUnderscore2)]
-    private static partial Regex AddUnderscores2();
+        [GeneratedRegex(RAddUnderscore2)]
+        private static partial Regex AddUnderscores2();
 
-    [GeneratedRegex(RAddUnderscore3)]
-    private static partial Regex AddUnderscores3();
+        [GeneratedRegex(RAddUnderscore3)]
+        private static partial Regex AddUnderscores3();
 
-    [GeneratedRegex(RAddDashes1)]
-    private static partial Regex AddDashes1();
+        [GeneratedRegex(RAddDashes1)]
+        private static partial Regex AddDashes1();
 
-    [GeneratedRegex(RAddDashes2)]
-    private static partial Regex AddDashes2();
+        [GeneratedRegex(RAddDashes2)]
+        private static partial Regex AddDashes2();
 
-    [GeneratedRegex(RAddDashes3)]
-    private static partial Regex AddDashes3();
+        [GeneratedRegex(RAddDashes3)]
+        private static partial Regex AddDashes3();
 
-    [GeneratedRegex(RAddSpaces1)]
-    private static partial Regex AddSpaces1();
+        [GeneratedRegex(RAddSpaces1)]
+        private static partial Regex AddSpaces1();
 
-    [GeneratedRegex(RAddSpaces2)]
-    private static partial Regex AddSpaces2();
+        [GeneratedRegex(RAddSpaces2)]
+        private static partial Regex AddSpaces2();
 
-    [GeneratedRegex(RAddSpaces3)]
-    private static partial Regex AddSpaces3();
+        [GeneratedRegex(RAddSpaces3)]
+        private static partial Regex AddSpaces3();
 #else
         static Regex IsUpperCase() => new(RIsUpperCase);
 

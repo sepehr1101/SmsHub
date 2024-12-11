@@ -99,10 +99,7 @@ namespace SmsHub.IntegrationTests.Api
             await PostAsync<CreateTemplateCategoryDto, CreateTemplateCategoryDto>("/TemplateCategory/Create", templateCategory);
             var templateCategoryData = await PostAsync<GetTemplateCategoryDto, ApiResponseEnvelope<ICollection<GetTemplateCategoryDto>>>("/TemplateCategory/GetList", null);
 
-            var templateCategoryId = new IntId()
-            {
-                Id = templateCategoryData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
-            };
+            IntId templateCategoryId = templateCategoryData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
 
             //Act
             var singleTemplateCategory = await PostAsync<IntId, ApiResponseEnvelope<GetTemplateCategoryDto>>("/TemplateCategory/GetSingle", templateCategoryId);

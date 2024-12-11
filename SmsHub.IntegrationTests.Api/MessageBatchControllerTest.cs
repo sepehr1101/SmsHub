@@ -146,10 +146,7 @@ namespace SmsHub.IntegrationTests.Api
             await PostAsync<CreateMessageBatchDto, CreateMessageBatchDto>("/MessageBatch/Create", messageBatch);
             var messageBatchData = await PostAsync<GetMessageBatchDto, ApiResponseEnvelope<ICollection<GetMessageBatchDto>>>("/MessageBatch/GetList", null);
 
-            var messageBatchId = new IntId()
-            {
-                Id = messageBatchData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
-            };
+            IntId messageBatchId = messageBatchData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
             //Act
             var singleMessageBatch = await PostAsync<IntId, ApiResponseEnvelope<GetMessageBatchDto>>("/MessageBatch/GetSingle", messageBatchId);
 
