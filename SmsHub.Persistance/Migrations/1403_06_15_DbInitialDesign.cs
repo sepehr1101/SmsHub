@@ -136,7 +136,7 @@ namespace SmsHub.Persistence.Migrations
         {
             Create.Table(nameof(TableName.MessageBatch))
                 .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(TableName.MessageBatch)).Identity()
-                .WithColumn("HolerSize").AsInt32()
+                .WithColumn("HolderSize").AsInt32()
                 .WithColumn("AllSize").AsInt32()
                 .WithColumn("InsertDateTime").AsDateTime()
                 .WithColumn("LineId").AsInt32()
