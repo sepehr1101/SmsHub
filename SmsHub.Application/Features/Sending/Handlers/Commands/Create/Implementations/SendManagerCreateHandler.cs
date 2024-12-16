@@ -1,6 +1,7 @@
 ﻿using Azure.Core;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using SmsHub.Application.Common.Base;
 using SmsHub.Application.Exceptions;
 using SmsHub.Application.Features.Line.Handlers.Queries.Contracts;
 using SmsHub.Application.Features.Sending.Handlers.Commands.Create.Contracts;
@@ -8,6 +9,7 @@ using SmsHub.Application.Features.Template.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 
 namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implementations
 {
@@ -16,6 +18,7 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
         private readonly IHttpContextAccessor _contextAccessor;
         private readonly ITemplateGetSingleHandler _templateGetSingleHandler;
         private readonly ILineGetSingleHandler _lineGetSingleHandler;
+        private readonly string _Mobile = "Mobile";
         public SendManagerCreateHandler(IHttpContextAccessor contextAccessor,
             ITemplateGetSingleHandler templateGetSingleHandler
             ,ILineGetSingleHandler lineGetSingleHandler)
@@ -30,7 +33,7 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
             _lineGetSingleHandler.NotNull(nameof(lineGetSingleHandler));
         }
 
-        public async Task Handle(int templateId,int lineId, CancellationToken cancellationToken)
+        public async Task<MobileText> Handle(int templateId,int lineId, CancellationToken cancellationToken)
         {
             IntId id = templateId;
 
@@ -51,6 +54,13 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
 
             string messageToSend = CreateMessageToSend(requestBodyValue, template.Expression);
 
+            var mobileText = new MobileText()
+            {
+                Text = messageToSend,
+                Mobile = FindMobileUser(requestBodyValue)
+            };
+
+            return mobileText;
         }
         private Dictionary<string, string> DeserializeToDictionary(string data)
         {
@@ -77,15 +87,23 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
 
         private void ValidationData(Dictionary<string, string> template, Dictionary<string, string> requestBody)
         {
-            if (!requestBody.Keys.Contains("Mobile"))
+            if (!requestBody.Keys.Contains(_Mobile))
                 throw new InvalidMobileException();
 
-            //method + foreach
+            if (!ValidationAnsiString.CheckPersianPhoneNumber(FindMobileUser(requestBody)))
+                throw new InvalidMobileException();
+
             foreach (var item in template.Keys)
             {
                 if (!requestBody.ContainsKey(item))
                     throw new InvalidUserDataException();
             }
+        }
+        
+        private string FindMobileUser(Dictionary<string, string> requestBody)
+        {
+            var mobileData = requestBody.Where(x => x.Key == _Mobile).FirstOrDefault().Value;
+            return mobileData;
         }
     }
 }

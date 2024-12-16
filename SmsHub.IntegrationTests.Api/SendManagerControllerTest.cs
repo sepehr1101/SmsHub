@@ -8,6 +8,7 @@ using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Security.Dtos;
 using SmsHub.Domain.Features.Security.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Template.MediatorDtos.Queries;
 using System.Reflection;
@@ -57,7 +58,7 @@ namespace SmsHub.IntegrationTests.Api
 
             await PostAsync<CreateLineDto, CreateLineDto>("/Line/Create", line);
 
-            var result = await PostAsync<object, ApiResponseEnvelope<int>>("/Send/SendManager/1/1", requestBody);
+            var result = await PostAsync<object, ApiResponseEnvelope<MobileText>>("/Send/SendManager/1/1", requestBody);
 
 
 
