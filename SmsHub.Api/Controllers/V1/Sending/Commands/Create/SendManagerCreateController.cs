@@ -29,7 +29,6 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
             _sendManagerCreateHandler.NotNull(nameof(sendManagerCreateHandler));
         }
 
-
         [HttpPost]
         [Route("SendManager/{templateId}/{lineId}")]
         public async Task<IActionResult> SendManager(int templateId,int lineId)
