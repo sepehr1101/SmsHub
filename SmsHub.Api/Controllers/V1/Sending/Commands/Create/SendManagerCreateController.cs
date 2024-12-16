@@ -6,6 +6,7 @@ using SmsHub.Application.Features.Template.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using SmsHub.Persistence.Contexts.UnitOfWork;
+using System.Threading;
 
 namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
 {
@@ -31,20 +32,12 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
 
 
         [HttpPost]
-        [Route("SendManager/{templateId}/{lineId}")]
-        public async Task<IActionResult> SendManager(int templateId,int lineId)
+        [Route("SendManager/{templateId}/{lineId}/{batchSize}")]
+        public async Task<IActionResult> SendManager(int templateId,int lineId,int batchSize,CancellationToken cancellationToken)
         {
-           var mobileText= await _sendManagerCreateHandler.Handle(templateId,lineId, new CancellationToken());
-            return Ok(mobileText);
+           var messages= await _sendManagerCreateHandler.Handle(templateId,lineId,batchSize ,new CancellationToken());
+            await _uow.SaveChangesAsync(cancellationToken);
+            return Ok(messages);
         }
-
-        [HttpPost]
-        [Route("x")]
-        public async Task<IActionResult> x(ICollection<MobileText> mobileText)
-        {
-            var s= MessageBatchFactory.Create(mobileText,1,"one");
-            return Ok(s);
-        }
-
     }
 }

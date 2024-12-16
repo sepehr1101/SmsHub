@@ -12,19 +12,16 @@ namespace SmsHub.Application.Features.Sending.Services
 {
     public static class MessageBatchFactory
     {
-        public static MessageBatch Create(ICollection<MobileText> mobileTexts, int lineId, object metadata)
+        public static MessageBatch Create(ICollection<MobileText> mobileTexts, int lineId,int batchSize ,object metadata)
         {
             var messageDetails = mobileTexts.Select(GetMessageDetail);
 
-            var batchSize = 2;//for example
-            var messageHolderCount = (mobileTexts.Count % batchSize) == 0 ? (mobileTexts.Count/batchSize) : (mobileTexts.Count /batchSize) + 1;
-
-            var x = messageDetails
+            var messageDetailsSegmentation = messageDetails
                       .Select((x, i) => new { Index = i, Value = x })
                       .GroupBy(x => x.Index / batchSize)
                       .Select(g => g.Select(x => x.Value));
             
-            var messageHolders = x.Select(GetMessageHolder);
+            var messageHolders = messageDetailsSegmentation.Select(GetMessageHolder);
 
             MessageBatch messageBatch = new MessageBatch()
             {
@@ -63,5 +60,6 @@ namespace SmsHub.Application.Features.Sending.Services
             var count = Convert.ToInt16(Encoding.UTF8.GetByteCount(text));
             return count;
         }
+        
     }
 }
