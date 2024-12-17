@@ -7,6 +7,7 @@
         public static string InvalidLineId => "کد -شماره خط- نامعتبر است";
         public static string InvalidUserData => "مقادیر وارد شده با قالب ناسازگار است";
         public static string InvalidMobile => "ویژگی Mobile را وارد کنید";
+        public static string InvalidProviderId => "کد Provider نامعتبر است";
 
 
     }

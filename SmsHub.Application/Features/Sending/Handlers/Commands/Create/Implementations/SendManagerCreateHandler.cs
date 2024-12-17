@@ -9,7 +9,9 @@ using SmsHub.Application.Features.Sending.Services;
 using SmsHub.Application.Features.Template.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.Id;
+using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Features.Line.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Template.MediatorDtos.Queries;
 using SmsHub.Persistence.Features.Sending.Commands.Contracts;
@@ -23,11 +25,13 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
         private readonly ITemplateGetSingleHandler _templateGetSingleHandler;
         private readonly ILineGetSingleHandler _lineGetSingleHandler;
         private readonly IMessageBatchCommandService _messageBatchCommandService;
+        private readonly IProviderGetSingleHandler _providerGetSingleHandler;
         private readonly string _Mobile = "Mobile";
         public SendManagerCreateHandler(IHttpContextAccessor contextAccessor
             ,ITemplateGetSingleHandler templateGetSingleHandler
             , ILineGetSingleHandler lineGetSingleHandler
             ,IMessageBatchCommandService messageBatchCommandService
+            , IProviderGetSingleHandler providerGetSingleHandler
 )
         {
             _contextAccessor = contextAccessor;
@@ -41,12 +45,16 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
 
             _messageBatchCommandService = messageBatchCommandService;
             _messageBatchCommandService.NotNull(nameof(messageBatchCommandService));
+
+            _providerGetSingleHandler = providerGetSingleHandler;
+            _providerGetSingleHandler.NotNull( nameof(providerGetSingleHandler));
         }
 
-        public async Task<ICollection<MobileText>> Handle(int templateId, int lineId, int batchSize, CancellationToken cancellationToken)
+        public async Task<ICollection<MobileText>> Handle(int templateId, int lineId, CancellationToken cancellationToken)
         {
             var templateValue = await GetTemplateProperty(templateId);
-            var lineNumber = await GetLineNumber(lineId);
+            var line = await GetLine(lineId);
+            var batchSize = await GetBatchSize(line.ProviderId);
             var requestBodyValue = await GetRequestBodyValue();
 
             requestBodyValue.ToList().ForEach(r => ValidationData(templateValue, r));
@@ -138,14 +146,22 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
             return templateValue;
         }
 
-        private async Task<string> GetLineNumber(int lineId)
+        private async Task<GetLineDto> GetLine(int lineId)
         {
             var line = await _lineGetSingleHandler.Handle(lineId);
-            var lineNumber = line.Number;
-            if (lineNumber == null)
+            if (line == null)
                 throw new InvalidLineException();
 
-            return lineNumber;
+            return line;
+        }
+
+        private async Task<int> GetBatchSize(ProviderEnum providerId)
+        {
+            var provider = await _providerGetSingleHandler.Handle(providerId);
+            if (provider == null)
+                throw new InvalidProviderException();
+
+            return provider.BatchSize;
         }
 
         private async Task<ICollection<Dictionary<string, string>>> GetRequestBodyValue()
