@@ -33,7 +33,7 @@ namespace SmsHub.IntegrationTests.Api
 
             var messageBatch = new CreateMessageBatchDto()
             {
-                HolerSize = 4,
+                HolderSize = 4,
                 AllSize = 8,
                 InsertDateTime = DateTime.Now,
                 LineId = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
@@ -87,7 +87,7 @@ namespace SmsHub.IntegrationTests.Api
 
             var messageBatch = new CreateMessageBatchDto()
             {
-                HolerSize = 4,
+                HolderSize = 4,
                 AllSize = 8,
                 InsertDateTime = DateTime.Now,
                 LineId = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
@@ -147,7 +147,7 @@ namespace SmsHub.IntegrationTests.Api
 
             var messageBatch = new CreateMessageBatchDto()
             {
-                HolerSize =2,
+                HolderSize =2,
                 AllSize = 8,
                 InsertDateTime = DateTime.Now,
                 LineId = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
@@ -212,7 +212,7 @@ namespace SmsHub.IntegrationTests.Api
 
             var messageBatch = new CreateMessageBatchDto()
             {
-                HolerSize = 5,
+                HolderSize = 5,
                 AllSize = 8,
                 InsertDateTime = DateTime.Now,
                 LineId = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
@@ -264,10 +264,10 @@ namespace SmsHub.IntegrationTests.Api
             };
             var messageBatchs = new List<CreateMessageBatchDto>()
             {
-                new CreateMessageBatchDto(){ HolerSize = 12,AllSize = 8,InsertDateTime = DateTime.Now,LineId = 1},
-                new CreateMessageBatchDto(){ HolerSize = 5,AllSize = 2,InsertDateTime = DateTime.Now,LineId = 2},
-                new CreateMessageBatchDto(){ HolerSize = 8,AllSize = 4,InsertDateTime = DateTime.Now,LineId = 2},
-                new CreateMessageBatchDto(){ HolerSize = 3,AllSize = 6,InsertDateTime = DateTime.Now,LineId = 3},
+                new CreateMessageBatchDto(){ HolderSize = 12,AllSize = 8,InsertDateTime = DateTime.Now,LineId = 1},
+                new CreateMessageBatchDto(){ HolderSize = 5,AllSize = 2,InsertDateTime = DateTime.Now,LineId = 2},
+                new CreateMessageBatchDto(){ HolderSize = 8,AllSize = 4,InsertDateTime = DateTime.Now,LineId = 2},
+                new CreateMessageBatchDto(){ HolderSize = 3,AllSize = 6,InsertDateTime = DateTime.Now,LineId = 3},
             };
             var messageHolders = new List<CreateMessagesHolderDto>()
             {
