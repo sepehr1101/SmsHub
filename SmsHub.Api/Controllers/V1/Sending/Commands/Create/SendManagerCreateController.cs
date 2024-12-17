@@ -32,10 +32,10 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
 
 
         [HttpPost]
-        [Route("SendManager/{templateId}/{lineId}/{batchSize}")]
-        public async Task<IActionResult> SendManager(int templateId,int lineId,int batchSize,CancellationToken cancellationToken)
+        [Route("SendManager/{templateId}/{lineId}")]
+        public async Task<IActionResult> SendManager(int templateId,int lineId,CancellationToken cancellationToken)
         {
-           var messages= await _sendManagerCreateHandler.Handle(templateId,lineId,batchSize ,new CancellationToken());
+           var messages= await _sendManagerCreateHandler.Handle(templateId,lineId ,new CancellationToken());
             await _uow.SaveChangesAsync(cancellationToken);
             return Ok(messages);
         }

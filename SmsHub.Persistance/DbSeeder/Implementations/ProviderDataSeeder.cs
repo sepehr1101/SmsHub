@@ -31,7 +31,7 @@ namespace SmsHub.Persistence.DbSeeder.Implementations
             var magfa = new Provider()
             {
                 BaseUri = @"https://sms.magfa.com/",
-                BatchSize = 200,
+                BatchSize = 200,//200  -> change to 2 for test MessageBatch with Docker
                 DefaultPreNumber = @"3000",
                 FallbackBaseUri = @"http://10.7.217.99/",
                 Title = "مگفا",

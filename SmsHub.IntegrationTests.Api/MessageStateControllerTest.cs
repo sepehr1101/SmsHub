@@ -43,7 +43,7 @@ namespace SmsHub.IntegrationTests.Api
 
             var messageBatch = new CreateMessageBatchDto()
             {
-                HolerSize = 2,
+                HolderSize = 2,
                 AllSize = 4,
                 InsertDateTime = DateTime.Now,
                 LineId = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
@@ -64,7 +64,7 @@ namespace SmsHub.IntegrationTests.Api
 
             var messageDetail = new CreateMessageDetailDto()
             {
-                MessagesHolderId = messagesHolderData.Data.OrderByDescending(x=>x.Id).FirstOrDefault().Id,
+                MessagesHolderId = messagesHolderData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
                 ProviderResult = 12,
                 Receptor = "sample Receptor",
                 SendDateTime = DateTime.Now,
@@ -76,7 +76,7 @@ namespace SmsHub.IntegrationTests.Api
 
             var messageState = new CreateMessageStateDto()
             {
-                MessagesDetailId =  messageDetailData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
+                MessagesDetailId = messageDetailData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
                 MessageStateCategoryId = messageStateCategoryData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
                 InsertDateTime = DateTime.Now,
             };
@@ -115,7 +115,7 @@ namespace SmsHub.IntegrationTests.Api
 
             var messageBatch = new CreateMessageBatchDto()
             {
-                HolerSize = 2,
+                HolderSize = 2,
                 AllSize = 4,
                 InsertDateTime = DateTime.Now,
                 LineId = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
@@ -193,7 +193,7 @@ namespace SmsHub.IntegrationTests.Api
 
             var messageBatch = new CreateMessageBatchDto()
             {
-                HolerSize = 2,
+                HolderSize = 2,
                 AllSize = 4,
                 InsertDateTime = DateTime.Now,
                 LineId = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
@@ -240,7 +240,7 @@ namespace SmsHub.IntegrationTests.Api
                 MessageStateCategoryId = messageStateCategoryData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id,
                 InsertDateTime = DateTime.Now.AddDays(-5),
             };
-            
+
             //Act
             await PostAsync<UpdateMessageStateDto, UpdateMessageStateDto>("/MessageState/Update", updateMessageState);
 
@@ -273,7 +273,7 @@ namespace SmsHub.IntegrationTests.Api
 
             var messageBatch = new CreateMessageBatchDto()
             {
-                HolerSize = 2,
+                HolderSize = 2,
                 AllSize = 4,
                 InsertDateTime = DateTime.Now,
                 LineId = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
@@ -314,7 +314,7 @@ namespace SmsHub.IntegrationTests.Api
             var messageStateData = await PostAsync<GetMessageStateDto, ApiResponseEnvelope<ICollection<GetMessageStateDto>>>("/MessageState/GetList", null);
 
             LongId messageStateId = messageStateData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
-            
+
             //Act
             var singleMessageState = await PostAsync<LongId, ApiResponseEnvelope<GetMessageStateDto>>("/MessageState/GetSingle", messageStateId);
 
@@ -345,10 +345,10 @@ namespace SmsHub.IntegrationTests.Api
             };
             var messageBatchs = new List<CreateMessageBatchDto>()
             {
-                new CreateMessageBatchDto(){ HolerSize = 12,AllSize = 8,InsertDateTime = DateTime.Now,LineId = 1},
-                new CreateMessageBatchDto(){ HolerSize = 5,AllSize = 2,InsertDateTime = DateTime.Now,LineId = 2},
-                new CreateMessageBatchDto(){ HolerSize = 8,AllSize = 4,InsertDateTime = DateTime.Now,LineId = 2},
-                new CreateMessageBatchDto(){ HolerSize = 3,AllSize = 6,InsertDateTime = DateTime.Now,LineId = 3},
+                new CreateMessageBatchDto(){ HolderSize = 12,AllSize = 8,InsertDateTime = DateTime.Now,LineId = 1},
+                new CreateMessageBatchDto(){ HolderSize = 5,AllSize = 2,InsertDateTime = DateTime.Now,LineId = 2},
+                new CreateMessageBatchDto(){ HolderSize = 8,AllSize = 4,InsertDateTime = DateTime.Now,LineId = 2},
+                new CreateMessageBatchDto(){ HolderSize = 3,AllSize = 6,InsertDateTime = DateTime.Now,LineId = 3},
             };
             var messageHolders = new List<CreateMessagesHolderDto>()
             {
@@ -407,7 +407,7 @@ namespace SmsHub.IntegrationTests.Api
             var messageStateList = await PostAsync<GetMessageStateDto, ApiResponseEnvelope<ICollection<GetMessageStateDto>>>("/MessageState/GetList", null);
 
             //Assert
-            Assert.InRange(messageStateList.Data.Count, 3,7);
+            Assert.InRange(messageStateList.Data.Count, 3, 7);
         }
     }
 }
