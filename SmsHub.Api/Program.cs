@@ -27,6 +27,7 @@ builder.Services.AddApplicationInjections();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerService();
 builder.Services.UpdateAndSeedDb();
+builder.AddHangfire();
 
 var app = builder.Build();
 
@@ -51,6 +52,8 @@ app.UseEndpoints(endpoints =>
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.AddHangfireDashboard();
 
 //app.MapControllers();
 

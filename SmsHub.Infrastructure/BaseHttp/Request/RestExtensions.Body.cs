@@ -35,8 +35,8 @@ namespace SmsHub.Infrastructure.BaseHttp.Request
             }
             encoding = encoding ?? Encoding.UTF8;
             contentType = contentType ?? ContentType.Json;
-            Serialize = JsonConvert.SerializeObject;
-            var bodyJson = Serialize(obj);
+            var serializer = Serialize ?? JsonConvert.SerializeObject;
+            var bodyJson = serializer(obj);
             var content = new StringContent(bodyJson, encoding, contentType);
             request.Content = content;
             return request;
