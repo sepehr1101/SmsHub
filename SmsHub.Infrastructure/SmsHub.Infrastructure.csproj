@@ -33,8 +33,10 @@
     <None Include="BaseHttp\Request\RestExtensions.Url.cs" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="httpClientToCURL" />
     <PackageReference Include="Microsoft.Extensions.Http" />
     <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="scrutor" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SmsHub.Common\SmsHub.Common.csproj" />
