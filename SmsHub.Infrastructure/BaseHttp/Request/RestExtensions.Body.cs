@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using SmsHub.Common.Extensions;
 using SmsHub.Infrastructure.BaseHttp.Enums;
 using System.Net.Mime;
@@ -42,7 +43,7 @@ namespace SmsHub.Infrastructure.BaseHttp.Request
             return request;
         }
 
-        public static HttpRequestMessage AddFormBody<T>(this HttpRequestMessage request, Dictionary<string,T> formDictionary, [Optional] Encoding encoding, string? mediaType=null)
+        public static HttpRequestMessage AddFormBodyMultipart<T>(this HttpRequestMessage request, Dictionary<string,T> formDictionary, [Optional] Encoding encoding, string? mediaType=null)
         {
             request.NotNull();
             formDictionary.NotNull();
@@ -86,7 +87,37 @@ response.EnsureSuccessStatusCode();
 Console.WriteLine(await response.Content.ReadAsStringAsync());
 */
         }
-
+        public static async Task<HttpRequestMessage> AddFormBodyUrlEncoded(this HttpRequestMessage request, Dictionary<string, object> formDictionary, [Optional] Encoding encoding, string? mediaType = null)
+        {
+            request.NotNull();
+            formDictionary.NotNull();
+            encoding = encoding ?? Encoding.UTF8;
+            mediaType = string.IsNullOrWhiteSpace(mediaType) ? MediaTypeNames.Text.Plain : mediaType;
+            var keyValues=new List<KeyValuePair<string, string>>();
+            foreach (var item in formDictionary)
+            {
+                if (item.Value is null || item.Key is null)
+                {
+                    continue;
+                }
+                string value=string.Empty;
+                if(item.Value is IEnumerable<object>)
+                {
+                    value= JsonConvert.SerializeObject(item.Value);
+                }
+                else
+                {
+                    var stringContent = new StringContent(item.Value.ToString(), encoding, mediaType);
+                    value = await stringContent.ReadAsStringAsync();                  
+                }
+                var keyValue = new KeyValuePair<string, string>(item.Key, value);
+                keyValues.Add(keyValue);
+            }
+            FormUrlEncodedContent formUrlEncodedContent = new FormUrlEncodedContent(keyValues);
+            request.Content = formUrlEncodedContent;
+            return request;
+        }
+      
         //TODO: ADD Xml body
     }
 }
