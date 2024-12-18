@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Scrutor;
 using SmsHub.Infrastructure.BaseHttp.Client.Contracts;
 using SmsHub.Infrastructure.BaseHttp.Client.Implementation;
 using SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts;
@@ -11,9 +12,14 @@ namespace SmsHub.Infrastructure.Extensions
         public static void AddInfrastructureInjections(this IServiceCollection services)
         {
             services.AddHttpClient();
-            services.AddScoped<IRestClient, RestClient>();
-            services.AddScoped<IKavenegarHttpDateService, KavenegarHttpDateService>();
-            services.AddScoped<IKavenegarHttpSendSimpleService, KavenegarHttpSendSimpleService>();            
+
+            services.Scan(scan =>
+                          scan
+                            .FromCallingAssembly()
+                            .AddClasses(publicOnly: false)
+                            .UsingRegistrationStrategy(RegistrationStrategy.Skip)
+                            .AsMatchingInterface()
+                            .WithScopedLifetime());
         }
     }
 }

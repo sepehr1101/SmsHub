@@ -4,7 +4,7 @@ using SmsHub.Domain.Providers.Kavenegar.Entities.Responses;
 using SmsHub.Infrastructure.BaseHttp.Client.Contracts;
 using SmsHub.Infrastructure.BaseHttp.Request;
 using SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts;
-using KaveRequest = SmsHub.Domain.Providers.Kavenegar.Entities.Responses;
+using KaveRequest = SmsHub.Domain.Providers.Kavenegar.Entities.Requests;
 
 namespace SmsHub.Infrastructure.Providers.Kavenegar.Http.Implementations
 {
