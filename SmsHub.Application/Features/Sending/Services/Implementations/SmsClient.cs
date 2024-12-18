@@ -15,7 +15,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 {
     public class SmsClient : ISmsClient
     {
-        private static string _kaveApi= "5575426A68495063786333776662677171397533775377746A5A696475386159574332463078442F7750553D";
+        private static string _kaveApi= "s";
         private readonly IKavenegarHttpSendSimpleService _restClient;
         private readonly IKavenegarHttpAccountService _accountService;
         private readonly IKavenegarHttpStatusService _statusService;
