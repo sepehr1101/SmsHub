@@ -169,6 +169,14 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         }
 
 
+        [HttpGet]
+        [Route("Test/KavenegarStatus")]
+        public async Task<IActionResult> TestKavenegarStatus()
+        {
+            await _smsClient.StatusKaveTest();
+            return Ok("done");
+        }
+
         ///////////////////////////////////////////
         ///Magfa
 
