@@ -15,6 +15,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 {
     public class SmsClient : ISmsClient
     {
+        private static string _kaveApi= "s";
         private readonly IKavenegarHttpSendSimpleService _restClient;
         public SmsClient(IKavenegarHttpSendSimpleService restClient)
         {
@@ -23,15 +24,15 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         }
         public async Task Send(MessageBatch messageBatch, Provider provider, Domain.Features.Entities.Line line)
         {
-            var apiKey = "5575426A68495063786333776662677171397533775377746A5A696475386159574332463078442F7750553D";
-            var sendSimpleDto = new SimpleSendDto("09135742556", "سلام این پیام جهت تست است")
+            var apiKey = _kaveApi;
+            var sendSimpleDto = new SimpleSendDto("09135742556", "سلام این پیام جهت تست است");
             await _restClient.Trigger(sendSimpleDto, apiKey);
         }
         public async Task SendKaveTest()
         {
-            var apiKey = "5575426A68495063786333776662677171397533775377746A5A696475386159574332463078442F7750553D";
-            var sendSimpleDto = new SimpleSendDto("09135742556", "سلام این پیام جهت تست است");
-            await _restClient.Trigger(sendSimpleDto, apiKey);
+            var apiKey = _kaveApi;
+            var sendSimpleDto = new SimpleSendDto("09135742556", "سلام این پیام جهت تست است", "2000550055505");
+            var response= await _restClient.Trigger(sendSimpleDto, apiKey);
         }
     }
 }
