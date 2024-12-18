@@ -1,4 +1,5 @@
-﻿using SmsHub.Domain.Providers.Kavenegar.Constants;
+﻿using SmsHub.Common.Extensions;
+using SmsHub.Domain.Providers.Kavenegar.Constants;
 using SmsHub.Domain.Providers.Kavenegar.Entities.Base;
 using SmsHub.Domain.Providers.Kavenegar.Entities.Responses;
 using SmsHub.Infrastructure.BaseHttp.Client.Contracts;
@@ -17,16 +18,20 @@ namespace SmsHub.Infrastructure.Providers.Kavenegar.Http.Implementations
         }
         public async Task<ResponseGeneric<List<ArraySendDto>>> Trigger(KavenegarRequest.ArraySendDto arraySendDto, string apiKey)
         {
+            arraySendDto.NotNull(nameof(arraySendDto));
             var uri = new Literals(apiKey).ArraySendUri;
             var request = new HttpRequestMessage(HttpMethod.Post, uri);
-            var formDictionary = new Dictionary<string, ICollection<string>>
-            {
-                [nameof(arraySendDto.Receptor)] = arraySendDto.Receptor,
-                [nameof(arraySendDto.Sender)] = arraySendDto.Sender,
-                [nameof(arraySendDto.Message)] = arraySendDto.Message,
-                [nameof(arraySendDto.LocalMessageIds)] = arraySendDto.LocalMessageIds.Select(l => l.ToString()).ToList(),
+            var formDictionary = new Dictionary<string, object>
+            {                
+                { nameof(arraySendDto.Receptor).ToLower() ,arraySendDto.Receptor },
+                { nameof(arraySendDto.Sender).ToLower() , arraySendDto.Sender },
+                { nameof(arraySendDto.Message).ToLower() , arraySendDto.Message }               
             };
-            request.AddFormBody(formDictionary);
+            if (arraySendDto.LocalMessageIds?.Any()==true)
+            {
+                formDictionary.Add(nameof(arraySendDto.LocalMessageIds).ToLower(), arraySendDto.LocalMessageIds);
+            }    
+            await request.AddFormBodyUrlEncoded(formDictionary);
             var response = await _restClient.Create(request.RequestUri).Execute<ResponseGeneric<List<ArraySendDto>>>(request);
             return response;
         }
