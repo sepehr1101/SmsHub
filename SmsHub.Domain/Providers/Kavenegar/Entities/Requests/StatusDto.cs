@@ -8,7 +8,7 @@
         public StatusDto(long messageId)
         {
             if (messageId <= 0)
-                throw new InvalidDataException();
+                throw new ArgumentOutOfRangeException(nameof(messageId));
 
             MessageId = messageId;
         }

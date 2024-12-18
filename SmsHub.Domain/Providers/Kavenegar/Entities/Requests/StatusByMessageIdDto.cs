@@ -8,7 +8,7 @@
         public StatusByMessageIdDto(long localId)
         {
             if (localId <= 0)
-                throw new InvalidDataException();
+                throw new ArgumentOutOfRangeException(nameof(localId));
 
             LocalId = localId;
         }

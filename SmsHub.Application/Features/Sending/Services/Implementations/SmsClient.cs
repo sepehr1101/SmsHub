@@ -15,19 +15,35 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 {
     public class SmsClient : ISmsClient
     {
-        private static string _kaveApi= "s";
+        private static string _kaveApi = "5575426A68495063786333776662677171397533775377746A5A696475386159574332463078442F7750553D";
         private readonly IKavenegarHttpSendSimpleService _restClient;
         private readonly IKavenegarHttpAccountService _accountService;
         private readonly IKavenegarHttpStatusService _statusService;
         private readonly IKavenegarHttpStatusByMessageIdService _statusByMessageIdService;
         private readonly IKavenegarHttpSendArrayService _sendArrayService;
         private readonly IKavenegarHttpReceiveService _receiveService;
+        private readonly IKavenegarHttpCancelService _cancelService;
+        private readonly IKavenegarHttpCountInboxService _countInboxService;
+        private readonly IKavenegarHttpDateService _dateService;
+        private readonly IKavenegarHttpLatestOutboxService _latestOutboxService;
+        private readonly IKavenegarHttpLookupService _lookupService;
+        private readonly IKavenegarHttpMakettsService _makettsService;
+        private readonly IKavenegarHttpSelectOutboxService _selectOutboxService;
+        private readonly IKavenegarHttpSelectService _selectService;
         public SmsClient(IKavenegarHttpSendSimpleService restClient
             , IKavenegarHttpAccountService accountService,
             IKavenegarHttpStatusService statusService,
             IKavenegarHttpStatusByMessageIdService statusByMessageIdService,
             IKavenegarHttpSendArrayService sendArrayService,
-            IKavenegarHttpReceiveService receiveService)
+            IKavenegarHttpReceiveService receiveService,
+            IKavenegarHttpCancelService cancelService,
+            IKavenegarHttpCountInboxService countInboxService,
+            IKavenegarHttpDateService dateService,
+            IKavenegarHttpLatestOutboxService latestOutboxService,
+            IKavenegarHttpLookupService lookupService,
+            IKavenegarHttpMakettsService makettsService,
+            IKavenegarHttpSelectOutboxService selectOutboxService,
+            IKavenegarHttpSelectService selectService)
         {
             _restClient = restClient;
             _restClient.NotNull(nameof(restClient));
@@ -46,6 +62,30 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             _receiveService = receiveService;
             _receiveService.NotNull(nameof(receiveService));
+
+            _cancelService = cancelService;
+            _cancelService.NotNull(nameof(cancelService));
+
+            _countInboxService = countInboxService;
+            _countInboxService.NotNull(nameof(countInboxService));
+
+            _dateService = dateService;
+            _dateService.NotNull(nameof(dateService));
+
+            _latestOutboxService = latestOutboxService;
+            _latestOutboxService.NotNull(nameof(latestOutboxService));
+
+            _lookupService = lookupService;
+            _lookupService.NotNull(nameof(lookupService));
+
+            _makettsService = makettsService;
+            _makettsService.NotNull(nameof(makettsService));
+
+            _selectOutboxService = selectOutboxService;
+            _selectOutboxService.NotNull(nameof(selectOutboxService));
+
+            _selectService = selectService;
+            _selectService.NotNull(nameof(selectService));
         }
         public async Task Send(MessageBatch messageBatch, Provider provider, Domain.Features.Entities.Line line)
         {
@@ -53,33 +93,146 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var sendSimpleDto = new SimpleSendDto("09135742556", "سلام این پیام جهت تست است");
             await _restClient.Trigger(sendSimpleDto, apiKey);
         }
-        public async Task SendKaveTest()
+
+
+        public async Task AcountKaveTest()
+        {
+            var apiKey = _kaveApi;
+            var response = await _accountService.Trigger(apiKey);
+        }
+
+        public async Task CancelKaveTest()
+        {
+            var apiKey = _kaveApi;
+            CancelDto cancelDto = 1;
+            var result = await _cancelService.Trigger(cancelDto, apiKey);
+        }
+
+        public async Task CountInBoxKaveTest()
+        {
+            var apiKey = _kaveApi;
+            var countInBoxDto = new CountInboxDto()///??Additional Property
+            {
+                StartDate = 1734412200,
+                EndDate = 1734521400,
+                IsRead = 1,
+                LineNumber = "2000550055505"
+            };
+            var result = await _countInboxService.Trigger(countInBoxDto, apiKey);
+        }
+
+        public async Task DateKaveTest()
+        {
+            var apiKey = _kaveApi;
+            var result = await _dateService.Trigger();
+        }
+
+        public async Task LatestOutboxKaveTest()
+        {
+            var apiKey = _kaveApi;
+            var latestOutboxDto = new LatestOutboxDto()
+            {
+                PageSize = 10,
+                Sender = "2000550055505"
+            };
+            var result = await _latestOutboxService.Trigger(latestOutboxDto, apiKey);
+        }
+
+        public async Task LookupKaveTest()
+        {
+            var apiKey = _kaveApi;
+            var lookupDto = new LookupDto()
+            {
+                Receptor = "09925306265",
+                Template = "سلام %token رمز عبور:%token2 ، نام کاربری:%token3 ",
+                Token = "Z_E",
+                Token2 = "100200",
+                Token3 = "Etehadi",
+                Type = "sms"
+            };
+            var result = await _lookupService.Trigger(lookupDto, apiKey);
+
+        }
+
+        public async Task MakettsKaveTest()//
+        {
+            var apiKey = _kaveApi;
+            var makettsDto = new MakettsDto()
+            {
+                Receptor = "09925306265",
+                Date = 1734521400,
+                Message = "سلام.این یک پیام جهت تست تابع Maketts است.",
+                Repeat = 2,
+                LocalId = ""//???
+            };
+            var result = await _makettsService.Trigger(makettsDto, apiKey);
+        }
+
+        public async Task ReceiveKaveTest()
+        {
+            var apiKey = _kaveApi;
+
+            var SendArrayDto = new ArraySendDto()
+            {
+                Message = ["سلام این پیام اول جهت تست است", "سلام این پیام دوم جهت تست است"],
+
+                Receptor = ["09135742556", "09925306265"],
+                Sender = ["2000550055505", "2000550055505"],
+            };
+            var resultSendArray = await _sendArrayService.Trigger(SendArrayDto, apiKey);
+
+            var receiveDto = new ReceiveDto("2000550055505", false);
+            var resultReceive = await _receiveService.Trigger(receiveDto, apiKey);
+        }
+
+        public async Task SelectOutboxKaveTest()
+        {
+            var apiKey = _kaveApi;
+            var selectOutboxDto = new SelectOutboxDto()
+            {
+                StartDate = 1734412200,
+                EndDate = 1734521400,
+                Sender = "2000550055505"
+            };
+            var result = await _selectOutboxService.Trigger(selectOutboxDto, apiKey);
+        }
+
+        public async Task SelectKaveTest()//
+        {
+            var apiKey = _kaveApi;
+            SelectDto selectDto = 1;//can send Several
+            var result = await _selectService.Trigger(selectDto, apiKey);
+        }
+
+        public async Task SendArrayKeveTest()
+        {
+            var apiKey = _kaveApi;
+
+            var SendArrayDto = new ArraySendDto()
+            {
+                Message = [ "سلام این پیام اول-1 جهت تست است", "سلام این پیام دوم-2 جهت تست است",
+                             "سلام این پیام سوم-3 جهت تست است", "سلام این پیام چهارم-4 جهت تست است" ],
+
+                Receptor = ["09135742556", "09925306265", "09135742556", "09925306265"],
+                Sender = ["2000550055505", "2000550055505", "2000550055505", "2000550055505"],
+                Date = 734509359,
+                Hide = 1,
+                LocalMessageIds = [1, 2, 3, 4],
+                // Type = [1,1,1,1]
+            };
+            var result = await _sendArrayService.Trigger(SendArrayDto, apiKey);
+        }
+
+        public async Task SendSimpleKaveTest()
         {
             var apiKey = _kaveApi;
             var sendSimpleDto = new SimpleSendDto("09135742556", "سلام این پیام جهت تست است", "2000550055505");
-            var response= await _restClient.Trigger(sendSimpleDto, apiKey);
-        }
-
-        public async Task AcountKave()
-        {
-            var apiKey=_kaveApi;
-            var response=await _accountService.Trigger(apiKey);
-        }
-
-        public async Task StatusKave()
-        {
-            var apiKey= _kaveApi;
-
-            var sendSimpleDto = new SimpleSendDto("09135742556", "سلام این پیام جهت تست است", "2000550055505");
             var response = await _restClient.Trigger(sendSimpleDto, apiKey);
-
-            StatusDto status = 1;
-            var result = await _statusService.Trigger(status, apiKey);
         }
 
-        public async Task StatusByMessageKave()
+        public async Task StatusByMessageKaveTest()
         {
-            var apiKey=_kaveApi;
+            var apiKey = _kaveApi;
 
             var sendSimpleDto = new SimpleSendDto("09135742556", "سلام این پیام جهت تست است", "2000550055505");
             var response = await _restClient.Trigger(sendSimpleDto, apiKey);
@@ -88,42 +241,15 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var result = await _statusByMessageIdService.Trigger(statusByMessageId, apiKey);
         }
 
-        public async Task SendArrayKeve()
+        public async Task StatusKaveTest()
         {
             var apiKey = _kaveApi;
 
-            var SendArrayDto = new ArraySendDto()
-            {
-                Message =  [ "سلام این پیام اول-1 جهت تست است", "سلام این پیام دوم-2 جهت تست است",
-                             "سلام این پیام سوم-3 جهت تست است", "سلام این پیام چهارم-4 جهت تست است" ],
+            var sendSimpleDto = new SimpleSendDto("09135742556", "سلام این پیام جهت تست است", "2000550055505");
+            var response = await _restClient.Trigger(sendSimpleDto, apiKey);
 
-                Receptor = ["09135742556", "09925306265", "09135742556", "09925306265"],
-                Sender = ["2000550055505", "2000550055505", "2000550055505", "2000550055505" ],
-                Date= 734509359,
-                Hide=1,
-                LocalMessageIds = [1,2,3,4],
-               // Type = [1,1,1,1]
-            };
-            var result=await _sendArrayService.Trigger(SendArrayDto, apiKey);
-            int x = 2;
-        }
-
-        public async Task ReceiveKave()
-        {
-            var apiKey= _kaveApi;
-
-            var SendArrayDto = new ArraySendDto()
-            {
-                Message = [ "سلام این پیام اول جهت تست است", "سلام این پیام دوم جهت تست است",
-                             "سلام این پیام سوم جهت تست است", "سلام این پیام چهارم جهت تست است" ],
-
-                Receptor = ["09135742556", "09925306265", "09135742556", "09925306265"],
-                Sender = ["30002", "30002", "30001", "30003"],
-            };
-            var resultSendArray =await _sendArrayService.Trigger(SendArrayDto, apiKey);
-
-            var receiveDto = new ReceiveDto("30002",false);
-            var resultReceive=await _receiveService.Trigger(receiveDto, apiKey);
+            StatusDto status = 1;
+            var result = await _statusService.Trigger(status, apiKey);
         }
 
     }
