@@ -51,10 +51,28 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         }
 
         [HttpGet]
-        [Route("Test/Kavenegar")]
-        public async Task<IActionResult> TestKavenegar()
+        [Route("Test/KavenegarSendSimple")]
+        public async Task<IActionResult> TestKavenegarSendSimple()
         {
             await _smsClient.SendKaveTest();
+            return Ok("done");
+        }
+        
+        [HttpGet]
+        [Route("Test/KavenegarSendArray")]
+        public async Task<IActionResult> TestKavenegarSendArray()
+        {
+           await _smsClient.SendArrayKeve();
+            return Ok("done");
+        }
+
+
+
+        [HttpGet]
+        [Route("Test/KavenegarAcount")]
+        public async Task<IActionResult> TestKavenegarAcount()
+        {
+            await _smsClient.AcountKave();
             return Ok("done");
         }
     }

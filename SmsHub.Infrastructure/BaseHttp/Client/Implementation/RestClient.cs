@@ -1,4 +1,5 @@
-﻿using SmsHub.Common.Extensions;
+﻿using HttpClientToCurl;
+using SmsHub.Common.Extensions;
 using SmsHub.Infrastructure.BaseHttp.Client.Contracts;
 using System.Net.Http.Json;
 
@@ -28,6 +29,7 @@ namespace SmsHub.Infrastructure.BaseHttp.Client.Implementation
             _httpClient.NotNull(nameof(_httpClient));
             var response = await _httpClient.SendAsync(requestMessage);
             var content = await response.Content.ReadFromJsonAsync<T>();
+            var curl= _httpClient.GenerateCurlInString(requestMessage);
             return content;
         }
 
