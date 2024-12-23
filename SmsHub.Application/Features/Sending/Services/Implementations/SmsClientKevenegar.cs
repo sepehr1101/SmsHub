@@ -15,7 +15,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 {
     public class SmsClientKevenegar : ISmsClientKevenegar
     {
-        private static string _kaveApi = "5575426A68495063786333776662677171397533775377746A5A696475386159574332463078442F7750553D";
+        private static string _kaveApi = "s";
         private readonly IKavenegarHttpSendSimpleService _restClient;
         private readonly IKavenegarHttpAccountService _accountService;
         private readonly IKavenegarHttpStatusService _statusService;
@@ -95,7 +95,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         }
 
 
-        public async Task AcountKaveTest()
+        public async Task AcountKaveTest()//ok
         {
             var apiKey = _kaveApi;
             var response = await _accountService.Trigger(apiKey);
@@ -194,20 +194,19 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var result = await _selectService.Trigger(selectDto, apiKey);
         }
 
-        public async Task SendArrayKeveTest()
+        public async Task SendArrayKeveTest()//419
         {
             var apiKey = _kaveApi;
 
             var SendArrayDto = new ArraySendDto()
             {
-                Message = [ "سلام این پیام اول-1 جهت تست است", "سلام این پیام دوم-2 جهت تست است",
-                             "سلام این پیام سوم-3 جهت تست است", "سلام این پیام چهارم-4 جهت تست است" ],
+                Message = [ "سلام این پیام اول-1 جهت تست است", "سلام این پیام دوم-2 جهت تست است" ],
 
-                Receptor = ["09135742556", "09925306265", "09135742556", "09925306265"],
-                Sender = ["2000550055505", "2000550055505", "2000550055505", "2000550055505"],
-                Date = 734509359,
+                Receptor = ["09027268973", "09925306265"],
+                Sender = ["2000550055505", "2000550055505"],
+                //Date = 734509359,
                 Hide = 1,
-                LocalMessageIds = [1, 2, 3, 4],
+              //  LocalMessageIds = [ Convert.ToInt64(15001), Convert.ToInt64(15002)],
                 // Type = [1,1,1,1]
             };
             var result = await _sendArrayService.Trigger(SendArrayDto, apiKey);
@@ -225,7 +224,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             //    LocalId= 1200//->messageId=1828205579
             //};
 
-            var sendSimpleDto = new SimpleSendDto("09135742556", "سلام این پیام جهت تست است", "2000550055505");
+            var sendSimpleDto = new SimpleSendDto("09925306265", "سلام این پیام جهت تست است", "2000550055505");
             var response = await _restClient.Trigger(sendSimpleDto, apiKey);
         }
 
@@ -248,8 +247,6 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var result = await _statusService.Trigger(status, apiKey);
         }
 
-
-        /////////////////////////////Magfa
 
     }
 }

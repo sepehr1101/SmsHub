@@ -22,13 +22,15 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         //todo delete
         private readonly ISmsClientKevenegar _smsClientKavenagar;
         private readonly ISmsClientMagfa _smsClientMagfa;
+        private readonly ISwitchKavenagarMagfa _switchKavenegarMagfa;
 
 public SendManagerCreateController(
             ITemplateGetSingleHandler templateGetSingleHandler,
             IUnitOfWork uow,
             ISendManagerCreateHandler sendManagerCreateHandler,
             ISmsClientKevenegar smsClientKavenagar,
-            ISmsClientMagfa smsClientMagfa)
+            ISmsClientMagfa smsClientMagfa,
+            ISwitchKavenagarMagfa switchKavenegarMagfa)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));
@@ -44,6 +46,9 @@ public SendManagerCreateController(
 
             _smsClientMagfa = smsClientMagfa;
             _smsClientMagfa.NotNull(nameof(smsClientMagfa));
+
+            _switchKavenegarMagfa = switchKavenegarMagfa;
+            _switchKavenegarMagfa.NotNull(nameof(switchKavenegarMagfa));
         }
 
         [HttpPost]
@@ -147,7 +152,7 @@ public SendManagerCreateController(
         }
 
 
-        [HttpGet]
+        [HttpPost]
         [Route("Test/KavenegarSendArray")]
         public async Task<IActionResult> TestKavenegarSendArray()
         {
@@ -156,7 +161,7 @@ public SendManagerCreateController(
         }
 
 
-        [HttpGet]
+        [HttpPost]
         [Route("Test/KavenegarSendSimple")]
         public async Task<IActionResult> TestKavenegarSendSimple()
         {
@@ -185,6 +190,7 @@ public SendManagerCreateController(
         ///////////////////////////////////////////
         ///Magfa
 
+        [HttpGet]
         [Route("Test/MagfaMessage")]
         public async Task<IActionResult> TestMagfaMessage()
         {
@@ -192,6 +198,7 @@ public SendManagerCreateController(
             return Ok("done");
         }
 
+        [HttpGet]
         [Route("Test/MagfaBalance")]
         public async Task<IActionResult> TestMagfaBalance()
         {
@@ -199,6 +206,7 @@ public SendManagerCreateController(
             return Ok("done");
         }
 
+        [HttpGet]
         [Route("Test/MagfaMid")]
         public async Task<IActionResult> TestMagfaMid()
         {
@@ -214,12 +222,25 @@ public SendManagerCreateController(
             return Ok("done");
         }
 
-        [Route("Test/MafgaStatus")]
+        [HttpGet]
+        [Route("Test/MagfaStatus")]
         public async Task<IActionResult> TestMagfaStatus()
         {
             await _smsClientMagfa.StatusesMagfaTest();
             return Ok("done");
         }
-        
+
+        ////mergeeeeeeeeeeeeeeeeeeeee
+        [HttpGet]
+        [Route("Test/MergeAcountBalance/{lineId}")]
+        public async Task<IActionResult> TestMergeAcoundBalance(int lineId)
+        {
+            await _switchKavenegarMagfa.SwitchAcountBalance(lineId);
+            return Ok("done");
+        }
+
+
+        //[HttpPost]
+
     }
 }

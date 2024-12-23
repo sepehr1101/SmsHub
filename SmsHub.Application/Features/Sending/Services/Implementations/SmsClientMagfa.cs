@@ -1,6 +1,8 @@
 ﻿using SmsHub.Application.Features.Sending.Services.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Infrastructure.BaseHttp.Request;
 using SmsHub.Infrastructure.Providers.Magfa3000.Http.Contracts;
+using MagfaRequest = SmsHub.Domain.Providers.Magfa3000.Entities.Requests;
 
 namespace SmsHub.Application.Features.Sending.Services.Implementations
 {
@@ -66,7 +68,19 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var domain = _domain;
             var userName = _userName;
             var password = _password;
-            var result=await _magfaSendService.SendMessage(domain, userName, password);
+            var request = new HttpRequestMessage();
+            var value=new MagfaRequest.SendDto()
+            {
+                senders = new[] { "30001", "30001", "30001" },
+                recipients = new[] { "09925306265", "09925306265", "09925306265" },
+                messages = new[] {"سلام این یک پیام جهت تست متد ارسال از مگفا است",
+                                "سلام این یک پیام جهت تست متد ارسال از مگفا است",
+                                "سلام این یک پیام جهت تست متد ارسال از مگفا است" },
+                uids = new[] { Convert.ToInt64(1201), 1202, 1203 },
+            };
+
+
+            var result =await _magfaSendService.SendMessage(domain, userName, password,value);
         }
 
         public async Task StatusesMagfaTest()
