@@ -20,7 +20,7 @@ namespace SmsHub.Infrastructure.Providers.Magfa3000.Http.Implementations
         {
             var request = new HttpRequestMessage(HttpMethod.Get,new Literals().BalanceUri);
             request.AddBasicAuthentication($"{domain}/{username}", password);
-            var response = await _restClient.Create(request.RequestUri).Execute<BalanceDto>();
+            var response = await _restClient.Create(request.RequestUri).Execute<BalanceDto>(request);
 
             return response;
         }

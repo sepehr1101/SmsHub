@@ -20,13 +20,15 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         private readonly ISendManagerCreateHandler _sendManagerCreateHandler;
 
         //todo delete
-        private readonly ISmsClient _smsClient;
+        private readonly ISmsClientKevenegar _smsClientKavenagar;
+        private readonly ISmsClientMagfa _smsClientMagfa;
 
-        public SendManagerCreateController(
+public SendManagerCreateController(
             ITemplateGetSingleHandler templateGetSingleHandler,
             IUnitOfWork uow,
             ISendManagerCreateHandler sendManagerCreateHandler,
-            ISmsClient smsClient)
+            ISmsClientKevenegar smsClientKavenagar,
+            ISmsClientMagfa smsClientMagfa)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));
@@ -37,8 +39,11 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
             _sendManagerCreateHandler = sendManagerCreateHandler;
             _sendManagerCreateHandler.NotNull(nameof(sendManagerCreateHandler));
 
-            _smsClient = smsClient;
-            _smsClient.NotNull(nameof(smsClient));
+            _smsClientKavenagar = smsClientKavenagar;
+            _smsClientKavenagar.NotNull(nameof(smsClientKavenagar));
+
+            _smsClientMagfa = smsClientMagfa;
+            _smsClientMagfa.NotNull(nameof(smsClientMagfa));
         }
 
         [HttpPost]
@@ -55,7 +60,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         [Route("Test/KavenegarAcount")]
         public async Task<IActionResult> TestKavenegarAcount()
         {
-            await _smsClient.AcountKaveTest();
+            await _smsClientKavenagar.AcountKaveTest();
             return Ok("done");
         }
 
@@ -64,7 +69,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         [Route("Test/KavenegarCancel")]
         public async Task<IActionResult> TestKavenegarCancel()
         {
-            await _smsClient.CancelKaveTest();
+            await _smsClientKavenagar.CancelKaveTest();
             return Ok("done");
         }
 
@@ -72,7 +77,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         [Route("Test/KavenegarCountInBox")]
         public async Task<IActionResult> TestKavenegarCountInBox()
         {
-            await _smsClient.CountInBoxKaveTest();
+            await _smsClientKavenagar.CountInBoxKaveTest();
             return Ok("done");
         }
 
@@ -81,7 +86,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         [Route("Test/KavenegarDate")]
         public async Task<IActionResult> TestKavenegarDate()
         {
-            await _smsClient.DateKaveTest();
+            await _smsClientKavenagar.DateKaveTest();
             return Ok("done");
         }
 
@@ -90,7 +95,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         [Route("Test/KavenegarLatestOutbox")]
         public async Task<IActionResult> TestKavenegarLatestOutbox()
         {
-            await _smsClient.LatestOutboxKaveTest();
+            await _smsClientKavenagar.LatestOutboxKaveTest();
             return Ok("done");
         }
 
@@ -99,7 +104,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         [Route("Test/KavenegarLookup")]
         public async Task<IActionResult> TestKavenegarLookup()
         {
-            await _smsClient.LookupKaveTest();
+            await _smsClientKavenagar.LookupKaveTest();
             return Ok("done");
         }
 
@@ -108,7 +113,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         [Route("Test/KavenegarMaketts")]
         public async Task<IActionResult> TestKavenegarMaketts()
         {
-            await _smsClient.MakettsKaveTest();
+            await _smsClientKavenagar.MakettsKaveTest();
             return Ok("done");
         }
 
@@ -117,7 +122,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         [Route("Test/KavenegarReceive")]
         public async Task<IActionResult> TestKavenegarReceive()
         {
-            await _smsClient.ReceiveKaveTest();
+            await _smsClientKavenagar.ReceiveKaveTest();
             return Ok("done");
         }
 
@@ -127,7 +132,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         [Route("Test/KavenegarSelectOutbox")]
         public async Task<IActionResult> TestKavenegarSelectOutbox()
         {
-            await _smsClient.SelectOutboxKaveTest();
+            await _smsClientKavenagar.SelectOutboxKaveTest();
             return Ok("done");
         }
 
@@ -137,7 +142,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         [Route("Test/KavenegarSelect")]
         public async Task<IActionResult> TestKavenegarSelect()
         {
-            await _smsClient.SelectKaveTest();
+            await _smsClientKavenagar.SelectKaveTest();
             return Ok("done");
         }
 
@@ -146,7 +151,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         [Route("Test/KavenegarSendArray")]
         public async Task<IActionResult> TestKavenegarSendArray()
         {
-            await _smsClient.SendArrayKeveTest();
+            await _smsClientKavenagar.SendArrayKeveTest();
             return Ok("done");
         }
 
@@ -155,7 +160,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         [Route("Test/KavenegarSendSimple")]
         public async Task<IActionResult> TestKavenegarSendSimple()
         {
-            await _smsClient.SendSimpleKaveTest();
+            await _smsClientKavenagar.SendSimpleKaveTest();
             return Ok("done");
         }
 
@@ -164,7 +169,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         [Route("Test/KavenegarStatusByMessage")]
         public async Task<IActionResult> TestKavenegarStatusByMessage()
         {
-            await _smsClient.StatusByMessageKaveTest();
+            await _smsClientKavenagar.StatusByMessageKaveTest();
             return Ok("done");
         }
 
@@ -173,12 +178,48 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         [Route("Test/KavenegarStatus")]
         public async Task<IActionResult> TestKavenegarStatus()
         {
-            await _smsClient.StatusKaveTest();
+            await _smsClientKavenagar.StatusKaveTest();
             return Ok("done");
         }
 
         ///////////////////////////////////////////
         ///Magfa
 
+        [Route("Test/MagfaMessage")]
+        public async Task<IActionResult> TestMagfaMessage()
+        {
+            await _smsClientMagfa.MessageMagfaTest();
+            return Ok("done");
+        }
+
+        [Route("Test/MagfaBalance")]
+        public async Task<IActionResult> TestMagfaBalance()
+        {
+            await _smsClientMagfa.BalanceMagfaTest();
+            return Ok("done");
+        }
+
+        [Route("Test/MagfaMid")]
+        public async Task<IActionResult> TestMagfaMid()
+        {
+            await _smsClientMagfa.MidMagfaTest();
+            return Ok("done");
+        }
+
+        [HttpPost]
+        [Route("Test/MagfaSend")]
+        public async Task<IActionResult> TestMagfaSend()
+        {
+            await _smsClientMagfa.SendMagfaTest();
+            return Ok("done");
+        }
+
+        [Route("Test/MafgaStatus")]
+        public async Task<IActionResult> TestMagfaStatus()
+        {
+            await _smsClientMagfa.StatusesMagfaTest();
+            return Ok("done");
+        }
+        
     }
 }

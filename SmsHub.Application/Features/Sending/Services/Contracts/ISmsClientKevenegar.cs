@@ -2,7 +2,7 @@
 
 namespace SmsHub.Application.Features.Sending.Services.Contracts
 {
-    public interface ISmsClient
+    public interface ISmsClientKevenegar
     {
         Task Send(MessageBatch messageBatch, Provider provider, Domain.Features.Entities.Line line);
         Task AcountKaveTest();

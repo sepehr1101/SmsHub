@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace SmsHub.Application.Features.Sending.Services.Implementations
 {
-    public class SmsClient : ISmsClient
+    public class SmsClientKevenegar : ISmsClientKevenegar
     {
         private static string _kaveApi = "5575426A68495063786333776662677171397533775377746A5A696475386159574332463078442F7750553D";
         private readonly IKavenegarHttpSendSimpleService _restClient;
@@ -30,7 +30,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         private readonly IKavenegarHttpMakettsService _makettsService;
         private readonly IKavenegarHttpSelectOutboxService _selectOutboxService;
         private readonly IKavenegarHttpSelectService _selectService;
-        public SmsClient(IKavenegarHttpSendSimpleService restClient
+        public SmsClientKevenegar(IKavenegarHttpSendSimpleService restClient
             , IKavenegarHttpAccountService accountService,
             IKavenegarHttpStatusService statusService,
             IKavenegarHttpStatusByMessageIdService statusByMessageIdService,
