@@ -1,6 +1,6 @@
 ﻿namespace SmsHub.Application.Features.Sending.Services.Contracts
 {
-    public interface ISwitchKavenagarMagfa
+    public interface ISwitchBetweenProvider
     {
         Task SwitchAcountBalance(int lineId);
     }

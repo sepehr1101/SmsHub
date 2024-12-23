@@ -5,12 +5,12 @@ using SmsHub.Domain.Constants;
 
 namespace SmsHub.Application.Features.Sending.Services.Implementations
 {
-    public class SwitchKavenagarMagfa: ISwitchKavenagarMagfa
+    public class SwitchBetweenProvider: ISwitchBetweenProvider
     {
         private readonly ILineGetSingleHandler _lineGetSingle;
         private readonly ISmsClientKevenegar _smsClientKavenegar;
         private readonly ISmsClientMagfa _smsClientMagfa;
-        public SwitchKavenagarMagfa(ILineGetSingleHandler lineGetSingle,
+        public SwitchBetweenProvider(ILineGetSingleHandler lineGetSingle,
             ISmsClientKevenegar smsClientKavenegar,
             ISmsClientMagfa smsClientMagfa)
         {
@@ -45,9 +45,5 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         }
 
 
-        public async Task SwitchSend()
-        {
-            
-        }
     }
 }

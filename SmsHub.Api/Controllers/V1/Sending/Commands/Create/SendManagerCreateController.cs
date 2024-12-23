@@ -22,7 +22,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         //todo delete
         private readonly ISmsClientKevenegar _smsClientKavenagar;
         private readonly ISmsClientMagfa _smsClientMagfa;
-        private readonly ISwitchKavenagarMagfa _switchKavenegarMagfa;
+        private readonly ISwitchBetweenProvider _switchKavenegarMagfa;
 
 public SendManagerCreateController(
             ITemplateGetSingleHandler templateGetSingleHandler,
@@ -30,7 +30,7 @@ public SendManagerCreateController(
             ISendManagerCreateHandler sendManagerCreateHandler,
             ISmsClientKevenegar smsClientKavenagar,
             ISmsClientMagfa smsClientMagfa,
-            ISwitchKavenagarMagfa switchKavenegarMagfa)
+            ISwitchBetweenProvider switchKavenegarMagfa)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));
