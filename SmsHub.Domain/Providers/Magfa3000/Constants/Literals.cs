@@ -26,7 +26,6 @@
         
         
         
-        //public string MessagesUri { get { return $"{BaseUrl}messages/2"; } }//count nullable -> default 100
         //public string MessagesUri { get { return $"{BaseUrl}messages.json?count={0}"; } }//count nullable -> default 100
         public string MessagesUri { get { return $"{BaseUrl}messages/{0}"; } }//this uri format is true
 

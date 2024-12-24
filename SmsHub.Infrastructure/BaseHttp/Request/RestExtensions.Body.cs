@@ -105,6 +105,10 @@ Console.WriteLine(await response.Content.ReadAsStringAsync());
                 {
                     value= JsonConvert.SerializeObject(item.Value);
                 }
+                else if(item.Value is IEnumerable<long>)///
+                {
+                    value= JsonConvert.SerializeObject(item.Value);
+                }
                 else
                 {
                     var stringContent = new StringContent(item.Value.ToString(), encoding, mediaType);

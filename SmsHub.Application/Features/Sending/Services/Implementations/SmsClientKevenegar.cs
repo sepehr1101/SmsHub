@@ -154,7 +154,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
         }
 
-        public async Task MakettsKaveTest()//
+        public async Task MakettsKaveTest()
         {
             var apiKey = _kaveApi;
             var makettsDto = new MakettsDto()
@@ -163,7 +163,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
                 Date = 1734521400,
                 Message = "سلام.این یک پیام جهت تست تابع Maketts است.",
                 Repeat = 2,
-                LocalId = ""//???
+                LocalId = ""//??
             };
             var result = await _makettsService.Trigger(makettsDto, apiKey);
         }
@@ -171,7 +171,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         public async Task ReceiveKaveTest()//
         {
             var apiKey = _kaveApi;
-            var receiveDto = new ReceiveDto("2000550055505", true);//true and false return (200 but without any message) 
+            var receiveDto = new ReceiveDto("2000550055505", true);
             var resultReceive = await _receiveService.Trigger(receiveDto, apiKey);
         }
 
@@ -216,15 +216,15 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         {
             var apiKey = _kaveApi;
 
-            //var sendSimpleDto = new SimpleSendDto()
-            //{
-            //    Sender= "2000550055505",
-            //    Receptor="09925306265",
-            //    Message="این یک پیام جهت تست Status است",
-            //    LocalId= 1200//->messageId=1828205579
-            //};
+            var sendSimpleDto = new SimpleSendDto()
+            {
+                Sender = "2000550055505",
+                Receptor = "09925306265",
+                Message = "این یک پیام جهت تست Status است",
+                LocalId = 15002//->messageId=1896615319
+            };
 
-            var sendSimpleDto = new SimpleSendDto("09925306265", "سلام این پیام جهت تست است", "2000550055505");
+            //  var sendSimpleDto = new SimpleSendDto("09925306265", "سلام این پیام جهت تست است", "2000550055505");
             var response = await _restClient.Trigger(sendSimpleDto, apiKey);
         }
 

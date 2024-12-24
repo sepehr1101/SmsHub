@@ -3,6 +3,8 @@ using SmsHub.Api.Middlewares;
 using SmsHub.Application.Extensions;
 using SmsHub.Application.Features.Contact.Handlers.Commands.Create.Contracts;
 using SmsHub.Application.Features.Contact.Handlers.Commands.Create.Implementations;
+using SmsHub.Application.Features.Sending.ServicesSample.Contracts;
+using SmsHub.Application.Features.Sending.ServicesSample.Implementations;
 using SmsHub.Common.Extensions;
 using SmsHub.Infrastructure.Extensions;
 using SmsHub.Persistence.Extensions;
@@ -15,6 +17,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddHttpContextAccessor();
+
+///dictionary
+builder.Services.AddScoped<Magfa>();
+builder.Services.AddScoped< Kavenegar>();
 
 
 // DI
