@@ -2,11 +2,11 @@
 {
     public class SendDto
     {
-        public ICollection<string> Sender { get; set; }
-        public ICollection<string> Recipients { get; set; }
-        public ICollection<string> Messages { get; set; }
+        public ICollection<string> senders { get; set; }
+        public ICollection<string> recipients { get; set; }
+        public ICollection<string> messages { get; set; }
         //public int Encodings { get; set; }
-        public ICollection<long> Uids { get; set; }
+        public ICollection<long> uids { get; set; }
        // public string Udhs {  get; set; }// todo: we do not need
     }
 }
