@@ -29,7 +29,7 @@ namespace SmsHub.Infrastructure.Providers.Kavenegar.Http.Implementations
             };
             if (arraySendDto.LocalMessageIds?.Any()==true)
             {
-                formDictionary.Add(nameof(arraySendDto.LocalMessageIds).ToLower(), arraySendDto.LocalMessageIds);
+                formDictionary.Add(nameof(arraySendDto.LocalMessageIds).ToLower(), arraySendDto.LocalMessageIds.Select(m=> Int64.Parse(m.ToString())));
             }    
             await request.AddFormBodyUrlEncoded(formDictionary);
             var response = await _restClient.Create(request.RequestUri).Execute<ResponseGeneric<List<ArraySendDto>>>(request);
