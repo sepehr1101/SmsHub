@@ -2,6 +2,8 @@
 using Newtonsoft.Json.Linq;
 using SmsHub.Common.Extensions;
 using SmsHub.Infrastructure.BaseHttp.Enums;
+using System.Collections.Generic;
+using System.Net.Http.Headers;
 using System.Net.Mime;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -19,7 +21,7 @@ namespace SmsHub.Infrastructure.BaseHttp.Request
             //var contentType = ContentType.FromDataFormat(dataFormat);
             //request.RequestFormat = dataFormat;
             //return request.AddParameter(new BodyParameter("", body, contentType));
-        }       
+        }
         public static HttpRequestMessage AddBody(this HttpRequestMessage request, string jsonString, [Optional] Encoding encoding, [Optional] ContentType contentType)
         {
             encoding = encoding ?? Encoding.UTF8;
@@ -28,9 +30,9 @@ namespace SmsHub.Infrastructure.BaseHttp.Request
             request.Content = content;
             return request;
         }
-        public static HttpRequestMessage AddBody<T>(this HttpRequestMessage request, T obj, [Optional] Func<T , string > Serialize, [Optional] Encoding encoding, [Optional] ContentType contentType) where T : class
+        public static HttpRequestMessage AddBody<T>(this HttpRequestMessage request, T obj, [Optional] Func<T, string> Serialize, [Optional] Encoding encoding, [Optional] ContentType contentType) where T : class
         {
-            if(obj is string str)
+            if (obj is string str)
             {
                 return request.AddStringBody(str, DataFormat.Json);
             }
@@ -43,20 +45,20 @@ namespace SmsHub.Infrastructure.BaseHttp.Request
             return request;
         }
 
-        public static HttpRequestMessage AddFormBodyMultipart<T>(this HttpRequestMessage request, Dictionary<string,T> formDictionary, [Optional] Encoding encoding, string? mediaType=null)
+        public static HttpRequestMessage AddFormBodyMultipart<T>(this HttpRequestMessage request, Dictionary<string, T> formDictionary, [Optional] Encoding encoding, string? mediaType = null)
         {
             request.NotNull();
             formDictionary.NotNull();
             encoding = encoding ?? Encoding.UTF8;
-            mediaType= string.IsNullOrWhiteSpace(mediaType) ? MediaTypeNames.Text.Plain : mediaType;
+            mediaType = string.IsNullOrWhiteSpace(mediaType) ? MediaTypeNames.Text.Plain : mediaType;
             MultipartFormDataContent formContent = new MultipartFormDataContent();
             foreach (var item in formDictionary)
             {
-                if(item.Value is null || item.Key is null)
+                if (item.Value is null || item.Key is null)
                 {
                     continue;
                 }
-                if(item.Value is IEnumerable<T>)
+                if (item.Value is IEnumerable<T>)
                 {
                     var values = item.Value as IEnumerable<T>;
                     var sb = new StringBuilder();
@@ -68,24 +70,10 @@ namespace SmsHub.Infrastructure.BaseHttp.Request
                 {
                     var content = new StringContent(item.Key, encoding, mediaType);
                     formContent.Add(content, item.Key);
-                }              
+                }
             }
             request.Content = formContent;
             return request;
-
-            /*var client = new HttpClient();
-var request = new HttpRequestMessage(HttpMethod.Post, "https://api.kavenegar.com/v1/5575426A68495063786333776662677171397533775377746A5A696475386159574332463078442F7750553D/sms/sendarray.json");
-request.Headers.Add("Cookie", "cookiesession1=678A8C4023F49FF44F4B75F55D3B7902");
-var content = new MultipartFormDataContent();
-content.Add(new StringContent("[\"09134588220\",\"09135742556\"]"), "receptor");
-content.Add(new StringContent("[\"2000550055505\",\"2000550055505\"]"), "sender");
-content.Add(new StringContent("[\"سلام این پیام جهت تست است\",\"سلام این پیام جهت تست است\"]"), "message");
-content.Add(new StringContent("[\"4563324XX\",\"123644YY\"]"), "localmessageids");
-request.Content = content;
-var response = await client.SendAsync(request);
-response.EnsureSuccessStatusCode();
-Console.WriteLine(await response.Content.ReadAsStringAsync());
-*/
         }
         public static async Task<HttpRequestMessage> AddFormBodyUrlEncoded(this HttpRequestMessage request, Dictionary<string, object> formDictionary, [Optional] Encoding encoding, string? mediaType = null)
         {
@@ -93,26 +81,25 @@ Console.WriteLine(await response.Content.ReadAsStringAsync());
             formDictionary.NotNull();
             encoding = encoding ?? Encoding.UTF8;
             mediaType = string.IsNullOrWhiteSpace(mediaType) ? MediaTypeNames.Text.Plain : mediaType;
-            var keyValues=new List<KeyValuePair<string, string>>();
+            var keyValues = new List<KeyValuePair<string, string>>();
             foreach (var item in formDictionary)
             {
                 if (item.Value is null || item.Key is null)
                 {
                     continue;
                 }
-                string value=string.Empty;
-                if(item.Value is IEnumerable<object>)
+                string value = string.Empty;                
                 {
-                    value= JsonConvert.SerializeObject(item.Value);
+                    
                 }
-                else if(item.Value is IEnumerable<long>)///
+                if(IsEnumerable(item.Value))
                 {
-                    value= JsonConvert.SerializeObject(item.Value);
+                    value = JsonConvert.SerializeObject(item.Value);
                 }
                 else
                 {
                     var stringContent = new StringContent(item.Value.ToString(), encoding, mediaType);
-                    value = await stringContent.ReadAsStringAsync();                  
+                    value = await stringContent.ReadAsStringAsync();
                 }
                 var keyValue = new KeyValuePair<string, string>(item.Key, value);
                 keyValues.Add(keyValue);
@@ -120,6 +107,17 @@ Console.WriteLine(await response.Content.ReadAsStringAsync());
             FormUrlEncodedContent formUrlEncodedContent = new FormUrlEncodedContent(keyValues);
             request.Content = formUrlEncodedContent;
             return request;
+        }
+        private static bool IsEnumerable(object obj)
+        {
+            if (obj is IEnumerable<object> ||
+                obj is IEnumerable<long> ||
+                obj is IEnumerable<int> || 
+                obj is IEnumerable<short> )
+            {
+                return true;
+            }
+            return false;
         }
       
         //TODO: ADD Xml body
