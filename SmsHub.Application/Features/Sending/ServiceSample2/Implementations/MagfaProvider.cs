@@ -115,7 +115,9 @@ namespace SmsHub.Application.Features.Sending.ServiceSample2.Implementations
             var domain = _domain;
             var userName = _userName;
             var password = _password;
-            var result = await _magfaMidService.GetMid(domain, userName, password);
-        })
+            var result = await _magfaMidService.GetMid(domain, userName, password,userId);
+        }
+        
+        
     }
 }

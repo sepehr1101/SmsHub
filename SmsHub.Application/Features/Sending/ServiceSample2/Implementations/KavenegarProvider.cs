@@ -20,7 +20,8 @@ namespace SmsHub.Application.Features.Sending.ServiceSample2.Implementations
         private readonly IKavenegarHttpLatestOutboxService _latestOutboxService;
         private readonly IKavenegarHttpCountInboxService _countInboxService;
 
-        public KavenegarProvider(IKavenegarHttpAccountService accountService
+        public KavenegarProvider(
+            IKavenegarHttpAccountService accountService
             , IKavenegarHttpStatusService statusService
             , IKavenegarHttpReceiveService receiveService
             , IKavenegarHttpSendArrayService sendArrayService
@@ -144,9 +145,6 @@ namespace SmsHub.Application.Features.Sending.ServiceSample2.Implementations
             var apiKey = _kaveApi;
             SelectDto selectDto = messageId;
             var result = await _selectService.Trigger(selectDto, apiKey);
-
-
-            DateTime dateTime = DateTimeOffset.FromUnixTimeSeconds(190220112).DateTime;
         }
 
         private async Task SelectOutbox(long startDate, long endDate, string lineNumber)//error 407 -> change local Ip

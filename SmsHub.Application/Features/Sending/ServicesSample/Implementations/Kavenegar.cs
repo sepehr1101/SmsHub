@@ -79,7 +79,7 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
         public async Task Receive_Messages(int? count, string? lineNumber)
         {
             var apiKey = _kaveApi;
-            var receiveDto = new ReceiveDto(lineNumber, true);//2000550055505
+            var receiveDto = new ReceiveDto(lineNumber, true);
             var resultReceive = await _receiveService.Trigger(receiveDto, apiKey);
         }
 
@@ -154,7 +154,7 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
         public async Task SelectMessage_(long messageId)//error 407 -> change local Ip
         {
             var apiKey = _kaveApi;
-            SelectDto selectDto = messageId;//can send Several with "," but it's long
+            SelectDto selectDto = messageId;
             var result = await _selectService.Trigger(selectDto, apiKey);
 
 

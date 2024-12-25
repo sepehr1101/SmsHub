@@ -52,7 +52,7 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
             var domain = _domain;
             var userName = _userName;
             var password = _password;
-            var result = await _magfaStatusCodesService.GetStatuses(domain, userName, password);
+            var result = await _magfaStatusCodesService.GetStatuses(domain, userName, password,messageId);
         }
 
         public async Task Receive_Messages(int? count, string? lineNumber)
@@ -101,7 +101,7 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
             var domain = _domain;
             var userName = _userName;
             var password = _password;
-            var result = await _magfaMidService.GetMid(domain, userName, password);
+            var result = await _magfaMidService.GetMid(domain, userName, password,userId);
         }
 
         public async Task SelectMessage_(long messageId)
