@@ -1,4 +1,5 @@
-﻿using SmsHub.Application.Features.Sending.ServicesSample.Contracts;
+﻿using SmsHub.Application.Exceptions;
+using SmsHub.Application.Features.Sending.ServicesSample.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Infrastructure.Providers.Magfa3000.Http.Contracts;
 using MagfaRequest = SmsHub.Domain.Providers.Magfa3000.Entities.Requests;
@@ -92,7 +93,7 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
 
         public async Task StatusByLocalMessageId_(long localMessageId)
         {
-            throw new NotImplementedException();
+            throw new InvalidProviderHandleException();
         }
 
         public async Task _Mid(long userId)
@@ -105,17 +106,23 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
 
         public async Task SelectMessage_(long messageId)
         {
-            throw new NotImplementedException();
+            throw new InvalidProviderHandleException();
         }
 
         public async Task SelectOutbox_(long startDate, long endDate, string lineNumber)
         {
-            throw new NotImplementedException();
+            throw new InvalidProviderHandleException();
         }
 
         public async Task LatestOutbox_(long Count, string lineNumber)
         {
-            throw new NotImplementedException();
+            throw new InvalidProviderHandleException();
         }
+
+        public async Task CountInbox_(long startDate, long endDate, string lineNumber, bool IsRead)
+        {
+            throw new InvalidProviderHandleException();
+        }
+
     }
 }

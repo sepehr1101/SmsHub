@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
+using SmsHub.Application.Exceptions;
 using SmsHub.Application.Features.Sending.ServicesSample.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Providers.Kavenegar.Entities.Requests;
@@ -8,7 +9,7 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
 {
     public class Kavenegar : IProviderFactory
     {
-        private static string _kaveApi = "s";
+        private static string _kaveApi = "S";
         private readonly IKavenegarHttpAccountService _accountService;
         private readonly IKavenegarHttpStatusService _statusService;
         private readonly IKavenegarHttpReceiveService _receiveService;
@@ -18,6 +19,7 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
         private readonly IKavenegarHttpSelectService _selectService;
         private readonly IKavenegarHttpSelectOutboxService _selectOutboxService;
         private readonly IKavenegarHttpLatestOutboxService _latestOutboxService;
+        private readonly IKavenegarHttpCountInboxService _countInboxService;
 
 
         public Kavenegar(IKavenegarHttpAccountService accountService
@@ -28,7 +30,8 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
             , IKavenegarHttpStatusByMessageIdService statusByMessageIdService
             , IKavenegarHttpSelectService selectService
             , IKavenegarHttpSelectOutboxService selectOutboxService
-            , IKavenegarHttpLatestOutboxService latestOutboxService)
+            , IKavenegarHttpLatestOutboxService latestOutboxService
+            , IKavenegarHttpCountInboxService countInboxService)
         {
             _accountService = accountService;
             _accountService.NotNull(nameof(accountService));
@@ -56,6 +59,9 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
 
             _latestOutboxService = latestOutboxService;
             _latestOutboxService.NotNull(nameof(latestOutboxService));
+
+            _countInboxService = countInboxService;
+            _countInboxService.NotNull(nameof(countInboxService));
         }
 
         public async Task Account_Balance()
@@ -142,7 +148,7 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
 
         public async Task _Mid(long userId)
         {
-            throw new NotImplementedException();
+            throw new InvalidProviderHandleException();
         }
 
 
@@ -182,10 +188,11 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
 
         }
 
-
-        public async Task CountOutbox_(long startDate, long endDate, int? status)
+        public async Task CountInbox_(long startDate, long endDate, string lineNumber, bool IsRead)
         {
-
+            var apiKey = _kaveApi;
+            var response = await _accountService.Trigger(apiKey);
         }
+
     }
 }

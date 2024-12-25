@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SmsHub.Application.Exceptions;
 using SmsHub.Application.Features.Sending.ServicesSample.Contracts;
 using SmsHub.Domain.Constants;
 
@@ -6,17 +7,22 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
 {
     public class SwitchingFactory : ISwitchingFactory
     {
-        private readonly Dictionary<int, IProviderFactory> _providers;
-        public SwitchingFactory(IServiceProvider serviceProvider)
+        private readonly Dictionary<ProviderEnum, IProviderFactory> _providers;
+        private readonly ProviderEnum _providerId;
+        public SwitchingFactory(IServiceProvider serviceProvider,ProviderEnum providerId)
         {
-            _providers = new Dictionary<int, IProviderFactory>()
+            _providers = new Dictionary<ProviderEnum, IProviderFactory>()
             {
-                {Convert.ToInt32(ProviderEnum.Magfa),serviceProvider.GetRequiredService<Magfa>() },
-                { Convert.ToInt32(ProviderEnum.Kavenegar),serviceProvider.GetRequiredService<Kavenegar>()}
+                {ProviderEnum.Magfa,serviceProvider.GetRequiredService<Magfa>() },
+                { ProviderEnum.Kavenegar,serviceProvider.GetRequiredService<Kavenegar>()}
             };
+
+            var flag = _providers.ContainsKey(_providerId);
+            if (!flag)
+                throw new InvalidProviderException();
         }
 
-        public async Task GetAccount_Balance(int id)//run
+        public async Task GetAccount_Balance(ProviderEnum id)//run
         {
             if (_providers.TryGetValue(id, out var provider))
                 await provider.Account_Balance();
@@ -24,7 +30,7 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
                 throw new InvalidOperationException();
         }
 
-        public async Task GetStatusByMessageId(int id, int messageId)//run
+        public async Task GetStatusByMessageId(ProviderEnum id, int messageId)//run
         {
             if (_providers.TryGetValue(id, out var provider))
                 await provider.Status_Statuses(messageId);
@@ -32,7 +38,7 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
                 throw new InvalidOperationException();
         }
 
-        public async Task GetReceiveMessages(int lineId, int? count, string? lineNumber)//run
+        public async Task GetReceiveMessages(ProviderEnum lineId, int? count, string? lineNumber)//run
         {
             if (_providers.TryGetValue(lineId, out var provider))
                 await provider.Receive_Messages(count, lineNumber);
@@ -40,54 +46,62 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
                 throw new InvalidOperationException();
         }
 
-        public async Task SendMessages(int lineId, List<SendMessageDto> sendMessage)//run
+        public async Task SendMessages(ProviderEnum lineId, List<SendMessageDto> sendMessage)//run
         {
-            if(_providers.TryGetValue(lineId, out var provider))
+            if (_providers.TryGetValue(lineId, out var provider))
                 await provider.Send_Send(sendMessage);
             else
                 throw new InvalidOperationException();
         }
 
-        public async Task GetStatusByLocalMessageId(int lineId, long localMessageId)//run
+        public async Task GetStatusByLocalMessageId(ProviderEnum lineId, long localMessageId)//run
         {
-             if(_providers.TryGetValue(lineId,out var provider))
+            if (_providers.TryGetValue(lineId, out var provider))
                 await provider.StatusByLocalMessageId_(localMessageId);
-             else
+            else
                 throw new InvalidOperationException();
         }
 
-        public async Task GetMessageIdByUserId(int lineId, long userId)//run
+        public async Task GetMessageIdByUserId(ProviderEnum lineId, long userId)//run
         {
-            if (_providers.TryGetValue(lineId,out var provider))
+            if (_providers.TryGetValue(lineId, out var provider))
                 await provider._Mid(userId);
             else
                 throw new InvalidOperationException();
         }
 
-        public async Task GetMessageInfoByMessageId(int lineId, long messageId)//see Kavenagar Class
+        public async Task GetMessageInfoByMessageId(ProviderEnum lineId, long messageId)//see Kavenagar Class
         {
-            if(_providers.TryGetValue(lineId,out var provider))
+            if (_providers.TryGetValue(lineId, out var provider))
                 await provider.SelectMessage_(messageId);
             else
                 throw new InvalidOperationException();
         }
 
-        public async Task GetMessageListSent(int lineId, long startDate, long endDate, string lineNumber)//run
+        public async Task GetMessageListSent(ProviderEnum lineId, long startDate, long endDate, string lineNumber)//run
         {
-            if(_providers.TryGetValue(lineId,out var provider))
+            if (_providers.TryGetValue(lineId, out var provider))
                 await provider.SelectOutbox_(startDate, endDate, lineNumber);
             else
                 throw new InvalidOperationException();
         }
 
-        public async Task GetLatestMessageByMessageCount(int lineId, long count, string lineNumber)//run
+        public async Task GetLatestMessageByMessageCount(ProviderEnum lineId, long count, string lineNumber)//run
         {
-            if(_providers.TryGetValue(lineId,out var provider))
+            if (_providers.TryGetValue(lineId, out var provider))
                 await provider.LatestOutbox_(count, lineNumber);
             else
                 throw new InvalidOperationException();
         }
 
-       
+
+        public async Task GetMessageCountInbox(ProviderEnum lineId, long startDate, long endDate, string lineNumber, bool IsRead)
+        {
+            if (_providers.TryGetValue(lineId, out var provider))
+                await provider.CountInbox_(startDate, endDate, lineNumber, IsRead);
+            else
+                throw new InvalidOperationException();
+        }
+
     }
 }

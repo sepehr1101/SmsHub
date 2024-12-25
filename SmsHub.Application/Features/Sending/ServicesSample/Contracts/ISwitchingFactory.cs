@@ -1,18 +1,20 @@
 ﻿using SmsHub.Application.Features.Sending.ServicesSample.Implementations;
+using SmsHub.Domain.Constants;
 
 namespace SmsHub.Application.Features.Sending.ServicesSample.Contracts
 {
     public interface ISwitchingFactory
     {
-        Task GetAccount_Balance(int lineId);
-        Task GetStatusByMessageId(int lineId, int messageId);
-        Task GetReceiveMessages(int lineId,int? count,string? LineNumber);
-        Task SendMessages(int lineId, List<SendMessageDto> sendMessage);
-        Task GetStatusByLocalMessageId(int lineId, long localMessageId);
-        Task GetMessageIdByUserId(int lineId,long userId);
-        Task GetMessageInfoByMessageId(int lineId,long messageId);
-        Task GetMessageListSent(int lineId,long startDate,long endDate, string lineNumber);
-        Task GetLatestMessageByMessageCount(int lineId,long count,string lineNumber);
+        Task GetAccount_Balance(ProviderEnum lineId);
+        Task GetStatusByMessageId(ProviderEnum lineId, int messageId);
+        Task GetReceiveMessages(ProviderEnum lineId, int? count, string? LineNumber);
+        Task SendMessages(ProviderEnum lineId, List<SendMessageDto> sendMessage);
+        Task GetStatusByLocalMessageId(ProviderEnum lineId, long localMessageId);
+        Task GetMessageIdByUserId(ProviderEnum lineId, long userId);
+        Task GetMessageInfoByMessageId(ProviderEnum lineId, long messageId);
+        Task GetMessageListSent(ProviderEnum lineId, long startDate, long endDate, string lineNumber);
+        Task GetLatestMessageByMessageCount(ProviderEnum lineId, long count, string lineNumber);
+        Task GetMessageCountInbox(ProviderEnum lineId, long startDate, long endDate, string lineNumber, bool IsRead);
     }
 
 }
