@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Sending.Handlers.Commands.Create.Contracts;
 using SmsHub.Application.Features.Sending.Services;
 using SmsHub.Application.Features.Sending.Services.Contracts;
+using SmsHub.Application.Features.Sending.ServicesSample.Contracts;
+using SmsHub.Application.Features.Sending.ServicesSample.Implementations;
 using SmsHub.Application.Features.Template.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
@@ -22,7 +24,8 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         //todo delete
         private readonly ISmsClientKevenegar _smsClientKavenagar;
         private readonly ISmsClientMagfa _smsClientMagfa;
-        private readonly ISwitchBetweenProvider _switchKavenegarMagfa;
+
+        private readonly ISwitchingFactory _switchingFactory;
 
 public SendManagerCreateController(
             ITemplateGetSingleHandler templateGetSingleHandler,
@@ -30,7 +33,7 @@ public SendManagerCreateController(
             ISendManagerCreateHandler sendManagerCreateHandler,
             ISmsClientKevenegar smsClientKavenagar,
             ISmsClientMagfa smsClientMagfa,
-            ISwitchBetweenProvider switchKavenegarMagfa)
+            ISwitchingFactory switchingFactory)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));
@@ -47,8 +50,8 @@ public SendManagerCreateController(
             _smsClientMagfa = smsClientMagfa;
             _smsClientMagfa.NotNull(nameof(smsClientMagfa));
 
-            _switchKavenegarMagfa = switchKavenegarMagfa;
-            _switchKavenegarMagfa.NotNull(nameof(switchKavenegarMagfa));
+            _switchingFactory = switchingFactory;
+            _switchingFactory.NotNull(nameof(switchingFactory));
         }
 
         [HttpPost]
@@ -230,17 +233,88 @@ public SendManagerCreateController(
             return Ok("done");
         }
 
-        ////mergeeeeeeeeeeeeeeeeeeeee
+
+        /////// merge witch dictionary
         [HttpGet]
-        [Route("Test/MergeAcountBalance/{lineId}")]
-        public async Task<IActionResult> TestMergeAcoundBalance(int lineId)
+        [Route("Test/MergeDictionary/GetAccount/{lineId}")]
+        public async Task<IActionResult> GetAccount(int lineId)
         {
-            await _switchKavenegarMagfa.SwitchAcountBalance(lineId);
+            await _switchingFactory.GetAccount_Balance(lineId);
             return Ok("done");
         }
-
-
-        //[HttpPost]
-
+        
+        
+        [HttpGet]
+        [Route("Test/MergeDictionary/GetStatusByMessageId/{lineId}/{messageId}")]
+        public async Task<IActionResult> GetStatus(int lineId,int messageId)
+        {
+            await _switchingFactory.GetStatusByMessageId(lineId, messageId);
+            return Ok("done");
+        }
+        
+        
+        [HttpGet]
+        [Route("Test/MergeDictionary/GetReceiveMessage/{lineId}/{count}/{lineNumber}")]
+        public async Task<IActionResult> GetReceiveMessage(int lineId,int count,string lineNumber)
+        {
+            await _switchingFactory.GetReceiveMessages(lineId, count,lineNumber);
+            return Ok("done");
+        }
+        
+        
+        [HttpPost]
+        [Route("Test/MergeDictionary/SendMessage/{lineId}")]
+        public async Task<IActionResult> SendMessage(int lineId,[FromBody]List<SendMessageDto> message)
+        {
+            await _switchingFactory.SendMessages(lineId,message);
+            return Ok("done");
+        }
+        
+        
+        
+        [HttpGet]
+        [Route("Test/MergeDictionary/GetStatusByLocalMessageId/{lineId}/{localMessageId}")]
+        public async Task<IActionResult> GetStatusByLocalMessageId(int lineId,long localMessageId)
+        {
+            await _switchingFactory.GetStatusByLocalMessageId(lineId, localMessageId);
+            return Ok("done");
+        }
+        
+        
+        [HttpGet]
+        [Route("Test/MergeDictionary/GetMessageIdByUserId/{lineId}/{userId}")]
+        public async Task<IActionResult> GetMessageIdByUserId(int lineId,long userId)
+        {
+            await _switchingFactory.GetMessageIdByUserId(lineId, userId);
+            return Ok("done");
+        }
+        
+        
+        [HttpGet]
+        [Route("Test/MergeDictionary/GetMessageInfoByMessageId/{lineId}/{messageId}")]
+        public async Task<IActionResult> GetMessageInfoByMessageId(int lineId,long messageId)
+        {
+            await _switchingFactory.GetMessageInfoByMessageId(lineId, messageId);
+            return Ok("done");
+        }
+        
+        
+        [HttpGet]
+        [Route("Test/MergeDictionary/GetMessageList/{lineId}/{startDate}/{endDate}/{lineNumber}")]
+        public async Task<IActionResult> GetMessageList(int lineId,long startDate,long endDate, string lineNumber)
+        {
+            await _switchingFactory.GetMessageListSent(lineId, startDate,endDate,lineNumber);
+            return Ok("done");
+        }
+        
+        
+        
+        [HttpGet]
+        [Route("Test/MergeDictionary/GetMessageLatest/{lineId}/{count}/{lineNumber}")]
+        public async Task<IActionResult> GetMessageLatest(int lineId,long count, string lineNumber)
+        {
+            await _switchingFactory.GetLatestMessageByMessageCount(lineId, count,lineNumber);
+            return Ok("done");
+        }
     }
 }
