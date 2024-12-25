@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
-using SmsHub.Application.Exceptions;
+﻿using SmsHub.Application.Exceptions;
 using SmsHub.Application.Features.Sending.ServicesSample.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Providers.Kavenegar.Entities.Requests;

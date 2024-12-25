@@ -20,7 +20,7 @@ namespace SmsHub.Infrastructure.Providers.Magfa3000.Http.Implementations
 
         public async Task<MagfaResponse.SendDto> SendMessage(string domain, string username, string password, SendDto value)
         {
-           var  request = new HttpRequestMessage(HttpMethod.Post, new Literals().SendUri);
+           var  request = new HttpRequestMessage(HttpMethod.Post,  Literals.SendUri);
             request.AddBasicAuthentication($"{domain}/{username}", password);
             request.AddBody(value);
             //request.AddBody(new MagfaRequest.SendDto()
