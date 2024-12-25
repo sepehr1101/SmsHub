@@ -13,6 +13,7 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Contracts
         Task SelectMessage_(long  messageId);
         Task SelectOutbox_(long startDate, long endDate, string lineNumber);
         Task LatestOutbox_(long Count, string lineNumber);
+        Task CountInbox_(long startDate, long endDate, string lineNumber, bool IsRead);
     }
 
 

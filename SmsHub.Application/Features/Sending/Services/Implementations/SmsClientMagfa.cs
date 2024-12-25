@@ -60,7 +60,8 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var domain = _domain;
             var userName = _userName;
             var password = _password;
-            var result=await _magfaMidService.GetMid(domain, userName, password);
+            var uid = (long)1200000;
+            var result=await _magfaMidService.GetMid(domain, userName, password,uid);
         }
 
         public async Task SendMagfaTest()//give parameters in Body          post
@@ -89,7 +90,9 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var domain = _domain;
             var userName = _userName;
             var password = _password;
-            var result=await _magfaStatusCodesService.GetStatuses(domain, userName, password);
+            long uid = (long)150000;
+
+            var result=await _magfaStatusCodesService.GetStatuses(domain, userName, password, uid);
         }
     }
 }

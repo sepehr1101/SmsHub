@@ -18,7 +18,7 @@ namespace SmsHub.Infrastructure.Providers.Magfa3000.Http.Implementations
 
         public async Task<MagfaResponse.ReceivedMessagesDto> GetMessages(string domain, string username, string password)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, new Literals().MessagesUri);
+            var request = new HttpRequestMessage(HttpMethod.Get, Literals.MessagesUri);
             request.AddBasicAuthentication($"{domain}/{username}", password);
             var response = await _restClient.Create(request.RequestUri).Execute<MagfaResponse.ReceivedMessagesDto>(request);
             return response;

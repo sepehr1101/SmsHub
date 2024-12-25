@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Features.Line.Queries.Contracts;
-using Entities= SmsHub.Domain.Features.Entities;
+using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Constants;
 
 namespace SmsHub.Persistence.Features.Line.Queries.Implementations
 {
-    public class LineQueryService: ILineQueryService
+    public class LineQueryService : ILineQueryService
     {
         private readonly IUnitOfWork _uow;
         private readonly DbSet<Entities.Line> _lines;
@@ -25,7 +25,17 @@ namespace SmsHub.Persistence.Features.Line.Queries.Implementations
         }
         public async Task<Entities.Line> Get(int id)
         {
-            return await _uow.FindOrThrowAsync<Entities.Line>(id);    
+            return await
+                _uow
+                .FindOrThrowAsync<Entities.Line>(id);
+        }
+        public async Task<Entities.Line> GetIncludeProvider(int id)
+        {
+            return await _lines
+                    .Include(x => x.Provider)
+                    .Where(x => x.Id == id)
+                    .FirstOrDefaultAsync();
+
         }
     }
 }

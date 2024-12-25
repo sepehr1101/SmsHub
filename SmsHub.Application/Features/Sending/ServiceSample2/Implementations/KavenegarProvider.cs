@@ -1,12 +1,12 @@
-﻿using SmsHub.Application.Exceptions;
-using SmsHub.Application.Features.Sending.ServicesSample.Contracts;
+﻿using SmsHub.Application.Features.Sending.ServiceSample2.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Providers.Kavenegar.Entities.Requests;
 using SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts;
 
-namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
+namespace SmsHub.Application.Features.Sending.ServiceSample2.Implementations
 {
-    public class Kavenegar : IProviderFactory
+    public class KavenegarProvider : ISmsProvider
     {
         private static string _kaveApi = "S";
         private readonly IKavenegarHttpAccountService _accountService;
@@ -20,8 +20,8 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
         private readonly IKavenegarHttpLatestOutboxService _latestOutboxService;
         private readonly IKavenegarHttpCountInboxService _countInboxService;
 
-
-        public Kavenegar(IKavenegarHttpAccountService accountService
+        public KavenegarProvider(
+            IKavenegarHttpAccountService accountService
             , IKavenegarHttpStatusService statusService
             , IKavenegarHttpReceiveService receiveService
             , IKavenegarHttpSendArrayService sendArrayService
@@ -63,54 +63,40 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
             _countInboxService.NotNull(nameof(countInboxService));
         }
 
-        public async Task Account_Balance()
+
+        public async Task<long> GetCredit()
         {
             var apiKey = _kaveApi;
             var response = await _accountService.Trigger(apiKey);
+
+            return response.Entries.ExpireDate;
         }
 
-        public async Task Status_Statuses(int messageId)
+        public async Task GetState(long id)
         {
             var apiKey = _kaveApi;
-            StatusDto status = messageId;//1828205579
+            StatusDto status = id;//1828205579
             var result = await _statusService.Trigger(status, apiKey);
         }
 
-        public async Task Receive_Messages(int? count, string? lineNumber)
-        {
-            var apiKey = _kaveApi;
-            var receiveDto = new ReceiveDto(lineNumber, true);
-            var resultReceive = await _receiveService.Trigger(receiveDto, apiKey);
-        }
-
-        public async Task Send_Send(List<SendMessageDto> message)
-        {
-            var messageCount = message.Count;
-            if (messageCount == 1)
-                await SendSimple(message.FirstOrDefault());
-            else
-                await SendArray(message);
-
-        }
-
-        public async Task SendSimple(SendMessageDto message)
+        public async Task Send(string lineNumber, MobileText mobileText)
         {
             var apiKey = _kaveApi;
 
             var sendSimpleDto = new SimpleSendDto()
             {
-                Sender = message.Sender,
-                Receptor = message.Receptor,
-                Message = message.Message,
-                LocalId = message.localMessageId,
-                Date = message.Date
+                Sender = lineNumber,
+                Message = mobileText.Text,
+                Receptor = mobileText.Mobile,
+                LocalId = mobileText.LocalId,
+                Date = TimeExtension.DateTimeToUnixTime(DateTime.Now),
+                //todo : what is Hide and Type
             };
 
             var response = await _sendSimpleService.Trigger(sendSimpleDto, apiKey);
-
         }
 
-        public async Task SendArray(List<SendMessageDto> messages)
+        public async Task Send(string lineNumber, ICollection<MobileText> mobileTexts)
         {
             var apiKey = _kaveApi;
 
@@ -123,20 +109,29 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
                 LocalMessageIds = new List<long>()
             };
 
-            foreach (var item in messages)
+            foreach (var item in mobileTexts)
             {
-                sendArrayDto.Sender.Add(item.Sender);
-                sendArrayDto.Receptor.Add(item.Receptor);
-                sendArrayDto.Message.Add(item.Message);
-                sendArrayDto.LocalMessageIds.Add((long)item.localMessageId);
-                sendArrayDto.Date = item.Date;
+                sendArrayDto.Sender.Add(lineNumber);
+                sendArrayDto.Receptor.Add(item.Mobile);
+                sendArrayDto.Message.Add(item.Text);
+                sendArrayDto.LocalMessageIds.Add(item.LocalId);
+                sendArrayDto.Date = TimeExtension.DateTimeToUnixTime(DateTime.Now);
+                //todo: other prop
             }
 
             var result = await _sendArrayService.Trigger(sendArrayDto, apiKey);
         }
 
 
-        public async Task StatusByLocalMessageId_(long localMessageId)
+        private async Task Receive(int? count, string? lineNumber)
+        {
+            var apiKey = _kaveApi;
+            var receiveDto = new ReceiveDto(lineNumber, true);
+            var resultReceive = await _receiveService.Trigger(receiveDto, apiKey);
+        }
+
+
+        private async Task StatusByLocalMessageId(long localMessageId)
         {
             var apiKey = _kaveApi;
 
@@ -145,24 +140,14 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
         }
 
 
-        public async Task _Mid(long userId)
-        {
-            throw new InvalidProviderHandleException();
-        }
-
-
-        public async Task SelectMessage_(long messageId)//error 407 -> change local Ip
+        private async Task SelectMessage(long messageId)//error 407 -> change local Ip
         {
             var apiKey = _kaveApi;
             SelectDto selectDto = messageId;
             var result = await _selectService.Trigger(selectDto, apiKey);
-
-
-            DateTime dateTime = DateTimeOffset.FromUnixTimeSeconds(190220112).DateTime;
         }
 
-
-        public async Task SelectOutbox_(long startDate, long endDate, string lineNumber)//error 407 -> change local Ip
+        private async Task SelectOutbox(long startDate, long endDate, string lineNumber)//error 407 -> change local Ip
         {
             var apiKey = _kaveApi;
             var selectOutboxDto = new SelectOutboxDto()
@@ -175,7 +160,8 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
 
         }
 
-        public async Task LatestOutbox_(long Count, string lineNumber)//error 407 -> change local Ip
+
+        private async Task LatestOutbox(long Count, string lineNumber)//error 407 -> change local Ip
         {
             var apiKey = _kaveApi;
             var latestOutboxDto = new LatestOutboxDto()
@@ -187,7 +173,7 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
 
         }
 
-        public async Task CountInbox_(long startDate, long endDate, string lineNumber, bool IsRead)
+        private async Task CountInbox(long startDate, long endDate, string lineNumber, bool IsRead)
         {
             var apiKey = _kaveApi;
             var response = await _accountService.Trigger(apiKey);

@@ -6,5 +6,6 @@ namespace SmsHub.Persistence.Features.Line.Queries.Contracts
     {
         Task<ICollection<Entities.Line>> Get();
         Task<Entities.Line> Get(int id);
+        Task<Entities.Line> GetIncludeProvider(int id);
     }
 }
