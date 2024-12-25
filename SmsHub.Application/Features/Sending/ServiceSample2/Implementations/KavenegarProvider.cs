@@ -1,12 +1,185 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SmsHub.Application.Features.Sending.ServiceSample2.Contracts;
+using SmsHub.Common.Extensions;
+using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
+using SmsHub.Domain.Providers.Kavenegar.Entities.Requests;
+using SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts;
 
 namespace SmsHub.Application.Features.Sending.ServiceSample2.Implementations
 {
-    internal class KavenegarProvider
+    public class KavenegarProvider : ISmsProvider
     {
+        private static string _kaveApi = "S";
+        private readonly IKavenegarHttpAccountService _accountService;
+        private readonly IKavenegarHttpStatusService _statusService;
+        private readonly IKavenegarHttpReceiveService _receiveService;
+        private readonly IKavenegarHttpSendSimpleService _sendSimpleService;
+        private readonly IKavenegarHttpSendArrayService _sendArrayService;
+        private readonly IKavenegarHttpStatusByMessageIdService _statusByMessageIdService;
+        private readonly IKavenegarHttpSelectService _selectService;
+        private readonly IKavenegarHttpSelectOutboxService _selectOutboxService;
+        private readonly IKavenegarHttpLatestOutboxService _latestOutboxService;
+        private readonly IKavenegarHttpCountInboxService _countInboxService;
+
+        public KavenegarProvider(IKavenegarHttpAccountService accountService
+            , IKavenegarHttpStatusService statusService
+            , IKavenegarHttpReceiveService receiveService
+            , IKavenegarHttpSendArrayService sendArrayService
+            , IKavenegarHttpSendSimpleService sendSimpleService
+            , IKavenegarHttpStatusByMessageIdService statusByMessageIdService
+            , IKavenegarHttpSelectService selectService
+            , IKavenegarHttpSelectOutboxService selectOutboxService
+            , IKavenegarHttpLatestOutboxService latestOutboxService
+            , IKavenegarHttpCountInboxService countInboxService)
+        {
+            _accountService = accountService;
+            _accountService.NotNull(nameof(accountService));
+
+            _statusService = statusService;
+            _statusService.NotNull(nameof(statusService));
+
+            _receiveService = receiveService;
+            _receiveService.NotNull(nameof(receiveService));
+
+            _sendArrayService = sendArrayService;
+            _sendArrayService.NotNull(nameof(sendArrayService));
+
+            _sendSimpleService = sendSimpleService;
+            _sendSimpleService.NotNull(nameof(sendSimpleService));
+
+            _statusByMessageIdService = statusByMessageIdService;
+            _statusByMessageIdService.NotNull(nameof(statusByMessageIdService));
+
+            _selectService = selectService;
+            _selectService.NotNull(nameof(selectService));
+
+            _selectOutboxService = selectOutboxService;
+            _selectOutboxService.NotNull(nameof(selectOutboxService));
+
+            _latestOutboxService = latestOutboxService;
+            _latestOutboxService.NotNull(nameof(latestOutboxService));
+
+            _countInboxService = countInboxService;
+            _countInboxService.NotNull(nameof(countInboxService));
+        }
+
+
+        public async Task<long> GetCredit()
+        {
+            var apiKey = _kaveApi;
+            var response = await _accountService.Trigger(apiKey);
+
+            return response.Entries.ExpireDate;
+        }
+
+        public async Task GetState(long id)
+        {
+            var apiKey = _kaveApi;
+            StatusDto status = id;//1828205579
+            var result = await _statusService.Trigger(status, apiKey);
+        }
+
+        public async Task Send(string lineNumber, MobileText mobileText)
+        {
+            var apiKey = _kaveApi;
+
+            var sendSimpleDto = new SimpleSendDto()
+            {
+                Sender = lineNumber,
+                Message = mobileText.Text,
+                Receptor = mobileText.Mobile,
+                LocalId = mobileText.LocalId,
+                Date = TimeExtension.DateTimeToUnixTime(DateTime.Now),
+                //todo : what is Hide and Type
+            };
+
+            var response = await _sendSimpleService.Trigger(sendSimpleDto, apiKey);
+        }
+
+        public async Task Send(string lineNumber, ICollection<MobileText> mobileTexts)
+        {
+            var apiKey = _kaveApi;
+
+            ArraySendDto sendArrayDto = new ArraySendDto
+            {
+                Sender = new List<string>(),
+                Receptor = new List<string>(),
+                Message = new List<string>(),
+                Type = new List<int>(),
+                LocalMessageIds = new List<long>()
+            };
+
+            foreach (var item in mobileTexts)
+            {
+                sendArrayDto.Sender.Add(lineNumber);
+                sendArrayDto.Receptor.Add(item.Mobile);
+                sendArrayDto.Message.Add(item.Text);
+                sendArrayDto.LocalMessageIds.Add(item.LocalId);
+                sendArrayDto.Date = TimeExtension.DateTimeToUnixTime(DateTime.Now);
+                //todo: other prop
+            }
+
+            var result = await _sendArrayService.Trigger(sendArrayDto, apiKey);
+        }
+
+
+        private async Task Receive(int? count, string? lineNumber)
+        {
+            var apiKey = _kaveApi;
+            var receiveDto = new ReceiveDto(lineNumber, true);
+            var resultReceive = await _receiveService.Trigger(receiveDto, apiKey);
+        }
+
+
+        private async Task StatusByLocalMessageId(long localMessageId)
+        {
+            var apiKey = _kaveApi;
+
+            StatusByMessageIdDto statusByMessageId = localMessageId;
+            var result = await _statusByMessageIdService.Trigger(statusByMessageId, apiKey);
+        }
+
+
+        private async Task SelectMessage(long messageId)//error 407 -> change local Ip
+        {
+            var apiKey = _kaveApi;
+            SelectDto selectDto = messageId;
+            var result = await _selectService.Trigger(selectDto, apiKey);
+
+
+            DateTime dateTime = DateTimeOffset.FromUnixTimeSeconds(190220112).DateTime;
+        }
+
+        private async Task SelectOutbox(long startDate, long endDate, string lineNumber)//error 407 -> change local Ip
+        {
+            var apiKey = _kaveApi;
+            var selectOutboxDto = new SelectOutboxDto()
+            {
+                StartDate = startDate,
+                EndDate = endDate,
+                Sender = lineNumber
+            };
+            var result = await _selectOutboxService.Trigger(selectOutboxDto, apiKey);
+
+        }
+
+
+        private async Task LatestOutbox(long Count, string lineNumber)//error 407 -> change local Ip
+        {
+            var apiKey = _kaveApi;
+            var latestOutboxDto = new LatestOutboxDto()
+            {
+                PageSize = Count,
+                Sender = lineNumber
+            };
+            var result = await _latestOutboxService.Trigger(latestOutboxDto, apiKey);
+
+        }
+
+        private async Task CountInbox(long startDate, long endDate, string lineNumber, bool IsRead)
+        {
+            var apiKey = _kaveApi;
+            var response = await _accountService.Trigger(apiKey);
+        }
+
     }
 }
