@@ -8,53 +8,56 @@ using SmsHub.Application.Features.Sending.Handlers.Commands.Create.Contracts;
 using SmsHub.Application.Features.Sending.Services;
 using SmsHub.Application.Features.Template.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
-using SmsHub.Domain.BaseDomainEntities.Id;
-using SmsHub.Domain.Constants;
-using SmsHub.Domain.Features.Entities;
-using SmsHub.Domain.Features.Line.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
-using SmsHub.Domain.Features.Template.MediatorDtos.Queries;
 using SmsHub.Persistence.Features.Sending.Commands.Contracts;
-using System.Collections.Immutable;
+using SmsHub.Persistence.Features.Template.Queries.Contracts;
+using Entities = SmsHub.Domain.Features.Entities;
+using SmsHub.Persistence.Features.Line.Queries.Contracts;
 
 namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implementations
 {
     public class SendManagerCreateHandler : ISendManagerCreateHandler
     {
         private readonly IHttpContextAccessor _contextAccessor;
-        private readonly ITemplateGetSingleHandler _templateGetSingleHandler;
-        private readonly ILineGetSingleHandler _lineGetSingleHandler;
         private readonly IMessageBatchCommandService _messageBatchCommandService;
-        private readonly IProviderGetSingleHandler _providerGetSingleHandler;
-        private readonly string _Mobile = "Mobile";
+        private readonly ITemplateQueryService _templateQueryService;
+        private readonly ILineQueryService _lineQueryService;
+        private readonly IProviderQueryService _providerQueryService;
+
+
+        private readonly string _Mobile = "mobile";
         public SendManagerCreateHandler(IHttpContextAccessor contextAccessor
             ,ITemplateGetSingleHandler templateGetSingleHandler
             , ILineGetSingleHandler lineGetSingleHandler
             ,IMessageBatchCommandService messageBatchCommandService
             , IProviderGetSingleHandler providerGetSingleHandler
+            , ITemplateQueryService templateQueryService
+            ,ILineQueryService lineQueryService
+            , IProviderQueryService providerQueryService
 )
         {
             _contextAccessor = contextAccessor;
             _contextAccessor.NotNull(nameof(contextAccessor));
 
-            _templateGetSingleHandler = templateGetSingleHandler;
-            _templateGetSingleHandler.NotNull(nameof(templateGetSingleHandler));
-
-            _lineGetSingleHandler = lineGetSingleHandler;
-            _lineGetSingleHandler.NotNull(nameof(lineGetSingleHandler));
-
             _messageBatchCommandService = messageBatchCommandService;
             _messageBatchCommandService.NotNull(nameof(messageBatchCommandService));
 
-            _providerGetSingleHandler = providerGetSingleHandler;
-            _providerGetSingleHandler.NotNull( nameof(providerGetSingleHandler));
+            _templateQueryService = templateQueryService;
+            _templateQueryService.NotNull(nameof(templateQueryService));
+
+            _lineQueryService = lineQueryService;
+            _lineQueryService.NotNull(nameof(lineQueryService));
+
+            _providerQueryService = providerQueryService;
+            _providerQueryService.NotNull(nameof(providerQueryService));
         }
+
 
         public async Task<ICollection<MobileText>> Handle(int templateId, int lineId, CancellationToken cancellationToken)
         {
             var templateValue = await GetTemplateProperty(templateId);
             var line = await GetLine(lineId);
-            var batchSize = await GetBatchSize(line.ProviderId);
+            var batchSize = line.Provider.BatchSize;
             var requestBodyValue = await GetRequestBodyValue();
 
             requestBodyValue.ToList().ForEach(r => ValidationData(templateValue, r));
@@ -124,14 +127,13 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
 
         private string FindMobileUser(Dictionary<string, string> requestBody)
         {
-            var mobileData = requestBody.Where(x => x.Key == _Mobile).FirstOrDefault().Value;
+            var mobileData = requestBody.Where(x => x.Key.ToLower() == _Mobile).FirstOrDefault().Value;
             return mobileData;
         }
 
-        private async Task<GetTemplateDto> GetTemplateById(int templateId)
+        private async Task<Entities.Template> GetTemplateById(int templateId)
         {
-            IntId id = templateId;
-            var template = await _templateGetSingleHandler.Handle(id);
+            var template = await _templateQueryService.Get(templateId);
 
             return template;
         }
@@ -146,22 +148,13 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
             return templateValue;
         }
 
-        private async Task<GetLineDto> GetLine(int lineId)
+        private async Task<Entities.Line> GetLine(int lineId)
         {
-            var line = await _lineGetSingleHandler.Handle(lineId);
+            var line = await _lineQueryService.GetIncludeProvider(lineId);
             if (line == null)
                 throw new InvalidLineException();
 
             return line;
-        }
-
-        private async Task<int> GetBatchSize(ProviderEnum providerId)
-        {
-            var provider = await _providerGetSingleHandler.Handle(providerId);
-            if (provider == null)
-                throw new InvalidProviderException();
-
-            return provider.BatchSize;
         }
 
         private async Task<ICollection<Dictionary<string, string>>> GetRequestBodyValue()

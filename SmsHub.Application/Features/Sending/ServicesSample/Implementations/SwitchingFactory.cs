@@ -101,6 +101,19 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
                 await provider.CountInbox_(startDate, endDate, lineNumber, IsRead);
             else
                 throw new InvalidOperationException();
+
+            //
+            var pro=CheckProviderEnum(lineId);
+            await pro.CountInbox_(startDate,endDate, lineNumber, IsRead);
+        }
+
+
+        public IProviderFactory CheckProviderEnum(ProviderEnum lineId)
+        {
+            if (_providers.TryGetValue(lineId, out var provider))
+                return provider;
+
+            throw new InvalidProviderException();
         }
 
     }
