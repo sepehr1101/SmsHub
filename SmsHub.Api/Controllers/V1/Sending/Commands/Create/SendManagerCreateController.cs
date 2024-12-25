@@ -316,5 +316,15 @@ public SendManagerCreateController(
             await _switchingFactory.GetLatestMessageByMessageCount(lineId, count,lineNumber);
             return Ok("done");
         }
+        
+        
+        
+        [HttpGet]
+        [Route("Test/MergeDictionary/GetMessageCountInbox/{lineId}/{startDate}/{endDate}/{lineNumber}/{isRead}")]
+        public async Task<IActionResult> GetMessageCountInbox(int lineId, long startDate, long endDate, string lineNumber,bool isRead)
+        {
+            await _switchingFactory.GetMessageCountInbox(lineId,startDate,endDate,lineNumber,isRead);
+            return Ok("done");
+        }
     }
 }
