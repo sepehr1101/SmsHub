@@ -5,7 +5,7 @@ using SmsHub.Domain.Constants;
 
 namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
 {
-    public class SwitchingFactory : ISwitchingFactory
+    public class SwitchingFactory //: ISwitchingFactory
     {
         private readonly Dictionary<ProviderEnum, IProviderFactory> _providers;
         private readonly ProviderEnum _providerId;
