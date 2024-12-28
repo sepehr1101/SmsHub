@@ -39,7 +39,7 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
             , IProviderQueryService providerQueryService,
             ISmsProviderFactory smsProviderFactory,
             ISmsProvider smsProvider
-)
+            )
         {
             _contextAccessor = contextAccessor;
             _contextAccessor.NotNull(nameof(contextAccessor));
