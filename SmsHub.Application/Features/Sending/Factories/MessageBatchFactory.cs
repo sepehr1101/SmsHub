@@ -2,11 +2,11 @@
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using System.Text;
 
-namespace SmsHub.Application.Features.Sending.Services
+namespace SmsHub.Application.Features.Sending.Factories
 {
     public static class MessageBatchFactory
     {
-        public static MessageBatch Create(ICollection<MobileText> mobileTexts, int lineId,int batchSize ,object metadata)
+        public static MessageBatch Create(ICollection<MobileText> mobileTexts, int lineId, int batchSize, object metadata)
         {
             var messageDetails = mobileTexts.Select(GetMessageDetail);
 
@@ -14,16 +14,16 @@ namespace SmsHub.Application.Features.Sending.Services
                       .Select((x, i) => new { Index = i, Value = x })
                       .GroupBy(x => x.Index / batchSize)
                       .Select(g => g.Select(x => x.Value));
-            
+
             var messageHolders = messageDetailsSegmentation.Select(GetMessageHolder);
 
             MessageBatch messageBatch = new MessageBatch()
             {
-                InsertDateTime= DateTime.Now,
-                AllSize=mobileTexts.Count,
-                HolderSize=messageHolders.Count(),
-                LineId=lineId,
-                MessagesHolders=messageHolders.ToList()
+                InsertDateTime = DateTime.Now,
+                AllSize = mobileTexts.Count,
+                HolderSize = messageHolders.Count(),
+                LineId = lineId,
+                MessagesHolders = messageHolders.ToList()
             };
             return messageBatch;
         }
@@ -54,6 +54,6 @@ namespace SmsHub.Application.Features.Sending.Services
             var count = Convert.ToInt16(Encoding.UTF8.GetByteCount(text));
             return count;
         }
-        
+
     }
 }

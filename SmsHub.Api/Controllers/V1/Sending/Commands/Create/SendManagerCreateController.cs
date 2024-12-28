@@ -30,8 +30,8 @@ public SendManagerCreateController(
             IUnitOfWork uow,
             ISendManagerCreateHandler sendManagerCreateHandler,
             ISmsClientKevenegar smsClientKavenagar,
-            ISmsClientMagfa smsClientMagfa,
-            ISwitchingFactory switchingFactory)
+            ISmsClientMagfa smsClientMagfa
+            /*ISwitchingFactory switchingFactory*/)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));
@@ -47,9 +47,6 @@ public SendManagerCreateController(
 
             _smsClientMagfa = smsClientMagfa;
             _smsClientMagfa.NotNull(nameof(smsClientMagfa));
-
-            _switchingFactory = switchingFactory;
-            _switchingFactory.NotNull(nameof(switchingFactory));
         }
 
         [HttpPost]
@@ -324,5 +321,9 @@ public SendManagerCreateController(
             await _switchingFactory.GetMessageCountInbox(lineId,startDate,endDate,lineNumber,isRead);
             return Ok("done");
         }
+
+        //[HttpPost]
+        //[Route("Simple")]
+        //public async Task<IActionResult> SendSimple()
     }
 }
