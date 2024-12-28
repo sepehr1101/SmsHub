@@ -1,6 +1,5 @@
 ﻿using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.BaseDomainEntities.Id;
-using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Line.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
@@ -39,6 +38,7 @@ namespace SmsHub.IntegrationTests.Api
                 LineId = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id
 
             };
+
             //Act
             await PostAsync<CreateMessageBatchDto, CreateMessageBatchDto>("/MessageBatch/Create", messageBatch);
 
@@ -147,6 +147,7 @@ namespace SmsHub.IntegrationTests.Api
             var messageBatchData = await PostAsync<GetMessageBatchDto, ApiResponseEnvelope<ICollection<GetMessageBatchDto>>>("/MessageBatch/GetList", null);
 
             IntId messageBatchId = messageBatchData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
+            
             //Act
             var singleMessageBatch = await PostAsync<IntId, ApiResponseEnvelope<GetMessageBatchDto>>("/MessageBatch/GetSingle", messageBatchId);
 

@@ -18,7 +18,8 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
         private readonly IMagfa300HttpSendService _magfaSendService;
         private readonly IMagfa300HttpMidService _magfaMidService;
 
-        public Magfa(IMagfa300HttpBalanceService magfaBalanceService,
+        public Magfa(
+            IMagfa300HttpBalanceService magfaBalanceService,
             IMagfa300HttpStatusesService magfaStatusCodesService,
             IMagfa300HttpMessagesService magfaMessagesService,
             IMagfa300HttpSendService magfaSendService,
@@ -39,7 +40,7 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
             _magfaMidService = magfaMidService;
             _magfaMidService.NotNull(nameof(magfaMidService));
         }
-        public async Task Account_Balance()//Error
+        public async Task Account_Balance()//todo: debug Error
         {
             var domain = _domain;
             var userName = _userName;

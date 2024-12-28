@@ -10,7 +10,9 @@ namespace SmsHub.Application.Features.Security.Handlers.Queries.Implementations
     {
         private readonly IMapper _mapper;
         private readonly IServerUserQueryService _serverUserQueryService;
-        public ServerUserGetAllHandler(IMapper mapper, IServerUserQueryService serverUserQueryService)
+        public ServerUserGetAllHandler(
+            IMapper mapper, 
+            IServerUserQueryService serverUserQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

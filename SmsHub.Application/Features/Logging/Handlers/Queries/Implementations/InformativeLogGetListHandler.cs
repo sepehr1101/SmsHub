@@ -10,7 +10,9 @@ namespace SmsHub.Application.Features.Logging.Handlers.Queries.Implementations
     {
         private readonly IMapper _mapper;
         private readonly IInformativeLogQueryService _informativeLogQueryService;
-        public InformativeLogGetListHandler(IMapper mapper, IInformativeLogQueryService informativeLogQueryService)
+        public InformativeLogGetListHandler(
+            IMapper mapper,
+            IInformativeLogQueryService informativeLogQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

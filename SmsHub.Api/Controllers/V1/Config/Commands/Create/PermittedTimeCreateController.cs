@@ -14,7 +14,9 @@ namespace SmsHub.Api.Controllers.V1.Config.Commands.Create
     {
         private readonly IUnitOfWork _uow;
         private readonly IPermittedTimeCreateHandler _createCommandHandler;
-        public PermittedTimeCreateController(IUnitOfWork uow, IPermittedTimeCreateHandler createCommandHandler)
+        public PermittedTimeCreateController(
+            IUnitOfWork uow,
+            IPermittedTimeCreateHandler createCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

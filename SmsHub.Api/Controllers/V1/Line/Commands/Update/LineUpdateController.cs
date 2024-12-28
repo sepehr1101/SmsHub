@@ -13,7 +13,9 @@ namespace SmsHub.Api.Controllers.V1.Line.Commands.Update
     {
         private readonly IUnitOfWork _uow;
         private readonly ILineUpdateHandler _updateCommandHandler;
-        public LineUpdateController(IUnitOfWork uow, ILineUpdateHandler updateCommandHandler)
+        public LineUpdateController(
+            IUnitOfWork uow, 
+            ILineUpdateHandler updateCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

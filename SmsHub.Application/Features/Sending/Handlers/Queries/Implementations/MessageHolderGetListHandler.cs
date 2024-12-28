@@ -10,7 +10,9 @@ namespace SmsHub.Application.Features.Sending.Handlers.Queries.Implementations
     {
         private readonly IMapper _mapper;
         private readonly IMessagesHolderQueryService _messagesHolderQueryService;
-        public MessageHolderGetListHandler(IMapper mapper   ,IMessagesHolderQueryService messagesHolderQueryService)
+        public MessageHolderGetListHandler(
+            IMapper mapper ,
+            IMessagesHolderQueryService messagesHolderQueryService)
         {
             _mapper=mapper;
            _mapper.NotNull(nameof(mapper));

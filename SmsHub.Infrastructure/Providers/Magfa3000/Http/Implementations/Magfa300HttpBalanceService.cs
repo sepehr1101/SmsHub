@@ -4,6 +4,7 @@ using SmsHub.Domain.Providers.Magfa3000.Entities.Responses;
 using SmsHub.Infrastructure.BaseHttp.Authenticators;
 using SmsHub.Infrastructure.BaseHttp.Client.Contracts;
 using SmsHub.Infrastructure.Providers.Magfa3000.Http.Contracts;
+
 namespace SmsHub.Infrastructure.Providers.Magfa3000.Http.Implementations
 {
     public class Magfa300HttpBalanceService : IMagfa300HttpBalanceService

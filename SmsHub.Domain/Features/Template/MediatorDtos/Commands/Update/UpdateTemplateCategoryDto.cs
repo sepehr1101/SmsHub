@@ -1,5 +1,4 @@
-﻿using MediatR;
-
+﻿
 namespace SmsHub.Domain.Features.Template.MediatorDtos.Commands
 {
     public record UpdateTemplateCategoryDto  

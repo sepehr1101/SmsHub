@@ -6,11 +6,13 @@ using SmsHub.Persistence.Features.Config.Queries.Contracts;
 
 namespace SmsHub.Application.Features.Config.Handlers.Queries.Implementations
 {
-    public class ConfigGetListHandler: IConfigGetListHandler
+    public class ConfigGetListHandler : IConfigGetListHandler
     {
         private readonly IMapper _mapper;
         private readonly IConfigQueryService _configQueryService;
-        public ConfigGetListHandler(IMapper mapper, IConfigQueryService configQueryService)
+        public ConfigGetListHandler(
+            IConfigQueryService configQueryService,
+            IMapper mapper)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
@@ -20,7 +22,7 @@ namespace SmsHub.Application.Features.Config.Handlers.Queries.Implementations
         }
         public async Task<ICollection<GetConfigDto>> Handle()
         {
-          var configs=  await _configQueryService.Get();
+            var configs = await _configQueryService.Get();
             return _mapper.Map<ICollection<GetConfigDto>>(configs);
         }
     }

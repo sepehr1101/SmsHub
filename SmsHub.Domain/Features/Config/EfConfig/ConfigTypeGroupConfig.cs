@@ -11,10 +11,10 @@ namespace SmsHub.Domain.Features.EfConfig
             entity.Property(e => e.Title).HasMaxLength(255);
 
             entity.HasOne(d => d.ConfigType)
-                .WithMany(p => p.ConfigTypeGroups)
-                .HasForeignKey(d => d.ConfigTypeId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_ConfigType_REFERS_ConfigTypeGroup_Id");
+                  .WithMany(p => p.ConfigTypeGroups)
+                  .HasForeignKey(d => d.ConfigTypeId)
+                  .OnDelete(DeleteBehavior.ClientSetNull)
+                  .HasConstraintName("FK_ConfigType_REFERS_ConfigTypeGroup_Id");
         }
     }
 }

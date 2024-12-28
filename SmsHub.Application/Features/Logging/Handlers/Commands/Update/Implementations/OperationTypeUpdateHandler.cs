@@ -12,7 +12,10 @@ namespace SmsHub.Application.Features.Logging.Handlers.Commands.Update.Implement
         private readonly IMapper _mapper;
         private readonly IOperationTypeQueryService _operationTypeQueryService;
         private readonly IValidator<UpdateOperationTypeDto> _validator;
-        public OperationTypeUpdateHandler(IMapper mapper, IOperationTypeQueryService operationTypeQueryService, IValidator<UpdateOperationTypeDto> validator)
+        public OperationTypeUpdateHandler(
+            IMapper mapper, 
+            IOperationTypeQueryService operationTypeQueryService, 
+            IValidator<UpdateOperationTypeDto> validator)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

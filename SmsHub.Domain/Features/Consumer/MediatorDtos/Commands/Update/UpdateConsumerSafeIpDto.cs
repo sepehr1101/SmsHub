@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace SmsHub.Domain.Features.Consumer.MediatorDtos.Commands
+﻿namespace SmsHub.Domain.Features.Consumer.MediatorDtos.Commands
 {
     public record UpdateConsumerSafeIpDto  
     {

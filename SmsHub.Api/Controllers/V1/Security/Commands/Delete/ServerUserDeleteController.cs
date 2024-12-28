@@ -14,7 +14,9 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Delete
     {
         private readonly IUnitOfWork _uow;
         private readonly IServerUserDeleteHandler _deleteHandler;
-        public ServerUserDeleteController(IUnitOfWork uow, IServerUserDeleteHandler deleteHandler)
+        public ServerUserDeleteController(
+            IUnitOfWork uow, 
+            IServerUserDeleteHandler deleteHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

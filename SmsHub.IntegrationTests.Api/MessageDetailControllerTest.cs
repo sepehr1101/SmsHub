@@ -1,5 +1,4 @@
-﻿using Microsoft.Identity.Client.Platforms.Features.DesktopOs.Kerberos;
-using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+﻿using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Line.MediatorDtos.Queries;
@@ -244,6 +243,8 @@ namespace SmsHub.IntegrationTests.Api
             var messageDetailData = await PostAsync<GetMessageDetailDto, ApiResponseEnvelope<ICollection<GetMessageDetailDto>>>("/MessagesDetail/GetList", null);
 
             LongId messageDetailId = messageDetailData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
+
+            //Act
             await PostAsync<CreateMessageDetailDto, CreateMessageDetailDto>("/MessagesDetail/Create", messageDetail);
             var singleMessageDetail = await PostAsync<LongId, ApiResponseEnvelope<GetMessageDetailDto>>("/MessagesDetail/GetSingle", messageDetailId);
 

@@ -12,7 +12,10 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Update.Implementa
         private readonly IMapper _mapper;
         private readonly IDisallowedPhraseQueryService _disallowedPhraseQueryService;
         private readonly IValidator<UpdateDisallowedPhraseDto> _validator;
-        public DisallowedPhraseUpdateHandler(IMapper mapper, IDisallowedPhraseQueryService disallowedPhraseQueryService, IValidator<UpdateDisallowedPhraseDto> validtor)
+        public DisallowedPhraseUpdateHandler(
+            IMapper mapper, 
+            IDisallowedPhraseQueryService disallowedPhraseQueryService, 
+            IValidator<UpdateDisallowedPhraseDto> validtor)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

@@ -13,7 +13,9 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Update
     {
         private readonly IUnitOfWork _uow;
         private readonly IServerUserApiKeyRenewalHandler _updateApiKeyHandler;
-        public ServerUserUpdateController(IUnitOfWork uow, IServerUserApiKeyRenewalHandler updateApiKeyHandler)
+        public ServerUserUpdateController(
+            IUnitOfWork uow, 
+            IServerUserApiKeyRenewalHandler updateApiKeyHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

@@ -14,7 +14,9 @@ namespace SmsHub.Api.Controllers.V1.Contact.Commands.Delete
     {
         private readonly IUnitOfWork _uow;
         private readonly IContactNumberCategoryDeleteHandler _deleteCommandHandler;
-        public ContactNumberCategoryDeleteController(IUnitOfWork uow, IContactNumberCategoryDeleteHandler deleteCommandHandler)
+        public ContactNumberCategoryDeleteController(
+            IUnitOfWork uow, 
+            IContactNumberCategoryDeleteHandler deleteCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

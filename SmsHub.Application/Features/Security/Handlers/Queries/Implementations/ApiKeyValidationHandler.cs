@@ -2,7 +2,6 @@
 using SmsHub.Common.Extensions;
 using SmsHub.Persistence.Features.Security.Queries.Contracts;
 using SmsHub.Application.Features.Security.Handlers.Queries.Contracts;
-using SmsHub.Domain.BaseDomainEntities.Id;
 
 namespace SmsHub.Application.Features.Security.Handlers.Queries.Implementations
 {

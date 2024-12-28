@@ -1,5 +1,4 @@
-﻿using SmsHub.Domain.Constants;
-using SmsHub.Domain.Features.Entities;
+﻿using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Persistence.Features.Consumer.Queries.Contracts
 {

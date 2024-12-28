@@ -9,7 +9,7 @@ namespace SmsHub.Domain.Features.Contact.EfConfig
         public void Configure(EntityTypeBuilder<ContactNumberCategory> entity)
         {
             entity.HasIndex(e => e.Title, "IX_Unique_ContactNumberCategory_Title")
-                   .IsUnique();
+                  .IsUnique();
 
             entity.Property(e => e.Css).HasMaxLength(1023);
 

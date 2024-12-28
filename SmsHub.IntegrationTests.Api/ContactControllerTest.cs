@@ -23,8 +23,10 @@ namespace SmsHub.IntegrationTests.Api
             {
                 Title = "Create Test Sample title"
             };
+            
             //Act
             await PostAsync<CreateContactDto, CreateContactDto>("/Contact/Create", contact);
+            
             //Assert
             Assert.True(true);
         }

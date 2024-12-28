@@ -13,7 +13,9 @@ namespace SmsHub.Api.Controllers.V1.Template.Commands.Create
     {
         private readonly IUnitOfWork _uow;
         private readonly ITemplateCreateHandler _createCommandHandler;
-        public TemplateCreateController(IUnitOfWork uow, ITemplateCreateHandler createCommandHandler)
+        public TemplateCreateController(
+            IUnitOfWork uow,
+            ITemplateCreateHandler createCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

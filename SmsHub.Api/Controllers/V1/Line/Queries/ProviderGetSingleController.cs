@@ -20,7 +20,7 @@ namespace SmsHub.Api.Controllers.V1.Line.Queries
 
         [HttpPost]
         [Route(nameof(GetSingle))]
-        public async Task<IActionResult> GetSingle([FromBody] ProviderEnum Id)//////todo :type of Id???
+        public async Task<IActionResult> GetSingle([FromBody] ProviderEnum Id)
         {
             var provider = await _getSingleHandler.Handle(Id);
             return Ok(provider);

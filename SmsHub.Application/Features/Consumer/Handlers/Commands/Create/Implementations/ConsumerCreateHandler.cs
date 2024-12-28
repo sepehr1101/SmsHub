@@ -1,5 +1,4 @@
-﻿using MediatR;
-using Entities = SmsHub.Domain.Features.Entities;
+﻿using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Features.Consumer.Commands.Contracts;
 using AutoMapper;
 using SmsHub.Common.Extensions;
@@ -9,12 +8,15 @@ using FluentValidation;
 
 namespace SmsHub.Application.Features.Consumer.Handlers.Commands.Create.Implementations
 {
-    public class ConsumerCreateHandler : /*IRequestHandler<CreateConsumerDto>,*/ IConsumerCreateHandler
+    public class ConsumerCreateHandler :  IConsumerCreateHandler
     {
         private readonly IConsumerCommandService _consumerCommandService;
         private readonly IMapper _mapper;
         private readonly IValidator<CreateConsumerDto> _validator;
-        public ConsumerCreateHandler(IConsumerCommandService consumerCommandService, IMapper mapper, IValidator<CreateConsumerDto> validator)
+        public ConsumerCreateHandler(
+            IMapper mapper,
+            IConsumerCommandService consumerCommandService,
+            IValidator<CreateConsumerDto> validator)
         {
             _consumerCommandService = consumerCommandService;
             _consumerCommandService.NotNull(nameof(_consumerCommandService));

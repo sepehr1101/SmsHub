@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace SmsHub.Domain.Features.Contact.MediatorDtos.Queries
+﻿namespace SmsHub.Domain.Features.Contact.MediatorDtos.Queries
 {
     public record GetContactNumberDto 
     {

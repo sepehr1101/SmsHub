@@ -1,5 +1,4 @@
-﻿using Azure.Core;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using SmsHub.Application.Common.Base;
 using SmsHub.Application.Exceptions;
@@ -26,15 +25,15 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
 
 
         private readonly string _Mobile = "mobile";
-        public SendManagerCreateHandler(IHttpContextAccessor contextAccessor
-            ,ITemplateGetSingleHandler templateGetSingleHandler
-            , ILineGetSingleHandler lineGetSingleHandler
-            ,IMessageBatchCommandService messageBatchCommandService
-            , IProviderGetSingleHandler providerGetSingleHandler
-            , ITemplateQueryService templateQueryService
-            ,ILineQueryService lineQueryService
-            , IProviderQueryService providerQueryService
-)
+        public SendManagerCreateHandler(
+             IHttpContextAccessor contextAccessor,
+             ITemplateGetSingleHandler templateGetSingleHandler,
+             ILineGetSingleHandler lineGetSingleHandler,
+             IMessageBatchCommandService messageBatchCommandService,
+             IProviderGetSingleHandler providerGetSingleHandler,
+             ITemplateQueryService templateQueryService,
+             ILineQueryService lineQueryService,
+             IProviderQueryService providerQueryService)
         {
             _contextAccessor = contextAccessor;
             _contextAccessor.NotNull(nameof(contextAccessor));
@@ -62,15 +61,14 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
 
             requestBodyValue.ToList().ForEach(r => ValidationData(templateValue, r));
 
-            ICollection<MobileText> mobileText=new List<MobileText>();
-            //mobileText.Add(await requestBodyValue.Select(async x => await GetMessageToSend(x, templateId)).ToListAsync());
+            ICollection<MobileText> mobileText = new List<MobileText>();
             foreach (var item in requestBodyValue)
             {
                 mobileText.Add(await GetMessageToSend(item, templateId));
             }
 
             var messageBatch = MessageBatchFactory.Create(mobileText, lineId, batchSize, "");
-            var result=_messageBatchCommandService.Add(messageBatch);
+            var result = _messageBatchCommandService.Add(messageBatch);
             return mobileText;
         }
         private Dictionary<string, string> DeserializeToDictionary(string data)

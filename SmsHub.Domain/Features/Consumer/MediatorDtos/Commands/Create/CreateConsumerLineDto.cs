@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Create
+﻿namespace SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Create
 {
     public record CreateConsumerLineDto  
     {

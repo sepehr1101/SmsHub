@@ -1,6 +1,4 @@
 ﻿using Hangfire;
-using Hangfire.Dashboard;
-using SmsHub.Api.Filters;
 
 namespace SmsHub.Api.Extensions
 {

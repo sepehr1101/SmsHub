@@ -17,7 +17,8 @@ namespace SmsHub.Application.Features.Sending.ServiceSample2.Implementations
         private readonly IMagfa300HttpMidService _magfaMidService;
 
 
-        public MagfaProvider(IMagfa300HttpSendService magfaSendService,
+        public MagfaProvider(
+            IMagfa300HttpSendService magfaSendService,
             IMagfa300HttpStatusesService magfaStatusCodesService,
             IMagfa300HttpBalanceService magfaBalanceService,
             IMagfa300HttpMidService magfaMidService)

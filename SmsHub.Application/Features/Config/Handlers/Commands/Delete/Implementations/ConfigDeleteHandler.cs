@@ -5,7 +5,6 @@ using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Delete;
 using SmsHub.Persistence.Features.Config.Commands.Contracts;
 using SmsHub.Persistence.Features.Config.Queries.Contracts;
-using System.Threading;
 
 namespace SmsHub.Application.Features.Config.Handlers.Commands.Delete.Implementations
 {

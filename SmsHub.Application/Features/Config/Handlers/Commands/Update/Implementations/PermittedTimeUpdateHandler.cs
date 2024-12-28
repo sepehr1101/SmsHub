@@ -12,7 +12,10 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Update.Implementa
         private readonly IMapper _mapper;
         private readonly IPermittedTimeQueryService _permittedTimeQueryService;
         private readonly IValidator<UpdatePermittedTimeDto> _validator;
-        public PermittedTimeUpdateHandler(IMapper mapper, IPermittedTimeQueryService permittedTimeQueryService, IValidator<UpdatePermittedTimeDto> validator)
+        public PermittedTimeUpdateHandler(
+            IMapper mapper, 
+            IPermittedTimeQueryService permittedTimeQueryService,
+            IValidator<UpdatePermittedTimeDto> validator)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

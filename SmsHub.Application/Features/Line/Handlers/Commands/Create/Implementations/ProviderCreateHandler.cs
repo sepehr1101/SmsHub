@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using MediatR;
 using SmsHub.Common.Extensions;
 using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Features.Line.Commands.Contracts;
@@ -9,12 +8,15 @@ using FluentValidation;
 
 namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Implementations
 {
-    public class ProviderCreateHandler : /*IRequestHandler<CreateProviderDto>,*/ IProviderCreateHandler
+    public class ProviderCreateHandler : IProviderCreateHandler
     {
         private readonly IMapper _mapper;
         private readonly IProviderCommandService _providerCommandService;
         private readonly IValidator<CreateProviderDto> _validator;
-        public ProviderCreateHandler(IMapper mapper, IProviderCommandService providerCommandService, IValidator<CreateProviderDto> validator)
+        public ProviderCreateHandler(
+            IMapper mapper,
+            IProviderCommandService providerCommandService, 
+            IValidator<CreateProviderDto> validator)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(_mapper));

@@ -14,7 +14,9 @@ namespace SmsHub.Api.Controllers.V1.Contact.Commands.Update
     {
         private readonly IUnitOfWork _uow;
         private readonly IContactCategoryUpdateHandler _updateCommandHandler;
-        public ContactCategoryUpdateController(IUnitOfWork uow, IContactCategoryUpdateHandler updateCommandHandler)
+        public ContactCategoryUpdateController(
+            IUnitOfWork uow, 
+            IContactCategoryUpdateHandler updateCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

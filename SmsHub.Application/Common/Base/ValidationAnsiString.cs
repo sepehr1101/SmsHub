@@ -15,7 +15,7 @@ namespace SmsHub.Application.Common.Base
             return Regex.IsMatch(input, pattern);
         }
         
-        public static bool CheckPersianPhoneNumber(string input)//by format 09{9}
+        public static bool CheckPersianPhoneNumber(string input)//by format 09{0-9}
         {
             string pattern = "^09[0-9]{9}$";
             return Regex.IsMatch(input, pattern);

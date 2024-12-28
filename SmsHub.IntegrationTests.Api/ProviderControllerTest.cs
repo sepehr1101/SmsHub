@@ -21,7 +21,7 @@ namespace SmsHub.IntegrationTests.Api
             // Arrange
             var provider = new CreateProviderDto
             {
-            //  Id=ProviderEnum.Kavenegar,//todo: assume we gave it id,how can create new ProviderEnum
+                Id = ProviderEnum.Kavenegar,
                 BaseUri = "http://baseurl",
                 BatchSize = 10,
                 DefaultPreNumber = "2000",
@@ -36,27 +36,6 @@ namespace SmsHub.IntegrationTests.Api
             // Assert 
             Assert.True(true);
         }
-
-        //[Fact]
-        //public async void _1_CreateProvider_ProviderDataDto_ShouldCreateProvider()
-        //{
-        //    // Arrange
-        //    var provider = new CreateProviderDto
-        //    {
-        //        BaseUri = "http://baseurl",
-        //        BatchSize = 10,
-        //        DefaultPreNumber = "2000",
-        //        FallbackBaseUri = "https://fallbackurl",
-        //        Title = "title1",
-        //        Website = "www.someProvider.ir"
-        //    };
-
-        //    // Act
-        //    await PostAsync<CreateProviderDto, CreateProviderDto>("/Provider/Create", provider);
-
-        //    // Assert 
-        //    Assert.True(true);
-        //}
 
         [Fact]
         public async void DeleteProvider_ProviderDataDto_ShouldCreateProvider()
@@ -115,14 +94,11 @@ namespace SmsHub.IntegrationTests.Api
         [Fact]
         public async void GetListProvider_ProviderDataDto_ShouldGetListProvider()
         {
-           //Act
+            //Act
             var providerList = await PostAsync<GetProviderDto, ApiResponseEnvelope<ICollection<GetProviderDto>>>("/Provider/GetList", null);
 
             // Assert 
-            Assert.InRange(providerList.Data.Count, 1,3);
-
-
-            //failed -> Id is Identity or Not?
+            Assert.InRange(providerList.Data.Count, 1, 3);
         }
     }
 

@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace SmsHub.Domain.Features.Template.MediatorDtos.Queries
+﻿namespace SmsHub.Domain.Features.Template.MediatorDtos.Queries
 {
     public record GetTemplateDto 
     {

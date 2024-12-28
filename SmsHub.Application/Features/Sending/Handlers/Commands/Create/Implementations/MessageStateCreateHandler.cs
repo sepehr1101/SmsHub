@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using MediatR;
 using SmsHub.Common.Extensions;
 using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Features.Sending.Commands.Contracts;
@@ -14,7 +13,10 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
         private readonly IMapper _mapper;
         private readonly IMessageStateCommandService _messageStateCommandService;
         private readonly IValidator<CreateMessageStateDto> _validator;
-        public MessageStateCreateHandler(IMapper mapper, IMessageStateCommandService messageStateCommandService, IValidator<CreateMessageStateDto> validator)
+        public MessageStateCreateHandler(
+            IMapper mapper,
+            IMessageStateCommandService messageStateCommandService,
+            IValidator<CreateMessageStateDto> validator)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(_mapper));

@@ -12,7 +12,10 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Update.Implement
         private readonly IMapper _mapper;
         private readonly IMessageBatchQueryService _messageBatchQueryService;
         private readonly IValidator<UpdateMessageBatchDto> _validator;
-        public MessageBatchUpdateHandler(IMapper mapper, IMessageBatchQueryService messageBatchQueryService, IValidator<UpdateMessageBatchDto> validator)
+        public MessageBatchUpdateHandler(
+            IMapper mapper,
+            IMessageBatchQueryService messageBatchQueryService, 
+            IValidator<UpdateMessageBatchDto> validator)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

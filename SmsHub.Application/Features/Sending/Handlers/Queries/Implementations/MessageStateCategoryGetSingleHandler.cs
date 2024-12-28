@@ -11,7 +11,9 @@ namespace SmsHub.Application.Features.Sending.Handlers.Queries.Implementations
     {
         private readonly IMapper _mapper;
         private readonly IMessageStateCategoryQueryService _messageStateCategoryQueryService;
-        public MessageStateCategoryGetSingleHandler(IMapper mapper, IMessageStateCategoryQueryService messageStateCategoryQueryService)
+        public MessageStateCategoryGetSingleHandler(
+            IMapper mapper, 
+            IMessageStateCategoryQueryService messageStateCategoryQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

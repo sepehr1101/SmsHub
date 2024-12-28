@@ -4,8 +4,6 @@ using SmsHub.Application.Features.Consumer.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands;
 using SmsHub.Persistence.Features.Consumer.Queries.Contracts;
-using System.ComponentModel.DataAnnotations;
-using System.Threading;
 
 namespace SmsHub.Application.Features.Consumer.Handlers.Commands.Update.Implementations
 {
@@ -15,7 +13,10 @@ namespace SmsHub.Application.Features.Consumer.Handlers.Commands.Update.Implemen
         private readonly IConsumerSafeIpQueryService _consumerSafeIpQueryService;
         private readonly IValidator<UpdateConsumerSafeIpDto> _validator;
 
-        public ConsumerSafaIpUpdateHandler(IMapper mapper, IConsumerSafeIpQueryService consumerSafeIpQueryService, IValidator<UpdateConsumerSafeIpDto> validator)
+        public ConsumerSafaIpUpdateHandler(
+            IMapper mapper,
+            IConsumerSafeIpQueryService consumerSafeIpQueryService, 
+            IValidator<UpdateConsumerSafeIpDto> validator)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

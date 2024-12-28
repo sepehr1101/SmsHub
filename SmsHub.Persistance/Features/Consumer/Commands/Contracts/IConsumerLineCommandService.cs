@@ -1,4 +1,5 @@
 ﻿using SmsHub.Domain.Features.Entities;
+
 namespace SmsHub.Persistence.Features.Consumer.Commands.Contracts
 {
     public interface IConsumerLineCommandService

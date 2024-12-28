@@ -11,14 +11,14 @@ namespace SmsHub.Domain.Features.EfConfig
             entity.Property(e => e.Number).HasMaxLength(255);
 
             entity.HasOne(d => d.ContactCategory)
-                .WithMany(p => p.ContactNumbers)
-                .HasForeignKey(d => d.ContactCategoryId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                  .WithMany(p => p.ContactNumbers)
+                  .HasForeignKey(d => d.ContactCategoryId)
+                  .OnDelete(DeleteBehavior.ClientSetNull);
 
             entity.HasOne(d => d.ContactNumberCategory)
-                .WithMany(p => p.ContactNumbers)
-                .HasForeignKey(d => d.ContactNumberCategoryId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                  .WithMany(p => p.ContactNumbers)
+                  .HasForeignKey(d => d.ContactNumberCategoryId)
+                  .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }
 }

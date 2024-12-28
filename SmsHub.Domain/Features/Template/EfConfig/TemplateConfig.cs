@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Entities= SmsHub.Domain.Features.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace SmsHub.Domain.Features.EfConfig
@@ -12,10 +11,10 @@ namespace SmsHub.Domain.Features.EfConfig
             entity.Property(e => e.Title).HasMaxLength(255);
 
             entity.HasOne(d => d.TemplateCategory)
-                .WithMany(p => p.Templates)
-                .HasForeignKey(d => d.TemplateCategoryId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_TemplateCategory_REFERS_Template_TemplateCategoryId");
+                  .WithMany(p => p.Templates)
+                  .HasForeignKey(d => d.TemplateCategoryId)
+                  .OnDelete(DeleteBehavior.ClientSetNull)
+                  .HasConstraintName("FK_TemplateCategory_REFERS_Template_TemplateCategoryId");
         }
     }
 }

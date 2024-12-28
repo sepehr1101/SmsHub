@@ -5,7 +5,6 @@ using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Delete;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Update;
 using SmsHub.Domain.Features.Line.MediatorDtos.Queries;
-using System.Linq;
 
 namespace SmsHub.IntegrationTests.Api
 {
@@ -138,9 +137,6 @@ namespace SmsHub.IntegrationTests.Api
         }
 
 
-        /////Test Validation 
-        ///// @"{'Domain': '---', 'UserName': '---' , 'ClientSecret' : '---' }"   --> Magfa
-        //// /@"{'apiKey': '---' }"  --> Kave Negar
         [Fact]
         public async void MagfaProvider_EmptyClientSecret_ShouldFail()
         {
@@ -346,7 +342,7 @@ namespace SmsHub.IntegrationTests.Api
             var line = new CreateLineDto
             {
                 ProviderId = ProviderEnum.Magfa,
-                Number = "312897",//Domain        //UserName         //ClientSecret    
+                Number = "312897",
                 Credential = "{'Domainn': '---', 'UseName': '---' , 'Clientecret' : '---' }"
             };
 
@@ -367,7 +363,7 @@ namespace SmsHub.IntegrationTests.Api
             var line = new CreateLineDto
             {
                 ProviderId = ProviderEnum.Magfa,
-                Number = "713289",    //'
+                Number = "713289",
                 Credential = "{'Domain : '---', 'UserName': '---' , 'ClientSecret' : '---' }"
             };
 
@@ -388,7 +384,7 @@ namespace SmsHub.IntegrationTests.Api
             var line = new CreateLineDto
             {
                 ProviderId = ProviderEnum.Magfa,
-                Number = "2455513",  // '                         // '
+                Number = "2455513",
                 Credential = "{'Domain : '---', 'UserName': '---' , ClientSecret' : '---' }"
             };
 
@@ -410,7 +406,7 @@ namespace SmsHub.IntegrationTests.Api
             {
                 ProviderId = ProviderEnum.Magfa,
                 Credential = "{'Domain : '---', 'UserName': '---' , ClientSecret' : '---' }"
-            };                     // '                         // '
+            }; 
 
             //Act
             var result = await PostAsyncWithoutDeserialize<CreateLineDto>("/Line/Create", line);
@@ -429,7 +425,7 @@ namespace SmsHub.IntegrationTests.Api
             var line = new CreateLineDto
             {
                 ProviderId = ProviderEnum.Magfa,
-                Number = "187132",                      // ''      // '  
+                Number = "187132",                  
                 Credential = "{'Domain': '---', 'UserName'': '---' , ClientSecret' : '---' }"
             };
 
@@ -450,7 +446,7 @@ namespace SmsHub.IntegrationTests.Api
             var line = new CreateLineDto
             {
                 ProviderId = ProviderEnum.Magfa,
-                Number = "782132589",                   // ''                           // ''
+                Number = "782132589", 
                 Credential = "{'Domain': '---', 'UserName'': '---' , ClientSecret' : '---'' }"
             };
 
@@ -587,7 +583,7 @@ namespace SmsHub.IntegrationTests.Api
             Assert.True(x);
         }
 
-        ///Kave Negar
+        ///Kavenegar
 
         [Fact]
         public async void KaveNegarProvider_ValidLine_ShouldPass()

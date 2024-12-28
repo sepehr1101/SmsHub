@@ -1,7 +1,6 @@
 ﻿using SmsHub.Domain.Providers.Magfa3000.Constants;
 using SmsHub.Infrastructure.BaseHttp.Authenticators;
 using SmsHub.Infrastructure.BaseHttp.Client.Contracts;
-using SmsHub.Infrastructure.BaseHttp.Client.Implementation;
 using SmsHub.Infrastructure.Providers.Magfa3000.Http.Contracts;
 using MagfaResponse = SmsHub.Domain.Providers.Magfa3000.Entities.Responses;
 

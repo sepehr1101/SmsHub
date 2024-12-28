@@ -87,7 +87,6 @@ namespace SmsHub.IntegrationTests.Api
             };
 
             //Act
-
             await PostAsync<DeleteContactNumberDto, DeleteContactNumberDto>("/ContactNumber/Delete", deleteContactNumber);
 
             //Assert

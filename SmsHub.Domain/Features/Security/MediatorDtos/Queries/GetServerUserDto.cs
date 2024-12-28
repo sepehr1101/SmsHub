@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace SmsHub.Domain.Features.Security.MediatorDtos.Queries
+﻿namespace SmsHub.Domain.Features.Security.MediatorDtos.Queries
 {
     public record GetServerUserDto 
     {

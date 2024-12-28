@@ -2,7 +2,6 @@
 using FluentValidation;
 using SmsHub.Application.Features.Config.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
-using SmsHub.Domain.Features.Config.MediatorDtos;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
 using SmsHub.Persistence.Features.Config.Queries.Contracts;
 
@@ -13,7 +12,10 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Update.Implementa
         private readonly IMapper _mapper;
         private readonly ICcSendQueryService _cSendQueryService;
         private readonly IValidator<UpdateCcSendDto> _validator;
-        public CcSendUpdateHandler(IMapper mapper, ICcSendQueryService cSendQueryService, IValidator<UpdateCcSendDto> validator)
+        public CcSendUpdateHandler(
+            IMapper mapper, 
+            ICcSendQueryService cSendQueryService, 
+            IValidator<UpdateCcSendDto> validator)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

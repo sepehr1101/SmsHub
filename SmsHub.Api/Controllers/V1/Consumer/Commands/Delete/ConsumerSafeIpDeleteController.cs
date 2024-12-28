@@ -14,7 +14,9 @@ namespace SmsHub.Api.Controllers.V1.Consumer.Commands.Delete
     {
         private readonly IUnitOfWork _uow;
         private readonly IConsumerSafeIpDeleteHandler _deleteCommandHandler;
-        public ConsumerSafeIpDeleteController(IUnitOfWork uow, IConsumerSafeIpDeleteHandler deleteCommandHandler)
+        public ConsumerSafeIpDeleteController(
+            IUnitOfWork uow, 
+            IConsumerSafeIpDeleteHandler deleteCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

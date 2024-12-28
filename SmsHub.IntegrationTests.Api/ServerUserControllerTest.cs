@@ -27,6 +27,7 @@ namespace SmsHub.IntegrationTests.Api
             };
             //Act
             var apiKey = await PostAsync<CreateServerUserDto, ApiKeyAndHash>("/ServerUser/Create", serverUser);
+            
             //Arrange
             Assert.True(true);
         }

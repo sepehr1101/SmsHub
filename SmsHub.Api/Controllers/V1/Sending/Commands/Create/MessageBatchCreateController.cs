@@ -14,7 +14,9 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
     {
         private readonly IUnitOfWork _uow;
         private readonly IMessageBatchCreateHandler _createCommandHandler;
-        public MessageBatchCreateController(IUnitOfWork uow, IMessageBatchCreateHandler createCommandHandler)
+        public MessageBatchCreateController(
+            IUnitOfWork uow,
+            IMessageBatchCreateHandler createCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

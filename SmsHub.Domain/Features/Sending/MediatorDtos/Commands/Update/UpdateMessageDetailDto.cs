@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Update
+﻿namespace SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Update
 {
     public record UpdateMessageDetailDto  
     {

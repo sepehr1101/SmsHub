@@ -11,7 +11,9 @@ namespace SmsHub.Application.Features.Config.Handlers.Queries.Implementations
     {
         private readonly IMapper _mapper;
         private readonly IPermittedTimeQueryService _permittedTimeQueryService;
-        public PermittedTimeGetSingleHandler(IMapper mapper, IPermittedTimeQueryService permittedTimeQueryService)
+        public PermittedTimeGetSingleHandler(
+            IMapper mapper, 
+            IPermittedTimeQueryService permittedTimeQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

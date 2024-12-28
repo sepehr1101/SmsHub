@@ -11,8 +11,8 @@ namespace SmsHub.Domain.Features.Logging.EfConfig
             entity.Property(e => e.InsertDateTime).HasColumnType("datetime");
 
             entity.Property(e => e.Ip)
-                .HasMaxLength(64)
-                .IsUnicode(false);
+                  .HasMaxLength(64)
+                  .IsUnicode(false);
 
             entity.Property(e => e.PrimaryDb).HasMaxLength(255);
 
@@ -21,10 +21,10 @@ namespace SmsHub.Domain.Features.Logging.EfConfig
             entity.Property(e => e.PrimaryTable).HasMaxLength(255);
 
             entity.HasOne(d => d.OperationType)
-                .WithMany(p => p.DeepLogs)
-                .HasForeignKey(d => d.OperationTypeId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_OperationType_REFERS_DeepLog_OperationTypeId");
+                  .WithMany(p => p.DeepLogs)
+                  .HasForeignKey(d => d.OperationTypeId)
+                  .OnDelete(DeleteBehavior.ClientSetNull)
+                  .HasConstraintName("FK_OperationType_REFERS_DeepLog_OperationTypeId");
         }
     }
 }

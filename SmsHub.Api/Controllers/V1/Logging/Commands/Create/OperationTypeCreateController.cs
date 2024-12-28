@@ -14,7 +14,9 @@ namespace SmsHub.Api.Controllers.V1.Logging.Commands.Create
     {
         private readonly IUnitOfWork _uow;
         private readonly IOperationTypeCreateHandler _createCommandHandler;
-        public OperationTypeCreateController(IUnitOfWork uow, IOperationTypeCreateHandler createCommandHandler)
+        public OperationTypeCreateController(
+            IUnitOfWork uow, 
+            IOperationTypeCreateHandler createCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

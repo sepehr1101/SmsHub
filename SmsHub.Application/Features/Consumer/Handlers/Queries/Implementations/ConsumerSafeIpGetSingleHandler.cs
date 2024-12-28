@@ -11,7 +11,9 @@ namespace SmsHub.Application.Features.Consumer.Handlers.Queries.Implementations
     {
         private readonly IMapper _mapper;
         private readonly IConsumerSafeIpQueryService _consumerSafeIpQueryService;
-        public ConsumerSafeIpGetSingleHandler(IMapper mapper, IConsumerSafeIpQueryService consumerSafeIpQueryService)
+        public ConsumerSafeIpGetSingleHandler(
+            IMapper mapper, 
+            IConsumerSafeIpQueryService consumerSafeIpQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

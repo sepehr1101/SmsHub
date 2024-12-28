@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using FluentValidation;
-using MediatR;
 using SmsHub.Application.Features.Config.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
@@ -14,7 +13,10 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Create.Implementa
         private readonly IConfigCommandService _configCommandService;
         private readonly IMapper _mapper;
         private readonly IValidator<CreateConfigDto> _validator;
-        public ConfigCreateHandler(IConfigCommandService configCommandService, IMapper mapper,IValidator<CreateConfigDto> validator)
+        public ConfigCreateHandler(
+            IConfigCommandService configCommandService,
+            IMapper mapper,
+            IValidator<CreateConfigDto> validator)
         {
             _configCommandService = configCommandService;
             _configCommandService.NotNull(nameof(_configCommandService));

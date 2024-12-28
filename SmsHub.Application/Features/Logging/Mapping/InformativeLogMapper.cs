@@ -2,6 +2,7 @@
 using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Create;
+using SmsHub.Domain.Features.Logging.MediatorDtos.Commands;
 
 namespace SmsHub.Application.Features.Logging.Mapping
 {
@@ -10,7 +11,7 @@ namespace SmsHub.Application.Features.Logging.Mapping
         public InformativeLogMapper()
         {
             CreateMap< CreateInformativeLogDto, InformativeLog>().ReverseMap();
-            CreateMap<Domain.Features.Logging.MediatorDtos.Commands.UpdateInformativeLogDto, InformativeLog > ().ReverseMap();
+            CreateMap<UpdateInformativeLogDto, InformativeLog > ().ReverseMap();
             CreateMap<GetInforamtaiveLogDto, InformativeLog>().ReverseMap();
         }
     }

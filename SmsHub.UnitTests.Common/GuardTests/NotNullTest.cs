@@ -1,7 +1,6 @@
 ﻿using SmsHub.Common.Exceptions;
 using SmsHub.Common.Extensions;
 using System.Dynamic;
-using Xunit.Abstractions;
 
 namespace SmsHub.UnitTests.Common.GuardTests
 {

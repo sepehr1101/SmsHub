@@ -144,6 +144,7 @@ namespace SmsHub.IntegrationTests.Api
             var consumerSafeIpData = await PostAsync<GetConsumerSafaIpDto, ApiResponseEnvelope<ICollection<GetConsumerSafaIpDto>>>("/ConsumerSafeIp/GetList", null);
 
             IntId consumerSafeIpId = consumerSafeIpData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
+           
             //Act
             var singleConsumerSafeIp = await PostAsync<IntId, ApiResponseEnvelope<GetConsumerSafaIpDto>>("/ConsumerSafeIp/GetSingle", consumerSafeIpId);
 

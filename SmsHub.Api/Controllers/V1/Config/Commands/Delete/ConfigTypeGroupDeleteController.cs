@@ -14,7 +14,9 @@ namespace SmsHub.Api.Controllers.V1.Config.Commands.Delete
     {
         private readonly IUnitOfWork _uow;
         private readonly IConfigTypeGroupDeleteHandler _deleteCommandHandler;
-        public ConfigTypeGroupDeleteController(IUnitOfWork uow, IConfigTypeGroupDeleteHandler deleteCommandHandler)
+        public ConfigTypeGroupDeleteController(
+            IUnitOfWork uow, 
+            IConfigTypeGroupDeleteHandler deleteCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

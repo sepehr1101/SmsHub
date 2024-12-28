@@ -11,7 +11,9 @@ namespace SmsHub.Application.Features.Logging.Handlers.Queries.Implementations
     {
         private readonly IMapper _mapper;
         private readonly IDeepLogQueryService _deepLogQueryService;
-        public DeepLogGetSingleHandler(IMapper mapper, IDeepLogQueryService deepLogQueryService)
+        public DeepLogGetSingleHandler(
+            IMapper mapper, 
+            IDeepLogQueryService deepLogQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

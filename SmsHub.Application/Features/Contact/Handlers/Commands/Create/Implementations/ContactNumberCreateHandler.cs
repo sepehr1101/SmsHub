@@ -1,13 +1,10 @@
 ﻿using AutoMapper;
-using MediatR;
 using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Common.Extensions;
 using SmsHub.Persistence.Features.Contact.Commands.Contracts;
 using SmsHub.Domain.Features.Contact.MediatorDtos.Commands.Create;
 using SmsHub.Application.Features.Contact.Handlers.Commands.Create.Contracts;
-using Azure.Core;
 using FluentValidation;
-using System.Threading;
 
 namespace SmsHub.Application.Features.Contact.Handlers.Commands.Create.Implementations
 {
@@ -17,7 +14,10 @@ namespace SmsHub.Application.Features.Contact.Handlers.Commands.Create.Implement
         private readonly IContactNumberCommandService _contactNumberCommandService;
         private readonly IValidator<CreateContactNumberDto> _validator;
 
-        public ContactNumberCreateHandler(IMapper mapper, IContactNumberCommandService contactNumberCommandService, IValidator<CreateContactNumberDto> validator)
+        public ContactNumberCreateHandler(
+            IMapper mapper,
+            IContactNumberCommandService contactNumberCommandService, 
+            IValidator<CreateContactNumberDto> validator)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(_mapper));

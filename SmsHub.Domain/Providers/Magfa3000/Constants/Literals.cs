@@ -1,28 +1,24 @@
-﻿using System.Security.Cryptography;
-
-namespace SmsHub.Domain.Providers.Magfa3000.Constants
+﻿namespace SmsHub.Domain.Providers.Magfa3000.Constants
 {
     public static class Literals
     {
         public static string BaseUrl { get { return @"https://sms.magfa.com/api/http/sms/v2/"; } }
 
 
-        //public  string BalanceUri { get { return $"{BaseUrl}balance.json"; } }
         public static string BalanceUri { get { return $"{BaseUrl}balance"; } }
 
-        // public string SendUri { get { return $"{BaseUrl}send.json?senders={0}$recipients={1}&messages={2}"; } }
         public static string SendUri { get { return $"{BaseUrl}send"; } }//parameters in body
 
 
 
-        //public string MidUri { get { return $"{BaseUrl}mid.json?uid={0}"; } }
         public static string MidUri { get { return $"{BaseUrl}mid/{0}"; } }
         public static string GetMidUri(long uid)
         {
             return $"{BaseUrl}mid/{uid}";
         }
 
-        //public string StatusesUri { get { return $"{BaseUrl}statuses.json?mid={0}"; } }
+
+
         public static string StatusesUri { get { return $"{BaseUrl}statuses/{0}"; } }
 
         public static string GettatusesUri(long mid)
@@ -31,8 +27,8 @@ namespace SmsHub.Domain.Providers.Magfa3000.Constants
         }
         public static string GettatusesUri(ICollection<long> mids)
         {
-            var uri = $"{BaseUrl}statuses/";
-            foreach (var item in mids)///////
+            var uri = $"{BaseUrl}statuses/"; 
+            foreach (var item in mids)/////todo: use ready function in common/extensions/stringExtensions
             {
                 uri += $"{item},";
             }
@@ -41,7 +37,6 @@ namespace SmsHub.Domain.Providers.Magfa3000.Constants
 
 
 
-        //public string MessagesUri { get { return $"{BaseUrl}messages.json?count={0}"; } }//count nullable -> default 100
         public static string MessagesUri { get { return $"{BaseUrl}messages/{0}"; } }
         public static string GetMessageUri(int count)
         {

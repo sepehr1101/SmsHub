@@ -13,7 +13,9 @@ namespace SmsHub.Api.Controllers.V1.Template.Commands.Delete
     {
         private readonly IUnitOfWork _uow;
         private readonly ITemplateDeleteHandler _deleteCommandHandler;
-        public TemplateDeleteController(IUnitOfWork uow, ITemplateDeleteHandler deleteCommandHandler)
+        public TemplateDeleteController(
+            IUnitOfWork uow, 
+            ITemplateDeleteHandler deleteCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

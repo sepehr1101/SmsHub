@@ -19,10 +19,10 @@ namespace SmsHub.Api.Controllers.V1.Config.Querries
 
         [HttpPost]
         [Route(nameof(GetList))]
-        public async Task<IActionResult> GetList()//Task<ICollection<GetCcSendDto>>
+        public async Task<IActionResult> GetList()
         {
             var ccSends = await _getListHandler.Handle();
-            return Ok(ccSends);// return ccSends;
+            return Ok(ccSends);
         }
     }
 }

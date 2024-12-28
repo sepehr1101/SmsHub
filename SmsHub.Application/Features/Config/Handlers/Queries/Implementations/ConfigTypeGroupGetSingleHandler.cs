@@ -11,7 +11,9 @@ namespace SmsHub.Application.Features.Config.Handlers.Queries.Implementations
     {
         private readonly IMapper _mapper;
         private readonly IConfigTypeGroupQueryService _configTypeGroupQueryService;
-        public ConfigTypeGroupGetSingleHandler(IMapper mapper, IConfigTypeGroupQueryService configTypeGroupQueryService)
+        public ConfigTypeGroupGetSingleHandler(
+            IMapper mapper,
+            IConfigTypeGroupQueryService configTypeGroupQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
