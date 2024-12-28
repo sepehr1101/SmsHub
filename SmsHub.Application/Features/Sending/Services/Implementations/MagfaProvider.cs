@@ -1,10 +1,10 @@
-﻿using SmsHub.Application.Features.Sending.ServiceSample2.Contracts;
+﻿using SmsHub.Application.Features.Sending.Services.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using SmsHub.Infrastructure.Providers.Magfa3000.Http.Contracts;
 using MagfaRequest = SmsHub.Domain.Providers.Magfa3000.Entities.Requests;
 
-namespace SmsHub.Application.Features.Sending.ServiceSample2.Implementations
+namespace SmsHub.Application.Features.Sending.Services.Implementations
 {
     public class MagfaProvider : ISmsProvider
     {
@@ -31,7 +31,7 @@ namespace SmsHub.Application.Features.Sending.ServiceSample2.Implementations
             _magfaBalanceService = magfaBalanceService;
             _magfaBalanceService.NotNull(nameof(magfaBalanceService));
 
-            _magfaMidService= magfaMidService;
+            _magfaMidService = magfaMidService;
             _magfaMidService.NotNull(nameof(magfaMidService));
         }
 
@@ -101,7 +101,7 @@ namespace SmsHub.Application.Features.Sending.ServiceSample2.Implementations
             {
                 sendDto.senders.Add(lineNumber);
                 sendDto.messages.Add(item.Text);
-                sendDto.uids.Add((long)item.LocalId);
+                sendDto.uids.Add(item.LocalId);
                 sendDto.recipients.Add(item.Mobile);
             }
 
@@ -115,9 +115,9 @@ namespace SmsHub.Application.Features.Sending.ServiceSample2.Implementations
             var domain = _domain;
             var userName = _userName;
             var password = _password;
-            var result = await _magfaMidService.GetMid(domain, userName, password,userId);
+            var result = await _magfaMidService.GetMid(domain, userName, password, userId);
         }
-        
-        
+
+
     }
 }

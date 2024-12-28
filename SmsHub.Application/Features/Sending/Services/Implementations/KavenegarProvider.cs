@@ -1,10 +1,10 @@
-﻿using SmsHub.Application.Features.Sending.ServiceSample2.Contracts;
+﻿using SmsHub.Application.Features.Sending.Services.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Providers.Kavenegar.Entities.Requests;
 using SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts;
 
-namespace SmsHub.Application.Features.Sending.ServiceSample2.Implementations
+namespace SmsHub.Application.Features.Sending.Services.Implementations
 {
     public class KavenegarProvider : ISmsProvider
     {

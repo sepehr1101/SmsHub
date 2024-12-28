@@ -14,7 +14,7 @@ using SmsHub.Application.Exceptions;
 
 namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Implementations
 {
-    public class LineCreateHandler : /*IRequestHandler<CreateLineDto>,*/ ILineCreateHandler
+    public class LineCreateHandler : ILineCreateHandler
     {
         private readonly IMapper _mapper;
         private readonly ILineCommandService _lineCommandService;
