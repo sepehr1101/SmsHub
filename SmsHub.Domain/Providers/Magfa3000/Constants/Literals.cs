@@ -1,4 +1,7 @@
-﻿namespace SmsHub.Domain.Providers.Magfa3000.Constants
+﻿using SmsHub.Common.Extensions;
+using System.Text;
+
+namespace SmsHub.Domain.Providers.Magfa3000.Constants
 {
     public static class Literals
     {
@@ -18,7 +21,6 @@
         }
 
 
-
         public static string StatusesUri { get { return $"{BaseUrl}statuses/{0}"; } }
 
         public static string GettatusesUri(long mid)
@@ -27,12 +29,9 @@
         }
         public static string GettatusesUri(ICollection<long> mids)
         {
-            var uri = $"{BaseUrl}statuses/"; 
-            foreach (var item in mids)/////todo: use ready function in common/extensions/stringExtensions
-            {
-                uri += $"{item},";
-            }
-            return uri.Substring(0, uri.Length - 1) ;
+            var uri = $"{BaseUrl}statuses/";
+            var data = mids.AppendString(",");
+            return uri + data;          
         }
 
 
