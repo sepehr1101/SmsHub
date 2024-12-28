@@ -2,10 +2,8 @@
 using FluentValidation;
 using SmsHub.Application.Features.Consumer.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
-using SmsHub.Domain.Features.Consumer.MediatorDtos;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands;
 using SmsHub.Persistence.Features.Consumer.Queries.Contracts;
-using System.Threading;
 
 namespace SmsHub.Application.Features.Consumer.Handlers.Commands.Update.Implementations
 {
@@ -14,7 +12,10 @@ namespace SmsHub.Application.Features.Consumer.Handlers.Commands.Update.Implemen
         private readonly IMapper _mapper;
         private readonly IConsumerQueryService _consumerQueryService;
         private readonly IValidator<UpdateConsumerDto> _validator;
-        public ConsumerUpdateHandler(IMapper mapper, IConsumerQueryService consumerQueryService, IValidator<UpdateConsumerDto> validator)
+        public ConsumerUpdateHandler(
+            IMapper mapper,
+            IConsumerQueryService consumerQueryService, 
+            IValidator<UpdateConsumerDto> validator)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

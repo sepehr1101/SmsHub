@@ -12,7 +12,10 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Update.Implementa
         private readonly IMapper _mapper;
         private readonly IConfigTypeGroupQueryService _configTypeGroupQueryService;
         private readonly IValidator<UpdateConfigTypeGroupDto> _validator;
-        public ConfigTypeGroupeUpdateHandler(IMapper mapper, IConfigTypeGroupQueryService configTypeGroupQueryService, IValidator<UpdateConfigTypeGroupDto> validator)
+        public ConfigTypeGroupeUpdateHandler(
+            IMapper mapper, 
+            IConfigTypeGroupQueryService configTypeGroupQueryService, 
+            IValidator<UpdateConfigTypeGroupDto> validator)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

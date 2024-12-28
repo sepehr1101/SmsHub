@@ -12,7 +12,10 @@ namespace SmsHub.Application.Features.Logging.Handlers.Commands.Update.Implement
         private readonly IMapper _mapper;
         private readonly ILogLevelQueryService _logLevelQueryService;
         private readonly IValidator<UpdateLogLevelDto> _validator;
-        public LogLevelUpdateHandler(IMapper mapper, ILogLevelQueryService logLevelQueryService, IValidator<UpdateLogLevelDto> validator)
+        public LogLevelUpdateHandler(
+            IMapper mapper,
+            ILogLevelQueryService logLevelQueryService,
+            IValidator<UpdateLogLevelDto> validator)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

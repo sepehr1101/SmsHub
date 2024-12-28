@@ -25,6 +25,7 @@ namespace SmsHub.IntegrationTests.Api
                 Css = "Sample Css",
                 Description = "Sample Description"
             };
+          
             //Act
             await PostAsync<CreateContactCategoryDto, CreateContactCategoryDto>("/ContactCategory/Create", contactCategory);
 

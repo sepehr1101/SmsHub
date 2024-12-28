@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Features.Template.Queries.Contracts;
 using SmsHub.Common.Extensions;
-using SmsHub.Domain.Constants;
 
 namespace SmsHub.Persistence.Features.Template.Queries.Implementations
 {

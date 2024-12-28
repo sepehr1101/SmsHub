@@ -10,7 +10,9 @@ namespace SmsHub.Application.Features.Template.Handlers.Queries.Implementations
     {
         private readonly IMapper _mapper;
         private readonly ITemplateQueryService _templateQueryService;
-        public TemplateGetListHandler(IMapper mapper    ,ITemplateQueryService templateQueryService)
+        public TemplateGetListHandler(
+            IMapper mapper,
+            ITemplateQueryService templateQueryService)
         {
             _mapper=mapper;
             _mapper.NotNull(nameof(mapper));

@@ -11,7 +11,9 @@ namespace SmsHub.Application.Features.Logging.Handlers.Queries.Implementations
     {
         private readonly IMapper _mapper;
         private readonly ILogLevelQueryService _logLevelQueryService;
-        public LogLevelGetSingleHandler(IMapper mapper, ILogLevelQueryService logLevelQueryService)
+        public LogLevelGetSingleHandler(
+            IMapper mapper,
+            ILogLevelQueryService logLevelQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

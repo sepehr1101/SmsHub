@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace SmsHub.Domain.Features.Security.MediatorDtos.Commands
+﻿namespace SmsHub.Domain.Features.Security.MediatorDtos.Commands
 {
     public record DeleteServerUserDto  
     {

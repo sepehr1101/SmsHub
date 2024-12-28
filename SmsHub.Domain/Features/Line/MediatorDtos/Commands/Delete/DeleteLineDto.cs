@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace SmsHub.Domain.Features.Line.MediatorDtos.Commands.Delete
+﻿namespace SmsHub.Domain.Features.Line.MediatorDtos.Commands.Delete
 {
     public record DeleteLineDto  
     {

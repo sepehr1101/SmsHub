@@ -1,23 +1,11 @@
-﻿using Docker.DotNet.Models;
-using Microsoft.AspNetCore.Http;
-using SmsHub.Common.Extensions;
-using SmsHub.Domain.BaseDomainEntities.ApiResponse;
-using SmsHub.Domain.BaseDomainEntities.Id;
+﻿using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.Constants;
-using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
-using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Line.MediatorDtos.Queries;
-using SmsHub.Domain.Features.Logging.MediatorDtos.Queries;
-using SmsHub.Domain.Features.Security.Dtos;
-using SmsHub.Domain.Features.Security.MediatorDtos.Commands;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Template.MediatorDtos.Queries;
-using System.Reflection;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace SmsHub.IntegrationTests.Api
 {
@@ -32,8 +20,9 @@ namespace SmsHub.IntegrationTests.Api
             _client = factory.CreateClient();
         }
         [Fact]
-        public async void SendManager_CreateSendManager_ShouldPass() ////for test pleas change BatchSize=200 To BatchSize=2 in ProviderSeader for Magha
+        public async void SendManager_CreateSendManager_ShouldPass() //todo:first change BatchSize=2 then start test ,for Magfa
         {
+            //Arrange
             var requestBody = new[] { new { UserName = "Etehadi", Mobile = "09133022332" } };
 
             var line = new CreateLineDto
@@ -71,8 +60,7 @@ namespace SmsHub.IntegrationTests.Api
             var result = await PostAsync<object, ApiResponseEnvelope<ICollection<MobileText>>>($"/Send/SendManager/{templateId}/{lineId}", requestBody);
 
 
-            //test count
-
+            //Act
             var messageBatchList = await PostAsync<GetMessageBatchDto, ApiResponseEnvelope<ICollection<GetMessageBatchDto>>>("/MessageBatch/GetList", null);
             var messageBatch = messageBatchList.Data.OrderByDescending(x => x.Id).FirstOrDefault();
 
@@ -83,6 +71,7 @@ namespace SmsHub.IntegrationTests.Api
             var messageDetailWithMessageBatchId = messageDetailList.Data.Where(detail => messageHolderWithMessageBatchId.Any(holder => holder.Id == detail.MessagesHolderId));
 
 
+            //Assert
             Assert.Equal(messageHolderWithMessageBatchId.Count(), 1);
             Assert.Equal(messageDetailWithMessageBatchId.Count(), 1);
 
@@ -92,6 +81,7 @@ namespace SmsHub.IntegrationTests.Api
         [Fact]
         public async void SendManager_CreateSendManager_ShouldFailed()
         {
+            //Arrange
             var requestBody = new[] { new { UserNameOne = "Etehadi", Mobile = "09133022332" } };
 
             var line = new CreateLineDto
@@ -126,13 +116,14 @@ namespace SmsHub.IntegrationTests.Api
             var lineData = await PostAsync<GetLineDto, ApiResponseEnvelope<ICollection<GetLineDto>>>("/Line/GetList", null);
             int lineId = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
 
+            //Act
             var result = await PostAsyncWithoutDeserialize<object>($"/Send/SendManager/{templateId}/{lineId}", requestBody);
 
 
             string exception = "مقادیر وارد شده با قالب ناسازگار است";
             var x = exception.Any(s => result.Contains(s));
 
-
+            //Assert
             Assert.True(x);
         }
 
@@ -140,6 +131,7 @@ namespace SmsHub.IntegrationTests.Api
         [Fact]
         public async void SendManager_SendManyMessage_ShouldPass()
         {
+            //Arrange
             var requestBody = new[]{
                          new  {Mobile="09132582588",FromDate= 1403-10-20,CostToPay= 1000,UserName= "Reza Karimi"},
                          new  {Mobile="09133022325",FromDate= 1403-10-20,CostToPay= 2000,UserName= "Mohsen Sajjadi"},
@@ -183,9 +175,7 @@ namespace SmsHub.IntegrationTests.Api
             var result = await PostAsync<object, ApiResponseEnvelope<ICollection<MobileText>>>($"/Send/SendManager/{templateId}/{lineId}", requestBody);
 
 
-
-            //test count
-
+            //Act
             var messageBatchList = await PostAsync<GetMessageBatchDto, ApiResponseEnvelope<ICollection<GetMessageBatchDto>>>("/MessageBatch/GetList", null);
             var messageBatch = messageBatchList.Data.OrderByDescending(x => x.Id).FirstOrDefault();
 
@@ -195,7 +185,7 @@ namespace SmsHub.IntegrationTests.Api
             var messageDetailList = await PostAsync<GetMessageDetailDto, ApiResponseEnvelope<ICollection<GetMessageDetailDto>>>("/MessagesDetail/GetList", null);
             var messageDetailWithMessageBatchId = messageDetailList.Data.Where(detail => messageHolderWithMessageBatchId.Any(holder => holder.Id == detail.MessagesHolderId));
 
-
+            //Assert
             Assert.Equal(messageHolderWithMessageBatchId.Count(), 3);
             Assert.Equal(messageDetailWithMessageBatchId.Count(), 5);
 
@@ -206,13 +196,13 @@ namespace SmsHub.IntegrationTests.Api
         [Fact]
         public async void SendManager_SendManyMessageWithInvalidPropertyUserName_ShouldFailed()
         {
+            //Arrange
             var requestBody = new[]{
                          new  {Mobile="09132582588",FromDate= 1403-10-20,CostToPay= 1000,UserNam= "Reza Karimi"},
                          new  {Mobile="09133022325",FromDate= 1403-10-20,CostToPay= 2000,UserNam= "Mohsen Sajjadi"},
                          new  {Mobile="09215266868",FromDate=1403-10-20,CostToPay= 3000,UserNam= "Mohammad mousavi"},
                          new  {Mobile="09025232625",FromDate= 1403-10-20,CostToPay= 4000,UserNam= "Ali Ebrahimi"},
                          new  {Mobile="09955633623",FromDate= 1403-10-20,CostToPay= 5000,UserNam= "Hadi Borhani"} };
-            //UserName  -> UserNam
 
             var line = new CreateLineDto
             {
@@ -246,13 +236,14 @@ namespace SmsHub.IntegrationTests.Api
             var lineData = await PostAsync<GetLineDto, ApiResponseEnvelope<ICollection<GetLineDto>>>("/Line/GetList", null);
             int lineId = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
 
+            //Act
             var result = await PostAsyncWithoutDeserialize<object>($"/Send/SendManager/{templateId}/{lineId}", requestBody);
-
 
             var exception = "مقادیر وارد شده با قالب ناسازگار است";
             var x = exception.Any(s => result.Contains(s));
 
 
+            //Assert
             Assert.True(x);
         }
 
@@ -260,6 +251,7 @@ namespace SmsHub.IntegrationTests.Api
         [Fact]
         public async void SendManager_SendManyMessageWithInvalidPropertyWasNotCostToPay_ShouldFailed()
         {
+            //Arrange
             var requestBody = new[]{
                          new  {Mobile="09132582588",FromDate= 1403-10-20,UserName= "Reza Karimi"},
                          new  {Mobile="09133022325",FromDate= 1403-10-20,UserName= "Mohsen Sajjadi"},
@@ -300,19 +292,20 @@ namespace SmsHub.IntegrationTests.Api
             var lineData = await PostAsync<GetLineDto, ApiResponseEnvelope<ICollection<GetLineDto>>>("/Line/GetList", null);
             int lineId = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
 
+            //Act
             var result = await PostAsyncWithoutDeserialize<object>($"/Send/SendManager/{templateId}/{lineId}", requestBody);
-
 
             var exception = "مقادیر وارد شده با قالب ناسازگار است";
             var x = exception.Any(s => result.Contains(s));
 
-
+            //Assert
             Assert.True(x);
         }
 
         [Fact]
         public async void SendManager_SendManyMessageWithInvalidMobileValue_ShouldFailed()
         {
+            //Arrange
             var requestBody = new[]{
                          new  {Mobile="9132582588",FromDate= 1403-10-20,CostToPay=1000,UserName= "Reza Karimi"},
                          new  {Mobile="09022325",FromDate= 1403-10-20,CostToPay=2000,UserName= "Mohsen Sajjadi"},
@@ -352,19 +345,20 @@ namespace SmsHub.IntegrationTests.Api
             var lineData = await PostAsync<GetLineDto, ApiResponseEnvelope<ICollection<GetLineDto>>>("/Line/GetList", null);
             int lineId = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
 
+            //Act
             var result = await PostAsyncWithoutDeserialize<object>($"/Send/SendManager/{templateId}/{lineId}", requestBody);
-
 
             var exception = "ویژگی Mobile را وارد کنید";
             var x = exception.Any(s => result.Contains(s));
 
-
+            //Assert
             Assert.True(x);
         }
 
         [Fact]
         public async void SendManager_SendManyMessageWithInvalidMobileProp_ShouldFailed()
         {
+            //Arrange
             var requestBody = new[]{
                          new  {FromDate= 1403-10-20,CostToPay=1000,UserName= "Reza Karimi"},
                          new  {FromDate= 1403-10-20,CostToPay=2000,UserName= "Mohsen Sajjadi"},
@@ -404,19 +398,20 @@ namespace SmsHub.IntegrationTests.Api
             var lineData = await PostAsync<GetLineDto, ApiResponseEnvelope<ICollection<GetLineDto>>>("/Line/GetList", null);
             int lineId = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
 
+            //Act
             var result = await PostAsyncWithoutDeserialize<object>($"/Send/SendManager/{templateId}/{lineId}", requestBody);
-
 
             var exception = "ویژگی Mobile را وارد کنید";
             var x = exception.Any(s => result.Contains(s));
 
-
+            //Assert
             Assert.True(x);
         }
 
         [Fact]
         public async void SendManager_SendManyMessageWithInvalidTemplateId_ShouldFailed()
         {
+            //Arrange
             var requestBody = new[]{
                          new  {Mobile="09132582588",FromDate= 1403-10-20,CostToPay=1000,UserName= "Reza Karimi"},
                          new  {Mobile="09133022325",FromDate= 1403-10-20,CostToPay=2000,UserName= "Mohsen Sajjadi"},
@@ -456,13 +451,13 @@ namespace SmsHub.IntegrationTests.Api
             var lineData = await PostAsync<GetLineDto, ApiResponseEnvelope<ICollection<GetLineDto>>>("/Line/GetList", null);
             int lineId = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
 
+            //Act
             var result = await PostAsyncWithoutDeserialize<object>($"/Send/SendManager/{templateId + 2000}/{lineId}", requestBody);
-
 
             var exception = "کد -قالب پیامک- نامعتبر است";
             var x = exception.Any(s => result.Contains(s));
 
-
+            //Assert
             Assert.True(x);
         }
 
@@ -470,6 +465,7 @@ namespace SmsHub.IntegrationTests.Api
         [Fact]
         public async void SendManager_SendManyMessageWithInvalidLindeId_ShouldFailed()
         {
+            //Arrange
             var requestBody = new[]{
                          new  {Mobile="09132582588",FromDate= 1403-10-20,CostToPay=1000,UserName= "Reza Karimi"},
                          new  {Mobile="09133022325",FromDate= 1403-10-20,CostToPay=2000,UserName= "Mohsen Sajjadi"},
@@ -509,13 +505,13 @@ namespace SmsHub.IntegrationTests.Api
             var lineData = await PostAsync<GetLineDto, ApiResponseEnvelope<ICollection<GetLineDto>>>("/Line/GetList", null);
             int lineId = lineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
 
+            //Act
             var result = await PostAsyncWithoutDeserialize<object>($"/Send/SendManager/{templateId}/{lineId + 1000}", requestBody);
-
 
             var exception = "کد -شماره خط- نامعتبر است";
             var x = exception.Any(s => result.Contains(s));
 
-
+            //Assert
             Assert.True(x);
         }
 
@@ -523,6 +519,7 @@ namespace SmsHub.IntegrationTests.Api
         [Fact]
         public async void SendManager_SendManyMessageWithAdditionProp_ShouldPass()
         {
+            //Arrange
             var requestBody = new[]{
                          new  {Mobile="09132582588",FromDate= 1403-10-20,CostToPay=1000,UserName= "Reza Karimi",NotImportantValue=15},
                          new  {Mobile="09133022325",FromDate= 1403-10-20,CostToPay=2000,UserName= "Mohsen Sajjadi",NotImportantValue=20},
@@ -567,9 +564,7 @@ namespace SmsHub.IntegrationTests.Api
             var result = await PostAsync<object, ApiResponseEnvelope<ICollection<MobileText>>>($"/Send/SendManager/{templateId}/{lineId}", requestBody);
 
 
-
-            //test count
-
+            //Act
             var messageBatchList = await PostAsync<GetMessageBatchDto, ApiResponseEnvelope<ICollection<GetMessageBatchDto>>>("/MessageBatch/GetList", null);
             var messageBatch = messageBatchList.Data.OrderByDescending(x => x.Id).FirstOrDefault();
 
@@ -579,7 +574,7 @@ namespace SmsHub.IntegrationTests.Api
             var messageDetailList = await PostAsync<GetMessageDetailDto, ApiResponseEnvelope<ICollection<GetMessageDetailDto>>>("/MessagesDetail/GetList", null);
             var messageDetailWithMessageBatchId = messageDetailList.Data.Where(detail => messageHolderWithMessageBatchId.Any(holder => holder.Id == detail.MessagesHolderId));
 
-
+            //Assert
             Assert.Equal(messageHolderWithMessageBatchId.Count(), 4);
             Assert.Equal(messageDetailWithMessageBatchId.Count(), 7);
 
@@ -591,6 +586,7 @@ namespace SmsHub.IntegrationTests.Api
         [Fact]
         public async void SendManager_SendManyMessageWithNumberInDoubleQuotation_ShouldPass()
         {
+            //Arrange
             var requestBody = new[]{
                          new  {Mobile="09132582588",FromDate= 1403-10-20,CostToPay="1000",UserName= "Reza Karimi"},
                          new  {Mobile="09133022325",FromDate= 1403-10-20,CostToPay="2000",UserName= "Mohsen Sajjadi"},
@@ -634,8 +630,7 @@ namespace SmsHub.IntegrationTests.Api
 
 
 
-            //test count
-
+            //Act
             var messageBatchList = await PostAsync<GetMessageBatchDto, ApiResponseEnvelope<ICollection<GetMessageBatchDto>>>("/MessageBatch/GetList", null);
             var messageBatch = messageBatchList.Data.OrderByDescending(x => x.Id).FirstOrDefault();
 
@@ -645,7 +640,7 @@ namespace SmsHub.IntegrationTests.Api
             var messageDetailList = await PostAsync<GetMessageDetailDto, ApiResponseEnvelope<ICollection<GetMessageDetailDto>>>("/MessagesDetail/GetList", null);
             var messageDetailWithMessageBatchId = messageDetailList.Data.Where(detail => messageHolderWithMessageBatchId.Any(holder => holder.Id == detail.MessagesHolderId));
 
-
+            //Assert
             Assert.Equal(messageHolderWithMessageBatchId.Count(), 3);
             Assert.Equal(messageDetailWithMessageBatchId.Count(), 5);
 

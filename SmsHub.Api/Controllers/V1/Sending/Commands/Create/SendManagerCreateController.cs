@@ -1,16 +1,13 @@
 ﻿using Aban360.Api.Controllers.V1;
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Sending.Handlers.Commands.Create.Contracts;
-using SmsHub.Application.Features.Sending.Services;
 using SmsHub.Application.Features.Sending.Services.Contracts;
 using SmsHub.Application.Features.Sending.ServicesSample.Contracts;
 using SmsHub.Application.Features.Sending.ServicesSample.Implementations;
 using SmsHub.Application.Features.Template.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Constants;
-using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using SmsHub.Persistence.Contexts.UnitOfWork;
-using System.Threading;
 
 namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
 {

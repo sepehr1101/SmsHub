@@ -21,16 +21,16 @@ namespace SmsHub.Application.Features.Sending.ServiceSample2.Implementations
         private readonly IKavenegarHttpCountInboxService _countInboxService;
 
         public KavenegarProvider(
-            IKavenegarHttpAccountService accountService
-            , IKavenegarHttpStatusService statusService
-            , IKavenegarHttpReceiveService receiveService
-            , IKavenegarHttpSendArrayService sendArrayService
-            , IKavenegarHttpSendSimpleService sendSimpleService
-            , IKavenegarHttpStatusByMessageIdService statusByMessageIdService
-            , IKavenegarHttpSelectService selectService
-            , IKavenegarHttpSelectOutboxService selectOutboxService
-            , IKavenegarHttpLatestOutboxService latestOutboxService
-            , IKavenegarHttpCountInboxService countInboxService)
+            IKavenegarHttpAccountService accountService,
+            IKavenegarHttpStatusService statusService,
+            IKavenegarHttpReceiveService receiveService,
+            IKavenegarHttpSendArrayService sendArrayService,
+            IKavenegarHttpSendSimpleService sendSimpleService,
+            IKavenegarHttpStatusByMessageIdService statusByMessageIdService,
+            IKavenegarHttpSelectService selectService,
+            IKavenegarHttpSelectOutboxService selectOutboxService,
+            IKavenegarHttpLatestOutboxService latestOutboxService,
+            IKavenegarHttpCountInboxService countInboxService)
         {
             _accountService = accountService;
             _accountService.NotNull(nameof(accountService));
@@ -140,14 +140,14 @@ namespace SmsHub.Application.Features.Sending.ServiceSample2.Implementations
         }
 
 
-        private async Task SelectMessage(long messageId)//error 407 -> change local Ip
+        private async Task SelectMessage(long messageId)//todo: debug error 407 -> change local Ip
         {
             var apiKey = _kaveApi;
             SelectDto selectDto = messageId;
             var result = await _selectService.Trigger(selectDto, apiKey);
         }
 
-        private async Task SelectOutbox(long startDate, long endDate, string lineNumber)//error 407 -> change local Ip
+        private async Task SelectOutbox(long startDate, long endDate, string lineNumber)//todo: debug error 407 -> change local Ip
         {
             var apiKey = _kaveApi;
             var selectOutboxDto = new SelectOutboxDto()
@@ -161,7 +161,7 @@ namespace SmsHub.Application.Features.Sending.ServiceSample2.Implementations
         }
 
 
-        private async Task LatestOutbox(long Count, string lineNumber)//error 407 -> change local Ip
+        private async Task LatestOutbox(long Count, string lineNumber)//todo: debug error 407 -> change local Ip
         {
             var apiKey = _kaveApi;
             var latestOutboxDto = new LatestOutboxDto()

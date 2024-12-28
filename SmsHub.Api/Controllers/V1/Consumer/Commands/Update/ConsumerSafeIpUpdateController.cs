@@ -14,7 +14,9 @@ namespace SmsHub.Api.Controllers.V1.Consumer.Commands.Update
     {
         private readonly IUnitOfWork _uow;
         private readonly IConsumerSafaIpUpdateHandler _updateCommandHandler;
-        public ConsumerSafeIpUpdateController(IUnitOfWork uow, IConsumerSafaIpUpdateHandler updateCommandHandler)
+        public ConsumerSafeIpUpdateController(
+            IUnitOfWork uow,
+            IConsumerSafaIpUpdateHandler updateCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

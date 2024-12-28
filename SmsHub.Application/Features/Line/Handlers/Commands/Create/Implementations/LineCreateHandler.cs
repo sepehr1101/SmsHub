@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using MediatR;
 using SmsHub.Common.Extensions;
 using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Features.Line.Commands.Contracts;
@@ -14,12 +13,15 @@ using SmsHub.Application.Exceptions;
 
 namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Implementations
 {
-    public class LineCreateHandler : /*IRequestHandler<CreateLineDto>,*/ ILineCreateHandler
+    public class LineCreateHandler : ILineCreateHandler
     {
         private readonly IMapper _mapper;
         private readonly ILineCommandService _lineCommandService;
         private readonly IValidator<CreateLineDto> _validator;
-        public LineCreateHandler(IMapper mapper, ILineCommandService lineCommandService, IValidator<CreateLineDto> validator)
+        public LineCreateHandler(
+            IMapper mapper, 
+            ILineCommandService lineCommandService, 
+            IValidator<CreateLineDto> validator)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(_mapper));

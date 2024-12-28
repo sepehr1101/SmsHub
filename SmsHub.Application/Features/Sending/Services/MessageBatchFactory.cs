@@ -1,11 +1,5 @@
-﻿using SmsHub.Application.Features.Line.Handlers.Queries.Contracts;
-using SmsHub.Application.Features.Line.Handlers.Queries.Implementations;
-using SmsHub.Domain.Features.Entities;
+﻿using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
-using SmsHub.Persistence.Contexts.UnitOfWork;
-using SmsHub.Persistence.Features.Line.Queries.Implementations;
-using SmsHub.Persistence.Features.Sending.Queries.Implementations;
-using System.Collections.Generic;
 using System.Text;
 
 namespace SmsHub.Application.Features.Sending.Services
@@ -39,7 +33,7 @@ namespace SmsHub.Application.Features.Sending.Services
             {
                 Id = new Guid(),
                 InsertDateTime = DateTime.Now,
-                RetryCount = 2,//
+                RetryCount = 2,
                 MessagesDetails = messagesDetail.ToList(),
                 DetailsSize = messagesDetail.Count(),
                 SendDone = true,

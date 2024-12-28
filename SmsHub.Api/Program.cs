@@ -1,15 +1,9 @@
 using SmsHub.Api.Extensions;
-using SmsHub.Api.Middlewares;
 using SmsHub.Application.Extensions;
-using SmsHub.Application.Features.Contact.Handlers.Commands.Create.Contracts;
-using SmsHub.Application.Features.Contact.Handlers.Commands.Create.Implementations;
-using SmsHub.Application.Features.Sending.ServicesSample.Contracts;
 using SmsHub.Application.Features.Sending.ServicesSample.Implementations;
 using SmsHub.Common.Extensions;
 using SmsHub.Infrastructure.Extensions;
 using SmsHub.Persistence.Extensions;
-using SmsHub.Persistence.Features.Contact.Commands.Contracts;
-using SmsHub.Persistence.Features.Contact.Commands.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 

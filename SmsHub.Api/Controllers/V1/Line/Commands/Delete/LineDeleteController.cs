@@ -13,7 +13,9 @@ namespace SmsHub.Api.Controllers.V1.Line.Commands.Delete
     {
         private readonly IUnitOfWork _uow;
         private readonly ILineDeleteHandler _deleteCommandHandler;
-        public LineDeleteController(IUnitOfWork uow, ILineDeleteHandler deleteCommandHandler)
+        public LineDeleteController(
+            IUnitOfWork uow, 
+            ILineDeleteHandler deleteCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

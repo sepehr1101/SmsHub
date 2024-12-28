@@ -4,7 +4,6 @@ using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Delete;
 using SmsHub.Domain.Features.Config.MediatorDtos.Queries;
-using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.IntegrationTests.Api
 {

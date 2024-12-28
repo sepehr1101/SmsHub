@@ -1,5 +1,4 @@
 ﻿using SmsHub.Common.Contrats;
-using SmsHub.UnitTests.Common.SecurityOperations;
 
 namespace SmsHub.UnitTests.Common.SecurityOperations
 {

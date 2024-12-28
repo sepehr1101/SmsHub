@@ -13,10 +13,10 @@ namespace SmsHub.Domain.Features.EfConfig
             entity.Property(e => e.Title).HasMaxLength(255);
 
             entity.HasOne(d => d.Providers)
-                .WithMany(p => p.MessageStateCategories)
-                .HasForeignKey(d => d.ProviderId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Provider_REFERS_MessageStateCategory_ProviderId");
+                  .WithMany(p => p.MessageStateCategories)
+                  .HasForeignKey(d => d.ProviderId)
+                  .OnDelete(DeleteBehavior.ClientSetNull)
+                  .HasConstraintName("FK_Provider_REFERS_MessageStateCategory_ProviderId");
         }
     }
 }

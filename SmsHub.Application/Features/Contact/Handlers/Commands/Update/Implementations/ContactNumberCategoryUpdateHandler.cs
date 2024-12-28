@@ -12,7 +12,10 @@ namespace SmsHub.Application.Features.Contact.Handlers.Commands.Update.Implement
         private readonly IMapper _mapper;
         private readonly IContactNumberCategoryQueryService _contactNumberCategoryQueryService;
         private readonly IValidator<UpdateContactNumberCategoryDto> _validator;
-        public ContactNumberCategoryUpdateHandler(IMapper mapper, IContactNumberCategoryQueryService contactNumberCategoryQueryService,IValidator<UpdateContactNumberCategoryDto> validator)
+        public ContactNumberCategoryUpdateHandler(
+            IMapper mapper, 
+            IContactNumberCategoryQueryService contactNumberCategoryQueryService,
+            IValidator<UpdateContactNumberCategoryDto> validator)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

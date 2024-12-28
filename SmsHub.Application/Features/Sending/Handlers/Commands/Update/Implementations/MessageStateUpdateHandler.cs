@@ -12,7 +12,10 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Update.Implement
         private readonly IMapper _mapper;
         private readonly IMessageStateQueryService _messageStateQueryService;
         private readonly IValidator<UpdateMessageStateDto> _validator;
-        public MessageStateUpdateHandler(IMapper mapper, IMessageStateQueryService messageStateQueryService, IValidator<UpdateMessageStateDto> validator)
+        public MessageStateUpdateHandler(
+            IMapper mapper, 
+            IMessageStateQueryService messageStateQueryService, 
+            IValidator<UpdateMessageStateDto> validator)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

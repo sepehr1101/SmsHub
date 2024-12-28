@@ -3,9 +3,7 @@ using FluentValidation;
 using SmsHub.Application.Features.Consumer.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands;
-using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Delete;
 using SmsHub.Persistence.Features.Consumer.Queries.Contracts;
-using System.Threading;
 
 namespace SmsHub.Application.Features.Consumer.Handlers.Commands.Update.Implementations
 {
@@ -15,7 +13,10 @@ namespace SmsHub.Application.Features.Consumer.Handlers.Commands.Update.Implemen
         private readonly IConsumerLineQueryService _consumerLineQueryService;
         private readonly IValidator<UpdateConsumerLineDto> _validator;
 
-        public ConsumerLineUpdateHandler(IMapper mapper, IConsumerLineQueryService consumerLineQueryService, IValidator<UpdateConsumerLineDto> validator)
+        public ConsumerLineUpdateHandler(
+            IMapper mapper, 
+            IConsumerLineQueryService consumerLineQueryService, 
+            IValidator<UpdateConsumerLineDto> validator)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(Mapper));

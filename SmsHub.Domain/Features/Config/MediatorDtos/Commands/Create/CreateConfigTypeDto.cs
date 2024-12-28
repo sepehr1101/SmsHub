@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create
+﻿namespace SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create
 {
     public record CreateConfigTypeDto  
     {

@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace SmsHub.Domain.Features.Logging.MediatorDtos.Commands
+﻿namespace SmsHub.Domain.Features.Logging.MediatorDtos.Commands
 {
     public record UpdateLogLevelDto  
     {

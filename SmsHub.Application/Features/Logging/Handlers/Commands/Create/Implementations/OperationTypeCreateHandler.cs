@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using MediatR;
 using SmsHub.Common.Extensions;
 using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Features.Logging.Commands.Contracts;
@@ -14,7 +13,10 @@ namespace SmsHub.Application.Features.Logging.Handlers.Commands.Create.Implement
         private readonly IMapper _mapper;
         private readonly IOperationTypeCommandService _operationTypeCommandService;
         private readonly IValidator<CreateOperationTypeDto> _validator;
-        public OperationTypeCreateHandler(IMapper mapper, IOperationTypeCommandService operationTypeCommandService, IValidator<CreateOperationTypeDto> validator)
+        public OperationTypeCreateHandler(
+            IMapper mapper,
+            IOperationTypeCommandService operationTypeCommandService,
+            IValidator<CreateOperationTypeDto> validator)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(_mapper));

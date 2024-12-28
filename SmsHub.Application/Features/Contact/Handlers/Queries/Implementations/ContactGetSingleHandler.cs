@@ -11,7 +11,9 @@ namespace SmsHub.Application.Features.Contact.Handlers.Queries.Implementations
     {
         private readonly IMapper _mapper;
         private readonly IContactQueryService _contactQueryService;
-        public ContactGetSingleHandler(IMapper mapper, IContactQueryService contactQueryService)
+        public ContactGetSingleHandler(
+            IMapper mapper,
+            IContactQueryService contactQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

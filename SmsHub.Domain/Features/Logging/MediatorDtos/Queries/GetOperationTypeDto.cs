@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace SmsHub.Domain.Features.Logging.MediatorDtos.Queries
+﻿namespace SmsHub.Domain.Features.Logging.MediatorDtos.Queries
 {
     public record GetOperationTypeDto  
     {

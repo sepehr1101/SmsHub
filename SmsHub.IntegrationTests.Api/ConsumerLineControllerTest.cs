@@ -92,6 +92,7 @@ namespace SmsHub.IntegrationTests.Api
 
             //Act
             await PostAsync<DeleteConsumerLineDto, DeleteConsumerLineDto>("/ConsumerLine/Delete", deleteConsumerLine);
+            
             //Assert
             Assert.True(true);
 
@@ -175,6 +176,7 @@ namespace SmsHub.IntegrationTests.Api
             var consumerLineData = await PostAsync<GetConsumerLineDto, ApiResponseEnvelope<ICollection<GetConsumerLineDto>>>("/ConsumerLine/GetList", null);
 
             IntId consumerLineId = consumerLineData.Data.OrderByDescending(x => x.Id).FirstOrDefault().Id;
+           
             //Act
             var singleConsumerLine = await PostAsync<IntId, ApiResponseEnvelope<GetConsumerLineDto>>("/ConsumerLine/GetSingle", consumerLineId);
 

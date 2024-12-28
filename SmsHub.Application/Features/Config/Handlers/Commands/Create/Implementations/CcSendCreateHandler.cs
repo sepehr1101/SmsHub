@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using SmsHub.Common.Extensions;
 using Entities = SmsHub.Domain.Features.Entities;
-using MediatR;
 using SmsHub.Persistence.Features.Config.Commands.Contracts;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
 using SmsHub.Application.Features.Config.Handlers.Commands.Create.Contracts;
@@ -14,7 +13,10 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Create.Implementa
         private readonly ICcSendCommandService _ccSendCommandService;
         private readonly IMapper _mapper;
         private readonly IValidator<CreateCcSendDto> _validator;
-        public CcSendCreateHandler(ICcSendCommandService ccSendCommandService, IMapper mapper, IValidator<CreateCcSendDto> validator)
+        public CcSendCreateHandler(
+            ICcSendCommandService ccSendCommandService, 
+            IMapper mapper, 
+            IValidator<CreateCcSendDto> validator)
         {
             _ccSendCommandService = ccSendCommandService;
             _ccSendCommandService.NotNull(nameof(_ccSendCommandService));

@@ -10,7 +10,9 @@ namespace SmsHub.Application.Features.Consumer.Handlers.Queries.Implementations
     {
         private readonly IMapper _mapper;
         private readonly IConsumerLineQueryService _consumerLineQueryService;
-        public ConsumerLineGetListHandler(IMapper mapper, IConsumerLineQueryService consumerLineQueryService)
+        public ConsumerLineGetListHandler(
+            IMapper mapper, 
+            IConsumerLineQueryService consumerLineQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

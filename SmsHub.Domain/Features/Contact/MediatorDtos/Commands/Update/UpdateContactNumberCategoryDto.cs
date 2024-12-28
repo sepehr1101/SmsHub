@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace SmsHub.Domain.Features.Contact.MediatorDtos.Commands
+﻿namespace SmsHub.Domain.Features.Contact.MediatorDtos.Commands
 {
     public record UpdateContactNumberCategoryDto  
     {

@@ -11,7 +11,9 @@ namespace SmsHub.Application.Features.Config.Handlers.Queries.Implementations
     {
         private readonly IMapper _mapper;
         private readonly ICcSendQueryService _ccSendQueryService;
-        public CcSendGetSingleHandler(ICcSendQueryService ccSendQueryService, IMapper mapper)
+        public CcSendGetSingleHandler(
+            IMapper mapper,
+            ICcSendQueryService ccSendQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

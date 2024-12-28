@@ -10,7 +10,9 @@ namespace SmsHub.Application.Features.Contact.Handlers.Queries.Implementations
     {
         private readonly IMapper _mapper;
         private readonly IContactNumberQueryService _contactNumberQueryService;
-        public ContactNumberGetListHandler(IMapper mapper, IContactNumberQueryService contactNumberQueryService)
+        public ContactNumberGetListHandler(
+            IMapper mapper, 
+            IContactNumberQueryService contactNumberQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

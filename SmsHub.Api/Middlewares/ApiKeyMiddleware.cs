@@ -11,7 +11,9 @@ namespace SmsHub.Api.Middlewares
         {
             _next = next;
         }
-        public async Task InvokeAsync(HttpContext context, IApiKeyValidationHandler apiKeyValidationHandler)
+        public async Task InvokeAsync(
+            HttpContext context, 
+            IApiKeyValidationHandler apiKeyValidationHandler)
         {
             var plainTextApiKey = context.Request.Headers[HeaderKeys.ApiKeyHeaderName];
             if (plainTextApiKey.ToString() is null || plainTextApiKey=="")

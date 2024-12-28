@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
-using FluentValidation;
 using SmsHub.Application.Features.Contact.Handlers.Commands.Delete.Contracts;
-using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Contact.MediatorDtos.Commands.Delete;
 using SmsHub.Persistence.Features.Contact.Commands.Contracts;
 using SmsHub.Persistence.Features.Contact.Queries.Contracts;
-using System.Threading;
 
 namespace SmsHub.Application.Features.Contact.Handlers.Commands.Delete.Implementations
 {

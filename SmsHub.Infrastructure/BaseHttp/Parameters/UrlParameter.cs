@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SmsHub.Infrastructure.BaseHttp.Parameters
+﻿namespace SmsHub.Infrastructure.BaseHttp.Parameters
 {
     internal class UrlParameter
     {

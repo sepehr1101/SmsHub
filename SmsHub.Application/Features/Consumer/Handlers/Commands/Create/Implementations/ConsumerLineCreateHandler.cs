@@ -1,24 +1,23 @@
 ﻿using AutoMapper;
-using Azure.Core;
 using FluentValidation;
-using MediatR;
 using SmsHub.Application.Features.Consumer.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Create;
 using SmsHub.Persistence.Features.Consumer.Commands.Contracts;
-using System.ComponentModel.DataAnnotations;
-using System.Threading;
 using Entities = SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Application.Features.Consumer.Handlers.Commands.Create.Implementations
 {
-    public class ConsumerLineCreateHandler :/* IRequestHandler<CreateConsumerLineDto>,*/IConsumerLineCreateHandler
+    public class ConsumerLineCreateHandler :IConsumerLineCreateHandler
     {
         private readonly IMapper _mapper;
         private readonly IConsumerLineCommandService _consumerLineCommandService;
         private readonly IValidator<CreateConsumerLineDto> _validator;
 
-        public ConsumerLineCreateHandler(IMapper mapper, IConsumerLineCommandService consumerLineCommandService, IValidator<CreateConsumerLineDto> validator)
+        public ConsumerLineCreateHandler(
+            IMapper mapper, 
+            IConsumerLineCommandService consumerLineCommandService,
+            IValidator<CreateConsumerLineDto> validator)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(_mapper));

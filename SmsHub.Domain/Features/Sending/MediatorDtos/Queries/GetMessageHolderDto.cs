@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace SmsHub.Domain.Features.Sending.MediatorDtos.Queries
+﻿namespace SmsHub.Domain.Features.Sending.MediatorDtos.Queries
 {
     public record GetMessageHolderDto  
     {

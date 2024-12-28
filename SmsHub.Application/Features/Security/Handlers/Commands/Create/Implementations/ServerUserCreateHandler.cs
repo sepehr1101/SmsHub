@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using FluentValidation;
-using MediatR;
 using SmsHub.Application.Common.Services.Contracts;
 using SmsHub.Application.Features.Security.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
@@ -12,7 +11,6 @@ using SmsHub.Persistence.Features.Security.Commands.Contracts;
 namespace SmsHub.Application.Features.Security.Handlers.Commands.Create.Implementations
 {
     public class ServerUserCreateHandler : IServerUserCreateHandler
-    /*IRequestHandler<CreateServerUserDto, ApiKeyAndHash>*/
     {
         private readonly IMapper _mapper;
         private readonly IApiKeyFactory _apiKeyFactory;

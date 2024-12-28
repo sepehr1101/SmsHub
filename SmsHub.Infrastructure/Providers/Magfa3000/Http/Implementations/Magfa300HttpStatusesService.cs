@@ -3,7 +3,6 @@ using magfaResponse = SmsHub.Domain.Providers.Magfa3000.Entities.Responses;
 using SmsHub.Infrastructure.BaseHttp.Client.Contracts;
 using SmsHub.Infrastructure.Providers.Magfa3000.Http.Contracts;
 using SmsHub.Infrastructure.BaseHttp.Authenticators;
-using MediatR;
 
 namespace SmsHub.Infrastructure.Providers.Magfa3000.Http.Implementations
 {
@@ -28,6 +27,7 @@ namespace SmsHub.Infrastructure.Providers.Magfa3000.Http.Implementations
             return await Implement(domain,username,password,request);
         }
 
+        //todo: change Implement Method Name
         private async Task<magfaResponse.StatusesDto> Implement(string domain, string username, string password, HttpRequestMessage request)
         {
             request.AddBasicAuthentication($"{domain}/{username}", password);

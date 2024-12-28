@@ -15,7 +15,7 @@ namespace SmsHub.Domain.Providers.Kavenegar.Constants
         private string _baseAndKey { get { return $"{BaseUrl}/{ApiKey}/"; } }
         public string GetDateUrl { get { return $"{BaseUrl}/0/utils/getdate.json"; } }
         public string SimpleSendUri { get { return $"{_baseAndKey}sms/send.json"; } }
-        public string ArraySendUri { get { return $"{_baseAndKey}sms/sendarray.json"; } }//
+        public string ArraySendUri { get { return $"{_baseAndKey}sms/sendarray.json"; } }
         public string StatusUri { get { return $"{_baseAndKey}sms/status.json"; } }
         public string StatusByMessageIdUri { get { return $"{_baseAndKey}sms/statuslocalmessageid.json"; } }
         public string @SelectUri { get { return $"{_baseAndKey}sms/select.json"; } }

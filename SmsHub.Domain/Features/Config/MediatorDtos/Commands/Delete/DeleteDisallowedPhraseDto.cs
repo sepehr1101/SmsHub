@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace SmsHub.Domain.Features.Config.MediatorDtos.Commands.Delete
+﻿namespace SmsHub.Domain.Features.Config.MediatorDtos.Commands.Delete
 {
     public record DeleteDisallowedPhraseDto  
     {

@@ -14,7 +14,9 @@ namespace SmsHub.Api.Controllers.V1.Config.Commands.Update
     {
         private readonly IUnitOfWork _uow;
         private readonly IConfigTypeUpdateHandler _updateCommandHandler;
-        public ConfigTypeUpdateController(IUnitOfWork uow, IConfigTypeUpdateHandler updateCommandHandler)
+        public ConfigTypeUpdateController(
+            IUnitOfWork uow,
+            IConfigTypeUpdateHandler updateCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

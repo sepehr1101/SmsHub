@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Common.Extensions;
-using MediatR;
 using SmsHub.Persistence.Features.Config.Commands.Contracts;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
 using SmsHub.Application.Features.Config.Handlers.Commands.Create.Contracts;
@@ -14,7 +13,10 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Create.Implementa
         private readonly IConfigTypeCommandService _configTypeCommandService;
         private readonly IMapper _mapper;
         private readonly IValidator<CreateConfigTypeDto> _validator;
-        public ConfigTypeCreateHandler(IConfigTypeCommandService configCommandService, IMapper mapper,IValidator<CreateConfigTypeDto> validator)
+        public ConfigTypeCreateHandler(
+            IConfigTypeCommandService configCommandService, 
+            IMapper mapper,
+            IValidator<CreateConfigTypeDto> validator)
         {
             _configTypeCommandService = configCommandService;
             _configTypeCommandService.NotNull(nameof(_configTypeCommandService));

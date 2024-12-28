@@ -13,7 +13,9 @@ namespace SmsHub.Api.Controllers.V1.Logging.Commands.Delete
     {
         private readonly IUnitOfWork _uow;
         private readonly ILogLevelDeleteHandler _deleteCommandHandler;
-        public LogLevelDeleteController(IUnitOfWork uow, ILogLevelDeleteHandler deleteCommandHandler)
+        public LogLevelDeleteController(
+            IUnitOfWork uow, 
+            ILogLevelDeleteHandler deleteCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

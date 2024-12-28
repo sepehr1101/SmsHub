@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+﻿using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.BaseDomainEntities.Id;
-using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Commands;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Delete;

@@ -14,10 +14,10 @@ namespace SmsHub.Domain.Features.Sending.EfConfig
             entity.Property(e => e.InsertDateTime).HasColumnType("datetime");
 
             entity.HasOne(d => d.MessageBatch)
-                .WithMany(p => p.MessagesHolders)
-                .HasForeignKey(d => d.MessageBatchId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_MessageBatch_REFERS_MessagesHolder_MessageBatchId");
+                  .WithMany(p => p.MessagesHolders)
+                  .HasForeignKey(d => d.MessageBatchId)
+                  .OnDelete(DeleteBehavior.ClientSetNull)
+                  .HasConstraintName("FK_MessageBatch_REFERS_MessagesHolder_MessageBatchId");
         }
     }
 }

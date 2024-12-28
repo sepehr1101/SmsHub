@@ -12,7 +12,10 @@ namespace SmsHub.Application.Features.Template.Handlers.Commands.Update.Implemen
         private readonly IMapper _mapper;
         private readonly ITemplateCategoryQueryService _templateCategoryQueryService;
         private readonly IValidator<UpdateTemplateCategoryDto> _validator;
-        public TemplateCategoryUpdateHandler(IMapper mapper, ITemplateCategoryQueryService templateCategoryQueryService, IValidator<UpdateTemplateCategoryDto> validator)
+        public TemplateCategoryUpdateHandler(
+            IMapper mapper,
+            ITemplateCategoryQueryService templateCategoryQueryService,
+            IValidator<UpdateTemplateCategoryDto> validator)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

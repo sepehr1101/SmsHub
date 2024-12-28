@@ -10,7 +10,9 @@ namespace SmsHub.Application.Features.Line.Handlers.Queries.Implementations
     {
         private readonly IMapper _mapper;
         private readonly IProviderQueryService _providerQueryService;
-        public ProviderGetListHandler(IMapper mapper, IProviderQueryService providerQueryService)
+        public ProviderGetListHandler(
+            IMapper mapper,
+            IProviderQueryService providerQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

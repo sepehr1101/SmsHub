@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create
+﻿namespace SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create
 {
     public record CreateTemplateCategoryDto  
     {

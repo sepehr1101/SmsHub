@@ -9,16 +9,16 @@ namespace SmsHub.Domain.Features.Consumer.EfConfig
         public void Configure(EntityTypeBuilder<ConsumerLine> entity)
         {
             entity.HasOne(d => d.Consumer)
-                    .WithMany(p => p.ConsumerLines)
-                    .HasForeignKey(d => d.ConsumerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Consumer_REFERS_ConsumerLine_ConsumerId");
+                  .WithMany(p => p.ConsumerLines)
+                  .HasForeignKey(d => d.ConsumerId)
+                  .OnDelete(DeleteBehavior.ClientSetNull)
+                  .HasConstraintName("FK_Consumer_REFERS_ConsumerLine_ConsumerId");
 
             entity.HasOne(d => d.Line)
-                .WithMany(p => p.ConsumerLines)
-                .HasForeignKey(d => d.LineId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Line_REFERS_ConsumerLine_LineId");
+                  .WithMany(p => p.ConsumerLines)
+                  .HasForeignKey(d => d.LineId)
+                  .OnDelete(DeleteBehavior.ClientSetNull)
+                  .HasConstraintName("FK_Line_REFERS_ConsumerLine_LineId");
         }
     }
 }

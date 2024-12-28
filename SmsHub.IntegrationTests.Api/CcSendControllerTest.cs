@@ -69,6 +69,7 @@ namespace SmsHub.IntegrationTests.Api
             {
                 Id = 1
             };
+
             //Act
             await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
             await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);
@@ -106,6 +107,7 @@ namespace SmsHub.IntegrationTests.Api
                 ConfigTypeGroupId = 1,
                 Mobile = "09000000000"
             };
+
             //Act
             await PostAsync<CreateConfigTypeDto, CreateConfigTypeDto>("/ConfigType/Create", configType);
             await PostAsync<CreateConfigTypeGroupDto, CreateConfigTypeGroupDto>("/ConfigTypeGroup/Create", configTypeGroup);

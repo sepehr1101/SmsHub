@@ -11,7 +11,9 @@ namespace SmsHub.Application.Features.Config.Handlers.Queries.Implementations
     {
         private readonly IMapper _mapper;
         private readonly IDisallowedPhraseQueryService _disallowedPhraseQueryService;
-        public DisallowedPhraseGetSingleHandler(IMapper mapper, IDisallowedPhraseQueryService disallowedPhraseQueryService)
+        public DisallowedPhraseGetSingleHandler(
+            IMapper mapper, 
+            IDisallowedPhraseQueryService disallowedPhraseQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

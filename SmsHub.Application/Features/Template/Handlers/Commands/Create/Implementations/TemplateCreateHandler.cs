@@ -1,28 +1,25 @@
 ﻿using AutoMapper;
-using MediatR;
 using SmsHub.Common.Extensions;
 using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create;
 using SmsHub.Persistence.Features.Template.Commands.Contracts;
 using SmsHub.Application.Features.Template.Handlers.Commands.Create.Contracts;
-using HandlebarsDotNet;
-using System.Reflection;
 using System.Text.RegularExpressions;
-using Microsoft.VisualBasic;
 using System.Dynamic;
-using System;
 using Newtonsoft.Json;
 using FluentValidation;
 
 namespace SmsHub.Application.Features.Template.Handlers.Commands.Create.Implementations
 {
     public class TemplateCreateHandler : ITemplateCreateHandler
-    /*: IRequestHandler<CreateTemplateDto>*/
     {
         private readonly IMapper _mapper;
         private readonly ITemplateCommandService _templateCommandService;
         private readonly IValidator<CreateTemplateDto> _validator;
-        public TemplateCreateHandler(IMapper mapper, ITemplateCommandService templateCommandService, IValidator<CreateTemplateDto> validator)
+        public TemplateCreateHandler(
+            IMapper mapper,
+            ITemplateCommandService templateCommandService, 
+            IValidator<CreateTemplateDto> validator)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(_mapper));

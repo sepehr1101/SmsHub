@@ -22,7 +22,7 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
                 throw new InvalidProviderException();
         }
 
-        public async Task GetAccount_Balance(ProviderEnum id)//run
+        public async Task GetAccount_Balance(ProviderEnum id)
         {
             if (_providers.TryGetValue(id, out var provider))
                 await provider.Account_Balance();
@@ -30,7 +30,7 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
                 throw new InvalidOperationException();
         }
 
-        public async Task GetStatusByMessageId(ProviderEnum id, int messageId)//run
+        public async Task GetStatusByMessageId(ProviderEnum id, int messageId)
         {
             if (_providers.TryGetValue(id, out var provider))
                 await provider.Status_Statuses(messageId);
@@ -38,7 +38,7 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
                 throw new InvalidOperationException();
         }
 
-        public async Task GetReceiveMessages(ProviderEnum lineId, int? count, string? lineNumber)//run
+        public async Task GetReceiveMessages(ProviderEnum lineId, int? count, string? lineNumber)
         {
             if (_providers.TryGetValue(lineId, out var provider))
                 await provider.Receive_Messages(count, lineNumber);
@@ -46,7 +46,7 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
                 throw new InvalidOperationException();
         }
 
-        public async Task SendMessages(ProviderEnum lineId, List<SendMessageDto> sendMessage)//run
+        public async Task SendMessages(ProviderEnum lineId, List<SendMessageDto> sendMessage)
         {
             if (_providers.TryGetValue(lineId, out var provider))
                 await provider.Send_Send(sendMessage);
@@ -54,7 +54,7 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
                 throw new InvalidOperationException();
         }
 
-        public async Task GetStatusByLocalMessageId(ProviderEnum lineId, long localMessageId)//run
+        public async Task GetStatusByLocalMessageId(ProviderEnum lineId, long localMessageId)
         {
             if (_providers.TryGetValue(lineId, out var provider))
                 await provider.StatusByLocalMessageId_(localMessageId);
@@ -62,7 +62,7 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
                 throw new InvalidOperationException();
         }
 
-        public async Task GetMessageIdByUserId(ProviderEnum lineId, long userId)//run
+        public async Task GetMessageIdByUserId(ProviderEnum lineId, long userId)
         {
             if (_providers.TryGetValue(lineId, out var provider))
                 await provider._Mid(userId);
@@ -70,7 +70,7 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
                 throw new InvalidOperationException();
         }
 
-        public async Task GetMessageInfoByMessageId(ProviderEnum lineId, long messageId)//see Kavenagar Class
+        public async Task GetMessageInfoByMessageId(ProviderEnum lineId, long messageId)
         {
             if (_providers.TryGetValue(lineId, out var provider))
                 await provider.SelectMessage_(messageId);
@@ -78,7 +78,7 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
                 throw new InvalidOperationException();
         }
 
-        public async Task GetMessageListSent(ProviderEnum lineId, long startDate, long endDate, string lineNumber)//run
+        public async Task GetMessageListSent(ProviderEnum lineId, long startDate, long endDate, string lineNumber)
         {
             if (_providers.TryGetValue(lineId, out var provider))
                 await provider.SelectOutbox_(startDate, endDate, lineNumber);
@@ -86,7 +86,7 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
                 throw new InvalidOperationException();
         }
 
-        public async Task GetLatestMessageByMessageCount(ProviderEnum lineId, long count, string lineNumber)//run
+        public async Task GetLatestMessageByMessageCount(ProviderEnum lineId, long count, string lineNumber)
         {
             if (_providers.TryGetValue(lineId, out var provider))
                 await provider.LatestOutbox_(count, lineNumber);
@@ -102,7 +102,6 @@ namespace SmsHub.Application.Features.Sending.ServicesSample.Implementations
             else
                 throw new InvalidOperationException();
 
-            //
             var pro=CheckProviderEnum(lineId);
             await pro.CountInbox_(startDate,endDate, lineNumber, IsRead);
         }

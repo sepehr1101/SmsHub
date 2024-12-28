@@ -10,7 +10,9 @@ namespace SmsHub.Application.Features.Logging.Handlers.Queries.Implementations
     {
         private readonly IMapper _mapper;
         private readonly IOperationTypeQueryService _operationTypeQueryService;
-        public OperationTypeGetListHandler(IMapper mapper, IOperationTypeQueryService operationTypeQueryService)
+        public OperationTypeGetListHandler(
+            IMapper mapper,
+            IOperationTypeQueryService operationTypeQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

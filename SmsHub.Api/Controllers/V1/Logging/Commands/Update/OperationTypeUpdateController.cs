@@ -14,7 +14,9 @@ namespace SmsHub.Api.Controllers.V1.Logging.Commands.Update
     {
         private readonly IUnitOfWork _uow;
         private readonly IOperationTypeUpdateHandler _updateCommandHandler;
-        public OperationTypeUpdateController(IUnitOfWork uow, IOperationTypeUpdateHandler updateCommandHandler)
+        public OperationTypeUpdateController(
+            IUnitOfWork uow, 
+            IOperationTypeUpdateHandler updateCommandHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));

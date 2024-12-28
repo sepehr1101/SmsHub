@@ -1,9 +1,8 @@
-﻿using MediatR;
-using SmsHub.Domain.Constants;
+﻿using SmsHub.Domain.Constants;
 
 namespace SmsHub.Domain.Features.Line.MediatorDtos.Commands.Update
 {
-    public record UpdateProviderDto : IRequest
+    public record UpdateProviderDto 
     {
         public ProviderEnum Id { get; init; }
         public string Title { get; init; } = null!;

@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using static System.Net.Mime.MediaTypeNames;
 using System.Net;
 
 namespace SmsHub.Api.Middlewares

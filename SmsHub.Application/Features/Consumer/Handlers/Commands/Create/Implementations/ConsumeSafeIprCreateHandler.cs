@@ -1,23 +1,23 @@
 ﻿using AutoMapper;
-using MediatR;
 using SmsHub.Common.Extensions;
 using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Features.Consumer.Commands.Contracts;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Create;
 using SmsHub.Application.Features.Consumer.Handlers.Commands.Create.Contracts;
-using Azure.Core;
 using FluentValidation;
-using System.Threading;
 
 namespace SmsHub.Application.Features.Consumer.Handlers.Commands.Create.Implementations
 {
-    public class ConsumeSafeIprCreateHandler :/* IRequestHandler<CreateConsumerSafeIpDto>,*/IConsumeSafeIprCreateHandler
+    public class ConsumeSafeIprCreateHandler :IConsumeSafeIprCreateHandler
     {
         private readonly IMapper _mapper;
         private readonly IConsumerSafeIpCommandService _consumerSafeIpCommandService;
         private readonly IValidator<CreateConsumerSafeIpDto> _validator;
 
-        public ConsumeSafeIprCreateHandler(IMapper mapper, IConsumerSafeIpCommandService consumerSafeIpCommandService, IValidator<CreateConsumerSafeIpDto> validator)
+        public ConsumeSafeIprCreateHandler(
+            IMapper mapper, 
+            IConsumerSafeIpCommandService consumerSafeIpCommandService, 
+            IValidator<CreateConsumerSafeIpDto> validator)
         {
             _consumerSafeIpCommandService = consumerSafeIpCommandService;
             _consumerSafeIpCommandService.NotNull(nameof(_consumerSafeIpCommandService));

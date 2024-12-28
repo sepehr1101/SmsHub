@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SmsHub.Common.Extensions;
-using SmsHub.Domain.Constants;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Features.Consumer.Queries.Contracts;
 using Entities = SmsHub.Domain.Features.Entities;

@@ -12,7 +12,10 @@ namespace SmsHub.Application.Features.Logging.Handlers.Commands.Update.Implement
         private readonly IMapper _mapper;
         private readonly IDeepLogQueryService _deepLogQueryService;
         private readonly IValidator<UpdateDeepLogDto> _validator;
-        public DeepLogUpdateHandler(IMapper mapper, IDeepLogQueryService deepLogQueryService, IValidator<UpdateDeepLogDto> validator)
+        public DeepLogUpdateHandler(
+            IMapper mapper, 
+            IDeepLogQueryService deepLogQueryService, 
+            IValidator<UpdateDeepLogDto> validator)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));

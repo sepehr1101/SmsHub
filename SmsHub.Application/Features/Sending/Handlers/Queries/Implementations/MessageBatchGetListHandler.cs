@@ -10,7 +10,9 @@ namespace SmsHub.Application.Features.Sending.Handlers.Queries.Implementations
     {
         private readonly IMapper _mapper;
         private readonly IMessageBatchQueryService _messageBatchQueryService;
-        public MessageBatchGetListHandler(IMapper mapper, IMessageBatchQueryService messageBatchQueryService)
+        public MessageBatchGetListHandler(
+            IMapper mapper, 
+            IMessageBatchQueryService messageBatchQueryService)
         {
             _mapper=mapper; 
             _mapper.NotNull(nameof(mapper));
