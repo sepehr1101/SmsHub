@@ -30,9 +30,7 @@ namespace SmsHub.Api.Controllers.V1.Line.Commands.Create
         [Route(nameof(Create))]
         public async Task<IActionResult> Create([FromBody] CreateProviderDto createDto, CancellationToken cancellationToken)
         {
-            await _createCommandHandler.Handle(createDto, cancellationToken);
-            var db = _uow.GetDatabase();
-            var con = db.GetConnectionString();
+            await _createCommandHandler.Handle(createDto, cancellationToken);       
             await _uow.SaveChangesAsync(cancellationToken);
             return Ok(createDto);
         }

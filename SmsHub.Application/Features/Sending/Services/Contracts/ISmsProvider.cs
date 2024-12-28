@@ -1,6 +1,6 @@
 ﻿using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 
-namespace SmsHub.Application.Features.Sending.ServiceSample2.Contracts
+namespace SmsHub.Application.Features.Sending.Services.Contracts
 {
     public interface ISmsProvider
     {
