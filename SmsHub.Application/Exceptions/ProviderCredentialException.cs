@@ -1,14 +1,12 @@
-﻿namespace SmsHub.Application.Exceptions
+﻿using SmsHub.Common.Exceptions;
+
+namespace SmsHub.Application.Exceptions
 {
-    public class ProviderCredentialException : Exception
+    public class ProviderCredentialException: BaseException
     {
-        public string _ProviderName { get; }
-        public ProviderCredentialException(string providerName)
-            : base(string.Format(ExceptionLiterals.ProviderException, providerName))
+        public ProviderCredentialException()
+            :base(ExceptionLiterals.ProviderCredential)
         {
-            _ProviderName = providerName;
         }
-
     }
-
 }

@@ -1,4 +1,4 @@
-﻿using SmsHub.Application.Exceptions;
+﻿using SmsHub.Common.Exceptions;
 
 namespace SmsHub.Domain.BaseDomainEntities.Id
 {

@@ -2,7 +2,17 @@
 {
     public static class ExceptionLiterals
     {
-        public static string ProviderException => "احراز هویت _Provider {0}_ ناصحیح است";
+        public static string ProviderWithInvalidProperty(string provider, string prop) => $"احراز هویت -Provider {provider} / ویژگی {prop}- ناصحیح است";
+        public static string ProviderWithNullProperty(string provider) => $"احراز هویت -Provider {provider}- بهمراه ویژگی خالی ناصحیح است";
+        public static string ProviderCredential => "احراز هویت Provider با چنین Credential ناصحیح است";
+        public static string Magfa => "مگفا";
+        public static string Kavenegar => "کاوه نگار";
+        public static string UserName => "UserName";
+        public static string Domain => "Domain";
+        public static string ClientSecret => "ClientSecret";
+        public static string ApiKey => "ApiKey";
+
+
         public static string InvalidTemplateId => "کد -قالب پیامک- نامعتبر است";
         public static string InvalidLineId => "کد -شماره خط- نامعتبر است";
         public static string InvalidUserData => "مقادیر وارد شده با قالب ناسازگار است";

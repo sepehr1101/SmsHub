@@ -1,6 +1,8 @@
-﻿namespace SmsHub.Application.Exceptions
+﻿using SmsHub.Common.Exceptions;
+
+namespace SmsHub.Application.Exceptions
 {
-    public class InvalidUserDataException:Exception
+    public class InvalidUserDataException: BaseException
     {
         public InvalidUserDataException():base(ExceptionLiterals.InvalidUserData)
         {

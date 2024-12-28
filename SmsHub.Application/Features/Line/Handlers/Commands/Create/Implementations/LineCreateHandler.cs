@@ -19,8 +19,8 @@ namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Implementati
         private readonly ILineCommandService _lineCommandService;
         private readonly IValidator<CreateLineDto> _validator;
         public LineCreateHandler(
-            IMapper mapper, 
-            ILineCommandService lineCommandService, 
+            IMapper mapper,
+            ILineCommandService lineCommandService,
             IValidator<CreateLineDto> validator)
         {
             _mapper = mapper;
@@ -48,48 +48,43 @@ namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Implementati
         }
         public void ValidationProvider(CreateLineDto createDto)
         {
-            if (createDto.Credential == null)
+            createDto.NotNull(nameof(createDto));
+
+            switch (createDto.ProviderId)
             {
-                throw new ProviderCredentialException("");
-            }
-            else
-            {
-                switch (createDto.ProviderId)
-                {
-                    case ProviderEnum.Magfa:
-                        var resultMagfaDeserialize = DeserializeCredential<MagfaCredentialDto>(createDto.Credential);
-                        if (resultMagfaDeserialize != null)
-                        {
-                            if (string.IsNullOrWhiteSpace(resultMagfaDeserialize.Domain))
-                                throw new ProviderCredentialException("مگفا");
-                            if (string.IsNullOrWhiteSpace(resultMagfaDeserialize.UserName))
-                                throw new ProviderCredentialException("مگفا");
-                            if (string.IsNullOrWhiteSpace(resultMagfaDeserialize.ClientSecret))
-                                throw new ProviderCredentialException("مگفا");
-                        }
-                        else
-                        {
-                            throw new ProviderCredentialException("مگفا");
-                        }
-                        break;
+                case ProviderEnum.Magfa:
+                    var resultMagfaDeserialize = DeserializeCredential<MagfaCredentialDto>(createDto.Credential);
+                    if (resultMagfaDeserialize != null)
+                    {
+                        if (string.IsNullOrWhiteSpace(resultMagfaDeserialize.Domain))
+                            throw new ProviderCredentialByInvalidPropertyException(ExceptionLiterals.Magfa, ExceptionLiterals.Domain);
+                        if (string.IsNullOrWhiteSpace(resultMagfaDeserialize.UserName))
+                            throw new ProviderCredentialByInvalidPropertyException(ExceptionLiterals.Magfa, ExceptionLiterals.UserName);
+                        if (string.IsNullOrWhiteSpace(resultMagfaDeserialize.ClientSecret))
+                            throw new ProviderCredentialByInvalidPropertyException(ExceptionLiterals.Magfa, ExceptionLiterals.ClientSecret);
+                    }
+                    else
+                    {
+                        throw new ProviderCredentialByNullPropertyException(ExceptionLiterals.Magfa);
+                    }
+                    break;
 
-                    case ProviderEnum.Kavenegar:
-                        var resultKavenegarDeserialize = DeserializeCredential<KavenegarCredentialDto>(createDto.Credential);
-                        if (resultKavenegarDeserialize != null)
-                        {
-                            if (string.IsNullOrWhiteSpace(resultKavenegarDeserialize.apiKey ))
-                                throw new ProviderCredentialException("کاوه نگار");
-                        }
-                        else
-                        {
-                            throw new ProviderCredentialException("کاوه نگار");
-                        }
-                        break;
+                case ProviderEnum.Kavenegar:
+                    var resultKavenegarDeserialize = DeserializeCredential<KavenegarCredentialDto>(createDto.Credential);
+                    if (resultKavenegarDeserialize != null)
+                    {
+                        if (string.IsNullOrWhiteSpace(resultKavenegarDeserialize.apiKey))
+                            throw new ProviderCredentialByInvalidPropertyException(ExceptionLiterals.Kavenegar, ExceptionLiterals.ApiKey);
+                    }
+                    else
+                    {
+                        throw new ProviderCredentialByNullPropertyException(ExceptionLiterals.Kavenegar);
+                    }
+                    break;
 
-                    default:
-                        throw new ProviderCredentialException("");
+                default:
+                    throw new InvalidProviderException();
 
-                }
             }
         }
 
@@ -102,7 +97,7 @@ namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Implementati
             }
             catch
             {
-                throw new ProviderCredentialException("");
+                throw new ProviderCredentialException();
             }
 
             return resultDeserialize;
