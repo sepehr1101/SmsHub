@@ -7,8 +7,8 @@ namespace SmsHub.Application.Features.Sending.Services.Contracts
     {
         Task Send(Entities.Line line, MobileText mobileText);
         Task Send(Entities.Line line, ICollection<MobileText> mobileTexts);
-        Task<long> GetCredit();
-        Task GetState(long id);
+        Task<long> GetCredit(Entities.Line line);
+        Task GetState(Entities.Line line,long id);
         //Task Send(Line line, MobileText mobileText);
     }
 }

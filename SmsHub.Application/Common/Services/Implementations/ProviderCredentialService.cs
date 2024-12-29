@@ -23,6 +23,7 @@ namespace SmsHub.Application.Common.Services.Implementations
             return resultKavenegarDeserialize;
         }
 
+
         public static MagfaCredentialDto CheckMagfaValidCredential(string credential)
         {
             var resultMagfaDeserialize = DeserializeCredential<MagfaCredentialDto>(credential);
@@ -59,5 +60,6 @@ namespace SmsHub.Application.Common.Services.Implementations
 
             return resultDeserialize;
         }
+
     }
 }

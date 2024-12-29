@@ -10,6 +10,7 @@ using MagfaCredentialDto = SmsHub.Domain.Providers.Magfa3000.Entities.Responses.
 using KavenegarCredentialDto = SmsHub.Domain.Providers.Kavenegar.Entities.Responses.CredentialDto;
 using SmsHub.Domain.Constants;
 using SmsHub.Application.Exceptions;
+using SmsHub.Application.Common.Services.Implementations;
 
 namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Implementations
 {
@@ -53,33 +54,11 @@ namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Implementati
             switch (createDto.ProviderId)
             {
                 case ProviderEnum.Magfa:
-                    var resultMagfaDeserialize = DeserializeCredential<MagfaCredentialDto>(createDto.Credential);
-                    if (resultMagfaDeserialize != null)
-                    {
-                        if (string.IsNullOrWhiteSpace(resultMagfaDeserialize.Domain))
-                            throw new ProviderCredentialByInvalidPropertyException(ExceptionLiterals.Magfa, ExceptionLiterals.Domain);
-                        if (string.IsNullOrWhiteSpace(resultMagfaDeserialize.UserName))
-                            throw new ProviderCredentialByInvalidPropertyException(ExceptionLiterals.Magfa, ExceptionLiterals.UserName);
-                        if (string.IsNullOrWhiteSpace(resultMagfaDeserialize.ClientSecret))
-                            throw new ProviderCredentialByInvalidPropertyException(ExceptionLiterals.Magfa, ExceptionLiterals.ClientSecret);
-                    }
-                    else
-                    {
-                        throw new ProviderCredentialByNullPropertyException(ExceptionLiterals.Magfa);
-                    }
+                    var resultMagfaDeserialize = ProviderCredentialService.CheckMagfaValidCredential(createDto.Credential);
                     break;
 
                 case ProviderEnum.Kavenegar:
-                    var resultKavenegarDeserialize = DeserializeCredential<KavenegarCredentialDto>(createDto.Credential);
-                    if (resultKavenegarDeserialize != null)
-                    {
-                        if (string.IsNullOrWhiteSpace(resultKavenegarDeserialize.apiKey))
-                            throw new ProviderCredentialByInvalidPropertyException(ExceptionLiterals.Kavenegar, ExceptionLiterals.ApiKey);
-                    }
-                    else
-                    {
-                        throw new ProviderCredentialByNullPropertyException(ExceptionLiterals.Kavenegar);
-                    }
+                    var resultKavenegarDeserialize =ProviderCredentialService.CheckKavenegarValidCredential(createDto.Credential);
                     break;
 
                 default:
@@ -88,19 +67,5 @@ namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Implementati
             }
         }
 
-        public T DeserializeCredential<T>(string credential)
-        {
-            T resultDeserialize;
-            try
-            {
-                resultDeserialize = JsonConvert.DeserializeObject<T>(credential);
-            }
-            catch
-            {
-                throw new ProviderCredentialException();
-            }
-
-            return resultDeserialize;
-        }
     }
 }

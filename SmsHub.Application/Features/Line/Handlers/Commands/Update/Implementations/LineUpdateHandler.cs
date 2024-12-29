@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
+using Azure.Core;
 using FluentValidation;
+using MediatR;
 using SmsHub.Application.Features.Line.Handlers.Commands.Update.Contracts;
+using SmsHub.Application.Features.Line.Validations;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Update;
 using SmsHub.Persistence.Features.Line.Queries.Contracts;
@@ -28,6 +31,8 @@ namespace SmsHub.Application.Features.Line.Handlers.Commands.Update.Implementati
         }
         public async Task Handle(UpdateLineDto updateLineDto, CancellationToken cancellationToken)
         {
+            LineCredentialValidation.ValidationUpdateLine(updateLineDto);
+
             var validationResult = await _validator.ValidateAsync(updateLineDto, cancellationToken);
             if (!validationResult.IsValid)
             {

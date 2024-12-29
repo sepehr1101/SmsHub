@@ -5,7 +5,6 @@ using SmsHub.Infrastructure.Providers.Magfa3000.Http.Contracts;
 using MagfaRequest = SmsHub.Domain.Providers.Magfa3000.Entities.Requests;
 using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Application.Common.Services.Implementations;
-using SmsHub.Domain.Features.Entities;
 
 
 namespace SmsHub.Application.Features.Sending.Services.Implementations
