@@ -11,6 +11,7 @@ using KavenegarCredentialDto = SmsHub.Domain.Providers.Kavenegar.Entities.Respon
 using SmsHub.Domain.Constants;
 using SmsHub.Application.Exceptions;
 using SmsHub.Application.Common.Services.Implementations;
+using SmsHub.Application.Features.Line.Validations;
 
 namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Implementations
 {
@@ -36,7 +37,7 @@ namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Implementati
 
         public async Task Handle(CreateLineDto request, CancellationToken cancellationToken)
         {
-            ValidationProvider(request);
+            LineCredentialValidation.ValidationCreateLine(request);//todo: I move ValidationProvider  To LineCredentialValidation , true or not?
 
             var validationResult = await _validator.ValidateAsync(request, cancellationToken);
             if (!validationResult.IsValid)
@@ -46,25 +47,6 @@ namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Implementati
 
             var line = _mapper.Map<Entities.Line>(request);
             await _lineCommandService.Add(line);
-        }
-        public void ValidationProvider(CreateLineDto createDto)
-        {
-            createDto.NotNull(nameof(createDto));
-
-            switch (createDto.ProviderId)
-            {
-                case ProviderEnum.Magfa:
-                    var resultMagfaDeserialize = ProviderCredentialService.CheckMagfaValidCredential(createDto.Credential);
-                    break;
-
-                case ProviderEnum.Kavenegar:
-                    var resultKavenegarDeserialize =ProviderCredentialService.CheckKavenegarValidCredential(createDto.Credential);
-                    break;
-
-                default:
-                    throw new InvalidProviderException();
-
-            }
         }
 
     }
