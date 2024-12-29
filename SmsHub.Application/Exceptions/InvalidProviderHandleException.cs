@@ -1,6 +1,8 @@
-﻿namespace SmsHub.Application.Exceptions
+﻿using SmsHub.Common.Exceptions;
+
+namespace SmsHub.Application.Exceptions
 {
-   public class InvalidProviderHandleException:Exception
+   public class InvalidProviderHandleException: BaseException
     {
         public InvalidProviderHandleException()
             :base(ExceptionLiterals.InvalidProviderHandle)

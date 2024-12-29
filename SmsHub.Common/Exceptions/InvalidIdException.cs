@@ -1,8 +1,8 @@
 ﻿using SmsHub.Common.Literals;
 
-namespace SmsHub.Application.Exceptions
+namespace SmsHub.Common.Exceptions
 {
-    public class InvalidIdException:Exception
+    public class InvalidIdException: BaseException
     {
         public InvalidIdException(): base(ExceptionLiterals.IdNotMoreThan0)
         {

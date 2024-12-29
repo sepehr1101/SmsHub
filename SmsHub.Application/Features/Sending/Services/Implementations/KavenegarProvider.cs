@@ -1,14 +1,16 @@
-﻿using SmsHub.Application.Features.Sending.Services.Contracts;
+﻿using SmsHub.Application.Common.Services.Implementations;
+using SmsHub.Application.Features.Sending.Services.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Providers.Kavenegar.Entities.Requests;
 using SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts;
+using Entities = SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Application.Features.Sending.Services.Implementations
 {
     public class KavenegarProvider : ISmsProvider
     {
-        private static string _kaveApi = "S";
         private readonly IKavenegarHttpAccountService _accountService;
         private readonly IKavenegarHttpStatusService _statusService;
         private readonly IKavenegarHttpReceiveService _receiveService;
@@ -64,28 +66,33 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         }
 
 
-        public async Task<long> GetCredit()
+        public async Task<long> GetCredit(Entities.Line line)
         {
-            var apiKey = _kaveApi;
+            var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
+            var apiKey = kavenegarCredential.apiKey;
+
             var response = await _accountService.Trigger(apiKey);
 
             return response.Entries.ExpireDate;
         }
 
-        public async Task GetState(long id)
+        public async Task GetState(Entities.Line line, long id)
         {
-            var apiKey = _kaveApi;
+            var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
+            var apiKey = kavenegarCredential.apiKey;
+
             StatusDto status = id;//1828205579
             var result = await _statusService.Trigger(status, apiKey);
         }
 
-        public async Task Send(string lineNumber, MobileText mobileText)
+        public async Task Send(Entities.Line line, MobileText mobileText)
         {
-            var apiKey = _kaveApi;
+            var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
+            var apiKey = kavenegarCredential.apiKey;
 
             var sendSimpleDto = new SimpleSendDto()
             {
-                Sender = lineNumber,
+                Sender = line.Number,
                 Message = mobileText.Text,
                 Receptor = mobileText.Mobile,
                 LocalId = mobileText.LocalId,
@@ -96,9 +103,10 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var response = await _sendSimpleService.Trigger(sendSimpleDto, apiKey);
         }
 
-        public async Task Send(string lineNumber, ICollection<MobileText> mobileTexts)
+        public async Task Send(Entities.Line line, ICollection<MobileText> mobileTexts)
         {
-            var apiKey = _kaveApi;
+            var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
+            var apiKey = kavenegarCredential.apiKey;
 
             ArraySendDto sendArrayDto = new ArraySendDto
             {
@@ -111,7 +119,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             foreach (var item in mobileTexts)
             {
-                sendArrayDto.Sender.Add(lineNumber);
+                sendArrayDto.Sender.Add(line.Number);
                 sendArrayDto.Receptor.Add(item.Mobile);
                 sendArrayDto.Message.Add(item.Text);
                 sendArrayDto.LocalMessageIds.Add(item.LocalId);
@@ -123,59 +131,77 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         }
 
 
-        private async Task Receive(int? count, string? lineNumber)
+
+
+
+
+        private async Task Receive(Entities.Line line,int? count)
         {
-            var apiKey = _kaveApi;
-            var receiveDto = new ReceiveDto(lineNumber, true);
+
+            var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
+            var apiKey = kavenegarCredential.apiKey;
+
+            var receiveDto = new ReceiveDto(line.Number, true);
             var resultReceive = await _receiveService.Trigger(receiveDto, apiKey);
         }
 
 
-        private async Task StatusByLocalMessageId(long localMessageId)
+        private async Task StatusByLocalMessageId(Entities.Line line,long localMessageId)
         {
-            var apiKey = _kaveApi;
+            var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
+            var apiKey = kavenegarCredential.apiKey;
 
             StatusByMessageIdDto statusByMessageId = localMessageId;
             var result = await _statusByMessageIdService.Trigger(statusByMessageId, apiKey);
         }
 
 
-        private async Task SelectMessage(long messageId)//todo: debug error 407 -> change local Ip
+        private async Task SelectMessage(Entities.Line line, long messageId)//todo: debug error 407 -> change local Ip
         {
-            var apiKey = _kaveApi;
+            var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
+            var apiKey = kavenegarCredential.apiKey;
+
             SelectDto selectDto = messageId;
+
             var result = await _selectService.Trigger(selectDto, apiKey);
         }
 
-        private async Task SelectOutbox(long startDate, long endDate, string lineNumber)//todo: debug error 407 -> change local Ip
+        private async Task SelectOutbox(long startDate, long endDate, Entities.Line line)//todo: debug error 407 -> change local Ip
         {
-            var apiKey = _kaveApi;
+            var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
+            var apiKey = kavenegarCredential.apiKey;
+            
             var selectOutboxDto = new SelectOutboxDto()
             {
                 StartDate = startDate,
                 EndDate = endDate,
-                Sender = lineNumber
+                Sender = line.Number
             };
             var result = await _selectOutboxService.Trigger(selectOutboxDto, apiKey);
 
         }
 
 
-        private async Task LatestOutbox(long Count, string lineNumber)//todo: debug error 407 -> change local Ip
+        private async Task LatestOutbox(long Count, Entities.Line line)//todo: debug error 407 -> change local Ip
         {
-            var apiKey = _kaveApi;
+            var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
+            var apiKey = kavenegarCredential.apiKey;
+            
             var latestOutboxDto = new LatestOutboxDto()
             {
                 PageSize = Count,
-                Sender = lineNumber
+                Sender = line.Number
             };
+
             var result = await _latestOutboxService.Trigger(latestOutboxDto, apiKey);
 
         }
 
-        private async Task CountInbox(long startDate, long endDate, string lineNumber, bool IsRead)
+        private async Task CountInbox(long startDate, long endDate, Entities.Line line, bool IsRead)
         {
-            var apiKey = _kaveApi;
+            var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
+            var apiKey = kavenegarCredential.apiKey;
+            
             var response = await _accountService.Trigger(apiKey);
         }
 

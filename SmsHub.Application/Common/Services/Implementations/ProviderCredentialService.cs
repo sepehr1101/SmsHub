@@ -14,13 +14,37 @@ namespace SmsHub.Application.Common.Services.Implementations
             if (resultKavenegarDeserialize != null)
             {
                 if (string.IsNullOrWhiteSpace(resultKavenegarDeserialize.apiKey))
-                    throw new ProviderCredentialException("کاوه نگار");
+                    throw new ProviderCredentialByInvalidPropertyException(ExceptionLiterals.Kavenegar, ExceptionLiterals.ApiKey);
             }
             else
             {
-                throw new ProviderCredentialException("کاوه نگار");
+                throw new ProviderCredentialByNullPropertyException(ExceptionLiterals.Kavenegar);
             }
             return resultKavenegarDeserialize;
+        }
+
+
+        public static MagfaCredentialDto CheckMagfaValidCredential(string credential)
+        {
+            var resultMagfaDeserialize = DeserializeCredential<MagfaCredentialDto>(credential);
+            if (resultMagfaDeserialize != null)
+            {
+                if (string.IsNullOrWhiteSpace(resultMagfaDeserialize.ClientSecret))
+                    throw new ProviderCredentialByInvalidPropertyException(ExceptionLiterals.Magfa, ExceptionLiterals.ClientSecret);
+
+                 if (string.IsNullOrWhiteSpace(resultMagfaDeserialize.UserName))
+                    throw new ProviderCredentialByInvalidPropertyException(ExceptionLiterals.Magfa, ExceptionLiterals.UserName);
+
+                 if (string.IsNullOrWhiteSpace(resultMagfaDeserialize.Domain))
+                    throw new ProviderCredentialByInvalidPropertyException(ExceptionLiterals.Magfa, ExceptionLiterals.Domain);
+            }
+            else
+            {
+                throw new ProviderCredentialByNullPropertyException(ExceptionLiterals.Magfa);
+            }
+
+            return resultMagfaDeserialize;
+
         }
         public static T DeserializeCredential<T>(string credential)
         {
@@ -31,10 +55,11 @@ namespace SmsHub.Application.Common.Services.Implementations
             }
             catch
             {
-                throw new ProviderCredentialException("");
+                throw new ProviderCredentialException();
             }
 
             return resultDeserialize;
         }
+
     }
 }

@@ -10,6 +10,8 @@ using MagfaCredentialDto = SmsHub.Domain.Providers.Magfa3000.Entities.Responses.
 using KavenegarCredentialDto = SmsHub.Domain.Providers.Kavenegar.Entities.Responses.CredentialDto;
 using SmsHub.Domain.Constants;
 using SmsHub.Application.Exceptions;
+using SmsHub.Application.Common.Services.Implementations;
+using SmsHub.Application.Features.Line.Validations;
 
 namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Implementations
 {
@@ -19,8 +21,8 @@ namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Implementati
         private readonly ILineCommandService _lineCommandService;
         private readonly IValidator<CreateLineDto> _validator;
         public LineCreateHandler(
-            IMapper mapper, 
-            ILineCommandService lineCommandService, 
+            IMapper mapper,
+            ILineCommandService lineCommandService,
             IValidator<CreateLineDto> validator)
         {
             _mapper = mapper;
@@ -35,7 +37,7 @@ namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Implementati
 
         public async Task Handle(CreateLineDto request, CancellationToken cancellationToken)
         {
-            ValidationProvider(request);
+            LineCredentialValidation.ValidationCreateLine(request);//todo: I move ValidationProvider  To LineCredentialValidation , true or not?
 
             var validationResult = await _validator.ValidateAsync(request, cancellationToken);
             if (!validationResult.IsValid)
@@ -46,66 +48,6 @@ namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Implementati
             var line = _mapper.Map<Entities.Line>(request);
             await _lineCommandService.Add(line);
         }
-        public void ValidationProvider(CreateLineDto createDto)
-        {
-            if (createDto.Credential == null)
-            {
-                throw new ProviderCredentialException("");
-            }
-            else
-            {
-                switch (createDto.ProviderId)
-                {
-                    case ProviderEnum.Magfa:
-                        var resultMagfaDeserialize = DeserializeCredential<MagfaCredentialDto>(createDto.Credential);
-                        if (resultMagfaDeserialize != null)
-                        {
-                            if (string.IsNullOrWhiteSpace(resultMagfaDeserialize.Domain))
-                                throw new ProviderCredentialException("مگفا");
-                            if (string.IsNullOrWhiteSpace(resultMagfaDeserialize.UserName))
-                                throw new ProviderCredentialException("مگفا");
-                            if (string.IsNullOrWhiteSpace(resultMagfaDeserialize.ClientSecret))
-                                throw new ProviderCredentialException("مگفا");
-                        }
-                        else
-                        {
-                            throw new ProviderCredentialException("مگفا");
-                        }
-                        break;
 
-                    case ProviderEnum.Kavenegar:
-                        var resultKavenegarDeserialize = DeserializeCredential<KavenegarCredentialDto>(createDto.Credential);
-                        if (resultKavenegarDeserialize != null)
-                        {
-                            if (string.IsNullOrWhiteSpace(resultKavenegarDeserialize.apiKey ))
-                                throw new ProviderCredentialException("کاوه نگار");
-                        }
-                        else
-                        {
-                            throw new ProviderCredentialException("کاوه نگار");
-                        }
-                        break;
-
-                    default:
-                        throw new ProviderCredentialException("");
-
-                }
-            }
-        }
-
-        public T DeserializeCredential<T>(string credential)
-        {
-            T resultDeserialize;
-            try
-            {
-                resultDeserialize = JsonConvert.DeserializeObject<T>(credential);
-            }
-            catch
-            {
-                throw new ProviderCredentialException("");
-            }
-
-            return resultDeserialize;
-        }
     }
 }

@@ -1,8 +1,9 @@
-﻿using SmsHub.Persistence.Constants.Literals;
+﻿using SmsHub.Common.Exceptions;
+using SmsHub.Persistence.Constants.Literals;
 
 namespace SmsHub.Persistence.Exceptions
 {
-    public class InvalidIdException:Exception
+    public class InvalidIdException:BaseException
     {
         public InvalidIdException():base(ExceptionLiterals.InvalidIdentifier)
         {

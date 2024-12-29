@@ -82,7 +82,7 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
             var messageBatch = MessageBatchFactory.Create(mobileText, lineId, batchSize, "");
             var result = _messageBatchCommandService.Add(messageBatch);
             var smsProvider = _smsProviderFactory.Create(line.Provider.Id);
-            await smsProvider.Send(line.Number, mobileText);
+            await smsProvider.Send(line, mobileText);
             return mobileText;
         }
         private Dictionary<string, string> DeserializeToDictionary(string data)

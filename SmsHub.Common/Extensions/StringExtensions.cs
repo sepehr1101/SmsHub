@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using Microsoft.VisualBasic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -186,6 +187,18 @@ namespace SmsHub.Common.Extensions
                 ),
                 " "
             );
+
+        public static string AppendString(this ICollection<long> numbers,string toBeAppended)
+        {
+            var result=new StringBuilder();
+            foreach (var item in numbers)
+            {
+                result.Append(item.ToString());
+                result.Append(toBeAppended);
+            }
+
+            return result.Length--.ToString();
+        }
 
         const string RIsUpperCase = "^[A-Z]+$";
         const string RAddUnderscore1 = @"[-\s]";

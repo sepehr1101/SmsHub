@@ -3,7 +3,7 @@ using SmsHub.Common.Literals;
 
 namespace SmsHub.Common.Exceptions
 {
-    public class InvalidIpException:Exception
+    public class InvalidIpException: BaseException
     {
         public InvalidIpException(string ip)
             :base(string.Format(ExceptionLiterals.InvalidIp,ip)) 
