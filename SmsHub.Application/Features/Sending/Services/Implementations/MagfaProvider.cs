@@ -3,14 +3,15 @@ using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using SmsHub.Infrastructure.Providers.Magfa3000.Http.Contracts;
 using MagfaRequest = SmsHub.Domain.Providers.Magfa3000.Entities.Requests;
+using Entities = SmsHub.Domain.Features.Entities;
+using SmsHub.Application.Common.Services.Implementations;
+using SmsHub.Domain.Features.Entities;
+
 
 namespace SmsHub.Application.Features.Sending.Services.Implementations
 {
     public class MagfaProvider : ISmsProvider
     {
-        private static string _domain = "sampleDomain";
-        private static string _userName = "sampleUserName";
-        private static string _password = "samplePassword";
         private readonly IMagfa300HttpSendService _magfaSendService;
         private readonly IMagfa300HttpStatusesService _magfaStatusCodesService;
         private readonly IMagfa300HttpBalanceService _magfaBalanceService;
@@ -36,11 +37,13 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             _magfaMidService.NotNull(nameof(magfaMidService));
         }
 
-        public async Task<long> GetCredit()
+        public async Task<long> GetCredit(Entities.Line line)
         {
-            var domain = _domain;
-            var userName = _userName;
-            var password = _password;
+            var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
+            var domain = magfaCredential.Domain;
+            var userName = magfaCredential.UserName;
+            var password = magfaCredential.ClientSecret;
+
             var result = await _magfaBalanceService.GetBalances(domain, userName, password);
 
             return result.Balance;
@@ -48,47 +51,54 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
 
 
-        public async Task GetState(ICollection<long> id)
+        public async Task GetState(Entities.Line line,ICollection<long> id)
         {
-            var domain = _domain;
-            var userName = _userName;
-            var password = _password;
+            var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
+            var domain = magfaCredential.Domain;
+            var userName = magfaCredential.UserName;
+            var password = magfaCredential.ClientSecret;
+            
             var result = await _magfaStatusCodesService.GetStatuses(domain, userName, password, id);
         }
 
-        public async Task GetState(long id)
+        public async Task GetState(Entities.Line line,long id)
         {
-            var domain = _domain;
-            var userName = _userName;
-            var password = _password;
+            var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
+            var domain = magfaCredential.Domain;
+            var userName = magfaCredential.UserName;
+            var password = magfaCredential.ClientSecret;
+            
             var result = await _magfaStatusCodesService.GetStatuses(domain, userName, password, id);
         }
 
 
 
-        public async Task Send(string lineNumber, MobileText mobileText)
+        public async Task Send(Entities.Line line, MobileText mobileText)
         {
-            var domain = _domain;
-            var userName = _userName;
-            var password = _password;
+            var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
+            var domain = magfaCredential.Domain;
+            var userName = magfaCredential.UserName;
+            var password = magfaCredential.ClientSecret;
 
             var sendDto = new MagfaRequest.SendDto()
             {
                 messages = new List<string> { mobileText.Text },
                 recipients = new List<string> { mobileText.Mobile },
                 uids = new List<long> { mobileText.LocalId },
-                senders = new List<string> { lineNumber },
+                senders = new List<string> { line.Number },
 
             };
+
             var result = await _magfaSendService.SendMessage(domain, userName, password, sendDto);
 
         }
 
-        public async Task Send(string lineNumber, ICollection<MobileText> mobileText)
+        public async Task Send(Entities.Line line, ICollection<MobileText> mobileText)
         {
-            var domain = _domain;
-            var userName = _userName;
-            var password = _password;
+            var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
+            var domain = magfaCredential.Domain;
+            var userName = magfaCredential.UserName;
+            var password = magfaCredential.ClientSecret;
 
             MagfaRequest.SendDto sendDto = new MagfaRequest.SendDto()
             {
@@ -100,7 +110,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             foreach (var item in mobileText)
             {
-                sendDto.senders.Add(lineNumber);
+                sendDto.senders.Add(line.Number);
                 sendDto.messages.Add(item.Text);
                 sendDto.uids.Add(item.LocalId);
                 sendDto.recipients.Add(item.Mobile);
@@ -111,11 +121,15 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         }
 
 
-        private async Task Mid(long userId)
+
+
+        private async Task Mid(Entities.Line line,long userId)
         {
-            var domain = _domain;
-            var userName = _userName;
-            var password = _password;
+            var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
+            var domain = magfaCredential.Domain;
+            var userName = magfaCredential.UserName;
+            var password = magfaCredential.ClientSecret;
+            
             var result = await _magfaMidService.GetMid(domain, userName, password, userId);
         }
 
