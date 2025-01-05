@@ -1,4 +1,4 @@
-﻿using SmsHub.Domain.Features.Security.MediatorDtos.Queries;
+﻿using SmsHub.Domain.Features.Security.Dtos;
 
 namespace SmsHub.Application.Features.Security.Handlers.Queries.Contracts
 {

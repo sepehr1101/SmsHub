@@ -1,8 +1,6 @@
 ﻿using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Features.Security.Dtos;
-using SmsHub.Domain.Features.Security.MediatorDtos.Commands;
-using SmsHub.Domain.Features.Security.MediatorDtos.Queries;
 
 namespace SmsHub.IntegrationTests.Api
 {

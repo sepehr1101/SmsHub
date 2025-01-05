@@ -2,7 +2,7 @@
 using FluentValidation;
 using SmsHub.Application.Features.Security.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
-using SmsHub.Domain.Features.Security.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Security.Dtos;
 using SmsHub.Persistence.Features.Security.Commands.Contracts;
 using SmsHub.Persistence.Features.Security.Queries.Contracts;
 
