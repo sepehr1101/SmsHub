@@ -116,7 +116,7 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn("FirstStepDateTime").AsDateTime().NotNullable()
                 .WithColumn("Ip").AsAnsiString(15).NotNullable()
                 .WithColumn("FirstStepSuccess").AsBoolean().NotNullable()
-                .WithColumn($"{nameof(TableName.InvalidLoginReason)}{Id}").AsInt16()
+                .WithColumn($"{nameof(TableName.InvalidLoginReason)}{Id}").AsInt16().Nullable()
                     .ForeignKey(NamingHelper.Fk(TableName.InvalidLoginReason, table), nameof(TableName.InvalidLoginReason), Id)
                 .WithColumn("WrongPassword").AsString(_1023).Nullable()
                 .WithColumn("AppVersion").AsString(15).NotNullable()
@@ -126,7 +126,7 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn("TwoStepWasSuccessful").AsBoolean().Nullable()
                 .WithColumn("PreviousFailureIsShown").AsBoolean().NotNullable()
                 .WithColumn("LogoutDateTime").AsDateTime().Nullable()
-                .WithColumn($"{nameof(TableName.LogoutReason)}{Id}").AsInt16()
+                .WithColumn($"{nameof(TableName.LogoutReason)}{Id}").AsInt16().Nullable()
                     .ForeignKey(NamingHelper.Fk(TableName.LogoutReason, table), nameof(TableName.LogoutReason), Id)
                 .WithColumn("LogInfo").AsAnsiString(int.MaxValue).NotNullable();
         }

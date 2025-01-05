@@ -27,13 +27,17 @@ namespace SmsHub.Application.Features.Security.Handlers.Commands.Create.Implemen
             Random rand = new Random();
             var userLogin = new UserLogin()
             {
+                Id=Guid.NewGuid(),
                 AppVersion = input.AppVersion,
                 FirstStepDateTime = DateTime.Now,
                 Username = input.Username,
                 UserId = user.Id,
                 LogInfo = LogInfoJson.Get(_httpContext.HttpContext.Request, true),
                 TwoStepCode = rand.Next(1000, 9999).ToString(),
-                TwoStepExpireDateTime = DateTime.Now.AddMinutes(120)
+                TwoStepExpireDateTime = DateTime.Now.AddMinutes(120),
+                PreviousFailureIsShown = false,
+                Ip=_httpContext.HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString(),
+                
             };
             await _userLoginService.Add(userLogin);
             return new FirstStepOutput(userLogin.Id, 120, userLogin.TwoStepCode);
