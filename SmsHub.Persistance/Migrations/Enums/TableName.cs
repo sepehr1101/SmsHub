@@ -2,6 +2,13 @@
 {
     internal enum TableName
     {
+        User,
+        UserLogin,
+        Role,
+        UserRole,
+        UserToken,
+        InvalidLoginReason,
+        LogoutReason,
         Provider,
         Line,
         Consumer,

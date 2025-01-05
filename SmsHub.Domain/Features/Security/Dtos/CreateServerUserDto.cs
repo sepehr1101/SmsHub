@@ -1,7 +1,6 @@
 ﻿using MediatR;
-using SmsHub.Domain.Features.Security.Dtos;
 
-namespace SmsHub.Domain.Features.Security.MediatorDtos.Commands
+namespace SmsHub.Domain.Features.Security.Dtos
 {
     public record CreateServerUserDto : IRequest<ApiKeyAndHash>
     {

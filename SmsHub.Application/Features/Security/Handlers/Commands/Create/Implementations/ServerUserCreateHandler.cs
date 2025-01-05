@@ -5,7 +5,6 @@ using SmsHub.Application.Features.Security.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Security.Dtos;
-using SmsHub.Domain.Features.Security.MediatorDtos.Commands;
 using SmsHub.Persistence.Features.Security.Commands.Contracts;
 
 namespace SmsHub.Application.Features.Security.Handlers.Commands.Create.Implementations

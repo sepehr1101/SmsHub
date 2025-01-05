@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using SmsHub.Domain.Features.Entities;
-using SmsHub.Domain.Features.Security.MediatorDtos.Commands;
-using SmsHub.Domain.Features.Security.MediatorDtos.Queries;
+using SmsHub.Domain.Features.Security.Dtos;
 
 namespace SmsHub.Application.Features.Security.Mappings
 {

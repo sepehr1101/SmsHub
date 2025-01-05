@@ -20,7 +20,6 @@
     <Folder Include="Features\Receiving\MediatorDtos\Commands\Update\" />
     <Folder Include="Features\Receiving\MediatorDtos\Queries\" />
     <Folder Include="Features\Security\EfConfig\" />
-    <Folder Include="Features\Security\MediatorDtos\Queries\" />
     <Folder Include="Features\Sending\MediatorDtos\Queries\" />
     <Folder Include="Features\Template\MediatorDtos\Queries\" />
     <Folder Include="Providers\Kavenegar\Models\" />

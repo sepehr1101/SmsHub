@@ -22,7 +22,9 @@
         public const string ItemNotLessThan3_NotMoreThan255 = "تعداد کاراکتر باید بین 3 تا 255 باشد";
         public const string ItemNotLessThan4_NotMoreThan15 = "تعداد کاراکتر باید بین 4 تا 15 باشد";
 
-
+        public static string SuccessfulProccess { get { return "درخواست با موفقیت پردازش شد"; } }
+        public static string CaptchaInvalid { get { return "کپچا نادرست است"; } }
+        public static string RefreshTokenIsLessThanToken { get { return "زمان تعیین شده برای انقضای refresh token کمتر از زمان token اصلی در نظر گفته شده است"; } }
 
     }
 }
