@@ -42,7 +42,11 @@ namespace SmsHub.Application.Features.Auth.Handlers.Commands.Create.Implementati
             var user = _mapper.Map<User>(userCreateDto);
             user.Id = operationGroupId;
             user.InsertLogInfo = logInfoString;
-            //user.ValidFrom = DateTime.Now;
+            user.ValidFrom = DateTime.Now;
+            user.ValidTo = null;
+            user.Password = await SecurityOperations.GetSha512Hash(userCreateDto.Password);
+            user.SerialNumber = Guid.NewGuid().ToString("N");
+
             await _userCommandService.Add(user);
             await _userRoleCommandService.Add(userRoles);
         }

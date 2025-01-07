@@ -7,7 +7,6 @@ using SmsHub.Application.Features.Security.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.Features.Security.Dtos;
-using SmsHub.Domain.Features.Security.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
@@ -19,7 +18,6 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
         private readonly IUserFindByPasswordHandler _userFindByPasswordHandler;
         private readonly ITokenFactoryService _tokenFactoryService;
         private readonly IUserTokenCreateHandler _userTokenCreateHandler;
-        private readonly IUserCreateHandler _userCreateHandler;
         private readonly IUserLoginAddHandler _userLoginAddHandler;
         private readonly IUserLoginFindHandler _userLoginFindHandler;
 
@@ -28,7 +26,6 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
             IUserFindByPasswordHandler userFindByPasswordHandler,
             ITokenFactoryService tokenFactoryService,
             IUserTokenCreateHandler userTokenCreateHandler,
-            IUserCreateHandler userCreateHandler,
             IUserLoginAddHandler userLoginAddHandler,
             IUserLoginFindHandler userLoginFindUserHandler)
         {
@@ -43,9 +40,6 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
 
             _userTokenCreateHandler = userTokenCreateHandler;
             _userTokenCreateHandler.NotNull(nameof(userTokenCreateHandler));
-
-            _userCreateHandler = userCreateHandler;
-            _userCreateHandler.NotNull(nameof(userCreateHandler));
 
             _userLoginAddHandler = userLoginAddHandler;
             _userLoginAddHandler.NotNull(nameof(userLoginAddHandler));

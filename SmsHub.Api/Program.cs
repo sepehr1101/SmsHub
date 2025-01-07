@@ -54,22 +54,22 @@ if (app.Environment.IsDevelopment())
 
 //app.UseMiddleware<ApiKeyMiddleware>();
 
-app.UseRouting();
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-});
+//app.UseRouting();
+//app.UseEndpoints(endpoints =>
+//{
+//    endpoints.MapControllerRoute(
+//                    name: "default",
+//                    pattern: "{controller=Home}/{action=Index}/{id?}");
+//});
 
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
-//app.UseAuthorization();
+app.UseAuthorization();
 
 app.AddHangfireDashboard();
 
-//app.MapControllers();
+app.MapControllers();
 
 
 
