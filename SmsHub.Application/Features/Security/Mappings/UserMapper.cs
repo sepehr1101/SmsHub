@@ -9,6 +9,7 @@ namespace SmsHub.Application.Features.Auth.Mappings
         public UserMapper()
         {
             CreateMap<UserCreateDto, User>();
+            CreateMap<User, UserQueryDto>();
         }
     }
 }

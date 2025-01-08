@@ -18,6 +18,13 @@ namespace SmsHub.Persistence.Features.Security.Queries.Implementations
             _users = _uow.Set<User>();
             _users.NotNull(nameof(_users));
         }
+        public async Task<ICollection<User>> Get()
+        {
+            return await 
+                _users
+                .Where(u=> u.ValidTo==null)
+                .ToListAsync();
+        }
         public async Task<User> Get(Guid id)
         {
             return await _uow.FindOrThrowAsync<User>(id);
@@ -25,7 +32,7 @@ namespace SmsHub.Persistence.Features.Security.Queries.Implementations
         public async Task<User?> Get(string username)
         {
             return await _users
-                .SingleOrDefaultAsync(u => u.Username == username);
+                .SingleOrDefaultAsync(u => u.Username == username && u.ValidTo == null);
         }
     }
 }
