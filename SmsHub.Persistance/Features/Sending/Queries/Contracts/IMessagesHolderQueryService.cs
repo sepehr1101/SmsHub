@@ -6,5 +6,6 @@ namespace SmsHub.Persistence.Features.Sending.Queries.Contracts
     {
         Task<ICollection<MessagesHolder>> Get();
         Task<MessagesHolder> Get(Guid id);
+        Task<MessagesHolder> GetIncludeLine(Guid id);
     }
 }

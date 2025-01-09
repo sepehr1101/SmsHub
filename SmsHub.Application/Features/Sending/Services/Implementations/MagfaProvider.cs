@@ -35,7 +35,10 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             _magfaMidService = magfaMidService;
             _magfaMidService.NotNull(nameof(magfaMidService));
         }
-
+        public void Test()
+        {
+            Console.WriteLine("test from magfa");
+        }
         public async Task<long> GetCredit(Entities.Line line)
         {
             var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
@@ -47,8 +50,6 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             return result.Balance;
         }
-
-
 
         public async Task GetState(Entities.Line line,ICollection<long> id)
         {
@@ -69,8 +70,6 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             
             var result = await _magfaStatusCodesService.GetStatuses(domain, userName, password, id);
         }
-
-
 
         public async Task Send(Entities.Line line, MobileText mobileText)
         {

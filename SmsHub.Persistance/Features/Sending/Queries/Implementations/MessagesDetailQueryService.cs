@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 
 namespace SmsHub.Persistence.Features.Sending.Queries.Implementations
 {
@@ -26,6 +27,18 @@ namespace SmsHub.Persistence.Features.Sending.Queries.Implementations
         public async Task<MessagesDetail> Get(long id)
         {
             return await _uow.FindOrThrowAsync<MessagesDetail>(id);
+        }
+        public async Task<ICollection<MobileText>> GetMobileTextList(Guid messageHolderId)
+        {
+            var mobileTexts = await _messagesDetails
+                .Where(m => m.MessagesHolderId == messageHolderId)
+                .Select(m => new MobileText()
+                {
+                    Mobile = m.Receptor,
+                    Text = m.Text
+                })
+                .ToListAsync();
+            return mobileTexts;
         }
     }
 }

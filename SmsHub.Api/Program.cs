@@ -45,22 +45,14 @@ var app = builder.Build();
 app.UseExceptionHandler();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment())
+//{
     app.AddSwaggerApp();
     app.UseDeveloperExceptionPage();    
-}
+//}
 //app.UseMiddleware<ErrorHandlerMiddleware>();
 
 //app.UseMiddleware<ApiKeyMiddleware>();
-
-//app.UseRouting();
-//app.UseEndpoints(endpoints =>
-//{
-//    endpoints.MapControllerRoute(
-//                    name: "default",
-//                    pattern: "{controller=Home}/{action=Index}/{id?}");
-//});
 
 app.UseHttpsRedirection();
 
@@ -70,9 +62,6 @@ app.UseAuthorization();
 app.AddHangfireDashboard();
 
 app.MapControllers();
-
-
-
 app.Run();
 
 public partial class Program { }
