@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using System.Net;
 using System.Runtime.InteropServices;
@@ -10,9 +11,14 @@ namespace Aban360.Api.Controllers.V1
     public abstract class BaseController : ControllerBase
     {
         [NonAction]
-        public IActionResult Ok<D>(D data)
+        public IActionResult Ok<D>(D data, [Optional]string nextAction)
         {
-            var envelope= new ApiResponseEnvelope<D>((int)HttpStatusCode.OK,data);
+            ApiMeta meta= null;
+            if (!string.IsNullOrWhiteSpace(nextAction))
+            {
+                meta= new ApiMeta(nextAction);
+            }
+            var envelope= new ApiResponseEnvelope<D>((int)HttpStatusCode.OK,data, meta: meta);
             return base.Ok(envelope);
         }
 

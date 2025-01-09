@@ -65,7 +65,10 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             _countInboxService.NotNull(nameof(countInboxService));
         }
 
-
+        public void Test()
+        {
+            Console.WriteLine("test from kavenegar");
+        }
         public async Task<long> GetCredit(Entities.Line line)
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);

@@ -26,5 +26,12 @@ namespace SmsHub.Persistence.Features.Sending.Queries.Implementations
         {
             return await _uow.FindOrThrowAsync<MessagesHolder>(id);
         }
+        public async Task<MessagesHolder> GetIncludeLine(Guid id)
+        {
+            return await _messagesHolders
+                .Include(m => m.MessageBatch)
+                .ThenInclude(m=>m.Line)
+                .SingleAsync(m=> m.Id==id);
+        }
     }
 }

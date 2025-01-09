@@ -1,5 +1,4 @@
-﻿using Azure.Core;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using SmsHub.Application.Common.Base;
 using SmsHub.Application.Exceptions;
@@ -14,6 +13,7 @@ using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Features.Line.Queries.Contracts;
 using SmsHub.Application.Features.Sending.Factories;
 using SmsHub.Application.Features.Sending.Services.Contracts;
+using Hangfire;
 
 namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implementations
 {
@@ -24,8 +24,8 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
         private readonly ITemplateQueryService _templateQueryService;
         private readonly ILineQueryService _lineQueryService;
         private readonly IProviderQueryService _providerQueryService;
-        private readonly ISmsProvider _smsProvider;
         private readonly ISmsProviderFactory _smsProviderFactory;
+        private readonly ISendInBackgroundService _sendInBackgroundService;
 
 
         private readonly string _Mobile = "mobile";
@@ -38,7 +38,7 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
             ,ILineQueryService lineQueryService
             , IProviderQueryService providerQueryService,
             ISmsProviderFactory smsProviderFactory,
-            ISmsProvider smsProvider
+            ISendInBackgroundService sendInBackgroundService
             )
         {
             _contextAccessor = contextAccessor;
@@ -59,8 +59,8 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
             _smsProviderFactory = smsProviderFactory;
             _smsProviderFactory.NotNull(nameof(smsProviderFactory));
 
-            _smsProvider = smsProvider;
-            _smsProvider.NotNull(nameof(_smsProvider));
+            _sendInBackgroundService = sendInBackgroundService;
+            _sendInBackgroundService.NotNull(nameof(sendInBackgroundService));
         }
 
         public async Task<ICollection<MobileText>> Handle(int templateId, int lineId, CancellationToken cancellationToken)
@@ -73,7 +73,6 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
             requestBodyValue.ToList().ForEach(r => ValidationData(templateValue, r));
 
             ICollection<MobileText> mobileText=new List<MobileText>();
-            //mobileText.Add(await requestBodyValue.Select(async x => await GetMessageToSend(x, templateId)).ToListAsync());
             foreach (var item in requestBodyValue)
             {
                 mobileText.Add(await GetMessageToSend(item, templateId));
@@ -81,8 +80,9 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
 
             var messageBatch = MessageBatchFactory.Create(mobileText, lineId, batchSize, "");
             var result = _messageBatchCommandService.Add(messageBatch);
-            var smsProvider = _smsProviderFactory.Create(line.Provider.Id);
-            await smsProvider.Send(line, mobileText);
+            messageBatch.MessagesHolders
+                .ForEach(m => BackgroundJob.Enqueue(() => _sendInBackgroundService.Trigger(m.Id, line.Provider.Id)));
+               
             return mobileText;
         }
         private Dictionary<string, string> DeserializeToDictionary(string data)

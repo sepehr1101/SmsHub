@@ -19,7 +19,7 @@ public class User
     public DateTime? LockTimespan { get; set; }
     public Guid? PreviousId { get; set; }
     public DateTime ValidFrom { get; set; }
-    public DateTime ValidTo { get; set; }
+    public DateTime? ValidTo { get; set; }
     public string InsertLogInfo { get; set; } = default!;
     public string? RemoveLogInfo { get; set; }
 

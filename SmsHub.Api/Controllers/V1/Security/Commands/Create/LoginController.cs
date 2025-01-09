@@ -6,6 +6,7 @@ using SmsHub.Application.Features.Auth.Services.Contracts;
 using SmsHub.Application.Features.Security.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Security.Dtos;
 using SmsHub.Domain.Features.Security.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
@@ -19,7 +20,6 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
         private readonly IUserFindByPasswordHandler _userFindByPasswordHandler;
         private readonly ITokenFactoryService _tokenFactoryService;
         private readonly IUserTokenCreateHandler _userTokenCreateHandler;
-        private readonly IUserCreateHandler _userCreateHandler;
         private readonly IUserLoginAddHandler _userLoginAddHandler;
         private readonly IUserLoginFindHandler _userLoginFindHandler;
 
@@ -28,7 +28,6 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
             IUserFindByPasswordHandler userFindByPasswordHandler,
             ITokenFactoryService tokenFactoryService,
             IUserTokenCreateHandler userTokenCreateHandler,
-            IUserCreateHandler userCreateHandler,
             IUserLoginAddHandler userLoginAddHandler,
             IUserLoginFindHandler userLoginFindUserHandler)
         {
@@ -44,9 +43,6 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
             _userTokenCreateHandler = userTokenCreateHandler;
             _userTokenCreateHandler.NotNull(nameof(userTokenCreateHandler));
 
-            _userCreateHandler = userCreateHandler;
-            _userCreateHandler.NotNull(nameof(userCreateHandler));
-
             _userLoginAddHandler = userLoginAddHandler;
             _userLoginAddHandler.NotNull(nameof(userLoginAddHandler));
 
@@ -58,16 +54,22 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
         [HttpPost]
         [Route("first-step")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<FirstStepOutput>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<SecondStepOutput>), StatusCodes.Status200OK)]
         public async Task<IActionResult> PaceFirstStep([FromBody] FirstStepLoginInput loginDto, CancellationToken cancellationToken)
-        {           
+        {
             var (user, result) = await _userFindByPasswordHandler.Handle(loginDto, cancellationToken);
-            if(!result || user is null)
+            if (!result || user is null)
             {
-                return ClientError("کاربر پیدا نشد");
+                return ClientError(MessageResources.UserNotFound);
+            }
+            if (!user.HasTwoStepVerification)
+            {
+                var secondStepOutput = await GetSecondStepOutput(user, cancellationToken);
+                return Ok(secondStepOutput);
             }
             var output = await _userLoginAddHandler.Handle(loginDto, user);
             await _uow.SaveChangesAsync(cancellationToken);
-            return Ok(output);
+            return Ok(output, "second-step");
         }
 
         [AllowAnonymous]
@@ -79,12 +81,17 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
             var userLogin = await _userLoginFindHandler.Handle(loginDto, cancellationToken);
             if (userLogin == null)
             {
-                return ClientError("کد نامعتبر یا زمان آن منقضی شده است");
+                return ClientError(MessageResources.InvalidConfirmCode);
             }
-            var jwtData = await _tokenFactoryService.CreateJwtTokensAsync(userLogin.User);
+            var secondStepOutput = await GetSecondStepOutput(userLogin.User, cancellationToken);
+            return Ok(secondStepOutput);
+        }
+        private async Task<SecondStepOutput> GetSecondStepOutput(User user, CancellationToken cancellationToken)
+        {
+            var jwtData = await _tokenFactoryService.CreateJwtTokensAsync(user);
             await _userTokenCreateHandler.Handle(jwtData, null, cancellationToken);
             await _uow.SaveChangesAsync(cancellationToken);
-            return Ok(new SecondStepOutput(jwtData.AccessToken, jwtData.RefreshToken));
+            return new SecondStepOutput(jwtData.AccessToken, jwtData.RefreshToken);
         }
     }
 }

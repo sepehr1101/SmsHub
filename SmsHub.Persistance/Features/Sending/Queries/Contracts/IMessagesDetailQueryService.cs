@@ -1,4 +1,5 @@
 ﻿using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 
 namespace SmsHub.Persistence.Features.Sending.Queries.Contracts
 {
@@ -6,5 +7,6 @@ namespace SmsHub.Persistence.Features.Sending.Queries.Contracts
     {
         Task<ICollection<MessagesDetail>> Get();
         Task<MessagesDetail> Get(long id);
+        Task<ICollection<MobileText>> GetMobileTextList(Guid messageHolderId);
     }
 }
