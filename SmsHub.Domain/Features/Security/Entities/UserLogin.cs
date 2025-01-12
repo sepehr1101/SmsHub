@@ -12,7 +12,7 @@ public class UserLogin
     public string Ip { get; set; } = null!;
     public bool FirstStepSuccess { get; set; }
     public string? WrongPassword { get; set; }
-    public short? InvalidLoginReasonId { get; set; }
+    public short? InvalidLoginReasonId { get; set; }/////todo: change to Enum and in Migraion
     public string AppVersion { get; set; } = null!;
     public string? TwoStepCode { get; set; }
     public DateTime? TwoStepExpireDateTime { get; set; }
@@ -20,7 +20,7 @@ public class UserLogin
     public bool? TwoStepWasSuccessful { get; set; }
     public bool PreviousFailureIsShown { get; set; }
     public DateTime? LogoutDateTime { get; set; }
-    public short? LogoutReasonId { get; set; }
+    public short? LogoutReasonId { get; set; }/////todo: change to Enum and in Migraion
     public string LogInfo { get; set; } = default!;
 
 

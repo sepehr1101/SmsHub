@@ -95,14 +95,14 @@ namespace SmsHub.Persistence.Migrations
         {
             var table = TableName.InvalidLoginReason;
             Create.Table(nameof(TableName.InvalidLoginReason))
-                .WithColumn(Id).AsInt16().PrimaryKey(NamingHelper.Pk(table)).Identity()
+                .WithColumn(Id).AsInt16().PrimaryKey(NamingHelper.Pk(table))
                 .WithColumn("Title").AsString(_255).NotNullable();
         }
         private void CreateLogoutReason()
         {
             var table = TableName.LogoutReason;
             Create.Table(nameof(TableName.LogoutReason))
-                .WithColumn(Id).AsInt16().PrimaryKey(NamingHelper.Pk(table)).Identity()
+                .WithColumn(Id).AsInt16().PrimaryKey(NamingHelper.Pk(table))
                 .WithColumn("Title").AsString(_255).NotNullable();
         }
         private void CreateUserLogin()

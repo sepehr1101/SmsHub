@@ -26,27 +26,33 @@ namespace SmsHub.Persistence.DbSeeder.Implementations
             {
                 var InvalidUserName = new InvalidLoginReason()
                 {
+                    Id = InvalidLoginReasonEnum.InvalidUserName,
                     Title = MessageResources.InvalidUserName
                 };
                 var InvalidPassword = new InvalidLoginReason()
                 {
+                    Id = InvalidLoginReasonEnum.InvalidPasswor,
                     Title = MessageResources.InvalidPassword
                 };
                 var InvalidTwoStepVerification = new InvalidLoginReason()
                 {
+                    Id = InvalidLoginReasonEnum.InvalidTwoStepVerification,
                     Title = MessageResources.InvalidTwoStepVerification
                 };
                 var ExpireTwoStepVerification = new InvalidLoginReason()
                 {
+                    Id = InvalidLoginReasonEnum.ExpireTwoStepVerification,
                     Title = MessageResources.ExpireTwoStepVerification
                 };
                 var TryingAfterLock = new InvalidLoginReason()
                 {
+                    Id = InvalidLoginReasonEnum.TryingAfterLock,
                     Title = MessageResources.TryingAfterLock
                 };
-                var TryingByDesableUser = new InvalidLoginReason()
+                var TryingByDisableUser = new InvalidLoginReason()
                 {
-                    Title = MessageResources.TryingByDesableUser
+                    Id = InvalidLoginReasonEnum.TryingByDisableUser,
+                    Title = MessageResources.TryingByDisableUser
                 };
 
                 var invalidLoginReasons = new InvalidLoginReason[]
@@ -56,7 +62,7 @@ namespace SmsHub.Persistence.DbSeeder.Implementations
                     InvalidTwoStepVerification,
                     ExpireTwoStepVerification,
                     TryingAfterLock,
-                    TryingByDesableUser
+                    TryingByDisableUser
                 };
 
                 _invalidLoginReason.AddRange(invalidLoginReasons);

@@ -2,7 +2,7 @@
 
 public partial class LogoutReason
 {
-    public short Id { get; set; }
+    public LogoutReasonEnum Id { get; set; }
 
     public string Title { get; set; } = null!;
 
