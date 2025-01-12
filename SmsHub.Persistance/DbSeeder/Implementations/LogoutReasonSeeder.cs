@@ -35,47 +35,47 @@ namespace SmsHub.Persistence.DbSeeder.Implementations
                     Id = LogoutReasonEnum.ByAdmin,
                     Title = MessageResources.ByAdmin
                 };
-                var ChangePassword = new LogoutReason()
+                var PasswordChange = new LogoutReason()
                 {
-                    Id = LogoutReasonEnum.ChangePasswordByUser,
-                    Title = MessageResources.ChangePasswordByUser
+                    Id = LogoutReasonEnum.PasswordChange,
+                    Title = MessageResources.PasswordChange
                 };
                 var EditByAdmin = new LogoutReason()
                 {
                     Id = LogoutReasonEnum.EditByAdmin,
                     Title = MessageResources.EditByAdmin
                 };
-                var ExpireToken = new LogoutReason()
+                var ExpiredToken = new LogoutReason()
                 {
-                    Id = LogoutReasonEnum.ExpireToken,
-                    Title = MessageResources.ExpireToken
+                    Id = LogoutReasonEnum.ExpiredToken,
+                    Title = MessageResources.ExpiredToken
                 };
                 var ChangeIpInSession = new LogoutReason()
                 {
                     Id = LogoutReasonEnum.ChangeIpInSession,
-                    Title = MessageResources.ChangeIpInThisSession
+                    Title = MessageResources.ChangeIpInSession
                 };
-                var ChangeWebClientSpecification = new LogoutReason()
+                var ChangeClientMeta = new LogoutReason()
                 {
-                    Id = LogoutReasonEnum.ChangeWebClientSpecification,
-                    Title = MessageResources.ChangeWebClientSpecifications
+                    Id = LogoutReasonEnum.ChangeClientMeta,
+                    Title = MessageResources.ChangeClientMeta
                 };
-                var LoginAtTheSameTime = new LogoutReason()
+                var ConcurrentLogin = new LogoutReason()
                 {
-                    Id = LogoutReasonEnum.LoginAtSameTime,
-                    Title = MessageResources.LoginAtSameTime
+                    Id = LogoutReasonEnum.ConcurrentLogin,
+                    Title = MessageResources.ConcurrentLogin
                 };
 
                 var logoutReasons = new LogoutReason[]
                 {
                     ByUser,
                     ByAdmin,
-                    ChangePassword,
+                    PasswordChange,
                     EditByAdmin,
-                    ExpireToken,
+                    ExpiredToken,
                     ChangeIpInSession,
-                    ChangeWebClientSpecification,
-                    LoginAtTheSameTime
+                    ChangeClientMeta,
+                    ConcurrentLogin,
                 };
 
                 _logoutReasons.AddRange(logoutReasons);

@@ -1,4 +1,6 @@
-﻿namespace SmsHub.Domain.Features.Security.Entities;
+﻿using SmsHub.Domain.Constants;
+
+namespace SmsHub.Domain.Features.Security.Entities;
 
 public class InvalidLoginReason
 {

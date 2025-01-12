@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using SmsHub.Domain.Constants;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SmsHub.Domain.Features.Security.Entities;
 
@@ -12,7 +13,7 @@ public class UserLogin
     public string Ip { get; set; } = null!;
     public bool FirstStepSuccess { get; set; }
     public string? WrongPassword { get; set; }
-    public short? InvalidLoginReasonId { get; set; }/////todo: change to Enum and in Migraion
+    public InvalidLoginReasonEnum? InvalidLoginReasonId { get; set; }
     public string AppVersion { get; set; } = null!;
     public string? TwoStepCode { get; set; }
     public DateTime? TwoStepExpireDateTime { get; set; }
@@ -20,7 +21,7 @@ public class UserLogin
     public bool? TwoStepWasSuccessful { get; set; }
     public bool PreviousFailureIsShown { get; set; }
     public DateTime? LogoutDateTime { get; set; }
-    public short? LogoutReasonId { get; set; }/////todo: change to Enum and in Migraion
+    public LogoutReasonEnum? LogoutReasonId { get; set; }
     public string LogInfo { get; set; } = default!;
 
 

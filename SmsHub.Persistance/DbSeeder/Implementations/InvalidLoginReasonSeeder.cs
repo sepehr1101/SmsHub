@@ -24,45 +24,45 @@ namespace SmsHub.Persistence.DbSeeder.Implementations
         {
             if (!_invalidLoginReason.Any())
             {
-                var InvalidUserName = new InvalidLoginReason()
+                var InvalidUsername = new InvalidLoginReason()
                 {
-                    Id = InvalidLoginReasonEnum.InvalidUserName,
-                    Title = MessageResources.InvalidUserName
+                    Id = InvalidLoginReasonEnum.InvalidUsername,
+                    Title = MessageResources.InvalidUsername
                 };
                 var InvalidPassword = new InvalidLoginReason()
                 {
-                    Id = InvalidLoginReasonEnum.InvalidPasswor,
+                    Id = InvalidLoginReasonEnum.InvalidPassword,
                     Title = MessageResources.InvalidPassword
                 };
-                var InvalidTwoStepVerification = new InvalidLoginReason()
+                var InvalidVerificationCode = new InvalidLoginReason()
                 {
-                    Id = InvalidLoginReasonEnum.InvalidTwoStepVerification,
-                    Title = MessageResources.InvalidTwoStepVerification
+                    Id = InvalidLoginReasonEnum.InvalidVerificationCode,
+                    Title = MessageResources.InvalidVerificationCode
                 };
-                var ExpireTwoStepVerification = new InvalidLoginReason()
+                var ExpiredVerificationCode = new InvalidLoginReason()
                 {
-                    Id = InvalidLoginReasonEnum.ExpireTwoStepVerification,
-                    Title = MessageResources.ExpireTwoStepVerification
+                    Id = InvalidLoginReasonEnum.ExpiredVerificationCode,
+                    Title = MessageResources.ExpiredVerificationCode
                 };
-                var TryingAfterLock = new InvalidLoginReason()
+                var LockedUser = new InvalidLoginReason()
                 {
-                    Id = InvalidLoginReasonEnum.TryingAfterLock,
-                    Title = MessageResources.TryingAfterLock
+                    Id = InvalidLoginReasonEnum.LockedUser,
+                    Title = MessageResources.LockedUser
                 };
-                var TryingByDisableUser = new InvalidLoginReason()
+                var InactiveUser = new InvalidLoginReason()
                 {
-                    Id = InvalidLoginReasonEnum.TryingByDisableUser,
-                    Title = MessageResources.TryingByDisableUser
+                    Id = InvalidLoginReasonEnum.InactiveUser,
+                    Title = MessageResources.InactiveUser
                 };
 
                 var invalidLoginReasons = new InvalidLoginReason[]
                 {
-                    InvalidUserName,
+                    InvalidUsername,
                     InvalidPassword,
-                    InvalidTwoStepVerification,
-                    ExpireTwoStepVerification,
-                    TryingAfterLock,
-                    TryingByDisableUser
+                    InvalidVerificationCode,
+                    ExpiredVerificationCode,
+                    LockedUser,
+                    InactiveUser,
                 };
 
                 _invalidLoginReason.AddRange(invalidLoginReasons);

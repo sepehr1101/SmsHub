@@ -31,23 +31,25 @@
 
 
         #region Invalid Login Reason
-        public static string InvalidUserName= "نام کاربری نادرست";
+        public static string InvalidUsername= "نام کاربری نادرست";
         public static string InvalidPassword = "پسورد نادرست";
-        public static string InvalidTwoStepVerification = "کد دو مرحله ای نادرست";
-        public static string ExpireTwoStepVerification = "کد دو مرحله ای منقضی شده";
-        public static string TryingAfterLock = "تلاش پس از قفل";
-        public static string TryingByDisableUser = "تلاش کاربر غیرفعال";
+        public static string InvalidVerificationCode = "کد دو مرحله ای نادرست";
+        public static string ExpiredVerificationCode = "کد دو مرحله ای منقضی شده";
+        public static string LockedUser = "تلاش پس از قفل";
+        public static string InactiveUser= "تلاش کاربر غیرفعال";
         #endregion
+
 
         #region Logout Reason
         public static string ByUser = "توسط کاربر";
         public static string ByAdmin = "توسط ادمین";
-        public static string ChangePasswordByUser = "تغیر پسورد";
+        public static string PasswordChange = "تغیر پسورد";
         public static string EditByAdmin = "ویرایش توسط ادمین";
-        public static string ExpireToken = "انقضای توکن";
-        public static string ChangeIpInThisSession = "تغیر IP در جلسه جاری";
-        public static string ChangeWebClientSpecifications = "تغییر مشخصات کلاینت";
-        public static string LoginAtSameTime = "لاگین همزمان";
+        public static string ExpiredToken = "انقضای توکن";
+        public static string ChangeIpInSession = "تغیر IP در جلسه جاری";
+        public static string ChangeClientMeta = "تغییر مشخصات کلاینت";
+        public static string ConcurrentLogin = "لاگین همزمان";
         #endregion
+
     }
 }
