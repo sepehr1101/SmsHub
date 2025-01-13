@@ -57,6 +57,7 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
         [ProducesResponseType(typeof(ApiResponseEnvelope<SecondStepOutput>), StatusCodes.Status200OK)]
         public async Task<IActionResult> PaceFirstStep([FromBody] FirstStepLoginInput loginDto, CancellationToken cancellationToken)
         {
+
             var (user, result) = await _userFindByPasswordHandler.Handle(loginDto, cancellationToken);
             if (!result || user is null)
             {
