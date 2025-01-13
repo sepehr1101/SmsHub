@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using System.Net;
 using System.Runtime.InteropServices;

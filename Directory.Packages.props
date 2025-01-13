@@ -9,6 +9,8 @@
     <PackageVersion Include="coverlet.collector" Version="6.0.0" />
     <PackageVersion Include="DeviceDetector" Version="1.0.1" />
     <PackageVersion Include="DeviceDetector.Net" Version="6.4.2" />
+    <PackageVersion Include="DNTCaptcha.Core" Version="5.2.10" />
+    <PackageVersion Include="DNTPersianUtils.Core" Version="6.3.2" />
     <PackageVersion Include="EFCore.BulkExtensions" Version="8.1.1" />
     <PackageVersion Include="FluentMigrator" Version="6.2.0" />
     <PackageVersion Include="FluentMigrator.Runner.SqlServer" Version="6.2.0" />
