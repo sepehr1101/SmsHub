@@ -6,6 +6,6 @@ namespace SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts
 {
     public interface IKavenegarHttpReceiveService
     {
-        Task<List<ReceiveDto>> Trigger(KaveRequest.ReceiveDto receiveDto, string apiKey);
+        Task<ResponseGeneric<List<ReceiveDto>>> Trigger(KaveRequest.ReceiveDto receiveDto, string apiKey);
     }
 }

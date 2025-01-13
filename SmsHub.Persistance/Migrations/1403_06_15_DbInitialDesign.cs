@@ -387,5 +387,18 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn("DeleteDateTime").AsDateTime().Nullable()
                 .WithColumn("ApiKeyHash").AsAnsiString(128);
         }
+
+        private void CreateReceive()
+        {
+            Create.Table(nameof(TableName.Received))
+                .WithColumn(Id).AsInt32().PrimaryKey().Identity()
+                .WithColumn("MessageId").AsInt64().Nullable()
+                .WithColumn("Status").AsInt32().Nullable()
+                .WithColumn("MessageText").AsString(int.MaxValue)
+                .WithColumn("Sender").AsString(15)
+                .WithColumn("Receptor").AsString(15)
+                .WithColumn("ReceiveDateTime").AsDateTime()
+                .WithColumn("InsertDateTime").AsDateTime();
+        }
     }
 }

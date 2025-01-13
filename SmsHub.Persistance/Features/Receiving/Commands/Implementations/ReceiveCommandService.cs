@@ -8,20 +8,22 @@ namespace SmsHub.Persistence.Features.Receiving.Commands.Implementations
     public class ReceiveCommandService : IReceiveCommandService
     {
         private readonly IUnitOfWork _uow;
-        private readonly DbSet<Receive> _receives;
+        private readonly DbSet<Received> _receives;
         public ReceiveCommandService(IUnitOfWork uow)
         {
             _uow = uow;
-            _receives = _uow.Set<Receive>();
+            _receives = _uow.Set<Received>();
         }
-        public async Task Add(Receive receive)
+        public async Task<Received> Add(Received receive)
         {
             await _receives.AddAsync(receive);
+            return receive;
         }
 
-        public async Task Add(ICollection<Receive> receive)
+        public async Task<ICollection<Received>> Add(ICollection<Received> receive)
         {
             await _receives.AddRangeAsync(receive);
+            return receive;
         }
     }
 }

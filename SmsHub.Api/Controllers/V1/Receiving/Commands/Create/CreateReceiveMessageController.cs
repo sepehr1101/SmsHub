@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Sending.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Persistence.Contexts.UnitOfWork;
+using System.Threading;
 
 namespace SmsHub.Api.Controllers.V1.Receiving.Commands.Create
 {
-    [Route(nameof(Receiving))]
     [ApiController]
+    [Route(nameof(Receiving))]
     public class CreateReceiveMessageController : Controller
     {
         private readonly IUnitOfWork _uow;
@@ -22,12 +24,13 @@ namespace SmsHub.Api.Controllers.V1.Receiving.Commands.Create
             _receiveManagerCreateHandler.NotNull(nameof(receiveManagerCreateHandler));
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("Receiving/{lineId}")]
-        public async Task<IActionResult> Receiving(int lineId)
+        public async Task<IActionResult> Receiving(int lineId,CancellationToken cancellationToken)
         {
-            await _receiveManagerCreateHandler.Handle(lineId);
-            return Ok();
+          var result=  await _receiveManagerCreateHandler.Handle(lineId);
+            await _uow.SaveChangesAsync(cancellationToken);
+            return Ok(result);
         }
     }
 }

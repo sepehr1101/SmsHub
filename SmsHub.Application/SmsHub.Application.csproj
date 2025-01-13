@@ -11,8 +11,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\Consumer\Notifications\" />
-    <Folder Include="Features\Receiving\Services\Contracts\" />
-    <Folder Include="Features\Receiving\Services\Implementations\" />
     <Folder Include="Providers\Kavenegar\Commands\" />
     <Folder Include="Providers\Kavenegar\Handlers\" />
     <Folder Include="Providers\Kavenegar\Queries\" />

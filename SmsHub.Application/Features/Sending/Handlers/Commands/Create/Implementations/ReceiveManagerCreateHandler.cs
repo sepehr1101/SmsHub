@@ -36,14 +36,16 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
             _mapper.NotNull(nameof(mapper));
 
         }
-        public async Task Handle(int lineId)
+        public async Task<ICollection<Received>> Handle(int lineId)
         {
             var line = await GetLine(lineId);
             var smsProvider = _smsProviderFactory.Create(line.ProviderId);
             var receiveMessageDto = await smsProvider.Receive(line);
-            var reciveMessages= _mapper.Map<Receive>(receiveMessageDto);
+            var receiveMessages= _mapper.Map<ICollection<Received>>(receiveMessageDto);
 
-            await _receiveCommandService.Add(reciveMessages);
+          var receive=  await _receiveCommandService.Add(receiveMessages);
+
+            return receive;
         }
        
 

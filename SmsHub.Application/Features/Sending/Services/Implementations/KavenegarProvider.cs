@@ -141,20 +141,23 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
 
-            var receiveDto = new ReceiveDto(line.Number, false);
+            var receiveDto = new ReceiveDto(line.Number, true);//false
             var resultReceive = await _receiveService.Trigger(receiveDto, apiKey);
 
             //mapping to CreateReceiveDto
             ICollection<CreateReceiveDto> createReceiveMessageDto = new List<CreateReceiveDto>();
-            foreach (var item in resultReceive)
+            foreach (var item in resultReceive.Entries)
             {
+                DateTime dateTime = DateTimeOffset.FromUnixTimeSeconds(item.Date).DateTime;
+
                 var receiveSengleMessage = new CreateReceiveDto()
                 {
                     MessageId = item.MessageId,
                     MessageText = item.Message,
                     Sender = item.Sender,
                     Receptor = item.Receptor,
-                    //   ReceiveDateTime=item.Date,//todo: casting to datetime
+                    
+                    ReceiveDateTime=dateTime, //  ReceiveDateTime=item.Date,//todo: casting to datetime
                     InsertDateTime = DateTime.Now,
                 };
                 createReceiveMessageDto.Add(receiveSengleMessage);

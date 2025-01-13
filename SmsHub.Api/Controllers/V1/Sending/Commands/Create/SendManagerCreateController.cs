@@ -15,11 +15,13 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
     [Route("Send")]
     public class SendManagerCreateController : BaseController
     {
-        private readonly ITemplateGetSingleHandler _templateGetSingleHandler;
         private readonly IUnitOfWork _uow;
         private readonly ISendManagerCreateHandler _sendManagerCreateHandler;
+        private readonly IReceiveManagerCreateHandler _receiveManagerCreateHandler;
 
         //todo delete
+        private readonly ITemplateGetSingleHandler _templateGetSingleHandler;
+
         private readonly ISmsClientKevenegar _smsClientKavenagar;
         private readonly ISmsClientMagfa _smsClientMagfa;
 
@@ -30,7 +32,8 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
             IUnitOfWork uow,
             ISendManagerCreateHandler sendManagerCreateHandler,
             ISmsClientKevenegar smsClientKavenagar,
-            ISmsClientMagfa smsClientMagfa
+            ISmsClientMagfa smsClientMagfa,
+            IReceiveManagerCreateHandler receiveManagerCreateHandler
             /*ISwitchingFactory switchingFactory*/)
         {
             _uow = uow;
@@ -47,6 +50,9 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
 
             _smsClientMagfa = smsClientMagfa;
             _smsClientMagfa.NotNull(nameof(smsClientMagfa));
+
+            _receiveManagerCreateHandler = receiveManagerCreateHandler;
+            _receiveManagerCreateHandler.NotNull(nameof(receiveManagerCreateHandler));
         }
 
         [HttpPost]
@@ -58,6 +64,14 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
             return Ok(messages);
         }
 
+        [HttpGet]
+        [Route("Receive/{lineId}")]
+        public async Task<IActionResult> Receive(int lineId)
+        {
+             await _receiveManagerCreateHandler.Handle(lineId);
+            return Ok();
+        }
+        ///other must Remove
 
         [HttpGet]
         [Route("Test/KavenegarAcount")]

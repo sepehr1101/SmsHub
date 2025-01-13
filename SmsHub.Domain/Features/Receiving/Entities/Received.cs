@@ -2,8 +2,8 @@
 
 namespace SmsHub.Domain.Features.Receiving.Entities
 {
-    [Table(nameof(Receive))]
-    public class Receive
+    [Table(nameof(Received))]
+    public class Received
     {
         public long Id { get; set; }
         public long? MessageId { get; set; }

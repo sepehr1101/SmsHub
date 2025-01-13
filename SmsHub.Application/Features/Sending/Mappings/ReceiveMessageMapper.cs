@@ -8,7 +8,7 @@ namespace SmsHub.Application.Features.Sending.Mappings
     {
         public ReceiveMessageMapper()
         {
-            CreateMap<CreateReceiveDto, Receive>().ReverseMap();
+            CreateMap<CreateReceiveDto, Received>().ReverseMap();
         }
     }
 }
