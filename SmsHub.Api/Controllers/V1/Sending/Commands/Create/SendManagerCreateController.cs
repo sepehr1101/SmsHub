@@ -25,7 +25,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
 
         private readonly ISwitchingFactory _switchingFactory;
 
-public SendManagerCreateController(
+        public SendManagerCreateController(
             ITemplateGetSingleHandler templateGetSingleHandler,
             IUnitOfWork uow,
             ISendManagerCreateHandler sendManagerCreateHandler,

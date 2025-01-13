@@ -14,8 +14,6 @@
     <Folder Include="Features\Credit\MediatorDtos\Commands\Update\" />
     <Folder Include="Features\Credit\MediatorDtos\Queries\" />
     <Folder Include="Features\Receiving\EfConfig\" />
-    <Folder Include="Features\Receiving\Entities\" />
-    <Folder Include="Features\Receiving\MediatorDtos\Commands\Create\" />
     <Folder Include="Features\Receiving\MediatorDtos\Commands\Delete\" />
     <Folder Include="Features\Receiving\MediatorDtos\Commands\Update\" />
     <Folder Include="Features\Receiving\MediatorDtos\Queries\" />

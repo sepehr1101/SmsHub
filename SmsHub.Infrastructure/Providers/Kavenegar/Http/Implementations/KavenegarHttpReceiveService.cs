@@ -16,12 +16,12 @@ namespace SmsHub.Infrastructure.Providers.Kavenegar.Http.Implementations
             _restClient = restClient;
         }
 
-        public async Task<ResponseGeneric<List<ReceiveDto>>> Trigger(KaveRequest.ReceiveDto receiveDto, string apiKey)
-        {
+        public async Task<List<ReceiveDto>> Trigger(KaveRequest.ReceiveDto receiveDto, string apiKey)
+        {//Task<ResponseGeneric<List<ReceiveDto>>>  todo: what's the type of return
             var uri = new Literals(apiKey).ReceiveUri;
             var request=new HttpRequestMessage(HttpMethod.Get, uri);
             request.AddQuery(receiveDto);
-            var response = await _restClient.Create(request.RequestUri).Execute<ResponseGeneric<List<ReceiveDto>>>(request);
+            var response = await _restClient.Create(request.RequestUri).Execute<List<ReceiveDto>>(request);
             return response;
         }
     }

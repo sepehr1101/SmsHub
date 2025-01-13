@@ -14,8 +14,8 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Create.Implementa
         private readonly IPermittedTimeCommandService _permittedTimeCommandService;
         private readonly IValidator<CreatePermittedTimeDto> _validator;
         public PermittedTimeCreateHandler(
-            IMapper mapper, 
-            IPermittedTimeCommandService permittedTimeCommandService, 
+            IPermittedTimeCommandService permittedTimeCommandService,
+            IMapper mapper,
             IValidator<CreatePermittedTimeDto> validator)
         {
             _permittedTimeCommandService = permittedTimeCommandService;

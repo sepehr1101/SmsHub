@@ -2,9 +2,11 @@
 using SmsHub.Application.Features.Sending.Services.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Features.Receiving.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Providers.Kavenegar.Entities.Requests;
 using SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts;
+using System.Runtime.InteropServices;
 using Entities = SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Application.Features.Sending.Services.Implementations
@@ -133,23 +135,35 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var result = await _sendArrayService.Trigger(sendArrayDto, apiKey);
         }
 
-
-
-
-
-
-        private async Task Receive(Entities.Line line,int? count)
+        public async Task<ICollection<CreateReceiveDto>> Receive([Optional] Entities.Line line)
         {
 
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
 
-            var receiveDto = new ReceiveDto(line.Number, true);
+            var receiveDto = new ReceiveDto(line.Number, false);
             var resultReceive = await _receiveService.Trigger(receiveDto, apiKey);
+
+            //mapping to CreateReceiveDto
+            ICollection<CreateReceiveDto> createReceiveMessageDto = new List<CreateReceiveDto>();
+            foreach (var item in resultReceive)
+            {
+                var receiveSengleMessage = new CreateReceiveDto()
+                {
+                    MessageId = item.MessageId,
+                    MessageText = item.Message,
+                    Sender = item.Sender,
+                    Receptor = item.Receptor,
+                    //   ReceiveDateTime=item.Date,//todo: casting to datetime
+                    InsertDateTime = DateTime.Now,
+                };
+                createReceiveMessageDto.Add(receiveSengleMessage);
+            }
+            return createReceiveMessageDto;
         }
 
 
-        private async Task StatusByLocalMessageId(Entities.Line line,long localMessageId)
+        private async Task StatusByLocalMessageId(Entities.Line line, long localMessageId)
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
@@ -173,7 +187,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
-            
+
             var selectOutboxDto = new SelectOutboxDto()
             {
                 StartDate = startDate,
@@ -189,7 +203,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
-            
+
             var latestOutboxDto = new LatestOutboxDto()
             {
                 PageSize = Count,
@@ -204,7 +218,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
-            
+
             var response = await _accountService.Trigger(apiKey);
         }
 
