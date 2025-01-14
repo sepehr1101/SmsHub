@@ -17,7 +17,7 @@ namespace SmsHub.Infrastructure.Providers.Kavenegar.Http.Implementations
         }
 
         public async Task<ResponseGeneric<List<ReceiveDto>>> Trigger(KaveRequest.ReceiveDto receiveDto, string apiKey)
-        {
+        {//Task<ResponseGeneric<List<ReceiveDto>>>  todo: what's the type of return
             var uri = new Literals(apiKey).ReceiveUri;
             var request=new HttpRequestMessage(HttpMethod.Get, uri);
             request.AddQuery(receiveDto);

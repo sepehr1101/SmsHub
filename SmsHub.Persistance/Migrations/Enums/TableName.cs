@@ -25,6 +25,7 @@
         MessagesDetail,
         MessageStateCategory,
         MessageState,
+        Received,
         ReceivedHolder,//todo
         ReceivedDetails,//todo
         LogLevel,

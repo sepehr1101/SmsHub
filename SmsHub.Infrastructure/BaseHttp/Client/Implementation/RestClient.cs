@@ -28,6 +28,8 @@ namespace SmsHub.Infrastructure.BaseHttp.Client.Implementation
         {
             _httpClient.NotNull(nameof(_httpClient));
             var response = await _httpClient.SendAsync(requestMessage);
+            var rawContent = await response.Content.ReadAsStringAsync();
+
             var content = await response.Content.ReadFromJsonAsync<T>();
             var curl= _httpClient.GenerateCurlInString(requestMessage);
             return content;

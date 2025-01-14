@@ -14,8 +14,8 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Create.Implementa
         private readonly IDisallowedPhraseCommandService _disallowedPhraseCommandService;
         private readonly IValidator<CreateDisallowedPhraseDto> _validator;
         public DisallowedPhraseCreateHandler(
+            IDisallowedPhraseCommandService disallowedPhraseCommandService,
             IMapper mapper, 
-            IDisallowedPhraseCommandService disallowedPhraseCommandService, 
             IValidator<CreateDisallowedPhraseDto> validator)
         {
             _disallowedPhraseCommandService = disallowedPhraseCommandService;

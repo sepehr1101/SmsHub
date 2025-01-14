@@ -23,7 +23,6 @@
     <Folder Include="Controllers\V1\Credit\Commands\Delete\" />
     <Folder Include="Controllers\V1\Credit\Commands\Update\" />
     <Folder Include="Controllers\V1\Credit\Querries\" />
-    <Folder Include="Controllers\V1\Receiving\Commands\Create\" />
     <Folder Include="Controllers\V1\Receiving\Commands\Delete\" />
     <Folder Include="Controllers\V1\Receiving\Commands\Update\" />
     <Folder Include="Controllers\V1\Receiving\Querries\" />

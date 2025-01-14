@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Features.Receiving.Entities;
 using SmsHub.Domain.Features.Security.Entities;
 
 namespace SmsHub.Persistence.Contexts.Implementation
@@ -38,5 +39,6 @@ namespace SmsHub.Persistence.Contexts.Implementation
         public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<UserToken> UserTokens { get; set; }
         public virtual DbSet<UserLogin> UserLogins { get; set; }
+        public virtual DbSet<Received> Receiveds{ get; set; }
     }
 }
