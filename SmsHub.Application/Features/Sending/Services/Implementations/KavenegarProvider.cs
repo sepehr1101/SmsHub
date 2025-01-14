@@ -141,7 +141,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
 
-            var receiveDto = new ReceiveDto(line.Number, true);//false
+            var receiveDto = new ReceiveDto(line.Number, false);//false
             var resultReceive = await _receiveService.Trigger(receiveDto, apiKey);
 
             //mapping to CreateReceiveDto
