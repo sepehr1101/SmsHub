@@ -20,7 +20,6 @@ builder.Services.AddApplicationInjections();
 builder.Services.AddCustomJwtBearer(configuration);
 builder.Services.AddControllers();
 builder.Services.AddHttpContextAccessor();
-
 ///dictionary
 //builder.Services.AddScoped<Magfa>();
 //builder.Services.AddScoped< Kavenegar>();
@@ -28,6 +27,7 @@ builder.Services.AddHttpContextAccessor();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerService();
+builder.Services.AddCaptcha();
 builder.Services.AddCustomDbContext(configuration);
 builder.Services.UpdateAndSeedDb();
 builder.AddHangfire();
