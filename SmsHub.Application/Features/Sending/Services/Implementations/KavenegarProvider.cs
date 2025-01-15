@@ -1,4 +1,5 @@
-﻿using SmsHub.Application.Common.Services.Implementations;
+﻿using Azure;
+using SmsHub.Application.Common.Services.Implementations;
 using SmsHub.Application.Exceptions;
 using SmsHub.Application.Features.Sending.Services.Contracts;
 using SmsHub.Common.Extensions;
@@ -74,26 +75,46 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         {
             Console.WriteLine("test from kavenegar");
         }
-        public async Task<long> GetCredit(Entities.Line line)
+        public async Task<long> GetCredit(Entities.Line line, ICollection<ProviderResponseStatus> statusList)
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
 
             var response = await _accountService.Trigger(apiKey);
 
-            return response.Entries.ExpireDate;
+            var successStatus = await GetSuccessStatus(statusList);
+            if (response.Return.Status == successStatus.StatusCode)
+            {
+                return response.Entries.ExpireDate;
+
+            }
+            else
+            {
+                throw new ProviderResponseException(response.Return.Message, response.Return.Status);
+            }
+
         }
 
-        public async Task GetState(Entities.Line line, long id)
+        public async Task GetState(Entities.Line line, long id, ICollection<ProviderResponseStatus> statusList)
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
 
             StatusDto status = id;//1828205579
-            var result = await _statusService.Trigger(status, apiKey);
+            var response = await _statusService.Trigger(status, apiKey);
+
+            var successStatus = await GetSuccessStatus(statusList);
+            if (response.Return.Status == successStatus.StatusCode)
+            {
+                //todo : return
+            }
+            else
+            {
+                throw new ProviderResponseException(response.Return.Message, response.Return.Status);
+            }
         }
 
-        public async Task Send(Entities.Line line, MobileText mobileText)
+        public async Task Send(Entities.Line line, MobileText mobileText, ICollection<ProviderResponseStatus> statusList)
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
@@ -109,9 +130,19 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             };
 
             var response = await _sendSimpleService.Trigger(sendSimpleDto, apiKey);
+
+            var successStatus = await GetSuccessStatus(statusList);
+            if (response.Return.Status == successStatus.StatusCode)
+            {
+                //todo : return
+            }
+            else
+            {
+                throw new ProviderResponseException(response.Return.Message, response.Return.Status);
+            }
         }
 
-        public async Task Send(Entities.Line line, ICollection<MobileText> mobileTexts)
+        public async Task Send(Entities.Line line, ICollection<MobileText> mobileTexts, ICollection<ProviderResponseStatus> statusList)
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
@@ -135,7 +166,17 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
                 //todo: other prop
             }
 
-            var result = await _sendArrayService.Trigger(sendArrayDto, apiKey);
+            var response = await _sendArrayService.Trigger(sendArrayDto, apiKey);
+
+            var successStatus = await GetSuccessStatus(statusList);
+            if (response.Return.Status == successStatus.StatusCode)
+            {
+                //todo : return
+            }
+            else
+            {
+                throw new ProviderResponseException(response.Return.Message, response.Return.Status);
+            }
         }
 
         public async Task<ICollection<CreateReceiveDto>> Receive([Optional] Entities.Line line, ICollection<ProviderResponseStatus> statusList)
@@ -161,39 +202,52 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             }
             else
             {
-                throw new ProviderResponseException(resultReceive.Return.Message,resultReceive.Return.Status);
+                throw new ProviderResponseException(resultReceive.Return.Message, resultReceive.Return.Status);
             }
 
         }
-        private async Task<ProviderResponseStatus> GetSuccessStatus(ICollection<ProviderResponseStatus> statusList)
-        {
-            var trueStatus = statusList
-                .Where(s => s.ProviderId == ProviderEnum.Kavenegar & s.IsSuccess == true)
-                .Single();
 
-            return trueStatus;
-        }
-        private async Task StatusByLocalMessageId(Entities.Line line, long localMessageId)
+        private async Task StatusByLocalMessageId(Entities.Line line, long localMessageId, ICollection<ProviderResponseStatus> statusList)
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
 
             StatusByMessageIdDto statusByMessageId = localMessageId;
-            var result = await _statusByMessageIdService.Trigger(statusByMessageId, apiKey);
+            var response = await _statusByMessageIdService.Trigger(statusByMessageId, apiKey);
+
+            var successStatus = await GetSuccessStatus(statusList);
+            if (response.Return.Status == successStatus.StatusCode)
+            {
+                //todo : return
+            }
+            else
+            {
+                throw new ProviderResponseException(response.Return.Message, response.Return.Status);
+            }
         }
 
 
-        private async Task SelectMessage(Entities.Line line, long messageId)//todo: debug error 407 -> change local Ip
+        private async Task SelectMessage(Entities.Line line, long messageId, ICollection<ProviderResponseStatus> statusList)//todo: debug error 407 -> change local Ip
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
 
             SelectDto selectDto = messageId;
 
-            var result = await _selectService.Trigger(selectDto, apiKey);
+            var response = await _selectService.Trigger(selectDto, apiKey);
+
+            var successStatus = await GetSuccessStatus(statusList);
+            if (response.Return.Status == successStatus.StatusCode)
+            {
+                //todo : return
+            }
+            else
+            {
+                throw new ProviderResponseException(response.Return.Message, response.Return.Status);
+            }
         }
 
-        private async Task SelectOutbox(long startDate, long endDate, Entities.Line line)//todo: debug error 407 -> change local Ip
+        private async Task SelectOutbox(long startDate, long endDate, Entities.Line line, ICollection<ProviderResponseStatus> statusList)//todo: debug error 407 -> change local Ip
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
@@ -204,12 +258,22 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
                 EndDate = endDate,
                 Sender = line.Number
             };
-            var result = await _selectOutboxService.Trigger(selectOutboxDto, apiKey);
+            var response = await _selectOutboxService.Trigger(selectOutboxDto, apiKey);
+
+            var successStatus = await GetSuccessStatus(statusList);
+            if (response.Return.Status == successStatus.StatusCode)
+            {
+                //todo : return
+            }
+            else
+            {
+                throw new ProviderResponseException(response.Return.Message, response.Return.Status);
+            }
 
         }
 
 
-        private async Task LatestOutbox(long Count, Entities.Line line)//todo: debug error 407 -> change local Ip
+        private async Task LatestOutbox(long Count, Entities.Line line, ICollection<ProviderResponseStatus> statusList)//todo: debug error 407 -> change local Ip
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
@@ -220,16 +284,46 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
                 Sender = line.Number
             };
 
-            var result = await _latestOutboxService.Trigger(latestOutboxDto, apiKey);
+            var response = await _latestOutboxService.Trigger(latestOutboxDto, apiKey);
 
+            var successStatus = await GetSuccessStatus(statusList);
+            if (response.Return.Status == successStatus.StatusCode)
+            {
+                //todo : return
+            }
+            else
+            {
+                throw new ProviderResponseException(response.Return.Message, response.Return.Status);
+            }
         }
 
-        private async Task CountInbox(long startDate, long endDate, Entities.Line line, bool IsRead)
+        private async Task CountInbox(long startDate, long endDate, Entities.Line line, bool IsRea0, ICollection<ProviderResponseStatus> statusListS)
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
 
             var response = await _accountService.Trigger(apiKey);
+
+            var successStatus = await GetSuccessStatus(statusList);
+            if (response.Return.Status == successStatus.StatusCode)
+            {
+                //todo : return
+            }
+            else
+            {
+                throw new ProviderResponseException(response.Return.Message, response.Return.Status);
+            }
+        }
+
+
+        //
+        private async Task<ProviderResponseStatus> GetSuccessStatus(ICollection<ProviderResponseStatus> statusList)
+        {
+            var trueStatus = statusList
+                .Where(s => s.ProviderId == ProviderEnum.Kavenegar & s.IsSuccess == true)
+                .Single();
+
+            return trueStatus;
         }
 
     }
