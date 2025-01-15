@@ -393,7 +393,6 @@ namespace SmsHub.Persistence.Migrations
             Create.Table(nameof(TableName.Received))
                 .WithColumn(Id).AsInt64().PrimaryKey().Identity()
                 .WithColumn("MessageId").AsInt64().Nullable()
-                .WithColumn("Status").AsInt32().Nullable()
                 .WithColumn("MessageText").AsString(int.MaxValue)
                 .WithColumn("Sender").AsString(15)
                 .WithColumn("Receptor").AsString(15)

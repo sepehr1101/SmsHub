@@ -2,12 +2,15 @@
 using SmsHub.Application.Common.Services.Implementations;
 using SmsHub.Application.Features.Sending.Services.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Receiving.MediatorDtos.Commands.Create;
+using SmsHub.Domain.Features.Sending.Entities;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Providers.Kavenegar.Entities.Base;
 using SmsHub.Domain.Providers.Kavenegar.Entities.Requests;
 using SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts;
+using SmsHub.Persistence.Features.Sending.Queries.Contracts;
 using System.Runtime.InteropServices;
 using Entities = SmsHub.Domain.Features.Entities;
 
@@ -25,6 +28,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         private readonly IKavenegarHttpSelectOutboxService _selectOutboxService;
         private readonly IKavenegarHttpLatestOutboxService _latestOutboxService;
         private readonly IKavenegarHttpCountInboxService _countInboxService;
+        private readonly IProviderResponseStatusQueryService _responseStatusQueryService;
 
         public KavenegarProvider(
             IKavenegarHttpAccountService accountService,
@@ -36,7 +40,8 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             IKavenegarHttpSelectService selectService,
             IKavenegarHttpSelectOutboxService selectOutboxService,
             IKavenegarHttpLatestOutboxService latestOutboxService,
-            IKavenegarHttpCountInboxService countInboxService)
+            IKavenegarHttpCountInboxService countInboxService,
+            IProviderResponseStatusQueryService responseStatusQueryService)
         {
             _accountService = accountService;
             _accountService.NotNull(nameof(accountService));
@@ -67,6 +72,9 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             _countInboxService = countInboxService;
             _countInboxService.NotNull(nameof(countInboxService));
+
+            _responseStatusQueryService = responseStatusQueryService;
+            _responseStatusQueryService.NotNull(nameof(responseStatusQueryService));
         }
 
         public void Test()
@@ -139,34 +147,23 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
         public async Task<ICollection<CreateReceiveDto>> Receive([Optional] Entities.Line line)
         {
+            var successStatus = await GetSuccessStatus();
+
 
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
-
-            var receiveDto = new ReceiveDto("102000", false);//false
-            //var receiveDto = new ReceiveDto(line.Number, false);//false
+            var receiveDto = new ReceiveDto(line.Number, true);
             var resultReceive = await _receiveService.Trigger(receiveDto, apiKey);
 
-            //checking status code
-            if (resultReceive.Return.Status == 200)
+            if (resultReceive.Return.Status == successStatus.StatusCode)
             {
                 //mapping to CreateReceiveDto
                 ICollection<CreateReceiveDto> createReceiveMessageDto = new List<CreateReceiveDto>();
                 foreach (var item in resultReceive.Entries)
                 {
-                    DateTime reseiveDateTime = DateTimeOffset.FromUnixTimeSeconds(item.Date).DateTime;
 
-                    var receiveSengleMessage = new CreateReceiveDto()
-                    {
-                        MessageId = item.MessageId,
-                        MessageText = item.Message,
-                        Sender = item.Sender,
-                        Receptor = item.Receptor,
-
-                        ReceiveDateTime = reseiveDateTime, 
-                        InsertDateTime = DateTime.Now,
-                    };
-                    createReceiveMessageDto.Add(receiveSengleMessage);
+                    var receiveSingleMessage = new CreateReceiveDto(item);
+                    createReceiveMessageDto.Add(receiveSingleMessage);
                 }
                 return createReceiveMessageDto;
             }
@@ -177,7 +174,22 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
            
         }
 
+        private async Task<ProviderResponseStatus> GetSuccessStatus()
+        {
+            var statuses =await _responseStatusQueryService.Get(1);
 
+            if (statuses == null)
+            {
+                throw new InvalidCastException();
+            }
+
+            return statuses;
+            //var trueStatus = statuses
+            //    .Where(s => s.ProviderId == ProviderEnum.Kavenegar & s.IsSuccess == true)
+            //    .Single();
+
+            //return  trueStatus;
+        }
         private async Task StatusByLocalMessageId(Entities.Line line, long localMessageId)
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);

@@ -5,6 +5,7 @@ using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Receiving.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Features.Receiving.Commands.Contracts;
+using SmsHub.Persistence.Features.Sending.Queries.Contracts;
 using System.Threading;
 
 namespace SmsHub.Api.Controllers.V1.Receiving.Commands.Create
@@ -16,10 +17,13 @@ namespace SmsHub.Api.Controllers.V1.Receiving.Commands.Create
         private readonly IUnitOfWork _uow;
         private readonly IReceiveManagerCreateHandler _receiveManagerCreateHandler;
         private readonly IReceiveCommandService _receiveCommandService;
+        private readonly IProviderResponseStatusQueryService _responseStatusQueryService;
+
         public CreateReceiveMessageController(
             IUnitOfWork uow,
             IReceiveManagerCreateHandler receiveManagerCreateHandler,
-            IReceiveCommandService receiveCommandService)
+            IReceiveCommandService receiveCommandService,
+            IProviderResponseStatusQueryService responseStatusQueryService)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));
@@ -29,6 +33,9 @@ namespace SmsHub.Api.Controllers.V1.Receiving.Commands.Create
 
             _receiveCommandService = receiveCommandService;
             _receiveCommandService.NotNull(nameof(receiveCommandService));
+
+            _responseStatusQueryService= responseStatusQueryService;
+            _responseStatusQueryService.NotNull(nameof(responseStatusQueryService));
         }
 
         [HttpGet]
@@ -38,6 +45,15 @@ namespace SmsHub.Api.Controllers.V1.Receiving.Commands.Create
             var result = await _receiveManagerCreateHandler.Handle(lineId);
             await _uow.SaveChangesAsync(cancellationToken);
             return Ok(result);
+        }
+        
+        
+        [HttpGet]
+        [Route("x")]
+        public async Task<IActionResult> x( CancellationToken cancellationToken)
+        {
+            var x = await _responseStatusQueryService.Get(1);
+            return Ok("sd");
         }
     }
 }

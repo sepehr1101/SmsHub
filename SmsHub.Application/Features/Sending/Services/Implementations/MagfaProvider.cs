@@ -158,15 +158,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             ICollection<CreateReceiveDto> createReceiveMessage=new List<CreateReceiveDto>();
             foreach (var item in result.Messages)
             {
-                var receiveSingleMessage = new CreateReceiveDto()
-                {
-                    Status=result.Status,
-                    MessageText=item.Body,
-                    Sender=item.SenderNubmer,
-                    Receptor=item.RecipientNumber,
-                    ReceiveDateTime=item.Date,
-                    InsertDateTime=DateTime.Now,
-                };
+                var receiveSingleMessage = new CreateReceiveDto(item);
                 createReceiveMessage.Add(receiveSingleMessage);
             }
             return createReceiveMessage;

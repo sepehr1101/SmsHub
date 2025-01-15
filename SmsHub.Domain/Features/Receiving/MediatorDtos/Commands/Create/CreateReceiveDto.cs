@@ -1,13 +1,36 @@
-﻿namespace SmsHub.Domain.Features.Receiving.MediatorDtos.Commands.Create
+﻿using MagfaResponse= SmsHub.Domain.Providers.Magfa3000.Entities.Responses;
+using KavenegarResponse= SmsHub.Domain.Providers.Kavenegar.Entities.Responses;
+
+namespace SmsHub.Domain.Features.Receiving.MediatorDtos.Commands.Create
 {
     public record CreateReceiveDto
     {
-        public long? MessageId { get; init; }
-        public int? Status { get; init; }
-        public string MessageText { get; init; }
-        public string Sender { get; init; }
-        public string Receptor { get; init; }
-        public DateTime ReceiveDateTime { get; init; }
-        public DateTime InsertDateTime { get; init; }
+     
+        public long? MessageId { get;private set; }
+        public string MessageText { get; private set; }
+        public string Sender { get; private set; }
+        public string Receptor { get; private set; }
+        public DateTime ReceiveDateTime { get; private set; }
+        public DateTime InsertDateTime { get; private set; }
+
+        public CreateReceiveDto(KavenegarResponse.ReceiveDto items)
+        {
+            DateTime reseiveDateTime = DateTimeOffset.FromUnixTimeSeconds(items.Date).DateTime;
+
+            MessageId = items.MessageId;
+            MessageText = items.Message;
+            Sender = items.Sender;
+            Receptor = items.Receptor;
+            ReceiveDateTime = reseiveDateTime;
+            InsertDateTime = DateTime.Now;
+        }
+        public CreateReceiveDto(MagfaResponse.ResponseReceivedMessagesDto items)
+        {
+            MessageText = items.Body;
+            Sender = items.SenderNubmer;
+            Receptor = items.RecipientNumber;
+            ReceiveDateTime = items.Date;
+            InsertDateTime = DateTime.Now;
+        }
     }
 }
