@@ -39,6 +39,7 @@
         CcSend,
         Config,//todo
         //todo: cost tables
-        ServerUser
+        ServerUser,
+        ProviderResponseStatus
     }
 }

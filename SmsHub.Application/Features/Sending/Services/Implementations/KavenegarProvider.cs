@@ -1,9 +1,11 @@
-﻿using SmsHub.Application.Common.Services.Implementations;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using SmsHub.Application.Common.Services.Implementations;
 using SmsHub.Application.Features.Sending.Services.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Receiving.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
+using SmsHub.Domain.Providers.Kavenegar.Entities.Base;
 using SmsHub.Domain.Providers.Kavenegar.Entities.Requests;
 using SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts;
 using System.Runtime.InteropServices;
@@ -141,28 +143,38 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
 
-            var receiveDto = new ReceiveDto(line.Number, false);//false
+            var receiveDto = new ReceiveDto("102000", false);//false
+            //var receiveDto = new ReceiveDto(line.Number, false);//false
             var resultReceive = await _receiveService.Trigger(receiveDto, apiKey);
 
-            //mapping to CreateReceiveDto
-            ICollection<CreateReceiveDto> createReceiveMessageDto = new List<CreateReceiveDto>();
-            foreach (var item in resultReceive.Entries)
+            //checking status code
+            if (resultReceive.Return.Status == 200)
             {
-                DateTime dateTime = DateTimeOffset.FromUnixTimeSeconds(item.Date).DateTime;
-
-                var receiveSengleMessage = new CreateReceiveDto()
+                //mapping to CreateReceiveDto
+                ICollection<CreateReceiveDto> createReceiveMessageDto = new List<CreateReceiveDto>();
+                foreach (var item in resultReceive.Entries)
                 {
-                    MessageId = item.MessageId,
-                    MessageText = item.Message,
-                    Sender = item.Sender,
-                    Receptor = item.Receptor,
-                    
-                    ReceiveDateTime=dateTime, //  ReceiveDateTime=item.Date,//todo: casting to datetime
-                    InsertDateTime = DateTime.Now,
-                };
-                createReceiveMessageDto.Add(receiveSengleMessage);
+                    DateTime reseiveDateTime = DateTimeOffset.FromUnixTimeSeconds(item.Date).DateTime;
+
+                    var receiveSengleMessage = new CreateReceiveDto()
+                    {
+                        MessageId = item.MessageId,
+                        MessageText = item.Message,
+                        Sender = item.Sender,
+                        Receptor = item.Receptor,
+
+                        ReceiveDateTime = reseiveDateTime, 
+                        InsertDateTime = DateTime.Now,
+                    };
+                    createReceiveMessageDto.Add(receiveSengleMessage);
+                }
+                return createReceiveMessageDto;
             }
-            return createReceiveMessageDto;
+            else
+            {
+                throw new InvalidDataException();
+            }
+           
         }
 
 

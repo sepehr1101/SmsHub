@@ -400,5 +400,15 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn("ReceiveDateTime").AsDateTime()
                 .WithColumn("InsertDateTime").AsDateTime();
         }
+
+        public void CreateProviderStatus()
+        {
+            Create.Table(nameof(TableName.ProviderResponseStatus))
+                .WithColumn(Id).AsInt32().PrimaryKey().Identity()
+                .WithColumn("ProviderId").AsInt16().NotNullable()
+                .WithColumn("StatusCode").AsInt32().NotNullable()
+                .WithColumn("Message").AsString(int.MaxValue).NotNullable()
+                .WithColumn("IsSuccess").AsBoolean().NotNullable();
+        }
     }
 }
