@@ -401,7 +401,7 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn("InsertDateTime").AsDateTime();
         }
 
-        public void CreateProviderStatus()
+        private void CreateProviderStatus()
         {
             Create.Table(nameof(TableName.ProviderResponseStatus))
                 .WithColumn(Id).AsInt32().PrimaryKey().Identity()
