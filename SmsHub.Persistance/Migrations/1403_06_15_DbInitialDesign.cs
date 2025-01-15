@@ -393,12 +393,21 @@ namespace SmsHub.Persistence.Migrations
             Create.Table(nameof(TableName.Received))
                 .WithColumn(Id).AsInt64().PrimaryKey().Identity()
                 .WithColumn("MessageId").AsInt64().Nullable()
-                .WithColumn("Status").AsInt32().Nullable()
                 .WithColumn("MessageText").AsString(int.MaxValue)
                 .WithColumn("Sender").AsString(15)
                 .WithColumn("Receptor").AsString(15)
                 .WithColumn("ReceiveDateTime").AsDateTime()
                 .WithColumn("InsertDateTime").AsDateTime();
+        }
+
+        private void CreateProviderStatus()
+        {
+            Create.Table(nameof(TableName.ProviderResponseStatus))
+                .WithColumn(Id).AsInt32().PrimaryKey().Identity()
+                .WithColumn("ProviderId").AsInt16().NotNullable()
+                .WithColumn("StatusCode").AsInt32().NotNullable()
+                .WithColumn("Message").AsString(int.MaxValue).NotNullable()
+                .WithColumn("IsSuccess").AsBoolean().NotNullable();
         }
     }
 }
