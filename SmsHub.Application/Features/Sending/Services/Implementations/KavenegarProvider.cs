@@ -297,7 +297,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             }
         }
 
-        private async Task CountInbox(long startDate, long endDate, Entities.Line line, bool IsRea0, ICollection<ProviderResponseStatus> statusListS)
+        private async Task CountInbox(long startDate, long endDate, Entities.Line line, bool IsRea0, ICollection<ProviderResponseStatus> statusList)
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;

@@ -11,11 +11,13 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         private readonly ISmsProviderFactory _smsProviderFactory;
         private readonly IMessagesHolderQueryService _messagesHolderQueryService;
         private readonly IMessagesDetailQueryService _messagesDetailQueryService;
+        private readonly IProviderResponseStatusQueryService _providerResponseStatusQueryService;
 
         public SendInBackgroundService(
             ISmsProviderFactory smsProviderFactory,
             IMessagesHolderQueryService messagesHolderQueryService,
-            IMessagesDetailQueryService messagesDetailQueryService)
+            IMessagesDetailQueryService messagesDetailQueryService,
+            IProviderResponseStatusQueryService providerResponseStatusQueryService)
         {
             _smsProviderFactory = smsProviderFactory;
             _smsProviderFactory.NotNull(nameof(_smsProviderFactory));
@@ -25,13 +27,18 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             _messagesDetailQueryService = messagesDetailQueryService;
             _messagesDetailQueryService.NotNull(nameof(_messagesDetailQueryService));
+
+            _providerResponseStatusQueryService = providerResponseStatusQueryService;
+            _providerResponseStatusQueryService.NotNull(nameof(_providerResponseStatusQueryService));
         }
         public async Task Trigger(Guid messageHolderId, ProviderEnum providerId)
         {
             var messageHolder = await _messagesHolderQueryService.GetIncludeLine(messageHolderId);
             var mobileTextList = await _messagesDetailQueryService.GetMobileTextList(messageHolderId);
             var smsProvider = _smsProviderFactory.Create(providerId);
-            await smsProvider.Send(messageHolder.MessageBatch.Line, mobileTextList);
+
+            var statusList = await _providerResponseStatusQueryService.Get();
+            await smsProvider.Send(messageHolder.MessageBatch.Line, mobileTextList,statusList);
         }
     }
 }
