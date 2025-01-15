@@ -1,4 +1,5 @@
 ﻿using SmsHub.Application.Common.Services.Implementations;
+using SmsHub.Application.Exceptions;
 using SmsHub.Application.Features.Sending.Services.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Constants;
@@ -141,7 +142,8 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
-            var receiveDto = new ReceiveDto(line.Number, true);
+            //var receiveDto = new ReceiveDto(line.Number, true);
+            var receiveDto = new ReceiveDto("100200", true);
             var resultReceive = await _receiveService.Trigger(receiveDto, apiKey);
 
             var successStatus = await GetSuccessStatus(statusList);
@@ -159,7 +161,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             }
             else
             {
-                throw new InvalidDataException(resultReceive.Return.Message);
+                throw new ProviderResponseException(resultReceive.Return.Message,resultReceive.Return.Status);
             }
 
         }
@@ -171,7 +173,6 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             return trueStatus;
         }
-
         private async Task StatusByLocalMessageId(Entities.Line line, long localMessageId)
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);

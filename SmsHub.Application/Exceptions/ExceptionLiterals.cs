@@ -21,5 +21,7 @@
         public static string InvalidProviderHandle=> "ارسال کننده خط از این عملیات پشتیبانی نمی کند";
 
 
+        public static string InvalidProviderResponse(string message,int statusCode) => $"خطا : {message} - {statusCode} ";
+
     }
 }

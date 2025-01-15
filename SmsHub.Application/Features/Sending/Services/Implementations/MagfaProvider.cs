@@ -9,6 +9,8 @@ using System.Runtime.InteropServices;
 using SmsHub.Domain.Providers.Magfa3000.Entities.Responses;
 using SmsHub.Domain.Features.Receiving.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Sending.Entities;
+using SmsHub.Domain.Constants;
+using SmsHub.Application.Exceptions;
 
 
 namespace SmsHub.Application.Features.Sending.Services.Implementations
@@ -152,17 +154,43 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var domain = magfaCredential.Domain;
             var userName = magfaCredential.UserName;
             var password = magfaCredential.ClientSecret;
-
             var result = await _magfaMessagesService.GetMessages(domain, userName, password);
 
-            //mapping to CreateReceiveDto
-            ICollection<CreateReceiveDto> createReceiveMessage=new List<CreateReceiveDto>();
-            foreach (var item in result.Messages)
+            var successStatus = await GetSuccessStatus(statusList);
+            if (result.Status == successStatus.StatusCode)
             {
-                var receiveSingleMessage = new CreateReceiveDto(item);
-                createReceiveMessage.Add(receiveSingleMessage);
+                //mapping to CreateReceiveDto
+                ICollection<CreateReceiveDto> createReceiveMessage = new List<CreateReceiveDto>();
+                foreach (var item in result.Messages)
+                {
+                    var receiveSingleMessage = new CreateReceiveDto(item);
+                    createReceiveMessage.Add(receiveSingleMessage);
+                }
+                return createReceiveMessage;
             }
-            return createReceiveMessage;
+            else
+            {
+                var statusDetail=await GetProviderStatusByStatusCode(statusList,result.Status);
+                throw new ProviderResponseException(statusDetail.Message,statusDetail.StatusCode);
+            }
         }
+
+        private async Task<ProviderResponseStatus> GetSuccessStatus(ICollection<ProviderResponseStatus> statusList)
+        {
+            var trueStatus = statusList
+                .Where(s => s.ProviderId == ProviderEnum.Magfa & s.IsSuccess == true)
+                .Single();
+
+            return trueStatus;
+        }
+        private async Task<ProviderResponseStatus> GetProviderStatusByStatusCode(ICollection<ProviderResponseStatus> statusList, int statusCode)
+        {
+            var trueStatus = statusList
+               .Where(s => s.ProviderId == ProviderEnum.Magfa & s.StatusCode==statusCode)
+               .Single();
+
+            return trueStatus;
+        }
+
     }
 }
