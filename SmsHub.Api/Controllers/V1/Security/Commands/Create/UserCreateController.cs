@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SmsHub.Application.Exceptions;
 using SmsHub.Application.Features.Auth.Handlers.Commands.Create.Contracts;
+using SmsHub.Common.Exceptions;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Security.Dtos;
 using SmsHub.Persistence.Contexts.UnitOfWork;
@@ -37,8 +39,10 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
 
         [Route("test")]
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Test()
         {
+            throw new InvalidLineException();
             return Ok();
         }
     }
