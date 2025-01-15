@@ -120,8 +120,8 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
                 FontName = "Tahoma",
                 FontSize = 20,
                 ForeColor = "#111111",
-                Language = DNTCaptcha.Core.Language.English,
-                DisplayMode = DisplayMode.SumOfTwoNumbersToWords,
+                Language = DNTCaptcha.Core.Language.Persian,
+                DisplayMode = DisplayMode.SumOfTwoNumbers,
                 Max = 90,
                 Min = 1
             });
