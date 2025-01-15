@@ -228,7 +228,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
                 ICollection<CreateReceiveDto> createReceiveMessage = new List<CreateReceiveDto>();
                 foreach (var item in result.Messages)
                 {
-                    var receiveSingleMessage = new CreateReceiveDto(item);
+                    var receiveSingleMessage = new CreateReceiveDto(item,line.Id);
                     createReceiveMessage.Add(receiveSingleMessage);
                 }
                 return createReceiveMessage;

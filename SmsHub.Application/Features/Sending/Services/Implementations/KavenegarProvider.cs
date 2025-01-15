@@ -86,7 +86,6 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             if (response.Return.Status == successStatus.StatusCode)
             {
                 return response.Entries.ExpireDate;
-
             }
             else
             {
@@ -183,8 +182,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
-            //var receiveDto = new ReceiveDto(line.Number, true);
-            var receiveDto = new ReceiveDto("100200", true);
+            var receiveDto = new ReceiveDto(line.Number, false);
             var resultReceive = await _receiveService.Trigger(receiveDto, apiKey);
 
             var successStatus = await GetSuccessStatus(statusList);
@@ -195,7 +193,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
                 foreach (var item in resultReceive.Entries)
                 {
 
-                    var receiveSingleMessage = new CreateReceiveDto(item);
+                    var receiveSingleMessage = new CreateReceiveDto(item,line.Id);
                     createReceiveMessageDto.Add(receiveSingleMessage);
                 }
                 return createReceiveMessageDto;
