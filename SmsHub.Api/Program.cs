@@ -1,6 +1,7 @@
 using SmsHub.Api.Extensions;
 using SmsHub.Persistence.Extensions;
 using SmsHub.Api.ExceptionHandlers;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -26,6 +27,13 @@ builder.Services.AddCustomOptions(configuration);
 
 //Exceptions
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+
+//serilog
+builder.Services.AddSerilog(options =>
+{
+    //we can configure serilog from configuration
+    options.ReadFrom.Configuration(configuration);
+});
 
 //app
 var app = builder.Build();

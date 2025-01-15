@@ -16,6 +16,9 @@
     <PackageReference Include="Hangfire" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" />
+    <PackageReference Include="Serilog" />
+    <PackageReference Include="Serilog.AspNetCore" />
+    <PackageReference Include="Serilog.Sinks.MSSqlServer" />
     <PackageReference Include="Swashbuckle.AspNetCore" />
   </ItemGroup>
   <ItemGroup>
@@ -27,6 +30,7 @@
     <Folder Include="Controllers\V1\Receiving\Commands\Delete\" />
     <Folder Include="Controllers\V1\Receiving\Commands\Update\" />
     <Folder Include="Controllers\V1\Receiving\Querries\" />
+    <Folder Include="Logs\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SmsHub.Application\SmsHub.Application.csproj" />
