@@ -30,10 +30,15 @@ namespace SmsHub.Persistence.Features.Line.Queries.Implementations
         }
         public async Task<Entities.Line> GetIncludeProvider(int id)
         {
-            return await _lines
+            var line= await _lines
                     .Include(x => x.Provider)
                     .Where(x => x.Id == id)
                     .FirstOrDefaultAsync();
+            return line;
+            //return await _lines
+            //        .Include(x => x.Provider)
+            //        .Where(x => x.Id == id)
+            //        .FirstOrDefaultAsync();
 
         }
     }

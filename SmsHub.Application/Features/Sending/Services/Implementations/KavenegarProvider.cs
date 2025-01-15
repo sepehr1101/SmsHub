@@ -1,16 +1,12 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
-using SmsHub.Application.Common.Services.Implementations;
+﻿using SmsHub.Application.Common.Services.Implementations;
 using SmsHub.Application.Features.Sending.Services.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Constants;
-using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Receiving.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Sending.Entities;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
-using SmsHub.Domain.Providers.Kavenegar.Entities.Base;
 using SmsHub.Domain.Providers.Kavenegar.Entities.Requests;
 using SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts;
-using SmsHub.Persistence.Features.Sending.Queries.Contracts;
 using System.Runtime.InteropServices;
 using Entities = SmsHub.Domain.Features.Entities;
 
@@ -28,7 +24,6 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         private readonly IKavenegarHttpSelectOutboxService _selectOutboxService;
         private readonly IKavenegarHttpLatestOutboxService _latestOutboxService;
         private readonly IKavenegarHttpCountInboxService _countInboxService;
-        private readonly IProviderResponseStatusQueryService _responseStatusQueryService;
 
         public KavenegarProvider(
             IKavenegarHttpAccountService accountService,
@@ -40,8 +35,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             IKavenegarHttpSelectService selectService,
             IKavenegarHttpSelectOutboxService selectOutboxService,
             IKavenegarHttpLatestOutboxService latestOutboxService,
-            IKavenegarHttpCountInboxService countInboxService,
-            IProviderResponseStatusQueryService responseStatusQueryService)
+            IKavenegarHttpCountInboxService countInboxService)
         {
             _accountService = accountService;
             _accountService.NotNull(nameof(accountService));
@@ -73,8 +67,6 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             _countInboxService = countInboxService;
             _countInboxService.NotNull(nameof(countInboxService));
 
-            _responseStatusQueryService = responseStatusQueryService;
-            _responseStatusQueryService.NotNull(nameof(responseStatusQueryService));
         }
 
         public void Test()
@@ -145,16 +137,14 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var result = await _sendArrayService.Trigger(sendArrayDto, apiKey);
         }
 
-        public async Task<ICollection<CreateReceiveDto>> Receive([Optional] Entities.Line line)
+        public async Task<ICollection<CreateReceiveDto>> Receive([Optional] Entities.Line line, ICollection<ProviderResponseStatus> statusList)
         {
-            var successStatus = await GetSuccessStatus();
-
-
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
             var receiveDto = new ReceiveDto(line.Number, true);
             var resultReceive = await _receiveService.Trigger(receiveDto, apiKey);
 
+            var successStatus = await GetSuccessStatus(statusList);
             if (resultReceive.Return.Status == successStatus.StatusCode)
             {
                 //mapping to CreateReceiveDto
@@ -169,27 +159,19 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             }
             else
             {
-                throw new InvalidDataException();
+                throw new InvalidDataException(resultReceive.Return.Message);
             }
-           
-        }
 
-        private async Task<ProviderResponseStatus> GetSuccessStatus()
+        }
+        private async Task<ProviderResponseStatus> GetSuccessStatus(ICollection<ProviderResponseStatus> statusList)
         {
-            var statuses =await _responseStatusQueryService.Get(1);
+            var trueStatus = statusList
+                .Where(s => s.ProviderId == ProviderEnum.Kavenegar & s.IsSuccess == true)
+                .Single();
 
-            if (statuses == null)
-            {
-                throw new InvalidCastException();
-            }
-
-            return statuses;
-            //var trueStatus = statuses
-            //    .Where(s => s.ProviderId == ProviderEnum.Kavenegar & s.IsSuccess == true)
-            //    .Single();
-
-            //return  trueStatus;
+            return trueStatus;
         }
+
         private async Task StatusByLocalMessageId(Entities.Line line, long localMessageId)
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);

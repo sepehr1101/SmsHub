@@ -8,6 +8,7 @@ using SmsHub.Application.Common.Services.Implementations;
 using System.Runtime.InteropServices;
 using SmsHub.Domain.Providers.Magfa3000.Entities.Responses;
 using SmsHub.Domain.Features.Receiving.MediatorDtos.Commands.Create;
+using SmsHub.Domain.Features.Sending.Entities;
 
 
 namespace SmsHub.Application.Features.Sending.Services.Implementations
@@ -145,7 +146,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         }
 
 
-        public async Task<ICollection<CreateReceiveDto>> Receive([Optional] Entities.Line line)
+        public async Task<ICollection<CreateReceiveDto>> Receive([Optional] Entities.Line line, ICollection<ProviderResponseStatus> statusList)
         {
             var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
             var domain = magfaCredential.Domain;
