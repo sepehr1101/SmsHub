@@ -1,8 +1,10 @@
-﻿namespace SmsHub.Domain.Features.Security.Entities;
+﻿using SmsHub.Domain.Constants;
+
+namespace SmsHub.Domain.Features.Security.Entities;
 
 public partial class LogoutReason
 {
-    public short Id { get; set; }
+    public LogoutReasonEnum Id { get; set; }
 
     public string Title { get; set; } = null!;
 

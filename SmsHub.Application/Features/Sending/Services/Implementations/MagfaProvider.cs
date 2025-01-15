@@ -5,6 +5,9 @@ using SmsHub.Infrastructure.Providers.Magfa3000.Http.Contracts;
 using MagfaRequest = SmsHub.Domain.Providers.Magfa3000.Entities.Requests;
 using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Application.Common.Services.Implementations;
+using System.Runtime.InteropServices;
+using SmsHub.Domain.Providers.Magfa3000.Entities.Responses;
+using SmsHub.Domain.Features.Receiving.MediatorDtos.Commands.Create;
 
 
 namespace SmsHub.Application.Features.Sending.Services.Implementations
@@ -15,13 +18,15 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         private readonly IMagfa300HttpStatusesService _magfaStatusCodesService;
         private readonly IMagfa300HttpBalanceService _magfaBalanceService;
         private readonly IMagfa300HttpMidService _magfaMidService;
+        private readonly IMagfa300HttpMessagesService _magfaMessagesService;
 
 
         public MagfaProvider(
             IMagfa300HttpSendService magfaSendService,
             IMagfa300HttpStatusesService magfaStatusCodesService,
             IMagfa300HttpBalanceService magfaBalanceService,
-            IMagfa300HttpMidService magfaMidService)
+            IMagfa300HttpMidService magfaMidService,
+            IMagfa300HttpMessagesService magfaMessagesService)
         {
             _magfaSendService = magfaSendService;
             _magfaSendService.NotNull(nameof(MagfaProvider));
@@ -34,6 +39,9 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             _magfaMidService = magfaMidService;
             _magfaMidService.NotNull(nameof(magfaMidService));
+
+            _magfaMessagesService = magfaMessagesService;
+            _magfaMessagesService.NotNull(nameof(magfaMessagesService));
         }
         public void Test()
         {
@@ -50,6 +58,8 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             return result.Balance;
         }
+
+
 
         public async Task GetState(Entities.Line line,ICollection<long> id)
         {
@@ -70,6 +80,9 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             
             var result = await _magfaStatusCodesService.GetStatuses(domain, userName, password, id);
         }
+
+
+
 
         public async Task Send(Entities.Line line, MobileText mobileText)
         {
@@ -132,5 +145,31 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         }
 
 
+        public async Task<ICollection<CreateReceiveDto>> Receive([Optional] Entities.Line line)
+        {
+            var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
+            var domain = magfaCredential.Domain;
+            var userName = magfaCredential.UserName;
+            var password = magfaCredential.ClientSecret;
+
+            var result = await _magfaMessagesService.GetMessages(domain, userName, password);
+
+            //mapping to CreateReceiveDto
+            ICollection<CreateReceiveDto> createReceiveMessage=new List<CreateReceiveDto>();
+            foreach (var item in result.Messages)
+            {
+                var receiveSingleMessage = new CreateReceiveDto()
+                {
+                    Status=result.Status,
+                    MessageText=item.Body,
+                    Sender=item.SenderNubmer,
+                    Receptor=item.RecipientNumber,
+                    ReceiveDateTime=item.Date,
+                    InsertDateTime=DateTime.Now,
+                };
+                createReceiveMessage.Add(receiveSingleMessage);
+            }
+            return createReceiveMessage;
+        }
     }
 }

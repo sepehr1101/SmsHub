@@ -27,8 +27,6 @@
     <Folder Include="Features\Line\Commands\Implementations\" />
     <Folder Include="Features\Logging\Commands\Contracts\" />
     <Folder Include="Features\Logging\Commands\Implementations\" />
-    <Folder Include="Features\Receiving\Commands\Contracts\" />
-    <Folder Include="Features\Receiving\Commands\Implementations\" />
     <Folder Include="Features\Receiving\Queries\Contracts\" />
     <Folder Include="Features\Receiving\Queries\Implementations\" />
     <Folder Include="Features\Sending\Commands\Contracts\" />

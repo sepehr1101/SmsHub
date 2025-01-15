@@ -95,14 +95,14 @@ namespace SmsHub.Persistence.Migrations
         {
             var table = TableName.InvalidLoginReason;
             Create.Table(nameof(TableName.InvalidLoginReason))
-                .WithColumn(Id).AsInt16().PrimaryKey(NamingHelper.Pk(table)).Identity()
+                .WithColumn(Id).AsInt16().PrimaryKey(NamingHelper.Pk(table))
                 .WithColumn("Title").AsString(_255).NotNullable();
         }
         private void CreateLogoutReason()
         {
             var table = TableName.LogoutReason;
             Create.Table(nameof(TableName.LogoutReason))
-                .WithColumn(Id).AsInt16().PrimaryKey(NamingHelper.Pk(table)).Identity()
+                .WithColumn(Id).AsInt16().PrimaryKey(NamingHelper.Pk(table))
                 .WithColumn("Title").AsString(_255).NotNullable();
         }
         private void CreateUserLogin()
@@ -386,6 +386,19 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn("CreateDateTime").AsDateTime()
                 .WithColumn("DeleteDateTime").AsDateTime().Nullable()
                 .WithColumn("ApiKeyHash").AsAnsiString(128);
+        }
+
+        private void CreateReceive()
+        {
+            Create.Table(nameof(TableName.Received))
+                .WithColumn(Id).AsInt64().PrimaryKey().Identity()
+                .WithColumn("MessageId").AsInt64().Nullable()
+                .WithColumn("Status").AsInt32().Nullable()
+                .WithColumn("MessageText").AsString(int.MaxValue)
+                .WithColumn("Sender").AsString(15)
+                .WithColumn("Receptor").AsString(15)
+                .WithColumn("ReceiveDateTime").AsDateTime()
+                .WithColumn("InsertDateTime").AsDateTime();
         }
     }
 }

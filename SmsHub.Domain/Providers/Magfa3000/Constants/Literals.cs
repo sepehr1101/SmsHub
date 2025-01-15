@@ -36,12 +36,7 @@ namespace SmsHub.Domain.Providers.Magfa3000.Constants
 
 
 
-        public static string MessagesUri { get { return $"{BaseUrl}messages/{0}"; } }
-        public static string GetMessageUri(int count)
-        {
-            return $"{BaseUrl}messages/{count}";
-        }
-
-
+        public static string MessagesUri { get { return $"{BaseUrl}messages"; } }
+        
     }
 }
