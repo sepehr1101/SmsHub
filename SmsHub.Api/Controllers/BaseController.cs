@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using System.Net;
 using System.Runtime.InteropServices;
@@ -7,6 +8,7 @@ namespace Aban360.Api.Controllers.V1
 {   
     [ApiController]
     [ApiVersion("0.0.1")]
+    //[EnableCors("CorsPolicy")]
     public abstract class BaseController : ControllerBase
     {
         [NonAction]

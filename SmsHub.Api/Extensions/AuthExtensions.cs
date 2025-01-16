@@ -25,23 +25,7 @@ namespace SmsHub.Api.Extensions
                     return bearerTokens.AccessTokenExpirationMinutes < bearerTokens.RefreshTokenExpirationMinutes;
                 }, MessageResources.RefreshTokenIsLessThanToken);
             services.AddOptions<ApiSettings>().Bind(configuration.GetSection("ApiSettings"));
-        }
-        public static void AddCustomCors(this IServiceCollection services)
-        {
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy",
-                    builder => builder
-                        .AllowAnyOrigin()
-                        //.WithOrigins("http://*.aban360.ir","https://*.aban360.ir", "http://*.5ch.ir", "http://192.168.13.50") //Note:  The URL must be specified without a trailing slash (/).
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .SetIsOriginAllowed((host) => true)
-                        .AllowCredentials()
-                        .SetPreflightMaxAge(TimeSpan.FromMinutes(120))
-                        .WithExposedHeaders("Content-Disposition"));
-            });
-        }
+        }       
         public static void AddCustomAntiforgery(this IServiceCollection services)
         {
             services.AddAntiforgery(x => x.HeaderName = "X-XSRF-TOKEN");
