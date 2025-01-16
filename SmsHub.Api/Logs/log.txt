@@ -1,0 +1,212 @@
+2025-01-15 13:27:21.205 +03:30 [INF] Start installing Hangfire SQL objects...
+2025-01-15 13:27:21.505 +03:30 [INF] Hangfire SQL objects installed.
+2025-01-15 13:27:21.621 +03:30 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2025-01-15 13:27:21.837 +03:30 [DBG] Hosting starting
+2025-01-15 13:27:21.849 +03:30 [INF] User profile is available. Using 'C:\Users\ASUS\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-01-15 13:27:21.872 +03:30 [DBG] Reading data from file 'C:\Users\ASUS\AppData\Local\ASP.NET\DataProtection-Keys\key-59493989-ee9b-4944-be84-e850bc4621bf.xml'.
+2025-01-15 13:27:21.894 +03:30 [DBG] Reading data from file 'C:\Users\ASUS\AppData\Local\ASP.NET\DataProtection-Keys\key-6dce919e-7ee6-4342-9667-1d4cb2eb4c2e.xml'.
+2025-01-15 13:27:21.917 +03:30 [DBG] Reading data from file 'C:\Users\ASUS\AppData\Local\ASP.NET\DataProtection-Keys\key-8eb464ff-bb48-4893-8553-4b33ca923d18.xml'.
+2025-01-15 13:27:21.939 +03:30 [DBG] Reading data from file 'C:\Users\ASUS\AppData\Local\ASP.NET\DataProtection-Keys\key-93dbf559-430f-4fb8-baee-852feab561d2.xml'.
+2025-01-15 13:27:21.966 +03:30 [DBG] Reading data from file 'C:\Users\ASUS\AppData\Local\ASP.NET\DataProtection-Keys\key-964e7268-075f-413e-8baf-65b0a2045617.xml'.
+2025-01-15 13:27:21.993 +03:30 [DBG] Reading data from file 'C:\Users\ASUS\AppData\Local\ASP.NET\DataProtection-Keys\key-d37e3b4f-3314-46b2-8cce-ce4f82f59fd5.xml'.
+2025-01-15 13:27:22.023 +03:30 [DBG] Reading data from file 'C:\Users\ASUS\AppData\Local\ASP.NET\DataProtection-Keys\key-d65063de-cf72-4c3f-83cb-2cb6fe0d6b43.xml'.
+2025-01-15 13:27:22.061 +03:30 [DBG] Found key {59493989-ee9b-4944-be84-e850bc4621bf}.
+2025-01-15 13:27:22.066 +03:30 [DBG] Found key {6dce919e-7ee6-4342-9667-1d4cb2eb4c2e}.
+2025-01-15 13:27:22.066 +03:30 [DBG] Found key {8eb464ff-bb48-4893-8553-4b33ca923d18}.
+2025-01-15 13:27:22.067 +03:30 [DBG] Found key {93dbf559-430f-4fb8-baee-852feab561d2}.
+2025-01-15 13:27:22.067 +03:30 [DBG] Found key {964e7268-075f-413e-8baf-65b0a2045617}.
+2025-01-15 13:27:22.068 +03:30 [DBG] Found key {d37e3b4f-3314-46b2-8cce-ce4f82f59fd5}.
+2025-01-15 13:27:22.068 +03:30 [DBG] Found key {d65063de-cf72-4c3f-83cb-2cb6fe0d6b43}.
+2025-01-15 13:27:22.073 +03:30 [DBG] Considering key {93dbf559-430f-4fb8-baee-852feab561d2} with expiration date 2025-03-25 18:21:35Z as default key.
+2025-01-15 13:27:22.075 +03:30 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=3.1.32.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-01-15 13:27:22.077 +03:30 [DBG] Decrypting secret element using Windows DPAPI.
+2025-01-15 13:27:22.079 +03:30 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=3.1.32.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-01-15 13:27:22.082 +03:30 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2025-01-15 13:27:22.084 +03:30 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2025-01-15 13:27:22.087 +03:30 [DBG] Using key {93dbf559-430f-4fb8-baee-852feab561d2} as the default key.
+2025-01-15 13:27:22.088 +03:30 [DBG] Key ring with default key {93dbf559-430f-4fb8-baee-852feab561d2} was loaded during application startup.
+2025-01-15 13:27:22.185 +03:30 [DBG] Loaded hosting startup assembly SmsHub.Api
+2025-01-15 13:27:22.186 +03:30 [DBG] Loaded hosting startup assembly Microsoft.WebTools.ApiEndpointDiscovery
+2025-01-15 13:27:22.186 +03:30 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2025-01-15 13:27:22.186 +03:30 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2025-01-15 13:27:22.230 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/swagger/index.html - null null
+2025-01-15 13:27:22.288 +03:30 [INF] Starting Hangfire Server using job storage: 'SQL Server: .@SmsHub'
+2025-01-15 13:27:22.289 +03:30 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-01-15 13:27:22.289 +03:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-01-15 13:27:22.308 +03:30 [DBG] Execution loop BackgroundServerProcess:8b613df4 has started in 9.9923 ms
+2025-01-15 13:27:22.322 +03:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-01-15 13:27:22.322 +03:30 [INF] Hosting environment: Development
+2025-01-15 13:27:22.322 +03:30 [INF] Content root path: D:\Projects\SmsHub\SmsHub.Api
+2025-01-15 13:27:22.323 +03:30 [DBG] Hosting started
+2025-01-15 13:27:22.458 +03:30 [INF] Server desktop-usmlrdd:25300:99229b43 successfully announced in 133.3193 ms
+2025-01-15 13:27:22.465 +03:30 [INF] Server desktop-usmlrdd:25300:99229b43 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-01-15 13:27:22.469 +03:30 [DBG] Execution loop ServerHeartbeatProcess:3997a689 has started in 9.4137 ms
+2025-01-15 13:27:22.480 +03:30 [DBG] Execution loop ServerWatchdog:5426fe08 has started in 9.9594 ms
+2025-01-15 13:27:22.487 +03:30 [DBG] Execution loop ServerJobCancellationWatcher:0dfde83e has started in 15.4081 ms
+2025-01-15 13:27:22.497 +03:30 [DBG] Execution loop ExpirationManager:781e05cb has started in 14.9064 ms
+2025-01-15 13:27:22.503 +03:30 [DBG] Execution loop CountersAggregator:750d6a90 has started in 14.9347 ms
+2025-01-15 13:27:22.510 +03:30 [DBG] Execution loop SqlServerHeartbeatProcess:6ed13508 has started in 12.5537 ms
+2025-01-15 13:27:22.510 +03:30 [DBG] Aggregating records in 'Counter' table...
+2025-01-15 13:27:22.513 +03:30 [DBG] Removing outdated records from the 'AggregatedCounter' table...
+2025-01-15 13:27:22.519 +03:30 [INF] 1 servers were removed due to timeout
+2025-01-15 13:27:22.519 +03:30 [DBG] Execution loop Worker:53a8c996 has started in 15.2329 ms
+2025-01-15 13:27:22.543 +03:30 [DBG] Execution loop Worker:ae326bee has started in 37.3962 ms
+2025-01-15 13:27:22.547 +03:30 [DBG] Execution loop Worker:172ff959 has started in 43.0908 ms
+2025-01-15 13:27:22.556 +03:30 [DBG] Execution loop Worker:8ddc2d38 has started in 50.5966 ms
+2025-01-15 13:27:22.565 +03:30 [DBG] Execution loop Worker:67981b03 has started in 61.0742 ms
+2025-01-15 13:27:22.575 +03:30 [DBG] Execution loop Worker:ed7845ea has started in 71.4313 ms
+2025-01-15 13:27:22.582 +03:30 [DBG] Execution loop Worker:b2bf03f2 has started in 78.3686 ms
+2025-01-15 13:27:22.589 +03:30 [DBG] Execution loop Worker:62a4dd77 has started in 85.1911 ms
+2025-01-15 13:27:22.684 +03:30 [DBG] Execution loop Worker:77396eb9 has started in 180.3814 ms
+2025-01-15 13:27:22.685 +03:30 [DBG] Execution loop Worker:505ed2b7 has started in 180.6781 ms
+2025-01-15 13:27:22.685 +03:30 [DBG] Execution loop Worker:ed12df0d has started in 181.6058 ms
+2025-01-15 13:27:22.696 +03:30 [DBG] Execution loop Worker:b8b1aabd has started in 192.7037 ms
+2025-01-15 13:27:22.696 +03:30 [DBG] Execution loop Worker:adeb65a0 has started in 192.7037 ms
+2025-01-15 13:27:22.698 +03:30 [DBG] Removing outdated records from the 'Job' table...
+2025-01-15 13:27:22.698 +03:30 [DBG] Execution loop Worker:ae7e53fe has started in 194.4596 ms
+2025-01-15 13:27:22.704 +03:30 [DBG] Execution loop Worker:33e61f6a has started in 200.4308 ms
+2025-01-15 13:27:22.715 +03:30 [DBG] Removing outdated records from the 'List' table...
+2025-01-15 13:27:22.715 +03:30 [DBG] Execution loop Worker:eb571783 has started in 209.9192 ms
+2025-01-15 13:27:22.720 +03:30 [DBG] Execution loop Worker:0a640b37 has started in 216.2445 ms
+2025-01-15 13:27:22.727 +03:30 [DBG] Execution loop Worker:687fbf85 has started in 223.2557 ms
+2025-01-15 13:27:22.735 +03:30 [DBG] Execution loop Worker:e8ffa6be has started in 231.7203 ms
+2025-01-15 13:27:22.746 +03:30 [DBG] Execution loop Worker:f858844f has started in 242.2611 ms
+2025-01-15 13:27:22.746 +03:30 [INF] Server desktop-usmlrdd:25300:99229b43 all the dispatchers started
+2025-01-15 13:27:22.753 +03:30 [DBG] Execution loop RecurringJobScheduler:b7ad2a65 has started in 6.9149 ms
+2025-01-15 13:27:22.763 +03:30 [DBG] Execution loop DelayedJobScheduler:13ac16dd has started in 27.3728 ms
+2025-01-15 13:27:22.776 +03:30 [DBG] Removing outdated records from the 'Set' table...
+2025-01-15 13:27:22.793 +03:30 [DBG] Removing outdated records from the 'Hash' table...
+2025-01-15 13:27:24.209 +03:30 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2025-01-15 13:27:24.251 +03:30 [DBG] No candidates found for the request path '/swagger/index.html'
+2025-01-15 13:27:24.252 +03:30 [DBG] Request did not match any endpoints
+2025-01-15 13:27:24.290 +03:30 [DBG] Response markup is scheduled to include Browser Link script injection.
+2025-01-15 13:27:24.292 +03:30 [DBG] Response markup is scheduled to include browser refresh script injection.
+2025-01-15 13:27:24.340 +03:30 [DBG] Response markup was updated to include Browser Link script injection.
+2025-01-15 13:27:24.341 +03:30 [DBG] Response markup was updated to include browser refresh script injection.
+2025-01-15 13:27:24.343 +03:30 [DBG] Connection ID "18302628899323904117" disconnecting.
+2025-01-15 13:27:24.346 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/swagger/index.html - 200 null text/html;charset=utf-8 2120.741ms
+2025-01-15 13:27:24.364 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/_framework/aspnetcore-browser-refresh.js - null null
+2025-01-15 13:27:24.364 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/_vs/browserLink - null null
+2025-01-15 13:27:24.370 +03:30 [DBG] Connection ID "18230571313875910806" disconnecting.
+2025-01-15 13:27:24.370 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/_framework/aspnetcore-browser-refresh.js - 200 13756 application/javascript; charset=utf-8 5.1851ms
+2025-01-15 13:27:24.468 +03:30 [DBG] Connection ID "18230571318170878229" disconnecting.
+2025-01-15 13:27:24.468 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/_vs/browserLink - 200 null text/javascript; charset=UTF-8 104.1008ms
+2025-01-15 13:27:24.500 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/swagger/v1/swagger.json - null null
+2025-01-15 13:27:24.505 +03:30 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2025-01-15 13:27:24.506 +03:30 [DBG] Request did not match any endpoints
+2025-01-15 13:27:24.567 +03:30 [DBG] Connection ID "18302628899323904119" disconnecting.
+2025-01-15 13:27:24.568 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 66.7621ms
+2025-01-15 13:27:43.249 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/user/test - null null
+2025-01-15 13:27:43.256 +03:30 [DBG] 1 candidate(s) found for the request path '/user/test'
+2025-01-15 13:27:43.259 +03:30 [DBG] Endpoint 'SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController.Test (SmsHub.Api)' with route pattern 'user/test' is valid for the request path '/user/test'
+2025-01-15 13:27:43.261 +03:30 [DBG] Request matched endpoint 'SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController.Test (SmsHub.Api)'
+2025-01-15 13:27:43.263 +03:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-01-15 13:27:44.582 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-15 13:27:44.591 +03:30 [INF] Executing endpoint 'SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController.Test (SmsHub.Api)'
+2025-01-15 13:27:44.609 +03:30 [INF] Route matched with {action = "Test", controller = "UserCreate"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Test() on controller SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController (SmsHub.Api).
+2025-01-15 13:27:44.611 +03:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-01-15 13:27:44.611 +03:30 [DBG] Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2025-01-15 13:27:44.612 +03:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-01-15 13:27:44.612 +03:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-01-15 13:27:44.613 +03:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter","Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-01-15 13:27:44.616 +03:30 [DBG] Executing controller factory for controller SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController (SmsHub.Api)
+2025-01-15 13:27:44.677 +03:30 [DBG] Entity Framework Core 8.0.10 initialized 'SmsHubContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.10' with options: CommandTimeout=180 
+2025-01-15 13:27:44.811 +03:30 [DBG] Executed controller factory for controller SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController (SmsHub.Api)
+2025-01-15 13:27:44.895 +03:30 [INF] Executing action method SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController.Test (SmsHub.Api) - Validation state: "Valid"
+2025-01-15 13:27:48.727 +03:30 [INF] Executed action SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController.Test (SmsHub.Api) in 4105.6435ms
+2025-01-15 13:27:48.729 +03:30 [INF] Executed endpoint 'SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController.Test (SmsHub.Api)'
+2025-01-15 13:27:48.731 +03:30 [ERR] An unhandled exception has occurred while executing the request.
+SmsHub.Application.Exceptions.InvalidLineException: کد -شماره خط- نامعتبر است
+   at SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController.Test() in D:\Projects\SmsHub\SmsHub.Api\Controllers\V1\Security\Commands\Create\UserCreateController.cs:line 45
+   at lambda_method117(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-01-15 13:27:48.754 +03:30 [DBG] Connection ID "18302628895028936986" disconnecting.
+2025-01-15 13:27:48.755 +03:30 [DBG] 'SmsHubContext' disposed.
+2025-01-15 13:27:48.758 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/user/test - 400 null application/json; charset=utf-8 5508.747ms
+2025-01-15 13:27:52.510 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:28:22.525 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:28:52.533 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:29:22.554 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:29:52.562 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:30:22.579 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:30:52.584 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:31:22.590 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:31:52.590 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:32:22.557 +03:30 [DBG] Aggregating records in 'Counter' table...
+2025-01-15 13:32:22.590 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:32:52.605 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:33:22.608 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:33:52.615 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:34:22.625 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:34:52.640 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:35:22.643 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:35:52.661 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:36:22.667 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:36:52.699 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:37:22.607 +03:30 [DBG] Aggregating records in 'Counter' table...
+2025-01-15 13:37:22.713 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:37:52.726 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:38:22.733 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:38:52.754 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:39:22.758 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:39:52.776 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:40:22.786 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:40:52.794 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:41:22.801 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:41:52.814 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:42:22.647 +03:30 [DBG] Aggregating records in 'Counter' table...
+2025-01-15 13:42:22.826 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:42:52.834 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:43:22.844 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:43:52.869 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:44:22.883 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:44:52.892 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:45:22.903 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:45:52.910 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:46:22.926 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:46:52.932 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:47:22.676 +03:30 [DBG] Aggregating records in 'Counter' table...
+2025-01-15 13:47:22.945 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:47:52.953 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:48:22.971 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:48:52.982 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:49:22.990 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 13:59:58.901 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 14:00:28.905 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 14:00:58.917 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 14:01:28.930 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 14:01:58.947 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 14:02:28.582 +03:30 [DBG] Aggregating records in 'Counter' table...
+2025-01-15 14:02:28.949 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 14:02:58.963 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 14:03:28.975 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 14:03:58.977 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 14:04:28.991 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 14:04:58.989 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 14:05:28.998 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 14:05:59.015 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 14:06:29.020 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-15 14:06:59.034 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
