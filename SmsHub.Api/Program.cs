@@ -29,30 +29,25 @@ builder.Services.AddCustomOptions(configuration);
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 //serilog
-builder.Services.AddSerilog(options =>
-{
-    //we can configure serilog from configuration
-    options.ReadFrom.Configuration(configuration);
-});
+builder.Services.AddSerilog(configuration);
 
 //app
 var app = builder.Build();
 
-//app.UseExceptionHandler();
 app.UseExceptionHandler("/error");
-//app.UseStatusCodePages();
 
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
 //{
     app.AddSwaggerApp();
-    //app.UseDeveloperExceptionPage();    
 //}
 
 //app.UseMiddleware<ApiKeyMiddleware>();
 
 app.UseHttpsRedirection();
 
+app.UseRouting();
+app.UseCustomCors();
 app.UseAuthentication();
 app.UseAuthorization();
 

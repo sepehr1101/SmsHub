@@ -112,9 +112,10 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
         [HttpGet]
         [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true, Duration = 0)]
         [Route("captcha")]
-        public ActionResult<DNTCaptchaApiResponse> CreateDNTCaptchaParams()
+        [ProducesResponseType(typeof(ApiResponseEnvelope<DNTCaptchaApiResponse>), StatusCodes.Status200OK)]
+        public IActionResult CreateDNTCaptchaParams()
         { 
-            return _captchaApiProvider.CreateDNTCaptcha(new DNTCaptchaTagHelperHtmlAttributes
+            var captchaParams= _captchaApiProvider.CreateDNTCaptcha(new DNTCaptchaTagHelperHtmlAttributes
             {
                 BackColor = "#f7f3f3",
                 FontName = "Tahoma",
@@ -125,6 +126,7 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
                 Max = 90,
                 Min = 1
             });
+            return Ok(captchaParams);
         }
 
         private bool HasRequestValidCaptchaEntry(FirstStepLoginInput input)
