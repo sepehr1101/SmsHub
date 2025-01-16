@@ -8,6 +8,10 @@ using SmsHub.Application.Common.Services.Implementations;
 using System.Runtime.InteropServices;
 using SmsHub.Domain.Providers.Magfa3000.Entities.Responses;
 using SmsHub.Domain.Features.Receiving.MediatorDtos.Commands.Create;
+using SmsHub.Domain.Features.Sending.Entities;
+using SmsHub.Domain.Constants;
+using SmsHub.Application.Exceptions;
+using Azure;
 
 
 namespace SmsHub.Application.Features.Sending.Services.Implementations
@@ -47,44 +51,76 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         {
             Console.WriteLine("test from magfa");
         }
-        public async Task<long> GetCredit(Entities.Line line)
+        public async Task<long> GetCredit(Entities.Line line, ICollection<ProviderResponseStatus> statusList)
         {
             var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
             var domain = magfaCredential.Domain;
             var userName = magfaCredential.UserName;
             var password = magfaCredential.ClientSecret;
 
-            var result = await _magfaBalanceService.GetBalances(domain, userName, password);
+            var response = await _magfaBalanceService.GetBalances(domain, userName, password);
 
-            return result.Balance;
+            var successStatus = await GetSuccessStatus(statusList);
+            if (response.Status == successStatus.StatusCode)
+            {
+                return response.Balance;
+            }
+            else
+            {
+                var statusDetail = await GetProviderStatusByStatusCode(statusList, response.Status);
+                throw new ProviderResponseException(statusDetail.Message, statusDetail.StatusCode);
+            }
+
         }
 
 
 
-        public async Task GetState(Entities.Line line,ICollection<long> id)
+        public async Task GetState(Entities.Line line,ICollection<long> id, ICollection<ProviderResponseStatus> statusList)
         {
             var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
             var domain = magfaCredential.Domain;
             var userName = magfaCredential.UserName;
             var password = magfaCredential.ClientSecret;
             
-            var result = await _magfaStatusCodesService.GetStatuses(domain, userName, password, id);
+            var response = await _magfaStatusCodesService.GetStatuses(domain, userName, password, id);
+         
+            var successStatus = await GetSuccessStatus(statusList);
+            if (response.Status == successStatus.StatusCode)
+            {
+                //return
+            }
+            else
+            {
+                var statusDetail = await GetProviderStatusByStatusCode(statusList, response.Status);
+                throw new ProviderResponseException(statusDetail.Message, statusDetail.StatusCode);
+            }
         }
 
-        public async Task GetState(Entities.Line line,long id)
+        public async Task GetState(Entities.Line line,long id, ICollection<ProviderResponseStatus> statusList)
         {
             var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
             var domain = magfaCredential.Domain;
             var userName = magfaCredential.UserName;
             var password = magfaCredential.ClientSecret;
             
-            var result = await _magfaStatusCodesService.GetStatuses(domain, userName, password, id);
+            var response = await _magfaStatusCodesService.GetStatuses(domain, userName, password, id);
+
+            var successStatus = await GetSuccessStatus(statusList);
+            if (response.Status == successStatus.StatusCode)
+            {
+                //return
+            }
+            else
+            {
+                var statusDetail = await GetProviderStatusByStatusCode(statusList, response.Status);
+                throw new ProviderResponseException(statusDetail.Message, statusDetail.StatusCode);
+            }
         }
 
 
 
 
-        public async Task Send(Entities.Line line, MobileText mobileText)
+        public async Task Send(Entities.Line line, MobileText mobileText, ICollection<ProviderResponseStatus> statusList)
         {
             var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
             var domain = magfaCredential.Domain;
@@ -100,11 +136,22 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             };
 
-            var result = await _magfaSendService.SendMessage(domain, userName, password, sendDto);
+            var response = await _magfaSendService.SendMessage(domain, userName, password, sendDto);
+
+            var successStatus = await GetSuccessStatus(statusList);
+            if (response.Status == successStatus.StatusCode)
+            {
+                //return
+            }
+            else
+            {
+                var statusDetail = await GetProviderStatusByStatusCode(statusList, response.Status);
+                throw new ProviderResponseException(statusDetail.Message, statusDetail.StatusCode);
+            }
 
         }
 
-        public async Task Send(Entities.Line line, ICollection<MobileText> mobileText)
+        public async Task Send(Entities.Line line, ICollection<MobileText> mobileText, ICollection<ProviderResponseStatus> statusList)
         {
             var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
             var domain = magfaCredential.Domain;
@@ -127,41 +174,90 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
                 sendDto.recipients.Add(item.Mobile);
             }
 
-            var result = await _magfaSendService.SendMessage(domain, userName, password, sendDto);
+            var response = await _magfaSendService.SendMessage(domain, userName, password, sendDto);
 
+            var successStatus = await GetSuccessStatus(statusList);
+            if (response.Status == successStatus.StatusCode)
+            {
+                //return
+            }
+            else
+            {
+                var statusDetail = await GetProviderStatusByStatusCode(statusList, response.Status);
+                throw new ProviderResponseException(statusDetail.Message, statusDetail.StatusCode);
+            }
         }
 
 
 
 
-        private async Task Mid(Entities.Line line,long userId)
+        private async Task Mid(Entities.Line line,long userId, ICollection<ProviderResponseStatus> statusList)
         {
             var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
             var domain = magfaCredential.Domain;
             var userName = magfaCredential.UserName;
             var password = magfaCredential.ClientSecret;
             
-            var result = await _magfaMidService.GetMid(domain, userName, password, userId);
+            var response = await _magfaMidService.GetMid(domain, userName, password, userId);
+
+            var successStatus = await GetSuccessStatus(statusList);
+            if (response.Status == successStatus.StatusCode)
+            {
+                //return
+            }
+            else
+            {
+                var statusDetail = await GetProviderStatusByStatusCode(statusList, response.Status);
+                throw new ProviderResponseException(statusDetail.Message, statusDetail.StatusCode);
+            }
         }
 
 
-        public async Task<ICollection<CreateReceiveDto>> Receive([Optional] Entities.Line line)
+        public async Task<ICollection<CreateReceiveDto>> Receive([Optional] Entities.Line line, ICollection<ProviderResponseStatus> statusList)
         {
             var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
             var domain = magfaCredential.Domain;
             var userName = magfaCredential.UserName;
             var password = magfaCredential.ClientSecret;
-
             var result = await _magfaMessagesService.GetMessages(domain, userName, password);
 
-            //mapping to CreateReceiveDto
-            ICollection<CreateReceiveDto> createReceiveMessage=new List<CreateReceiveDto>();
-            foreach (var item in result.Messages)
+            var successStatus = await GetSuccessStatus(statusList);
+            if (result.Status == successStatus.StatusCode)
             {
-                var receiveSingleMessage = new CreateReceiveDto(item);
-                createReceiveMessage.Add(receiveSingleMessage);
+                //mapping to CreateReceiveDto
+                ICollection<CreateReceiveDto> createReceiveMessage = new List<CreateReceiveDto>();
+                foreach (var item in result.Messages)
+                {
+                    var receiveSingleMessage = new CreateReceiveDto(item,line.Id);
+                    createReceiveMessage.Add(receiveSingleMessage);
+                }
+                return createReceiveMessage;
             }
-            return createReceiveMessage;
+            else
+            {
+                var statusDetail=await GetProviderStatusByStatusCode(statusList,result.Status);
+                throw new ProviderResponseException(statusDetail.Message,statusDetail.StatusCode);
+            }
         }
+
+
+        //
+        private async Task<ProviderResponseStatus> GetSuccessStatus(ICollection<ProviderResponseStatus> statusList)
+        {
+            var trueStatus = statusList
+                .Where(s => s.ProviderId == ProviderEnum.Magfa & s.IsSuccess == true)
+                .Single();
+
+            return trueStatus;
+        }
+        private async Task<ProviderResponseStatus> GetProviderStatusByStatusCode(ICollection<ProviderResponseStatus> statusList, int statusCode)
+        {
+            var trueStatus = statusList
+               .Where(s => s.ProviderId == ProviderEnum.Magfa & s.StatusCode==statusCode)
+               .Single();
+
+            return trueStatus;
+        }
+
     }
 }

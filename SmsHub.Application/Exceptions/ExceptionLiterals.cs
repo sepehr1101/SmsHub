@@ -1,4 +1,6 @@
-﻿namespace SmsHub.Application.Exceptions
+﻿using static System.Net.Mime.MediaTypeNames;
+
+namespace SmsHub.Application.Exceptions
 {
     public static class ExceptionLiterals
     {
@@ -20,6 +22,8 @@
         public static string InvalidProviderId => "کد Provider نامعتبر است";
         public static string InvalidProviderHandle=> "ارسال کننده خط از این عملیات پشتیبانی نمی کند";
 
+
+        public static string InvalidProviderResponse(string message, int statusCode) => $"خطا => {message} - {statusCode} ";
 
     }
 }

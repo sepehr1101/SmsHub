@@ -12,8 +12,9 @@ namespace SmsHub.Domain.Features.Receiving.MediatorDtos.Commands.Create
         public string Receptor { get; private set; }
         public DateTime ReceiveDateTime { get; private set; }
         public DateTime InsertDateTime { get; private set; }
+        public int LineId { get; private set; }
 
-        public CreateReceiveDto(KavenegarResponse.ReceiveDto items)
+        public CreateReceiveDto(KavenegarResponse.ReceiveDto items,int lineId)
         {
             DateTime reseiveDateTime = DateTimeOffset.FromUnixTimeSeconds(items.Date).DateTime;
 
@@ -23,14 +24,16 @@ namespace SmsHub.Domain.Features.Receiving.MediatorDtos.Commands.Create
             Receptor = items.Receptor;
             ReceiveDateTime = reseiveDateTime;
             InsertDateTime = DateTime.Now;
+            LineId = lineId;
         }
-        public CreateReceiveDto(MagfaResponse.ResponseReceivedMessagesDto items)
+        public CreateReceiveDto(MagfaResponse.ResponseReceivedMessagesDto items,int lineId)
         {
             MessageText = items.Body;
             Sender = items.SenderNubmer;
             Receptor = items.RecipientNumber;
             ReceiveDateTime = items.Date;
             InsertDateTime = DateTime.Now;
+            LineId= lineId;
         }
     }
 }
