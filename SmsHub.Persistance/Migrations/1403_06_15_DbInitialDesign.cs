@@ -397,7 +397,9 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn("Sender").AsString(15)
                 .WithColumn("Receptor").AsString(15)
                 .WithColumn("ReceiveDateTime").AsDateTime()
-                .WithColumn("InsertDateTime").AsDateTime();
+                .WithColumn("InsertDateTime").AsDateTime()
+                .WithColumn("LineId").AsInt32()
+                    .ForeignKey(NamingHelper.Fk(TableName.Received, TableName.Line), nameof(TableName.Line), Id);
         }
 
         private void CreateProviderStatus()
