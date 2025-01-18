@@ -429,6 +429,16 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn("IsSuccess").AsBoolean().NotNullable();
         }
 
-        
+        private void CreateMessageDetailStatus()
+        {
+            Create.Table(nameof(TableName.MessageDetailStatus))
+                .WithColumn(Id).AsInt64().PrimaryKey().Identity()
+                .WithColumn("ReceiveDateTime").AsDateTime()
+                .WithColumn("MessageId").AsInt64()
+                .WithColumn("MessagesDetailId").AsInt64()
+                    .ForeignKey(NamingHelper.Fk(TableName.MessageDetailStatus, TableName.MessagesDetail), nameof(TableName.MessagesDetail), Id)
+                .WithColumn("ProviderResponseStatusId").AsInt32()
+                    .ForeignKey(NamingHelper.Fk(TableName.MessageDetailStatus, TableName.ProviderResponseStatus), nameof(TableName.ProviderResponseStatus), Id);
+        }
     }
 }

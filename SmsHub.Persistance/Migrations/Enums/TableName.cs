@@ -24,6 +24,7 @@
         MessageBatch,
         MessagesHolder,
         MessagesDetail,
+        MessageDetailStatus,
         MessageStateCategory,
         MessageState,
         Received,
