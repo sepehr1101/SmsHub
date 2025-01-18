@@ -22,6 +22,7 @@ public class User
     public DateTime? ValidTo { get; set; }
     public string InsertLogInfo { get; set; } = default!;
     public string? RemoveLogInfo { get; set; }
+    public string ApiKey {  get; set; }
 
     public virtual ICollection<User> InversePrevious { get; set; } = new List<User>();
 

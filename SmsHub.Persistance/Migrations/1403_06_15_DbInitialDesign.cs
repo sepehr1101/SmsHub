@@ -52,8 +52,13 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn("ValidFrom").AsDateTime2().NotNullable()
                 .WithColumn("ValidTo").AsDateTime2().Nullable()
                 .WithColumn("InsertLogInfo").AsString(int.MaxValue).NotNullable()
-                .WithColumn("RemoveLogInfo").AsString(int.MinValue).Nullable();
+                .WithColumn("RemoveLogInfo").AsString(int.MinValue).Nullable()
+                .WithColumn("ApiKey").AsString(_255).NotNullable();
         }
+
+       
+
+
         private void CreateRole()
         {
             var table = TableName.Role;
@@ -152,6 +157,18 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn("Number").AsString(15).Unique(NamingHelper.Uq(TableName.Line,"Number"))
                 .WithColumn("Credential").AsString(int.MaxValue);
         }
+
+        private void CreateUserLine()
+        {
+            Create.Table(nameof(TableName.UserLine))
+                .WithColumn(Id).AsInt64().PrimaryKey().Identity()
+                .WithColumn("UserId").AsGuid()
+                    .ForeignKey(NamingHelper.Fk(TableName.User, TableName.UserLine), nameof(TableName.User), Id)
+                .WithColumn("LineId").AsInt32()
+                    .ForeignKey(NamingHelper.Fk(TableName.Line, TableName.UserLine), nameof(TableName.Line), Id);
+        }
+
+
         private void CreateConsumer()
         {           
             Create.Table(nameof(TableName.Consumer))
@@ -412,14 +429,6 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn("IsSuccess").AsBoolean().NotNullable();
         }
 
-        private void CreateUserLine()
-        {
-            Create.Table(nameof(TableName.UserLine))
-                .WithColumn(Id).AsInt64().PrimaryKey().Identity()
-                .WithColumn("UserId").AsGuid()
-                    .ForeignKey(NamingHelper.Fk(TableName.User, TableName.UserLine), nameof(TableName.Consumer), Id)
-                .WithColumn("LineId").AsInt32()
-                    .ForeignKey(NamingHelper.Fk(TableName.Line, TableName.UserLine), nameof(TableName.Line), Id);
-        }
+        
     }
 }

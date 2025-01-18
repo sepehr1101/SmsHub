@@ -210,3 +210,645 @@ SmsHub.Application.Exceptions.InvalidLineException: کد -شماره خط- نا�
 2025-01-15 14:05:59.015 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
 2025-01-15 14:06:29.020 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
 2025-01-15 14:06:59.034 +03:30 [DBG] Server desktop-usmlrdd:25300:99229b43 heartbeat successfully sent
+2025-01-18 11:25:52.099 +03:30 [INF] Start installing Hangfire SQL objects...
+2025-01-18 11:25:52.646 +03:30 [INF] Hangfire SQL objects installed.
+2025-01-18 11:25:52.718 +03:30 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2025-01-18 11:25:52.822 +03:30 [DBG] Hosting starting
+2025-01-18 11:25:52.830 +03:30 [INF] User profile is available. Using 'C:\Users\zahra\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-01-18 11:25:52.839 +03:30 [DBG] Reading data from file 'C:\Users\zahra\AppData\Local\ASP.NET\DataProtection-Keys\key-0faf8820-b8a8-4f83-85df-101e90ae7dc1.xml'.
+2025-01-18 11:25:52.856 +03:30 [DBG] Reading data from file 'C:\Users\zahra\AppData\Local\ASP.NET\DataProtection-Keys\key-69864b2a-a4e0-4492-8314-ddeda3c1eb89.xml'.
+2025-01-18 11:25:52.868 +03:30 [DBG] Reading data from file 'C:\Users\zahra\AppData\Local\ASP.NET\DataProtection-Keys\key-d0932e56-40f6-47df-9383-e466f22625b2.xml'.
+2025-01-18 11:25:52.887 +03:30 [DBG] Found key {0faf8820-b8a8-4f83-85df-101e90ae7dc1}.
+2025-01-18 11:25:52.890 +03:30 [DBG] Found key {69864b2a-a4e0-4492-8314-ddeda3c1eb89}.
+2025-01-18 11:25:52.891 +03:30 [DBG] Found key {d0932e56-40f6-47df-9383-e466f22625b2}.
+2025-01-18 11:25:52.894 +03:30 [DBG] Considering key {69864b2a-a4e0-4492-8314-ddeda3c1eb89} with expiration date 2025-03-26 17:15:22Z as default key.
+2025-01-18 11:25:52.897 +03:30 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-01-18 11:25:52.899 +03:30 [DBG] Decrypting secret element using Windows DPAPI.
+2025-01-18 11:25:52.901 +03:30 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-01-18 11:25:52.903 +03:30 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2025-01-18 11:25:52.904 +03:30 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2025-01-18 11:25:52.906 +03:30 [DBG] Using key {69864b2a-a4e0-4492-8314-ddeda3c1eb89} as the default key.
+2025-01-18 11:25:52.907 +03:30 [DBG] Key ring with default key {69864b2a-a4e0-4492-8314-ddeda3c1eb89} was loaded during application startup.
+2025-01-18 11:25:53.046 +03:30 [INF] Now listening on: https://localhost:7221
+2025-01-18 11:25:53.048 +03:30 [INF] Now listening on: http://localhost:5241
+2025-01-18 11:25:53.049 +03:30 [DBG] Loaded hosting startup assembly SmsHub.Api
+2025-01-18 11:25:53.050 +03:30 [DBG] Loaded hosting startup assembly Microsoft.WebTools.ApiEndpointDiscovery
+2025-01-18 11:25:53.051 +03:30 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2025-01-18 11:25:53.052 +03:30 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2025-01-18 11:25:53.100 +03:30 [INF] Starting Hangfire Server using job storage: 'SQL Server: .@SmsHub'
+2025-01-18 11:25:53.126 +03:30 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-01-18 11:25:53.129 +03:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-01-18 11:25:53.142 +03:30 [DBG] Execution loop BackgroundServerProcess:65dd7706 has started in 8.0173 ms
+2025-01-18 11:25:53.147 +03:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-01-18 11:25:53.157 +03:30 [INF] Hosting environment: Development
+2025-01-18 11:25:53.157 +03:30 [INF] Content root path: E:\Abfa\SmsHub\SmsHub.Api
+2025-01-18 11:25:53.159 +03:30 [DBG] Hosting started
+2025-01-18 11:25:53.193 +03:30 [INF] Server z_e:14844:2302445e successfully announced in 34.6358 ms
+2025-01-18 11:25:53.197 +03:30 [INF] Server z_e:14844:2302445e is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-01-18 11:25:53.199 +03:30 [DBG] Execution loop ServerHeartbeatProcess:2796662b has started in 4.2792 ms
+2025-01-18 11:25:53.205 +03:30 [DBG] Execution loop ServerWatchdog:1bd4b3f0 has started in 4.6701 ms
+2025-01-18 11:25:53.207 +03:30 [DBG] Execution loop ServerJobCancellationWatcher:e27a5244 has started in 5.7356 ms
+2025-01-18 11:25:53.211 +03:30 [DBG] Execution loop ExpirationManager:363edb8f has started in 3.6275 ms
+2025-01-18 11:25:53.213 +03:30 [DBG] Execution loop CountersAggregator:f62890ef has started in 5.4521 ms
+2025-01-18 11:25:53.216 +03:30 [DBG] Execution loop SqlServerHeartbeatProcess:e8d69cbc has started in 5.1066 ms
+2025-01-18 11:25:53.237 +03:30 [DBG] Removing outdated records from the 'AggregatedCounter' table...
+2025-01-18 11:25:53.237 +03:30 [DBG] Aggregating records in 'Counter' table...
+2025-01-18 11:25:53.220 +03:30 [DBG] Execution loop Worker:67325a30 has started in 6.8332 ms
+2025-01-18 11:25:53.224 +03:30 [DBG] Execution loop Worker:3b375300 has started in 11.1963 ms
+2025-01-18 11:25:53.229 +03:30 [DBG] Execution loop Worker:4a8ff800 has started in 15.712 ms
+2025-01-18 11:25:53.232 +03:30 [DBG] Execution loop Worker:3353840e has started in 19.2381 ms
+2025-01-18 11:25:53.235 +03:30 [DBG] Execution loop Worker:c9af8dea has started in 22.6728 ms
+2025-01-18 11:25:53.240 +03:30 [DBG] Execution loop Worker:8f385238 has started in 27.1947 ms
+2025-01-18 11:25:53.288 +03:30 [INF] Server z_e:14844:2302445e all the dispatchers started
+2025-01-18 11:25:53.288 +03:30 [DBG] Removing outdated records from the 'Job' table...
+2025-01-18 11:25:53.242 +03:30 [DBG] Execution loop Worker:9dd14870 has started in 29.2773 ms
+2025-01-18 11:25:53.245 +03:30 [DBG] Execution loop Worker:a661a425 has started in 32.171 ms
+2025-01-18 11:25:53.248 +03:30 [DBG] Execution loop Worker:83ccc391 has started in 35.2093 ms
+2025-01-18 11:25:53.252 +03:30 [DBG] Execution loop Worker:0a2ea7d8 has started in 39.0829 ms
+2025-01-18 11:25:53.255 +03:30 [DBG] Execution loop Worker:4f298d31 has started in 41.637 ms
+2025-01-18 11:25:53.257 +03:30 [DBG] Execution loop Worker:df7bfd17 has started in 43.9814 ms
+2025-01-18 11:25:53.262 +03:30 [DBG] Execution loop Worker:8aa3ca05 has started in 49.3405 ms
+2025-01-18 11:25:53.264 +03:30 [DBG] Execution loop Worker:0592d626 has started in 51.3792 ms
+2025-01-18 11:25:53.268 +03:30 [DBG] Execution loop Worker:fc22d449 has started in 54.9429 ms
+2025-01-18 11:25:53.271 +03:30 [DBG] Execution loop Worker:2f811470 has started in 58.664 ms
+2025-01-18 11:25:53.274 +03:30 [DBG] Execution loop Worker:be986f78 has started in 60.9745 ms
+2025-01-18 11:25:53.277 +03:30 [DBG] Execution loop Worker:0124fa84 has started in 64.4258 ms
+2025-01-18 11:25:53.281 +03:30 [DBG] Execution loop Worker:6bb1a761 has started in 68.0763 ms
+2025-01-18 11:25:53.285 +03:30 [DBG] Execution loop Worker:7eb457db has started in 71.9418 ms
+2025-01-18 11:25:53.288 +03:30 [DBG] Execution loop DelayedJobScheduler:140d6a5e has started in 6.9632 ms
+2025-01-18 11:25:53.291 +03:30 [DBG] Execution loop RecurringJobScheduler:47fe77f8 has started in 9.3767 ms
+2025-01-18 11:25:53.315 +03:30 [DBG] Removing outdated records from the 'List' table...
+2025-01-18 11:25:53.322 +03:30 [DBG] Removing outdated records from the 'Set' table...
+2025-01-18 11:25:53.330 +03:30 [DBG] Removing outdated records from the 'Hash' table...
+2025-01-18 11:25:53.377 +03:30 [DBG] Connection id "0HN9NIM45L7M4" received FIN.
+2025-01-18 11:25:53.385 +03:30 [DBG] Connection id "0HN9NIM45L7M4" accepted.
+2025-01-18 11:25:53.387 +03:30 [DBG] Connection id "0HN9NIM45L7M4" started.
+2025-01-18 11:25:53.399 +03:30 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2025-01-18 11:25:53.412 +03:30 [DBG] Connection id "0HN9NIM45L7M4" stopped.
+2025-01-18 11:25:53.415 +03:30 [DBG] Connection id "0HN9NIM45L7M4" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-01-18 11:25:54.432 +03:30 [DBG] Connection id "0HN9NIM45L7M5" accepted.
+2025-01-18 11:25:54.434 +03:30 [DBG] Connection id "0HN9NIM45L7M5" started.
+2025-01-18 11:25:54.492 +03:30 [DBG] Connection 0HN9NIM45L7M5 established using the following protocol: "Tls13"
+2025-01-18 11:25:54.639 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/swagger/index.html - null null
+2025-01-18 11:25:54.873 +03:30 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2025-01-18 11:25:54.947 +03:30 [DBG] Response markup is scheduled to include Browser Link script injection.
+2025-01-18 11:25:54.951 +03:30 [DBG] Response markup is scheduled to include browser refresh script injection.
+2025-01-18 11:25:54.989 +03:30 [DBG] Response markup was updated to include Browser Link script injection.
+2025-01-18 11:25:54.994 +03:30 [DBG] Response markup was updated to include browser refresh script injection.
+2025-01-18 11:25:55.001 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/swagger/index.html - 200 null text/html;charset=utf-8 369.8616ms
+2025-01-18 11:25:55.015 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/_framework/aspnetcore-browser-refresh.js - null null
+2025-01-18 11:25:55.027 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/_vs/browserLink - null null
+2025-01-18 11:25:55.035 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/_framework/aspnetcore-browser-refresh.js - 200 13756 application/javascript; charset=utf-8 20.1223ms
+2025-01-18 11:25:55.107 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/_vs/browserLink - 200 null text/javascript; charset=UTF-8 80.7948ms
+2025-01-18 11:25:55.140 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/swagger/v1/swagger.json - null null
+2025-01-18 11:25:55.241 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 100.6393ms
+2025-01-18 11:25:56.710 +03:30 [DBG] Connection id "0HN9NIM45L7M5" received FIN.
+2025-01-18 11:25:56.711 +03:30 [DBG] Connection id "0HN9NIM45L7M5" is closing.
+2025-01-18 11:25:56.717 +03:30 [DBG] The connection queue processing loop for 0HN9NIM45L7M5 completed.
+2025-01-18 11:25:56.718 +03:30 [DBG] Connection id "0HN9NIM45L7M5" is closed. The last processed stream ID was 9.
+2025-01-18 11:25:56.721 +03:30 [DBG] Connection id "0HN9NIM45L7M5" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-01-18 11:25:56.740 +03:30 [DBG] Connection id "0HN9NIM45L7M5" stopped.
+2025-01-18 11:34:19.813 +03:30 [INF] Start installing Hangfire SQL objects...
+2025-01-18 11:34:20.129 +03:30 [INF] Hangfire SQL objects installed.
+2025-01-18 11:34:20.174 +03:30 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2025-01-18 11:34:20.269 +03:30 [DBG] Hosting starting
+2025-01-18 11:34:20.277 +03:30 [INF] User profile is available. Using 'C:\Users\zahra\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-01-18 11:34:20.284 +03:30 [DBG] Reading data from file 'C:\Users\zahra\AppData\Local\ASP.NET\DataProtection-Keys\key-0faf8820-b8a8-4f83-85df-101e90ae7dc1.xml'.
+2025-01-18 11:34:20.287 +03:30 [DBG] Reading data from file 'C:\Users\zahra\AppData\Local\ASP.NET\DataProtection-Keys\key-69864b2a-a4e0-4492-8314-ddeda3c1eb89.xml'.
+2025-01-18 11:34:20.288 +03:30 [DBG] Reading data from file 'C:\Users\zahra\AppData\Local\ASP.NET\DataProtection-Keys\key-d0932e56-40f6-47df-9383-e466f22625b2.xml'.
+2025-01-18 11:34:20.291 +03:30 [DBG] Found key {0faf8820-b8a8-4f83-85df-101e90ae7dc1}.
+2025-01-18 11:34:20.293 +03:30 [DBG] Found key {69864b2a-a4e0-4492-8314-ddeda3c1eb89}.
+2025-01-18 11:34:20.294 +03:30 [DBG] Found key {d0932e56-40f6-47df-9383-e466f22625b2}.
+2025-01-18 11:34:20.298 +03:30 [DBG] Considering key {69864b2a-a4e0-4492-8314-ddeda3c1eb89} with expiration date 2025-03-26 17:15:22Z as default key.
+2025-01-18 11:34:20.300 +03:30 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-01-18 11:34:20.303 +03:30 [DBG] Decrypting secret element using Windows DPAPI.
+2025-01-18 11:34:20.305 +03:30 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-01-18 11:34:20.308 +03:30 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2025-01-18 11:34:20.310 +03:30 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2025-01-18 11:34:20.311 +03:30 [DBG] Using key {69864b2a-a4e0-4492-8314-ddeda3c1eb89} as the default key.
+2025-01-18 11:34:20.312 +03:30 [DBG] Key ring with default key {69864b2a-a4e0-4492-8314-ddeda3c1eb89} was loaded during application startup.
+2025-01-18 11:34:20.397 +03:30 [INF] Now listening on: https://localhost:7221
+2025-01-18 11:34:20.398 +03:30 [INF] Now listening on: http://localhost:5241
+2025-01-18 11:34:20.399 +03:30 [DBG] Loaded hosting startup assembly SmsHub.Api
+2025-01-18 11:34:20.399 +03:30 [DBG] Loaded hosting startup assembly Microsoft.WebTools.ApiEndpointDiscovery
+2025-01-18 11:34:20.400 +03:30 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2025-01-18 11:34:20.401 +03:30 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2025-01-18 11:34:20.436 +03:30 [INF] Starting Hangfire Server using job storage: 'SQL Server: .@SmsHub'
+2025-01-18 11:34:20.437 +03:30 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-01-18 11:34:20.438 +03:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-01-18 11:34:20.447 +03:30 [DBG] Execution loop BackgroundServerProcess:c3e1a91e has started in 4.7866 ms
+2025-01-18 11:34:20.451 +03:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-01-18 11:34:20.452 +03:30 [INF] Hosting environment: Development
+2025-01-18 11:34:20.453 +03:30 [INF] Content root path: E:\Abfa\SmsHub\SmsHub.Api
+2025-01-18 11:34:20.454 +03:30 [DBG] Hosting started
+2025-01-18 11:34:20.519 +03:30 [INF] Server z_e:14932:48f5cdca successfully announced in 65.9734 ms
+2025-01-18 11:34:20.525 +03:30 [INF] Server z_e:14932:48f5cdca is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-01-18 11:34:20.526 +03:30 [DBG] Execution loop ServerHeartbeatProcess:09428d2a has started in 4.791 ms
+2025-01-18 11:34:20.531 +03:30 [DBG] Execution loop ServerWatchdog:4e027136 has started in 4.0244 ms
+2025-01-18 11:34:20.533 +03:30 [DBG] Execution loop ServerJobCancellationWatcher:b667654d has started in 5.5337 ms
+2025-01-18 11:34:20.537 +03:30 [DBG] Execution loop ExpirationManager:84f6a3fe has started in 3.8128 ms
+2025-01-18 11:34:20.539 +03:30 [DBG] Execution loop CountersAggregator:5a775aa1 has started in 4.9363 ms
+2025-01-18 11:34:20.541 +03:30 [DBG] Execution loop SqlServerHeartbeatProcess:f4daa805 has started in 4.6219 ms
+2025-01-18 11:34:20.552 +03:30 [DBG] Aggregating records in 'Counter' table...
+2025-01-18 11:34:20.561 +03:30 [INF] 1 servers were removed due to timeout
+2025-01-18 11:34:20.557 +03:30 [DBG] Removing outdated records from the 'AggregatedCounter' table...
+2025-01-18 11:34:20.548 +03:30 [DBG] Execution loop Worker:ef139757 has started in 8.1103 ms
+2025-01-18 11:34:20.548 +03:30 [DBG] Execution loop Worker:93eda65b has started in 8.0906 ms
+2025-01-18 11:34:20.551 +03:30 [DBG] Execution loop Worker:d7ba709c has started in 12.807 ms
+2025-01-18 11:34:20.555 +03:30 [DBG] Execution loop Worker:62b32cd4 has started in 16.7573 ms
+2025-01-18 11:34:20.562 +03:30 [DBG] Execution loop Worker:892b7ac3 has started in 23.5571 ms
+2025-01-18 11:34:20.565 +03:30 [DBG] Execution loop Worker:8f7a8b2a has started in 26.4319 ms
+2025-01-18 11:34:20.567 +03:30 [DBG] Execution loop Worker:1170eb84 has started in 27.8799 ms
+2025-01-18 11:34:20.569 +03:30 [DBG] Execution loop Worker:77c778ac has started in 30.045 ms
+2025-01-18 11:34:20.572 +03:30 [DBG] Execution loop Worker:4ba06c1f has started in 33.4471 ms
+2025-01-18 11:34:20.591 +03:30 [DBG] Removing outdated records from the 'Job' table...
+2025-01-18 11:34:20.591 +03:30 [DBG] Execution loop Worker:4924df4f has started in 52.4877 ms
+2025-01-18 11:34:20.593 +03:30 [DBG] Execution loop Worker:02344c5a has started in 54.4676 ms
+2025-01-18 11:34:20.598 +03:30 [DBG] Execution loop Worker:7a2947e7 has started in 58.9817 ms
+2025-01-18 11:34:20.600 +03:30 [DBG] Execution loop Worker:f8dfe5bb has started in 61.6065 ms
+2025-01-18 11:34:20.606 +03:30 [DBG] Execution loop Worker:e89a65ad has started in 67.3795 ms
+2025-01-18 11:34:20.614 +03:30 [DBG] Removing outdated records from the 'List' table...
+2025-01-18 11:34:20.609 +03:30 [DBG] Execution loop Worker:41a8292d has started in 70.0258 ms
+2025-01-18 11:34:20.631 +03:30 [INF] Server z_e:14932:48f5cdca all the dispatchers started
+2025-01-18 11:34:20.613 +03:30 [DBG] Execution loop Worker:0c756a07 has started in 74.3839 ms
+2025-01-18 11:34:20.619 +03:30 [DBG] Execution loop Worker:668a7636 has started in 80.3688 ms
+2025-01-18 11:34:20.641 +03:30 [DBG] Removing outdated records from the 'Set' table...
+2025-01-18 11:34:20.622 +03:30 [DBG] Execution loop Worker:0c8060c8 has started in 83.3484 ms
+2025-01-18 11:34:20.628 +03:30 [DBG] Execution loop Worker:db2b3410 has started in 88.7915 ms
+2025-01-18 11:34:20.631 +03:30 [DBG] Execution loop Worker:e01845b6 has started in 92.8075 ms
+2025-01-18 11:34:20.631 +03:30 [DBG] Execution loop DelayedJobScheduler:88158e4f has started in 9.1255 ms
+2025-01-18 11:34:20.636 +03:30 [DBG] Execution loop RecurringJobScheduler:f5551050 has started in 8.7852 ms
+2025-01-18 11:34:20.648 +03:30 [DBG] Removing outdated records from the 'Hash' table...
+2025-01-18 11:34:20.775 +03:30 [DBG] Connection id "0HN9NIQRCIHQD" accepted.
+2025-01-18 11:34:20.775 +03:30 [DBG] Connection id "0HN9NIQRCIHQE" accepted.
+2025-01-18 11:34:20.778 +03:30 [DBG] Connection id "0HN9NIQRCIHQD" started.
+2025-01-18 11:34:20.781 +03:30 [DBG] Connection id "0HN9NIQRCIHQE" started.
+2025-01-18 11:34:20.800 +03:30 [DBG] Connection id "0HN9NIQRCIHQE" received FIN.
+2025-01-18 11:34:20.800 +03:30 [DBG] Connection id "0HN9NIQRCIHQD" received FIN.
+2025-01-18 11:34:20.807 +03:30 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2025-01-18 11:34:20.807 +03:30 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2025-01-18 11:34:20.817 +03:30 [DBG] Connection id "0HN9NIQRCIHQE" stopped.
+2025-01-18 11:34:20.817 +03:30 [DBG] Connection id "0HN9NIQRCIHQD" stopped.
+2025-01-18 11:34:20.819 +03:30 [DBG] Connection id "0HN9NIQRCIHQE" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-01-18 11:34:20.821 +03:30 [DBG] Connection id "0HN9NIQRCIHQD" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-01-18 11:34:21.329 +03:30 [DBG] Connection id "0HN9NIQRCIHQF" accepted.
+2025-01-18 11:34:21.330 +03:30 [DBG] Connection id "0HN9NIQRCIHQF" started.
+2025-01-18 11:34:21.356 +03:30 [DBG] Connection 0HN9NIQRCIHQF established using the following protocol: "Tls13"
+2025-01-18 11:34:21.482 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/swagger/index.html - null null
+2025-01-18 11:34:21.621 +03:30 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2025-01-18 11:34:21.657 +03:30 [DBG] Response markup is scheduled to include Browser Link script injection.
+2025-01-18 11:34:21.659 +03:30 [DBG] Response markup is scheduled to include browser refresh script injection.
+2025-01-18 11:34:21.677 +03:30 [DBG] Response markup was updated to include Browser Link script injection.
+2025-01-18 11:34:21.679 +03:30 [DBG] Response markup was updated to include browser refresh script injection.
+2025-01-18 11:34:21.684 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/swagger/index.html - 200 null text/html;charset=utf-8 206.199ms
+2025-01-18 11:34:21.702 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/_framework/aspnetcore-browser-refresh.js - null null
+2025-01-18 11:34:21.702 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/swagger/swagger-ui.css - null null
+2025-01-18 11:34:21.703 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/_vs/browserLink - null null
+2025-01-18 11:34:21.725 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/_framework/aspnetcore-browser-refresh.js - 200 13756 application/javascript; charset=utf-8 22.3095ms
+2025-01-18 11:34:21.748 +03:30 [DBG] The file transmission was cancelled
+System.OperationCanceledException: The operation was canceled.
+   at System.Threading.CancellationToken.ThrowOperationCanceledException()
+   at System.Threading.CancellationToken.ThrowIfCancellationRequested()
+   at Microsoft.AspNetCore.Http.SendFileResponseExtensions.SendFileAsyncCore(HttpResponse response, IFileInfo file, Int64 offset, Nullable`1 count, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.SendFileResponseExtensions.SendFileAsyncCore(HttpResponse response, IFileInfo file, Int64 offset, Nullable`1 count, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileContext.SendAsync()
+2025-01-18 11:34:21.756 +03:30 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2025-01-18 11:34:21.758 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/swagger/swagger-ui.css - 499 143632 text/css 55.5602ms
+2025-01-18 11:34:21.773 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/_vs/browserLink - 200 null text/javascript; charset=UTF-8 69.6002ms
+2025-01-18 11:34:21.795 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/swagger/favicon-32x32.png - null null
+2025-01-18 11:34:21.802 +03:30 [DBG] The file transmission was cancelled
+System.OperationCanceledException: The operation was canceled.
+   at System.Threading.CancellationToken.ThrowOperationCanceledException()
+   at System.Threading.CancellationToken.ThrowIfCancellationRequested()
+   at Microsoft.AspNetCore.Http.SendFileResponseExtensions.SendFileAsyncCore(HttpResponse response, IFileInfo file, Int64 offset, Nullable`1 count, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.SendFileResponseExtensions.SendFileAsyncCore(HttpResponse response, IFileInfo file, Int64 offset, Nullable`1 count, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileContext.SendAsync()
+2025-01-18 11:34:21.807 +03:30 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-01-18 11:34:21.810 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/swagger/favicon-32x32.png - 499 628 image/png 14.6996ms
+2025-01-18 11:34:21.839 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/swagger/v1/swagger.json - null null
+2025-01-18 11:34:21.878 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 39.0323ms
+2025-01-18 11:34:24.283 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/ - null null
+2025-01-18 11:34:24.345 +03:30 [DBG] The request path  does not match the path filter
+2025-01-18 11:34:24.382 +03:30 [DBG] No candidates found for the request path '/'
+2025-01-18 11:34:24.384 +03:30 [DBG] Request did not match any endpoints
+2025-01-18 11:34:25.942 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 11:34:25.947 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/ - 404 0 null 1665.4614ms
+2025-01-18 11:34:25.953 +03:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7221/, Response status code: 404
+2025-01-18 11:34:50.556 +03:30 [DBG] Server z_e:14932:48f5cdca heartbeat successfully sent
+2025-01-18 11:40:13.856 +03:30 [INF] Start installing Hangfire SQL objects...
+2025-01-18 11:40:14.156 +03:30 [INF] Hangfire SQL objects installed.
+2025-01-18 11:40:14.198 +03:30 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2025-01-18 11:40:14.303 +03:30 [DBG] Hosting starting
+2025-01-18 11:40:14.313 +03:30 [INF] User profile is available. Using 'C:\Users\zahra\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-01-18 11:40:14.320 +03:30 [DBG] Reading data from file 'C:\Users\zahra\AppData\Local\ASP.NET\DataProtection-Keys\key-0faf8820-b8a8-4f83-85df-101e90ae7dc1.xml'.
+2025-01-18 11:40:14.323 +03:30 [DBG] Reading data from file 'C:\Users\zahra\AppData\Local\ASP.NET\DataProtection-Keys\key-69864b2a-a4e0-4492-8314-ddeda3c1eb89.xml'.
+2025-01-18 11:40:14.324 +03:30 [DBG] Reading data from file 'C:\Users\zahra\AppData\Local\ASP.NET\DataProtection-Keys\key-d0932e56-40f6-47df-9383-e466f22625b2.xml'.
+2025-01-18 11:40:14.327 +03:30 [DBG] Found key {0faf8820-b8a8-4f83-85df-101e90ae7dc1}.
+2025-01-18 11:40:14.329 +03:30 [DBG] Found key {69864b2a-a4e0-4492-8314-ddeda3c1eb89}.
+2025-01-18 11:40:14.330 +03:30 [DBG] Found key {d0932e56-40f6-47df-9383-e466f22625b2}.
+2025-01-18 11:40:14.334 +03:30 [DBG] Considering key {69864b2a-a4e0-4492-8314-ddeda3c1eb89} with expiration date 2025-03-26 17:15:22Z as default key.
+2025-01-18 11:40:14.336 +03:30 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-01-18 11:40:14.338 +03:30 [DBG] Decrypting secret element using Windows DPAPI.
+2025-01-18 11:40:14.339 +03:30 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-01-18 11:40:14.342 +03:30 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2025-01-18 11:40:14.343 +03:30 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2025-01-18 11:40:14.345 +03:30 [DBG] Using key {69864b2a-a4e0-4492-8314-ddeda3c1eb89} as the default key.
+2025-01-18 11:40:14.346 +03:30 [DBG] Key ring with default key {69864b2a-a4e0-4492-8314-ddeda3c1eb89} was loaded during application startup.
+2025-01-18 11:40:14.428 +03:30 [INF] Now listening on: https://localhost:7221
+2025-01-18 11:40:14.430 +03:30 [INF] Now listening on: http://localhost:5241
+2025-01-18 11:40:14.430 +03:30 [DBG] Loaded hosting startup assembly SmsHub.Api
+2025-01-18 11:40:14.431 +03:30 [DBG] Loaded hosting startup assembly Microsoft.WebTools.ApiEndpointDiscovery
+2025-01-18 11:40:14.432 +03:30 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2025-01-18 11:40:14.433 +03:30 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2025-01-18 11:40:14.467 +03:30 [INF] Starting Hangfire Server using job storage: 'SQL Server: .@SmsHub'
+2025-01-18 11:40:14.498 +03:30 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-01-18 11:40:14.499 +03:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-01-18 11:40:14.509 +03:30 [DBG] Execution loop BackgroundServerProcess:f1c25e1e has started in 5.3698 ms
+2025-01-18 11:40:14.512 +03:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-01-18 11:40:14.523 +03:30 [INF] Hosting environment: Development
+2025-01-18 11:40:14.524 +03:30 [INF] Content root path: E:\Abfa\SmsHub\SmsHub.Api
+2025-01-18 11:40:14.525 +03:30 [DBG] Hosting started
+2025-01-18 11:40:14.586 +03:30 [INF] Server z_e:4500:e74da0c5 successfully announced in 62.8236 ms
+2025-01-18 11:40:14.591 +03:30 [INF] Server z_e:4500:e74da0c5 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-01-18 11:40:14.593 +03:30 [DBG] Execution loop ServerHeartbeatProcess:a3feafda has started in 3.9932 ms
+2025-01-18 11:40:14.596 +03:30 [DBG] Execution loop ServerWatchdog:f17b4d11 has started in 2.9313 ms
+2025-01-18 11:40:14.599 +03:30 [DBG] Execution loop ServerJobCancellationWatcher:22ce54b9 has started in 5.4424 ms
+2025-01-18 11:40:14.603 +03:30 [DBG] Execution loop ExpirationManager:d77e30a2 has started in 5.0466 ms
+2025-01-18 11:40:14.605 +03:30 [DBG] Execution loop CountersAggregator:117f59bd has started in 5.6143 ms
+2025-01-18 11:40:14.609 +03:30 [DBG] Execution loop SqlServerHeartbeatProcess:a49880ea has started in 6.2172 ms
+2025-01-18 11:40:14.631 +03:30 [DBG] Aggregating records in 'Counter' table...
+2025-01-18 11:40:14.631 +03:30 [INF] 1 servers were removed due to timeout
+2025-01-18 11:40:14.631 +03:30 [DBG] Removing outdated records from the 'AggregatedCounter' table...
+2025-01-18 11:40:14.613 +03:30 [DBG] Execution loop Worker:04129048 has started in 7.8355 ms
+2025-01-18 11:40:14.618 +03:30 [DBG] Execution loop Worker:53036f90 has started in 12.596 ms
+2025-01-18 11:40:14.620 +03:30 [DBG] Execution loop Worker:349df4b8 has started in 14.678 ms
+2025-01-18 11:40:14.622 +03:30 [DBG] Execution loop Worker:7e0bc95b has started in 17.035 ms
+2025-01-18 11:40:14.624 +03:30 [DBG] Execution loop Worker:0bae50fd has started in 19.2979 ms
+2025-01-18 11:40:14.627 +03:30 [DBG] Execution loop Worker:359cc169 has started in 22.1519 ms
+2025-01-18 11:40:14.631 +03:30 [DBG] Execution loop Worker:076920f8 has started in 25.3615 ms
+2025-01-18 11:40:14.635 +03:30 [DBG] Execution loop Worker:ac46b4d9 has started in 30.0279 ms
+2025-01-18 11:40:14.637 +03:30 [DBG] Execution loop Worker:d6814b9e has started in 32.3221 ms
+2025-01-18 11:40:14.641 +03:30 [DBG] Execution loop Worker:e3f0eb18 has started in 35.6318 ms
+2025-01-18 11:40:14.665 +03:30 [DBG] Removing outdated records from the 'Job' table...
+2025-01-18 11:40:14.693 +03:30 [INF] Server z_e:4500:e74da0c5 all the dispatchers started
+2025-01-18 11:40:14.644 +03:30 [DBG] Execution loop Worker:0e700749 has started in 38.4836 ms
+2025-01-18 11:40:14.647 +03:30 [DBG] Execution loop Worker:8c0696be has started in 41.9281 ms
+2025-01-18 11:40:14.650 +03:30 [DBG] Execution loop Worker:24b02499 has started in 45.1972 ms
+2025-01-18 11:40:14.669 +03:30 [DBG] Execution loop Worker:c5ecf29b has started in 63.1825 ms
+2025-01-18 11:40:14.671 +03:30 [DBG] Execution loop Worker:f7ff1826 has started in 66.2973 ms
+2025-01-18 11:40:14.675 +03:30 [DBG] Execution loop Worker:903fa28b has started in 69.7114 ms
+2025-01-18 11:40:14.677 +03:30 [DBG] Execution loop Worker:8f635961 has started in 72.0174 ms
+2025-01-18 11:40:14.709 +03:30 [DBG] Removing outdated records from the 'List' table...
+2025-01-18 11:40:14.682 +03:30 [DBG] Execution loop Worker:b4f6e899 has started in 77.1555 ms
+2025-01-18 11:40:14.686 +03:30 [DBG] Execution loop Worker:99ca5b71 has started in 80.4129 ms
+2025-01-18 11:40:14.689 +03:30 [DBG] Execution loop Worker:756cbb97 has started in 84.3245 ms
+2025-01-18 11:40:14.693 +03:30 [DBG] Execution loop DelayedJobScheduler:55f5e741 has started in 7.3117 ms
+2025-01-18 11:40:14.697 +03:30 [DBG] Execution loop RecurringJobScheduler:98c26132 has started in 7.2932 ms
+2025-01-18 11:40:14.718 +03:30 [DBG] Removing outdated records from the 'Set' table...
+2025-01-18 11:40:14.735 +03:30 [DBG] Removing outdated records from the 'Hash' table...
+2025-01-18 11:40:14.897 +03:30 [DBG] Connection id "0HN9NIU4TO6IJ" accepted.
+2025-01-18 11:40:14.899 +03:30 [DBG] Connection id "0HN9NIU4TO6IK" accepted.
+2025-01-18 11:40:14.904 +03:30 [DBG] Connection id "0HN9NIU4TO6IJ" started.
+2025-01-18 11:40:14.907 +03:30 [DBG] Connection id "0HN9NIU4TO6IK" started.
+2025-01-18 11:40:14.931 +03:30 [DBG] Connection id "0HN9NIU4TO6IJ" received FIN.
+2025-01-18 11:40:14.931 +03:30 [DBG] Connection id "0HN9NIU4TO6IK" received FIN.
+2025-01-18 11:40:14.937 +03:30 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2025-01-18 11:40:14.937 +03:30 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2025-01-18 11:40:14.949 +03:30 [DBG] Connection id "0HN9NIU4TO6IK" stopped.
+2025-01-18 11:40:14.950 +03:30 [DBG] Connection id "0HN9NIU4TO6IJ" stopped.
+2025-01-18 11:40:14.954 +03:30 [DBG] Connection id "0HN9NIU4TO6IK" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-01-18 11:40:14.954 +03:30 [DBG] Connection id "0HN9NIU4TO6IJ" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-01-18 11:40:15.408 +03:30 [DBG] Connection id "0HN9NIU4TO6IL" accepted.
+2025-01-18 11:40:15.409 +03:30 [DBG] Connection id "0HN9NIU4TO6IL" started.
+2025-01-18 11:40:15.433 +03:30 [DBG] Connection 0HN9NIU4TO6IL established using the following protocol: "Tls13"
+2025-01-18 11:40:15.494 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/swagger - null null
+2025-01-18 11:40:15.564 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/swagger/index.html - null null
+2025-01-18 11:40:15.659 +03:30 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2025-01-18 11:40:15.659 +03:30 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2025-01-18 11:40:15.669 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/swagger - 499 null null 178.4391ms
+2025-01-18 11:40:15.697 +03:30 [DBG] Response markup is scheduled to include Browser Link script injection.
+2025-01-18 11:40:15.700 +03:30 [DBG] Response markup is scheduled to include browser refresh script injection.
+2025-01-18 11:40:15.715 +03:30 [DBG] Response markup was updated to include Browser Link script injection.
+2025-01-18 11:40:15.717 +03:30 [DBG] Response markup was updated to include browser refresh script injection.
+2025-01-18 11:40:15.719 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/swagger/index.html - 200 null text/html;charset=utf-8 154.5148ms
+2025-01-18 11:40:15.745 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/_framework/aspnetcore-browser-refresh.js - null null
+2025-01-18 11:40:15.745 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/swagger/swagger-ui.css - null null
+2025-01-18 11:40:15.746 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/_vs/browserLink - null null
+2025-01-18 11:40:15.753 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/_framework/aspnetcore-browser-refresh.js - 200 13756 application/javascript; charset=utf-8 8.6104ms
+2025-01-18 11:40:15.762 +03:30 [DBG] The file transmission was cancelled
+System.OperationCanceledException: The operation was canceled.
+   at System.Threading.CancellationToken.ThrowOperationCanceledException()
+   at System.Threading.CancellationToken.ThrowIfCancellationRequested()
+   at Microsoft.AspNetCore.Http.SendFileResponseExtensions.SendFileAsyncCore(HttpResponse response, IFileInfo file, Int64 offset, Nullable`1 count, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.SendFileResponseExtensions.SendFileAsyncCore(HttpResponse response, IFileInfo file, Int64 offset, Nullable`1 count, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileContext.SendAsync()
+2025-01-18 11:40:15.774 +03:30 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2025-01-18 11:40:15.777 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/swagger/swagger-ui.css - 499 143632 text/css 31.6156ms
+2025-01-18 11:40:15.804 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/_vs/browserLink - 200 null text/javascript; charset=UTF-8 57.8608ms
+2025-01-18 11:40:15.818 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/swagger/favicon-32x32.png - null null
+2025-01-18 11:40:15.822 +03:30 [DBG] The file transmission was cancelled
+System.OperationCanceledException: The operation was canceled.
+   at System.Threading.CancellationToken.ThrowOperationCanceledException()
+   at System.Threading.CancellationToken.ThrowIfCancellationRequested()
+   at Microsoft.AspNetCore.Http.SendFileResponseExtensions.SendFileAsyncCore(HttpResponse response, IFileInfo file, Int64 offset, Nullable`1 count, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Http.SendFileResponseExtensions.SendFileAsyncCore(HttpResponse response, IFileInfo file, Int64 offset, Nullable`1 count, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileContext.SendAsync()
+2025-01-18 11:40:15.827 +03:30 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-01-18 11:40:15.828 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/swagger/favicon-32x32.png - 499 628 image/png 11.1497ms
+2025-01-18 11:40:15.841 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/swagger/v1/swagger.json - null null
+2025-01-18 11:40:15.887 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 45.9137ms
+2025-01-18 11:40:37.722 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/_framework/aspnetcore-browser-refresh.js - null null
+2025-01-18 11:40:37.735 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/_framework/aspnetcore-browser-refresh.js - 200 13756 application/javascript; charset=utf-8 13.3516ms
+2025-01-18 11:40:37.803 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/swagger/v1/swagger.json - null null
+2025-01-18 11:40:37.908 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 105.5588ms
+2025-01-18 11:40:44.643 +03:30 [DBG] Server z_e:4500:e74da0c5 heartbeat successfully sent
+2025-01-18 11:40:44.989 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/hangfire - null null
+2025-01-18 11:40:45.049 +03:30 [DBG] The request path  does not match the path filter
+2025-01-18 11:40:45.098 +03:30 [DBG] No candidates found for the request path '/hangfire'
+2025-01-18 11:40:45.103 +03:30 [DBG] Request did not match any endpoints
+2025-01-18 11:40:45.236 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 11:40:45.261 +03:30 [DBG] A new antiforgery cookie token was created.
+2025-01-18 11:40:45.489 +03:30 [DBG] Response markup is scheduled to include Browser Link script injection.
+2025-01-18 11:40:45.490 +03:30 [DBG] Response markup is scheduled to include browser refresh script injection.
+2025-01-18 11:40:45.503 +03:30 [DBG] Response markup was updated to include Browser Link script injection.
+2025-01-18 11:40:45.505 +03:30 [DBG] Response markup was updated to include browser refresh script injection.
+2025-01-18 11:40:45.508 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/hangfire - 200 null text/html 519.7402ms
+2025-01-18 11:40:45.518 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/hangfire/css-dark181702142593696 - null null
+2025-01-18 11:40:45.518 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/_vs/browserLink - null null
+2025-01-18 11:40:45.518 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/hangfire/css181701354540590 - null null
+2025-01-18 11:40:45.551 +03:30 [DBG] The request path  does not match the path filter
+2025-01-18 11:40:45.568 +03:30 [DBG] The request path  does not match the path filter
+2025-01-18 11:40:45.520 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/hangfire/js18170645539918 - null null
+2025-01-18 11:40:45.538 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/_framework/aspnetcore-browser-refresh.js - null null
+2025-01-18 11:40:45.573 +03:30 [DBG] The request path  does not match the path filter
+2025-01-18 11:40:45.575 +03:30 [DBG] No candidates found for the request path '/hangfire/css-dark181702142593696'
+2025-01-18 11:40:45.575 +03:30 [DBG] No candidates found for the request path '/hangfire/css181701354540590'
+2025-01-18 11:40:45.580 +03:30 [DBG] Request did not match any endpoints
+2025-01-18 11:40:45.581 +03:30 [DBG] Request did not match any endpoints
+2025-01-18 11:40:45.578 +03:30 [DBG] No candidates found for the request path '/hangfire/js18170645539918'
+2025-01-18 11:40:45.578 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/_framework/aspnetcore-browser-refresh.js - 200 13756 application/javascript; charset=utf-8 41.4614ms
+2025-01-18 11:40:45.609 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 11:40:45.609 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 11:40:45.611 +03:30 [DBG] Request did not match any endpoints
+2025-01-18 11:40:45.638 +03:30 [DBG] An antiforgery cookie token was reused.
+2025-01-18 11:40:45.638 +03:30 [DBG] An antiforgery cookie token was reused.
+2025-01-18 11:40:45.640 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/_vs/browserLink - 200 null text/javascript; charset=UTF-8 121.1994ms
+2025-01-18 11:40:45.642 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 11:40:45.649 +03:30 [DBG] An antiforgery cookie token was reused.
+2025-01-18 11:40:45.657 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/hangfire/css-dark181702142593696 - 200 null text/css 138.8664ms
+2025-01-18 11:40:45.664 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/hangfire/css181701354540590 - 200 null text/css 146.5672ms
+2025-01-18 11:40:45.676 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/hangfire/fonts/glyphicons-halflings-regular/woff2 - null null
+2025-01-18 11:40:45.677 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/hangfire/js18170645539918 - 200 null application/javascript 157.7873ms
+2025-01-18 11:40:45.681 +03:30 [DBG] The request path  does not match the path filter
+2025-01-18 11:40:45.686 +03:30 [DBG] No candidates found for the request path '/hangfire/fonts/glyphicons-halflings-regular/woff2'
+2025-01-18 11:40:45.688 +03:30 [DBG] Request did not match any endpoints
+2025-01-18 11:40:45.689 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 11:40:45.691 +03:30 [DBG] An antiforgery cookie token was reused.
+2025-01-18 11:40:45.703 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/hangfire/fonts/glyphicons-halflings-regular/woff2 - 200 null font/woff2 27.6188ms
+2025-01-18 11:40:47.755 +03:30 [INF] Request starting HTTP/2 POST https://localhost:7221/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 485
+2025-01-18 11:40:47.761 +03:30 [DBG] POST requests are not supported
+2025-01-18 11:40:47.763 +03:30 [DBG] No candidates found for the request path '/hangfire/stats'
+2025-01-18 11:40:47.770 +03:30 [DBG] Request did not match any endpoints
+2025-01-18 11:40:47.775 +03:30 [DBG] The request has an origin header: 'https://localhost:7221'.
+2025-01-18 11:40:47.778 +03:30 [INF] CORS policy execution successful.
+2025-01-18 11:40:47.781 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 11:40:47.783 +03:30 [DBG] An antiforgery cookie token was reused.
+2025-01-18 11:40:47.786 +03:30 [DBG] Antiforgery successfully validated a request.
+2025-01-18 11:40:47.798 +03:30 [DBG] Connection id "0HN9NIU4TO6IL", Request id "0HN9NIU4TO6IL:00000023": started reading request body.
+2025-01-18 11:40:47.800 +03:30 [DBG] Connection id "0HN9NIU4TO6IL", Request id "0HN9NIU4TO6IL:00000023": done reading request body.
+2025-01-18 11:40:47.892 +03:30 [INF] Request finished HTTP/2 POST https://localhost:7221/hangfire/stats - 200 null application/json 136.5924ms
+2025-01-18 11:40:49.942 +03:30 [INF] Request starting HTTP/2 POST https://localhost:7221/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 485
+2025-01-18 11:40:49.945 +03:30 [DBG] POST requests are not supported
+2025-01-18 11:40:49.946 +03:30 [DBG] No candidates found for the request path '/hangfire/stats'
+2025-01-18 11:40:49.948 +03:30 [DBG] Request did not match any endpoints
+2025-01-18 11:40:49.950 +03:30 [DBG] The request has an origin header: 'https://localhost:7221'.
+2025-01-18 11:40:49.951 +03:30 [INF] CORS policy execution successful.
+2025-01-18 11:40:49.954 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 11:40:49.977 +03:30 [DBG] An antiforgery cookie token was reused.
+2025-01-18 11:40:49.989 +03:30 [DBG] Antiforgery successfully validated a request.
+2025-01-18 11:40:49.998 +03:30 [DBG] Connection id "0HN9NIU4TO6IL", Request id "0HN9NIU4TO6IL:00000025": started reading request body.
+2025-01-18 11:40:50.016 +03:30 [DBG] Connection id "0HN9NIU4TO6IL", Request id "0HN9NIU4TO6IL:00000025": done reading request body.
+2025-01-18 11:40:50.087 +03:30 [INF] Request finished HTTP/2 POST https://localhost:7221/hangfire/stats - 200 null application/json 145.6058ms
+2025-01-18 11:40:52.103 +03:30 [INF] Request starting HTTP/2 POST https://localhost:7221/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 485
+2025-01-18 11:40:52.109 +03:30 [DBG] POST requests are not supported
+2025-01-18 11:40:52.112 +03:30 [DBG] No candidates found for the request path '/hangfire/stats'
+2025-01-18 11:40:52.117 +03:30 [DBG] Request did not match any endpoints
+2025-01-18 11:40:52.119 +03:30 [DBG] The request has an origin header: 'https://localhost:7221'.
+2025-01-18 11:40:52.127 +03:30 [INF] CORS policy execution successful.
+2025-01-18 11:40:52.133 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 11:40:52.139 +03:30 [DBG] An antiforgery cookie token was reused.
+2025-01-18 11:40:52.148 +03:30 [DBG] Antiforgery successfully validated a request.
+2025-01-18 11:40:52.153 +03:30 [DBG] Connection id "0HN9NIU4TO6IL", Request id "0HN9NIU4TO6IL:00000027": started reading request body.
+2025-01-18 11:40:52.156 +03:30 [DBG] Connection id "0HN9NIU4TO6IL", Request id "0HN9NIU4TO6IL:00000027": done reading request body.
+2025-01-18 11:40:52.165 +03:30 [INF] Request finished HTTP/2 POST https://localhost:7221/hangfire/stats - 200 null application/json 62.2594ms
+2025-01-18 11:40:54.194 +03:30 [INF] Request starting HTTP/2 POST https://localhost:7221/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 485
+2025-01-18 11:40:54.206 +03:30 [DBG] POST requests are not supported
+2025-01-18 11:40:54.210 +03:30 [DBG] No candidates found for the request path '/hangfire/stats'
+2025-01-18 11:40:54.216 +03:30 [DBG] Request did not match any endpoints
+2025-01-18 11:40:54.221 +03:30 [DBG] The request has an origin header: 'https://localhost:7221'.
+2025-01-18 11:40:54.226 +03:30 [INF] CORS policy execution successful.
+2025-01-18 11:40:54.230 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 11:40:54.237 +03:30 [DBG] An antiforgery cookie token was reused.
+2025-01-18 11:40:54.243 +03:30 [DBG] Antiforgery successfully validated a request.
+2025-01-18 11:40:54.246 +03:30 [DBG] Connection id "0HN9NIU4TO6IL", Request id "0HN9NIU4TO6IL:00000029": started reading request body.
+2025-01-18 11:40:54.252 +03:30 [DBG] Connection id "0HN9NIU4TO6IL", Request id "0HN9NIU4TO6IL:00000029": done reading request body.
+2025-01-18 11:40:54.278 +03:30 [INF] Request finished HTTP/2 POST https://localhost:7221/hangfire/stats - 200 null application/json 83.8236ms
+2025-01-18 11:40:56.292 +03:30 [INF] Request starting HTTP/2 POST https://localhost:7221/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 485
+2025-01-18 11:40:56.299 +03:30 [DBG] POST requests are not supported
+2025-01-18 11:40:56.301 +03:30 [DBG] No candidates found for the request path '/hangfire/stats'
+2025-01-18 11:40:56.304 +03:30 [DBG] Request did not match any endpoints
+2025-01-18 11:40:56.306 +03:30 [DBG] The request has an origin header: 'https://localhost:7221'.
+2025-01-18 11:40:56.309 +03:30 [INF] CORS policy execution successful.
+2025-01-18 11:40:56.311 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 11:40:56.319 +03:30 [DBG] An antiforgery cookie token was reused.
+2025-01-18 11:40:56.322 +03:30 [DBG] Antiforgery successfully validated a request.
+2025-01-18 11:40:56.325 +03:30 [DBG] Connection id "0HN9NIU4TO6IL", Request id "0HN9NIU4TO6IL:0000002B": started reading request body.
+2025-01-18 11:40:56.331 +03:30 [DBG] Connection id "0HN9NIU4TO6IL", Request id "0HN9NIU4TO6IL:0000002B": done reading request body.
+2025-01-18 11:40:56.360 +03:30 [INF] Request finished HTTP/2 POST https://localhost:7221/hangfire/stats - 200 null application/json 68.6732ms
+2025-01-18 11:40:58.379 +03:30 [INF] Request starting HTTP/2 POST https://localhost:7221/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 485
+2025-01-18 11:40:58.389 +03:30 [DBG] POST requests are not supported
+2025-01-18 11:40:58.392 +03:30 [DBG] No candidates found for the request path '/hangfire/stats'
+2025-01-18 11:40:58.396 +03:30 [DBG] Request did not match any endpoints
+2025-01-18 11:40:58.399 +03:30 [DBG] The request has an origin header: 'https://localhost:7221'.
+2025-01-18 11:40:58.405 +03:30 [INF] CORS policy execution successful.
+2025-01-18 11:40:58.409 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 11:40:58.425 +03:30 [DBG] An antiforgery cookie token was reused.
+2025-01-18 11:40:58.439 +03:30 [DBG] Antiforgery successfully validated a request.
+2025-01-18 11:40:58.445 +03:30 [DBG] Connection id "0HN9NIU4TO6IL", Request id "0HN9NIU4TO6IL:0000002D": started reading request body.
+2025-01-18 11:40:58.448 +03:30 [DBG] Connection id "0HN9NIU4TO6IL", Request id "0HN9NIU4TO6IL:0000002D": done reading request body.
+2025-01-18 11:40:58.460 +03:30 [INF] Request finished HTTP/2 POST https://localhost:7221/hangfire/stats - 200 null application/json 81.9232ms
+2025-01-18 11:40:58.475 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/hangfire?period=week - null null
+2025-01-18 11:40:58.543 +03:30 [DBG] The request path  does not match the path filter
+2025-01-18 11:40:58.544 +03:30 [DBG] No candidates found for the request path '/hangfire'
+2025-01-18 11:40:58.546 +03:30 [DBG] Request did not match any endpoints
+2025-01-18 11:40:58.553 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 11:40:58.555 +03:30 [DBG] An antiforgery cookie token was reused.
+2025-01-18 11:40:58.575 +03:30 [DBG] Response markup is scheduled to include Browser Link script injection.
+2025-01-18 11:40:58.577 +03:30 [DBG] Response markup is scheduled to include browser refresh script injection.
+2025-01-18 11:40:58.581 +03:30 [DBG] Response markup was updated to include Browser Link script injection.
+2025-01-18 11:40:58.583 +03:30 [DBG] Response markup was updated to include browser refresh script injection.
+2025-01-18 11:40:58.586 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/hangfire?period=week - 200 null text/html 110.6395ms
+2025-01-18 11:40:58.604 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/hangfire/css181701354540590 - null null
+2025-01-18 11:40:58.606 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/_vs/browserLink - null null
+2025-01-18 11:40:58.608 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/_framework/aspnetcore-browser-refresh.js - null null
+2025-01-18 11:40:58.606 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/hangfire/js18170645539918 - null null
+2025-01-18 11:40:58.643 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/_framework/aspnetcore-browser-refresh.js - 200 13756 application/javascript; charset=utf-8 36.9734ms
+2025-01-18 11:40:58.649 +03:30 [DBG] The request path  does not match the path filter
+2025-01-18 11:40:58.674 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/_vs/browserLink - 200 null text/javascript; charset=UTF-8 67.8473ms
+2025-01-18 11:40:58.613 +03:30 [DBG] The request path  does not match the path filter
+2025-01-18 11:40:58.676 +03:30 [DBG] No candidates found for the request path '/hangfire/js18170645539918'
+2025-01-18 11:40:58.606 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/hangfire/css-dark181702142593696 - null null
+2025-01-18 11:40:58.681 +03:30 [DBG] Request did not match any endpoints
+2025-01-18 11:40:58.680 +03:30 [DBG] No candidates found for the request path '/hangfire/css181701354540590'
+2025-01-18 11:40:58.683 +03:30 [DBG] The request path  does not match the path filter
+2025-01-18 11:40:58.684 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 11:40:58.685 +03:30 [DBG] Request did not match any endpoints
+2025-01-18 11:40:58.689 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 11:40:58.688 +03:30 [DBG] An antiforgery cookie token was reused.
+2025-01-18 11:40:58.690 +03:30 [DBG] An antiforgery cookie token was reused.
+2025-01-18 11:40:58.686 +03:30 [DBG] No candidates found for the request path '/hangfire/css-dark181702142593696'
+2025-01-18 11:40:58.699 +03:30 [DBG] Request did not match any endpoints
+2025-01-18 11:40:58.701 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 11:40:58.702 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/hangfire/css181701354540590 - 200 null text/css 97.8037ms
+2025-01-18 11:40:58.702 +03:30 [DBG] An antiforgery cookie token was reused.
+2025-01-18 11:40:58.709 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/hangfire/css-dark181702142593696 - 200 null text/css 104.6454ms
+2025-01-18 11:40:58.709 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/hangfire/js18170645539918 - 200 null application/javascript 103.6874ms
+2025-01-18 11:41:00.797 +03:30 [INF] Request starting HTTP/2 POST https://localhost:7221/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 485
+2025-01-18 11:41:00.801 +03:30 [DBG] POST requests are not supported
+2025-01-18 11:41:00.803 +03:30 [DBG] No candidates found for the request path '/hangfire/stats'
+2025-01-18 11:41:00.811 +03:30 [DBG] Request did not match any endpoints
+2025-01-18 11:41:00.812 +03:30 [DBG] The request has an origin header: 'https://localhost:7221'.
+2025-01-18 11:41:00.816 +03:30 [INF] CORS policy execution successful.
+2025-01-18 11:41:00.817 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 11:41:00.820 +03:30 [DBG] An antiforgery cookie token was reused.
+2025-01-18 11:41:00.822 +03:30 [DBG] Antiforgery successfully validated a request.
+2025-01-18 11:41:00.826 +03:30 [DBG] Connection id "0HN9NIU4TO6IL", Request id "0HN9NIU4TO6IL:0000003B": started reading request body.
+2025-01-18 11:41:00.828 +03:30 [DBG] Connection id "0HN9NIU4TO6IL", Request id "0HN9NIU4TO6IL:0000003B": done reading request body.
+2025-01-18 11:41:00.837 +03:30 [INF] Request finished HTTP/2 POST https://localhost:7221/hangfire/stats - 200 null application/json 39.9286ms
+2025-01-18 11:41:02.534 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/hangfire?period=day - null null
+2025-01-18 11:41:02.587 +03:30 [DBG] The request path  does not match the path filter
+2025-01-18 11:41:02.589 +03:30 [DBG] No candidates found for the request path '/hangfire'
+2025-01-18 11:41:02.590 +03:30 [DBG] Request did not match any endpoints
+2025-01-18 11:41:02.592 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 11:41:02.593 +03:30 [DBG] An antiforgery cookie token was reused.
+2025-01-18 11:41:02.608 +03:30 [DBG] Response markup is scheduled to include Browser Link script injection.
+2025-01-18 11:41:02.609 +03:30 [DBG] Response markup is scheduled to include browser refresh script injection.
+2025-01-18 11:41:02.614 +03:30 [DBG] Response markup was updated to include Browser Link script injection.
+2025-01-18 11:41:02.615 +03:30 [DBG] Response markup was updated to include browser refresh script injection.
+2025-01-18 11:41:02.616 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/hangfire?period=day - 200 null text/html 82.44ms
+2025-01-18 11:41:02.630 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/hangfire/css181701354540590 - null null
+2025-01-18 11:41:02.630 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/hangfire/css-dark181702142593696 - null null
+2025-01-18 11:41:02.636 +03:30 [DBG] The request path  does not match the path filter
+2025-01-18 11:41:02.637 +03:30 [DBG] No candidates found for the request path '/hangfire/css-dark181702142593696'
+2025-01-18 11:41:02.638 +03:30 [DBG] Request did not match any endpoints
+2025-01-18 11:41:02.640 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 11:41:02.631 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/hangfire/js18170645539918 - null null
+2025-01-18 11:41:02.645 +03:30 [DBG] The request path  does not match the path filter
+2025-01-18 11:41:02.631 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/_framework/aspnetcore-browser-refresh.js - null null
+2025-01-18 11:41:02.646 +03:30 [DBG] No candidates found for the request path '/hangfire/js18170645539918'
+2025-01-18 11:41:02.641 +03:30 [DBG] An antiforgery cookie token was reused.
+2025-01-18 11:41:02.631 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/_vs/browserLink - null null
+2025-01-18 11:41:02.657 +03:30 [DBG] Request did not match any endpoints
+2025-01-18 11:41:02.674 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 11:41:02.666 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/hangfire/css-dark181702142593696 - 200 null text/css 35.7499ms
+2025-01-18 11:41:02.682 +03:30 [DBG] An antiforgery cookie token was reused.
+2025-01-18 11:41:02.672 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/_framework/aspnetcore-browser-refresh.js - 200 13756 application/javascript; charset=utf-8 41.1774ms
+2025-01-18 11:41:02.634 +03:30 [DBG] The request path  does not match the path filter
+2025-01-18 11:41:02.697 +03:30 [DBG] No candidates found for the request path '/hangfire/css181701354540590'
+2025-01-18 11:41:02.698 +03:30 [DBG] Request did not match any endpoints
+2025-01-18 11:41:02.700 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 11:41:02.702 +03:30 [DBG] An antiforgery cookie token was reused.
+2025-01-18 11:41:02.703 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/hangfire/js18170645539918 - 200 null application/javascript 70.6109ms
+2025-01-18 11:41:02.709 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/hangfire/css181701354540590 - 200 null text/css 78.2017ms
+2025-01-18 11:41:02.711 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/_vs/browserLink - 200 null text/javascript; charset=UTF-8 80.2235ms
+2025-01-18 11:41:04.786 +03:30 [INF] Request starting HTTP/2 POST https://localhost:7221/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 485
+2025-01-18 11:41:04.789 +03:30 [DBG] POST requests are not supported
+2025-01-18 11:41:04.791 +03:30 [DBG] No candidates found for the request path '/hangfire/stats'
+2025-01-18 11:41:04.793 +03:30 [DBG] Request did not match any endpoints
+2025-01-18 11:41:04.794 +03:30 [DBG] The request has an origin header: 'https://localhost:7221'.
+2025-01-18 11:41:04.797 +03:30 [INF] CORS policy execution successful.
+2025-01-18 11:41:04.799 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 11:41:04.801 +03:30 [DBG] An antiforgery cookie token was reused.
+2025-01-18 11:41:04.803 +03:30 [DBG] Antiforgery successfully validated a request.
+2025-01-18 11:41:04.805 +03:30 [DBG] Connection id "0HN9NIU4TO6IL", Request id "0HN9NIU4TO6IL:00000049": started reading request body.
+2025-01-18 11:41:04.806 +03:30 [DBG] Connection id "0HN9NIU4TO6IL", Request id "0HN9NIU4TO6IL:00000049": done reading request body.
+2025-01-18 11:41:04.819 +03:30 [INF] Request finished HTTP/2 POST https://localhost:7221/hangfire/stats - 200 null application/json 35.0388ms
+2025-01-18 11:41:06.860 +03:30 [INF] Request starting HTTP/2 POST https://localhost:7221/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 485
+2025-01-18 11:41:06.884 +03:30 [DBG] POST requests are not supported
+2025-01-18 11:41:06.886 +03:30 [DBG] No candidates found for the request path '/hangfire/stats'
+2025-01-18 11:41:06.890 +03:30 [DBG] Request did not match any endpoints
+2025-01-18 11:41:06.893 +03:30 [DBG] The request has an origin header: 'https://localhost:7221'.
+2025-01-18 11:41:06.898 +03:30 [INF] CORS policy execution successful.
+2025-01-18 11:41:06.905 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 11:41:06.914 +03:30 [DBG] An antiforgery cookie token was reused.
+2025-01-18 11:41:06.915 +03:30 [DBG] Antiforgery successfully validated a request.
+2025-01-18 11:41:06.921 +03:30 [DBG] Connection id "0HN9NIU4TO6IL", Request id "0HN9NIU4TO6IL:0000004B": started reading request body.
+2025-01-18 11:41:06.922 +03:30 [DBG] Connection id "0HN9NIU4TO6IL", Request id "0HN9NIU4TO6IL:0000004B": done reading request body.
+2025-01-18 11:41:06.933 +03:30 [INF] Request finished HTTP/2 POST https://localhost:7221/hangfire/stats - 200 null application/json 73.4204ms
+2025-01-18 11:41:08.951 +03:30 [INF] Request starting HTTP/2 POST https://localhost:7221/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 485
+2025-01-18 11:41:08.968 +03:30 [DBG] POST requests are not supported
+2025-01-18 11:41:08.972 +03:30 [DBG] No candidates found for the request path '/hangfire/stats'
+2025-01-18 11:41:08.980 +03:30 [DBG] Request did not match any endpoints
+2025-01-18 11:41:08.985 +03:30 [DBG] The request has an origin header: 'https://localhost:7221'.
+2025-01-18 11:41:08.992 +03:30 [INF] CORS policy execution successful.
+2025-01-18 11:41:08.998 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 11:41:09.001 +03:30 [DBG] An antiforgery cookie token was reused.
+2025-01-18 11:41:09.003 +03:30 [DBG] Antiforgery successfully validated a request.
+2025-01-18 11:41:09.005 +03:30 [DBG] Connection id "0HN9NIU4TO6IL", Request id "0HN9NIU4TO6IL:0000004D": started reading request body.
+2025-01-18 11:41:09.007 +03:30 [DBG] Connection id "0HN9NIU4TO6IL", Request id "0HN9NIU4TO6IL:0000004D": done reading request body.
+2025-01-18 11:41:09.022 +03:30 [INF] Request finished HTTP/2 POST https://localhost:7221/hangfire/stats - 200 null application/json 71.0845ms
+2025-01-18 11:41:11.031 +03:30 [INF] Request starting HTTP/2 POST https://localhost:7221/hangfire/stats - application/x-www-form-urlencoded; charset=UTF-8 485
+2025-01-18 11:41:11.037 +03:30 [DBG] POST requests are not supported
+2025-01-18 11:41:11.040 +03:30 [DBG] No candidates found for the request path '/hangfire/stats'
+2025-01-18 11:41:11.043 +03:30 [DBG] Request did not match any endpoints
+2025-01-18 11:41:11.054 +03:30 [DBG] The request has an origin header: 'https://localhost:7221'.
+2025-01-18 11:41:11.066 +03:30 [INF] CORS policy execution successful.
+2025-01-18 11:41:11.069 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 11:41:11.080 +03:30 [DBG] An antiforgery cookie token was reused.
+2025-01-18 11:41:11.082 +03:30 [DBG] Antiforgery successfully validated a request.
+2025-01-18 11:41:11.092 +03:30 [DBG] Connection id "0HN9NIU4TO6IL", Request id "0HN9NIU4TO6IL:0000004F": started reading request body.
+2025-01-18 11:41:11.095 +03:30 [DBG] Connection id "0HN9NIU4TO6IL", Request id "0HN9NIU4TO6IL:0000004F": done reading request body.
+2025-01-18 11:41:11.104 +03:30 [INF] Request finished HTTP/2 POST https://localhost:7221/hangfire/stats - 200 null application/json 72.7716ms
+2025-01-18 11:41:11.347 +03:30 [DBG] Connection id "0HN9NIU4TO6IL" received FIN.
+2025-01-18 11:41:11.347 +03:30 [DBG] Connection id "0HN9NIU4TO6IL" is closing.
+2025-01-18 11:41:11.354 +03:30 [DBG] The connection queue processing loop for 0HN9NIU4TO6IL completed.
+2025-01-18 11:41:11.356 +03:30 [DBG] Connection id "0HN9NIU4TO6IL" is closed. The last processed stream ID was 79.
+2025-01-18 11:41:11.359 +03:30 [DBG] Connection id "0HN9NIU4TO6IL" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-01-18 11:41:11.365 +03:30 [DBG] Connection id "0HN9NIU4TO6IL" stopped.
