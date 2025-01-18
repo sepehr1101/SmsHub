@@ -411,5 +411,15 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn("Message").AsString(int.MaxValue).NotNullable()
                 .WithColumn("IsSuccess").AsBoolean().NotNullable();
         }
+
+        private void CreateUserLine()
+        {
+            Create.Table(nameof(TableName.UserLine))
+                .WithColumn(Id).AsInt64().PrimaryKey().Identity()
+                .WithColumn("UserId").AsGuid()
+                    .ForeignKey(NamingHelper.Fk(TableName.User, TableName.UserLine), nameof(TableName.Consumer), Id)
+                .WithColumn("LineId").AsInt32()
+                    .ForeignKey(NamingHelper.Fk(TableName.Line, TableName.UserLine), nameof(TableName.Line), Id);
+        }
     }
 }

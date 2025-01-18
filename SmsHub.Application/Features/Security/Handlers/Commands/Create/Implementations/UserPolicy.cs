@@ -29,24 +29,26 @@ namespace SmsHub.Application.Features.Security.Handlers.Commands.Create.Implemen
             _contextAccessor.NotNull(nameof(contextAccessor));
         }
 
-        public async Task<(User?, bool)> Handle(FirstStepLoginInput input, CancellationToken cancellationToken)
+        public async Task<(string, bool)> Handle(FirstStepLoginInput input, CancellationToken cancellationToken)
         {
             var user = await _userQueryService.Get(input.Username);
 
             if (user.InvalidLoginAttemptCount > 3)//todo: check
             {
                 await GetUserLogin(InvalidLoginReasonEnum.LockedUser, true, true, input, user);
-                return (user, false);
+                return("به حداکثر تلاش مجاز رسیده اید",false);
             }
             else if (user.LockTimespan > DateTime.Now)//todo: check
             {
                 await GetUserLogin(InvalidLoginReasonEnum.InactiveUser, true, true, input, user);
-                return (user, false);
+                var dateLock = user.LockTimespan.Value.Date;
+                var timeLock=user.LockTimespan.Value.TimeOfDay;
+                return ($"حساب کاربری شما تاریخ {dateLock} - ساعت {timeLock} قفل می باشد ", false);
             }
             else//valid
             {
                 //todo: when user validation was true, create userLogin or not??
-                return (user, true);
+                return ("", true);
             }
         }
 

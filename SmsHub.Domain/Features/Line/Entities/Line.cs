@@ -1,5 +1,6 @@
 ﻿using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Receiving.Entities;
+using SmsHub.Domain.Features.Security.Entities;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SmsHub.Domain.Features.Entities
@@ -23,5 +24,6 @@ namespace SmsHub.Domain.Features.Entities
         public virtual ICollection<ConsumerLine> ConsumerLines { get; set; }
         public virtual ICollection<MessageBatch> MessageBatches { get; set; }
         public virtual ICollection<Received> Received { get; set; }
+        public virtual ICollection<UserLine> UserLines { get; set; }
     }
 }

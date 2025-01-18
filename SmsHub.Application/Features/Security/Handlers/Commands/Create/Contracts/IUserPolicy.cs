@@ -5,6 +5,6 @@ namespace SmsHub.Application.Features.Security.Handlers.Commands.Create.Contract
 {
     public interface IUserPolicy
     {
-        Task<(User?,bool)> Handle(FirstStepLoginInput input ,CancellationToken cancellationToken );
+        Task<(string,bool)> Handle(FirstStepLoginInput input ,CancellationToken cancellationToken );
     }
 }

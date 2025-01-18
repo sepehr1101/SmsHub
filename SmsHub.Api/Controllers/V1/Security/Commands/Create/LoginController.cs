@@ -84,9 +84,9 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
 
             //Policy
             var (userPolicy,resultPolicy)=await _userPolicy.Handle(loginDto,cancellationToken);
-            if (!resultPolicy || userPolicy is null)
+            if (!resultPolicy || string.IsNullOrEmpty(userPolicy))
             {
-                return ClientError(MessageResources.UserNotFound);
+                return ClientError(userPolicy);
             }
 
             if (!user.HasTwoStepVerification)

@@ -11,6 +11,7 @@
         LogoutReason,
         Provider,
         Line,
+        UserLine,
         Consumer,
         ConsumerLine,
         ConsumerSafeIp,

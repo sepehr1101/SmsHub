@@ -42,5 +42,6 @@ namespace SmsHub.Persistence.Contexts.Implementation
         public virtual DbSet<UserLogin> UserLogins { get; set; }
         public virtual DbSet<Received> Receiveds{ get; set; }
         public virtual DbSet<ProviderResponseStatus> ProviderResponseStatuses { get; set; } 
+        public virtual DbSet<UserLine> UserLine { get; set; }
     }
 }
