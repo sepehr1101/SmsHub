@@ -4966,3 +4966,833 @@ System.OperationCanceledException: The operation was canceled.
 2025-01-18 15:52:36.710 +03:30 [DBG] Connection id "0HN9NNB0OUC3M" is closed. The last processed stream ID was 13.
 2025-01-18 15:52:36.713 +03:30 [DBG] The connection queue processing loop for 0HN9NNB0OUC3M completed.
 2025-01-18 15:52:36.718 +03:30 [DBG] Connection id "0HN9NNB0OUC3M" stopped.
+2025-01-18 15:57:47.429 +03:30 [INF] Start installing Hangfire SQL objects...
+2025-01-18 15:57:47.733 +03:30 [INF] Hangfire SQL objects installed.
+2025-01-18 15:57:47.795 +03:30 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2025-01-18 15:57:47.967 +03:30 [DBG] Hosting starting
+2025-01-18 15:57:47.974 +03:30 [INF] User profile is available. Using 'C:\Users\zahra\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-01-18 15:57:47.983 +03:30 [DBG] Reading data from file 'C:\Users\zahra\AppData\Local\ASP.NET\DataProtection-Keys\key-0faf8820-b8a8-4f83-85df-101e90ae7dc1.xml'.
+2025-01-18 15:57:47.988 +03:30 [DBG] Reading data from file 'C:\Users\zahra\AppData\Local\ASP.NET\DataProtection-Keys\key-69864b2a-a4e0-4492-8314-ddeda3c1eb89.xml'.
+2025-01-18 15:57:47.990 +03:30 [DBG] Reading data from file 'C:\Users\zahra\AppData\Local\ASP.NET\DataProtection-Keys\key-d0932e56-40f6-47df-9383-e466f22625b2.xml'.
+2025-01-18 15:57:47.994 +03:30 [DBG] Found key {0faf8820-b8a8-4f83-85df-101e90ae7dc1}.
+2025-01-18 15:57:47.996 +03:30 [DBG] Found key {69864b2a-a4e0-4492-8314-ddeda3c1eb89}.
+2025-01-18 15:57:47.997 +03:30 [DBG] Found key {d0932e56-40f6-47df-9383-e466f22625b2}.
+2025-01-18 15:57:48.009 +03:30 [DBG] Considering key {69864b2a-a4e0-4492-8314-ddeda3c1eb89} with expiration date 2025-03-26 17:15:22Z as default key.
+2025-01-18 15:57:48.024 +03:30 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-01-18 15:57:48.034 +03:30 [DBG] Decrypting secret element using Windows DPAPI.
+2025-01-18 15:57:48.037 +03:30 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-01-18 15:57:48.042 +03:30 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2025-01-18 15:57:48.044 +03:30 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2025-01-18 15:57:48.048 +03:30 [DBG] Using key {69864b2a-a4e0-4492-8314-ddeda3c1eb89} as the default key.
+2025-01-18 15:57:48.049 +03:30 [DBG] Key ring with default key {69864b2a-a4e0-4492-8314-ddeda3c1eb89} was loaded during application startup.
+2025-01-18 15:57:48.149 +03:30 [INF] Now listening on: https://localhost:7221
+2025-01-18 15:57:48.151 +03:30 [INF] Now listening on: http://localhost:5241
+2025-01-18 15:57:48.153 +03:30 [DBG] Loaded hosting startup assembly SmsHub.Api
+2025-01-18 15:57:48.154 +03:30 [DBG] Loaded hosting startup assembly Microsoft.WebTools.ApiEndpointDiscovery
+2025-01-18 15:57:48.156 +03:30 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2025-01-18 15:57:48.157 +03:30 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2025-01-18 15:57:48.198 +03:30 [INF] Starting Hangfire Server using job storage: 'SQL Server: .@SmsHub'
+2025-01-18 15:57:48.200 +03:30 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-01-18 15:57:48.201 +03:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-01-18 15:57:48.211 +03:30 [DBG] Execution loop BackgroundServerProcess:8d73387b has started in 4.6465 ms
+2025-01-18 15:57:48.216 +03:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-01-18 15:57:48.217 +03:30 [INF] Hosting environment: Development
+2025-01-18 15:57:48.217 +03:30 [INF] Content root path: E:\Abfa\SmsHub\SmsHub.Api
+2025-01-18 15:57:48.218 +03:30 [DBG] Hosting started
+2025-01-18 15:57:48.290 +03:30 [INF] Server z_e:10144:e38c2a4e successfully announced in 71.7513 ms
+2025-01-18 15:57:48.295 +03:30 [DBG] Execution loop ServerHeartbeatProcess:6a780f2c has started in 3.5516 ms
+2025-01-18 15:57:48.295 +03:30 [INF] Server z_e:10144:e38c2a4e is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-01-18 15:57:48.301 +03:30 [DBG] Execution loop ServerWatchdog:bad7836e has started in 2.9672 ms
+2025-01-18 15:57:48.304 +03:30 [DBG] Execution loop ServerJobCancellationWatcher:7570e871 has started in 5.7448 ms
+2025-01-18 15:57:48.308 +03:30 [DBG] Execution loop ExpirationManager:020d06ff has started in 5.4752 ms
+2025-01-18 15:57:48.312 +03:30 [DBG] Execution loop CountersAggregator:d0e47e97 has started in 7.4821 ms
+2025-01-18 15:57:48.314 +03:30 [DBG] Execution loop SqlServerHeartbeatProcess:df4ed603 has started in 6.3326 ms
+2025-01-18 15:57:48.332 +03:30 [INF] 1 servers were removed due to timeout
+2025-01-18 15:57:48.333 +03:30 [DBG] Removing outdated records from the 'AggregatedCounter' table...
+2025-01-18 15:57:48.329 +03:30 [DBG] Aggregating records in 'Counter' table...
+2025-01-18 15:57:48.318 +03:30 [DBG] Execution loop Worker:d2dbebe6 has started in 6.2728 ms
+2025-01-18 15:57:48.323 +03:30 [DBG] Execution loop Worker:b1b8d7a5 has started in 10.8709 ms
+2025-01-18 15:57:48.323 +03:30 [DBG] Execution loop Worker:382c25d1 has started in 10.8435 ms
+2025-01-18 15:57:48.325 +03:30 [DBG] Execution loop Worker:05077950 has started in 13.0172 ms
+2025-01-18 15:57:48.386 +03:30 [INF] Server z_e:10144:e38c2a4e all the dispatchers started
+2025-01-18 15:57:48.328 +03:30 [DBG] Execution loop Worker:3316ddc4 has started in 15.8827 ms
+2025-01-18 15:57:48.332 +03:30 [DBG] Execution loop Worker:da663fcc has started in 19.578 ms
+2025-01-18 15:57:48.335 +03:30 [DBG] Execution loop Worker:37c841d6 has started in 23.1178 ms
+2025-01-18 15:57:48.340 +03:30 [DBG] Execution loop Worker:eed5b84e has started in 27.7623 ms
+2025-01-18 15:57:48.340 +03:30 [DBG] Execution loop Worker:282245d5 has started in 27.6887 ms
+2025-01-18 15:57:48.393 +03:30 [DBG] Removing outdated records from the 'Job' table...
+2025-01-18 15:57:48.344 +03:30 [DBG] Execution loop Worker:d9b8c21a has started in 31.413 ms
+2025-01-18 15:57:48.347 +03:30 [DBG] Execution loop Worker:77cfb70f has started in 34.7387 ms
+2025-01-18 15:57:48.351 +03:30 [DBG] Execution loop Worker:5d6e4159 has started in 38.008 ms
+2025-01-18 15:57:48.354 +03:30 [DBG] Execution loop Worker:78f04c5e has started in 42.2603 ms
+2025-01-18 15:57:48.359 +03:30 [DBG] Execution loop Worker:502d5690 has started in 46.3202 ms
+2025-01-18 15:57:48.364 +03:30 [DBG] Execution loop Worker:907f773c has started in 52.0663 ms
+2025-01-18 15:57:48.367 +03:30 [DBG] Execution loop Worker:042a8810 has started in 54.5535 ms
+2025-01-18 15:57:48.370 +03:30 [DBG] Execution loop Worker:ccf4ad45 has started in 58.3783 ms
+2025-01-18 15:57:48.375 +03:30 [DBG] Execution loop Worker:e3bd3fa8 has started in 62.5452 ms
+2025-01-18 15:57:48.416 +03:30 [DBG] Removing outdated records from the 'List' table...
+2025-01-18 15:57:48.378 +03:30 [DBG] Execution loop Worker:2e23da72 has started in 66.1296 ms
+2025-01-18 15:57:48.382 +03:30 [DBG] Execution loop Worker:1a68fd76 has started in 70.013 ms
+2025-01-18 15:57:48.387 +03:30 [DBG] Execution loop DelayedJobScheduler:1cf4cacd has started in 8.7177 ms
+2025-01-18 15:57:48.389 +03:30 [DBG] Execution loop RecurringJobScheduler:b727ed26 has started in 7.1605 ms
+2025-01-18 15:57:48.420 +03:30 [DBG] Removing outdated records from the 'Set' table...
+2025-01-18 15:57:48.427 +03:30 [DBG] Removing outdated records from the 'Hash' table...
+2025-01-18 15:57:48.507 +03:30 [DBG] Connection id "0HN9NNE2ERK5S" accepted.
+2025-01-18 15:57:48.511 +03:30 [DBG] Connection id "0HN9NNE2ERK5S" started.
+2025-01-18 15:57:48.526 +03:30 [DBG] Connection id "0HN9NNE2ERK5S" received FIN.
+2025-01-18 15:57:48.534 +03:30 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2025-01-18 15:57:48.550 +03:30 [DBG] Connection id "0HN9NNE2ERK5S" stopped.
+2025-01-18 15:57:48.553 +03:30 [DBG] Connection id "0HN9NNE2ERK5S" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-01-18 15:57:49.024 +03:30 [DBG] Connection id "0HN9NNE2ERK5T" accepted.
+2025-01-18 15:57:49.030 +03:30 [DBG] Connection id "0HN9NNE2ERK5T" started.
+2025-01-18 15:57:49.068 +03:30 [DBG] Connection 0HN9NNE2ERK5T established using the following protocol: "Tls13"
+2025-01-18 15:57:49.191 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/swagger/index.html - null null
+2025-01-18 15:57:49.362 +03:30 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2025-01-18 15:57:49.396 +03:30 [DBG] Response markup is scheduled to include Browser Link script injection.
+2025-01-18 15:57:49.399 +03:30 [DBG] Response markup is scheduled to include browser refresh script injection.
+2025-01-18 15:57:49.415 +03:30 [DBG] Response markup was updated to include Browser Link script injection.
+2025-01-18 15:57:49.417 +03:30 [DBG] Response markup was updated to include browser refresh script injection.
+2025-01-18 15:57:49.422 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/swagger/index.html - 200 null text/html;charset=utf-8 234.3353ms
+2025-01-18 15:57:49.447 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/_framework/aspnetcore-browser-refresh.js - null null
+2025-01-18 15:57:49.456 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/_framework/aspnetcore-browser-refresh.js - 200 13756 application/javascript; charset=utf-8 9.529ms
+2025-01-18 15:57:49.457 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/_vs/browserLink - null null
+2025-01-18 15:57:49.509 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/_vs/browserLink - 200 null text/javascript; charset=UTF-8 51.619ms
+2025-01-18 15:57:49.556 +03:30 [INF] Request starting HTTP/2 GET https://localhost:7221/swagger/v1/swagger.json - null null
+2025-01-18 15:57:49.615 +03:30 [INF] Request finished HTTP/2 GET https://localhost:7221/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 58.9852ms
+2025-01-18 15:58:18.317 +03:30 [DBG] Server z_e:10144:e38c2a4e heartbeat successfully sent
+2025-01-18 15:58:27.375 +03:30 [DBG] Connection id "0HN9NNE2ERK5U" accepted.
+2025-01-18 15:58:27.378 +03:30 [DBG] Connection id "0HN9NNE2ERK5U" started.
+2025-01-18 15:58:27.384 +03:30 [DBG] Connection id "0HN9NNE2ERK5U" received FIN.
+2025-01-18 15:58:27.387 +03:30 [DBG] Connection id "0HN9NNE2ERK5V" accepted.
+2025-01-18 15:58:27.400 +03:30 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2025-01-18 15:58:27.401 +03:30 [DBG] Connection id "0HN9NNE2ERK5V" started.
+2025-01-18 15:58:27.405 +03:30 [DBG] Connection id "0HN9NNE2ERK5U" stopped.
+2025-01-18 15:58:27.407 +03:30 [DBG] Connection id "0HN9NNE2ERK5U" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-01-18 15:58:27.409 +03:30 [DBG] Connection 0HN9NNE2ERK5V established using the following protocol: "Tls13"
+2025-01-18 15:58:27.414 +03:30 [INF] Request starting HTTP/1.1 POST https://localhost:7221/line/create - application/json 174
+2025-01-18 15:58:27.420 +03:30 [DBG] POST requests are not supported
+2025-01-18 15:58:27.441 +03:30 [DBG] 1 candidate(s) found for the request path '/line/create'
+2025-01-18 15:58:27.444 +03:30 [DBG] Endpoint 'SmsHub.Api.Controllers.V1.Line.Commands.Create.LineCreateController.Create (SmsHub.Api)' with route pattern 'Line/Create' is valid for the request path '/line/create'
+2025-01-18 15:58:27.448 +03:30 [DBG] Request matched endpoint 'SmsHub.Api.Controllers.V1.Line.Commands.Create.LineCreateController.Create (SmsHub.Api)'
+2025-01-18 15:58:27.523 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 15:58:27.527 +03:30 [INF] Executing endpoint 'SmsHub.Api.Controllers.V1.Line.Commands.Create.LineCreateController.Create (SmsHub.Api)'
+2025-01-18 15:58:27.543 +03:30 [INF] Route matched with {action = "Create", controller = "LineCreate"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create.CreateLineDto, System.Threading.CancellationToken) on controller SmsHub.Api.Controllers.V1.Line.Commands.Create.LineCreateController (SmsHub.Api).
+2025-01-18 15:58:27.547 +03:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-01-18 15:58:27.548 +03:30 [DBG] Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2025-01-18 15:58:27.551 +03:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-01-18 15:58:27.552 +03:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-01-18 15:58:27.553 +03:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter","Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-01-18 15:58:27.556 +03:30 [DBG] Executing controller factory for controller SmsHub.Api.Controllers.V1.Line.Commands.Create.LineCreateController (SmsHub.Api)
+2025-01-18 15:58:27.709 +03:30 [DBG] Entity Framework Core 8.0.10 initialized 'SmsHubContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.10' with options: CommandTimeout=180 
+2025-01-18 15:58:27.726 +03:30 [DBG] Executed controller factory for controller SmsHub.Api.Controllers.V1.Line.Commands.Create.LineCreateController (SmsHub.Api)
+2025-01-18 15:58:27.732 +03:30 [DBG] Attempting to bind parameter 'createDto' of type 'SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create.CreateLineDto' ...
+2025-01-18 15:58:27.735 +03:30 [DBG] Attempting to bind parameter 'createDto' of type 'SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create.CreateLineDto' using the name '' in request data ...
+2025-01-18 15:58:27.738 +03:30 [DBG] Selected input formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter' for content type 'application/json'.
+2025-01-18 15:58:27.743 +03:30 [DBG] Connection id "0HN9NNE2ERK5V", Request id "0HN9NNE2ERK5V:00000001": started reading request body.
+2025-01-18 15:58:27.745 +03:30 [DBG] Connection id "0HN9NNE2ERK5V", Request id "0HN9NNE2ERK5V:00000001": done reading request body.
+2025-01-18 15:58:27.749 +03:30 [DBG] JSON input formatter succeeded, deserializing to type 'SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create.CreateLineDto'
+2025-01-18 15:58:27.752 +03:30 [DBG] Done attempting to bind parameter 'createDto' of type 'SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create.CreateLineDto'.
+2025-01-18 15:58:27.753 +03:30 [DBG] Done attempting to bind parameter 'createDto' of type 'SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create.CreateLineDto'.
+2025-01-18 15:58:27.754 +03:30 [DBG] Attempting to validate the bound parameter 'createDto' of type 'SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create.CreateLineDto' ...
+2025-01-18 15:58:27.762 +03:30 [DBG] Done attempting to validate the bound parameter 'createDto' of type 'SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create.CreateLineDto'.
+2025-01-18 15:58:27.766 +03:30 [DBG] Attempting to bind parameter 'cancellationToken' of type 'System.Threading.CancellationToken' ...
+2025-01-18 15:58:27.767 +03:30 [DBG] Done attempting to bind parameter 'cancellationToken' of type 'System.Threading.CancellationToken'.
+2025-01-18 15:58:27.768 +03:30 [DBG] Attempting to validate the bound parameter 'cancellationToken' of type 'System.Threading.CancellationToken' ...
+2025-01-18 15:58:27.769 +03:30 [DBG] Done attempting to validate the bound parameter 'cancellationToken' of type 'System.Threading.CancellationToken'.
+2025-01-18 15:58:28.018 +03:30 [INF] Executing action method SmsHub.Api.Controllers.V1.Line.Commands.Create.LineCreateController.Create (SmsHub.Api) - Validation state: "Valid"
+2025-01-18 15:58:28.066 +03:30 [DBG] 'SmsHubContext' generated a temporary value for the property 'Line.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 15:58:28.086 +03:30 [DBG] Context 'SmsHubContext' started tracking 'Line' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 15:58:28.095 +03:30 [DBG] SaveChanges starting for 'SmsHubContext'.
+2025-01-18 15:58:28.098 +03:30 [DBG] DetectChanges starting for 'SmsHubContext'.
+2025-01-18 15:58:28.102 +03:30 [DBG] DetectChanges completed for 'SmsHubContext'.
+2025-01-18 15:58:28.122 +03:30 [DBG] Creating DbConnection.
+2025-01-18 15:58:28.128 +03:30 [DBG] Created DbConnection. (3ms).
+2025-01-18 15:58:28.130 +03:30 [DBG] Opening connection to database 'SmsHub' on server '.'.
+2025-01-18 15:58:28.133 +03:30 [DBG] Opened connection to database 'SmsHub' on server '.'.
+2025-01-18 15:58:28.142 +03:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-01-18 15:58:28.144 +03:30 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2025-01-18 15:58:28.148 +03:30 [DBG] Initialized DbCommand for 'ExecuteReader' (6ms).
+2025-01-18 15:58:28.152 +03:30 [DBG] Executing DbCommand [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (DbType = Int16)], CommandType='"Text"', CommandTimeout='180']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Line] ([Credential], [Number], [ProviderId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2);
+2025-01-18 15:58:28.184 +03:30 [INF] Executed DbCommand (32ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (DbType = Int16)], CommandType='"Text"', CommandTimeout='180']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Line] ([Credential], [Number], [ProviderId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2);
+2025-01-18 15:58:28.194 +03:30 [DBG] The foreign key property 'Line.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-01-18 15:58:28.201 +03:30 [DBG] Closing data reader to 'SmsHub' on server '.'.
+2025-01-18 15:58:28.209 +03:30 [DBG] A data reader for 'SmsHub' on server '.' is being disposed after spending 16ms reading results.
+2025-01-18 15:58:28.212 +03:30 [DBG] Closing connection to database 'SmsHub' on server '.'.
+2025-01-18 15:58:28.213 +03:30 [DBG] Closed connection to database 'SmsHub' on server '.' (1ms).
+2025-01-18 15:58:28.220 +03:30 [DBG] An entity of type 'Line' tracked by 'SmsHubContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 15:58:28.223 +03:30 [DBG] SaveChanges completed for 'SmsHubContext' with 1 entities written to the database.
+2025-01-18 15:58:28.229 +03:30 [INF] Executed action method SmsHub.Api.Controllers.V1.Line.Commands.Create.LineCreateController.Create (SmsHub.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 203.8917ms.
+2025-01-18 15:58:28.234 +03:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-01-18 15:58:28.237 +03:30 [DBG] No information found on request to perform content negotiation.
+2025-01-18 15:58:28.238 +03:30 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-01-18 15:58:28.239 +03:30 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-01-18 15:58:28.241 +03:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-01-18 15:58:28.243 +03:30 [INF] Executing OkObjectResult, writing value of type 'SmsHub.Domain.BaseDomainEntities.ApiResponse.ApiResponseEnvelope`1[[SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create.CreateLineDto, SmsHub.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-01-18 15:58:28.259 +03:30 [INF] Executed action SmsHub.Api.Controllers.V1.Line.Commands.Create.LineCreateController.Create (SmsHub.Api) in 701.6436ms
+2025-01-18 15:58:28.263 +03:30 [INF] Executed endpoint 'SmsHub.Api.Controllers.V1.Line.Commands.Create.LineCreateController.Create (SmsHub.Api)'
+2025-01-18 15:58:28.268 +03:30 [DBG] 'SmsHubContext' disposed.
+2025-01-18 15:58:28.272 +03:30 [DBG] Disposing connection to database 'SmsHub' on server '.'.
+2025-01-18 15:58:28.274 +03:30 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-01-18 15:58:28.275 +03:30 [INF] Request finished HTTP/1.1 POST https://localhost:7221/line/create - 200 null application/json; charset=utf-8 861.7206ms
+2025-01-18 15:58:28.282 +03:30 [DBG] Connection id "0HN9NNE2ERK5V" disconnecting.
+2025-01-18 15:58:28.285 +03:30 [DBG] Connection id "0HN9NNE2ERK5V" stopped.
+2025-01-18 15:58:28.287 +03:30 [DBG] Connection id "0HN9NNE2ERK5V" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-01-18 15:58:32.940 +03:30 [DBG] Connection id "0HN9NNE2ERK60" accepted.
+2025-01-18 15:58:32.941 +03:30 [DBG] Connection id "0HN9NNE2ERK60" received FIN.
+2025-01-18 15:58:32.941 +03:30 [DBG] Connection id "0HN9NNE2ERK60" started.
+2025-01-18 15:58:32.942 +03:30 [DBG] Connection id "0HN9NNE2ERK61" accepted.
+2025-01-18 15:58:32.944 +03:30 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2025-01-18 15:58:32.945 +03:30 [DBG] Connection id "0HN9NNE2ERK61" started.
+2025-01-18 15:58:32.949 +03:30 [DBG] Connection id "0HN9NNE2ERK60" stopped.
+2025-01-18 15:58:32.951 +03:30 [DBG] Connection id "0HN9NNE2ERK60" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-01-18 15:58:32.953 +03:30 [DBG] Connection 0HN9NNE2ERK61 established using the following protocol: "Tls13"
+2025-01-18 15:58:32.968 +03:30 [INF] Request starting HTTP/1.1 POST https://localhost:7221/TemplateCategory/create - application/json 50
+2025-01-18 15:58:32.970 +03:30 [DBG] POST requests are not supported
+2025-01-18 15:58:32.974 +03:30 [DBG] 1 candidate(s) found for the request path '/TemplateCategory/create'
+2025-01-18 15:58:32.975 +03:30 [DBG] Endpoint 'SmsHub.Api.Controllers.V1.Template.Commands.Create.TemplateCategoryCreateController.Create (SmsHub.Api)' with route pattern 'TemplateCategory/Create' is valid for the request path '/TemplateCategory/create'
+2025-01-18 15:58:32.977 +03:30 [DBG] Request matched endpoint 'SmsHub.Api.Controllers.V1.Template.Commands.Create.TemplateCategoryCreateController.Create (SmsHub.Api)'
+2025-01-18 15:58:32.982 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 15:58:32.983 +03:30 [INF] Executing endpoint 'SmsHub.Api.Controllers.V1.Template.Commands.Create.TemplateCategoryCreateController.Create (SmsHub.Api)'
+2025-01-18 15:58:32.988 +03:30 [INF] Route matched with {action = "Create", controller = "TemplateCategoryCreate"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create.CreateTemplateCategoryDto, System.Threading.CancellationToken) on controller SmsHub.Api.Controllers.V1.Template.Commands.Create.TemplateCategoryCreateController (SmsHub.Api).
+2025-01-18 15:58:32.990 +03:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-01-18 15:58:32.991 +03:30 [DBG] Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2025-01-18 15:58:32.993 +03:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-01-18 15:58:32.995 +03:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-01-18 15:58:32.996 +03:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter","Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-01-18 15:58:32.998 +03:30 [DBG] Executing controller factory for controller SmsHub.Api.Controllers.V1.Template.Commands.Create.TemplateCategoryCreateController (SmsHub.Api)
+2025-01-18 15:58:33.039 +03:30 [DBG] Entity Framework Core 8.0.10 initialized 'SmsHubContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.10' with options: CommandTimeout=180 
+2025-01-18 15:58:33.044 +03:30 [DBG] Executed controller factory for controller SmsHub.Api.Controllers.V1.Template.Commands.Create.TemplateCategoryCreateController (SmsHub.Api)
+2025-01-18 15:58:33.047 +03:30 [DBG] Attempting to bind parameter 'createDto' of type 'SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create.CreateTemplateCategoryDto' ...
+2025-01-18 15:58:33.049 +03:30 [DBG] Attempting to bind parameter 'createDto' of type 'SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create.CreateTemplateCategoryDto' using the name '' in request data ...
+2025-01-18 15:58:33.051 +03:30 [DBG] Selected input formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter' for content type 'application/json'.
+2025-01-18 15:58:33.054 +03:30 [DBG] Connection id "0HN9NNE2ERK61", Request id "0HN9NNE2ERK61:00000001": started reading request body.
+2025-01-18 15:58:33.055 +03:30 [DBG] Connection id "0HN9NNE2ERK61", Request id "0HN9NNE2ERK61:00000001": done reading request body.
+2025-01-18 15:58:33.058 +03:30 [DBG] JSON input formatter succeeded, deserializing to type 'SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create.CreateTemplateCategoryDto'
+2025-01-18 15:58:33.059 +03:30 [DBG] Done attempting to bind parameter 'createDto' of type 'SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create.CreateTemplateCategoryDto'.
+2025-01-18 15:58:33.062 +03:30 [DBG] Done attempting to bind parameter 'createDto' of type 'SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create.CreateTemplateCategoryDto'.
+2025-01-18 15:58:33.066 +03:30 [DBG] Attempting to validate the bound parameter 'createDto' of type 'SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create.CreateTemplateCategoryDto' ...
+2025-01-18 15:58:33.070 +03:30 [DBG] Done attempting to validate the bound parameter 'createDto' of type 'SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create.CreateTemplateCategoryDto'.
+2025-01-18 15:58:33.072 +03:30 [DBG] Attempting to bind parameter 'cancellationToken' of type 'System.Threading.CancellationToken' ...
+2025-01-18 15:58:33.073 +03:30 [DBG] Done attempting to bind parameter 'cancellationToken' of type 'System.Threading.CancellationToken'.
+2025-01-18 15:58:33.074 +03:30 [DBG] Attempting to validate the bound parameter 'cancellationToken' of type 'System.Threading.CancellationToken' ...
+2025-01-18 15:58:33.076 +03:30 [DBG] Done attempting to validate the bound parameter 'cancellationToken' of type 'System.Threading.CancellationToken'.
+2025-01-18 15:58:33.120 +03:30 [INF] Executing action method SmsHub.Api.Controllers.V1.Template.Commands.Create.TemplateCategoryCreateController.Create (SmsHub.Api) - Validation state: "Valid"
+2025-01-18 15:58:33.128 +03:30 [DBG] 'SmsHubContext' generated a temporary value for the property 'TemplateCategory.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 15:58:33.135 +03:30 [DBG] Context 'SmsHubContext' started tracking 'TemplateCategory' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 15:58:33.137 +03:30 [DBG] SaveChanges starting for 'SmsHubContext'.
+2025-01-18 15:58:33.138 +03:30 [DBG] DetectChanges starting for 'SmsHubContext'.
+2025-01-18 15:58:33.141 +03:30 [DBG] DetectChanges completed for 'SmsHubContext'.
+2025-01-18 15:58:33.143 +03:30 [DBG] Creating DbConnection.
+2025-01-18 15:58:33.144 +03:30 [DBG] Created DbConnection. (0ms).
+2025-01-18 15:58:33.144 +03:30 [DBG] Opening connection to database 'SmsHub' on server '.'.
+2025-01-18 15:58:33.145 +03:30 [DBG] Opened connection to database 'SmsHub' on server '.'.
+2025-01-18 15:58:33.146 +03:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-01-18 15:58:33.148 +03:30 [DBG] Created DbCommand for 'ExecuteReader' (2ms).
+2025-01-18 15:58:33.150 +03:30 [DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+2025-01-18 15:58:33.152 +03:30 [DBG] Executing DbCommand [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='180']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [TemplateCategory] ([Description], [Title])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1);
+2025-01-18 15:58:33.157 +03:30 [INF] Executed DbCommand (6ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='180']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [TemplateCategory] ([Description], [Title])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1);
+2025-01-18 15:58:33.160 +03:30 [DBG] The foreign key property 'TemplateCategory.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-01-18 15:58:33.163 +03:30 [DBG] Closing data reader to 'SmsHub' on server '.'.
+2025-01-18 15:58:33.164 +03:30 [DBG] A data reader for 'SmsHub' on server '.' is being disposed after spending 4ms reading results.
+2025-01-18 15:58:33.165 +03:30 [DBG] Closing connection to database 'SmsHub' on server '.'.
+2025-01-18 15:58:33.166 +03:30 [DBG] Closed connection to database 'SmsHub' on server '.' (0ms).
+2025-01-18 15:58:33.167 +03:30 [DBG] An entity of type 'TemplateCategory' tracked by 'SmsHubContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 15:58:33.170 +03:30 [DBG] SaveChanges completed for 'SmsHubContext' with 1 entities written to the database.
+2025-01-18 15:58:33.172 +03:30 [INF] Executed action method SmsHub.Api.Controllers.V1.Template.Commands.Create.TemplateCategoryCreateController.Create (SmsHub.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 49.7426ms.
+2025-01-18 15:58:33.174 +03:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-01-18 15:58:33.177 +03:30 [DBG] No information found on request to perform content negotiation.
+2025-01-18 15:58:33.178 +03:30 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-01-18 15:58:33.179 +03:30 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-01-18 15:58:33.180 +03:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-01-18 15:58:33.181 +03:30 [INF] Executing OkObjectResult, writing value of type 'SmsHub.Domain.BaseDomainEntities.ApiResponse.ApiResponseEnvelope`1[[SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create.CreateTemplateCategoryDto, SmsHub.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-01-18 15:58:33.185 +03:30 [INF] Executed action SmsHub.Api.Controllers.V1.Template.Commands.Create.TemplateCategoryCreateController.Create (SmsHub.Api) in 187.366ms
+2025-01-18 15:58:33.186 +03:30 [INF] Executed endpoint 'SmsHub.Api.Controllers.V1.Template.Commands.Create.TemplateCategoryCreateController.Create (SmsHub.Api)'
+2025-01-18 15:58:33.187 +03:30 [DBG] 'SmsHubContext' disposed.
+2025-01-18 15:58:33.190 +03:30 [DBG] Disposing connection to database 'SmsHub' on server '.'.
+2025-01-18 15:58:33.192 +03:30 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-01-18 15:58:33.193 +03:30 [INF] Request finished HTTP/1.1 POST https://localhost:7221/TemplateCategory/create - 200 null application/json; charset=utf-8 225.3992ms
+2025-01-18 15:58:33.196 +03:30 [DBG] Connection id "0HN9NNE2ERK61" disconnecting.
+2025-01-18 15:58:33.198 +03:30 [DBG] Connection id "0HN9NNE2ERK61" stopped.
+2025-01-18 15:58:33.199 +03:30 [DBG] Connection id "0HN9NNE2ERK61" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-01-18 15:58:35.959 +03:30 [DBG] Connection id "0HN9NNE2ERK62" accepted.
+2025-01-18 15:58:35.961 +03:30 [DBG] Connection id "0HN9NNE2ERK62" received FIN.
+2025-01-18 15:58:35.963 +03:30 [DBG] Connection id "0HN9NNE2ERK62" started.
+2025-01-18 15:58:35.964 +03:30 [DBG] Connection id "0HN9NNE2ERK63" accepted.
+2025-01-18 15:58:35.979 +03:30 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2025-01-18 15:58:35.981 +03:30 [DBG] Connection id "0HN9NNE2ERK63" started.
+2025-01-18 15:58:35.988 +03:30 [DBG] Connection id "0HN9NNE2ERK62" stopped.
+2025-01-18 15:58:35.990 +03:30 [DBG] Connection id "0HN9NNE2ERK62" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-01-18 15:58:35.992 +03:30 [DBG] Connection 0HN9NNE2ERK63 established using the following protocol: "Tls13"
+2025-01-18 15:58:35.994 +03:30 [INF] Request starting HTTP/1.1 POST https://localhost:7221/Template/create - application/json 169
+2025-01-18 15:58:35.995 +03:30 [DBG] POST requests are not supported
+2025-01-18 15:58:35.996 +03:30 [DBG] 1 candidate(s) found for the request path '/Template/create'
+2025-01-18 15:58:35.997 +03:30 [DBG] Endpoint 'SmsHub.Api.Controllers.V1.Template.Commands.Create.TemplateCreateController.Create (SmsHub.Api)' with route pattern 'Template/Create' is valid for the request path '/Template/create'
+2025-01-18 15:58:36.001 +03:30 [DBG] Request matched endpoint 'SmsHub.Api.Controllers.V1.Template.Commands.Create.TemplateCreateController.Create (SmsHub.Api)'
+2025-01-18 15:58:36.003 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 15:58:36.004 +03:30 [INF] Executing endpoint 'SmsHub.Api.Controllers.V1.Template.Commands.Create.TemplateCreateController.Create (SmsHub.Api)'
+2025-01-18 15:58:36.009 +03:30 [INF] Route matched with {action = "Create", controller = "TemplateCreate"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create.CreateTemplateDto, System.Threading.CancellationToken) on controller SmsHub.Api.Controllers.V1.Template.Commands.Create.TemplateCreateController (SmsHub.Api).
+2025-01-18 15:58:36.011 +03:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-01-18 15:58:36.012 +03:30 [DBG] Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2025-01-18 15:58:36.015 +03:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-01-18 15:58:36.017 +03:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-01-18 15:58:36.018 +03:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter","Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-01-18 15:58:36.020 +03:30 [DBG] Executing controller factory for controller SmsHub.Api.Controllers.V1.Template.Commands.Create.TemplateCreateController (SmsHub.Api)
+2025-01-18 15:58:36.023 +03:30 [DBG] Entity Framework Core 8.0.10 initialized 'SmsHubContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.10' with options: CommandTimeout=180 
+2025-01-18 15:58:36.026 +03:30 [DBG] Executed controller factory for controller SmsHub.Api.Controllers.V1.Template.Commands.Create.TemplateCreateController (SmsHub.Api)
+2025-01-18 15:58:36.027 +03:30 [DBG] Attempting to bind parameter 'createDto' of type 'SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create.CreateTemplateDto' ...
+2025-01-18 15:58:36.030 +03:30 [DBG] Attempting to bind parameter 'createDto' of type 'SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create.CreateTemplateDto' using the name '' in request data ...
+2025-01-18 15:58:36.031 +03:30 [DBG] Selected input formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter' for content type 'application/json'.
+2025-01-18 15:58:36.033 +03:30 [DBG] Connection id "0HN9NNE2ERK63", Request id "0HN9NNE2ERK63:00000001": started reading request body.
+2025-01-18 15:58:36.034 +03:30 [DBG] Connection id "0HN9NNE2ERK63", Request id "0HN9NNE2ERK63:00000001": done reading request body.
+2025-01-18 15:58:36.036 +03:30 [DBG] JSON input formatter succeeded, deserializing to type 'SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create.CreateTemplateDto'
+2025-01-18 15:58:36.037 +03:30 [DBG] Done attempting to bind parameter 'createDto' of type 'SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create.CreateTemplateDto'.
+2025-01-18 15:58:36.038 +03:30 [DBG] Done attempting to bind parameter 'createDto' of type 'SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create.CreateTemplateDto'.
+2025-01-18 15:58:36.040 +03:30 [DBG] Attempting to validate the bound parameter 'createDto' of type 'SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create.CreateTemplateDto' ...
+2025-01-18 15:58:36.043 +03:30 [DBG] Done attempting to validate the bound parameter 'createDto' of type 'SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create.CreateTemplateDto'.
+2025-01-18 15:58:36.045 +03:30 [DBG] Attempting to bind parameter 'cancellationToken' of type 'System.Threading.CancellationToken' ...
+2025-01-18 15:58:36.047 +03:30 [DBG] Done attempting to bind parameter 'cancellationToken' of type 'System.Threading.CancellationToken'.
+2025-01-18 15:58:36.048 +03:30 [DBG] Attempting to validate the bound parameter 'cancellationToken' of type 'System.Threading.CancellationToken' ...
+2025-01-18 15:58:36.049 +03:30 [DBG] Done attempting to validate the bound parameter 'cancellationToken' of type 'System.Threading.CancellationToken'.
+2025-01-18 15:58:36.108 +03:30 [INF] Executing action method SmsHub.Api.Controllers.V1.Template.Commands.Create.TemplateCreateController.Create (SmsHub.Api) - Validation state: "Valid"
+2025-01-18 15:58:36.238 +03:30 [DBG] 'SmsHubContext' generated a temporary value for the property 'Template.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 15:58:36.251 +03:30 [DBG] Context 'SmsHubContext' started tracking 'Template' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 15:58:36.255 +03:30 [DBG] SaveChanges starting for 'SmsHubContext'.
+2025-01-18 15:58:36.259 +03:30 [DBG] DetectChanges starting for 'SmsHubContext'.
+2025-01-18 15:58:36.261 +03:30 [DBG] DetectChanges completed for 'SmsHubContext'.
+2025-01-18 15:58:36.264 +03:30 [DBG] Creating DbConnection.
+2025-01-18 15:58:36.265 +03:30 [DBG] Created DbConnection. (1ms).
+2025-01-18 15:58:36.266 +03:30 [DBG] Opening connection to database 'SmsHub' on server '.'.
+2025-01-18 15:58:36.268 +03:30 [DBG] Opened connection to database 'SmsHub' on server '.'.
+2025-01-18 15:58:36.272 +03:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-01-18 15:58:36.273 +03:30 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-01-18 15:58:36.274 +03:30 [DBG] Initialized DbCommand for 'ExecuteReader' (1ms).
+2025-01-18 15:58:36.277 +03:30 [DBG] Executing DbCommand [Parameters=[@p0='?' (Size = 4000), @p1='?' (DbType = Boolean), @p2='?' (DbType = Int32), @p3='?' (Size = 4000), @p4='?' (DbType = Int32), @p5='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='180']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Template] ([Expression], [IsActive], [MinCredit], [Parameters], [TemplateCategoryId], [Title])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-01-18 15:58:36.284 +03:30 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (DbType = Boolean), @p2='?' (DbType = Int32), @p3='?' (Size = 4000), @p4='?' (DbType = Int32), @p5='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='180']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Template] ([Expression], [IsActive], [MinCredit], [Parameters], [TemplateCategoryId], [Title])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-01-18 15:58:36.287 +03:30 [DBG] The foreign key property 'Template.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-01-18 15:58:36.289 +03:30 [DBG] Closing data reader to 'SmsHub' on server '.'.
+2025-01-18 15:58:36.290 +03:30 [DBG] A data reader for 'SmsHub' on server '.' is being disposed after spending 3ms reading results.
+2025-01-18 15:58:36.291 +03:30 [DBG] Closing connection to database 'SmsHub' on server '.'.
+2025-01-18 15:58:36.292 +03:30 [DBG] Closed connection to database 'SmsHub' on server '.' (0ms).
+2025-01-18 15:58:36.294 +03:30 [DBG] An entity of type 'Template' tracked by 'SmsHubContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 15:58:36.295 +03:30 [DBG] SaveChanges completed for 'SmsHubContext' with 1 entities written to the database.
+2025-01-18 15:58:36.297 +03:30 [INF] Executed action method SmsHub.Api.Controllers.V1.Template.Commands.Create.TemplateCreateController.Create (SmsHub.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 180.7144ms.
+2025-01-18 15:58:36.299 +03:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-01-18 15:58:36.301 +03:30 [DBG] No information found on request to perform content negotiation.
+2025-01-18 15:58:36.302 +03:30 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-01-18 15:58:36.303 +03:30 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-01-18 15:58:36.304 +03:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-01-18 15:58:36.305 +03:30 [INF] Executing OkObjectResult, writing value of type 'SmsHub.Domain.BaseDomainEntities.ApiResponse.ApiResponseEnvelope`1[[SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create.CreateTemplateDto, SmsHub.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-01-18 15:58:36.309 +03:30 [INF] Executed action SmsHub.Api.Controllers.V1.Template.Commands.Create.TemplateCreateController.Create (SmsHub.Api) in 289.0093ms
+2025-01-18 15:58:36.311 +03:30 [INF] Executed endpoint 'SmsHub.Api.Controllers.V1.Template.Commands.Create.TemplateCreateController.Create (SmsHub.Api)'
+2025-01-18 15:58:36.314 +03:30 [DBG] 'SmsHubContext' disposed.
+2025-01-18 15:58:36.315 +03:30 [DBG] Disposing connection to database 'SmsHub' on server '.'.
+2025-01-18 15:58:36.318 +03:30 [DBG] Disposed connection to database '' on server '' (3ms).
+2025-01-18 15:58:36.321 +03:30 [INF] Request finished HTTP/1.1 POST https://localhost:7221/Template/create - 200 null application/json; charset=utf-8 326.3677ms
+2025-01-18 15:58:36.324 +03:30 [DBG] Connection id "0HN9NNE2ERK63" disconnecting.
+2025-01-18 15:58:36.325 +03:30 [DBG] Connection id "0HN9NNE2ERK63" stopped.
+2025-01-18 15:58:36.327 +03:30 [DBG] Connection id "0HN9NNE2ERK63" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-01-18 15:58:48.353 +03:30 [DBG] Server z_e:10144:e38c2a4e heartbeat successfully sent
+2025-01-18 15:59:18.375 +03:30 [DBG] Server z_e:10144:e38c2a4e heartbeat successfully sent
+2025-01-18 15:59:48.388 +03:30 [DBG] Server z_e:10144:e38c2a4e heartbeat successfully sent
+2025-01-18 16:00:09.154 +03:30 [DBG] Connection id "0HN9NNE2ERK64" accepted.
+2025-01-18 16:00:09.156 +03:30 [DBG] Connection id "0HN9NNE2ERK64" started.
+2025-01-18 16:00:09.157 +03:30 [DBG] Connection id "0HN9NNE2ERK64" received FIN.
+2025-01-18 16:00:09.173 +03:30 [DBG] Connection id "0HN9NNE2ERK65" accepted.
+2025-01-18 16:00:09.181 +03:30 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2025-01-18 16:00:09.183 +03:30 [DBG] Connection id "0HN9NNE2ERK65" started.
+2025-01-18 16:00:09.198 +03:30 [DBG] Connection id "0HN9NNE2ERK64" stopped.
+2025-01-18 16:00:09.204 +03:30 [DBG] Connection id "0HN9NNE2ERK64" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-01-18 16:00:09.204 +03:30 [DBG] Connection 0HN9NNE2ERK65 established using the following protocol: "Tls13"
+2025-01-18 16:00:09.206 +03:30 [INF] Request starting HTTP/1.1 POST https://localhost:7221/Send/SendManager/1/1 - application/json 434
+2025-01-18 16:00:09.207 +03:30 [DBG] POST requests are not supported
+2025-01-18 16:00:09.208 +03:30 [DBG] 1 candidate(s) found for the request path '/Send/SendManager/1/1'
+2025-01-18 16:00:09.210 +03:30 [DBG] Endpoint 'SmsHub.Api.Controllers.V1.Sending.Commands.Create.SendManagerCreateController.SendManager (SmsHub.Api)' with route pattern 'Send/SendManager/{templateId}/{lineId}' is valid for the request path '/Send/SendManager/1/1'
+2025-01-18 16:00:09.212 +03:30 [DBG] Request matched endpoint 'SmsHub.Api.Controllers.V1.Sending.Commands.Create.SendManagerCreateController.SendManager (SmsHub.Api)'
+2025-01-18 16:00:09.213 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-18 16:00:09.214 +03:30 [INF] Executing endpoint 'SmsHub.Api.Controllers.V1.Sending.Commands.Create.SendManagerCreateController.SendManager (SmsHub.Api)'
+2025-01-18 16:00:09.218 +03:30 [INF] Route matched with {action = "SendManager", controller = "SendManagerCreate"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SendManager(Int32, Int32, System.Threading.CancellationToken) on controller SmsHub.Api.Controllers.V1.Sending.Commands.Create.SendManagerCreateController (SmsHub.Api).
+2025-01-18 16:00:09.221 +03:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-01-18 16:00:09.222 +03:30 [DBG] Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2025-01-18 16:00:09.224 +03:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-01-18 16:00:09.227 +03:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-01-18 16:00:09.228 +03:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter","Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-01-18 16:00:09.229 +03:30 [DBG] Executing controller factory for controller SmsHub.Api.Controllers.V1.Sending.Commands.Create.SendManagerCreateController (SmsHub.Api)
+2025-01-18 16:00:09.234 +03:30 [DBG] Entity Framework Core 8.0.10 initialized 'SmsHubContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.10' with options: CommandTimeout=180 
+2025-01-18 16:00:11.889 +03:30 [DBG] Executed controller factory for controller SmsHub.Api.Controllers.V1.Sending.Commands.Create.SendManagerCreateController (SmsHub.Api)
+2025-01-18 16:00:11.891 +03:30 [DBG] Attempting to bind parameter 'templateId' of type 'System.Int32' ...
+2025-01-18 16:00:11.893 +03:30 [DBG] Attempting to bind parameter 'templateId' of type 'System.Int32' using the name 'templateId' in request data ...
+2025-01-18 16:00:11.895 +03:30 [DBG] Done attempting to bind parameter 'templateId' of type 'System.Int32'.
+2025-01-18 16:00:11.896 +03:30 [DBG] Done attempting to bind parameter 'templateId' of type 'System.Int32'.
+2025-01-18 16:00:11.897 +03:30 [DBG] Attempting to validate the bound parameter 'templateId' of type 'System.Int32' ...
+2025-01-18 16:00:11.898 +03:30 [DBG] Done attempting to validate the bound parameter 'templateId' of type 'System.Int32'.
+2025-01-18 16:00:11.899 +03:30 [DBG] Attempting to bind parameter 'lineId' of type 'System.Int32' ...
+2025-01-18 16:00:11.900 +03:30 [DBG] Attempting to bind parameter 'lineId' of type 'System.Int32' using the name 'lineId' in request data ...
+2025-01-18 16:00:11.901 +03:30 [DBG] Done attempting to bind parameter 'lineId' of type 'System.Int32'.
+2025-01-18 16:00:11.902 +03:30 [DBG] Done attempting to bind parameter 'lineId' of type 'System.Int32'.
+2025-01-18 16:00:11.903 +03:30 [DBG] Attempting to validate the bound parameter 'lineId' of type 'System.Int32' ...
+2025-01-18 16:00:11.904 +03:30 [DBG] Done attempting to validate the bound parameter 'lineId' of type 'System.Int32'.
+2025-01-18 16:00:11.906 +03:30 [DBG] Attempting to bind parameter 'cancellationToken' of type 'System.Threading.CancellationToken' ...
+2025-01-18 16:00:11.907 +03:30 [DBG] Done attempting to bind parameter 'cancellationToken' of type 'System.Threading.CancellationToken'.
+2025-01-18 16:00:11.908 +03:30 [DBG] Attempting to validate the bound parameter 'cancellationToken' of type 'System.Threading.CancellationToken' ...
+2025-01-18 16:00:11.909 +03:30 [DBG] Done attempting to validate the bound parameter 'cancellationToken' of type 'System.Threading.CancellationToken'.
+2025-01-18 16:00:11.923 +03:30 [INF] Executing action method SmsHub.Api.Controllers.V1.Sending.Commands.Create.SendManagerCreateController.SendManager (SmsHub.Api) - Validation state: "Valid"
+2025-01-18 16:00:19.124 +03:30 [DBG] Server z_e:10144:e38c2a4e heartbeat successfully sent
+2025-01-18 16:00:21.345 +03:30 [DBG] Compiling query expression: 
+'DbSet<Template>()
+    .FirstOrDefault(e => EF.Property<int>(e, "Id") == __p_0)'
+2025-01-18 16:00:21.391 +03:30 [DBG] Generated query execution expression: 
+'queryContext => ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync<Template>(
+    asyncEnumerable: new SingleQueryingEnumerable<Template>(
+        (RelationalQueryContext)queryContext, 
+        RelationalCommandCache.QueryExpression(
+            Projection Mapping:
+                EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Template.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Template.Expression (string) Required, 1], [Property: Template.IsActive (bool) Required, 2], [Property: Template.MinCredit (int) Required, 3], [Property: Template.Parameters (string) Required, 4], [Property: Template.TemplateCategoryId (int) Required FK Index, 5], [Property: Template.Title (string) Required, 6] }
+            SELECT TOP(1) t.Id, t.Expression, t.IsActive, t.MinCredit, t.Parameters, t.TemplateCategoryId, t.Title
+            FROM Template AS t
+            WHERE t.Id == @__p_0), 
+        null, 
+        Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Template>, 
+        SmsHub.Persistence.Contexts.Implementation.SmsHubContext, 
+        False, 
+        False, 
+        True
+    ), 
+    cancellationToken: queryContext.CancellationToken)'
+2025-01-18 16:00:21.401 +03:30 [DBG] Creating DbConnection.
+2025-01-18 16:00:21.402 +03:30 [DBG] Created DbConnection. (0ms).
+2025-01-18 16:00:21.403 +03:30 [DBG] Opening connection to database 'SmsHub' on server '.'.
+2025-01-18 16:00:21.404 +03:30 [DBG] Opened connection to database 'SmsHub' on server '.'.
+2025-01-18 16:00:21.406 +03:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-01-18 16:00:21.408 +03:30 [DBG] Created DbCommand for 'ExecuteReader' (2ms).
+2025-01-18 16:00:21.409 +03:30 [DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+2025-01-18 16:00:21.410 +03:30 [DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='180']
+SELECT TOP(1) [t].[Id], [t].[Expression], [t].[IsActive], [t].[MinCredit], [t].[Parameters], [t].[TemplateCategoryId], [t].[Title]
+FROM [Template] AS [t]
+WHERE [t].[Id] = @__p_0
+2025-01-18 16:00:21.433 +03:30 [INF] Executed DbCommand (22ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='180']
+SELECT TOP(1) [t].[Id], [t].[Expression], [t].[IsActive], [t].[MinCredit], [t].[Parameters], [t].[TemplateCategoryId], [t].[Title]
+FROM [Template] AS [t]
+WHERE [t].[Id] = @__p_0
+2025-01-18 16:00:21.439 +03:30 [DBG] Context 'SmsHubContext' started tracking 'Template' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:00:21.442 +03:30 [DBG] Closing data reader to 'SmsHub' on server '.'.
+2025-01-18 16:00:21.443 +03:30 [DBG] A data reader for 'SmsHub' on server '.' is being disposed after spending 7ms reading results.
+2025-01-18 16:00:21.444 +03:30 [DBG] Closing connection to database 'SmsHub' on server '.'.
+2025-01-18 16:00:21.445 +03:30 [DBG] Closed connection to database 'SmsHub' on server '.' (1ms).
+2025-01-18 16:00:24.605 +03:30 [DBG] Compiling query expression: 
+'DbSet<Line>()
+    .Include(x => x.Provider)
+    .Where(x => x.Id == __id_0)
+    .FirstOrDefault()'
+2025-01-18 16:00:24.615 +03:30 [DBG] Including navigation: 'Line.Provider'.
+2025-01-18 16:00:24.639 +03:30 [DBG] Generated query execution expression: 
+'queryContext => ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync<Line>(
+    asyncEnumerable: new SingleQueryingEnumerable<Line>(
+        (RelationalQueryContext)queryContext, 
+        RelationalCommandCache.QueryExpression(
+            Client Projections:
+                0 -> Dictionary<IProperty, int> { [Property: Line.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Line.Credential (string) Required, 1], [Property: Line.Number (string) Required, 2], [Property: Line.ProviderId (ProviderEnum) Required FK Index, 3] }
+                1 -> Dictionary<IProperty, int> { [Property: Provider.Id (ProviderEnum) Required PK AfterSave:Throw, 4], [Property: Provider.BaseUri (string) Required, 5], [Property: Provider.BatchSize (int) Required, 6], [Property: Provider.CredentialTemplate (string) Required, 7], [Property: Provider.DefaultPreNumber (string), 8], [Property: Provider.FallbackBaseUri (string), 9], [Property: Provider.Title (string) Required, 10], [Property: Provider.Website (string), 11] }
+            SELECT TOP(1) l.Id, l.Credential, l.Number, l.ProviderId, p.Id, p.BaseUri, p.BatchSize, p.CredentialTemplate, p.DefaultPreNumber, p.FallbackBaseUri, p.Title, p.Website
+            FROM Line AS l
+            INNER JOIN Provider AS p ON l.ProviderId == p.Id
+            WHERE l.Id == @__id_0), 
+        null, 
+        Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Line>, 
+        SmsHub.Persistence.Contexts.Implementation.SmsHubContext, 
+        False, 
+        False, 
+        True
+    ), 
+    cancellationToken: queryContext.CancellationToken)'
+2025-01-18 16:00:24.645 +03:30 [DBG] Opening connection to database 'SmsHub' on server '.'.
+2025-01-18 16:00:24.646 +03:30 [DBG] Opened connection to database 'SmsHub' on server '.'.
+2025-01-18 16:00:24.647 +03:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-01-18 16:00:24.648 +03:30 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-01-18 16:00:24.649 +03:30 [DBG] Initialized DbCommand for 'ExecuteReader' (1ms).
+2025-01-18 16:00:24.650 +03:30 [DBG] Executing DbCommand [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='180']
+SELECT TOP(1) [l].[Id], [l].[Credential], [l].[Number], [l].[ProviderId], [p].[Id], [p].[BaseUri], [p].[BatchSize], [p].[CredentialTemplate], [p].[DefaultPreNumber], [p].[FallbackBaseUri], [p].[Title], [p].[Website]
+FROM [Line] AS [l]
+INNER JOIN [Provider] AS [p] ON [l].[ProviderId] = [p].[Id]
+WHERE [l].[Id] = @__id_0
+2025-01-18 16:00:24.674 +03:30 [INF] Executed DbCommand (25ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='180']
+SELECT TOP(1) [l].[Id], [l].[Credential], [l].[Number], [l].[ProviderId], [p].[Id], [p].[BaseUri], [p].[BatchSize], [p].[CredentialTemplate], [p].[DefaultPreNumber], [p].[FallbackBaseUri], [p].[Title], [p].[Website]
+FROM [Line] AS [l]
+INNER JOIN [Provider] AS [p] ON [l].[ProviderId] = [p].[Id]
+WHERE [l].[Id] = @__id_0
+2025-01-18 16:00:24.678 +03:30 [DBG] Context 'SmsHubContext' started tracking 'Line' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:00:24.689 +03:30 [DBG] The navigation 'Line.Provider' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:00:24.693 +03:30 [DBG] Context 'SmsHubContext' started tracking 'Provider' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:00:24.700 +03:30 [DBG] Closing data reader to 'SmsHub' on server '.'.
+2025-01-18 16:00:24.700 +03:30 [DBG] A data reader for 'SmsHub' on server '.' is being disposed after spending 23ms reading results.
+2025-01-18 16:00:24.702 +03:30 [DBG] Closing connection to database 'SmsHub' on server '.'.
+2025-01-18 16:00:24.703 +03:30 [DBG] Closed connection to database 'SmsHub' on server '.' (0ms).
+2025-01-18 16:00:26.822 +03:30 [DBG] Connection id "0HN9NNE2ERK65", Request id "0HN9NNE2ERK65:00000001": started reading request body.
+2025-01-18 16:00:26.823 +03:30 [DBG] Connection id "0HN9NNE2ERK65", Request id "0HN9NNE2ERK65:00000001": done reading request body.
+2025-01-18 16:00:39.950 +03:30 [DBG] Connection id "0HN9NNE2ERK5T" received FIN.
+2025-01-18 16:00:39.959 +03:30 [DBG] Connection id "0HN9NNE2ERK5T" is closing.
+2025-01-18 16:00:39.960 +03:30 [DBG] Connection id "0HN9NNE2ERK5T" is closed. The last processed stream ID was 9.
+2025-01-18 16:00:40.430 +03:30 [DBG] The connection queue processing loop for 0HN9NNE2ERK5T completed.
+2025-01-18 16:00:40.430 +03:30 [DBG] Connection id "0HN9NNE2ERK5T" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-01-18 16:00:41.439 +03:30 [DBG] Connection id "0HN9NNE2ERK5T" stopped.
+2025-01-18 16:00:49.279 +03:30 [DBG] Server z_e:10144:e38c2a4e heartbeat successfully sent
+2025-01-18 16:02:29.916 +03:30 [DBG] Server z_e:10144:e38c2a4e heartbeat successfully sent
+2025-01-18 16:02:33.814 +03:30 [DBG] 'SmsHubContext' generated a temporary value for the property 'MessageBatch.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:33.823 +03:30 [DBG] The navigation 'MessageBatch.Line' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:33.827 +03:30 [DBG] Context 'SmsHubContext' started tracking 'MessageBatch' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:33.833 +03:30 [DBG] 'SmsHubContext' generated a value for the property 'MessagesHolder.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:33.845 +03:30 [DBG] The navigation 'MessagesHolder.MessageBatch' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:33.849 +03:30 [DBG] Context 'SmsHubContext' started tracking 'MessagesHolder' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:33.853 +03:30 [DBG] 'SmsHubContext' generated a temporary value for the property 'MessagesDetail.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:33.869 +03:30 [DBG] The navigation 'MessagesDetail.MessagesHolder' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:33.873 +03:30 [DBG] Context 'SmsHubContext' started tracking 'MessagesDetail' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:33.875 +03:30 [DBG] 'SmsHubContext' generated a temporary value for the property 'MessagesDetail.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:33.877 +03:30 [DBG] The navigation 'MessagesDetail.MessagesHolder' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:33.878 +03:30 [DBG] Context 'SmsHubContext' started tracking 'MessagesDetail' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:34.052 +03:30 [DBG] SaveChanges starting for 'SmsHubContext'.
+2025-01-18 16:02:34.053 +03:30 [DBG] DetectChanges starting for 'SmsHubContext'.
+2025-01-18 16:02:34.064 +03:30 [DBG] DetectChanges completed for 'SmsHubContext'.
+2025-01-18 16:02:34.078 +03:30 [DBG] Opening connection to database 'SmsHub' on server '.'.
+2025-01-18 16:02:34.080 +03:30 [DBG] Opened connection to database 'SmsHub' on server '.'.
+2025-01-18 16:02:34.081 +03:30 [DBG] Beginning transaction with isolation level 'Unspecified'.
+2025-01-18 16:02:34.083 +03:30 [DBG] Began transaction with isolation level 'ReadCommitted'.
+2025-01-18 16:02:34.085 +03:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-01-18 16:02:34.085 +03:30 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-01-18 16:02:34.087 +03:30 [DBG] Initialized DbCommand for 'ExecuteReader' (1ms).
+2025-01-18 16:02:34.087 +03:30 [DBG] Executing DbCommand [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='180']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [MessageBatch] ([AllSize], [HolderSize], [InsertDateTime], [LineId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3);
+2025-01-18 16:02:34.097 +03:30 [INF] Executed DbCommand (9ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='180']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [MessageBatch] ([AllSize], [HolderSize], [InsertDateTime], [LineId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3);
+2025-01-18 16:02:34.106 +03:30 [DBG] The foreign key property 'MessageBatch.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-01-18 16:02:34.108 +03:30 [DBG] The foreign key property 'MessagesHolder.MessageBatchId' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-01-18 16:02:34.112 +03:30 [DBG] Closing data reader to 'SmsHub' on server '.'.
+2025-01-18 16:02:34.113 +03:30 [DBG] A data reader for 'SmsHub' on server '.' is being disposed after spending 8ms reading results.
+2025-01-18 16:02:34.116 +03:30 [DBG] Executing 3 update commands as a batch.
+2025-01-18 16:02:34.119 +03:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-01-18 16:02:34.119 +03:30 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-01-18 16:02:34.120 +03:30 [DBG] Initialized DbCommand for 'ExecuteReader' (1ms).
+2025-01-18 16:02:34.121 +03:30 [DBG] Executing DbCommand [Parameters=[@p4='?' (DbType = Guid), @p5='?' (DbType = Int32), @p6='?' (DbType = DateTime2), @p7='?' (DbType = Int32), @p8='?' (DbType = Int32), @p9='?' (DbType = Boolean), @p10='?' (DbType = Guid), @p11='?' (DbType = Int64), @p12='?' (Size = 4000), @p13='?' (DbType = DateTime2), @p14='?' (DbType = Int16), @p15='?' (Size = 4000), @p16='?' (DbType = Guid), @p17='?' (DbType = Int64), @p18='?' (Size = 4000), @p19='?' (DbType = DateTime2), @p20='?' (DbType = Int16), @p21='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='180']
+SET NOCOUNT ON;
+INSERT INTO [MessagesHolder] ([Id], [DetailsSize], [InsertDateTime], [MessageBatchId], [RetryCount], [SendDone])
+VALUES (@p4, @p5, @p6, @p7, @p8, @p9);
+MERGE [MessagesDetail] USING (
+VALUES (@p10, @p11, @p12, @p13, @p14, @p15, 0),
+(@p16, @p17, @p18, @p19, @p20, @p21, 1)) AS i ([MessagesHolderId], [ProviderResult], [Receptor], [SendDateTime], [SmsCount], [Text], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([MessagesHolderId], [ProviderResult], [Receptor], [SendDateTime], [SmsCount], [Text])
+VALUES (i.[MessagesHolderId], i.[ProviderResult], i.[Receptor], i.[SendDateTime], i.[SmsCount], i.[Text])
+OUTPUT INSERTED.[Id], i._Position;
+2025-01-18 16:02:34.132 +03:30 [DBG] Entity Framework Core 8.0.10 initialized 'SmsHubContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.10' with options: CommandTimeout=180 
+2025-01-18 16:02:38.584 +03:30 [INF] Executed DbCommand (4,463ms) [Parameters=[@p4='?' (DbType = Guid), @p5='?' (DbType = Int32), @p6='?' (DbType = DateTime2), @p7='?' (DbType = Int32), @p8='?' (DbType = Int32), @p9='?' (DbType = Boolean), @p10='?' (DbType = Guid), @p11='?' (DbType = Int64), @p12='?' (Size = 4000), @p13='?' (DbType = DateTime2), @p14='?' (DbType = Int16), @p15='?' (Size = 4000), @p16='?' (DbType = Guid), @p17='?' (DbType = Int64), @p18='?' (Size = 4000), @p19='?' (DbType = DateTime2), @p20='?' (DbType = Int16), @p21='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='180']
+SET NOCOUNT ON;
+INSERT INTO [MessagesHolder] ([Id], [DetailsSize], [InsertDateTime], [MessageBatchId], [RetryCount], [SendDone])
+VALUES (@p4, @p5, @p6, @p7, @p8, @p9);
+MERGE [MessagesDetail] USING (
+VALUES (@p10, @p11, @p12, @p13, @p14, @p15, 0),
+(@p16, @p17, @p18, @p19, @p20, @p21, 1)) AS i ([MessagesHolderId], [ProviderResult], [Receptor], [SendDateTime], [SmsCount], [Text], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([MessagesHolderId], [ProviderResult], [Receptor], [SendDateTime], [SmsCount], [Text])
+VALUES (i.[MessagesHolderId], i.[ProviderResult], i.[Receptor], i.[SendDateTime], i.[SmsCount], i.[Text])
+OUTPUT INSERTED.[Id], i._Position;
+2025-01-18 16:02:38.594 +03:30 [DBG] Compiling query expression: 
+'DbSet<MessagesHolder>()
+    .Include(m => m.MessageBatch)
+    .ThenInclude(m => m.Line)
+    .Single(m => m.Id == __id_0)'
+2025-01-18 16:02:38.602 +03:30 [DBG] The foreign key property 'MessagesDetail.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-01-18 16:02:38.605 +03:30 [DBG] Including navigation: 'MessagesHolder.MessageBatch'.
+2025-01-18 16:02:38.607 +03:30 [DBG] The foreign key property 'MessagesDetail.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-01-18 16:02:38.609 +03:30 [DBG] Including navigation: 'MessageBatch.Line'.
+2025-01-18 16:02:38.613 +03:30 [DBG] Closing data reader to 'SmsHub' on server '.'.
+2025-01-18 16:02:38.616 +03:30 [DBG] A data reader for 'SmsHub' on server '.' is being disposed after spending 14ms reading results.
+2025-01-18 16:02:38.619 +03:30 [DBG] Committing transaction.
+2025-01-18 16:02:38.621 +03:30 [DBG] Generated query execution expression: 
+'queryContext => ShapedQueryCompilingExpressionVisitor.SingleAsync<MessagesHolder>(
+    asyncEnumerable: new SingleQueryingEnumerable<MessagesHolder>(
+        (RelationalQueryContext)queryContext, 
+        RelationalCommandCache.QueryExpression(
+            Client Projections:
+                0 -> Dictionary<IProperty, int> { [Property: MessagesHolder.Id (Guid) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: MessagesHolder.DetailsSize (int) Required, 1], [Property: MessagesHolder.InsertDateTime (DateTime) Required, 2], [Property: MessagesHolder.MessageBatchId (int) Required FK Index, 3], [Property: MessagesHolder.RetryCount (int) Required, 4], [Property: MessagesHolder.SendDone (bool) Required, 5] }
+                1 -> Dictionary<IProperty, int> { [Property: MessageBatch.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 6], [Property: MessageBatch.AllSize (int) Required, 7], [Property: MessageBatch.HolderSize (int) Required, 8], [Property: MessageBatch.InsertDateTime (DateTime) Required, 9], [Property: MessageBatch.LineId (int) Required FK Index, 10] }
+                2 -> Dictionary<IProperty, int> { [Property: Line.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 11], [Property: Line.Credential (string) Required, 12], [Property: Line.Number (string) Required, 13], [Property: Line.ProviderId (ProviderEnum) Required FK Index, 14] }
+            SELECT TOP(2) m.Id, m.DetailsSize, m.InsertDateTime, m.MessageBatchId, m.RetryCount, m.SendDone, m0.Id, m0.AllSize, m0.HolderSize, m0.InsertDateTime, m0.LineId, l.Id, l.Credential, l.Number, l.ProviderId
+            FROM MessagesHolder AS m
+            INNER JOIN MessageBatch AS m0 ON m.MessageBatchId == m0.Id
+            INNER JOIN Line AS l ON m0.LineId == l.Id
+            WHERE m.Id == @__id_0), 
+        null, 
+        Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, MessagesHolder>, 
+        SmsHub.Persistence.Contexts.Implementation.SmsHubContext, 
+        False, 
+        False, 
+        True
+    ), 
+    cancellationToken: queryContext.CancellationToken)'
+2025-01-18 16:02:38.623 +03:30 [DBG] Committed transaction.
+2025-01-18 16:02:38.629 +03:30 [DBG] Creating DbConnection.
+2025-01-18 16:02:38.630 +03:30 [DBG] Closing connection to database 'SmsHub' on server '.'.
+2025-01-18 16:02:38.630 +03:30 [DBG] Created DbConnection. (0ms).
+2025-01-18 16:02:38.631 +03:30 [DBG] Closed connection to database 'SmsHub' on server '.' (0ms).
+2025-01-18 16:02:38.631 +03:30 [DBG] Opening connection to database 'SmsHub' on server '.'.
+2025-01-18 16:02:38.633 +03:30 [DBG] Opened connection to database 'SmsHub' on server '.'.
+2025-01-18 16:02:38.634 +03:30 [DBG] Disposing transaction.
+2025-01-18 16:02:38.634 +03:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-01-18 16:02:38.635 +03:30 [DBG] An entity of type 'MessageBatch' tracked by 'SmsHubContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.636 +03:30 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2025-01-18 16:02:38.637 +03:30 [DBG] An entity of type 'MessagesHolder' tracked by 'SmsHubContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.638 +03:30 [DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+2025-01-18 16:02:38.641 +03:30 [DBG] An entity of type 'MessagesDetail' tracked by 'SmsHubContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.642 +03:30 [DBG] Executing DbCommand [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='180']
+SELECT TOP(2) [m].[Id], [m].[DetailsSize], [m].[InsertDateTime], [m].[MessageBatchId], [m].[RetryCount], [m].[SendDone], [m0].[Id], [m0].[AllSize], [m0].[HolderSize], [m0].[InsertDateTime], [m0].[LineId], [l].[Id], [l].[Credential], [l].[Number], [l].[ProviderId]
+FROM [MessagesHolder] AS [m]
+INNER JOIN [MessageBatch] AS [m0] ON [m].[MessageBatchId] = [m0].[Id]
+INNER JOIN [Line] AS [l] ON [m0].[LineId] = [l].[Id]
+WHERE [m].[Id] = @__id_0
+2025-01-18 16:02:38.643 +03:30 [DBG] An entity of type 'MessagesDetail' tracked by 'SmsHubContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.647 +03:30 [DBG] SaveChanges completed for 'SmsHubContext' with 4 entities written to the database.
+2025-01-18 16:02:38.648 +03:30 [INF] Executed action method SmsHub.Api.Controllers.V1.Sending.Commands.Create.SendManagerCreateController.SendManager (SmsHub.Api), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 146723.5754ms.
+2025-01-18 16:02:38.649 +03:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-01-18 16:02:38.652 +03:30 [DBG] No information found on request to perform content negotiation.
+2025-01-18 16:02:38.653 +03:30 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-01-18 16:02:38.654 +03:30 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-01-18 16:02:38.655 +03:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-01-18 16:02:38.658 +03:30 [INF] Executing OkObjectResult, writing value of type 'SmsHub.Domain.BaseDomainEntities.ApiResponse.ApiResponseEnvelope`1[[System.Collections.Generic.ICollection`1[[SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create.MobileText, SmsHub.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-01-18 16:02:38.663 +03:30 [INF] Executed action SmsHub.Api.Controllers.V1.Sending.Commands.Create.SendManagerCreateController.SendManager (SmsHub.Api) in 149434.435ms
+2025-01-18 16:02:38.665 +03:30 [INF] Executed endpoint 'SmsHub.Api.Controllers.V1.Sending.Commands.Create.SendManagerCreateController.SendManager (SmsHub.Api)'
+2025-01-18 16:02:38.666 +03:30 [DBG] 'SmsHubContext' disposed.
+2025-01-18 16:02:38.666 +03:30 [DBG] Disposing connection to database 'SmsHub' on server '.'.
+2025-01-18 16:02:38.667 +03:30 [DBG] Disposed connection to database '' on server '' (0ms).
+2025-01-18 16:02:38.668 +03:30 [INF] Request finished HTTP/1.1 POST https://localhost:7221/Send/SendManager/1/1 - 200 null application/json; charset=utf-8 149462.4384ms
+2025-01-18 16:02:38.671 +03:30 [DBG] Connection id "0HN9NNE2ERK65" disconnecting.
+2025-01-18 16:02:38.673 +03:30 [DBG] Connection id "0HN9NNE2ERK65" stopped.
+2025-01-18 16:02:38.674 +03:30 [DBG] Connection id "0HN9NNE2ERK65" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-01-18 16:02:38.674 +03:30 [INF] Executed DbCommand (33ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='180']
+SELECT TOP(2) [m].[Id], [m].[DetailsSize], [m].[InsertDateTime], [m].[MessageBatchId], [m].[RetryCount], [m].[SendDone], [m0].[Id], [m0].[AllSize], [m0].[HolderSize], [m0].[InsertDateTime], [m0].[LineId], [l].[Id], [l].[Credential], [l].[Number], [l].[ProviderId]
+FROM [MessagesHolder] AS [m]
+INNER JOIN [MessageBatch] AS [m0] ON [m].[MessageBatchId] = [m0].[Id]
+INNER JOIN [Line] AS [l] ON [m0].[LineId] = [l].[Id]
+WHERE [m].[Id] = @__id_0
+2025-01-18 16:02:38.680 +03:30 [DBG] Context 'SmsHubContext' started tracking 'MessagesHolder' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.682 +03:30 [DBG] The navigation 'MessagesHolder.MessageBatch' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.683 +03:30 [DBG] Context 'SmsHubContext' started tracking 'MessageBatch' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.685 +03:30 [DBG] The navigation 'MessageBatch.Line' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.686 +03:30 [DBG] Context 'SmsHubContext' started tracking 'Line' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.692 +03:30 [DBG] Closing data reader to 'SmsHub' on server '.'.
+2025-01-18 16:02:38.693 +03:30 [DBG] A data reader for 'SmsHub' on server '.' is being disposed after spending 13ms reading results.
+2025-01-18 16:02:38.694 +03:30 [DBG] Closing connection to database 'SmsHub' on server '.'.
+2025-01-18 16:02:38.696 +03:30 [DBG] Closed connection to database 'SmsHub' on server '.' (1ms).
+2025-01-18 16:02:38.702 +03:30 [DBG] Compiling query expression: 
+'DbSet<MessagesDetail>()
+    .Where(m => m.MessagesHolderId == __messageHolderId_0)
+    .Select(m => new MobileText{ 
+        Mobile = m.Receptor, 
+        Text = m.Text 
+    }
+    )'
+2025-01-18 16:02:38.710 +03:30 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<MobileText>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            Mobile -> 0
+            Text -> 1
+        SELECT m.Receptor AS Mobile, m.Text
+        FROM MessagesDetail AS m
+        WHERE m.MessagesHolderId == @__messageHolderId_0), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, MobileText>, 
+    SmsHub.Persistence.Contexts.Implementation.SmsHubContext, 
+    False, 
+    False, 
+    True
+)'
+2025-01-18 16:02:38.713 +03:30 [DBG] Opening connection to database 'SmsHub' on server '.'.
+2025-01-18 16:02:38.714 +03:30 [DBG] Opened connection to database 'SmsHub' on server '.'.
+2025-01-18 16:02:38.714 +03:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-01-18 16:02:38.715 +03:30 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-01-18 16:02:38.716 +03:30 [DBG] Initialized DbCommand for 'ExecuteReader' (1ms).
+2025-01-18 16:02:38.717 +03:30 [DBG] Executing DbCommand [Parameters=[@__messageHolderId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='180']
+SELECT [m].[Receptor] AS [Mobile], [m].[Text]
+FROM [MessagesDetail] AS [m]
+WHERE [m].[MessagesHolderId] = @__messageHolderId_0
+2025-01-18 16:02:38.725 +03:30 [INF] Executed DbCommand (7ms) [Parameters=[@__messageHolderId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='180']
+SELECT [m].[Receptor] AS [Mobile], [m].[Text]
+FROM [MessagesDetail] AS [m]
+WHERE [m].[MessagesHolderId] = @__messageHolderId_0
+2025-01-18 16:02:38.727 +03:30 [DBG] Closing data reader to 'SmsHub' on server '.'.
+2025-01-18 16:02:38.728 +03:30 [DBG] A data reader for 'SmsHub' on server '.' is being disposed after spending 1ms reading results.
+2025-01-18 16:02:38.729 +03:30 [DBG] Closing connection to database 'SmsHub' on server '.'.
+2025-01-18 16:02:38.730 +03:30 [DBG] Closed connection to database 'SmsHub' on server '.' (0ms).
+2025-01-18 16:02:38.735 +03:30 [DBG] Compiling query expression: 
+'DbSet<ProviderResponseStatus>()'
+2025-01-18 16:02:38.739 +03:30 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<ProviderResponseStatus>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: ProviderResponseStatus.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: ProviderResponseStatus.IsSuccess (bool) Required, 1], [Property: ProviderResponseStatus.Message (string) Required, 2], [Property: ProviderResponseStatus.ProviderId (ProviderEnum) Required, 3], [Property: ProviderResponseStatus.StatusCode (int) Required, 4] }
+        SELECT p.Id, p.IsSuccess, p.Message, p.ProviderId, p.StatusCode
+        FROM ProviderResponseStatus AS p), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, ProviderResponseStatus>, 
+    SmsHub.Persistence.Contexts.Implementation.SmsHubContext, 
+    False, 
+    False, 
+    True
+)'
+2025-01-18 16:02:38.741 +03:30 [DBG] Opening connection to database 'SmsHub' on server '.'.
+2025-01-18 16:02:38.742 +03:30 [DBG] Opened connection to database 'SmsHub' on server '.'.
+2025-01-18 16:02:38.743 +03:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-01-18 16:02:38.744 +03:30 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-01-18 16:02:38.745 +03:30 [DBG] Initialized DbCommand for 'ExecuteReader' (1ms).
+2025-01-18 16:02:38.746 +03:30 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='180']
+SELECT [p].[Id], [p].[IsSuccess], [p].[Message], [p].[ProviderId], [p].[StatusCode]
+FROM [ProviderResponseStatus] AS [p]
+2025-01-18 16:02:38.749 +03:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='180']
+SELECT [p].[Id], [p].[IsSuccess], [p].[Message], [p].[ProviderId], [p].[StatusCode]
+FROM [ProviderResponseStatus] AS [p]
+2025-01-18 16:02:38.754 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.760 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.762 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.763 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.764 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.766 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.768 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.770 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.771 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.772 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.773 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.775 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.776 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.777 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.778 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.779 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.780 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.783 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.785 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.787 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.789 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.791 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.792 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.793 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.794 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.795 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.797 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.800 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.801 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.802 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.803 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.804 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.806 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.807 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.808 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.809 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.811 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.812 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.815 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.816 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.817 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.818 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.819 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.820 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.821 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.822 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.823 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.825 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.826 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.827 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.828 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.831 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.832 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.833 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.834 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.835 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.837 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.838 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.839 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.842 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.843 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.846 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.847 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.848 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.849 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.851 +03:30 [DBG] Context 'SmsHubContext' started tracking 'ProviderResponseStatus' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-18 16:02:38.852 +03:30 [DBG] Closing data reader to 'SmsHub' on server '.'.
+2025-01-18 16:02:38.853 +03:30 [DBG] A data reader for 'SmsHub' on server '.' is being disposed after spending 100ms reading results.
+2025-01-18 16:02:38.853 +03:30 [DBG] Closing connection to database 'SmsHub' on server '.'.
+2025-01-18 16:02:38.854 +03:30 [DBG] Closed connection to database 'SmsHub' on server '.' (0ms).
+2025-01-18 16:02:49.502 +03:30 [DBG] Aggregating records in 'Counter' table...
+2025-01-18 16:02:52.165 +03:30 [INF] Start processing HTTP request POST https://api.kavenegar.com/v1/5575426A68495063786333776662677171397533775377746A5A696475386159574332463078442F7750553D/sms/sendarray.json
+2025-01-18 16:02:52.174 +03:30 [INF] Sending HTTP request POST https://api.kavenegar.com/v1/5575426A68495063786333776662677171397533775377746A5A696475386159574332463078442F7750553D/sms/sendarray.json
+2025-01-18 16:03:03.820 +03:30 [DBG] Server z_e:10144:e38c2a4e heartbeat successfully sent
+2025-01-18 16:03:32.288 +03:30 [INF] Received HTTP response headers after 40106.9796ms - 200
+2025-01-18 16:03:32.293 +03:30 [INF] End processing HTTP request after 40129.997ms - 200
+2025-01-18 16:03:38.676 +03:30 [DBG] Server z_e:10144:e38c2a4e heartbeat successfully sent
+2025-01-18 16:04:45.083 +03:30 [DBG] Server z_e:10144:e38c2a4e heartbeat successfully sent
+2025-01-18 16:04:46.808 +03:30 [DBG] HttpMessageHandler expired after 120000ms for client 'https://api.kavenegar.com/v1/5575426A68495063786333776662677171397533775377746A5A696475386159574332463078442F7750553D/sms/sendarray.json'
