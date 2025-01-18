@@ -40,7 +40,7 @@ namespace Hiwapardaz.SepehrBarin.Persistence.DbSeeder.Implementations
                     HasTwoStepVerification = false,
                     MobileConfirmed = true,
                     Password = await SecurityOperations.GetSha512Hash("q123456"),
-                    Username="admin"                    
+                    Username = "admin"
                 };
                 _users.Add(programmer);
                 _uow.SaveChanges();
@@ -48,7 +48,7 @@ namespace Hiwapardaz.SepehrBarin.Persistence.DbSeeder.Implementations
         }
         private ICollection<UserRole> CreateUserRoles(Guid userId)
         {
-            var userRoles= new List<UserRole>
+            var userRoles = new List<UserRole>
             {
                 new UserRole() { UserId = userId, RoleId = 3, ValidFrom = DateTime.Now, InsertLogInfo = LogInfoJson.Get() }
             };

@@ -37,7 +37,7 @@ namespace SmsHub.Application.Features.Security.Handlers.Commands.Update.Implemen
                 throw new InvalidDataException();
             }
 
-            _mapper.Map(userLine, updateUserLineDto);
+           var x= _mapper.Map( updateUserLineDto, userLine);
         }
     }
 }

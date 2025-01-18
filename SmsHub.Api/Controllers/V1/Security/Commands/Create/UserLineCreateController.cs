@@ -40,7 +40,7 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
             _userLineUpdateHandler.NotNull(nameof(userLineUpdateHandler));
 
             _userLineGetByLineIdHandler = userLineGetByLineIdHandler;
-            _userLineGetByUserIdHandler.NotNull(nameof(userLineGetByUserIdHandler));
+            _userLineGetByLineIdHandler.NotNull(nameof(userLineGetByLineIdHandler));
 
             _userLineGetByUserIdHandler = userLineGetByUserIdHandler;
             _userLineGetByUserIdHandler.NotNull(nameof(_userLineGetByUserIdHandler));
@@ -83,18 +83,18 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
 
         [HttpPost]
         [Route("GetByUserId/{userId})")]
-        public async Task<IActionResult> Update( Guid userId, CancellationToken cancellationToken)
+        public async Task<IActionResult> GetByUserId(Guid userId, CancellationToken cancellationToken)
         {
             await _userLineGetByUserIdHandler.Handle(userId, cancellationToken);
             await _uow.SaveChangesAsync(cancellationToken);
 
             return Ok();
         }
-        
-        
+
+
         [HttpPost]
         [Route("GetByLineId/{lineId})")]
-        public async Task<IActionResult> Update( int lineId, CancellationToken cancellationToken)
+        public async Task<IActionResult> GetByLineId(int lineId, CancellationToken cancellationToken)
         {
             await _userLineGetByLineIdHandler.Handle(lineId, cancellationToken);
             await _uow.SaveChangesAsync(cancellationToken);
