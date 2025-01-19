@@ -9,56 +9,49 @@ using SmsHub.Persistence.Features.Security.Queries.Contracts;
 
 namespace SmsHub.Application.Features.Security.Handlers.Commands.Create.Implementations
 {
-    public class UserFindByPasswordHandler : IUserFindByPasswordHandler
+    public class UserPolicy : IUserPolicy
     {
         private readonly IUserQueryService _userQueryService;
         private readonly IUserLoginCommandService _userLoginCommandService;
         private readonly IHttpContextAccessor _contextAccessor;
-        public UserFindByPasswordHandler(
+        public UserPolicy(
             IUserQueryService userQueryService,
-            IUserLoginCommandService userLoginCommandService,
+             IUserLoginCommandService userLoginCommandService,
             IHttpContextAccessor contextAccessor)
         {
             _userQueryService = userQueryService;
-            _userQueryService.NotNull(nameof(_userQueryService));
+            _userQueryService.NotNull(nameof(userQueryService));
 
-            _userLoginCommandService = userLoginCommandService;
-            _userLoginCommandService.NotNull(nameof(_userLoginCommandService));
+            _userLoginCommandService= userLoginCommandService;
+            _userLoginCommandService.NotNull(nameof(userLoginCommandService));
 
             _contextAccessor = contextAccessor;
-            _contextAccessor.NotNull(nameof(_contextAccessor));
+            _contextAccessor.NotNull(nameof(contextAccessor));
         }
-        public async Task<(User?, bool)> Handle(FirstStepLoginInput input, CancellationToken cancellationToken)
+
+        public async Task<(string, bool)> Handle(FirstStepLoginInput input, CancellationToken cancellationToken)
         {
             var user = await _userQueryService.Get(input.Username);
 
-            var logInfoString = GetLogInfo();
-
-            if (user == null)
+            if (user.InvalidLoginAttemptCount > 3)//todo: check
             {
-                await GetUserLogin(InvalidLoginReasonEnum.InvalidUsername, false, false, input, user);
-                return (user, false);
-
+                await GetUserLogin(InvalidLoginReasonEnum.LockedUser, true, true, input, user);
+                return("به حداکثر تلاش مجاز رسیده اید",false);
             }
-            else
+            else if (user.LockTimespan > DateTime.Now)//todo: check
             {
-                var hashedPassword = await SecurityOperations.GetSha512Hash(input.Password);
-                if (hashedPassword != user.Password)
-                {
-                    await GetUserLogin(InvalidLoginReasonEnum.InvalidPassword, true, true, input, user);
-                    return (user, false);
-                }
-                else
-                {
-                    return (user, true);
-                }
-
+                await GetUserLogin(InvalidLoginReasonEnum.InactiveUser, true, true, input, user);
+                var dateLock = user.LockTimespan.Value.Date;
+                var timeLock=user.LockTimespan.Value.TimeOfDay;
+                return ($"حساب کاربری شما تاریخ {dateLock} - ساعت {timeLock} قفل می باشد ", false);
             }
-
-
-
-
+            else//valid
+            {
+                //todo: when user validation was true, create userLogin or not??
+                return ("", true);
+            }
         }
+
         public string GetLogInfo()
         {
             var logInfo = DeviceDetection.GetLogInfo(_contextAccessor.HttpContext.Request);
@@ -85,6 +78,5 @@ namespace SmsHub.Application.Features.Security.Handlers.Commands.Create.Implemen
             };
             await _userLoginCommandService.Add(userLogin);
         }
-
     }
 }

@@ -164,6 +164,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var successStatus = await GetSuccessStatus(statusList);
             if (response.Return.Status == successStatus.StatusCode)
             {
+                //todo: save response to messageDetailStatus
                 //todo : return
             }
             else

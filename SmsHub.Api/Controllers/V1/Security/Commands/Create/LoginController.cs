@@ -27,6 +27,7 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
         private readonly IUserLoginFindHandler _userLoginFindHandler;
         private readonly IDNTCaptchaApiProvider _captchaApiProvider;
         private readonly ICaptchaCryptoProvider _captchaCryptoProvider;
+        private readonly IUserPolicy _userPolicy;
 
         public LoginController(
             IUnitOfWork uow,
@@ -36,7 +37,8 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
             IUserLoginAddHandler userLoginAddHandler,
             IUserLoginFindHandler userLoginFindUserHandler,
             IDNTCaptchaApiProvider captchaApiProvider,
-            ICaptchaCryptoProvider captchaCryptoProvider)
+            ICaptchaCryptoProvider captchaCryptoProvider,
+            IUserPolicy userPolicy)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));
@@ -61,6 +63,9 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
 
             _captchaCryptoProvider = captchaCryptoProvider;
             _captchaCryptoProvider.NotNull(nameof(captchaCryptoProvider));
+
+            _userPolicy = userPolicy;
+            _userPolicy.NotNull(nameof(userPolicy));
         }
 
         [AllowAnonymous]
@@ -76,6 +81,14 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
             {
                 return ClientError(MessageResources.UserNotFound);
             }
+
+            //Policy
+            var (userPolicy,resultPolicy)=await _userPolicy.Handle(loginDto,cancellationToken);
+            if (!resultPolicy || string.IsNullOrEmpty(userPolicy))
+            {
+                return ClientError(userPolicy);
+            }
+
             if (!user.HasTwoStepVerification)
             {
                 var secondStepOutput = await GetSecondStepOutput(user, cancellationToken);
