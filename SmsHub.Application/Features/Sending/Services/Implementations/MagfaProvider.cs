@@ -146,7 +146,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
         }
 
-        public async Task Send(Entities.Line line, ICollection<MobileText> mobileText, ICollection<ProviderResponseStatus> statusList)
+        public async Task<ICollection<CreateMessageDetailStatusDto>> Send(Entities.Line line, ICollection<MobileText> mobileText, ICollection<ProviderResponseStatus> statusList)
         {
             var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
             var domain = magfaCredential.Domain;
@@ -173,8 +173,21 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             var successStatus = await GetSuccessStatus(statusList);
             if (response.Status == successStatus.StatusCode)
-            {               
-                //return
+            {
+                //MessageDetailStatus
+                ICollection<CreateMessageDetailStatusDto> messageDetailStatuses = new List<CreateMessageDetailStatusDto>();
+                foreach (var item in response.Message)
+                {
+                    var singleMessageDetailStatus = new CreateMessageDetailStatusDto()
+                    {
+                        MessageId = Convert.ToInt64(item.Id),
+                        MessagesDetailId = 0,//todo : check
+                        ProviderResponseStatusId = await GetStatusId(statusList, item.Status),//todo
+                        ReceiveDateTime = DateTime.Now,//todo: magfa dont have dateTime
+                    };
+                    messageDetailStatuses.Add(singleMessageDetailStatus);
+                }
+                return messageDetailStatuses;
             }
             else
             {
@@ -252,6 +265,12 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
                .Single();
 
             return trueStatus;
+        }
+        private async Task<int> GetStatusId(ICollection<ProviderResponseStatus> statusList, long statusCode)
+        {
+            var status = statusList.Where(x =>x.ProviderId==ProviderEnum.Magfa && x.StatusCode == statusCode).Single();
+
+            return status.Id;
         }
 
     }

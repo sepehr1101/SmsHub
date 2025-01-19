@@ -29,14 +29,15 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
 
 
         private readonly string _Mobile = "mobile";
-        public SendManagerCreateHandler(IHttpContextAccessor contextAccessor
-            ,ITemplateGetSingleHandler templateGetSingleHandler
-            , ILineGetSingleHandler lineGetSingleHandler
-            ,IMessageBatchCommandService messageBatchCommandService
-            , IProviderGetSingleHandler providerGetSingleHandler
-            , ITemplateQueryService templateQueryService
-            ,ILineQueryService lineQueryService
-            , IProviderQueryService providerQueryService,
+        public SendManagerCreateHandler(
+            IHttpContextAccessor contextAccessor,
+            ITemplateGetSingleHandler templateGetSingleHandler,
+            ILineGetSingleHandler lineGetSingleHandler,
+            IMessageBatchCommandService messageBatchCommandService,
+            IProviderGetSingleHandler providerGetSingleHandler,
+            ITemplateQueryService templateQueryService,
+            ILineQueryService lineQueryService,
+            IProviderQueryService providerQueryService,
             ISmsProviderFactory smsProviderFactory,
             ISendInBackgroundService sendInBackgroundService
             )
@@ -72,7 +73,7 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
 
             requestBodyValue.ToList().ForEach(r => ValidationData(templateValue, r));
 
-            ICollection<MobileText> mobileText=new List<MobileText>();
+            ICollection<MobileText> mobileText = new List<MobileText>();
             foreach (var item in requestBodyValue)
             {
                 mobileText.Add(await GetMessageToSend(item, templateId));
@@ -81,8 +82,8 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
             var messageBatch = MessageBatchFactory.Create(mobileText, lineId, batchSize, "");
             var result = _messageBatchCommandService.Add(messageBatch);
             messageBatch.MessagesHolders
-                .ForEach(m => BackgroundJob.Enqueue(() => _sendInBackgroundService.Trigger(m.Id, line.Provider.Id)));
-               
+                .ForEach(m => BackgroundJob.Enqueue(() => _sendInBackgroundService.Trigger(m.Id, line.Provider.Id,messageBatch.Id)));//add messageBatch
+
             return mobileText;
         }
         private Dictionary<string, string> DeserializeToDictionary(string data)
@@ -124,7 +125,7 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
 
         private void ValidationData(Dictionary<string, string> template, Dictionary<string, string> requestBody)
         {
-            if (!requestBody.Keys.Select(k=>k.ToLowerInvariant()).Contains(_Mobile))
+            if (!requestBody.Keys.Select(k => k.ToLowerInvariant()).Contains(_Mobile))
                 throw new InvalidMobileException();
 
             if (!ValidationAnsiString.CheckPersianPhoneNumber(FindMobileUser(requestBody)))
