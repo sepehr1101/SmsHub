@@ -16,6 +16,8 @@
     <PackageVersion Include="FluentMigrator.Runner.SqlServer" Version="6.2.0" />
     <PackageVersion Include="FluentValidation" Version="11.10.0" />
     <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="11.10.0" />
+    <PackageVersion Include="Gridify" Version="2.16.1" />
+    <PackageVersion Include="Gridify.EntityFramework" Version="2.16.1" />
     <PackageVersion Include="Handlebars.Net" Version="2.1.6" />
     <PackageVersion Include="Hangfire" Version="1.8.17" />
     <PackageVersion Include="Hangfire.Core" Version="1.8.17" />
