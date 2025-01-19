@@ -70,11 +70,6 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             _countInboxService.NotNull(nameof(countInboxService));
 
         }
-
-        public void Test()
-        {
-            Console.WriteLine("test from kavenegar");
-        }
         public async Task<long> GetCredit(Entities.Line line, ICollection<ProviderResponseStatus> statusList)
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
@@ -91,7 +86,6 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             {
                 throw new ProviderResponseException(response.Return.Message, response.Return.Status);
             }
-
         }
 
         public async Task GetState(Entities.Line line, long id, ICollection<ProviderResponseStatus> statusList)

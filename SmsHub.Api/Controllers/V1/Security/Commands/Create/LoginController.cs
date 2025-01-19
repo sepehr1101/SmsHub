@@ -113,7 +113,7 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
         [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true, Duration = 0)]
         [Route("captcha")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<DNTCaptchaApiResponse>), StatusCodes.Status200OK)]
-        public IActionResult CreateDNTCaptchaParams()
+        public IActionResult CreateCaptchaParams()
         { 
             var captchaParams= _captchaApiProvider.CreateDNTCaptcha(new DNTCaptchaTagHelperHtmlAttributes
             {
@@ -122,9 +122,9 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
                 FontSize = 20,
                 ForeColor = "#111111",
                 Language = DNTCaptcha.Core.Language.Persian,
-                DisplayMode = DisplayMode.SumOfTwoNumbers,
+                DisplayMode = DisplayMode.SumOfTwoNumbersToWords,
                 Max = 90,
-                Min = 1
+                Min = 5
             });
             return Ok(captchaParams);
         }
