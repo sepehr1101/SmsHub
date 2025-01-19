@@ -14,7 +14,6 @@ namespace SmsHub.Application.Features.Sending.Services.Contracts
         Task<long> GetCredit(Entities.Line line, ICollection<ProviderResponseStatus> statusList);
         Task GetState(Entities.Line line,long id, ICollection<ProviderResponseStatus> statusList);
         Task<ICollection<CreateReceiveDto>> Receive([Optional]Entities.Line line, ICollection<ProviderResponseStatus> statusList);
-        void Test();
-        //Task Send(Line line, MobileText mobileText);
+     
     }
 }

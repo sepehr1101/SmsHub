@@ -41,6 +41,8 @@
     <PackageVersion Include="Serilog" Version="4.2.0" />
     <PackageVersion Include="Serilog.AspNetCore" Version="8.0.3" />
     <PackageVersion Include="Serilog.Sinks.MSSqlServer" Version="8.1.0" />
+    <PackageVersion Include="Serilog.UI" Version="3.1.0" />
+    <PackageVersion Include="Serilog.UI.MsSqlServerProvider" Version="3.1.0" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <PackageVersion Include="System.Data.SqlClient" Version="4.9.0" />
     <PackageVersion Include="Testcontainers.MsSql" Version="4.0.0" />

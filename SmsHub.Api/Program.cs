@@ -10,7 +10,7 @@ var configuration = builder.Configuration;
 // DI
 builder.Services.AddDI();
 
-builder.Services.AddCustomJwtBearer(configuration);
+builder.Services.AddAuth(configuration);
 builder.Services.AddControllers();
 builder.Services.AddHttpContextAccessor();
 
@@ -50,6 +50,7 @@ app.UseRouting();
 app.UseCustomCors();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseSerilogInterface();
 
 app.AddHangfireDashboard();
 

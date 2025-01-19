@@ -2,7 +2,7 @@
 
 namespace SmsHub.Api.Extensions
 {
-    public static class CaptchaExtension
+    public static class ConfigureCaptcha
     {
         const int _expireMin = 5;
         public static void AddCaptcha(this IServiceCollection services)

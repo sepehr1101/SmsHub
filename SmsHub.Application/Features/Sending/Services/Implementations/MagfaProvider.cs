@@ -6,12 +6,10 @@ using MagfaRequest = SmsHub.Domain.Providers.Magfa3000.Entities.Requests;
 using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Application.Common.Services.Implementations;
 using System.Runtime.InteropServices;
-using SmsHub.Domain.Providers.Magfa3000.Entities.Responses;
 using SmsHub.Domain.Features.Receiving.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Sending.Entities;
 using SmsHub.Domain.Constants;
 using SmsHub.Application.Exceptions;
-using Azure;
 
 
 namespace SmsHub.Application.Features.Sending.Services.Implementations
@@ -47,10 +45,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             _magfaMessagesService = magfaMessagesService;
             _magfaMessagesService.NotNull(nameof(magfaMessagesService));
         }
-        public void Test()
-        {
-            Console.WriteLine("test from magfa");
-        }
+
         public async Task<long> GetCredit(Entities.Line line, ICollection<ProviderResponseStatus> statusList)
         {
             var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
@@ -178,7 +173,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             var successStatus = await GetSuccessStatus(statusList);
             if (response.Status == successStatus.StatusCode)
-            {
+            {               
                 //return
             }
             else

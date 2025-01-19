@@ -35,7 +35,8 @@ namespace SmsHub.Persistence.Features.Sending.Queries.Implementations
                 .Select(m => new MobileText()
                 {
                     Mobile = m.Receptor,
-                    Text = m.Text
+                    Text = m.Text,
+                    LocalId=m.Id
                 })
                 .ToListAsync();
             return mobileTexts;
