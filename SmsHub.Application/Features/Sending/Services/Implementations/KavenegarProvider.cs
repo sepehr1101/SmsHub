@@ -165,6 +165,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             if (response.Return.Status == successStatus.StatusCode)
             {
                 //todo: save response to messageDetailStatus
+
                 //todo : return
             }
             else
