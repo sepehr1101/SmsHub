@@ -367,3 +367,4 @@ FodyWeavers.xsd
 /SmsHub.IntegrationTests.Persistance/BaseIntegrationTest.cs
 /SmsHub.IntegrationTests.Persistance/ProviderControllerTest.cs
 /SmsHub.IntegrationTests.Persistance/TestEnvironmentWebApplicationFactory.cs
+/SmsHub.Api/Logs/log.txt
