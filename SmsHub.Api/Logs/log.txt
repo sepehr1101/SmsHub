@@ -17381,3 +17381,1284 @@ SmsHub.Application.Exceptions.ProviderResponseException: خطا => آدرس IP �
 2025-01-18 12:18:58.766 +03:30 [DBG] An antiforgery cookie token was reused.
 2025-01-18 12:18:58.766 +03:30 [DBG] Antiforgery successfully validated a request.
 2025-01-18 12:18:58.769 +03:30 [INF] Request finished HTTP/2 POST https://localhost:44330/hangfire/stats - 200 null application/json 4.7124ms
+2025-01-19 12:29:10.015 +03:30 [INF] Start installing Hangfire SQL objects...
+2025-01-19 12:29:10.233 +03:30 [INF] Hangfire SQL objects installed.
+2025-01-19 12:29:10.341 +03:30 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2025-01-19 12:29:10.561 +03:30 [DBG] Hosting starting
+2025-01-19 12:29:10.572 +03:30 [INF] User profile is available. Using 'C:\Users\ASUS\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-01-19 12:29:10.591 +03:30 [DBG] Reading data from file 'C:\Users\ASUS\AppData\Local\ASP.NET\DataProtection-Keys\key-59493989-ee9b-4944-be84-e850bc4621bf.xml'.
+2025-01-19 12:29:10.613 +03:30 [DBG] Reading data from file 'C:\Users\ASUS\AppData\Local\ASP.NET\DataProtection-Keys\key-6dce919e-7ee6-4342-9667-1d4cb2eb4c2e.xml'.
+2025-01-19 12:29:10.626 +03:30 [DBG] Reading data from file 'C:\Users\ASUS\AppData\Local\ASP.NET\DataProtection-Keys\key-8eb464ff-bb48-4893-8553-4b33ca923d18.xml'.
+2025-01-19 12:29:10.644 +03:30 [DBG] Reading data from file 'C:\Users\ASUS\AppData\Local\ASP.NET\DataProtection-Keys\key-93dbf559-430f-4fb8-baee-852feab561d2.xml'.
+2025-01-19 12:29:10.660 +03:30 [DBG] Reading data from file 'C:\Users\ASUS\AppData\Local\ASP.NET\DataProtection-Keys\key-964e7268-075f-413e-8baf-65b0a2045617.xml'.
+2025-01-19 12:29:10.678 +03:30 [DBG] Reading data from file 'C:\Users\ASUS\AppData\Local\ASP.NET\DataProtection-Keys\key-d37e3b4f-3314-46b2-8cce-ce4f82f59fd5.xml'.
+2025-01-19 12:29:10.693 +03:30 [DBG] Reading data from file 'C:\Users\ASUS\AppData\Local\ASP.NET\DataProtection-Keys\key-d65063de-cf72-4c3f-83cb-2cb6fe0d6b43.xml'.
+2025-01-19 12:29:10.717 +03:30 [DBG] Found key {59493989-ee9b-4944-be84-e850bc4621bf}.
+2025-01-19 12:29:10.721 +03:30 [DBG] Found key {6dce919e-7ee6-4342-9667-1d4cb2eb4c2e}.
+2025-01-19 12:29:10.721 +03:30 [DBG] Found key {8eb464ff-bb48-4893-8553-4b33ca923d18}.
+2025-01-19 12:29:10.722 +03:30 [DBG] Found key {93dbf559-430f-4fb8-baee-852feab561d2}.
+2025-01-19 12:29:10.722 +03:30 [DBG] Found key {964e7268-075f-413e-8baf-65b0a2045617}.
+2025-01-19 12:29:10.722 +03:30 [DBG] Found key {d37e3b4f-3314-46b2-8cce-ce4f82f59fd5}.
+2025-01-19 12:29:10.722 +03:30 [DBG] Found key {d65063de-cf72-4c3f-83cb-2cb6fe0d6b43}.
+2025-01-19 12:29:10.727 +03:30 [DBG] Considering key {93dbf559-430f-4fb8-baee-852feab561d2} with expiration date 2025-03-25 18:21:35Z as default key.
+2025-01-19 12:29:10.730 +03:30 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=3.1.32.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-01-19 12:29:10.733 +03:30 [DBG] Decrypting secret element using Windows DPAPI.
+2025-01-19 12:29:10.735 +03:30 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=3.1.32.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-01-19 12:29:10.737 +03:30 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2025-01-19 12:29:10.739 +03:30 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2025-01-19 12:29:10.740 +03:30 [DBG] Using key {93dbf559-430f-4fb8-baee-852feab561d2} as the default key.
+2025-01-19 12:29:10.742 +03:30 [DBG] Key ring with default key {93dbf559-430f-4fb8-baee-852feab561d2} was loaded during application startup.
+2025-01-19 12:29:10.837 +03:30 [DBG] Loaded hosting startup assembly SmsHub.Api
+2025-01-19 12:29:10.837 +03:30 [DBG] Loaded hosting startup assembly Microsoft.WebTools.ApiEndpointDiscovery
+2025-01-19 12:29:10.837 +03:30 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2025-01-19 12:29:10.837 +03:30 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2025-01-19 12:29:10.885 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/swagger/index.html - null null
+2025-01-19 12:29:10.957 +03:30 [INF] Starting Hangfire Server using job storage: 'SQL Server: .@SmsHub'
+2025-01-19 12:29:10.958 +03:30 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-01-19 12:29:10.959 +03:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-01-19 12:29:10.976 +03:30 [DBG] Execution loop BackgroundServerProcess:dc388610 has started in 10.952 ms
+2025-01-19 12:29:10.987 +03:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-01-19 12:29:10.988 +03:30 [INF] Hosting environment: Development
+2025-01-19 12:29:10.988 +03:30 [INF] Content root path: D:\Projects\SmsHub\SmsHub.Api
+2025-01-19 12:29:10.989 +03:30 [DBG] Hosting started
+2025-01-19 12:29:11.121 +03:30 [INF] Server desktop-usmlrdd:12960:37a02710 successfully announced in 131.1082 ms
+2025-01-19 12:29:11.129 +03:30 [INF] Server desktop-usmlrdd:12960:37a02710 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-01-19 12:29:11.133 +03:30 [DBG] Execution loop ServerHeartbeatProcess:f1b790cf has started in 9.3226 ms
+2025-01-19 12:29:11.143 +03:30 [DBG] Execution loop ServerWatchdog:1a0b6b9a has started in 9.7096 ms
+2025-01-19 12:29:11.150 +03:30 [DBG] Execution loop ServerJobCancellationWatcher:bf85a857 has started in 15.1736 ms
+2025-01-19 12:29:11.158 +03:30 [DBG] Execution loop ExpirationManager:c8011396 has started in 12.9604 ms
+2025-01-19 12:29:11.165 +03:30 [DBG] Execution loop CountersAggregator:fdff970c has started in 14.4023 ms
+2025-01-19 12:29:11.167 +03:30 [DBG] Aggregating records in 'Counter' table...
+2025-01-19 12:29:11.201 +03:30 [DBG] Execution loop SqlServerHeartbeatProcess:12f07794 has started in 35.6807 ms
+2025-01-19 12:29:11.201 +03:30 [DBG] Execution loop Worker:ccf47dae has started in 34.6533 ms
+2025-01-19 12:29:11.202 +03:30 [DBG] Removing outdated records from the 'AggregatedCounter' table...
+2025-01-19 12:29:11.208 +03:30 [DBG] Execution loop Worker:4eb0ebe4 has started in 41.6574 ms
+2025-01-19 12:29:11.210 +03:30 [INF] 1 servers were removed due to timeout
+2025-01-19 12:29:11.214 +03:30 [DBG] Execution loop Worker:ef80f9c0 has started in 48.1118 ms
+2025-01-19 12:29:11.224 +03:30 [DBG] Execution loop Worker:20de2a5a has started in 58.0038 ms
+2025-01-19 12:29:11.229 +03:30 [DBG] Execution loop Worker:dcb0e20b has started in 62.3579 ms
+2025-01-19 12:29:11.235 +03:30 [DBG] Execution loop Worker:9512b66d has started in 69.2258 ms
+2025-01-19 12:29:11.242 +03:30 [DBG] Execution loop Worker:ee1a6bd4 has started in 75.6133 ms
+2025-01-19 12:29:11.250 +03:30 [DBG] Execution loop Worker:4c46d318 has started in 84.0377 ms
+2025-01-19 12:29:11.257 +03:30 [DBG] Execution loop Worker:0897da73 has started in 90.6053 ms
+2025-01-19 12:29:11.265 +03:30 [DBG] Execution loop Worker:9d00a4d2 has started in 99.2636 ms
+2025-01-19 12:29:11.273 +03:30 [DBG] Execution loop Worker:e08f628e has started in 105.7902 ms
+2025-01-19 12:29:11.277 +03:30 [DBG] Execution loop Worker:d5fc448a has started in 110.7756 ms
+2025-01-19 12:29:11.277 +03:30 [DBG] Removing outdated records from the 'Job' table...
+2025-01-19 12:29:11.283 +03:30 [DBG] Execution loop Worker:ecbac973 has started in 116.9615 ms
+2025-01-19 12:29:11.292 +03:30 [DBG] Execution loop Worker:be570693 has started in 125.4903 ms
+2025-01-19 12:29:11.292 +03:30 [DBG] Execution loop Worker:bb895fed has started in 125.5576 ms
+2025-01-19 12:29:11.299 +03:30 [DBG] Execution loop Worker:48102caa has started in 132.6744 ms
+2025-01-19 12:29:11.302 +03:30 [DBG] Execution loop Worker:2e5e4b83 has started in 136.3043 ms
+2025-01-19 12:29:11.309 +03:30 [DBG] Execution loop Worker:81e5747f has started in 142.9785 ms
+2025-01-19 12:29:11.319 +03:30 [DBG] Execution loop Worker:ba13e640 has started in 152.4935 ms
+2025-01-19 12:29:11.328 +03:30 [DBG] Execution loop Worker:e926b7d4 has started in 161.5964 ms
+2025-01-19 12:29:11.332 +03:30 [DBG] Removing outdated records from the 'List' table...
+2025-01-19 12:29:11.332 +03:30 [DBG] Execution loop DelayedJobScheduler:ec20db83 has started in 13.6048 ms
+2025-01-19 12:29:11.333 +03:30 [INF] Server desktop-usmlrdd:12960:37a02710 all the dispatchers started
+2025-01-19 12:29:11.341 +03:30 [DBG] Execution loop RecurringJobScheduler:db542b09 has started in 13.3839 ms
+2025-01-19 12:29:11.341 +03:30 [DBG] Removing outdated records from the 'Set' table...
+2025-01-19 12:29:11.348 +03:30 [DBG] Removing outdated records from the 'Hash' table...
+2025-01-19 12:29:12.696 +03:30 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2025-01-19 12:29:12.745 +03:30 [DBG] Response markup is scheduled to include Browser Link script injection.
+2025-01-19 12:29:12.747 +03:30 [DBG] Response markup is scheduled to include browser refresh script injection.
+2025-01-19 12:29:12.804 +03:30 [DBG] Response markup was updated to include Browser Link script injection.
+2025-01-19 12:29:12.805 +03:30 [DBG] Response markup was updated to include browser refresh script injection.
+2025-01-19 12:29:12.823 +03:30 [DBG] Connection ID "18014398531762126850" disconnecting.
+2025-01-19 12:29:12.827 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/_framework/aspnetcore-browser-refresh.js - null null
+2025-01-19 12:29:12.834 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/_vs/browserLink - null null
+2025-01-19 12:29:12.834 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/swagger/index.html - 200 null text/html;charset=utf-8 1951.0559ms
+2025-01-19 12:29:12.839 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/_framework/aspnetcore-browser-refresh.js - 200 13756 application/javascript; charset=utf-8 11.5604ms
+2025-01-19 12:29:12.915 +03:30 [DBG] Connection ID "18014398518877225073" disconnecting.
+2025-01-19 12:29:12.916 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/_vs/browserLink - 200 null text/javascript; charset=UTF-8 82.1911ms
+2025-01-19 12:29:12.988 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/swagger/v1/swagger.json - null null
+2025-01-19 12:29:13.050 +03:30 [DBG] Connection ID "18230571318170878013" disconnecting.
+2025-01-19 12:29:13.050 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 62.8459ms
+2025-01-19 12:29:24.011 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/logs - null null
+2025-01-19 12:29:24.079 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:29:24.122 +03:30 [DBG] No candidates found for the request path '/logs'
+2025-01-19 12:29:24.123 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:29:25.358 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:29:25.369 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:29:25.373 +03:30 [DBG] Connection ID "18230571292401074218" disconnecting.
+2025-01-19 12:29:25.373 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/logs - 404 null null 1361.8966ms
+2025-01-19 12:29:25.374 +03:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:44330/logs, Response status code: 404
+2025-01-19 12:29:30.010 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog - null null
+2025-01-19 12:29:30.049 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:29:30.053 +03:30 [DBG] No candidates found for the request path '/serilog'
+2025-01-19 12:29:30.053 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:29:30.055 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:29:30.056 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:29:30.057 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog - 404 null null 47.123ms
+2025-01-19 12:29:30.057 +03:30 [DBG] Connection ID "17870283339391303907" disconnecting.
+2025-01-19 12:29:30.058 +03:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:44330/serilog, Response status code: 404
+2025-01-19 12:29:41.180 +03:30 [DBG] Server desktop-usmlrdd:12960:37a02710 heartbeat successfully sent
+2025-01-19 12:30:11.189 +03:30 [DBG] Server desktop-usmlrdd:12960:37a02710 heartbeat successfully sent
+2025-01-19 12:30:41.204 +03:30 [DBG] Server desktop-usmlrdd:12960:37a02710 heartbeat successfully sent
+2025-01-19 12:31:11.210 +03:30 [DBG] Server desktop-usmlrdd:12960:37a02710 heartbeat successfully sent
+2025-01-19 12:31:41.219 +03:30 [DBG] Server desktop-usmlrdd:12960:37a02710 heartbeat successfully sent
+2025-01-19 12:32:11.225 +03:30 [DBG] Server desktop-usmlrdd:12960:37a02710 heartbeat successfully sent
+2025-01-19 12:32:15.896 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/log/serilog - null null
+2025-01-19 12:32:15.961 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:32:15.962 +03:30 [DBG] No candidates found for the request path '/log/serilog'
+2025-01-19 12:32:15.962 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:32:15.973 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:32:15.980 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:32:15.981 +03:30 [DBG] Connection ID "18302628899323904138" disconnecting.
+2025-01-19 12:32:15.981 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/log/serilog - 404 null null 85.3257ms
+2025-01-19 12:32:15.981 +03:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:44330/log/serilog, Response status code: 404
+2025-01-19 12:32:41.232 +03:30 [DBG] Server desktop-usmlrdd:12960:37a02710 heartbeat successfully sent
+2025-01-19 12:33:11.237 +03:30 [DBG] Server desktop-usmlrdd:12960:37a02710 heartbeat successfully sent
+2025-01-19 12:33:21.571 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/log/serilog-ui - null null
+2025-01-19 12:33:21.607 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:21.608 +03:30 [DBG] No candidates found for the request path '/log/serilog-ui'
+2025-01-19 12:33:21.608 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:21.608 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:21.608 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:21.611 +03:30 [DBG] Connection ID "18374686506246734229" disconnecting.
+2025-01-19 12:33:21.611 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/log/serilog-ui - 404 null null 40.1612ms
+2025-01-19 12:33:21.611 +03:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:44330/log/serilog-ui, Response status code: 404
+2025-01-19 12:33:27.750 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui - null null
+2025-01-19 12:33:27.783 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.784 +03:30 [DBG] No candidates found for the request path '/serilog-ui'
+2025-01-19 12:33:27.784 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.784 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.790 +03:30 [DBG] Connection ID "18014398518877225075" disconnecting.
+2025-01-19 12:33:27.790 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui - 301 null null 40.4425ms
+2025-01-19 12:33:27.795 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/ - null null
+2025-01-19 12:33:27.824 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.825 +03:30 [DBG] No candidates found for the request path '/serilog-ui/'
+2025-01-19 12:33:27.825 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.825 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.844 +03:30 [DBG] Response markup is scheduled to include Browser Link script injection.
+2025-01-19 12:33:27.844 +03:30 [DBG] Response markup is scheduled to include browser refresh script injection.
+2025-01-19 12:33:27.846 +03:30 [DBG] Response markup was updated to include Browser Link script injection.
+2025-01-19 12:33:27.846 +03:30 [DBG] Response markup was updated to include browser refresh script injection.
+2025-01-19 12:33:27.846 +03:30 [DBG] Connection ID "18374686506246734231" disconnecting.
+2025-01-19 12:33:27.846 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/ - 200 null text/html;charset=utf-8 51.325ms
+2025-01-19 12:33:27.858 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/index-CMUvQmbv.js - null null
+2025-01-19 12:33:27.859 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.859 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/index-CMUvQmbv.js'
+2025-01-19 12:33:27.859 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.861 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.862 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.864 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/react-m-DsOPJ0.js - null null
+2025-01-19 12:33:27.865 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.865 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/dayjs-B6wjTbyq.js - null null
+2025-01-19 12:33:27.865 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/react-m-DsOPJ0.js'
+2025-01-19 12:33:27.865 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.865 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.865 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.865 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/dayjs-B6wjTbyq.js'
+2025-01-19 12:33:27.865 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.865 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.865 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.865 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.865 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.865 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.865 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.888 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/scheduler-CzFDRTuY.js - null null
+2025-01-19 12:33:27.888 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.893 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/scheduler-CzFDRTuY.js'
+2025-01-19 12:33:27.893 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.893 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.893 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.893 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.910 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/react-dom-B4CmA38q.js - null null
+2025-01-19 12:33:27.912 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.912 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/react-dom-B4CmA38q.js'
+2025-01-19 12:33:27.912 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.912 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.912 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.913 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.918 +03:30 [INF] Sending file. Request path: '/assets/scheduler-CzFDRTuY.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.918 +03:30 [INF] Sending file. Request path: '/assets/react-m-DsOPJ0.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.918 +03:30 [INF] Sending file. Request path: '/assets/dayjs-B6wjTbyq.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.918 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/dayjs-B6wjTbyq.js - 200 12160 text/javascript 53.9408ms
+2025-01-19 12:33:27.918 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/scheduler-CzFDRTuY.js - 200 4104 text/javascript 31.0198ms
+2025-01-19 12:33:27.918 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/react-m-DsOPJ0.js - 200 8048 text/javascript 55.028ms
+2025-01-19 12:33:27.919 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/use-callback-ref-CBIqDT6l.js - null null
+2025-01-19 12:33:27.919 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/react-style-singleton-B9-7tq2F.js - null null
+2025-01-19 12:33:27.919 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.919 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.919 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/use-callback-ref-CBIqDT6l.js'
+2025-01-19 12:33:27.919 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/react-style-singleton-B9-7tq2F.js'
+2025-01-19 12:33:27.919 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.922 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.922 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.922 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.923 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.923 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.923 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.923 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.923 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/use-isomorphic-layout-effect-D_x90USM.js - null null
+2025-01-19 12:33:27.923 +03:30 [INF] Sending file. Request path: '/assets/index-CMUvQmbv.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.924 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/index-CMUvQmbv.js - 200 17255 text/javascript 66.0865ms
+2025-01-19 12:33:27.924 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.924 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/use-isomorphic-layout-effect-D_x90USM.js'
+2025-01-19 12:33:27.925 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.925 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/use-composed-ref-D6mtehXY.js - null null
+2025-01-19 12:33:27.925 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.925 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.925 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/use-composed-ref-D6mtehXY.js'
+2025-01-19 12:33:27.925 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.925 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.925 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.925 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.925 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.925 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.930 +03:30 [INF] Sending file. Request path: '/assets/react-dom-B4CmA38q.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.930 +03:30 [INF] Sending file. Request path: '/assets/react-style-singleton-B9-7tq2F.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.930 +03:30 [INF] Sending file. Request path: '/assets/use-callback-ref-CBIqDT6l.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.931 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/use-callback-ref-CBIqDT6l.js - 200 676 text/javascript 12.5236ms
+2025-01-19 12:33:27.931 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/react-style-singleton-B9-7tq2F.js - 200 812 text/javascript 12.5329ms
+2025-01-19 12:33:27.931 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/react-remove-scroll-CgHRlWQc.js - null null
+2025-01-19 12:33:27.932 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.932 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/react-remove-scroll-CgHRlWQc.js'
+2025-01-19 12:33:27.932 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.932 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.932 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.932 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.932 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/use-sidecar-CtOjJUDl.js - null null
+2025-01-19 12:33:27.934 +03:30 [DBG] Connection ID "18230571292401074220" disconnecting.
+2025-01-19 12:33:27.936 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.936 +03:30 [INF] Sending file. Request path: '/assets/use-composed-ref-D6mtehXY.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.936 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/use-sidecar-CtOjJUDl.js'
+2025-01-19 12:33:27.936 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.936 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/tslib-CDuPK5Eb.js - null null
+2025-01-19 12:33:27.936 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.936 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/use-composed-ref-D6mtehXY.js - 200 262 text/javascript 11.5362ms
+2025-01-19 12:33:27.936 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.936 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.936 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/tslib-CDuPK5Eb.js'
+2025-01-19 12:33:27.936 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.936 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/react-number-format-BJEvHmbg.js - null null
+2025-01-19 12:33:27.936 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.936 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.936 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.937 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.937 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/react-number-format-BJEvHmbg.js'
+2025-01-19 12:33:27.937 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.937 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.940 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.942 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.942 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/@floating-ui-BPfYOdAj.js - null null
+2025-01-19 12:33:27.942 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.942 +03:30 [INF] Sending file. Request path: '/assets/use-sidecar-CtOjJUDl.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.942 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.942 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/@floating-ui-BPfYOdAj.js'
+2025-01-19 12:33:27.943 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.943 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.943 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.943 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.943 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/use-sidecar-CtOjJUDl.js - 200 1257 text/javascript 10.4236ms
+2025-01-19 12:33:27.944 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/react-transition-group-yvDnoSDV.js - null null
+2025-01-19 12:33:27.944 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/use-latest-Dv361BDU.js - null null
+2025-01-19 12:33:27.949 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.949 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.949 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/@mantine-BI-6bV-y.js - null null
+2025-01-19 12:33:27.949 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/react-transition-group-yvDnoSDV.js'
+2025-01-19 12:33:27.949 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/use-latest-Dv361BDU.js'
+2025-01-19 12:33:27.949 +03:30 [INF] Sending file. Request path: '/assets/use-isomorphic-layout-effect-D_x90USM.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.949 +03:30 [INF] Sending file. Request path: '/assets/react-remove-scroll-CgHRlWQc.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.949 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.949 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.949 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.950 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.950 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/@mantine-BI-6bV-y.js'
+2025-01-19 12:33:27.950 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.950 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.950 +03:30 [INF] Sending file. Request path: '/assets/react-number-format-BJEvHmbg.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.951 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.949 +03:30 [INF] Sending file. Request path: '/assets/tslib-CDuPK5Eb.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.950 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/use-isomorphic-layout-effect-D_x90USM.js - 200 75 text/javascript 26.6578ms
+2025-01-19 12:33:27.951 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/tslib-CDuPK5Eb.js - 200 772 text/javascript 14.9079ms
+2025-01-19 12:33:27.950 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/react-remove-scroll-CgHRlWQc.js - 200 5887 text/javascript 18.1982ms
+2025-01-19 12:33:27.950 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.951 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.951 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/@tanstack-BV5SNUcY.js - null null
+2025-01-19 12:33:27.951 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.951 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/react-number-format-BJEvHmbg.js - 200 14580 text/javascript 14.3712ms
+2025-01-19 12:33:27.951 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.951 +03:30 [INF] Sending file. Request path: '/assets/@floating-ui-BPfYOdAj.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.951 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/@tanstack-BV5SNUcY.js'
+2025-01-19 12:33:27.951 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.951 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/react-textarea-autosize-BXBTZJDu.js - null null
+2025-01-19 12:33:27.952 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.952 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.952 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/react-textarea-autosize-BXBTZJDu.js'
+2025-01-19 12:33:27.952 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.952 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.951 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/@floating-ui-BPfYOdAj.js - 200 38404 text/javascript 9.8491ms
+2025-01-19 12:33:27.951 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.952 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/@remix-run-CDCXk4HR.js - null null
+2025-01-19 12:33:27.951 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.952 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.952 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.952 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.952 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.952 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/@remix-run-CDCXk4HR.js'
+2025-01-19 12:33:27.952 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.952 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.952 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.952 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.952 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.953 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.954 +03:30 [DBG] Connection ID "18230571322465845331" disconnecting.
+2025-01-19 12:33:27.958 +03:30 [INF] Sending file. Request path: '/assets/use-latest-Dv361BDU.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.958 +03:30 [INF] Sending file. Request path: '/assets/react-transition-group-yvDnoSDV.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.958 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/@fontsource-Dma7G_v3.css - null null
+2025-01-19 12:33:27.958 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/react-transition-group-yvDnoSDV.js - 200 6404 text/javascript 14.6613ms
+2025-01-19 12:33:27.958 +03:30 [DBG] Connection ID "18302628916503773197" disconnecting.
+2025-01-19 12:33:27.958 +03:30 [INF] Sending file. Request path: '/assets/react-textarea-autosize-BXBTZJDu.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.958 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.958 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/react-router-dom-BKlndEAs.js - null null
+2025-01-19 12:33:27.958 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/@fontsource-Dma7G_v3.css'
+2025-01-19 12:33:27.958 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.959 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.959 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.959 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.959 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/react-router-dom-BKlndEAs.js'
+2025-01-19 12:33:27.958 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/use-latest-Dv361BDU.js - 200 187 text/javascript 14.5606ms
+2025-01-19 12:33:27.958 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/@mantine-CBAH4Gje.css - null null
+2025-01-19 12:33:27.958 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/jose-CaAhLol8.js - null null
+2025-01-19 12:33:27.959 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.959 +03:30 [INF] Sending file. Request path: '/assets/@tanstack-BV5SNUcY.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.959 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/react-hook-form-CVvgax0Y.js - null null
+2025-01-19 12:33:27.959 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.959 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/react-hook-form-CVvgax0Y.js'
+2025-01-19 12:33:27.959 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/@tanstack-BV5SNUcY.js - 200 31412 text/javascript 7.9546ms
+2025-01-19 12:33:27.959 +03:30 [DBG] Connection ID "17726168164200349697" disconnecting.
+2025-01-19 12:33:27.959 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.959 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.959 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.959 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.959 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/shiki-ByVXHvbW.js - null null
+2025-01-19 12:33:27.959 +03:30 [INF] Sending file. Request path: '/assets/@remix-run-CDCXk4HR.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.959 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.959 +03:30 [DBG] Connection ID "18086456134389989379" disconnecting.
+2025-01-19 12:33:27.960 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/jose-CaAhLol8.js'
+2025-01-19 12:33:27.960 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.960 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.960 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.960 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.960 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/shiki-ByVXHvbW.js'
+2025-01-19 12:33:27.960 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/@tabler-spGKptFU.js - null null
+2025-01-19 12:33:27.960 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.960 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.958 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/react-textarea-autosize-BXBTZJDu.js - 200 2946 text/javascript 7.0016ms
+2025-01-19 12:33:27.960 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.960 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/property-information-BGMNvqfX.js - null null
+2025-01-19 12:33:27.960 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/@tabler-spGKptFU.js'
+2025-01-19 12:33:27.959 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/@mantine-CBAH4Gje.css'
+2025-01-19 12:33:27.961 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.960 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.961 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.961 +03:30 [INF] Sending file. Request path: '/assets/@fontsource-Dma7G_v3.css'. Physical path: 'N/A'
+2025-01-19 12:33:27.961 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.959 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.960 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.962 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/property-information-BGMNvqfX.js'
+2025-01-19 12:33:27.962 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.961 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/@fontsource-Dma7G_v3.css - 200 215 text/css 3.3938ms
+2025-01-19 12:33:27.962 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.962 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.962 +03:30 [INF] Sending file. Request path: '/assets/jose-CaAhLol8.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.963 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.964 +03:30 [INF] Sending file. Request path: '/assets/react-router-dom-BKlndEAs.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.964 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/jose-CaAhLol8.js - 200 1542 text/javascript 5.1036ms
+2025-01-19 12:33:27.964 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/react-router-dom-BKlndEAs.js - 200 6811 text/javascript 5.5464ms
+2025-01-19 12:33:27.964 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/zwitch-C2o2j-tx.js - null null
+2025-01-19 12:33:27.961 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.964 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.964 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.965 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/zwitch-C2o2j-tx.js'
+2025-01-19 12:33:27.965 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.964 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/character-entities-legacy-BpoLgcEt.js - null null
+2025-01-19 12:33:27.965 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.965 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.965 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.965 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.965 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/character-entities-legacy-BpoLgcEt.js'
+2025-01-19 12:33:27.965 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.961 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.968 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.968 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.968 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.968 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.968 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.964 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/html-void-elements-CkdplsNl.js - null null
+2025-01-19 12:33:27.961 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.969 +03:30 [INF] Sending file. Request path: '/assets/zwitch-C2o2j-tx.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.969 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.969 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/html-void-elements-CkdplsNl.js'
+2025-01-19 12:33:27.959 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.969 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.969 +03:30 [INF] Sending file. Request path: '/assets/property-information-BGMNvqfX.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.969 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.970 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.969 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.970 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.970 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.970 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/property-information-BGMNvqfX.js - 200 17693 text/javascript 9.2578ms
+2025-01-19 12:33:27.971 +03:30 [INF] Sending file. Request path: '/assets/character-entities-legacy-BpoLgcEt.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.971 +03:30 [INF] Sending file. Request path: '/assets/@tabler-spGKptFU.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.971 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.971 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/@tabler-spGKptFU.js - 200 11803 text/javascript 11.1849ms
+2025-01-19 12:33:27.968 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.969 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/zwitch-C2o2j-tx.js - 200 302 text/javascript 5.1396ms
+2025-01-19 12:33:27.971 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/ccount-c2V3InAJ.js - null null
+2025-01-19 12:33:27.972 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/character-entities-html4-D7taRCQ7.js - null null
+2025-01-19 12:33:27.972 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.972 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/character-entities-html4-D7taRCQ7.js'
+2025-01-19 12:33:27.972 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.971 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/character-entities-legacy-BpoLgcEt.js - 200 851 text/javascript 6.7027ms
+2025-01-19 12:33:27.973 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.971 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/react-router-DEvHWijN.js - null null
+2025-01-19 12:33:27.973 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.973 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.973 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.973 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/react-router-DEvHWijN.js'
+2025-01-19 12:33:27.973 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.973 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.973 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.973 +03:30 [INF] Sending file. Request path: '/assets/html-void-elements-CkdplsNl.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.973 +03:30 [INF] Sending file. Request path: '/assets/@mantine-BI-6bV-y.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.972 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.974 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/ccount-c2V3InAJ.js'
+2025-01-19 12:33:27.974 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.974 +03:30 [INF] Sending file. Request path: '/assets/character-entities-html4-D7taRCQ7.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.974 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.974 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.974 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/stringify-entities-CnbJBXhi.js - null null
+2025-01-19 12:33:27.973 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.974 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.974 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.975 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/stringify-entities-CnbJBXhi.js'
+2025-01-19 12:33:27.974 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/html-void-elements-CkdplsNl.js - 200 179 text/javascript 11.8824ms
+2025-01-19 12:33:27.974 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/character-entities-html4-D7taRCQ7.js - 200 2790 text/javascript 2.5553ms
+2025-01-19 12:33:27.975 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.974 +03:30 [INF] Sending file. Request path: '/assets/react-hook-form-CVvgax0Y.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.975 +03:30 [DBG] Connection ID "17509995352021794817" disconnecting.
+2025-01-19 12:33:27.975 +03:30 [INF] Sending file. Request path: '/assets/ccount-c2V3InAJ.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.975 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/react-remove-scroll-bar-DtV8E064.js - null null
+2025-01-19 12:33:27.975 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/react-hook-form-CVvgax0Y.js - 200 24179 text/javascript 16.3421ms
+2025-01-19 12:33:27.975 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/ccount-c2V3InAJ.js - 200 189 text/javascript 3.9939ms
+2025-01-19 12:33:27.975 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.975 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/react-remove-scroll-bar-DtV8E064.js'
+2025-01-19 12:33:27.975 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.976 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.976 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.976 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/hast-util-to-html-BxjuHZD2.js - null null
+2025-01-19 12:33:27.976 +03:30 [INF] Sending file. Request path: '/assets/react-router-DEvHWijN.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.976 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/space-separated-tokens-DD3iYX1K.js - null null
+2025-01-19 12:33:27.975 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.976 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.976 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.976 +03:30 [DBG] Connection ID "17293822569908011009" disconnecting.
+2025-01-19 12:33:27.978 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/hast-util-to-html-BxjuHZD2.js'
+2025-01-19 12:33:27.978 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.979 +03:30 [INF] Sending file. Request path: '/assets/@mantine-CBAH4Gje.css'. Physical path: 'N/A'
+2025-01-19 12:33:27.979 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.976 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/react-router-DEvHWijN.js - 200 8315 text/javascript 5.1082ms
+2025-01-19 12:33:27.979 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.980 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/_framework/aspnetcore-browser-refresh.js - null null
+2025-01-19 12:33:27.979 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/@shikijs-BxAvIE5O.js - null null
+2025-01-19 12:33:27.980 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.981 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.976 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.977 +03:30 [DBG] Connection ID "18230571296696041604" disconnecting.
+2025-01-19 12:33:27.977 +03:30 [INF] Sending file. Request path: '/assets/react-remove-scroll-bar-DtV8E064.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.982 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/xml-parser-xo-C2evWlGT.js - null null
+2025-01-19 12:33:27.982 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/_framework/aspnetcore-browser-refresh.js - 200 13756 application/javascript; charset=utf-8 2.5191ms
+2025-01-19 12:33:27.982 +03:30 [INF] Sending file. Request path: '/assets/hast-util-to-html-BxjuHZD2.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.982 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.981 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/space-separated-tokens-DD3iYX1K.js'
+2025-01-19 12:33:27.982 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/hast-util-to-html-BxjuHZD2.js - 200 8314 text/javascript 6.7858ms
+2025-01-19 12:33:27.982 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/xml-formatter-CNz41muS.js - null null
+2025-01-19 12:33:27.982 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/xml-parser-xo-C2evWlGT.js'
+2025-01-19 12:33:27.983 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.983 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/_vs/browserLink - null null
+2025-01-19 12:33:27.982 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/react-remove-scroll-bar-DtV8E064.js - 200 2290 text/javascript 6.9296ms
+2025-01-19 12:33:27.981 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/@shikijs-BxAvIE5O.js'
+2025-01-19 12:33:27.983 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.976 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.983 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.983 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.983 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.983 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/xml-formatter-CNz41muS.js'
+2025-01-19 12:33:27.983 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.983 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.983 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.976 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/hast-util-whitespace-D4Wp6AEg.js - null null
+2025-01-19 12:33:27.983 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/comma-separated-tokens-D8TqSuIK.js - null null
+2025-01-19 12:33:27.984 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.984 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.984 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/hast-util-whitespace-D4Wp6AEg.js'
+2025-01-19 12:33:27.984 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.984 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.984 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.984 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.984 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.983 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.984 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.984 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/comma-separated-tokens-D8TqSuIK.js'
+2025-01-19 12:33:27.986 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.984 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.985 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.987 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/clsx-B-dksMZM.js - null null
+2025-01-19 12:33:27.986 +03:30 [INF] Sending file. Request path: '/assets/stringify-entities-CnbJBXhi.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.989 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.989 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.989 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.989 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.989 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.989 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/clsx-B-dksMZM.js'
+2025-01-19 12:33:27.989 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/stringify-entities-CnbJBXhi.js - 200 1774 text/javascript 15.2954ms
+2025-01-19 12:33:27.989 +03:30 [INF] Sending file. Request path: '/assets/shiki-ByVXHvbW.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.989 +03:30 [INF] Sending file. Request path: '/assets/@shikijs-BxAvIE5O.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.989 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.989 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.989 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.989 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.989 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.989 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/get-nonce-C-Z93AgS.js - null null
+2025-01-19 12:33:27.989 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.989 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.989 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.989 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.990 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/get-nonce-C-Z93AgS.js'
+2025-01-19 12:33:27.990 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.990 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.990 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.990 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.997 +03:30 [INF] Sending file. Request path: '/assets/comma-separated-tokens-D8TqSuIK.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.997 +03:30 [INF] Sending file. Request path: '/assets/space-separated-tokens-DD3iYX1K.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.997 +03:30 [INF] Sending file. Request path: '/assets/hast-util-whitespace-D4Wp6AEg.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.997 +03:30 [INF] Sending file. Request path: '/assets/xml-formatter-CNz41muS.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.998 +03:30 [INF] Sending file. Request path: '/assets/xml-parser-xo-C2evWlGT.js'. Physical path: 'N/A'
+2025-01-19 12:33:27.998 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/hast-util-whitespace-D4Wp6AEg.js - 200 156 text/javascript 21.9104ms
+2025-01-19 12:33:27.998 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/xml-formatter-CNz41muS.js - 200 2873 text/javascript 15.6009ms
+2025-01-19 12:33:27.998 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/comma-separated-tokens-D8TqSuIK.js - 200 146 text/javascript 14.4546ms
+2025-01-19 12:33:27.998 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/xml-parser-xo-C2evWlGT.js - 200 2852 text/javascript 16.0951ms
+2025-01-19 12:33:27.998 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/@babel-BkC8G2ET.js - null null
+2025-01-19 12:33:27.998 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/@remix-run-CDCXk4HR.js - 200 47449 text/javascript 46.2764ms
+2025-01-19 12:33:27.998 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:27.999 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/@babel-BkC8G2ET.js'
+2025-01-19 12:33:27.999 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:27.999 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:27.999 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/space-separated-tokens-DD3iYX1K.js - 200 56 text/javascript 23.396ms
+2025-01-19 12:33:27.999 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:27.999 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:27.997 +03:30 [INF] Sending file. Request path: '/assets/clsx-B-dksMZM.js'. Physical path: 'N/A'
+2025-01-19 12:33:28.000 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/clsx-B-dksMZM.js - 200 374 text/javascript 12.706ms
+2025-01-19 12:33:27.997 +03:30 [INF] Sending file. Request path: '/assets/get-nonce-C-Z93AgS.js'. Physical path: 'N/A'
+2025-01-19 12:33:28.000 +03:30 [INF] Sending file. Request path: '/assets/@babel-BkC8G2ET.js'. Physical path: 'N/A'
+2025-01-19 12:33:28.000 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/get-nonce-C-Z93AgS.js - 200 91 text/javascript 10.9954ms
+2025-01-19 12:33:28.001 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/@babel-BkC8G2ET.js - 200 745 text/javascript 2.7164ms
+2025-01-19 12:33:28.003 +03:30 [DBG] Connection ID "16717361817604587521" disconnecting.
+2025-01-19 12:33:28.003 +03:30 [DBG] Connection ID "17942340937724198914" disconnecting.
+2025-01-19 12:33:28.003 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/react-dom-B4CmA38q.js - 200 130238 text/javascript 92.7862ms
+2025-01-19 12:33:28.003 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/@shikijs-BxAvIE5O.js - 200 75392 text/javascript 24.7777ms
+2025-01-19 12:33:28.004 +03:30 [DBG] Connection ID "17798225758238277633" disconnecting.
+2025-01-19 12:33:28.004 +03:30 [DBG] Connection ID "18302628890733969410" disconnecting.
+2025-01-19 12:33:28.005 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/@mantine-BI-6bV-y.js - 200 234029 text/javascript 56.0758ms
+2025-01-19 12:33:28.005 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/@mantine-CBAH4Gje.css - 200 201617 text/css 47.3929ms
+2025-01-19 12:33:28.019 +03:30 [DBG] Connection ID "16429131441452875777" disconnecting.
+2025-01-19 12:33:28.022 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/_vs/browserLink - 200 null text/javascript; charset=UTF-8 38.4591ms
+2025-01-19 12:33:28.029 +03:30 [DBG] Connection ID "17582052946059722753" disconnecting.
+2025-01-19 12:33:28.030 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/shiki-ByVXHvbW.js - 200 774371 text/javascript 70.5145ms
+2025-01-19 12:33:28.130 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/favicon-vIR87ubp.ico - null null
+2025-01-19 12:33:28.130 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:28.131 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/favicon-vIR87ubp.ico'
+2025-01-19 12:33:28.131 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:28.131 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:28.133 +03:30 [INF] Sending file. Request path: '/assets/favicon-vIR87ubp.ico'. Physical path: 'N/A'
+2025-01-19 12:33:28.134 +03:30 [DBG] Connection ID "18302628912208805915" disconnecting.
+2025-01-19 12:33:28.134 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/favicon-vIR87ubp.ico - 200 32038 image/x-icon 3.6307ms
+2025-01-19 12:33:28.149 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/BrandBadge-B_A3R2oL.js - null null
+2025-01-19 12:33:28.149 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/Header-N-94MZM3.js - null null
+2025-01-19 12:33:28.149 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:28.149 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:28.149 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/BrandBadge-B_A3R2oL.js'
+2025-01-19 12:33:28.149 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/Header-N-94MZM3.js'
+2025-01-19 12:33:28.149 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:28.149 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:28.149 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:28.149 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:28.149 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:28.149 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:28.149 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:28.149 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/BrandBadge-U1lnMcv_.css - null null
+2025-01-19 12:33:28.150 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:28.150 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:28.150 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/BrandBadge-U1lnMcv_.css'
+2025-01-19 12:33:28.150 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:28.150 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:28.150 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:28.150 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:28.151 +03:30 [INF] Sending file. Request path: '/assets/Header-N-94MZM3.js'. Physical path: 'N/A'
+2025-01-19 12:33:28.151 +03:30 [INF] Sending file. Request path: '/assets/BrandBadge-B_A3R2oL.js'. Physical path: 'N/A'
+2025-01-19 12:33:28.151 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/Header-N-94MZM3.js - 200 3669 text/javascript 2.131ms
+2025-01-19 12:33:28.151 +03:30 [DBG] Connection ID "17870283339391303911" disconnecting.
+2025-01-19 12:33:28.151 +03:30 [INF] Sending file. Request path: '/assets/BrandBadge-U1lnMcv_.css'. Physical path: 'N/A'
+2025-01-19 12:33:28.152 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/BrandBadge-B_A3R2oL.js - 200 638 text/javascript 2.7089ms
+2025-01-19 12:33:28.152 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/BrandBadge-U1lnMcv_.css - 200 639 text/css 2.0579ms
+2025-01-19 12:33:28.152 +03:30 [DBG] Connection ID "18158513715543015624" disconnecting.
+2025-01-19 12:33:28.152 +03:30 [DBG] Connection ID "18302628899323904140" disconnecting.
+2025-01-19 12:33:28.154 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/Sidebar-Df0FhaBG.js - null null
+2025-01-19 12:33:28.154 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:28.154 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/Sidebar-Df0FhaBG.js'
+2025-01-19 12:33:28.154 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:28.154 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:28.154 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:28.154 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:28.154 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/AppBody-zTcFSYxR.css - null null
+2025-01-19 12:33:28.154 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/AppBody-BDMdmm02.js - null null
+2025-01-19 12:33:28.155 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:28.155 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:28.155 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/AppBody-BDMdmm02.js'
+2025-01-19 12:33:28.155 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/AppBody-zTcFSYxR.css'
+2025-01-19 12:33:28.155 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:28.155 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:28.155 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:28.155 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:28.155 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:28.155 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:28.155 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:28.155 +03:30 [INF] Sending file. Request path: '/assets/Sidebar-Df0FhaBG.js'. Physical path: 'N/A'
+2025-01-19 12:33:28.155 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:28.155 +03:30 [DBG] Connection ID "18302628895028936765" disconnecting.
+2025-01-19 12:33:28.155 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/Sidebar-Df0FhaBG.js - 200 4944 text/javascript 1.6864ms
+2025-01-19 12:33:28.156 +03:30 [INF] Sending file. Request path: '/assets/AppBody-zTcFSYxR.css'. Physical path: 'N/A'
+2025-01-19 12:33:28.156 +03:30 [INF] Sending file. Request path: '/assets/AppBody-BDMdmm02.js'. Physical path: 'N/A'
+2025-01-19 12:33:28.157 +03:30 [DBG] Connection ID "18158513715543015626" disconnecting.
+2025-01-19 12:33:28.157 +03:30 [DBG] Connection ID "17870283339391303913" disconnecting.
+2025-01-19 12:33:28.157 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/AppBody-BDMdmm02.js - 200 4099 text/javascript 2.1841ms
+2025-01-19 12:33:28.157 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/AppBody-zTcFSYxR.css - 200 1566 text/css 2.1801ms
+2025-01-19 12:33:28.158 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/api/keys - null null
+2025-01-19 12:33:28.158 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:28.158 +03:30 [DBG] No candidates found for the request path '/serilog-ui/api/keys'
+2025-01-19 12:33:28.158 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:28.158 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:28.164 +03:30 [DBG] Connection ID "17870283339391303915" disconnecting.
+2025-01-19 12:33:28.164 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/api/keys - 200 null application/json;charset=utf-8 6.7217ms
+2025-01-19 12:33:28.174 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/HeaderActivity-Cg_BGrVK.js - null null
+2025-01-19 12:33:28.174 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:28.174 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/HeaderActivity-Cg_BGrVK.js'
+2025-01-19 12:33:28.175 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:28.175 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:28.175 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:28.175 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:28.176 +03:30 [INF] Sending file. Request path: '/assets/HeaderActivity-Cg_BGrVK.js'. Physical path: 'N/A'
+2025-01-19 12:33:28.176 +03:30 [DBG] Connection ID "17870283339391303917" disconnecting.
+2025-01-19 12:33:28.176 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/HeaderActivity-Cg_BGrVK.js - 200 3262 text/javascript 1.6755ms
+2025-01-19 12:33:28.184 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/useQueryLogs-Cqrw8zRX.js - null null
+2025-01-19 12:33:28.184 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/FilterButton-DZ0UKl5I.js - null null
+2025-01-19 12:33:28.184 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/Paging-B1bAngEl.js - null null
+2025-01-19 12:33:28.184 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:28.184 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:28.185 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/FilterButton-DZ0UKl5I.js'
+2025-01-19 12:33:28.185 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:28.185 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/useQueryLogs-Cqrw8zRX.js'
+2025-01-19 12:33:28.185 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:28.185 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:28.185 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:28.185 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:28.185 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:28.185 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:28.185 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/Paging-B1bAngEl.js'
+2025-01-19 12:33:28.185 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:28.185 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:28.185 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:28.185 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:28.185 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:28.185 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:28.186 +03:30 [INF] Sending file. Request path: '/assets/Paging-B1bAngEl.js'. Physical path: 'N/A'
+2025-01-19 12:33:28.187 +03:30 [INF] Sending file. Request path: '/assets/FilterButton-DZ0UKl5I.js'. Physical path: 'N/A'
+2025-01-19 12:33:28.188 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/FilterButton-DZ0UKl5I.js - 200 4210 text/javascript 3.4207ms
+2025-01-19 12:33:28.188 +03:30 [INF] Sending file. Request path: '/assets/useQueryLogs-Cqrw8zRX.js'. Physical path: 'N/A'
+2025-01-19 12:33:28.188 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/search.module-7A3oFwKK.js - null null
+2025-01-19 12:33:28.189 +03:30 [DBG] Connection ID "17870283339391303919" disconnecting.
+2025-01-19 12:33:28.189 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:28.189 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/search.module-7A3oFwKK.js'
+2025-01-19 12:33:28.189 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/useQueryLogs-Cqrw8zRX.js - 200 1233 text/javascript 4.6383ms
+2025-01-19 12:33:28.189 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:28.189 +03:30 [DBG] Connection ID "18374686510541701222" disconnecting.
+2025-01-19 12:33:28.189 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:28.189 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:28.189 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:28.190 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/Paging-B1bAngEl.js - 200 4465 text/javascript 4.9678ms
+2025-01-19 12:33:28.191 +03:30 [INF] Sending file. Request path: '/assets/search.module-7A3oFwKK.js'. Physical path: 'N/A'
+2025-01-19 12:33:28.191 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/search.module-7A3oFwKK.js - 200 161 text/javascript 4.0106ms
+2025-01-19 12:33:28.192 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/search-CAoxf24H.css - null null
+2025-01-19 12:33:28.192 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:28.192 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/Search-8_2B6vzV.js - null null
+2025-01-19 12:33:28.192 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/search-CAoxf24H.css'
+2025-01-19 12:33:28.192 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:28.192 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:28.192 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:28.193 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:28.193 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:28.193 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/Search-8_2B6vzV.js'
+2025-01-19 12:33:28.193 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:28.193 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:28.193 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:28.194 +03:30 [INF] Sending file. Request path: '/assets/search-CAoxf24H.css'. Physical path: 'N/A'
+2025-01-19 12:33:28.193 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/SerilogResultsMobile-TqMTayFY.js - null null
+2025-01-19 12:33:28.194 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:28.194 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/search-CAoxf24H.css - 200 519 text/css 2.2659ms
+2025-01-19 12:33:28.194 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:28.194 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/SerilogResults-Ch_rXhcp.js - null null
+2025-01-19 12:33:28.194 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:28.194 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/SerilogResults-Ch_rXhcp.js'
+2025-01-19 12:33:28.195 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:28.195 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:28.195 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:28.195 +03:30 [INF] Sending file. Request path: '/assets/Search-8_2B6vzV.js'. Physical path: 'N/A'
+2025-01-19 12:33:28.195 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:28.195 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/Search-8_2B6vzV.js - 200 4026 text/javascript 2.9525ms
+2025-01-19 12:33:28.195 +03:30 [DBG] Connection ID "18302628895028936767" disconnecting.
+2025-01-19 12:33:28.194 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/SerilogResultsMobile-TqMTayFY.js'
+2025-01-19 12:33:28.196 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:28.197 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:28.197 +03:30 [INF] Sending file. Request path: '/assets/SerilogResults-Ch_rXhcp.js'. Physical path: 'N/A'
+2025-01-19 12:33:28.197 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/useException-xn-iRi_1.js - null null
+2025-01-19 12:33:28.197 +03:30 [DBG] Connection ID "16429131441452875779" disconnecting.
+2025-01-19 12:33:28.197 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/SerilogResults-Ch_rXhcp.js - 200 6807 text/javascript 3.3423ms
+2025-01-19 12:33:28.197 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:28.197 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/useException-xn-iRi_1.js'
+2025-01-19 12:33:28.198 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:28.198 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:28.198 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:28.198 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:28.198 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:28.198 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:28.199 +03:30 [INF] Sending file. Request path: '/assets/useException-xn-iRi_1.js'. Physical path: 'N/A'
+2025-01-19 12:33:28.199 +03:30 [INF] Sending file. Request path: '/assets/SerilogResultsMobile-TqMTayFY.js'. Physical path: 'N/A'
+2025-01-19 12:33:28.200 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/useException-xn-iRi_1.js - 200 774 text/javascript 3.8327ms
+2025-01-19 12:33:28.200 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/SerilogResultsMobile-TqMTayFY.js - 200 5880 text/javascript 6.5815ms
+2025-01-19 12:33:28.357 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/mononoki-latin-400-normal-BO6wEcvB.woff2 - null null
+2025-01-19 12:33:28.357 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:28.357 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/mononoki-latin-400-normal-BO6wEcvB.woff2'
+2025-01-19 12:33:28.357 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:28.357 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:33:28.357 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:33:28.357 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:28.358 +03:30 [INF] Sending file. Request path: '/assets/mononoki-latin-400-normal-BO6wEcvB.woff2'. Physical path: 'N/A'
+2025-01-19 12:33:28.359 +03:30 [DBG] Connection ID "18302628895028936769" disconnecting.
+2025-01-19 12:33:28.359 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/mononoki-latin-400-normal-BO6wEcvB.woff2 - 200 32456 font/woff2 2.0794ms
+2025-01-19 12:33:41.252 +03:30 [DBG] Server desktop-usmlrdd:12960:37a02710 heartbeat successfully sent
+2025-01-19 12:33:46.137 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/ - null null
+2025-01-19 12:33:46.174 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:46.174 +03:30 [DBG] No candidates found for the request path '/'
+2025-01-19 12:33:46.174 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:33:46.174 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:33:46.174 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:33:46.175 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/ - 404 null null 37.6736ms
+2025-01-19 12:33:46.176 +03:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:44330/, Response status code: 404
+2025-01-19 12:33:46.182 +03:30 [DBG] Connection ID "17654110570162421765" disconnecting.
+2025-01-19 12:34:11.254 +03:30 [DBG] Aggregating records in 'Counter' table...
+2025-01-19 12:34:11.259 +03:30 [DBG] Server desktop-usmlrdd:12960:37a02710 heartbeat successfully sent
+2025-01-19 12:34:33.361 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/ - null null
+2025-01-19 12:34:33.400 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:34:33.401 +03:30 [DBG] No candidates found for the request path '/serilog-ui/'
+2025-01-19 12:34:33.401 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:34:33.401 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:34:33.401 +03:30 [DBG] Response markup is scheduled to include Browser Link script injection.
+2025-01-19 12:34:33.401 +03:30 [DBG] Response markup is scheduled to include browser refresh script injection.
+2025-01-19 12:34:33.411 +03:30 [DBG] Response markup was updated to include Browser Link script injection.
+2025-01-19 12:34:33.411 +03:30 [DBG] Response markup was updated to include browser refresh script injection.
+2025-01-19 12:34:33.412 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/ - 200 null text/html;charset=utf-8 50.4171ms
+2025-01-19 12:34:33.424 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/_framework/aspnetcore-browser-refresh.js - null null
+2025-01-19 12:34:33.424 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/_vs/browserLink - null null
+2025-01-19 12:34:33.428 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/_framework/aspnetcore-browser-refresh.js - 200 13756 application/javascript; charset=utf-8 4.477ms
+2025-01-19 12:34:33.438 +03:30 [DBG] Connection ID "18158513715543015630" disconnecting.
+2025-01-19 12:34:33.438 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/_vs/browserLink - 200 null text/javascript; charset=UTF-8 14.6865ms
+2025-01-19 12:34:33.538 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/api/keys - null null
+2025-01-19 12:34:33.539 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:34:33.539 +03:30 [DBG] No candidates found for the request path '/serilog-ui/api/keys'
+2025-01-19 12:34:33.539 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:34:33.539 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:34:33.542 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/api/keys - 200 null application/json;charset=utf-8 2.9602ms
+2025-01-19 12:34:33.542 +03:30 [DBG] Connection ID "18302628899323904142" disconnecting.
+2025-01-19 12:34:41.264 +03:30 [DBG] Server desktop-usmlrdd:12960:37a02710 heartbeat successfully sent
+2025-01-19 12:35:11.284 +03:30 [DBG] Server desktop-usmlrdd:12960:37a02710 heartbeat successfully sent
+2025-01-19 12:35:31.199 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - null null
+2025-01-19 12:35:31.200 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:35:31.200 +03:30 [DBG] No candidates found for the request path '/serilog-ui/api/logs'
+2025-01-19 12:35:31.200 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:35:31.205 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:35:31.333 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - 200 null application/json;charset=utf-8 134.1096ms
+2025-01-19 12:35:31.333 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - null null
+2025-01-19 12:35:31.334 +03:30 [DBG] Connection ID "18374686506246734237" disconnecting.
+2025-01-19 12:35:31.334 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:35:31.334 +03:30 [DBG] No candidates found for the request path '/serilog-ui/api/logs'
+2025-01-19 12:35:31.334 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:35:31.334 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:35:31.359 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - 200 null application/json;charset=utf-8 25.9076ms
+2025-01-19 12:35:31.360 +03:30 [DBG] Connection ID "18302628895028936771" disconnecting.
+2025-01-19 12:35:31.362 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - null null
+2025-01-19 12:35:31.362 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:35:31.362 +03:30 [DBG] No candidates found for the request path '/serilog-ui/api/logs'
+2025-01-19 12:35:31.362 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:35:31.362 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:35:31.383 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - 200 null application/json;charset=utf-8 20.6379ms
+2025-01-19 12:35:31.383 +03:30 [DBG] Connection ID "18374686506246734239" disconnecting.
+2025-01-19 12:35:31.390 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/DetailsModal-BbQyuptu.js - null null
+2025-01-19 12:35:31.390 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/modal-Blq9koEY.js - null null
+2025-01-19 12:35:31.390 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:35:31.390 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:35:31.390 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/DetailsModal-BbQyuptu.js'
+2025-01-19 12:35:31.390 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/modal-Blq9koEY.js'
+2025-01-19 12:35:31.390 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:35:31.390 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:35:31.391 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:35:31.391 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:35:31.391 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:35:31.391 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:35:31.391 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:35:31.391 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:35:31.391 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/PropertiesModal-CzR02i_V.js - null null
+2025-01-19 12:35:31.391 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:35:31.391 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/PropertiesModal-CzR02i_V.js'
+2025-01-19 12:35:31.391 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:35:31.392 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:35:31.392 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:35:31.392 +03:30 [INF] Sending file. Request path: '/assets/modal-Blq9koEY.js'. Physical path: 'N/A'
+2025-01-19 12:35:31.392 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:35:31.392 +03:30 [INF] Sending file. Request path: '/assets/DetailsModal-BbQyuptu.js'. Physical path: 'N/A'
+2025-01-19 12:35:31.392 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/DetailsModal-BbQyuptu.js - 200 4206 text/javascript 1.5957ms
+2025-01-19 12:35:31.392 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/modal-Blq9koEY.js - 200 197 text/javascript 1.6194ms
+2025-01-19 12:35:31.394 +03:30 [INF] Sending file. Request path: '/assets/PropertiesModal-CzR02i_V.js'. Physical path: 'N/A'
+2025-01-19 12:35:31.394 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/Copy-CyXWPIhE.js - null null
+2025-01-19 12:35:31.394 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/PropertiesModal-CzR02i_V.js - 200 5400 text/javascript 3.6257ms
+2025-01-19 12:35:31.395 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:35:31.398 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/Copy-CyXWPIhE.js'
+2025-01-19 12:35:31.398 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:35:31.398 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:35:31.398 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:35:31.399 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:35:31.408 +03:30 [INF] Sending file. Request path: '/assets/Copy-CyXWPIhE.js'. Physical path: 'N/A'
+2025-01-19 12:35:31.408 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/Copy-CyXWPIhE.js - 200 469 text/javascript 14.4059ms
+2025-01-19 12:35:31.414 +03:30 [DBG] Connection ID "16645304223566659587" disconnecting.
+2025-01-19 12:35:31.428 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/api/keys - null null
+2025-01-19 12:35:31.428 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:35:31.428 +03:30 [DBG] No candidates found for the request path '/serilog-ui/api/keys'
+2025-01-19 12:35:31.428 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:35:31.428 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:35:31.430 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/api/keys - 200 null application/json;charset=utf-8 1.501ms
+2025-01-19 12:35:34.466 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - null null
+2025-01-19 12:35:34.466 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:35:34.466 +03:30 [DBG] No candidates found for the request path '/serilog-ui/api/logs'
+2025-01-19 12:35:34.467 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:35:34.467 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:35:34.495 +03:30 [DBG] Connection ID "18374686506246734241" disconnecting.
+2025-01-19 12:35:34.495 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - 200 null application/json;charset=utf-8 29.1211ms
+2025-01-19 12:35:35.170 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - null null
+2025-01-19 12:35:35.170 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:35:35.170 +03:30 [DBG] No candidates found for the request path '/serilog-ui/api/logs'
+2025-01-19 12:35:35.170 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:35:35.170 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:35:35.193 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - 200 null application/json;charset=utf-8 23.219ms
+2025-01-19 12:35:41.297 +03:30 [DBG] Server desktop-usmlrdd:12960:37a02710 heartbeat successfully sent
+2025-01-19 12:35:45.787 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/ - null null
+2025-01-19 12:35:45.814 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:35:45.814 +03:30 [DBG] No candidates found for the request path '/serilog-ui/'
+2025-01-19 12:35:45.814 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:35:45.814 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:35:45.815 +03:30 [DBG] Response markup is scheduled to include Browser Link script injection.
+2025-01-19 12:35:45.815 +03:30 [DBG] Response markup is scheduled to include browser refresh script injection.
+2025-01-19 12:35:45.815 +03:30 [DBG] Response markup was updated to include Browser Link script injection.
+2025-01-19 12:35:45.815 +03:30 [DBG] Response markup was updated to include browser refresh script injection.
+2025-01-19 12:35:45.815 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/ - 200 null text/html;charset=utf-8 28.0806ms
+2025-01-19 12:35:45.815 +03:30 [DBG] Connection ID "18374686506246734243" disconnecting.
+2025-01-19 12:35:45.826 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/_vs/browserLink - null null
+2025-01-19 12:35:45.826 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/_framework/aspnetcore-browser-refresh.js - null null
+2025-01-19 12:35:45.827 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/_framework/aspnetcore-browser-refresh.js - 200 13756 application/javascript; charset=utf-8 0.9779ms
+2025-01-19 12:35:45.827 +03:30 [DBG] Connection ID "18230571296696041608" disconnecting.
+2025-01-19 12:35:45.835 +03:30 [DBG] Connection ID "18158513702658113594" disconnecting.
+2025-01-19 12:35:45.836 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/_vs/browserLink - 200 null text/javascript; charset=UTF-8 9.3107ms
+2025-01-19 12:35:45.920 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/api/keys - null null
+2025-01-19 12:35:45.920 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:35:45.920 +03:30 [DBG] No candidates found for the request path '/serilog-ui/api/keys'
+2025-01-19 12:35:45.920 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:35:45.920 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:35:45.922 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/api/keys - 200 null application/json;charset=utf-8 2.2284ms
+2025-01-19 12:35:45.923 +03:30 [DBG] Connection ID "18302628899323904144" disconnecting.
+2025-01-19 12:35:48.159 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - null null
+2025-01-19 12:35:48.159 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:35:48.160 +03:30 [DBG] No candidates found for the request path '/serilog-ui/api/logs'
+2025-01-19 12:35:48.160 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:35:48.160 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:35:48.180 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - 200 null application/json;charset=utf-8 20.584ms
+2025-01-19 12:35:48.180 +03:30 [DBG] Connection ID "18086456125800054872" disconnecting.
+2025-01-19 12:35:52.067 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=2&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - null null
+2025-01-19 12:35:52.067 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:35:52.067 +03:30 [DBG] No candidates found for the request path '/serilog-ui/api/logs'
+2025-01-19 12:35:52.067 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:35:52.067 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:36:01.921 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=2&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - 200 null application/json;charset=utf-8 9854.3117ms
+2025-01-19 12:36:01.921 +03:30 [DBG] Connection ID "17149707381832155141" disconnecting.
+2025-01-19 12:36:01.924 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=2&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - null null
+2025-01-19 12:36:01.924 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:36:01.924 +03:30 [DBG] No candidates found for the request path '/serilog-ui/api/logs'
+2025-01-19 12:36:01.924 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:36:01.924 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:36:01.945 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=2&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - 200 null application/json;charset=utf-8 21.0051ms
+2025-01-19 12:36:01.945 +03:30 [DBG] Connection ID "18086456125800054874" disconnecting.
+2025-01-19 12:36:06.496 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=50&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - null null
+2025-01-19 12:36:06.496 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:36:06.497 +03:30 [DBG] No candidates found for the request path '/serilog-ui/api/logs'
+2025-01-19 12:36:06.497 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:36:06.497 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:36:06.518 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=50&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - 200 null application/json;charset=utf-8 22.1568ms
+2025-01-19 12:36:06.519 +03:30 [DBG] Connection ID "18086456125800054876" disconnecting.
+2025-01-19 12:36:06.520 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=50&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - null null
+2025-01-19 12:36:06.520 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:36:06.520 +03:30 [DBG] No candidates found for the request path '/serilog-ui/api/logs'
+2025-01-19 12:36:06.520 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:36:06.520 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:36:06.544 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=50&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - 200 null application/json;charset=utf-8 23.7323ms
+2025-01-19 12:36:06.544 +03:30 [DBG] Connection ID "17654110570162421767" disconnecting.
+2025-01-19 12:36:06.545 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=50&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - null null
+2025-01-19 12:36:06.546 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:36:06.546 +03:30 [DBG] No candidates found for the request path '/serilog-ui/api/logs'
+2025-01-19 12:36:06.546 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:36:06.546 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:36:06.568 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=50&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - 200 null application/json;charset=utf-8 22.7883ms
+2025-01-19 12:36:06.568 +03:30 [DBG] Connection ID "18230571296696041610" disconnecting.
+2025-01-19 12:36:06.569 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=50&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - null null
+2025-01-19 12:36:06.570 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:36:06.570 +03:30 [DBG] No candidates found for the request path '/serilog-ui/api/logs'
+2025-01-19 12:36:06.570 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:36:06.570 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:36:06.594 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=50&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - 200 null application/json;charset=utf-8 24.4224ms
+2025-01-19 12:36:06.594 +03:30 [DBG] Connection ID "18158513715543015632" disconnecting.
+2025-01-19 12:36:11.305 +03:30 [DBG] Server desktop-usmlrdd:12960:37a02710 heartbeat successfully sent
+2025-01-19 12:36:41.316 +03:30 [DBG] Server desktop-usmlrdd:12960:37a02710 heartbeat successfully sent
+2025-01-19 12:36:59.537 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/assets/CodeContent-CygICcwc.js - null null
+2025-01-19 12:36:59.537 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:36:59.537 +03:30 [DBG] No candidates found for the request path '/serilog-ui/assets/CodeContent-CygICcwc.js'
+2025-01-19 12:36:59.537 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:36:59.537 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:36:59.537 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:36:59.537 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:36:59.538 +03:30 [INF] Sending file. Request path: '/assets/CodeContent-CygICcwc.js'. Physical path: 'N/A'
+2025-01-19 12:36:59.538 +03:30 [DBG] Connection ID "18158513711248048139" disconnecting.
+2025-01-19 12:36:59.538 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/assets/CodeContent-CygICcwc.js - 200 2313 text/javascript 1.7813ms
+2025-01-19 12:37:11.332 +03:30 [DBG] Server desktop-usmlrdd:12960:37a02710 heartbeat successfully sent
+2025-01-19 12:37:33.188 +03:30 [INF] Request starting HTTP/2 POST https://localhost:44330/login/first-step - application/json 157
+2025-01-19 12:37:33.188 +03:30 [DBG] POST requests are not supported
+2025-01-19 12:37:33.192 +03:30 [DBG] 1 candidate(s) found for the request path '/login/first-step'
+2025-01-19 12:37:33.197 +03:30 [DBG] Endpoint 'SmsHub.Api.Controllers.V1.Security.Commands.Create.LoginController.PaceFirstStep (SmsHub.Api)' with route pattern 'login/first-step' is valid for the request path '/login/first-step'
+2025-01-19 12:37:33.198 +03:30 [DBG] Request matched endpoint 'SmsHub.Api.Controllers.V1.Security.Commands.Create.LoginController.PaceFirstStep (SmsHub.Api)'
+2025-01-19 12:37:33.199 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:37:33.199 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:37:33.199 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:37:33.200 +03:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-01-19 12:37:33.201 +03:30 [INF] Executing endpoint 'SmsHub.Api.Controllers.V1.Security.Commands.Create.LoginController.PaceFirstStep (SmsHub.Api)'
+2025-01-19 12:37:33.233 +03:30 [INF] Route matched with {action = "PaceFirstStep", controller = "Login"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] PaceFirstStep(SmsHub.Domain.Features.Security.Dtos.FirstStepLoginInput, System.Threading.CancellationToken) on controller SmsHub.Api.Controllers.V1.Security.Commands.Create.LoginController (SmsHub.Api).
+2025-01-19 12:37:33.234 +03:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-01-19 12:37:33.234 +03:30 [DBG] Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2025-01-19 12:37:33.235 +03:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-01-19 12:37:33.235 +03:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-01-19 12:37:33.235 +03:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter","Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-01-19 12:37:33.238 +03:30 [DBG] Executing controller factory for controller SmsHub.Api.Controllers.V1.Security.Commands.Create.LoginController (SmsHub.Api)
+2025-01-19 12:37:33.285 +03:30 [DBG] Entity Framework Core 8.0.10 initialized 'SmsHubContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.10' with options: CommandTimeout=180 
+2025-01-19 12:37:33.419 +03:30 [DBG] Using the InMemorySerializationProvider.
+2025-01-19 12:37:33.422 +03:30 [DBG] Executed controller factory for controller SmsHub.Api.Controllers.V1.Security.Commands.Create.LoginController (SmsHub.Api)
+2025-01-19 12:37:33.428 +03:30 [DBG] Attempting to bind parameter 'loginDto' of type 'SmsHub.Domain.Features.Security.Dtos.FirstStepLoginInput' ...
+2025-01-19 12:37:33.430 +03:30 [DBG] Attempting to bind parameter 'loginDto' of type 'SmsHub.Domain.Features.Security.Dtos.FirstStepLoginInput' using the name '' in request data ...
+2025-01-19 12:37:33.431 +03:30 [DBG] Selected input formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter' for content type 'application/json'.
+2025-01-19 12:37:33.439 +03:30 [DBG] JSON input formatter succeeded, deserializing to type 'SmsHub.Domain.Features.Security.Dtos.FirstStepLoginInput'
+2025-01-19 12:37:33.439 +03:30 [DBG] Done attempting to bind parameter 'loginDto' of type 'SmsHub.Domain.Features.Security.Dtos.FirstStepLoginInput'.
+2025-01-19 12:37:33.439 +03:30 [DBG] Done attempting to bind parameter 'loginDto' of type 'SmsHub.Domain.Features.Security.Dtos.FirstStepLoginInput'.
+2025-01-19 12:37:33.439 +03:30 [DBG] Attempting to validate the bound parameter 'loginDto' of type 'SmsHub.Domain.Features.Security.Dtos.FirstStepLoginInput' ...
+2025-01-19 12:37:33.452 +03:30 [DBG] Done attempting to validate the bound parameter 'loginDto' of type 'SmsHub.Domain.Features.Security.Dtos.FirstStepLoginInput'.
+2025-01-19 12:37:33.453 +03:30 [DBG] Attempting to bind parameter 'cancellationToken' of type 'System.Threading.CancellationToken' ...
+2025-01-19 12:37:33.453 +03:30 [DBG] Done attempting to bind parameter 'cancellationToken' of type 'System.Threading.CancellationToken'.
+2025-01-19 12:37:33.453 +03:30 [DBG] Attempting to validate the bound parameter 'cancellationToken' of type 'System.Threading.CancellationToken' ...
+2025-01-19 12:37:33.453 +03:30 [DBG] Done attempting to validate the bound parameter 'cancellationToken' of type 'System.Threading.CancellationToken'.
+2025-01-19 12:37:33.516 +03:30 [INF] Executing action method SmsHub.Api.Controllers.V1.Security.Commands.Create.LoginController.PaceFirstStep (SmsHub.Api) - Validation state: "Valid"
+2025-01-19 12:37:33.915 +03:30 [DBG] Compiling query expression: 
+'DbSet<User>()
+    .SingleOrDefault(u => u.Username == __username_0 && u.ValidTo == null)'
+2025-01-19 12:37:33.973 +03:30 [DBG] Generated query execution expression: 
+'queryContext => ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync<User>(
+    asyncEnumerable: new SingleQueryingEnumerable<User>(
+        (RelationalQueryContext)queryContext, 
+        RelationalCommandCache.QueryExpression(
+            Projection Mapping:
+                EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (Guid) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.DisplayName (string) Required, 1], [Property: User.FullName (string) Required, 2], [Property: User.HasTwoStepVerification (bool) Required, 3], [Property: User.InsertLogInfo (string) Required, 4], [Property: User.InvalidLoginAttemptCount (int) Required, 5], [Property: User.LatestLoginDateTime (DateTime?), 6], [Property: User.LockTimespan (DateTime?), 7], [Property: User.Mobile (string) Required, 8], [Property: User.MobileConfirmed (bool) Required, 9], [Property: User.Password (string) Required, 10], [Property: User.PreviousId (Guid?) FK Index, 11], [Property: User.RemoveLogInfo (string), 12], [Property: User.SerialNumber (string), 13], [Property: User.Username (string) Required, 14], [Property: User.ValidFrom (DateTime) Required, 15], [Property: User.ValidTo (DateTime?), 16] }
+            SELECT TOP(2) u.Id, u.DisplayName, u.FullName, u.HasTwoStepVerification, u.InsertLogInfo, u.InvalidLoginAttemptCount, u.LatestLoginDateTime, u.LockTimespan, u.Mobile, u.MobileConfirmed, u.Password, u.PreviousId, u.RemoveLogInfo, u.SerialNumber, u.Username, u.ValidFrom, u.ValidTo
+            FROM User AS u
+            WHERE (u.Username == @__username_0) && (u.ValidTo == NULL)), 
+        null, 
+        Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, User>, 
+        SmsHub.Persistence.Contexts.Implementation.SmsHubContext, 
+        False, 
+        False, 
+        True
+    ), 
+    cancellationToken: queryContext.CancellationToken)'
+2025-01-19 12:37:33.992 +03:30 [DBG] Creating DbConnection.
+2025-01-19 12:37:33.994 +03:30 [DBG] Created DbConnection. (0ms).
+2025-01-19 12:37:33.996 +03:30 [DBG] Opening connection to database 'SmsHub' on server '.'.
+2025-01-19 12:37:33.998 +03:30 [DBG] Opened connection to database 'SmsHub' on server '.'.
+2025-01-19 12:37:33.998 +03:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-01-19 12:37:34.002 +03:30 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-01-19 12:37:34.002 +03:30 [DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+2025-01-19 12:37:34.005 +03:30 [DBG] Executing DbCommand [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='180']
+SELECT TOP(2) [u].[Id], [u].[DisplayName], [u].[FullName], [u].[HasTwoStepVerification], [u].[InsertLogInfo], [u].[InvalidLoginAttemptCount], [u].[LatestLoginDateTime], [u].[LockTimespan], [u].[Mobile], [u].[MobileConfirmed], [u].[Password], [u].[PreviousId], [u].[RemoveLogInfo], [u].[SerialNumber], [u].[Username], [u].[ValidFrom], [u].[ValidTo]
+FROM [User] AS [u]
+WHERE [u].[Username] = @__username_0 AND [u].[ValidTo] IS NULL
+2025-01-19 12:37:34.018 +03:30 [INF] Executed DbCommand (13ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='180']
+SELECT TOP(2) [u].[Id], [u].[DisplayName], [u].[FullName], [u].[HasTwoStepVerification], [u].[InsertLogInfo], [u].[InvalidLoginAttemptCount], [u].[LatestLoginDateTime], [u].[LockTimespan], [u].[Mobile], [u].[MobileConfirmed], [u].[Password], [u].[PreviousId], [u].[RemoveLogInfo], [u].[SerialNumber], [u].[Username], [u].[ValidFrom], [u].[ValidTo]
+FROM [User] AS [u]
+WHERE [u].[Username] = @__username_0 AND [u].[ValidTo] IS NULL
+2025-01-19 12:37:34.026 +03:30 [DBG] Closing data reader to 'SmsHub' on server '.'.
+2025-01-19 12:37:34.030 +03:30 [DBG] A data reader for 'SmsHub' on server '.' is being disposed after spending 6ms reading results.
+2025-01-19 12:37:34.034 +03:30 [DBG] Closing connection to database 'SmsHub' on server '.'.
+2025-01-19 12:37:34.035 +03:30 [DBG] Closed connection to database 'SmsHub' on server '.' (0ms).
+2025-01-19 12:37:37.147 +03:30 [DBG] 'SmsHubContext' generated a value for the property 'UserLogin.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-19 12:37:37.190 +03:30 [DBG] Context 'SmsHubContext' started tracking 'UserLogin' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-01-19 12:37:37.197 +03:30 [INF] Executed action method SmsHub.Api.Controllers.V1.Security.Commands.Create.LoginController.PaceFirstStep (SmsHub.Api), returned result Microsoft.AspNetCore.Mvc.BadRequestObjectResult in 3678.632ms.
+2025-01-19 12:37:37.202 +03:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-01-19 12:37:37.204 +03:30 [DBG] Attempting to select an output formatter based on Accept header '["text/plain"]'.
+2025-01-19 12:37:37.205 +03:30 [DBG] Could not find an output formatter based on content negotiation. Accepted types were (["text/plain"])
+2025-01-19 12:37:37.205 +03:30 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-01-19 12:37:37.205 +03:30 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-01-19 12:37:37.206 +03:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-01-19 12:37:37.206 +03:30 [INF] Executing BadRequestObjectResult, writing value of type 'SmsHub.Domain.BaseDomainEntities.ApiResponse.ApiResponseEnvelope`1[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-01-19 12:37:37.222 +03:30 [INF] Executed action SmsHub.Api.Controllers.V1.Security.Commands.Create.LoginController.PaceFirstStep (SmsHub.Api) in 3984.0205ms
+2025-01-19 12:37:37.222 +03:30 [INF] Executed endpoint 'SmsHub.Api.Controllers.V1.Security.Commands.Create.LoginController.PaceFirstStep (SmsHub.Api)'
+2025-01-19 12:37:37.223 +03:30 [DBG] Connection ID "18302628890733969415" disconnecting.
+2025-01-19 12:37:37.224 +03:30 [DBG] 'SmsHubContext' disposed.
+2025-01-19 12:37:37.228 +03:30 [DBG] Disposing connection to database 'SmsHub' on server '.'.
+2025-01-19 12:37:37.229 +03:30 [DBG] Disposed connection to database '' on server '' (0ms).
+2025-01-19 12:37:37.229 +03:30 [INF] Request finished HTTP/2 POST https://localhost:44330/login/first-step - 400 null application/json; charset=utf-8 4041.4243ms
+2025-01-19 12:37:41.333 +03:30 [DBG] Server desktop-usmlrdd:12960:37a02710 heartbeat successfully sent
+2025-01-19 12:37:49.276 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=50&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - null null
+2025-01-19 12:37:49.276 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:37:49.277 +03:30 [DBG] No candidates found for the request path '/serilog-ui/api/logs'
+2025-01-19 12:37:49.277 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:37:49.277 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:37:49.304 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=50&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - 200 null application/json;charset=utf-8 28.4792ms
+2025-01-19 12:37:49.304 +03:30 [DBG] Connection ID "18374686489066864920" disconnecting.
+2025-01-19 12:37:53.564 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - null null
+2025-01-19 12:37:53.564 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:37:53.564 +03:30 [DBG] No candidates found for the request path '/serilog-ui/api/logs'
+2025-01-19 12:37:53.564 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:37:53.564 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:37:53.586 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - 200 null application/json;charset=utf-8 21.9642ms
+2025-01-19 12:37:53.586 +03:30 [DBG] Connection ID "18302628890733969417" disconnecting.
+2025-01-19 12:37:53.601 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - null null
+2025-01-19 12:37:53.601 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:37:53.601 +03:30 [DBG] No candidates found for the request path '/serilog-ui/api/logs'
+2025-01-19 12:37:53.601 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:37:53.601 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:37:53.618 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - 200 null application/json;charset=utf-8 17.4429ms
+2025-01-19 12:37:53.620 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - null null
+2025-01-19 12:37:53.620 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:37:53.620 +03:30 [DBG] No candidates found for the request path '/serilog-ui/api/logs'
+2025-01-19 12:37:53.620 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:37:53.620 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:37:53.648 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - 200 null application/json;charset=utf-8 27.9705ms
+2025-01-19 12:37:53.648 +03:30 [DBG] Connection ID "17798225758238277645" disconnecting.
+2025-01-19 12:38:11.344 +03:30 [DBG] Server desktop-usmlrdd:12960:37a02710 heartbeat successfully sent
+2025-01-19 12:38:24.153 +03:30 [INF] Request starting HTTP/2 POST https://localhost:44330/login/first-step - application/json 153
+2025-01-19 12:38:24.153 +03:30 [DBG] POST requests are not supported
+2025-01-19 12:38:24.154 +03:30 [DBG] 1 candidate(s) found for the request path '/login/first-step'
+2025-01-19 12:38:24.155 +03:30 [DBG] Endpoint 'SmsHub.Api.Controllers.V1.Security.Commands.Create.LoginController.PaceFirstStep (SmsHub.Api)' with route pattern 'login/first-step' is valid for the request path '/login/first-step'
+2025-01-19 12:38:24.155 +03:30 [DBG] Request matched endpoint 'SmsHub.Api.Controllers.V1.Security.Commands.Create.LoginController.PaceFirstStep (SmsHub.Api)'
+2025-01-19 12:38:24.155 +03:30 [DBG] The request has an origin header: 'https://localhost:44330'.
+2025-01-19 12:38:24.155 +03:30 [INF] CORS policy execution successful.
+2025-01-19 12:38:24.155 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:38:24.155 +03:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-01-19 12:38:24.155 +03:30 [INF] Executing endpoint 'SmsHub.Api.Controllers.V1.Security.Commands.Create.LoginController.PaceFirstStep (SmsHub.Api)'
+2025-01-19 12:38:24.156 +03:30 [INF] Route matched with {action = "PaceFirstStep", controller = "Login"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] PaceFirstStep(SmsHub.Domain.Features.Security.Dtos.FirstStepLoginInput, System.Threading.CancellationToken) on controller SmsHub.Api.Controllers.V1.Security.Commands.Create.LoginController (SmsHub.Api).
+2025-01-19 12:38:24.156 +03:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-01-19 12:38:24.156 +03:30 [DBG] Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2025-01-19 12:38:24.156 +03:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-01-19 12:38:24.156 +03:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-01-19 12:38:24.156 +03:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter","Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-01-19 12:38:24.156 +03:30 [DBG] Executing controller factory for controller SmsHub.Api.Controllers.V1.Security.Commands.Create.LoginController (SmsHub.Api)
+2025-01-19 12:38:24.196 +03:30 [DBG] Entity Framework Core 8.0.10 initialized 'SmsHubContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.10' with options: CommandTimeout=180 
+2025-01-19 12:38:24.199 +03:30 [DBG] Executed controller factory for controller SmsHub.Api.Controllers.V1.Security.Commands.Create.LoginController (SmsHub.Api)
+2025-01-19 12:38:24.199 +03:30 [DBG] Attempting to bind parameter 'loginDto' of type 'SmsHub.Domain.Features.Security.Dtos.FirstStepLoginInput' ...
+2025-01-19 12:38:24.199 +03:30 [DBG] Attempting to bind parameter 'loginDto' of type 'SmsHub.Domain.Features.Security.Dtos.FirstStepLoginInput' using the name '' in request data ...
+2025-01-19 12:38:24.200 +03:30 [DBG] Selected input formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter' for content type 'application/json'.
+2025-01-19 12:38:24.209 +03:30 [DBG] JSON input formatter threw an exception: The JSON value could not be converted to System.String. Path: $.clientDateTime | LineNumber: 3 | BytePositionInLine: 24.
+2025-01-19 12:38:24.209 +03:30 [DBG] Done attempting to bind parameter 'loginDto' of type 'SmsHub.Domain.Features.Security.Dtos.FirstStepLoginInput'.
+2025-01-19 12:38:24.209 +03:30 [DBG] Done attempting to bind parameter 'loginDto' of type 'SmsHub.Domain.Features.Security.Dtos.FirstStepLoginInput'.
+2025-01-19 12:38:24.209 +03:30 [DBG] Attempting to validate the bound parameter 'loginDto' of type 'SmsHub.Domain.Features.Security.Dtos.FirstStepLoginInput' ...
+2025-01-19 12:38:24.211 +03:30 [DBG] Done attempting to validate the bound parameter 'loginDto' of type 'SmsHub.Domain.Features.Security.Dtos.FirstStepLoginInput'.
+2025-01-19 12:38:24.211 +03:30 [DBG] Attempting to bind parameter 'cancellationToken' of type 'System.Threading.CancellationToken' ...
+2025-01-19 12:38:24.211 +03:30 [DBG] Done attempting to bind parameter 'cancellationToken' of type 'System.Threading.CancellationToken'.
+2025-01-19 12:38:24.211 +03:30 [DBG] Attempting to validate the bound parameter 'cancellationToken' of type 'System.Threading.CancellationToken' ...
+2025-01-19 12:38:24.212 +03:30 [DBG] Done attempting to validate the bound parameter 'cancellationToken' of type 'System.Threading.CancellationToken'.
+2025-01-19 12:38:24.212 +03:30 [DBG] The request has model state errors, returning an error response.
+2025-01-19 12:38:24.214 +03:30 [DBG] Request was short circuited at action filter 'Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter'.
+2025-01-19 12:38:24.214 +03:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-01-19 12:38:24.214 +03:30 [DBG] Attempting to select an output formatter based on Accept header '["text/plain"]' and explicitly specified content types '["application/problem+json","application/problem+xml","application/problem+json","application/problem+xml"]'. The content types in the accept header must be a subset of the explicitly set content types.
+2025-01-19 12:38:24.214 +03:30 [DBG] Could not find an output formatter based on content negotiation. Accepted types were (["text/plain"])
+2025-01-19 12:38:24.215 +03:30 [DBG] Attempting to select the first output formatter in the output formatters list which supports a content type from the explicitly specified content types '["application/problem+json","application/problem+xml","application/problem+json","application/problem+xml"]'.
+2025-01-19 12:38:24.215 +03:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/problem+json' to write the response.
+2025-01-19 12:38:24.215 +03:30 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-01-19 12:38:24.225 +03:30 [INF] Executed action SmsHub.Api.Controllers.V1.Security.Commands.Create.LoginController.PaceFirstStep (SmsHub.Api) in 68.7408ms
+2025-01-19 12:38:24.225 +03:30 [INF] Executed endpoint 'SmsHub.Api.Controllers.V1.Security.Commands.Create.LoginController.PaceFirstStep (SmsHub.Api)'
+2025-01-19 12:38:24.226 +03:30 [DBG] 'SmsHubContext' disposed.
+2025-01-19 12:38:24.226 +03:30 [DBG] Connection ID "18302628890733969419" disconnecting.
+2025-01-19 12:38:24.226 +03:30 [INF] Request finished HTTP/2 POST https://localhost:44330/login/first-step - 400 null application/problem+json; charset=utf-8 73.1213ms
+2025-01-19 12:38:41.345 +03:30 [DBG] Server desktop-usmlrdd:12960:37a02710 heartbeat successfully sent
+2025-01-19 12:39:00.681 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - null null
+2025-01-19 12:39:00.682 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:39:00.683 +03:30 [DBG] No candidates found for the request path '/serilog-ui/api/logs'
+2025-01-19 12:39:00.683 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:39:00.683 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:39:00.712 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - 200 null application/json;charset=utf-8 30.5841ms
+2025-01-19 12:39:00.712 +03:30 [DBG] Connection ID "17149707381832155145" disconnecting.
+2025-01-19 12:39:03.346 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - null null
+2025-01-19 12:39:03.346 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:39:03.346 +03:30 [DBG] No candidates found for the request path '/serilog-ui/api/logs'
+2025-01-19 12:39:03.346 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:39:03.347 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:39:03.375 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - 200 null application/json;charset=utf-8 28.8534ms
+2025-01-19 12:39:11.295 +03:30 [DBG] Aggregating records in 'Counter' table...
+2025-01-19 12:39:11.354 +03:30 [DBG] Server desktop-usmlrdd:12960:37a02710 heartbeat successfully sent
+2025-01-19 12:39:38.921 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/user/test - null null
+2025-01-19 12:39:38.922 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:39:38.922 +03:30 [DBG] 1 candidate(s) found for the request path '/user/test'
+2025-01-19 12:39:38.922 +03:30 [DBG] Endpoint 'SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController.Test (SmsHub.Api)' with route pattern 'user/test' is valid for the request path '/user/test'
+2025-01-19 12:39:38.923 +03:30 [DBG] Request matched endpoint 'SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController.Test (SmsHub.Api)'
+2025-01-19 12:39:38.923 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:39:38.927 +03:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-01-19 12:39:38.928 +03:30 [INF] Executing endpoint 'SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController.Test (SmsHub.Api)'
+2025-01-19 12:39:38.930 +03:30 [INF] Route matched with {action = "Test", controller = "UserCreate"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Test() on controller SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController (SmsHub.Api).
+2025-01-19 12:39:38.930 +03:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-01-19 12:39:38.930 +03:30 [DBG] Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2025-01-19 12:39:38.930 +03:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-01-19 12:39:38.930 +03:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-01-19 12:39:38.930 +03:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter","Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-01-19 12:39:38.930 +03:30 [DBG] Executing controller factory for controller SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController (SmsHub.Api)
+2025-01-19 12:39:38.933 +03:30 [DBG] Entity Framework Core 8.0.10 initialized 'SmsHubContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.10' with options: CommandTimeout=180 
+2025-01-19 12:39:38.934 +03:30 [DBG] Executed controller factory for controller SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController (SmsHub.Api)
+2025-01-19 12:39:38.960 +03:30 [INF] Executing action method SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController.Test (SmsHub.Api) - Validation state: "Valid"
+2025-01-19 12:39:42.147 +03:30 [INF] Executed action SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController.Test (SmsHub.Api) in 3216.8262ms
+2025-01-19 12:39:42.148 +03:30 [DBG] Server desktop-usmlrdd:12960:37a02710 heartbeat successfully sent
+2025-01-19 12:39:42.148 +03:30 [INF] Executed endpoint 'SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController.Test (SmsHub.Api)'
+2025-01-19 12:39:42.151 +03:30 [ERR] An unhandled exception has occurred while executing the request.
+SmsHub.Application.Exceptions.InvalidLineException: کد -شماره خط- نامعتبر است
+   at SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController.Test() in D:\Projects\SmsHub\SmsHub.Api\Controllers\V1\Security\Commands\Create\UserCreateController.cs:line 45
+   at lambda_method278(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-01-19 12:39:42.176 +03:30 [DBG] Connection ID "16645304223566659589" disconnecting.
+2025-01-19 12:39:42.176 +03:30 [DBG] 'SmsHubContext' disposed.
+2025-01-19 12:39:42.176 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/user/test - 400 null application/json; charset=utf-8 3254.8492ms
+2025-01-19 12:40:12.158 +03:30 [DBG] Server desktop-usmlrdd:12960:37a02710 heartbeat successfully sent
+2025-01-19 12:40:28.248 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/user/test - null null
+2025-01-19 12:40:28.260 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:40:28.261 +03:30 [DBG] 1 candidate(s) found for the request path '/user/test'
+2025-01-19 12:40:28.261 +03:30 [DBG] Endpoint 'SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController.Test (SmsHub.Api)' with route pattern 'user/test' is valid for the request path '/user/test'
+2025-01-19 12:40:28.261 +03:30 [DBG] Request matched endpoint 'SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController.Test (SmsHub.Api)'
+2025-01-19 12:40:28.262 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:40:28.295 +03:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-01-19 12:40:28.295 +03:30 [INF] Executing endpoint 'SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController.Test (SmsHub.Api)'
+2025-01-19 12:40:28.296 +03:30 [INF] Route matched with {action = "Test", controller = "UserCreate"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Test() on controller SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController (SmsHub.Api).
+2025-01-19 12:40:28.296 +03:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-01-19 12:40:28.296 +03:30 [DBG] Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2025-01-19 12:40:28.298 +03:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-01-19 12:40:28.298 +03:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-01-19 12:40:28.299 +03:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter","Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-01-19 12:40:28.299 +03:30 [DBG] Executing controller factory for controller SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController (SmsHub.Api)
+2025-01-19 12:40:28.301 +03:30 [DBG] Entity Framework Core 8.0.10 initialized 'SmsHubContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.10' with options: CommandTimeout=180 
+2025-01-19 12:40:28.310 +03:30 [DBG] Executed controller factory for controller SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController (SmsHub.Api)
+2025-01-19 12:40:28.329 +03:30 [INF] Executing action method SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController.Test (SmsHub.Api) - Validation state: "Valid"
+2025-01-19 12:40:30.187 +03:30 [INF] Executed action SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController.Test (SmsHub.Api) in 1888.5357ms
+2025-01-19 12:40:30.188 +03:30 [INF] Executed endpoint 'SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController.Test (SmsHub.Api)'
+2025-01-19 12:40:30.189 +03:30 [ERR] An unhandled exception has occurred while executing the request.
+SmsHub.Application.Exceptions.InvalidLineException: کد -شماره خط- نامعتبر است
+   at SmsHub.Api.Controllers.V1.Security.Commands.Create.UserCreateController.Test() in D:\Projects\SmsHub\SmsHub.Api\Controllers\V1\Security\Commands\Create\UserCreateController.cs:line 45
+   at lambda_method278(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2025-01-19 12:40:30.194 +03:30 [DBG] Connection ID "18374686506246734245" disconnecting.
+2025-01-19 12:40:30.194 +03:30 [DBG] 'SmsHubContext' disposed.
+2025-01-19 12:40:30.194 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/user/test - 400 null application/json; charset=utf-8 1946.2231ms
+2025-01-19 12:40:42.174 +03:30 [DBG] Server desktop-usmlrdd:12960:37a02710 heartbeat successfully sent
+2025-01-19 12:40:58.584 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/ - null null
+2025-01-19 12:40:58.629 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:40:58.629 +03:30 [DBG] No candidates found for the request path '/serilog-ui/'
+2025-01-19 12:40:58.629 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:40:58.629 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:40:58.636 +03:30 [DBG] Response markup is scheduled to include Browser Link script injection.
+2025-01-19 12:40:58.636 +03:30 [DBG] Response markup is scheduled to include browser refresh script injection.
+2025-01-19 12:40:58.637 +03:30 [DBG] Response markup was updated to include Browser Link script injection.
+2025-01-19 12:40:58.637 +03:30 [DBG] Response markup was updated to include browser refresh script injection.
+2025-01-19 12:40:58.637 +03:30 [DBG] Connection ID "18374686506246734247" disconnecting.
+2025-01-19 12:40:58.637 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/ - 200 null text/html;charset=utf-8 53.3871ms
+2025-01-19 12:40:58.650 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/_framework/aspnetcore-browser-refresh.js - null null
+2025-01-19 12:40:58.650 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/_vs/browserLink - null null
+2025-01-19 12:40:58.651 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/_framework/aspnetcore-browser-refresh.js - 200 13756 application/javascript; charset=utf-8 1.0549ms
+2025-01-19 12:40:58.651 +03:30 [DBG] Connection ID "17798225758238277647" disconnecting.
+2025-01-19 12:40:58.670 +03:30 [DBG] Connection ID "17654110570162421769" disconnecting.
+2025-01-19 12:40:58.671 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/_vs/browserLink - 200 null text/javascript; charset=UTF-8 20.7295ms
+2025-01-19 12:40:58.758 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/api/keys - null null
+2025-01-19 12:40:58.759 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:40:58.759 +03:30 [DBG] No candidates found for the request path '/serilog-ui/api/keys'
+2025-01-19 12:40:58.759 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:40:58.759 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:40:58.760 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/api/keys - 200 null application/json;charset=utf-8 1.6969ms
+2025-01-19 12:40:58.760 +03:30 [DBG] Connection ID "16717361817604587525" disconnecting.
+2025-01-19 12:41:01.304 +03:30 [INF] Request starting HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - null null
+2025-01-19 12:41:01.304 +03:30 [DBG] The request path  does not match the path filter
+2025-01-19 12:41:01.304 +03:30 [DBG] No candidates found for the request path '/serilog-ui/api/logs'
+2025-01-19 12:41:01.304 +03:30 [DBG] Request did not match any endpoints
+2025-01-19 12:41:01.304 +03:30 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-01-19 12:41:01.320 +03:30 [INF] Request finished HTTP/2 GET https://localhost:44330/serilog-ui/api/logs?page=1&count=10&sortBy=Desc&sortOn=Timestamp&key=MsSQL.dbo.Logs - 200 null application/json;charset=utf-8 16.2919ms
+2025-01-19 12:41:01.320 +03:30 [DBG] Connection ID "17582052946059722761" disconnecting.
+2025-01-19 12:41:12.174 +03:30 [DBG] Server desktop-usmlrdd:12960:37a02710 heartbeat successfully sent
+2025-01-19 12:41:42.179 +03:30 [DBG] Server desktop-usmlrdd:12960:37a02710 heartbeat successfully sent
+2025-01-19 12:42:12.189 +03:30 [DBG] Server desktop-usmlrdd:12960:37a02710 heartbeat successfully sent

@@ -39,6 +39,8 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             var statusList = await _providerResponseStatusQueryService.Get();
             await smsProvider.Send(messageHolder.MessageBatch.Line, mobileTextList,statusList);
+            //todo get delivery status
+
         }
     }
 }
