@@ -6,7 +6,7 @@ using Serilog.Ui.Web.Extensions;
 
 namespace SmsHub.Api.Extensions
 {
-    public static class SerilogExtension
+    public static class ConfigureSerilog
     {
         public static void AddSerilog(this IServiceCollection services, IConfiguration configuration)
         {
@@ -30,9 +30,9 @@ namespace SmsHub.Api.Extensions
                 .WithTable("Logs")));
         }
 
-        public static void UseSerilogUi(IApplicationBuilder app)
+        public static void UseSerilogInterface(this IApplicationBuilder app)
         {
-            app.UseSerilogUi(opts => 
+            app.UseSerilogUi(opts =>
               opts.WithRoutePrefix("log")
             );
         }

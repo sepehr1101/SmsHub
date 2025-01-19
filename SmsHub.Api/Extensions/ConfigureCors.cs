@@ -1,6 +1,6 @@
 ﻿namespace SmsHub.Api.Extensions
 {
-    internal static class CorsExtension
+    internal static class ConfigureCors
     {
         private static string _corsPolicyName = "CorsPolicy";
         internal static void AddCustomCors(this IServiceCollection services)
