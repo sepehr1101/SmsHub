@@ -5,7 +5,7 @@ using SmsHub.Persistence.Extensions;
 
 namespace SmsHub.Api.Extensions
 {
-    public static class DiExtension
+    public static class ConfigureDependencies
     {
         public static void AddDI(this IServiceCollection services)
         {
