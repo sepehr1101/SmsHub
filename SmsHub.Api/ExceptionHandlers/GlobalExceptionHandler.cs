@@ -33,7 +33,7 @@ namespace SmsHub.Api.ExceptionHandlers
             }
             else
             {
-                var message = $"Exception occurred: Message: {exception.Message}, Inner Exception:{exception.InnerException.Message}";
+                var message = $"Exception occurred: Message: {exception.Message}, Inner Exception:{exception.InnerException?.Message}";
                 //_logger.LogError(
                 //    exception, "Exception occurred: {Message}", exception.Message);
 

@@ -13,6 +13,7 @@
   <ItemGroup>
     <PackageReference Include="DNTCaptcha.Core" />
     <PackageReference Include="DNTPersianUtils.Core" />
+    <PackageReference Include="Gridify.EntityFramework" />
     <PackageReference Include="Hangfire" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" />

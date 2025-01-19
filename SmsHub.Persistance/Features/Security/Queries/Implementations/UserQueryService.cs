@@ -18,6 +18,10 @@ namespace SmsHub.Persistence.Features.Security.Queries.Implementations
             _users = _uow.Set<User>();
             _users.NotNull(nameof(_users));
         }
+        public IQueryable<User> GetQuery()
+        {
+            return _users.AsNoTracking();
+        }
         public async Task<ICollection<User>> Get()
         {
             return await 
