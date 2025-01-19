@@ -2,7 +2,6 @@ using SmsHub.Api.Extensions;
 using SmsHub.Persistence.Extensions;
 using SmsHub.Api.ExceptionHandlers;
 using Serilog;
-using Serilog.Ui.Web.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -11,7 +10,7 @@ var configuration = builder.Configuration;
 // DI
 builder.Services.AddDI();
 
-builder.Services.AddCustomJwtBearer(configuration);
+builder.Services.AddAuth(configuration);
 builder.Services.AddControllers();
 builder.Services.AddHttpContextAccessor();
 
@@ -51,7 +50,7 @@ app.UseRouting();
 app.UseCustomCors();
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseSerilogUi();
+app.UseSerilogInterface();
 
 app.AddHangfireDashboard();
 
