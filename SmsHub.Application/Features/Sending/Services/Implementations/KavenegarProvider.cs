@@ -171,25 +171,17 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             {
                 //MessageDetailStatus
                 ICollection<CreateMessageDetailStatusDto> messageDetailStatuses = new List<CreateMessageDetailStatusDto>();
+                var i = 0;
+
                 foreach (var item in response.Entries)
                 {
-                    DateTime reseiveDateTime;
-                    if (item.Date.ToString() == "0")
-                    {
-                        reseiveDateTime = DateTime.Now;
-                    }
-                    else
-                    {
-                        reseiveDateTime = DateTimeOffset.FromUnixTimeSeconds(item.Date).DateTime;
-                    }
-
                     var singleMessageDetailStatus = new CreateMessageDetailStatusDto()
                     {
-                        MessageId = item.MessageId,
-                        MessagesDetailId = 0,//todo : check
-                        ProviderResponseStatusId = await GetStatusId(statusList, item.Status),//todo
-                        ReceiveDateTime = reseiveDateTime,
+                        InsertDateTime=DateTime.Now,
+                        ProviderServerId=item.MessageId,
+                        MessagesDetailId = mobileTexts.ElementAt(i).LocalId,//todo : check
                     };
+                    i += 1;
                     messageDetailStatuses.Add(singleMessageDetailStatus);
                 }
                 return messageDetailStatuses;
@@ -346,12 +338,6 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             return trueStatus;
         }
 
-        private async Task<int> GetStatusId(ICollection<ProviderResponseStatus> statusList, long statusCode)
-        {
-            var status = statusList.Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.StatusCode == statusCode).Single();
-
-            return status.Id;
-        }
 
     }
 }

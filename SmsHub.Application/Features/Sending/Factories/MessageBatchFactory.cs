@@ -27,7 +27,7 @@ namespace SmsHub.Application.Features.Sending.Factories
             };
             return messageBatch;
         }
-        private static MessagesHolder GetMessageHolder(IEnumerable<MessagesDetail> messagesDetail)
+        private static MessagesHolder GetMessageHolder(IEnumerable<MessageDetail> messagesDetail)
         {
             return new MessagesHolder()
             {
@@ -39,9 +39,9 @@ namespace SmsHub.Application.Features.Sending.Factories
                 SendDone = true,
             };
         }
-        private static MessagesDetail GetMessageDetail(MobileText mobileText)
+        private static MessageDetail GetMessageDetail(MobileText mobileText)
         {
-            return new MessagesDetail()
+            return new MessageDetail()
             {
                 Text = mobileText.Text,
                 Receptor = mobileText.Mobile,

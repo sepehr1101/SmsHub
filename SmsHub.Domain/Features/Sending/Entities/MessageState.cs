@@ -11,6 +11,6 @@ namespace SmsHub.Domain.Features.Entities
         public DateTime InsertDateTime { get; set; }
 
         public virtual MessageStateCategory MessageStateCategory { get; set; } = null!;
-        public virtual MessagesDetail MessagesDetails { get; set; } = null!;
+        public virtual MessageDetail MessagesDetails { get; set; } = null!;
     }
 }

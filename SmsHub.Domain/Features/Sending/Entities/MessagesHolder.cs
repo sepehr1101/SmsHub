@@ -7,7 +7,7 @@ namespace SmsHub.Domain.Features.Entities
     {
         public MessagesHolder()
         {
-            MessagesDetails = new HashSet<MessagesDetail>();
+            MessagesDetails = new HashSet<MessageDetail>();
         }
 
         public Guid Id { get; set; }
@@ -18,6 +18,6 @@ namespace SmsHub.Domain.Features.Entities
         public bool SendDone { get; set; }
 
         public virtual MessageBatch MessageBatch { get; set; } = null!;
-        public virtual ICollection<MessagesDetail> MessagesDetails { get; set; }
+        public virtual ICollection<MessageDetail> MessagesDetails { get; set; }
     }
 }

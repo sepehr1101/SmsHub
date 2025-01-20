@@ -7,7 +7,7 @@ using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Api.Controllers.V1.Sending.Querries
 {
-    [Route(nameof(MessagesDetail))]
+    [Route(nameof(MessageDetail))]
     [ApiController]
     public class MessageDetailGetSingleController : BaseController
     {

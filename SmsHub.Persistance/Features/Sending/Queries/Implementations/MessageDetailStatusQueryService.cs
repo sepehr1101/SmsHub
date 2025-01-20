@@ -31,27 +31,16 @@ namespace SmsHub.Persistence.Features.Sending.Queries.Implementations
         {
             return await _messageDetailStatus
                 .Include(m => m.MessagesDetail)
-                .Include(m => m.ProviderResponseStatus)
                 .Where(m => m.MessagesDetailId == Id)
                 .ToListAsync();
         }
 
-        public async Task<MessageDetailStatus> GetByMessageId(long Id)
+        public async Task<MessageDetailStatus> GetByProviderServerId(long Id)
         {
             return await _messageDetailStatus
                   .Include(m => m.MessagesDetail)
-                  .Include(m => m.ProviderResponseStatus)
-                  .Where(m => m.MessageId == Id)
+                  .Where(m => m.ProviderServerId == Id)
                   .FirstAsync();
-        }
-
-        public async Task<ICollection<MessageDetailStatus>> GetByStatusId(long Id)
-        {
-            return await _messageDetailStatus
-                .Include(m => m.MessagesDetail)
-                .Include(m => m.ProviderResponseStatus)
-                .Where(m => m.ProviderResponseStatusId == Id)
-                .ToListAsync();
         }
     }
 }

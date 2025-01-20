@@ -11,22 +11,22 @@ namespace SmsHub.Persistence.Features.Sending.Queries.Implementations
     {
 
         private readonly IUnitOfWork _uow;
-        private readonly DbSet<MessagesDetail> _messagesDetails;
+        private readonly DbSet<MessageDetail> _messagesDetails;
         public MessagesDetailQueryService(IUnitOfWork uow)
         {
             _uow = uow;
             _uow.NotNull(nameof(_uow));
 
-            _messagesDetails = _uow.Set<MessagesDetail>();
+            _messagesDetails = _uow.Set<MessageDetail>();
             _messagesDetails.NotNull(nameof(_messagesDetails));
         }
-        public async Task<ICollection<MessagesDetail>> Get()
+        public async Task<ICollection<MessageDetail>> Get()
         {
             return await _messagesDetails.ToListAsync();
         }
-        public async Task<MessagesDetail> Get(long id)
+        public async Task<MessageDetail> Get(long id)
         {
-            return await _uow.FindOrThrowAsync<MessagesDetail>(id);
+            return await _uow.FindOrThrowAsync<MessageDetail>(id);
         }
         public async Task<ICollection<MobileText>> GetMobileTextList(Guid messageHolderId)
         {

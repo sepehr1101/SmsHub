@@ -2,10 +2,10 @@
 
 namespace SmsHub.Domain.Features.Entities
 {
-    [Table(nameof(MessagesDetail))]
-    public class MessagesDetail
+    [Table(nameof(MessageDetail))]
+    public class MessageDetail
     {
-        public MessagesDetail()
+        public MessageDetail()
         {
             MessageStates = new HashSet<MessageState>();
         }

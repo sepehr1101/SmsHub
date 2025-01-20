@@ -8,21 +8,21 @@ namespace SmsHub.Persistence.Features.Sending.Commands.Implementations
     public class MessageDetailCommandService: IMessageDetailCommandService
     {
         private readonly IUnitOfWork _uow;
-        private readonly DbSet<MessagesDetail> _messagesDetails;
+        private readonly DbSet<MessageDetail> _messagesDetails;
         public MessageDetailCommandService(IUnitOfWork uow)
         {
             _uow=uow;
-            _messagesDetails=_uow.Set<MessagesDetail>();
+            _messagesDetails=_uow.Set<MessageDetail>();
         }
-        public async Task Add(MessagesDetail messageDetail)
+        public async Task Add(MessageDetail messageDetail)
         {
             await _messagesDetails.AddAsync(messageDetail);
         }
-        public async Task Add(ICollection<MessagesDetail> messagesDetails)
+        public async Task Add(ICollection<MessageDetail> messagesDetails)
         {
             await _messagesDetails.AddRangeAsync(messagesDetails);
         }
-        public void Delete(MessagesDetail messageDetail)
+        public void Delete(MessageDetail messageDetail)
         {
             _messagesDetails.Remove(messageDetail);
         }

@@ -36,7 +36,7 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
                 throw new InvalidDataException();
             }
 
-            var messageDetail = _mapper.Map<Entities.MessagesDetail>(request);
+            var messageDetail = _mapper.Map<Entities.MessageDetail>(request);
             await _messageDetailCommandService.Add(messageDetail);
         }
     }

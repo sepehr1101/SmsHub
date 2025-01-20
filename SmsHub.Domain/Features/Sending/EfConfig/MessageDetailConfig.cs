@@ -4,9 +4,9 @@ using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Domain.Features.EfConfig
 {
-    public class MessageDetailConfig : IEntityTypeConfiguration<MessagesDetail>
+    public class MessageDetailConfig : IEntityTypeConfiguration<MessageDetail>
     {
-        public void Configure(EntityTypeBuilder<MessagesDetail> entity)
+        public void Configure(EntityTypeBuilder<MessageDetail> entity)
         {
             entity.Property(e => e.Receptor).HasMaxLength(15);
 

@@ -180,10 +180,9 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
                 {
                     var singleMessageDetailStatus = new CreateMessageDetailStatusDto()
                     {
-                        MessageId = Convert.ToInt64(item.Id),
-                        MessagesDetailId = 0,//todo : check
-                        ProviderResponseStatusId = await GetStatusId(statusList, item.Status),//todo
-                        ReceiveDateTime = DateTime.Now,//todo: magfa dont have dateTime
+                        InsertDateTime = DateTime.Now,
+                        ProviderServerId = Convert.ToInt64(item.Id),
+                        MessagesDetailId = Convert.ToInt64(item.UserId)//todo : check
                     };
                     messageDetailStatuses.Add(singleMessageDetailStatus);
                 }

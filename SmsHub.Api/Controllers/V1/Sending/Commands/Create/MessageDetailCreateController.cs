@@ -8,7 +8,7 @@ using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
 {
-    [Route(nameof(MessagesDetail))]
+    [Route(nameof(MessageDetail))]
     [ApiController]
     public class MessageDetailCreateController : BaseController
     {

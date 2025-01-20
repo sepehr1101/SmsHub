@@ -45,7 +45,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
         }
-        public async Task Trigger(Guid messageHolderId, ProviderEnum providerId, int messageBatchId)
+        public async Task Trigger(Guid messageHolderId, ProviderEnum providerId)
         {
             var messageHolder = await _messagesHolderQueryService.GetIncludeLine(messageHolderId);
             var mobileTextList = await _messagesDetailQueryService.GetMobileTextList(messageHolderId);
@@ -53,10 +53,11 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             var statusList = await _providerResponseStatusQueryService.Get();
             var result = await smsProvider.Send(messageHolder.MessageBatch.Line, mobileTextList, statusList);
-            //todo get delivery status
-            var messageDetailStatus=_mapper.Map<MessageDetailStatus>(result);
+          
+            // delivery status
+            var messageDetailStatus=_mapper.Map<ICollection<MessageDetailStatus>>(result);
             await _messageDetailStatusCommandService.Add(messageDetailStatus);
-            //to do: use Handler OR Service???
+            
         }
     }
 }
