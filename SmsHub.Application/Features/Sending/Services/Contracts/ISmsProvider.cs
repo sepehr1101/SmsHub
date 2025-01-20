@@ -9,7 +9,7 @@ namespace SmsHub.Application.Features.Sending.Services.Contracts
 {
     public interface ISmsProvider
     {
-        Task Send(Entities.Line line, MobileText mobileText, ICollection<ProviderResponseStatus> statusList);
+        Task<CreateMessageDetailStatusDto> Send(Entities.Line line, MobileText mobileText, ICollection<ProviderResponseStatus> statusList);
         Task<ICollection<CreateMessageDetailStatusDto>> Send(Entities.Line line, ICollection<MobileText> mobileTexts, ICollection<ProviderResponseStatus> statusList);
         Task<long> GetCredit(Entities.Line line, ICollection<ProviderResponseStatus> statusList);
         Task GetState(Entities.Line line,long id, ICollection<ProviderResponseStatus> statusList);

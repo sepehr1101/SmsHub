@@ -125,7 +125,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
 
 
-        public async Task Send(Entities.Line line, MobileText mobileText, ICollection<ProviderResponseStatus> statusList)
+        public async Task<CreateMessageDetailStatusDto> Send(Entities.Line line, MobileText mobileText, ICollection<ProviderResponseStatus> statusList)
         {
             var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
             var domain = magfaCredential.Domain;
@@ -149,6 +149,13 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             if (response.Status == successstatusCode)
             {
+                var messageDetailStatus = new CreateMessageDetailStatusDto()
+                {
+                    InsertDateTime = DateTime.Now,
+                    ProviderServerId = Convert.ToInt64(response.Message.First().Id),
+                    MessagesDetailId = mobileText.LocalId
+                };
+                return messageDetailStatus;
                 //return
             }
             else

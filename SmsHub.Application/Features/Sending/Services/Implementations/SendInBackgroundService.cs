@@ -41,7 +41,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             _providerResponseStatusQueryService = providerResponseStatusQueryService;
             _providerResponseStatusQueryService.NotNull(nameof(_providerResponseStatusQueryService));
-        
+
             _messageDetailStatusCommandService = messageDetailStatusCommandService;
             _messageDetailStatusCommandService.NotNull(nameof(messageDetailStatusCommandService));
 
@@ -59,11 +59,12 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             var statusList = await _providerResponseStatusQueryService.Get();
             var result = await smsProvider.Send(messageHolder.MessageBatch.Line, mobileTextList, statusList);
-          
+
             // delivery status
-            var messageDetailStatus=_mapper.Map<ICollection<MessageDetailStatus>>(result);
+            var messageDetailStatus = _mapper.Map<ICollection<MessageDetailStatus>>(result);
             await _messageDetailStatusCommandService.Add(messageDetailStatus);
-            _uow.SaveChanges();
+
+            await _uow.SaveChangesAsync(CancellationToken.None);
         }
     }
 }

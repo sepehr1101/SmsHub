@@ -131,7 +131,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             }
         }
 
-        public async Task Send(Entities.Line line, MobileText mobileText, ICollection<ProviderResponseStatus> statusList)
+        public async Task<CreateMessageDetailStatusDto> Send(Entities.Line line, MobileText mobileText, ICollection<ProviderResponseStatus> statusList)
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
@@ -154,9 +154,13 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             if (response.Return.Status == successstatusCode)
             {
-                //todo: save response to messageDetailStatus
-
-                //todo : return
+                var messageDetailStatus = new CreateMessageDetailStatusDto()
+                {
+                    InsertDateTime = DateTime.Now,
+                    ProviderServerId = response.Entries.MessageId,
+                    MessagesDetailId = mobileText.LocalId
+                };
+                return messageDetailStatus;
             }
             else
             {

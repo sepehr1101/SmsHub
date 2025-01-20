@@ -1,4 +1,5 @@
 ﻿using FluentMigrator;
+using SmsHub.Domain.Features.Sending.Entities;
 using SmsHub.Persistence.Extensions;
 using SmsHub.Persistence.Migrations.Enums;
 using System.Reflection;
