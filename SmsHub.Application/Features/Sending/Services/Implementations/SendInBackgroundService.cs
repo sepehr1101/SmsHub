@@ -5,6 +5,7 @@ using SmsHub.Common.Extensions;
 using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Sending.Entities;
+using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Features.Sending.Commands.Contracts;
 using SmsHub.Persistence.Features.Sending.Queries.Contracts;
 
@@ -18,6 +19,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         private readonly IProviderResponseStatusQueryService _providerResponseStatusQueryService;
         private readonly IMessageDetailStatusCommandService _messageDetailStatusCommandService;
         private readonly IMapper _mapper;
+        private readonly IUnitOfWork _uow;
 
         public SendInBackgroundService(
             ISmsProviderFactory smsProviderFactory,
@@ -25,7 +27,8 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             IMessagesDetailQueryService messagesDetailQueryService,
             IProviderResponseStatusQueryService providerResponseStatusQueryService,
             IMessageDetailStatusCommandService messageDetailStatusCommandService,
-            IMapper mapper)
+            IMapper mapper,
+            IUnitOfWork uow)
         {
             _smsProviderFactory = smsProviderFactory;
             _smsProviderFactory.NotNull(nameof(_smsProviderFactory));
@@ -44,6 +47,9 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
+
+            _uow = uow;
+            _uow.NotNull(nameof(uow));
         }
         public async Task Trigger(Guid messageHolderId, ProviderEnum providerId)
         {
@@ -57,7 +63,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             // delivery status
             var messageDetailStatus=_mapper.Map<ICollection<MessageDetailStatus>>(result);
             await _messageDetailStatusCommandService.Add(messageDetailStatus);
-            
+            _uow.SaveChanges();
         }
     }
 }
