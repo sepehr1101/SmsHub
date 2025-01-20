@@ -7,10 +7,13 @@ using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Receiving.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Sending.Entities;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
+using SmsHub.Domain.Providers.Kavenegar.Entities.Base;
 using SmsHub.Domain.Providers.Kavenegar.Entities.Requests;
+using Response = SmsHub.Domain.Providers.Kavenegar.Entities.Responses;
 using SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts;
 using System.Runtime.InteropServices;
 using Entities = SmsHub.Domain.Features.Entities;
+using NetTopologySuite.Index.HPRtree;
 
 namespace SmsHub.Application.Features.Sending.Services.Implementations
 {
@@ -131,6 +134,8 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var successStatus = await GetSuccessStatus(statusList);
             if (response.Return.Status == successStatus.StatusCode)
             {
+                //todo: save response to messageDetailStatus
+
                 //todo : return
             }
             else
@@ -139,7 +144,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             }
         }
 
-        public async Task Send(Entities.Line line, ICollection<MobileText> mobileTexts, ICollection<ProviderResponseStatus> statusList)
+        public async Task<ICollection<CreateMessageDetailStatusDto>> Send(Entities.Line line, ICollection<MobileText> mobileTexts, ICollection<ProviderResponseStatus> statusList)
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
@@ -166,10 +171,32 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var response = await _sendArrayService.Trigger(sendArrayDto, apiKey);
 
             var successStatus = await GetSuccessStatus(statusList);
-            if (response.Return.Status == successStatus.StatusCode)
+            if (response.Return.Status == successStatus.StatusCode)//dont need 
             {
-                //todo: save response to messageDetailStatus
-                //todo : return
+                //MessageDetailStatus
+                ICollection<CreateMessageDetailStatusDto> messageDetailStatuses = new List<CreateMessageDetailStatusDto>();
+                foreach (var item in response.Entries)
+                {
+                    DateTime reseiveDateTime;
+                    if (item.Date.ToString() == "0")
+                    {
+                        reseiveDateTime = DateTime.Now;
+                    }
+                    else
+                    {
+                        reseiveDateTime = DateTimeOffset.FromUnixTimeSeconds(item.Date).DateTime;
+                    }
+
+                    var singleMessageDetailStatus = new CreateMessageDetailStatusDto()
+                    {
+                        MessageId = item.MessageId,
+                        MessagesDetailId = 0,//todo : check
+                        ProviderResponseStatusId = await GetStatusId(statusList, item.Status),//todo
+                        ReceiveDateTime = reseiveDateTime,
+                    };
+                    messageDetailStatuses.Add(singleMessageDetailStatus);
+                }
+                return messageDetailStatuses;
             }
             else
             {
@@ -192,7 +219,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
                 foreach (var item in resultReceive.Entries)
                 {
 
-                    var receiveSingleMessage = new CreateReceiveDto(item,line.Id);
+                    var receiveSingleMessage = new CreateReceiveDto(item, line.Id);
                     createReceiveMessageDto.Add(receiveSingleMessage);
                 }
                 return createReceiveMessageDto;
@@ -321,6 +348,13 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
                 .Single();
 
             return trueStatus;
+        }
+
+        private async Task<int> GetStatusId(ICollection<ProviderResponseStatus> statusList, long statusCode)
+        {
+            var status = statusList.Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.StatusCode == statusCode).Single();
+
+            return status.Id;
         }
 
     }
