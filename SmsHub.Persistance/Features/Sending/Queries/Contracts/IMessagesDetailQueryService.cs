@@ -5,8 +5,9 @@ namespace SmsHub.Persistence.Features.Sending.Queries.Contracts
 {
     public interface IMessagesDetailQueryService
     {
-        Task<ICollection<MessageDetail>> Get();
-        Task<MessageDetail> Get(long id);
+        Task<ICollection<MessagesDetail>> Get();
+        Task<MessagesDetail> Get(long id);
+        Task<MessagesDetail> GetInclude(long id);
         Task<ICollection<MobileText>> GetMobileTextList(Guid messageHolderId);
     }
 }

@@ -28,6 +28,15 @@ namespace SmsHub.Persistence.Features.Sending.Queries.Implementations
         {
             return await _uow.FindOrThrowAsync<MessageDetail>(id);
         }
+        public async Task<MessagesDetail> GetInclude(long id)
+        {
+            var messageDetail= await _messagesDetails
+                .AsNoTracking()
+                .Include(m=>m.MessagesHolder)
+                .ThenInclude(m=>m.MessageBatch)
+                .SingleAsync(m=>m.Id== id); 
+            return messageDetail;
+        }        
         public async Task<ICollection<MobileText>> GetMobileTextList(Guid messageHolderId)
         {
             var mobileTexts = await _messagesDetails

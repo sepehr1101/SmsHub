@@ -20,6 +20,7 @@
     <PackageReference Include="AutoMapper" />
     <PackageReference Include="FluentValidation" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
+    <PackageReference Include="Gridify.EntityFramework" />
     <PackageReference Include="Handlebars.Net" />
     <PackageReference Include="Hangfire" />
     <PackageReference Include="MediatR" />
