@@ -28,7 +28,7 @@ namespace SmsHub.Persistence.Features.Sending.Queries.Implementations
         {
             return await _uow.FindOrThrowAsync<MessageDetail>(id);
         }
-        public async Task<MessagesDetail> GetInclude(long id)
+        public async Task<MessageDetail> GetInclude(long id)
         {
             var messageDetail= await _messagesDetails
                 .AsNoTracking()
