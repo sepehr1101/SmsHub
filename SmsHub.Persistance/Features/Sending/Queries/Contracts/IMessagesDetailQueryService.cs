@@ -7,6 +7,7 @@ namespace SmsHub.Persistence.Features.Sending.Queries.Contracts
     {
         Task<ICollection<MessagesDetail>> Get();
         Task<MessagesDetail> Get(long id);
+        Task<MessagesDetail> GetInclude(long id);
         Task<ICollection<MobileText>> GetMobileTextList(Guid messageHolderId);
     }
 }
