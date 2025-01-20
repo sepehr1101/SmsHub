@@ -106,6 +106,10 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
                 throw new ProviderResponseException(response.Return.Message, response.Return.Status);
             }
         }
+        public async Task GetState(Entities.Line line, ICollection<long> providerServerIds, ICollection<ProviderResponseStatus> statusList)
+        {
+            throw new NotImplementedException();
+        }
 
         public async Task Send(Entities.Line line, MobileText mobileText, ICollection<ProviderResponseStatus> statusList)
         {
