@@ -4,6 +4,6 @@ namespace SmsHub.Application.Features.Sending.Handlers.Queries.Contracts
 {
     public interface IMessageDetailStatusGetByMessageIdHandler
     {
-        Task<ICollection<GetMessageDetailStatusByMessageIdDto>> Handle(long Id);
+        Task<ICollection<GetMessageDetailStatusByProviderServerIdDto>> Handle(long Id);
     }
 }

@@ -23,7 +23,7 @@
         Template,
         MessageBatch,
         MessagesHolder,
-        MessagesDetail,
+        MessageDetail,
         MessageDetailStatus,
         MessageStateCategory,
         MessageState,
@@ -42,6 +42,7 @@
         Config,//todo
         //todo: cost tables
         ServerUser,
-        ProviderResponseStatus
+        ProviderResponseStatus,
+        ProviderDeliveryStatus
     }
 }

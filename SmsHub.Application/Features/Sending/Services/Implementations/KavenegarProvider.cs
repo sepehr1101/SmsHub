@@ -80,8 +80,11 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             var response = await _accountService.Trigger(apiKey);
 
-            var successStatus = await GetSuccessStatus(statusList);
-            if (response.Return.Status == successStatus.StatusCode)
+            var successstatusCode = statusList
+                .Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.IsSuccess == true)
+                .Single().StatusCode;
+
+            if (response.Return.Status == successstatusCode)
             {
                 return response.Entries.ExpireDate;
             }
@@ -99,8 +102,11 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             StatusDto status = id;//1828205579
             var response = await _statusService.Trigger(status, apiKey);
 
-            var successStatus = await GetSuccessStatus(statusList);
-            if (response.Return.Status == successStatus.StatusCode)
+            var successstatusCode = statusList
+                .Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.IsSuccess == true)
+                .Single().StatusCode;
+
+            if (response.Return.Status == successstatusCode)
             {
                 //todo : return
             }
@@ -114,7 +120,22 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             throw new NotImplementedException();
         }
 
-        public async Task Send(Entities.Line line, MobileText mobileText, ICollection<ProviderResponseStatus> statusList)
+
+        //Collection GetState
+        public async Task GetState(Entities.Line line, ICollection<long> ids)
+        {
+            var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
+            var apiKey = kavenegarCredential.apiKey;
+
+            var statusList = new List<StatusDto>();
+            foreach (var id in ids)
+            {
+                StatusDto single = id;
+                statusList.Add(single);
+            }
+        }
+
+        public async Task<CreateMessageDetailStatusDto> Send(Entities.Line line, MobileText mobileText, ICollection<ProviderResponseStatus> statusList)
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
@@ -131,12 +152,19 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             var response = await _sendSimpleService.Trigger(sendSimpleDto, apiKey);
 
-            var successStatus = await GetSuccessStatus(statusList);
-            if (response.Return.Status == successStatus.StatusCode)
-            {
-                //todo: save response to messageDetailStatus
+            var successstatusCode = statusList
+                .Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.IsSuccess == true)
+                .Single().StatusCode;
 
-                //todo : return
+            if (response.Return.Status == successstatusCode)
+            {
+                var messageDetailStatus = new CreateMessageDetailStatusDto()
+                {
+                    InsertDateTime = DateTime.Now,
+                    ProviderServerId = response.Entries.MessageId,
+                    MessagesDetailId = mobileText.LocalId
+                };
+                return messageDetailStatus;
             }
             else
             {
@@ -170,30 +198,25 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             var response = await _sendArrayService.Trigger(sendArrayDto, apiKey);
 
-            var successStatus = await GetSuccessStatus(statusList);
-            if (response.Return.Status == successStatus.StatusCode)//dont need 
+            var successstatusCode = statusList
+                 .Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.IsSuccess == true)
+                 .Single().StatusCode;
+
+            if (response.Return.Status == successstatusCode)
             {
                 //MessageDetailStatus
                 ICollection<CreateMessageDetailStatusDto> messageDetailStatuses = new List<CreateMessageDetailStatusDto>();
+                var i = 0;
+
                 foreach (var item in response.Entries)
                 {
-                    DateTime reseiveDateTime;
-                    if (item.Date.ToString() == "0")
-                    {
-                        reseiveDateTime = DateTime.Now;
-                    }
-                    else
-                    {
-                        reseiveDateTime = DateTimeOffset.FromUnixTimeSeconds(item.Date).DateTime;
-                    }
-
                     var singleMessageDetailStatus = new CreateMessageDetailStatusDto()
                     {
-                        MessageId = item.MessageId,
-                        MessagesDetailId = 0,//todo : check
-                        ProviderResponseStatusId = await GetStatusId(statusList, item.Status),//todo
-                        ReceiveDateTime = reseiveDateTime,
+                        InsertDateTime = DateTime.Now,
+                        ProviderServerId = item.MessageId,
+                        MessagesDetailId = mobileTexts.ElementAt(i).LocalId,//todo : check
                     };
+                    i += 1;
                     messageDetailStatuses.Add(singleMessageDetailStatus);
                 }
                 return messageDetailStatuses;
@@ -211,8 +234,11 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var receiveDto = new ReceiveDto(line.Number, false);
             var resultReceive = await _receiveService.Trigger(receiveDto, apiKey);
 
-            var successStatus = await GetSuccessStatus(statusList);
-            if (resultReceive.Return.Status == successStatus.StatusCode)
+            var successstatusCode = statusList
+                 .Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.IsSuccess == true)
+                 .Single().StatusCode;
+
+            if (resultReceive.Return.Status == successstatusCode)
             {
                 //mapping to CreateReceiveDto
                 ICollection<CreateReceiveDto> createReceiveMessageDto = new List<CreateReceiveDto>();
@@ -239,8 +265,11 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             StatusByMessageIdDto statusByMessageId = localMessageId;
             var response = await _statusByMessageIdService.Trigger(statusByMessageId, apiKey);
 
-            var successStatus = await GetSuccessStatus(statusList);
-            if (response.Return.Status == successStatus.StatusCode)
+            var successstatusCode = statusList
+                .Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.IsSuccess == true)
+                .Single().StatusCode;
+
+            if (response.Return.Status == successstatusCode)
             {
                 //todo : return
             }
@@ -260,8 +289,11 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             var response = await _selectService.Trigger(selectDto, apiKey);
 
-            var successStatus = await GetSuccessStatus(statusList);
-            if (response.Return.Status == successStatus.StatusCode)
+            var successstatusCode = statusList
+                .Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.IsSuccess == true)
+                .Single().StatusCode;
+
+            if (response.Return.Status == successstatusCode)
             {
                 //todo : return
             }
@@ -284,8 +316,11 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             };
             var response = await _selectOutboxService.Trigger(selectOutboxDto, apiKey);
 
-            var successStatus = await GetSuccessStatus(statusList);
-            if (response.Return.Status == successStatus.StatusCode)
+            var successstatusCode = statusList
+                .Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.IsSuccess == true)
+                .Single().StatusCode;
+
+            if (response.Return.Status == successstatusCode)
             {
                 //todo : return
             }
@@ -310,8 +345,11 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             var response = await _latestOutboxService.Trigger(latestOutboxDto, apiKey);
 
-            var successStatus = await GetSuccessStatus(statusList);
-            if (response.Return.Status == successStatus.StatusCode)
+            var successstatusCode = statusList
+                .Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.IsSuccess == true)
+                .Single().StatusCode;
+
+            if (response.Return.Status == successstatusCode)
             {
                 //todo : return
             }
@@ -328,8 +366,11 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             var response = await _accountService.Trigger(apiKey);
 
-            var successStatus = await GetSuccessStatus(statusList);
-            if (response.Return.Status == successStatus.StatusCode)
+            var successstatusCode = statusList
+                .Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.IsSuccess == true)
+                .Single().StatusCode;
+
+            if (response.Return.Status == successstatusCode)
             {
                 //todo : return
             }
@@ -340,22 +381,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         }
 
 
-        //
-        private async Task<ProviderResponseStatus> GetSuccessStatus(ICollection<ProviderResponseStatus> statusList)
-        {
-            var trueStatus = statusList
-                .Where(s => s.ProviderId == ProviderEnum.Kavenegar & s.IsSuccess == true)
-                .Single();
 
-            return trueStatus;
-        }
-
-        private async Task<int> GetStatusId(ICollection<ProviderResponseStatus> statusList, long statusCode)
-        {
-            var status = statusList.Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.StatusCode == statusCode).Single();
-
-            return status.Id;
-        }
 
     }
 }

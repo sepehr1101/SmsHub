@@ -10,9 +10,9 @@ namespace SmsHub.Application.Features.Sending.Mappings
     {
         public MessageDetailMapper()
         {
-            CreateMap< CreateMessageDetailDto, MessagesDetail>().ReverseMap();
-            CreateMap<UpdateMessageDetailDto, MessagesDetail > ().ReverseMap();
-            CreateMap<GetMessageDetailDto, MessagesDetail > ().ReverseMap();
+            CreateMap< CreateMessageDetailDto, MessageDetail>().ReverseMap();
+            CreateMap<UpdateMessageDetailDto, MessageDetail > ().ReverseMap();
+            CreateMap<GetMessageDetailDto, MessageDetail > ().ReverseMap();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using SmsHub.Domain.Constants;
+using SmsHub.Domain.Features.Sending.Entities;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SmsHub.Domain.Features.Entities
@@ -23,7 +24,8 @@ namespace SmsHub.Domain.Features.Entities
 
         public virtual ICollection<Line> Lines { get; set; }
         public virtual ICollection<MessageStateCategory> MessageStateCategories { get; set; }
-
+        public virtual ICollection<ProviderResponseStatus> ProviderResponseStatus { get; set; }
+        public virtual ICollection<ProviderDeliveryStatus> ProviderDeliveryStatus { get; set; }
         public void Update()
         {
 

@@ -24,11 +24,11 @@ namespace SmsHub.Application.Features.Sending.Handlers.Queries.Implementations
         }
 
 
-        public async Task<ICollection<GetMessageDetailStatusByMessageIdDto>> Handle(long Id)
+        public async Task<ICollection<GetMessageDetailStatusByProviderServerIdDto>> Handle(long Id)
         {
-            var messageDetailStatuses = await _messageDetailStatusQueryService.GetByMessageId(Id);
+            var messageDetailStatuses = await _messageDetailStatusQueryService.GetByProviderServerId(Id);
             var getMessageDetailStatuses = _mapper
-                .Map<ICollection<GetMessageDetailStatusByMessageIdDto>>(messageDetailStatuses);
+                .Map<ICollection<GetMessageDetailStatusByProviderServerIdDto>>(messageDetailStatuses);
 
             return getMessageDetailStatuses;
         }

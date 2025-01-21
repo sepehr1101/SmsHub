@@ -4,8 +4,8 @@ namespace SmsHub.Persistence.Features.Sending.Commands.Contracts
 {
     public interface IMessageDetailCommandService
     {
-        Task Add(MessagesDetail messagesDetail);
-        Task Add(ICollection<MessagesDetail> messagesDetails);
-        void Delete(MessagesDetail messagesDetail);
+        Task Add(MessageDetail messagesDetail);
+        Task Add(ICollection<MessageDetail> messagesDetails);
+        void Delete(MessageDetail messagesDetail);
     }
 }

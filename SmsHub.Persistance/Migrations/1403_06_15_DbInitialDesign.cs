@@ -1,4 +1,5 @@
 ﻿using FluentMigrator;
+using SmsHub.Domain.Features.Sending.Entities;
 using SmsHub.Persistence.Extensions;
 using SmsHub.Persistence.Migrations.Enums;
 using System.Reflection;
@@ -26,7 +27,7 @@ namespace SmsHub.Persistence.Migrations
               GetType()
              .GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
              .Where(m => m.Name.StartsWith("Create"))
-             .Select(m=>m.Name.Replace("Create",string.Empty))
+             .Select(m => m.Name.Replace("Create", string.Empty))
              .ToList();
             tableNames.ForEach(t => Delete.Table(t));
         }
@@ -56,7 +57,7 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn("ApiKey").AsString(_255).Nullable();
         }
 
-       
+
 
 
         private void CreateRole()
@@ -149,12 +150,12 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn("CredentialTemplate").AsAnsiString(_255).NotNullable();
         }
         private void CreateLine()
-        {            
+        {
             Create.Table(nameof(TableName.Line))
                 .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(TableName.Line)).Identity()
                 .WithColumn("ProviderId").AsInt16()
                     .ForeignKey(NamingHelper.Fk(TableName.Provider, TableName.Line), nameof(TableName.Provider), Id)
-                .WithColumn("Number").AsString(15).Unique(NamingHelper.Uq(TableName.Line,"Number"))
+                .WithColumn("Number").AsString(15).Unique(NamingHelper.Uq(TableName.Line, "Number"))
                 .WithColumn("Credential").AsString(int.MaxValue);
         }
 
@@ -170,7 +171,7 @@ namespace SmsHub.Persistence.Migrations
 
 
         private void CreateConsumer()
-        {           
+        {
             Create.Table(nameof(TableName.Consumer))
                 .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(TableName.Consumer)).Identity()
                 .WithColumn("Title").AsString(_255)
@@ -191,7 +192,7 @@ namespace SmsHub.Persistence.Migrations
             Create.Table(nameof(TableName.ConsumerSafeIp))
                 .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(TableName.ConsumerSafeIp)).Identity()
                 .WithColumn($"{nameof(TableName.Consumer)}{Id}").AsInt32()
-                    .ForeignKey(NamingHelper.Fk(TableName.Consumer,TableName.ConsumerSafeIp),nameof(TableName.Consumer), Id)
+                    .ForeignKey(NamingHelper.Fk(TableName.Consumer, TableName.ConsumerSafeIp), nameof(TableName.Consumer), Id)
                 .WithColumn("FromIp").AsString(64)
                 .WithColumn("ToIp").AsString(64)
                 .WithColumn("IsV6").AsBoolean().WithDefaultValue(false);
@@ -209,7 +210,7 @@ namespace SmsHub.Persistence.Migrations
             Create.Table(nameof(TableName.ContactNumberCategory))
                 .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(TableName.ContactNumberCategory)).Identity()
                 .WithColumn("Title").AsString(_255)
-                    .Unique(NamingHelper.Uq(TableName.ContactNumberCategory,"Title"))
+                    .Unique(NamingHelper.Uq(TableName.ContactNumberCategory, "Title"))
                 .WithColumn("Css").AsString(_1023);
         }
         private void CreateContact()
@@ -217,9 +218,9 @@ namespace SmsHub.Persistence.Migrations
             Create.Table(nameof(TableName.Contact))
                 .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(TableName.Contact)).Identity()
                 .WithColumn("Title").AsString(_255)
-                    .Unique(NamingHelper.Uq(TableName.Contact, "Title"));                 
+                    .Unique(NamingHelper.Uq(TableName.Contact, "Title"));
         }
-        private void CreateContactNumber() 
+        private void CreateContactNumber()
         {
             Create.Table(nameof(TableName.ContactNumber))
                 .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(TableName.ContactNumber)).Identity()
@@ -246,7 +247,7 @@ namespace SmsHub.Persistence.Migrations
                     .ForeignKey(NamingHelper.Fk(TableName.TemplateCategory, TableName.Template), nameof(TableName.TemplateCategory), Id)
                 .WithColumn("IsActive").AsBoolean()
                 .WithColumn("Parameters").AsString(int.MaxValue)
-                .WithColumn("MinCredit").AsInt32();                    
+                .WithColumn("MinCredit").AsInt32();
         }
         private void CreateMessageBatch()
         {
@@ -271,10 +272,10 @@ namespace SmsHub.Persistence.Migrations
         }
         private void CreateMessageDetail()
         {
-            Create.Table(nameof(TableName.MessagesDetail))
-                .WithColumn(Id).AsInt64().PrimaryKey(NamingHelper.Pk(TableName.MessagesDetail)).Identity()
+            Create.Table(nameof(TableName.MessageDetail))
+                .WithColumn(Id).AsInt64().PrimaryKey(NamingHelper.Pk(TableName.MessageDetail)).Identity()
                 .WithColumn($"{nameof(TableName.MessagesHolder)}{Id}").AsGuid()
-                    .ForeignKey(NamingHelper.Fk(TableName.MessagesHolder, TableName.MessagesDetail), nameof(TableName.MessagesHolder), Id)
+                    .ForeignKey(NamingHelper.Fk(TableName.MessagesHolder, TableName.MessageDetail), nameof(TableName.MessagesHolder), Id)
                 .WithColumn("Receptor").AsString(15)
                 .WithColumn("ProviderResult").AsInt64()
                 .WithColumn("SendDateTime").AsDateTime()
@@ -297,8 +298,8 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn(Id).AsInt64().PrimaryKey(NamingHelper.Pk(TableName.MessageState)).Identity()
                 .WithColumn($"{nameof(TableName.MessageStateCategory)}{Id}").AsInt32()
                     .ForeignKey(NamingHelper.Fk(TableName.MessageStateCategory, TableName.MessageState), nameof(TableName.MessageStateCategory), Id)
-                .WithColumn($"{nameof(TableName.MessagesDetail)}{Id}").AsInt64()
-                    .ForeignKey(NamingHelper.Fk(TableName.MessagesDetail, TableName.MessageState), nameof(TableName.MessagesDetail), Id)
+                .WithColumn($"{nameof(TableName.MessageDetail)}{Id}").AsInt64()
+                    .ForeignKey(NamingHelper.Fk(TableName.MessageDetail, TableName.MessageState), nameof(TableName.MessageDetail), Id)
                 .WithColumn("InsertDateTime").AsDateTime();
         }
         private void CreateLogLevel()
@@ -313,7 +314,7 @@ namespace SmsHub.Persistence.Migrations
             Create.Table(nameof(TableName.InformativeLog))
                 .WithColumn(Id).AsInt64().PrimaryKey(NamingHelper.Pk(TableName.InformativeLog)).Identity()
                 .WithColumn($"{nameof(TableName.LogLevel)}{Id}").AsInt32()
-                    .ForeignKey(NamingHelper.Fk(TableName.LogLevel, TableName.InformativeLog, Id), nameof(TableName.LogLevel),Id)
+                    .ForeignKey(NamingHelper.Fk(TableName.LogLevel, TableName.InformativeLog, Id), nameof(TableName.LogLevel), Id)
                 .WithColumn("Section").AsString(_255)
                 .WithColumn("Description").AsString(int.MaxValue).Nullable()
                 .WithColumn("UserId").AsGuid().Nullable()
@@ -356,7 +357,7 @@ namespace SmsHub.Persistence.Migrations
             Create.Table(nameof(TableName.ConfigTypeGroup))
                 .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(TableName.ConfigTypeGroup)).Identity()
                 .WithColumn($"{nameof(TableName.ConfigType)}{Id}").AsInt16()
-                    .ForeignKey(NamingHelper.Fk(TableName.ConfigType,TableName.ConfigTypeGroup, Id), nameof(TableName.ConfigType),Id)
+                    .ForeignKey(NamingHelper.Fk(TableName.ConfigType, TableName.ConfigTypeGroup, Id), nameof(TableName.ConfigType), Id)
                 .WithColumn("Title").AsString(_255)
                 .WithColumn("Description").AsString(int.MaxValue).Nullable();
         }
@@ -381,7 +382,7 @@ namespace SmsHub.Persistence.Migrations
             Create.Table(nameof(TableName.PermittedTime))
                 .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(TableName.PermittedTime)).Identity()
                 .WithColumn($"{nameof(TableName.ConfigTypeGroup)}{Id}").AsInt32()
-                    .ForeignKey(NamingHelper.Fk(TableName.ConfigTypeGroup, TableName.PermittedTime),nameof(TableName.ConfigTypeGroup), Id)
+                    .ForeignKey(NamingHelper.Fk(TableName.ConfigTypeGroup, TableName.PermittedTime), nameof(TableName.ConfigTypeGroup), Id)
                 .WithColumn("FromTime").AsFixedLengthAnsiString(5)
                 .WithColumn("ToTime").AsFixedLengthAnsiString(5);
         }
@@ -416,29 +417,39 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn("ReceiveDateTime").AsDateTime()
                 .WithColumn("InsertDateTime").AsDateTime()
                 .WithColumn("LineId").AsInt32()
-                    .ForeignKey(NamingHelper.Fk(TableName.Received, TableName.Line), nameof(TableName.Line), Id);
+                    .ForeignKey(NamingHelper.Fk(TableName.Line, TableName.Received), nameof(TableName.Line), Id);
         }
 
-        private void CreateProviderStatus()
+        private void CreateProviderResponseStatus()
         {
             Create.Table(nameof(TableName.ProviderResponseStatus))
                 .WithColumn(Id).AsInt32().PrimaryKey().Identity()
-                .WithColumn("ProviderId").AsInt16().NotNullable()
+                .WithColumn("ProviderId").AsInt16()
+                     .ForeignKey(NamingHelper.Fk(TableName.Provider, TableName.ProviderResponseStatus), nameof(TableName.Provider), Id)
                 .WithColumn("StatusCode").AsInt32().NotNullable()
                 .WithColumn("Message").AsString(int.MaxValue).NotNullable()
                 .WithColumn("IsSuccess").AsBoolean().NotNullable();
+        }
+
+        private void CreateProviderDeliveryStatus()
+        {
+            Create.Table(nameof(TableName.ProviderDeliveryStatus))
+                 .WithColumn(Id).AsInt32().PrimaryKey().Identity()
+                .WithColumn("ProviderId").AsInt16()
+                     .ForeignKey(NamingHelper.Fk(TableName.Provider, TableName.ProviderDeliveryStatus), nameof(TableName.Provider), Id)
+                .WithColumn("StatusCode").AsInt32().NotNullable()
+                .WithColumn("Message").AsString(int.MaxValue).NotNullable()
+                .WithColumn("IsFinal ").AsBoolean().NotNullable();
         }
 
         private void CreateMessageDetailStatus()
         {
             Create.Table(nameof(TableName.MessageDetailStatus))
                 .WithColumn(Id).AsInt64().PrimaryKey().Identity()
-                .WithColumn("ReceiveDateTime").AsDateTime()
-                .WithColumn("MessageId").AsInt64()
+                .WithColumn("InsertDateTime").AsDateTime()
+                .WithColumn("ProviderServerId").AsInt64()
                 .WithColumn("MessagesDetailId").AsInt64()
-                    .ForeignKey(NamingHelper.Fk(TableName.MessageDetailStatus, TableName.MessagesDetail), nameof(TableName.MessagesDetail), Id)
-                .WithColumn("ProviderResponseStatusId").AsInt32()
-                    .ForeignKey(NamingHelper.Fk(TableName.MessageDetailStatus, TableName.ProviderResponseStatus), nameof(TableName.ProviderResponseStatus), Id);
+                    .ForeignKey(NamingHelper.Fk(TableName.MessageDetail, TableName.MessageDetailStatus), nameof(TableName.MessageDetail), Id);
         }
     }
 }
