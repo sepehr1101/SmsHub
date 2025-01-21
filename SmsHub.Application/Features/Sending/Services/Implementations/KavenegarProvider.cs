@@ -14,6 +14,9 @@ using SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts;
 using System.Runtime.InteropServices;
 using Entities = SmsHub.Domain.Features.Entities;
 using NetTopologySuite.Index.HPRtree;
+using SmsHub.Persistence.Features.Template.Queries.Contracts;
+using static SmsHub.Application.Features.Sending.Services.Implementations.GetStatusSingleService;
+using Hangfire.Storage;
 
 namespace SmsHub.Application.Features.Sending.Services.Implementations
 {
@@ -21,6 +24,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
     {
         private readonly IKavenegarHttpAccountService _accountService;
         private readonly IKavenegarHttpStatusService _statusService;
+        private readonly IKavenegarHttpStatusArrayService _statusArrayService;
         private readonly IKavenegarHttpReceiveService _receiveService;
         private readonly IKavenegarHttpSendSimpleService _sendSimpleService;
         private readonly IKavenegarHttpSendArrayService _sendArrayService;
@@ -33,6 +37,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         public KavenegarProvider(
             IKavenegarHttpAccountService accountService,
             IKavenegarHttpStatusService statusService,
+            IKavenegarHttpStatusArrayService statusArrayService,
             IKavenegarHttpReceiveService receiveService,
             IKavenegarHttpSendArrayService sendArrayService,
             IKavenegarHttpSendSimpleService sendSimpleService,
@@ -47,6 +52,9 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             _statusService = statusService;
             _statusService.NotNull(nameof(statusService));
+
+            _statusArrayService = statusArrayService;
+            _statusArrayService.NotNull(nameof(statusArrayService));
 
             _receiveService = receiveService;
             _receiveService.NotNull(nameof(receiveService));
@@ -94,42 +102,82 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             }
         }
 
-        public async Task GetState(Entities.Line line, long id, ICollection<ProviderResponseStatus> statusList)
+        public async Task<CreateMessageDetailStatusDto> GetState(Entities.Line line, GetStatusDataNeed statusData, Guid holderId, ICollection<ProviderResponseStatus> responseStatusList, ICollection<ProviderDeliveryStatus> deliveryStatusList)
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
 
-            StatusDto status = id;//1828205579
+            StatusDto status = statusData.ProviderServerId;//1828205579
             var response = await _statusService.Trigger(status, apiKey);
 
-            var successstatusCode = statusList
+            var successstatusCode = responseStatusList
                 .Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.IsSuccess == true)
                 .Single().StatusCode;
 
+            var deliveryStatusId = deliveryStatusList.Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.StatusCode == response.Return.Status).Single().Id;
+
             if (response.Return.Status == successstatusCode)
             {
-                //todo : return
+                var messageDetailStatus = new CreateMessageDetailStatusDto()
+                {
+                    InsertDateTime = DateTime.Now,
+                    ProviderServerId = response.Entries.MessageId,
+                    MessagesDetailId = statusData.MessageDetailId,
+                    MessagesHolderId = holderId,
+                    ProviderDeliveryStatusId = deliveryStatusId
+                };
+                return messageDetailStatus;
             }
             else
             {
                 throw new ProviderResponseException(response.Return.Message, response.Return.Status);
             }
         }
-        public async Task GetState(Entities.Line line, ICollection<long> providerServerIds, ICollection<ProviderResponseStatus> statusList)
+        public async Task<ICollection<CreateMessageDetailStatusDto>> GetState(Entities.Line line, ICollection<GetStatusDataNeed> statusListData, Guid holderId, ICollection<ProviderResponseStatus> responseStatusList, ICollection<ProviderDeliveryStatus> deliveryStatusList)
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
 
-            var statusListDto = new List<StatusDto>();
-            foreach (var id in providerServerIds)
+            ICollection<StatusDto> statusList = statusListData
+                .Select(x => new StatusDto(x.ProviderServerId))
+                .ToList();
+            var response = await _statusArrayService.Trigger(statusList, apiKey);
+
+            var successstatusCode = responseStatusList
+               .Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.IsSuccess == true)
+               .Single().StatusCode;
+
+
+            if (response.Return.Status == successstatusCode)
             {
-                StatusDto single = id;
-                statusListDto.Add(single);
+                ICollection<CreateMessageDetailStatusDto> messageDetailStatuses = new List<CreateMessageDetailStatusDto>();
+                var i = 0;
+
+                foreach (var item in response.Entries)
+                {
+                    var deliveryStatusId = deliveryStatusList.Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.StatusCode == item.Status).Single().Id;
+
+                    var singleMessageDetailStatus = new CreateMessageDetailStatusDto()
+                    {
+                        InsertDateTime = DateTime.Now,
+                        ProviderServerId = item.MessageId,
+                        MessagesDetailId = statusListData.ElementAt(i).MessageDetailId,//todo : check
+                        MessagesHolderId = holderId,
+                        ProviderDeliveryStatusId = deliveryStatusId,
+                    };
+                    i += 1;
+                    messageDetailStatuses.Add(singleMessageDetailStatus);
+                }
+                return messageDetailStatuses;
+            }
+            else
+            {
+                throw new ProviderResponseException(response.Return.Message, response.Return.Status);
             }
         }
 
 
-        public async Task<CreateMessageDetailStatusDto> Send(Entities.Line line, MobileText mobileText, ICollection<ProviderResponseStatus> statusList)
+        public async Task<CreateMessageDetailStatusDto> Send(Entities.Line line, MobileText mobileText, Guid holderId, ICollection<ProviderResponseStatus> responseStatusList, ICollection<ProviderDeliveryStatus> deliveryStatusList)
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
@@ -146,9 +194,11 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             var response = await _sendSimpleService.Trigger(sendSimpleDto, apiKey);
 
-            var successstatusCode = statusList
+            var successstatusCode = responseStatusList
                 .Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.IsSuccess == true)
                 .Single().StatusCode;
+
+            var deliveryStatusId = deliveryStatusList.Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.StatusCode == response.Entries.Status).Single().Id;
 
             if (response.Return.Status == successstatusCode)
             {
@@ -156,7 +206,9 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
                 {
                     InsertDateTime = DateTime.Now,
                     ProviderServerId = response.Entries.MessageId,
-                    MessagesDetailId = mobileText.LocalId
+                    MessagesDetailId = mobileText.LocalId,
+                    MessagesHolderId = holderId,
+                    ProviderDeliveryStatusId = deliveryStatusId
                 };
                 return messageDetailStatus;
             }
@@ -166,7 +218,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             }
         }
 
-        public async Task<ICollection<CreateMessageDetailStatusDto>> Send(Entities.Line line, ICollection<MobileText> mobileTexts, ICollection<ProviderResponseStatus> statusList)
+        public async Task<ICollection<CreateMessageDetailStatusDto>> Send(Entities.Line line, ICollection<MobileText> mobileTexts, Guid holderId, ICollection<ProviderResponseStatus> responseStatusList, ICollection<ProviderDeliveryStatus> deliveryStatusList)
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
@@ -192,7 +244,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             var response = await _sendArrayService.Trigger(sendArrayDto, apiKey);
 
-            var successstatusCode = statusList
+            var successstatusCode = responseStatusList
                  .Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.IsSuccess == true)
                  .Single().StatusCode;
 
@@ -204,11 +256,15 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
                 foreach (var item in response.Entries)
                 {
+                    var deliveryStatusId = deliveryStatusList.Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.StatusCode == item.Status).Single().Id;
+
                     var singleMessageDetailStatus = new CreateMessageDetailStatusDto()
                     {
                         InsertDateTime = DateTime.Now,
                         ProviderServerId = item.MessageId,
                         MessagesDetailId = mobileTexts.ElementAt(i).LocalId,//todo : check
+                        MessagesHolderId = holderId,
+                        ProviderDeliveryStatusId = deliveryStatusId,
                     };
                     i += 1;
                     messageDetailStatuses.Add(singleMessageDetailStatus);

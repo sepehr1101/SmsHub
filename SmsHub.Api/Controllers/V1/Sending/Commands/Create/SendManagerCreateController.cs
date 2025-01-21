@@ -61,25 +61,6 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
             return Ok(messages);
         }
 
-
-        
-        //remove
-        [HttpPost]
-        [Route("Status/{ProviderId}/{IdToSearch}")]
-        public async Task<IActionResult> Status(string ProviderId, int IdToSearch)
-        {
-             await GetState(ProviderId, IdToSearch);
-            return Ok();
-
-        }
-        public async Task GetState(string line, long id)
-        {
-            var apiKey = line.ToString();
-
-            StatusDto status = id;//1828205579
-            var response = await _statusService.Trigger(status, apiKey);
-
-        }
     }
 
 }

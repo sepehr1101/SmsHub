@@ -4,9 +4,9 @@ using KaveRequest = SmsHub.Domain.Providers.Kavenegar.Entities.Requests;
 
 namespace SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts
 {
-    public  interface IKavenegarHttpStatusService
+    public interface IKavenegarHttpStatusArrayService
     {
-        Task<ResponseGeneric<StatusDto>> Trigger(KaveRequest.StatusDto statusDto, string apiKey);
+        Task<ResponseGeneric<List<StatusDto>>> Trigger(ICollection<KaveRequest.StatusDto> statusListDto, string apiKey);
 
     }
 }

@@ -15,13 +15,15 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         private readonly IMessageDetailStatusCommandService _messageDetailStatusCommandService;
         private readonly IMessagesHolderQueryService _messagesHolderQueryService;
         private readonly IProviderResponseStatusQueryService _providerResponseStatusQueryService;
+        private readonly IMessageDetailStatusQueryService _messageDetailStatusQueryService;
         public GetStatusSingleService(
             IUnitOfWork uow,
             ISmsProviderFactory smsProviderFactory,
             IMessageDetailStatusQueryService messagesDetailQueryService,
             IMessageDetailStatusCommandService messageDetailStatusCommandService,
             IMessagesHolderQueryService messagesHolderQueryService,
-            IProviderResponseStatusQueryService providerResponseStatusQueryService)
+            IProviderResponseStatusQueryService providerResponseStatusQueryService,
+            IMessageDetailStatusQueryService messageDetailStatusQueryService)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));
@@ -40,15 +42,31 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             _providerResponseStatusQueryService = providerResponseStatusQueryService;
             _providerResponseStatusQueryService.NotNull(nameof(providerResponseStatusQueryService));
+
+            _messageDetailStatusQueryService = messageDetailStatusQueryService;
+            _messageDetailStatusQueryService.NotNull(nameof(messageDetailStatusQueryService));
         }
 
         public async Task Trigger(long messageDetailId, ProviderEnum providerId)
         {
             //TODO: get provider responser from new table MessageDetailStatus
             var statusList = await _providerResponseStatusQueryService.Get();
-            var messageDetail = await _messagesDetailQueryService.GetInclude(messageDetailId);            
+            var messageDetail = await _messagesDetailQueryService.GetInclude(messageDetailId);
+            var providerServer = await _messageDetailStatusQueryService.GetById(messageDetailId);
             var smsProvider = _smsProviderFactory.Create(providerId);
-            await smsProvider.GetState(messageDetail.MessagesHolder.MessageBatch.Line, messageDetail.Id, statusList);
+            var statusInfo = new GetStatusDataNeed()
+            {
+                MessageDetailId = messageDetailId,
+                ProviderServerId=providerServer.ProviderServerId
+            };
+
+            await smsProvider.GetState(messageDetail.MessagesHolder.MessageBatch.Line,statusInfo, statusList);
+        }
+
+        public record GetStatusDataNeed
+        {
+            public long MessageDetailId {  get; set; }
+            public long ProviderServerId {  get; set; }
         }
     }
 }

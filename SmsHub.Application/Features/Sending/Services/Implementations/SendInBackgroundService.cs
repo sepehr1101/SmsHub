@@ -17,6 +17,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         private readonly IMessagesHolderQueryService _messagesHolderQueryService;
         private readonly IMessagesDetailQueryService _messagesDetailQueryService;
         private readonly IProviderResponseStatusQueryService _providerResponseStatusQueryService;
+        private readonly IProviderDeliveryStatusQueryService _providerDeliveryStatusQueryService;
         private readonly IMessageDetailStatusCommandService _messageDetailStatusCommandService;
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _uow;
@@ -26,6 +27,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             IMessagesHolderQueryService messagesHolderQueryService,
             IMessagesDetailQueryService messagesDetailQueryService,
             IProviderResponseStatusQueryService providerResponseStatusQueryService,
+            IProviderDeliveryStatusQueryService providerDeliveryStatusQueryService,
             IMessageDetailStatusCommandService messageDetailStatusCommandService,
             IMapper mapper,
             IUnitOfWork uow)
@@ -42,6 +44,9 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             _providerResponseStatusQueryService = providerResponseStatusQueryService;
             _providerResponseStatusQueryService.NotNull(nameof(_providerResponseStatusQueryService));
 
+            _providerDeliveryStatusQueryService = providerDeliveryStatusQueryService;
+            _providerDeliveryStatusQueryService.NotNull(nameof(providerDeliveryStatusQueryService));
+
             _messageDetailStatusCommandService = messageDetailStatusCommandService;
             _messageDetailStatusCommandService.NotNull(nameof(messageDetailStatusCommandService));
 
@@ -57,8 +62,9 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var mobileTextList = await _messagesDetailQueryService.GetMobileTextList(messageHolderId);
             var smsProvider = _smsProviderFactory.Create(providerId);
 
-            var statusList = await _providerResponseStatusQueryService.Get();
-            var result = await smsProvider.Send(messageHolder.MessageBatch.Line, mobileTextList, statusList);
+            var responseStatusList = await _providerResponseStatusQueryService.Get();
+            var deliveryStatusList=await _providerDeliveryStatusQueryService.Get();
+            var result = await smsProvider.Send(messageHolder.MessageBatch.Line, mobileTextList,messageHolderId, responseStatusList, deliveryStatusList);
 
             // delivery status
             var messageDetailStatus = _mapper.Map<ICollection<MessageDetailStatus>>(result);

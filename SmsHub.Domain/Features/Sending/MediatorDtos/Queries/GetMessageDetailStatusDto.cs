@@ -6,7 +6,10 @@
         public DateTime ReceiveDateTime { get; set; }
         public long MessageId { get; set; }
         public long MessagesDetailId { get; set; }
-        public int ProviderResponseStatusId { get; set; }
+        public Guid MessagesHolderId { get; set; }
+        public int ProviderDeliveryStatusId { get; set; }
+        public int? ProviderResponseStatusId { get; set; }
+
 
     }
 }

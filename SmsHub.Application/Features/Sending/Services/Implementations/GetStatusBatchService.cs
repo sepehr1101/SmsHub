@@ -12,15 +12,13 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
     {
         private readonly IUnitOfWork _uow;
         private readonly ISmsProviderFactory _smsProviderFactory;
-        private readonly IMessagesDetailQueryService _messagesDetailQueryService;
-        private readonly IMessageDetailStatusCommandService _messageDetailStatusCommandService;
+        private readonly IMessageDetailStatusQueryService _messageDetailStatusQueryService;
         private readonly IMessagesHolderQueryService _messagesHolderQueryService;
         private readonly IProviderResponseStatusQueryService _providerResponseStatusQueryService;
         public GetStatusBatchService(
             IUnitOfWork uow,
             ISmsProviderFactory smsProviderFactory,
-            IMessageDetailStatusQueryService messagesDetailQueryService,
-            IMessageDetailStatusCommandService messageDetailStatusCommandService,
+            IMessageDetailStatusQueryService messageDetailStatusQueryService,
             IMessagesHolderQueryService messagesHolderQueryService,
             IProviderResponseStatusQueryService providerResponseStatusQueryService)
         {
@@ -30,11 +28,8 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             _smsProviderFactory = smsProviderFactory;
             _smsProviderFactory.NotNull(nameof(smsProviderFactory));
 
-            _messageDetailStatusCommandService = messageDetailStatusCommandService;
-            _messageDetailStatusCommandService.NotNull(nameof(messageDetailStatusCommandService));
-
-            _messageDetailStatusCommandService = messageDetailStatusCommandService;
-            _messageDetailStatusCommandService.NotNull(nameof(_messageDetailStatusCommandService));
+            _messageDetailStatusQueryService = messageDetailStatusQueryService;
+            _messageDetailStatusQueryService.NotNull(nameof(messageDetailStatusQueryService));
 
             _messagesHolderQueryService = messagesHolderQueryService;
             _messagesHolderQueryService.NotNull(nameof(_messagesHolderQueryService));
@@ -47,7 +42,10 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         {
             var statusList = await _providerResponseStatusQueryService.Get();
             var messageHolder = await _messagesHolderQueryService.GetIncludeLine(messageHolderId);
-            var providerServerIds = messageHolder.MessagesDetails.Select(m => m.Id).ToList();//
+            //  var providerServerIds = messageHolder.MessagesDetails.Select(m => m.Id).ToList();
+            var providerServerIds = (await _messageDetailStatusQueryService.GetAll())
+                .Select(x=>x.ProviderServerId)
+                .ToList();
             var smsProvider = _smsProviderFactory.Create(providerId);
             await smsProvider.GetState(messageHolder.MessageBatch.Line, providerServerIds, statusList);
         }

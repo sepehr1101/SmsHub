@@ -451,9 +451,11 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn("MessagesDetailId").AsInt64()
                     .ForeignKey(NamingHelper.Fk(TableName.MessageDetail, TableName.MessageDetailStatus), nameof(TableName.MessageDetail), Id)
                 .WithColumn("MessagesHolderId").AsGuid()
-                   .ForeignKey(NamingHelper.Fk(TableName.MessagesHolder, TableName.MessageDetailStatus), nameof(TableName.MessagesHolder), Id)
+                    .ForeignKey(NamingHelper.Fk(TableName.MessagesHolder, TableName.MessageDetailStatus), nameof(TableName.MessagesHolder), Id)
                 .WithColumn("ProviderDeliveryStatusId").AsInt32()
-                   .ForeignKey(NamingHelper.Fk(TableName.ProviderDeliveryStatus, TableName.MessageDetailStatus), nameof(TableName.ProviderDeliveryStatus), Id);
+                    .ForeignKey(NamingHelper.Fk(TableName.ProviderDeliveryStatus, TableName.MessageDetailStatus), nameof(TableName.ProviderDeliveryStatus), Id)
+                .WithColumn("ProviderResponseStatusId").AsInt32().Nullable()
+                    .ForeignKey(NamingHelper.Fk(TableName.ProviderResponseStatus, TableName.MessageDetailStatus), nameof(TableName.ProviderResponseStatus),Id);
 
 
         }
