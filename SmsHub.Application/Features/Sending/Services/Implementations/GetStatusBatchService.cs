@@ -47,7 +47,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         {
             var statusList = await _providerResponseStatusQueryService.Get();
             var messageHolder = await _messagesHolderQueryService.GetIncludeLine(messageHolderId);
-            var providerServerIds = messageHolder.MessagesDetails.Select(m => m.Id).ToList();
+            var providerServerIds = messageHolder.MessagesDetails.Select(m => m.Id).ToList();//
             var smsProvider = _smsProviderFactory.Create(providerId);
             await smsProvider.GetState(messageHolder.MessageBatch.Line, providerServerIds, statusList);
         }

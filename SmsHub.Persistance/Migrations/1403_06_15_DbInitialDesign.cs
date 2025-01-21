@@ -449,7 +449,13 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn("InsertDateTime").AsDateTime()
                 .WithColumn("ProviderServerId").AsInt64()
                 .WithColumn("MessagesDetailId").AsInt64()
-                    .ForeignKey(NamingHelper.Fk(TableName.MessageDetail, TableName.MessageDetailStatus), nameof(TableName.MessageDetail), Id);
+                    .ForeignKey(NamingHelper.Fk(TableName.MessageDetail, TableName.MessageDetailStatus), nameof(TableName.MessageDetail), Id)
+                .WithColumn("MessagesHolderId").AsGuid()
+                   .ForeignKey(NamingHelper.Fk(TableName.MessagesHolder, TableName.MessageDetailStatus), nameof(TableName.MessagesHolder), Id)
+                .WithColumn("ProviderDeliveryStatusId").AsInt32()
+                   .ForeignKey(NamingHelper.Fk(TableName.ProviderDeliveryStatus, TableName.MessageDetailStatus), nameof(TableName.ProviderDeliveryStatus), Id);
+
+
         }
     }
 }

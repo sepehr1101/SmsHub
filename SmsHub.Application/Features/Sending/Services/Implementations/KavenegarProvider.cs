@@ -117,23 +117,17 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         }
         public async Task GetState(Entities.Line line, ICollection<long> providerServerIds, ICollection<ProviderResponseStatus> statusList)
         {
-            throw new NotImplementedException();
-        }
-
-
-        //Collection GetState
-        public async Task GetState(Entities.Line line, ICollection<long> ids)
-        {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
 
-            var statusList = new List<StatusDto>();
-            foreach (var id in ids)
+            var statusListDto = new List<StatusDto>();
+            foreach (var id in providerServerIds)
             {
                 StatusDto single = id;
-                statusList.Add(single);
+                statusListDto.Add(single);
             }
         }
+
 
         public async Task<CreateMessageDetailStatusDto> Send(Entities.Line line, MobileText mobileText, ICollection<ProviderResponseStatus> statusList)
         {
