@@ -56,5 +56,6 @@ namespace SmsHub.Persistence.Features.Security.Queries.Implementations
                 }).ToListAsync();
 
         }
+
     }
 }
