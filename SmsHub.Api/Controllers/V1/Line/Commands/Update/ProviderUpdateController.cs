@@ -1,15 +1,13 @@
 ﻿using Aban360.Api.Controllers.V1;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Line.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
-using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Update;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.V1.Line.Commands.Update
 {
-    [Route(nameof(Provider))]
+    [Route("provider")]
     [ApiController]
     public class ProviderUpdateController : BaseController
     {
@@ -27,7 +25,7 @@ namespace SmsHub.Api.Controllers.V1.Line.Commands.Update
         }
 
         [HttpPost]
-        [Route(nameof(Update))]
+        [Route("update")]
         public async Task<IActionResult> Update([FromBody] UpdateProviderDto updateProviderDto, CancellationToken cancellationToken)
         {
             await _updateProviderHandler.Handle(updateProviderDto, cancellationToken);

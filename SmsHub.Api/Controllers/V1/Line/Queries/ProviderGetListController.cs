@@ -6,7 +6,7 @@ using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Api.Controllers.V1.Line.Queries
 {
-    [Route(nameof(Provider))]
+    [Route("provider")]
     [ApiController]
     public class ProviderGetListController : BaseController
     {
@@ -18,7 +18,7 @@ namespace SmsHub.Api.Controllers.V1.Line.Queries
         }
 
         [HttpPost]
-        [Route(nameof(GetList))]
+        [Route("all")]
         public async Task<IActionResult> GetList()
         {
             var providers = await _getListHandler.Handle();

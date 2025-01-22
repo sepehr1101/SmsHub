@@ -6,7 +6,7 @@ using SmsHub.Domain.BaseDomainEntities.Id;
 
 namespace SmsHub.Api.Controllers.V1.Line.Queries
 {
-    [Route(nameof(Line))]
+    [Route("line")]
     [ApiController]
     public class LineGetSingleController : BaseController
     {
@@ -18,7 +18,7 @@ namespace SmsHub.Api.Controllers.V1.Line.Queries
         }
 
         [HttpPost]
-        [Route(nameof(GetSingle))]
+        [Route("single")]
         public async Task<IActionResult> GetSingle(IntId Id)
         {
             var line = await _getSingleHandler.Handle(Id);

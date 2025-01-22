@@ -6,7 +6,6 @@ using MagfaRequest = SmsHub.Domain.Providers.Magfa3000.Entities.Requests;
 using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Application.Common.Services.Implementations;
 using System.Runtime.InteropServices;
-using SmsHub.Domain.Features.Receiving.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Sending.Entities;
 using SmsHub.Domain.Constants;
 using SmsHub.Application.Exceptions;

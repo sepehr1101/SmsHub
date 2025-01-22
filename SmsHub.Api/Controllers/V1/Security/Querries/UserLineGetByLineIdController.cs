@@ -5,7 +5,7 @@ using SmsHub.Common.Extensions;
 
 namespace SmsHub.Api.Controllers.V1.Security.Querries
 {
-    [Route("role")]
+    [Route("line")]
     [ApiController]
     public class UserLineGetByLineIdController:BaseController
     {

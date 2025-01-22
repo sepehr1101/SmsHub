@@ -13,10 +13,6 @@
     <Folder Include="Features\Credit\MediatorDtos\Commands\Delete\" />
     <Folder Include="Features\Credit\MediatorDtos\Commands\Update\" />
     <Folder Include="Features\Credit\MediatorDtos\Queries\" />
-    <Folder Include="Features\Receiving\EfConfig\" />
-    <Folder Include="Features\Receiving\MediatorDtos\Commands\Delete\" />
-    <Folder Include="Features\Receiving\MediatorDtos\Commands\Update\" />
-    <Folder Include="Features\Receiving\MediatorDtos\Queries\" />
     <Folder Include="Features\Security\EfConfig\" />
     <Folder Include="Features\Template\MediatorDtos\Queries\" />
     <Folder Include="Providers\Kavenegar\Models\" />

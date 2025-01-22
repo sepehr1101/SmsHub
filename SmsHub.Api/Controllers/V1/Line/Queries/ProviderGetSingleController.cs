@@ -7,7 +7,7 @@ using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Api.Controllers.V1.Line.Queries
 {
-    [Route(nameof(Provider))]
+    [Route("provider")]
     [ApiController]
     public class ProviderGetSingleController : BaseController
     {
@@ -19,7 +19,7 @@ namespace SmsHub.Api.Controllers.V1.Line.Queries
         }
 
         [HttpPost]
-        [Route(nameof(GetSingle))]
+        [Route("single")]
         public async Task<IActionResult> GetSingle([FromBody] ProviderEnum Id)
         {
             var provider = await _getSingleHandler.Handle(Id);

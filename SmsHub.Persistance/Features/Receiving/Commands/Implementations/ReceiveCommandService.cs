@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SmsHub.Domain.Features.Receiving.Entities;
+using SmsHub.Domain.Features.Sending.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Features.Receiving.Commands.Contracts;
 

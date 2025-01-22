@@ -3,8 +3,6 @@ using SmsHub.Application.Exceptions;
 using SmsHub.Application.Features.Sending.Factories;
 using SmsHub.Application.Features.Sending.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
-using SmsHub.Domain.Constants;
-using SmsHub.Domain.Features.Receiving.Entities;
 using SmsHub.Domain.Features.Sending.Entities;
 using SmsHub.Persistence.Features.Line.Queries.Contracts;
 using SmsHub.Persistence.Features.Receiving.Commands.Contracts;

@@ -2,13 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Line.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
-using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Delete;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.V1.Line.Commands.Delete
 {
-    [Route(nameof(Provider))]
+    [Route("provider")]
     [ApiController]
     public class ProviderDeleteController : BaseController
     {
@@ -26,7 +25,7 @@ namespace SmsHub.Api.Controllers.V1.Line.Commands.Delete
         }
 
         [HttpPost]
-        [Route(nameof(Delete))]
+        [Route("delete")]
         public async Task<IActionResult> Delete([FromBody] DeleteProviderDto deleteProviderDto, CancellationToken cancellationToken)
         {
             await _providerDeleteHandler.Handle(deleteProviderDto, cancellationToken);
