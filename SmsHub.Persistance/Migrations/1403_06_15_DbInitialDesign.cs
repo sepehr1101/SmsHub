@@ -277,7 +277,6 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn($"{nameof(TableName.MessagesHolder)}{Id}").AsGuid()
                     .ForeignKey(NamingHelper.Fk(TableName.MessagesHolder, TableName.MessageDetail), nameof(TableName.MessagesHolder), Id)
                 .WithColumn("Receptor").AsString(15)
-                .WithColumn("ProviderResult").AsInt64()
                 .WithColumn("SendDateTime").AsDateTime()
                 .WithColumn("Text").AsString(int.MaxValue)
                 .WithColumn("SmsCount").AsInt16();

@@ -14,7 +14,6 @@ namespace SmsHub.Domain.Features.Entities
         public long Id { get; set; }
         public Guid MessagesHolderId { get; set; }
         public string Receptor { get; set; } = null!;
-        public long ProviderResult { get; set; }
         public DateTime SendDateTime { get; set; }
         public string Text { get; set; } = null!;
         public short SmsCount { get; set; }
