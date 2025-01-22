@@ -8,5 +8,6 @@ namespace SmsHub.Persistence.Features.Sending.Queries.Contracts
         Task<MessageDetailStatus> GetByProviderServerId(long Id);
         Task<ICollection<MessageDetailStatus>> GetByMessageDetailId(long Id);
         Task<ICollection<MessageDetailStatus>> GetAll();
+        Task<ICollection<MessageDetailStatus>> GetIncludeProviderResponseAndDelivery();
     }
 }

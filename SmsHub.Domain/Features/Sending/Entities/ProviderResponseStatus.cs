@@ -13,6 +13,7 @@ namespace SmsHub.Domain.Features.Sending.Entities
         public string Message { get; set; }
         public bool IsSuccess { get; set; }
 
-        public virtual Provider Provider {  get; set; }  
+        public virtual Provider Provider {  get; set; }
+        public virtual ICollection<MessageDetailStatus> MessageDetailStatuses{ get; set; }
     }
 }

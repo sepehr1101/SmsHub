@@ -8,11 +8,11 @@ namespace SmsHub.Application.Features.Sending.Services.Contracts
 {
     public interface ISmsProvider
     {
-        Task<CreateMessageDetailStatusDto> Send(Entities.Line line, MobileText mobileText, ICollection<ProviderResponseStatus> statusList);
-        Task<ICollection<CreateMessageDetailStatusDto>> Send(Entities.Line line, ICollection<MobileText> mobileTexts, ICollection<ProviderResponseStatus> statusList);
+        Task<CreateMessageDetailStatusDto> Send(Entities.Line line, MobileText mobileText, Guid holderId, ICollection<ProviderResponseStatus> responseStatusList, ICollection<ProviderDeliveryStatus> deliveryStatusList);
+        Task<ICollection<CreateMessageDetailStatusDto>> Send(Entities.Line line, ICollection<MobileText> mobileTexts, Guid holderId, ICollection<ProviderResponseStatus> responseStatusList, ICollection<ProviderDeliveryStatus> deliveryStatusList);
         Task<long> GetCredit(Entities.Line line, ICollection<ProviderResponseStatus> statusList);
-        Task GetState(Entities.Line line,long id, ICollection<ProviderResponseStatus> statusList);
-        Task GetState(Entities.Line line, ICollection<long> providerServerIds, ICollection<ProviderResponseStatus> statusList);
+        Task<CreateMessageDetailStatusDto> GetState(Entities.Line line, MessageAndProviderIdDto statusListData, Guid holderId, ICollection<ProviderResponseStatus> responseStatusList, ICollection<ProviderDeliveryStatus> deliveryStatusList);
+        Task<ICollection<CreateMessageDetailStatusDto>> GetState(Entities.Line line, ICollection<MessageAndProviderIdDto> statusListData, Guid holderId, ICollection<ProviderResponseStatus> responseStatusList, ICollection<ProviderDeliveryStatus> deliveryStatusList);
         Task<ICollection<CreateReceiveDto>> Receive([Optional]Entities.Line line, ICollection<ProviderResponseStatus> statusList);        
     }
 }

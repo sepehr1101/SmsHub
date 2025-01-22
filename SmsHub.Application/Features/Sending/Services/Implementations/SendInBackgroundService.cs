@@ -3,7 +3,6 @@ using SmsHub.Application.Features.Sending.Factories;
 using SmsHub.Application.Features.Sending.Services.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Constants;
-using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Sending.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Features.Sending.Commands.Contracts;
@@ -13,23 +12,34 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 {
     public sealed class SendInBackgroundService : ISendInBackgroundService
     {
+        private readonly IMapper _mapper;
+        private readonly IUnitOfWork _uow;
         private readonly ISmsProviderFactory _smsProviderFactory;
         private readonly IMessagesHolderQueryService _messagesHolderQueryService;
         private readonly IMessagesDetailQueryService _messagesDetailQueryService;
         private readonly IProviderResponseStatusQueryService _providerResponseStatusQueryService;
+        private readonly IProviderDeliveryStatusQueryService _providerDeliveryStatusQueryService;
         private readonly IMessageDetailStatusCommandService _messageDetailStatusCommandService;
-        private readonly IMapper _mapper;
-        private readonly IUnitOfWork _uow;
+        private readonly IGetStatusInBackgroundService _getStatusInBackgroundService;
+
 
         public SendInBackgroundService(
+            IMapper mapper,
+            IUnitOfWork uow,
             ISmsProviderFactory smsProviderFactory,
             IMessagesHolderQueryService messagesHolderQueryService,
             IMessagesDetailQueryService messagesDetailQueryService,
             IProviderResponseStatusQueryService providerResponseStatusQueryService,
+            IProviderDeliveryStatusQueryService providerDeliveryStatusQueryService,
             IMessageDetailStatusCommandService messageDetailStatusCommandService,
-            IMapper mapper,
-            IUnitOfWork uow)
+            IGetStatusInBackgroundService getStatusInBackgroundService)
         {
+            _mapper = mapper;
+            _mapper.NotNull(nameof(mapper));
+
+            _uow = uow;
+            _uow.NotNull(nameof(uow));
+
             _smsProviderFactory = smsProviderFactory;
             _smsProviderFactory.NotNull(nameof(_smsProviderFactory));
 
@@ -42,14 +52,15 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             _providerResponseStatusQueryService = providerResponseStatusQueryService;
             _providerResponseStatusQueryService.NotNull(nameof(_providerResponseStatusQueryService));
 
+            _providerDeliveryStatusQueryService = providerDeliveryStatusQueryService;
+            _providerDeliveryStatusQueryService.NotNull(nameof(providerDeliveryStatusQueryService));
+
             _messageDetailStatusCommandService = messageDetailStatusCommandService;
             _messageDetailStatusCommandService.NotNull(nameof(messageDetailStatusCommandService));
 
-            _mapper = mapper;
-            _mapper.NotNull(nameof(mapper));
+            _getStatusInBackgroundService=getStatusInBackgroundService; 
+            _getStatusInBackgroundService.NotNull(nameof(getStatusInBackgroundService));
 
-            _uow = uow;
-            _uow.NotNull(nameof(uow));
         }
         public async Task Trigger(Guid messageHolderId, ProviderEnum providerId)
         {
@@ -57,14 +68,19 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var mobileTextList = await _messagesDetailQueryService.GetMobileTextList(messageHolderId);
             var smsProvider = _smsProviderFactory.Create(providerId);
 
-            var statusList = await _providerResponseStatusQueryService.Get();
-            var result = await smsProvider.Send(messageHolder.MessageBatch.Line, mobileTextList, statusList);
+            var responseStatusList = await _providerResponseStatusQueryService.Get();
+            var deliveryStatusList = await _providerDeliveryStatusQueryService.Get();
+            var result = await smsProvider.Send(messageHolder.MessageBatch.Line, mobileTextList, messageHolderId, responseStatusList, deliveryStatusList);
 
             // delivery status
             var messageDetailStatus = _mapper.Map<ICollection<MessageDetailStatus>>(result);
             await _messageDetailStatusCommandService.Add(messageDetailStatus);
 
             await _uow.SaveChangesAsync(CancellationToken.None);
+
+            //Get Status
+           var getState= _getStatusInBackgroundService.Trigger(messageHolderId, providerId);
+
         }
     }
 }

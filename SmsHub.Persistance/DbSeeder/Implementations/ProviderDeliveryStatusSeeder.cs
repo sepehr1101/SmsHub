@@ -27,6 +27,7 @@ namespace SmsHub.Persistence.DbSeeder.Implementations
             if (!_providerDeliveryStatus.Any())
             {
                 _providerDeliveryStatus.AddRange(GetKavenegarDeliveryStatus());
+                _providerDeliveryStatus.AddRange(GetMagfaDeliveryStatus());
 
                 _uow.SaveChanges();
             }
@@ -108,6 +109,22 @@ namespace SmsHub.Persistence.DbSeeder.Implementations
                 },       
             };
             return KavenegarDeliveryStatus;
+        }
+
+        private List<ProviderDeliveryStatus> GetMagfaDeliveryStatus()
+        {
+            var MagfaDeliveryStatus = new List<ProviderDeliveryStatus>()
+            {
+                new ProviderDeliveryStatus()
+                {
+                    ProviderId = ProviderEnum.Magfa,
+                     StatusCode = 0,
+                     Message = "ارسال به Provider",
+                     IsFinal = false,
+                }
+            };
+
+           return MagfaDeliveryStatus;
         }
     }
 }

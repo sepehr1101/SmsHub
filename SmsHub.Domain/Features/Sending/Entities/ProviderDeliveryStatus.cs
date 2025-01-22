@@ -14,5 +14,6 @@ namespace SmsHub.Domain.Features.Sending.Entities
         public bool IsFinal { get; set; }
 
         public virtual Provider Provider { get; set; }
+        public virtual ICollection<MessageDetailStatus> MessageDetailStatuses { get; set; }
     }
 }
