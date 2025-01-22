@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SmsHub.Application.Features.Sending.Factories;
+using SmsHub.Application.Features.Sending.Services.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Sending.Entities;
@@ -9,7 +10,7 @@ using SmsHub.Persistence.Features.Sending.Queries.Contracts;
 
 namespace SmsHub.Application.Features.Sending.Services.Implementations
 {
-    public sealed class GetStatusSingleService
+    public sealed class GetStatusSingleService:IGetStatusSingleService
     {
         private readonly IUnitOfWork _uow;
         private readonly IMapper _mapper;

@@ -20,6 +20,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         private readonly IMessagesHolderQueryService _messagesHolderQueryService;
         private readonly IProviderResponseStatusQueryService _providerResponseStatusQueryService;
         private readonly IProviderDeliveryStatusQueryService _providerDeliveryStatusQueryService;
+        private readonly IGetStatusSingleService _getStatusSingleService;
         public GetStatusBatchService(
             IUnitOfWork uow,
             IMapper mapper,
@@ -28,7 +29,8 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             IMessageDetailStatusCommandService messageDetailStatusCommandService,
             IMessagesHolderQueryService messagesHolderQueryService,
             IProviderResponseStatusQueryService providerResponseStatusQueryService,
-            IProviderDeliveryStatusQueryService providerDeliveryStatusQueryService)
+            IProviderDeliveryStatusQueryService providerDeliveryStatusQueryService,
+            IGetStatusSingleService getStatusSingleService)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));
@@ -53,6 +55,9 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             _providerDeliveryStatusQueryService = providerDeliveryStatusQueryService;
             _providerDeliveryStatusQueryService.NotNull(nameof(providerDeliveryStatusQueryService));
+
+            _getStatusSingleService = getStatusSingleService;
+            _getStatusSingleService.NotNull(nameof(getStatusSingleService));
         }
 
         public async Task Trigger(Guid messageHolderId, ProviderEnum providerId)
@@ -69,13 +74,27 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
                 }).ToList();
 
             var smsProvider = _smsProviderFactory.Create(providerId);
-           var result= await smsProvider.GetState(messageHolder.MessageBatch.Line, statusInfoList, messageHolderId, responseStatusList, deliveryStatusList);
+            var result = await smsProvider.GetState(messageHolder.MessageBatch.Line, statusInfoList, messageHolderId, responseStatusList, deliveryStatusList);
 
             // delivery status
             var messageDetailStatus = _mapper.Map<ICollection<MessageDetailStatus>>(result);
             await _messageDetailStatusCommandService.Add(messageDetailStatus);
 
             await _uow.SaveChangesAsync(CancellationToken.None);
+
+
+
+            //recursive
+            var failedMessageDetailIdList =( await _messageDetailStatusQueryService.GetIncludeProviderResponseAndDelivery())
+                .Where(x=>x.ProviderDeliveryStatus.IsFinal==false )
+                .Select(x=>x.MessagesDetailId)
+                .ToList();
+
+            foreach (var item in failedMessageDetailIdList)
+            {
+                await _getStatusSingleService.Trigger(item, providerId);
+            }
+
         }
     }
 }

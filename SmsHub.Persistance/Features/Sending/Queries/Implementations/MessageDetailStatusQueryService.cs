@@ -42,5 +42,13 @@ namespace SmsHub.Persistence.Features.Sending.Queries.Implementations
                   .Where(m => m.ProviderServerId == Id)
                   .FirstAsync();
         }
+
+        public async Task<ICollection<MessageDetailStatus>> GetIncludeProviderResponseAndDelivery()
+        {
+            return await _messageDetailStatus
+                .Include(m => m.ProviderResponseStatus)
+                .Include(m=>m.ProviderDeliveryStatus)
+                .ToListAsync();
+        }
     }
 }
