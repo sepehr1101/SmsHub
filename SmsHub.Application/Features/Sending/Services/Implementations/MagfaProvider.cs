@@ -76,14 +76,14 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
 
 
-        public async Task<ICollection<CreateMessageDetailStatusDto>> GetState(Entities.Line line, ICollection<GetStatusDataNeed> statusListData, Guid holderId, ICollection<ProviderResponseStatus> responseStatusList, ICollection<ProviderDeliveryStatus> deliveryStatusList)
+        public async Task<ICollection<CreateMessageDetailStatusDto>> GetState(Entities.Line line, ICollection<MessageAndProviderIdDto> statusListData, Guid holderId, ICollection<ProviderResponseStatus> responseStatusList, ICollection<ProviderDeliveryStatus> deliveryStatusList)
         {
             var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
             var domain = magfaCredential.Domain;
             var userName = magfaCredential.UserName;
             var password = magfaCredential.ClientSecret;
 
-            var response = await _magfaStatusCodesService.GetStatuses(domain, userName, password, id);
+            var response = await _magfaStatusCodesService.GetStatuses(domain, userName, password, statusListData.Select(x=>x.ProviderServerId).ToList());
 
             var successstatusCode = responseStatusList
                 .Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.IsSuccess == true)
@@ -91,7 +91,26 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             if (response.Status == successstatusCode)
             {
-                //return
+                ICollection<CreateMessageDetailStatusDto> messageDetailStatuses = new List<CreateMessageDetailStatusDto>();
+                var i = 0;
+                foreach (var item in response.Dlrs)
+                {
+                    var deliveryStatusId = deliveryStatusList.Where(x => x.ProviderId == ProviderEnum.Magfa && x.StatusCode == 0).Single().Id;
+                    var responseStatusId = responseStatusList.Where(x => x.ProviderId == ProviderEnum.Magfa && x.StatusCode == item.Status).Single().Id;
+
+                    var singleMessageDetailStatus = new CreateMessageDetailStatusDto()
+                    {
+                        InsertDateTime = DateTime.Now,
+                        ProviderServerId = Convert.ToInt64(item.Mid),
+                        MessagesDetailId = statusListData.ElementAt(i).MessageDetailId,
+                        MessagesHolderId = holderId,
+                        ProviderDeliveryStatusId = deliveryStatusId,
+                        ProviderResponseStatusId = responseStatusId
+                    };
+                    i++;
+                    messageDetailStatuses.Add(singleMessageDetailStatus);
+                }
+                return messageDetailStatuses;
             }
             else
             {
@@ -100,22 +119,35 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             }
         }
 
-        public async Task<CreateMessageDetailStatusDto> GetState(Entities.Line line, GetStatusDataNeed statusData, Guid holderId, ICollection<ProviderResponseStatus> responseStatusList, ICollection<ProviderDeliveryStatus> deliveryStatusList)
+        public async Task<CreateMessageDetailStatusDto> GetState(Entities.Line line, MessageAndProviderIdDto statusData, Guid holderId, ICollection<ProviderResponseStatus> responseStatusList, ICollection<ProviderDeliveryStatus> deliveryStatusList)
         {
             var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
             var domain = magfaCredential.Domain;
             var userName = magfaCredential.UserName;
             var password = magfaCredential.ClientSecret;
 
-            var response = await _magfaStatusCodesService.GetStatuses(domain, userName, password, id);
+            var response = await _magfaStatusCodesService.GetStatuses(domain, userName, password, statusData.ProviderServerId);
 
             var successstatusCode = responseStatusList
                 .Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.IsSuccess == true)
                 .Single().StatusCode;
 
+
+            var deliveryStatusId = deliveryStatusList.Where(x => x.ProviderId == ProviderEnum.Magfa && x.StatusCode == 0).Single().Id;
+            var responseStatusId = responseStatusList.Where(x => x.ProviderId == ProviderEnum.Magfa && x.StatusCode == response.Dlrs.First().Status).Single().Id;
+
             if (response.Status == successstatusCode)
             {
-                //return
+                var messageDetailStatus = new CreateMessageDetailStatusDto()
+                {
+                    InsertDateTime = DateTime.Now,
+                    ProviderServerId = Convert.ToInt64(response.Dlrs.First().Mid),
+                    MessagesDetailId = statusData.MessageDetailId,
+                    MessagesHolderId = holderId,
+                    ProviderDeliveryStatusId = deliveryStatusId,
+                    ProviderResponseStatusId = responseStatusId
+                };
+                return messageDetailStatus;
             }
             else
             {
@@ -149,7 +181,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
                .Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.IsSuccess == true)
             .Single().StatusCode;
 
-            var deliveryStatusId = deliveryStatusList.Where(x => x.ProviderId == ProviderEnum.Magfa && x.StatusCode ==0).Single().Id;
+            var deliveryStatusId = deliveryStatusList.Where(x => x.ProviderId == ProviderEnum.Magfa && x.StatusCode == 0).Single().Id;
             var responseStatusId = responseStatusList.Where(x => x.ProviderId == ProviderEnum.Magfa && x.StatusCode == response.Message.First().Status).Single().Id;
 
             if (response.Status == successstatusCode)
@@ -159,12 +191,11 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
                     InsertDateTime = DateTime.Now,
                     ProviderServerId = Convert.ToInt64(response.Message.First().Id),
                     MessagesDetailId = mobileText.LocalId,
-                    MessagesHolderId=holderId,
+                    MessagesHolderId = holderId,
                     ProviderDeliveryStatusId = deliveryStatusId,
-                    ProviderResponseStatusId=responseStatusId
+                    ProviderResponseStatusId = responseStatusId
                 };
                 return messageDetailStatus;
-                //return
             }
             else
             {

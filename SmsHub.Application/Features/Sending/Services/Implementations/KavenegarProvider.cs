@@ -102,7 +102,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             }
         }
 
-        public async Task<CreateMessageDetailStatusDto> GetState(Entities.Line line, GetStatusDataNeed statusData, Guid holderId, ICollection<ProviderResponseStatus> responseStatusList, ICollection<ProviderDeliveryStatus> deliveryStatusList)
+        public async Task<CreateMessageDetailStatusDto> GetState(Entities.Line line, MessageAndProviderIdDto statusData, Guid holderId, ICollection<ProviderResponseStatus> responseStatusList, ICollection<ProviderDeliveryStatus> deliveryStatusList)
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
@@ -133,7 +133,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
                 throw new ProviderResponseException(response.Return.Message, response.Return.Status);
             }
         }
-        public async Task<ICollection<CreateMessageDetailStatusDto>> GetState(Entities.Line line, ICollection<GetStatusDataNeed> statusListData, Guid holderId, ICollection<ProviderResponseStatus> responseStatusList, ICollection<ProviderDeliveryStatus> deliveryStatusList)
+        public async Task<ICollection<CreateMessageDetailStatusDto>> GetState(Entities.Line line, ICollection<MessageAndProviderIdDto> statusListData, Guid holderId, ICollection<ProviderResponseStatus> responseStatusList, ICollection<ProviderDeliveryStatus> deliveryStatusList)
         {
             var kavenegarCredential = ProviderCredentialService.CheckKavenegarValidCredential(line.Credential);
             var apiKey = kavenegarCredential.apiKey;
