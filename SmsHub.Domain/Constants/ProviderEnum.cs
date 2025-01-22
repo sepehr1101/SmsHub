@@ -1,8 +1,12 @@
 ﻿namespace SmsHub.Domain.Constants
 {
-    public enum ProviderEnum: short
+    public enum ProviderEnum : short
     {
-        Magfa=3,
-        Kavenegar=10
+        RahyabDate = 1,
+        Atiye = 2,
+        Magfa = 3,
+        RahyabPayam=5,
+        FarazSms=9,
+        Kavenegar=10,
     }
 }
