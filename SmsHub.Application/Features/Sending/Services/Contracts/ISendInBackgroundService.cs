@@ -1,5 +1,4 @@
 ﻿using SmsHub.Domain.Constants;
-using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Application.Features.Sending.Services.Contracts
 {

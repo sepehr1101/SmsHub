@@ -1,5 +1,4 @@
-﻿using Azure;
-using SmsHub.Application.Common.Services.Implementations;
+﻿using SmsHub.Application.Common.Services.Implementations;
 using SmsHub.Application.Exceptions;
 using SmsHub.Application.Features.Sending.Services.Contracts;
 using SmsHub.Common.Extensions;
@@ -7,16 +6,10 @@ using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Receiving.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Sending.Entities;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
-using SmsHub.Domain.Providers.Kavenegar.Entities.Base;
 using SmsHub.Domain.Providers.Kavenegar.Entities.Requests;
-using Response = SmsHub.Domain.Providers.Kavenegar.Entities.Responses;
 using SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts;
 using System.Runtime.InteropServices;
 using Entities = SmsHub.Domain.Features.Entities;
-using NetTopologySuite.Index.HPRtree;
-using SmsHub.Persistence.Features.Template.Queries.Contracts;
-using static SmsHub.Application.Features.Sending.Services.Implementations.GetStatusSingleService;
-using Hangfire.Storage;
 
 namespace SmsHub.Application.Features.Sending.Services.Implementations
 {

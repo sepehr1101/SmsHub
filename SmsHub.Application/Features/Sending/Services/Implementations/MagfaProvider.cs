@@ -10,10 +10,6 @@ using SmsHub.Domain.Features.Receiving.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Sending.Entities;
 using SmsHub.Domain.Constants;
 using SmsHub.Application.Exceptions;
-using Azure;
-using NetTopologySuite.Index.HPRtree;
-using static SmsHub.Application.Features.Sending.Services.Implementations.GetStatusSingleService;
-
 
 namespace SmsHub.Application.Features.Sending.Services.Implementations
 {

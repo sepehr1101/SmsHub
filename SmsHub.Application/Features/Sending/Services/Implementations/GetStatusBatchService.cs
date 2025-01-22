@@ -6,9 +6,7 @@ using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Sending.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Features.Sending.Commands.Contracts;
-using SmsHub.Persistence.Features.Sending.Commands.Implementations;
 using SmsHub.Persistence.Features.Sending.Queries.Contracts;
-using static SmsHub.Application.Features.Sending.Services.Implementations.GetStatusSingleService;
 
 namespace SmsHub.Application.Features.Sending.Services.Implementations
 {
