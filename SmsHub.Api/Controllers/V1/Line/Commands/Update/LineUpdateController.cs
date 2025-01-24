@@ -7,7 +7,7 @@ using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.V1.Line.Commands.Update
 {
-    [Route(nameof(Line))]
+    [Route("line")]
     [ApiController]
     public class LineUpdateController : BaseController
     {
@@ -25,7 +25,7 @@ namespace SmsHub.Api.Controllers.V1.Line.Commands.Update
         }
 
         [HttpPost]
-        [Route(nameof(Update))]
+        [Route("update")]
         public async Task<IActionResult> Update([FromBody] UpdateLineDto updateDto, CancellationToken cancellationToken)
         {
             await _updateCommandHandler.Handle(updateDto, cancellationToken);

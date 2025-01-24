@@ -23,7 +23,14 @@ namespace SmsHub.Persistence.Features.Security.Commands.Implementations
             await _users.AddAsync(user);
         }
 
-        public void Remove(User user, string logInfo)
+        public async Task Remove(Guid userId, string logInfo)
+        {
+            var user = await _users.FindAsync(userId);
+            user.RemoveLogInfo = logInfo;
+            user.ValidTo = DateTime.Now;
+        }
+
+        public async Task Remove(User user, string logInfo)
         {
             user.RemoveLogInfo = logInfo;
             user.ValidTo = DateTime.Now;

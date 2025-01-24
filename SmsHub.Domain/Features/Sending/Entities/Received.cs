@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using Entity = SmsHub.Domain.Features.Entities;
 
-namespace SmsHub.Domain.Features.Receiving.Entities
+namespace SmsHub.Domain.Features.Sending.Entities
 {
     [Table(nameof(Received))]
     public class Received

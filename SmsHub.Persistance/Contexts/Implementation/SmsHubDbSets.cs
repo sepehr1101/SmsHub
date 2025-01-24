@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SmsHub.Domain.Features.Entities;
-using SmsHub.Domain.Features.Receiving.Entities;
+using SmsHub.Domain.Features.Sending.Entities;
 using SmsHub.Domain.Features.Security.Entities;
 using SmsHub.Domain.Features.Sending.Entities;
 

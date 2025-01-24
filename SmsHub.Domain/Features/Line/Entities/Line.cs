@@ -1,5 +1,5 @@
 ﻿using SmsHub.Domain.Constants;
-using SmsHub.Domain.Features.Receiving.Entities;
+using SmsHub.Domain.Features.Sending.Entities;
 using SmsHub.Domain.Features.Security.Entities;
 using System.ComponentModel.DataAnnotations.Schema;
 

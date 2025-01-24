@@ -1,4 +1,4 @@
-﻿using SmsHub.Domain.Features.Receiving.Entities;
+﻿using SmsHub.Domain.Features.Sending.Entities;
 
 namespace SmsHub.Persistence.Features.Receiving.Commands.Contracts
 {

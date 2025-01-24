@@ -7,7 +7,7 @@ using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.V1.Line.Commands.Delete
 {
-    [Route(nameof(Line))]
+    [Route("line")]
     [ApiController]
     public class LineDeleteController : BaseController
     {
@@ -24,7 +24,7 @@ namespace SmsHub.Api.Controllers.V1.Line.Commands.Delete
             _deleteCommandHandler.NotNull(nameof(deleteCommandHandler));
         }
         [HttpPost]
-        [Route(nameof(Delete))]
+        [Route("delete")]
         public async Task<IActionResult> Delete([FromBody] DeleteLineDto deleteDto, CancellationToken cancellationToken)
         {
             await _deleteCommandHandler.Handle(deleteDto, cancellationToken);

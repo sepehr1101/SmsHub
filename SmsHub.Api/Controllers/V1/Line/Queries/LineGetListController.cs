@@ -5,7 +5,7 @@ using SmsHub.Common.Extensions;
 
 namespace SmsHub.Api.Controllers.V1.Line.Queries
 {
-    [Route(nameof(Line))]
+    [Route("line")]
     [ApiController]
     public class LineGetListController : BaseController
     {
@@ -17,7 +17,7 @@ namespace SmsHub.Api.Controllers.V1.Line.Queries
         }
 
         [HttpPost]
-        [Route(nameof(GetList))]
+        [Route("all")]
         public async Task<IActionResult> GetList()
         {
             var lines = await _getListHandler.Handle();

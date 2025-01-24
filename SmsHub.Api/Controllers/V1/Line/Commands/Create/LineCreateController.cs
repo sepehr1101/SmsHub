@@ -1,18 +1,13 @@
 ﻿using Aban360.Api.Controllers.V1;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using SmsHub.Application.Features.Line.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
-using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
 using SmsHub.Persistence.Contexts.UnitOfWork;
-using System.ComponentModel;
-using System.Diagnostics.Tracing;
 
 namespace SmsHub.Api.Controllers.V1.Line.Commands.Create
 {
-    [Route(nameof(Line))]
+    [Route("line")]
     [ApiController]
     public class LineCreateController : BaseController
     {
@@ -30,7 +25,7 @@ namespace SmsHub.Api.Controllers.V1.Line.Commands.Create
         }
 
         [HttpPost]
-        [Route(nameof(Create))]
+        [Route("create")]
         public async Task<IActionResult> Create([FromBody] CreateLineDto createDto, CancellationToken cancellationToken)
         {
             await _createCommandHandler.Handle(createDto, cancellationToken);
