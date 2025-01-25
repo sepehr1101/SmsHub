@@ -24,6 +24,14 @@ namespace SmsHub.Application.Features.Security.Handlers.Commands.Create.Implemen
             {
                 throw new Exception("کد وارد شده صحیح نمیباشد");
             }
+            if (userLogin.TwoStepExpireDateTime > DateTime.Now)
+            {
+                throw new Exception("زمان ورود کد منقضی شده است");
+            }
+            if (userLogin.TwoStepWasSuccessful.HasValue)
+            {
+                throw new Exception("این کد قبلا استفاده شده است");
+            }
             return userLogin;
         }
     }

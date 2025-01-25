@@ -21,7 +21,7 @@ namespace SmsHub.Api.Controllers.V1.Security.Querries
         [Route("all")]
         public async Task<IActionResult> GetAll()
         {
-            var result = _roleGetAllHandler.Handle();
+            var result = await _roleGetAllHandler.Handle();
             return Ok(result);
         }
     }

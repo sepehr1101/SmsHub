@@ -107,9 +107,11 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
         {
             var userLogin = await _userLoginFindHandler.Handle(loginDto, cancellationToken);
             if (userLogin == null)
-            {
-                return ClientError(MessageResources.InvalidConfirmCode);
+            {   
+                return ClientError(MessageResources.InvalidConfirmCode);               
             }
+            //userLogin.TwoStepWasSuccessful = true;
+            //await _uow.SaveChangesAsync(cancellationToken);
             var secondStepOutput = await GetSecondStepOutput(userLogin.User, cancellationToken);
             return Ok(secondStepOutput);
         }
