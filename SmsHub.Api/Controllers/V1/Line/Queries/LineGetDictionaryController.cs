@@ -11,15 +11,9 @@ namespace SmsHub.Api.Controllers.V1.Line.Queries
     [ApiController]
     public class LineGetDictionaryController : BaseController
     {
-        private readonly IUnitOfWork _uow;
         private readonly ILineGetAllDictionaryHandler _getLineDictionary;
-        public LineGetDictionaryController(
-            IUnitOfWork uow,
-            ILineGetAllDictionaryHandler getLineDictionary)
+        public LineGetDictionaryController(ILineGetAllDictionaryHandler getLineDictionary)
         {
-            _uow = uow;
-            _uow.NotNull(nameof(uow));
-
             _getLineDictionary = getLineDictionary;
             _getLineDictionary.NotNull(nameof(getLineDictionary));
         }
