@@ -393,7 +393,8 @@ namespace SmsHub.Persistence.Migrations
         {
             Create.Table(nameof(TableName.Config))
                 .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(TableName.Config)).Identity()
-                .WithColumn($"{nameof(TableName.ConfigTypeGroup)}{Id}").AsInt32()
+                //.WithColumn($"{nameof(TableName.ConfigTypeGroup)}{Id}").AsInt32()
+                .WithColumn("ConfigTypeGroupId").AsInt32()
                     .ForeignKey(NamingHelper.Fk(TableName.ConfigTypeGroup, TableName.Config), nameof(TableName.ConfigTypeGroup), Id)
                 .WithColumn($"{nameof(TableName.Template)}{Id}").AsInt32()
                     .ForeignKey(NamingHelper.Fk(TableName.Template, TableName.Config), nameof(TableName.Template), Id);

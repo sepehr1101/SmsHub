@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using Azure.Core;
 using FluentValidation;
 using SmsHub.Application.Features.Template.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Template.MediatorDtos.Commands;
 using SmsHub.Persistence.Features.Template.Queries.Contracts;
+using SmsHub.Persistence.Features.Template.Services.Contracts;
 
 namespace SmsHub.Application.Features.Template.Handlers.Commands.Update.Implementations
 {
@@ -12,10 +14,12 @@ namespace SmsHub.Application.Features.Template.Handlers.Commands.Update.Implemen
         private readonly IMapper _mapper;
         private readonly ITemplateQueryService _templateQueryService;
         private readonly IValidator<UpdateTemplateDto> _validator;
+        private readonly ICheckDisallowedPhraseService _checkDisallowedPhraseService;
         public TemplateUpdateHandler(
             IMapper mapper,
             ITemplateQueryService templateQueryService, 
-            IValidator<UpdateTemplateDto> validator)
+            IValidator<UpdateTemplateDto> validator,
+            ICheckDisallowedPhraseService checkDisallowedPhraseService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
@@ -25,6 +29,9 @@ namespace SmsHub.Application.Features.Template.Handlers.Commands.Update.Implemen
 
             _validator = validator;
             _validator.NotNull(nameof(validator));
+
+            _checkDisallowedPhraseService = checkDisallowedPhraseService;
+            _checkDisallowedPhraseService.NotNull(nameof(checkDisallowedPhraseService));
         }
         public async Task Handle(UpdateTemplateDto updateTemplateDto, CancellationToken cancellationToken)
         {
@@ -33,6 +40,9 @@ namespace SmsHub.Application.Features.Template.Handlers.Commands.Update.Implemen
             {
                 throw new InvalidDataException();
             }
+            //checking
+            await _checkDisallowedPhraseService.Check(updateTemplateDto.Expression);
+
 
             var template = await _templateQueryService.Get(updateTemplateDto.Id);
             _mapper.Map(updateTemplateDto, template);

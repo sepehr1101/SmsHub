@@ -7,7 +7,7 @@ namespace SmsHub.Domain.Features.Entities
     {
         public Template()
         {
-            Configs = new HashSet<Config>();
+           // Configs = new HashSet<Config>();
         }
 
         public int Id { get; set; }
@@ -19,6 +19,6 @@ namespace SmsHub.Domain.Features.Entities
         public int MinCredit { get; set; }
 
         public virtual TemplateCategory TemplateCategory { get; set; } = null!;
-        public virtual ICollection<Config> Configs { get; set; }
+        //public virtual ICollection<Config> Configs { get; set; }
     }
 }

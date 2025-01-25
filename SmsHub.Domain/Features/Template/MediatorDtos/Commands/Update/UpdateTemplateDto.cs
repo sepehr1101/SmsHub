@@ -9,5 +9,7 @@
         public bool IsActive { get; init; }
         public string Parameters { get; init; } = null!;
         public int MinCredit { get; init; }
+        public int? ConfigTypeGroupId { get; set; } 
+
     }
 }

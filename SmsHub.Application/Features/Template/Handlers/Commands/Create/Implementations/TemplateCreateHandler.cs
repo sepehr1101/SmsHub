@@ -9,23 +9,34 @@ using System.Dynamic;
 using Newtonsoft.Json;
 using FluentValidation;
 using SmsHub.Persistence.Features.Template.Services.Contracts;
+using SmsHub.Persistence.Features.Config.Commands.Contracts;
+using SmsHub.Domain.Features.Entities;
+using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Application.Features.Template.Handlers.Commands.Create.Implementations
 {
     public class TemplateCreateHandler : ITemplateCreateHandler
     {
         private readonly IMapper _mapper;
+        private readonly IUnitOfWork _uow;
         private readonly ITemplateCommandService _templateCommandService;
         private readonly IValidator<CreateTemplateDto> _validator;
         private readonly ICheckDisallowedPhraseService _checkDisallowedPhraseService;
+        private readonly IConfigCommandService _configCommandService;
+
         public TemplateCreateHandler(
             IMapper mapper,
-            ITemplateCommandService templateCommandService, 
+            IUnitOfWork uow,
+            ITemplateCommandService templateCommandService,
             IValidator<CreateTemplateDto> validator,
-            ICheckDisallowedPhraseService checkDisallowedPhraseService)
+            ICheckDisallowedPhraseService checkDisallowedPhraseService,
+            IConfigCommandService configCommandService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(_mapper));
+
+            _uow = uow;
+            _uow.NotNull(nameof(_uow));
 
             _templateCommandService = templateCommandService;
             _templateCommandService.NotNull(nameof(_templateCommandService));
@@ -35,21 +46,49 @@ namespace SmsHub.Application.Features.Template.Handlers.Commands.Create.Implemen
 
             _checkDisallowedPhraseService = checkDisallowedPhraseService;
             _checkDisallowedPhraseService.NotNull(nameof(_checkDisallowedPhraseService));
+
+            _configCommandService = configCommandService;
+            _configCommandService.NotNull(nameof(_configCommandService));
         }
         public async Task Handle(CreateTemplateDto request, CancellationToken cancellationToken)
+        {
+            
+            await CheckValidator(request, cancellationToken);
+
+            //checking disallowedPhrase
+            await _checkDisallowedPhraseService.Check(request.Expression);
+
+
+            var template = _mapper.Map<Entities.Template>(request);
+            var parameters = GetTemplateVariables(template.Expression);
+            template.Parameters = parameters.Replace("\"", "'");
+            //template.Configs = null;
+            var result = await _templateCommandService.Add(template);
+
+            //set templateId and ConfigTypeGroupId in Config
+            await AddConfig(request, result);
+            await _uow.SaveChangesAsync(cancellationToken);
+
+        }
+        private async Task AddConfig(CreateTemplateDto request, Entities.Template template)
+        {
+            if (request.ConfigTypeGroupId is not null)
+            {
+                var config = new Entities.Config()
+                {
+                    ConfigTypeGroupId = request.ConfigTypeGroupId.Value,
+                    Template = template
+                };
+                await _configCommandService.Add(config);
+            }
+        }
+        private async Task CheckValidator(CreateTemplateDto request, CancellationToken cancellationToken)
         {
             var validationResult = await _validator.ValidateAsync(request, cancellationToken);
             if (!validationResult.IsValid)
             {
                 throw new InvalidDataException();
             }
-            //checking disallowedPhrase
-            await _checkDisallowedPhraseService.Check(request.Expression);
-
-            var template = _mapper.Map<Entities.Template>(request);
-            var parameters = GetTemplateVariables(template.Expression);
-            template.Parameters =parameters.Replace("\"","'");
-            await _templateCommandService.Add(template);
         }
         private string GetTemplateVariables(string template)
         {

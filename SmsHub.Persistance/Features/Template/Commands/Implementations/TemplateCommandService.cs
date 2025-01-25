@@ -2,6 +2,7 @@
 using Entities= SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Features.Template.Commands.Contracts;
+using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Persistence.Features.Template.Commands.Implementations
 {
@@ -14,9 +15,10 @@ namespace SmsHub.Persistence.Features.Template.Commands.Implementations
              _uow=uow;
             _templates=_uow.Set<Entities.Template>();
         }
-        public async Task Add(Entities.Template template)
+        public async Task<Entities.Template> Add(Entities.Template template)
         {
             await _templates.AddAsync(template);
+            return template;
         }
         public async Task Add(ICollection<Entities.Template> templates)
         {
