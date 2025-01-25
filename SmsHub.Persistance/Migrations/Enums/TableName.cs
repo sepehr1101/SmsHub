@@ -20,6 +20,7 @@
         Contact,
         ContactNumber,
         TemplateCategory,
+        UserTemplateCategory,
         Template,
         MessageBatch,
         MessagesHolder,

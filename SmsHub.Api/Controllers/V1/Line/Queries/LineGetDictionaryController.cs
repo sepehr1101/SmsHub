@@ -25,8 +25,8 @@ namespace SmsHub.Api.Controllers.V1.Line.Queries
         }
 
         [HttpGet]
-        [Route("my-dictionary")]
-        public async Task<IActionResult> MyDictionary()
+        [Route("dictionary")]
+        public async Task<IActionResult> Dictionary()
         {
             var result = await _getLineDictionary.Handle();
 

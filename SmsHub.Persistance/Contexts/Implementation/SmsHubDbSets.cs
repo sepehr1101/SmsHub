@@ -34,6 +34,7 @@ namespace SmsHub.Persistence.Contexts.Implementation
         public virtual DbSet<Provider> Providers { get; set; } = null!;
         public virtual DbSet<Template> Templates { get; set; } = null!;
         public virtual DbSet<TemplateCategory> TemplateCategories { get; set; } = null!;
+        public virtual DbSet<UserTemplateCategory> UserTemplateCategories { get; set; } = null!;
         public virtual DbSet<ServerUser> ServerUsers { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
