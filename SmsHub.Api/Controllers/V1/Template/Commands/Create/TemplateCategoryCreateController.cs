@@ -2,13 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Template.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
-using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.V1.Template.Commands.Create
 {
-    [Route(nameof(TemplateCategory))]
+    [Route("template-category")]
     [ApiController]
     public class TemplateCategoryCreateController : BaseController
     {
@@ -26,7 +25,7 @@ namespace SmsHub.Api.Controllers.V1.Template.Commands.Create
         }
 
         [HttpPost]
-        [Route(nameof(Create))]
+        [Route("create")]
         public async Task<IActionResult> Create([FromBody] CreateTemplateCategoryDto createDto, CancellationToken cancellationToken)
         {
             await _createCommandHandler.Handle(createDto, cancellationToken);

@@ -2,13 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Template.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
-using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Template.MediatorDtos.Commands.Delete;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.V1.Template.Commands.Delete
 {
-    [Route(nameof(TemplateCategory))]
+    [Route("template-category")]
     [ApiController]
     public class TemplateCategoryDeleteController : BaseController
     {
@@ -26,7 +25,7 @@ namespace SmsHub.Api.Controllers.V1.Template.Commands.Delete
         }
 
         [HttpPost]
-        [Route(nameof(Delete))]
+        [Route("delete")]
         public async Task<IActionResult> Delete([FromBody] DeleteTemplateCategoryDto deleteDto, CancellationToken cancellationToken)
         {
             await _deleteCommandHandler.Handle(deleteDto, cancellationToken);

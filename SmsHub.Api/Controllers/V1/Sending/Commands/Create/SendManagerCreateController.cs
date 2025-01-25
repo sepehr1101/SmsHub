@@ -53,7 +53,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         }
 
         [HttpPost]
-        [Route("SendManager/{templateId}/{lineId}")]
+        [Route("by-template/{templateId}/{lineId}")]
         public async Task<IActionResult> SendManager(int templateId, int lineId, CancellationToken cancellationToken)
         {
             var messages = await _sendManagerCreateHandler.Handle(templateId, lineId, new CancellationToken());
