@@ -3,6 +3,7 @@ using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Features.Line.Queries.Contracts;
 using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.Features.Line.MediatorDtos.Queries;
 
 namespace SmsHub.Persistence.Features.Line.Queries.Implementations
 {
@@ -30,7 +31,7 @@ namespace SmsHub.Persistence.Features.Line.Queries.Implementations
         }
         public async Task<Entities.Line> GetIncludeProvider(int id)
         {
-            var line= await _lines
+            var line = await _lines
                     .Include(x => x.Provider)
                     .Where(x => x.Id == id)
                     .FirstOrDefaultAsync();
@@ -39,6 +40,14 @@ namespace SmsHub.Persistence.Features.Line.Queries.Implementations
             //        .Include(x => x.Provider)
             //        .Where(x => x.Id == id)
             //        .FirstOrDefaultAsync();
+
+        }
+
+        public async Task<ICollection<LineDictionary>> GetLineDictionary()
+        {
+            return await _lines
+                .Select(x => new LineDictionary(x.Id, x.Number))
+                .ToListAsync();
 
         }
     }

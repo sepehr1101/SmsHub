@@ -237,6 +237,17 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn("Title").AsString(_255)
                 .WithColumn("Description").AsString(_255).Nullable();
         }
+
+        private void CreateUserTemplateCategory()
+        {
+            Create.Table(nameof(TableName.UserTemplateCategory))
+                .WithColumn(Id).AsInt64().PrimaryKey().Identity()
+                .WithColumn("UserId").AsGuid()
+                     .ForeignKey(NamingHelper.Fk(TableName.User, TableName.UserTemplateCategory), nameof(TableName.User), Id)
+                .WithColumn("TemplateCategoryId").AsInt32()
+                     .ForeignKey(NamingHelper.Fk(TableName.TemplateCategory, TableName.UserTemplateCategory), nameof(TableName.TemplateCategory), Id);
+
+        }
         private void CreateTemplate()
         {
             Create.Table(nameof(TableName.Template))
@@ -454,7 +465,7 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn("ProviderDeliveryStatusId").AsInt32()
                     .ForeignKey(NamingHelper.Fk(TableName.ProviderDeliveryStatus, TableName.MessageDetailStatus), nameof(TableName.ProviderDeliveryStatus), Id)
                 .WithColumn("ProviderResponseStatusId").AsInt32().Nullable()
-                    .ForeignKey(NamingHelper.Fk(TableName.ProviderResponseStatus, TableName.MessageDetailStatus), nameof(TableName.ProviderResponseStatus),Id);
+                    .ForeignKey(NamingHelper.Fk(TableName.ProviderResponseStatus, TableName.MessageDetailStatus), nameof(TableName.ProviderResponseStatus), Id);
 
 
         }

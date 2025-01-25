@@ -2,13 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Template.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
-using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Template.MediatorDtos.Commands;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.V1.Template.Commands.Update
 {
-    [Route(nameof(TemplateCategory))]
+    [Route("template-category")]
     [ApiController]
     public class TemplateCategoryUpdateController : BaseController
     {
@@ -26,7 +25,7 @@ namespace SmsHub.Api.Controllers.V1.Template.Commands.Update
         }
 
         [HttpPost]
-        [Route(nameof(Update))]
+        [Route("update")]
         public async Task<IActionResult> Update([FromBody] UpdateTemplateCategoryDto updateDto, CancellationToken cancellationToken)
         {
             await _updateCommandHandler.Handle(updateDto, cancellationToken);

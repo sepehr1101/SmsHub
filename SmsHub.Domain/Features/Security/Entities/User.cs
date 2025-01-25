@@ -35,4 +35,5 @@ public class User
     public virtual ICollection<UserToken> UserTokens { get; set; } = new List<UserToken>();
 
     public virtual ICollection<UserLine> UserLines { get; set; }
+    public virtual ICollection<UserTemplateCategory> UserTemplateCategories { get; set; }
 }

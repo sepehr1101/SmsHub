@@ -6,7 +6,7 @@ using SmsHub.Domain.BaseDomainEntities.Id;
 
 namespace SmsHub.Api.Controllers.V1.Template.Querries
 {
-    [Route(nameof(Template))]
+    [Route("template")]
     [ApiController]
     public class TemplateGetSingleController : BaseController
     {
@@ -18,7 +18,7 @@ namespace SmsHub.Api.Controllers.V1.Template.Querries
         }
 
         [HttpPost]
-        [Route(nameof(GetSingle))]
+        [Route("single")]
         public async Task<IActionResult> GetSingle([FromBody] IntId Id)
         {
             var template = await _getSingleHandler.Handle(Id);

@@ -14,7 +14,6 @@
     <Folder Include="Features\Credit\MediatorDtos\Commands\Update\" />
     <Folder Include="Features\Credit\MediatorDtos\Queries\" />
     <Folder Include="Features\Security\EfConfig\" />
-    <Folder Include="Features\Template\MediatorDtos\Queries\" />
     <Folder Include="Providers\Kavenegar\Models\" />
     <Folder Include="Providers\Kavenegar\Exceptions\" />
     <Folder Include="BaseExceptions\" />

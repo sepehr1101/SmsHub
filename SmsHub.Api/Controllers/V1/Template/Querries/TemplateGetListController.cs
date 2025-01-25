@@ -5,7 +5,7 @@ using SmsHub.Common.Extensions;
 
 namespace SmsHub.Api.Controllers.V1.Template.Querries
 {
-    [Route(nameof(Template))]
+    [Route("template")]
     [ApiController]
     public class TemplateGetListController : BaseController
     {
@@ -17,7 +17,7 @@ namespace SmsHub.Api.Controllers.V1.Template.Querries
         }
 
         [HttpPost]
-        [Route(nameof(GetList))]
+        [Route("all")]
         public async Task<IActionResult> GetList()
         {
             var Templates = await _getListHandler.Handle();

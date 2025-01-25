@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using SmsHub.Domain.Features.Security.Entities;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SmsHub.Domain.Features.Entities
 {
@@ -15,5 +16,6 @@ namespace SmsHub.Domain.Features.Entities
         public string? Description { get; set; }
 
         public virtual ICollection<Template> Templates { get; set; }
+        public virtual ICollection<UserTemplateCategory> UserTemplateCategories { get; set; }
     }
 }
