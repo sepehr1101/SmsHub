@@ -7,5 +7,7 @@
         public int TemplateCategoryId { get; init; }
         public bool IsActive { get; init; }
         public int MinCredit { get; init; }
+        public int ConfigTypeGroupId { get; set; }
+
     }
 }

@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Dynamic;
 using Newtonsoft.Json;
 using FluentValidation;
+using SmsHub.Persistence.Features.Template.Services.Contracts;
 
 namespace SmsHub.Application.Features.Template.Handlers.Commands.Create.Implementations
 {
@@ -16,10 +17,12 @@ namespace SmsHub.Application.Features.Template.Handlers.Commands.Create.Implemen
         private readonly IMapper _mapper;
         private readonly ITemplateCommandService _templateCommandService;
         private readonly IValidator<CreateTemplateDto> _validator;
+        private readonly ICheckDisallowedPhraseService _checkDisallowedPhraseService;
         public TemplateCreateHandler(
             IMapper mapper,
             ITemplateCommandService templateCommandService, 
-            IValidator<CreateTemplateDto> validator)
+            IValidator<CreateTemplateDto> validator,
+            ICheckDisallowedPhraseService checkDisallowedPhraseService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(_mapper));
@@ -29,6 +32,9 @@ namespace SmsHub.Application.Features.Template.Handlers.Commands.Create.Implemen
 
             _validator = validator;
             _validator.NotNull(nameof(_validator));
+
+            _checkDisallowedPhraseService = checkDisallowedPhraseService;
+            _checkDisallowedPhraseService.NotNull(nameof(_checkDisallowedPhraseService));
         }
         public async Task Handle(CreateTemplateDto request, CancellationToken cancellationToken)
         {
@@ -37,6 +43,8 @@ namespace SmsHub.Application.Features.Template.Handlers.Commands.Create.Implemen
             {
                 throw new InvalidDataException();
             }
+            //checking disallowedPhrase
+            await _checkDisallowedPhraseService.Check(request.Expression);
 
             var template = _mapper.Map<Entities.Template>(request);
             var parameters = GetTemplateVariables(template.Expression);
