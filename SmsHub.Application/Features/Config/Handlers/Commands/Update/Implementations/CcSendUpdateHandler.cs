@@ -28,14 +28,20 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Update.Implementa
         }
         public async Task Handle(UpdateCcSendDto updateCcSendDto, CancellationToken cancellationToken)
         {
+                   await CheckValidator(updateCcSendDto, cancellationToken);
+
+            var ccSend = await _cSendQueryService.Get(updateCcSendDto.Id);
+            _mapper.Map(updateCcSendDto, ccSend);
+        }
+
+        private async Task CheckValidator(UpdateCcSendDto updateCcSendDto, CancellationToken cancellationToken)
+        {
             var validationResult = await _validator.ValidateAsync(updateCcSendDto, cancellationToken);
             if (!validationResult.IsValid)
             {
                 throw new InvalidDataException();
             }
-
-            var ccSend = await _cSendQueryService.Get(updateCcSendDto.Id);
-            _mapper.Map(updateCcSendDto, ccSend);
         }
+
     }
 }

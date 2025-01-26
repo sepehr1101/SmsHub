@@ -5,12 +5,6 @@ using SmsHub.Persistence.Features.Line.Commands.Contracts;
 using SmsHub.Application.Features.Line.Handlers.Commands.Create.Contracts;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
 using FluentValidation;
-using Newtonsoft.Json;
-using MagfaCredentialDto = SmsHub.Domain.Providers.Magfa3000.Entities.Responses.CredentialDto;
-using KavenegarCredentialDto = SmsHub.Domain.Providers.Kavenegar.Entities.Responses.CredentialDto;
-using SmsHub.Domain.Constants;
-using SmsHub.Application.Exceptions;
-using SmsHub.Application.Common.Services.Implementations;
 using SmsHub.Application.Features.Line.Validations;
 
 namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Implementations
@@ -35,18 +29,23 @@ namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Implementati
             _validator.NotNull(nameof(_validator));
         }
 
-        public async Task Handle(CreateLineDto request, CancellationToken cancellationToken)
+        public async Task Handle(CreateLineDto createLineDto, CancellationToken cancellationToken)
         {
-            LineCredentialValidation.ValidationCreateLine(request);//todo: I move ValidationProvider  To LineCredentialValidation , true or not?
+            LineCredentialValidation.ValidationCreateLine(createLineDto);//todo: I move ValidationProvider  To LineCredentialValidation , true or not?
 
-            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+            await CheckValidator(createLineDto, cancellationToken);
+
+            var line = _mapper.Map<Entities.Line>(createLineDto);
+            await _lineCommandService.Add(line);
+        }
+
+        private async Task CheckValidator(CreateLineDto createLineDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(createLineDto, cancellationToken);
             if (!validationResult.IsValid)
             {
-                throw new InvalidDataException("خطا در اطلاعات ورودی");
+                throw new InvalidDataException();
             }
-
-            var line = _mapper.Map<Entities.Line>(request);
-            await _lineCommandService.Add(line);
         }
 
     }

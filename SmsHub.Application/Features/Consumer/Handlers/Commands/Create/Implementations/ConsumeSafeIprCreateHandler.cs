@@ -29,16 +29,22 @@ namespace SmsHub.Application.Features.Consumer.Handlers.Commands.Create.Implemen
             _validator.NotNull(nameof(_validator));
         }
 
-        public async Task Handle(CreateConsumerSafeIpDto request, CancellationToken cancellationToken)
+        public async Task Handle(CreateConsumerSafeIpDto createConsumerSafeIpDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+            await CheckValidator(createConsumerSafeIpDto, cancellationToken);
+
+            var consumerSafeIp = _mapper.Map<Entities.ConsumerSafeIp>(createConsumerSafeIpDto);
+            await _consumerSafeIpCommandService.Add(consumerSafeIp);
+        }
+
+        private async Task CheckValidator(CreateConsumerSafeIpDto createConsumerSafeIpDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(createConsumerSafeIpDto, cancellationToken);
             if (!validationResult.IsValid)
             {
                 throw new InvalidDataException();
             }
-
-            var consumerSafeIp = _mapper.Map<Entities.ConsumerSafeIp>(request);
-            await _consumerSafeIpCommandService.Add(consumerSafeIp);
         }
+
     }
 }

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using MediatR;
 using SmsHub.Common.Extensions;
 using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Features.Sending.Commands.Contracts;
@@ -25,16 +24,23 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
             _validator.NotNull(nameof(_validator));
         }
 
-        public async Task Handle(CreateMessagesHolderDto request, CancellationToken cancellationToken)
+        public async Task Handle(CreateMessagesHolderDto createMessagesHolderDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+            await CheckValidator(createMessagesHolderDto, cancellationToken);
+
+            var messageHolder = _mapper.Map<Entities.MessagesHolder>(createMessagesHolderDto);
+            await _messageHolderCommandService.Add(messageHolder);
+        }
+
+        private async Task CheckValidator(CreateMessagesHolderDto createMessagesHolderDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(createMessagesHolderDto, cancellationToken);
             if (!validationResult.IsValid)
             {
                 throw new InvalidDataException();
             }
-
-            var messageHolder = _mapper.Map<Entities.MessagesHolder>(request);
-            await _messageHolderCommandService.Add(messageHolder);
         }
+
+
     }
 }

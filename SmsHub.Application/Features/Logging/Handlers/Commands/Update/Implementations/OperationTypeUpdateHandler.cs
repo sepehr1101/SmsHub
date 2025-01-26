@@ -28,14 +28,19 @@ namespace SmsHub.Application.Features.Logging.Handlers.Commands.Update.Implement
         }
         public async Task Handle(UpdateOperationTypeDto updateOperationTypeDto, CancellationToken cancellationToken)
         {
+            await CheckValidator(updateOperationTypeDto, cancellationToken);
+
+            var operationType = await _operationTypeQueryService.Get(updateOperationTypeDto.Id);
+            _mapper.Map(updateOperationTypeDto, operationType);
+        }
+        private async Task CheckValidator(UpdateOperationTypeDto updateOperationTypeDto, CancellationToken cancellationToken)
+        {
             var validationResult = await _validator.ValidateAsync(updateOperationTypeDto, cancellationToken);
             if (!validationResult.IsValid)
             {
                 throw new InvalidDataException();
             }
-
-            var operationType = await _operationTypeQueryService.Get(updateOperationTypeDto.Id);
-            _mapper.Map(updateOperationTypeDto, operationType);
         }
+
     }
 }

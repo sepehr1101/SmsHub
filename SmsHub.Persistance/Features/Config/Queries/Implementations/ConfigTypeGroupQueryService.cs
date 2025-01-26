@@ -26,5 +26,14 @@ namespace SmsHub.Persistence.Features.Config.Queries.Implementations
         {
             return await _uow.FindOrThrowAsync<ConfigTypeGroup>(id);
         }
+
+        public async Task<ICollection<ConfigTypeGroup>> GetInclude()
+        {
+            return await _configTypeGroups
+                .Include(x => x.PermittedTimes)
+                .Include(x => x.DisallowedPhrases)
+                .ToListAsync();
+                
+        }
     }
 }

@@ -35,11 +35,7 @@ namespace SmsHub.Application.Features.Template.Handlers.Commands.Update.Implemen
         }
         public async Task Handle(UpdateTemplateDto updateTemplateDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(updateTemplateDto, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
+            await CheckValidator(updateTemplateDto, cancellationToken);
             //checking
             await _checkDisallowedPhraseService.Check(updateTemplateDto.Expression);
 
@@ -47,5 +43,14 @@ namespace SmsHub.Application.Features.Template.Handlers.Commands.Update.Implemen
             var template = await _templateQueryService.Get(updateTemplateDto.Id);
             _mapper.Map(updateTemplateDto, template);
         }
+        private async Task CheckValidator(UpdateTemplateDto updateTemplateDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(updateTemplateDto, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                throw new InvalidDataException();
+            }
+        }
+
     }
 }

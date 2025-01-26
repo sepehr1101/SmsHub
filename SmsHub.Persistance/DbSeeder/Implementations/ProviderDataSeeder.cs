@@ -95,6 +95,10 @@ namespace SmsHub.Persistence.DbSeeder.Implementations
             };
             _providers.Add(magfa);
             _providers.Add(kavenegar);
+            _providers.Add(rahyabDate);
+            _providers.Add(atiye);
+            _providers.Add(rahyabPayam);
+            _providers.Add(farazSms);
         }
     }
 }

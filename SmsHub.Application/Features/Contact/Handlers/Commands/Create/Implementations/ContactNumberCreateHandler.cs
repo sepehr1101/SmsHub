@@ -29,16 +29,22 @@ namespace SmsHub.Application.Features.Contact.Handlers.Commands.Create.Implement
             _validator.NotNull(nameof(_validator));
         }
 
-        public async Task Handle(CreateContactNumberDto request, CancellationToken cancellationToken)
+        public async Task Handle(CreateContactNumberDto createContactNumberDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+            await CheckValidator(createContactNumberDto, cancellationToken);
+
+            var contactNumber = _mapper.Map<Entities.ContactNumber>(createContactNumberDto);
+            await _contactNumberCommandService.Add(contactNumber);
+        }
+
+        private async Task CheckValidator(CreateContactNumberDto createContactNumberDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(createContactNumberDto, cancellationToken);
             if (!validationResult.IsValid)
             {
                 throw new InvalidDataException();
             }
-
-            var contactNumber = _mapper.Map<Entities.ContactNumber>(request);
-            await _contactNumberCommandService.Add(contactNumber);
         }
+
     }
 }

@@ -13,7 +13,7 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Update.Implementa
         private readonly IPermittedTimeQueryService _permittedTimeQueryService;
         private readonly IValidator<UpdatePermittedTimeDto> _validator;
         public PermittedTimeUpdateHandler(
-            IMapper mapper, 
+            IMapper mapper,
             IPermittedTimeQueryService permittedTimeQueryService,
             IValidator<UpdatePermittedTimeDto> validator)
         {
@@ -28,14 +28,20 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Update.Implementa
         }
         public async Task Handle(UpdatePermittedTimeDto updatePermittedTimeDto, CancellationToken cancellationToken)
         {
+            await CheckValidator(updatePermittedTimeDto, cancellationToken);
+
+            var permittedTime = await _permittedTimeQueryService.Get(updatePermittedTimeDto.Id);
+            _mapper.Map(updatePermittedTimeDto, permittedTime);
+        }
+
+
+        private async Task CheckValidator(UpdatePermittedTimeDto updatePermittedTimeDto, CancellationToken cancellationToken)
+        {
             var validationResult = await _validator.ValidateAsync(updatePermittedTimeDto, cancellationToken);
             if (!validationResult.IsValid)
             {
                 throw new InvalidDataException();
             }
-
-            var permittedTime = await _permittedTimeQueryService.Get(updatePermittedTimeDto.Id);
-            _mapper.Map(updatePermittedTimeDto, permittedTime);
         }
     }
 }

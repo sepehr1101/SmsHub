@@ -28,16 +28,22 @@ namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Implementati
             _validator.NotNull(nameof(_validator));
         }
 
-        public async Task Handle(CreateProviderDto request, CancellationToken cancellationToken)
+        public async Task Handle(CreateProviderDto createProviderDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+             await CheckValidator(createProviderDto, cancellationToken);
+
+            var provider = _mapper.Map<Entities.Provider>(createProviderDto);
+            await _providerCommandService.Add(provider);
+        }
+
+        private async Task CheckValidator(CreateProviderDto createProviderDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(createProviderDto, cancellationToken);
             if (!validationResult.IsValid)
             {
                 throw new InvalidDataException();
             }
-
-            var provider = _mapper.Map<Entities.Provider>(request);
-            await _providerCommandService.Add(provider);
         }
+
     }
 }

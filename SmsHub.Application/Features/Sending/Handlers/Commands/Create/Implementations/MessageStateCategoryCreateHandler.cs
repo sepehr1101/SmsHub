@@ -28,16 +28,22 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
             _validator.NotNull(nameof(_validator));
         }
 
-        public async Task Handle(CreateMessageStateCategoryDto request, CancellationToken cancellationToken)
+        public async Task Handle(CreateMessageStateCategoryDto createMessageStateCategoryDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+            await CheckValidator(createMessageStateCategoryDto, cancellationToken);
+
+            var messageStateCategory = _mapper.Map<Entities.MessageStateCategory>(createMessageStateCategoryDto);
+            await _messageStateCategoryCommandService.Add(messageStateCategory);
+        }
+        private async Task CheckValidator(CreateMessageStateCategoryDto createMessageStateCategoryDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(createMessageStateCategoryDto, cancellationToken);
             if (!validationResult.IsValid)
             {
                 throw new InvalidDataException();
             }
-
-            var messageStateCategory = _mapper.Map<Entities.MessageStateCategory>(request);
-            await _messageStateCategoryCommandService.Add(messageStateCategory);
         }
+
+
     }
 }

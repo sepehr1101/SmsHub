@@ -10,7 +10,6 @@ using Newtonsoft.Json;
 using FluentValidation;
 using SmsHub.Persistence.Features.Template.Services.Contracts;
 using SmsHub.Persistence.Features.Config.Commands.Contracts;
-using SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Application.Features.Template.Handlers.Commands.Create.Implementations
@@ -50,23 +49,23 @@ namespace SmsHub.Application.Features.Template.Handlers.Commands.Create.Implemen
             _configCommandService = configCommandService;
             _configCommandService.NotNull(nameof(_configCommandService));
         }
-        public async Task Handle(CreateTemplateDto request, CancellationToken cancellationToken)
+        public async Task Handle(CreateTemplateDto createTemplateDto, CancellationToken cancellationToken)
         {
             
-            await CheckValidator(request, cancellationToken);
+            await CheckValidator(createTemplateDto, cancellationToken);
 
             //checking disallowedPhrase
-            await _checkDisallowedPhraseService.Check(request.Expression);
+            await _checkDisallowedPhraseService.Check(createTemplateDto.Expression);
 
 
-            var template = _mapper.Map<Entities.Template>(request);
+            var template = _mapper.Map<Entities.Template>(createTemplateDto);
             var parameters = GetTemplateVariables(template.Expression);
             template.Parameters = parameters.Replace("\"", "'");
             //template.Configs = null;
             var result = await _templateCommandService.Add(template);
 
             //set templateId and ConfigTypeGroupId in Config
-            await AddConfig(request, result);
+            await AddConfig(createTemplateDto, result);
             await _uow.SaveChangesAsync(cancellationToken);
 
         }
@@ -82,9 +81,9 @@ namespace SmsHub.Application.Features.Template.Handlers.Commands.Create.Implemen
                 await _configCommandService.Add(config);
             }
         }
-        private async Task CheckValidator(CreateTemplateDto request, CancellationToken cancellationToken)
+        private async Task CheckValidator(CreateTemplateDto createTemplateDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+            var validationResult = await _validator.ValidateAsync(createTemplateDto, cancellationToken);
             if (!validationResult.IsValid)
             {
                 throw new InvalidDataException();

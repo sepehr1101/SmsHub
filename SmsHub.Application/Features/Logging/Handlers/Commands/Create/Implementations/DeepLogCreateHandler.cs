@@ -28,16 +28,21 @@ namespace SmsHub.Application.Features.Logging.Handlers.Commands.Create.Implement
             _validator.NotNull(nameof(_validator));
         }
 
-        public async Task Handle(CreateDeepLogDto request, CancellationToken cancellationToken)
+        public async Task Handle(CreateDeepLogDto createDeepLogDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+            await CheckValidator(createDeepLogDto, cancellationToken);
+
+            var deepLog = _mapper.Map<Entities.DeepLog>(createDeepLogDto);
+            await _deepLogCommandService.Add(deepLog);
+        }
+        private async Task CheckValidator(CreateDeepLogDto createDeepLogDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(createDeepLogDto, cancellationToken);
             if (!validationResult.IsValid)
             {
                 throw new InvalidDataException();
             }
-
-            var deepLog = _mapper.Map<Entities.DeepLog>(request);
-            await _deepLogCommandService.Add(deepLog);
         }
+
     }
 }

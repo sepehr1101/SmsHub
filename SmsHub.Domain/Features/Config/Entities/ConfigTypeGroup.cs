@@ -11,7 +11,6 @@ namespace SmsHub.Domain.Features.Entities
             Configs = new HashSet<Config>();
             DisallowedPhrases = new HashSet<DisallowedPhrase>();
             PermittedTimes = new HashSet<PermittedTime>();
-            Templates = new HashSet<Template>();
         }
 
         public int Id { get; set; }
@@ -22,6 +21,5 @@ namespace SmsHub.Domain.Features.Entities
         public virtual ICollection<Config> Configs { get; set; }
         public virtual ICollection<DisallowedPhrase> DisallowedPhrases { get; set; }
         public virtual ICollection<PermittedTime> PermittedTimes { get; set; }
-        public virtual ICollection<Template> Templates { get; set; }    
     }
 }

@@ -14,7 +14,7 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Create.Implementa
         private readonly IConfigTypeGroupCommandService _configTypeGroupCommandService;
         private readonly IValidator<CreateConfigTypeGroupDto> _validator;
         public ConfigTypeGroupCreateHandler(
-            IConfigTypeGroupCommandService configTypeGroupCommandService, 
+            IConfigTypeGroupCommandService configTypeGroupCommandService,
             IMapper mapper,
             IValidator<CreateConfigTypeGroupDto> validator)
         {
@@ -28,16 +28,21 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Create.Implementa
             _validator.NotNull(nameof(_validator));
         }
 
-        public async Task Handle(CreateConfigTypeGroupDto request, CancellationToken cancellationToken)
+        public async Task Handle(CreateConfigTypeGroupDto createConfigTypeGroupDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+            await CheckValidator(createConfigTypeGroupDto, cancellationToken);
+
+            var configTypeGroup = _mapper.Map<Entities.ConfigTypeGroup>(createConfigTypeGroupDto);
+            await _configTypeGroupCommandService.Add(configTypeGroup);
+        }
+        private async Task CheckValidator(CreateConfigTypeGroupDto createConfigTypeGroupDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(createConfigTypeGroupDto, cancellationToken);
             if (!validationResult.IsValid)
             {
                 throw new InvalidDataException();
             }
-
-            var createConfigTypeGroup = _mapper.Map<Entities.ConfigTypeGroup>(request);
-            await _configTypeGroupCommandService.Add(createConfigTypeGroup);
         }
+
     }
 }

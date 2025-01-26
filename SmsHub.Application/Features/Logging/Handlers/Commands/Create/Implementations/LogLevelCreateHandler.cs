@@ -28,16 +28,21 @@ namespace SmsHub.Application.Features.Logging.Handlers.Commands.Create.Implement
             _validator.NotNull(nameof(_validator));
         }
 
-        public async Task Handle(CreateLogLevelDto request, CancellationToken cancellationToken)
+        public async Task Handle(CreateLogLevelDto createLogLevelDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+            await CheckValidator(createLogLevelDto, cancellationToken);
+
+            var logLevel = _mapper.Map<Entities.LogLevel>(createLogLevelDto);
+            await _logLevelCommandService.Add(logLevel);
+        }
+        private async Task CheckValidator(CreateLogLevelDto createLogLevelDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(createLogLevelDto, cancellationToken);
             if (!validationResult.IsValid)
             {
                 throw new InvalidDataException();
             }
-
-            var logLevel = _mapper.Map<Entities.LogLevel>(request);
-            await _logLevelCommandService.Add(logLevel);
         }
+
     }
 }

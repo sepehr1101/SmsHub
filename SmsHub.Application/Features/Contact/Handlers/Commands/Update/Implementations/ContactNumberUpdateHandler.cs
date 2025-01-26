@@ -28,14 +28,19 @@ namespace SmsHub.Application.Features.Contact.Handlers.Commands.Update.Implement
         }
         public async Task Handle(UpdateContactNumberDto updateContactNumberDto, CancellationToken cancellationToken)
         {
+            await CheckValidator(updateContactNumberDto, cancellationToken);
+
+            var contactNumber = await _contactNumberQueryService.Get(updateContactNumberDto.Id);
+            _mapper.Map(updateContactNumberDto, contactNumber);
+        }
+        private async Task CheckValidator(UpdateContactNumberDto updateContactNumberDto, CancellationToken cancellationToken)
+        {
             var validationResult = await _validator.ValidateAsync(updateContactNumberDto, cancellationToken);
             if (!validationResult.IsValid)
             {
                 throw new InvalidDataException();
             }
-
-            var contactNumber = await _contactNumberQueryService.Get(updateContactNumberDto.Id);
-            _mapper.Map(updateContactNumberDto, contactNumber);
         }
+
     }
 }

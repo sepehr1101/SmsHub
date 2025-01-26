@@ -15,7 +15,7 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Create.Implementa
         private readonly IValidator<CreateDisallowedPhraseDto> _validator;
         public DisallowedPhraseCreateHandler(
             IDisallowedPhraseCommandService disallowedPhraseCommandService,
-            IMapper mapper, 
+            IMapper mapper,
             IValidator<CreateDisallowedPhraseDto> validator)
         {
             _disallowedPhraseCommandService = disallowedPhraseCommandService;
@@ -28,16 +28,21 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Create.Implementa
             _validator.NotNull(nameof(_validator));
         }
 
-        public async Task Handle(CreateDisallowedPhraseDto request, CancellationToken cancellationToken)
+        public async Task Handle(CreateDisallowedPhraseDto createDisallowedPhraseDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+            await CheckValidator(createDisallowedPhraseDto, cancellationToken);
+
+            var disallowedPhrase = _mapper.Map<Entities.DisallowedPhrase>(createDisallowedPhraseDto);
+            await _disallowedPhraseCommandService.Add(disallowedPhrase);
+        }
+        private async Task CheckValidator(CreateDisallowedPhraseDto createDisallowedPhraseDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(createDisallowedPhraseDto, cancellationToken);
             if (!validationResult.IsValid)
             {
                 throw new InvalidDataException();
             }
-
-            var disallowedPhrase = _mapper.Map<Entities.DisallowedPhrase>(request);
-            await _disallowedPhraseCommandService.Add(disallowedPhrase);
         }
+
     }
 }

@@ -28,16 +28,21 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Create.Implementa
             _validator.NotNull(nameof(_validator));
         }
 
-        public async Task Handle(CreatePermittedTimeDto request, CancellationToken cancellationToken)
+        public async Task Handle(CreatePermittedTimeDto createPermittedTimeDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+            await CheckValidator(createPermittedTimeDto, cancellationToken);
+
+            var permittedTime = _mapper.Map<Entities.PermittedTime>(createPermittedTimeDto);
+            await _permittedTimeCommandService.Add(permittedTime);
+        }
+        private async Task CheckValidator(CreatePermittedTimeDto createPermittedTimeDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(createPermittedTimeDto, cancellationToken);
             if (!validationResult.IsValid)
             {
                 throw new InvalidDataException();
             }
-
-            var permittedTime = _mapper.Map<Entities.PermittedTime>(request);
-            await _permittedTimeCommandService.Add(permittedTime);
         }
+
     }
 }

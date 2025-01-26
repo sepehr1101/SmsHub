@@ -28,16 +28,22 @@ namespace SmsHub.Application.Features.Template.Handlers.Commands.Create.Implemen
             _validator.NotNull(nameof(_validator));
         }
 
-        public async Task Handle(CreateTemplateCategoryDto request, CancellationToken cancellationToken)
+        public async Task Handle(CreateTemplateCategoryDto createTemplateCategoryDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+            await CheckValidator(createTemplateCategoryDto, cancellationToken);
+
+
+            var templateCategory = _mapper.Map<Entities.TemplateCategory>(createTemplateCategoryDto);
+            await _templateCategoryCommandService.Add(templateCategory);
+        }
+        private async Task CheckValidator(CreateTemplateCategoryDto createTemplateCategoryDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(createTemplateCategoryDto, cancellationToken);
             if (!validationResult.IsValid)
             {
                 throw new InvalidDataException();
             }
-
-            var templateCategory = _mapper.Map<Entities.TemplateCategory>(request);
-            await _templateCategoryCommandService.Add(templateCategory);
         }
+
     }
 }
