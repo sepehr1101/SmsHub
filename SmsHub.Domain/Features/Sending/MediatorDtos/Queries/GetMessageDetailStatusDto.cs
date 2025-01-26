@@ -1,6 +1,6 @@
 ﻿namespace SmsHub.Domain.Features.Sending.MediatorDtos.Queries
 {
-    public class GetMessageDetailStatusDto
+    public record GetMessageDetailStatusDto
     {
         public long Id { get; set; }
         public DateTime ReceiveDateTime { get; set; }
