@@ -11,6 +11,7 @@ using FluentValidation;
 using SmsHub.Persistence.Features.Template.Services.Contracts;
 using SmsHub.Persistence.Features.Config.Commands.Contracts;
 using SmsHub.Persistence.Contexts.UnitOfWork;
+using SmsHub.Application.Exceptions;
 
 namespace SmsHub.Application.Features.Template.Handlers.Commands.Create.Implementations
 {
@@ -86,7 +87,8 @@ namespace SmsHub.Application.Features.Template.Handlers.Commands.Create.Implemen
             var validationResult = await _validator.ValidateAsync(createTemplateDto, cancellationToken);
             if (!validationResult.IsValid)
             {
-                throw new InvalidDataException();
+                var message = string.Join(",", validationResult.Errors.Select(x => x.ErrorMessage));
+                throw new FluentValidationException(message);
             }
         }
         private string GetTemplateVariables(string template)

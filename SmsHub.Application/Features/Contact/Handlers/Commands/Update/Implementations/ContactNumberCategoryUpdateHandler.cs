@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using SmsHub.Application.Exceptions;
 using SmsHub.Application.Features.Contact.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Contact.MediatorDtos.Commands;
@@ -38,7 +39,8 @@ namespace SmsHub.Application.Features.Contact.Handlers.Commands.Update.Implement
             var validationResult = await _validator.ValidateAsync(updateContactNumberCategoryDto, cancellationToken);
             if (!validationResult.IsValid)
             {
-                throw new InvalidDataException();
+                var message = string.Join(",", validationResult.Errors.Select(x => x.ErrorMessage));
+                throw new FluentValidationException(message);
             }
         }
 

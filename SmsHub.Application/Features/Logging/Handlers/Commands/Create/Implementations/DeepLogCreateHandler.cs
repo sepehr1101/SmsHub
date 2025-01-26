@@ -5,6 +5,7 @@ using SmsHub.Persistence.Features.Logging.Commands.Contracts;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Create;
 using SmsHub.Application.Features.Logging.Handlers.Commands.Create.Contracts;
 using FluentValidation;
+using SmsHub.Application.Exceptions;
 
 namespace SmsHub.Application.Features.Logging.Handlers.Commands.Create.Implementations
 {
@@ -40,7 +41,8 @@ namespace SmsHub.Application.Features.Logging.Handlers.Commands.Create.Implement
             var validationResult = await _validator.ValidateAsync(createDeepLogDto, cancellationToken);
             if (!validationResult.IsValid)
             {
-                throw new InvalidDataException();
+                var message = string.Join(",", validationResult.Errors.Select(x => x.ErrorMessage));
+                throw new FluentValidationException(message);
             }
         }
 

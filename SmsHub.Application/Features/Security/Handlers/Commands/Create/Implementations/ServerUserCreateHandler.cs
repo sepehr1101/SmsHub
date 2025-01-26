@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using SmsHub.Application.Common.Services.Contracts;
+using SmsHub.Application.Exceptions;
 using SmsHub.Application.Features.Security.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Entities;
@@ -48,7 +49,8 @@ namespace SmsHub.Application.Features.Security.Handlers.Commands.Create.Implemen
             var validationResult = await _validator.ValidateAsync(createServerUserDto, cancellationToken);
             if (!validationResult.IsValid)
             {
-                throw new InvalidDataException();
+                var message = string.Join(",", validationResult.Errors.Select(x => x.ErrorMessage));
+                throw new FluentValidationException(message);
             }
         }
 

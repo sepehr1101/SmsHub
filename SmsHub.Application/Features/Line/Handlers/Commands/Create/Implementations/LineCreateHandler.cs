@@ -6,6 +6,7 @@ using SmsHub.Application.Features.Line.Handlers.Commands.Create.Contracts;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
 using FluentValidation;
 using SmsHub.Application.Features.Line.Validations;
+using SmsHub.Application.Exceptions;
 
 namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Implementations
 {
@@ -44,7 +45,8 @@ namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Implementati
             var validationResult = await _validator.ValidateAsync(createLineDto, cancellationToken);
             if (!validationResult.IsValid)
             {
-                throw new InvalidDataException();
+                var message = string.Join(",", validationResult.Errors.Select(x => x.ErrorMessage));
+                throw new FluentValidationException(message);
             }
         }
 
