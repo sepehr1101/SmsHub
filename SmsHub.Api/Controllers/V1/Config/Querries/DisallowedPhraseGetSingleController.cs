@@ -9,7 +9,7 @@ using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Api.Controllers.V1.Config.Querries
 {
-    [Route(nameof(DisallowedPhrase))]
+    [Route("disallowed-phrase")]
     [ApiController]
     public class DisallowedPhraseGetSingleController : BaseController
     {
@@ -21,7 +21,7 @@ namespace SmsHub.Api.Controllers.V1.Config.Querries
         }
 
         [HttpPost]
-        [Route(nameof(GetSingle))]
+        [Route("single")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<GetDisallowedPhraseDto>), StatusCodes.Status200OK)]
 
         public async Task<IActionResult> GetSingle([FromBody] IntId Id)

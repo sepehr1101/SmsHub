@@ -5,11 +5,10 @@ using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Features.Config.MediatorDtos.Queries;
-using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Api.Controllers.V1.Config.Querries
 {
-    [Route(nameof(PermittedTime))]
+    [Route("permitted-time")]
     [ApiController]
     public class PermittedTimeGetSingleController : BaseController
     {
@@ -21,7 +20,7 @@ namespace SmsHub.Api.Controllers.V1.Config.Querries
         }
 
         [HttpPost]
-        [Route(nameof(GetSingle))]
+        [Route("single")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<GetPermittedTimeDto>), StatusCodes.Status200OK)]
 
         public async Task<IActionResult> GetSingle([FromBody] IntId Id)

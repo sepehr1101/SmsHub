@@ -8,7 +8,7 @@ using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Api.Controllers.V1.Config.Querries
 {
-    [Route(nameof(DisallowedPhrase))]
+    [Route("disallowed-phrase")]
     [ApiController]
     public class DisallowedPhraseGetListController : BaseController
     {
@@ -20,7 +20,7 @@ namespace SmsHub.Api.Controllers.V1.Config.Querries
         }
 
         [HttpPost]
-        [Route(nameof(GetList))]
+        [Route("all")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<GetDisallowedPhraseDto>>), StatusCodes.Status200OK)]
 
         public async Task<IActionResult> GetList()

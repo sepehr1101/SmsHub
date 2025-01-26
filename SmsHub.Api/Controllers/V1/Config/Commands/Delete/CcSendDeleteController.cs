@@ -10,7 +10,7 @@ using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.V1.Config.Commands.Delete
 {
-    [Route(nameof(CcSend))]
+    [Route("cc-send")]
     [ApiController]
     public class CcSendDeleteController : BaseController
     {
@@ -28,7 +28,7 @@ namespace SmsHub.Api.Controllers.V1.Config.Commands.Delete
         }
 
         [HttpPost]
-        [Route(nameof(Delete))]
+        [Route("delete")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<DeleteCcSendDto>), StatusCodes.Status200OK)]
 
         public async Task<IActionResult> Delete([FromBody] DeleteCcSendDto deleteDto, CancellationToken cancellationToken)

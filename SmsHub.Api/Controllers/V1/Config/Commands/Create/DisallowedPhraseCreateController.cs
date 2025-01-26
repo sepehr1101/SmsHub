@@ -9,7 +9,7 @@ using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.V1.Config.Commands.Create
 {
-    [Route(nameof(DisallowedPhrase))]
+    [Route("disallowed-phrase")]
     [ApiController]
     public class DisallowedPhraseCreateController : BaseController
     {
@@ -27,7 +27,7 @@ namespace SmsHub.Api.Controllers.V1.Config.Commands.Create
         }
 
         [HttpPost]
-        [Route(nameof(Create))]
+        [Route("create")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<CreateDisallowedPhraseDto>), StatusCodes.Status200OK)]
 
         public async Task<IActionResult> Create([FromBody] CreateDisallowedPhraseDto createDto, CancellationToken cancellationToken)

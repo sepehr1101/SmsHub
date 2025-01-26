@@ -8,7 +8,7 @@ using SmsHub.Domain.Features.Config.MediatorDtos.Queries;
 
 namespace SmsHub.Api.Controllers.V1.Config.Querries
 {
-    [Route(nameof(Config))]
+    [Route("config")]
     [ApiController]
     public class ConfigGetSingleController : BaseController
     {
@@ -20,7 +20,7 @@ namespace SmsHub.Api.Controllers.V1.Config.Querries
         }
 
         [HttpPost]
-        [Route(nameof(GetSingle))]
+        [Route("single")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<GetConfigDto>), StatusCodes.Status200OK)]
 
         public async Task<IActionResult> GetSingle([FromBody] IntId Id)

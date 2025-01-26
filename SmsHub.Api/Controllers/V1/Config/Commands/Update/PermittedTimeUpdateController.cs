@@ -10,7 +10,7 @@ using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.V1.Config.Commands.Update
 {
-    [Route(nameof(PermittedTime))]
+    [Route("permitted-time")]
     [ApiController]
     public class PermittedTimeUpdateController : BaseController
     {
@@ -28,7 +28,7 @@ namespace SmsHub.Api.Controllers.V1.Config.Commands.Update
         }
 
         [HttpPost]
-        [HttpPost(nameof(Update))]
+        [HttpPost("update")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<UpdatePermittedTimeDto>), StatusCodes.Status200OK)]
 
         public async Task<IActionResult> Update([FromBody] UpdatePermittedTimeDto updateDto, CancellationToken cancellationToken)

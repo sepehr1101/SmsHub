@@ -9,7 +9,7 @@ using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Api.Controllers.V1.Config.Querries
 {
-    [Route(nameof(ConfigTypeGroup))]
+    [Route("config-type-group")]
     [ApiController]
     public class ConfigTypeGroupGetSingleController : BaseController
     {
@@ -21,7 +21,7 @@ namespace SmsHub.Api.Controllers.V1.Config.Querries
         }
 
         [HttpPost]
-        [Route(nameof(GetSingle))]
+        [Route("single")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<GetConfigTypeGroupDto>), StatusCodes.Status200OK)]
 
         public async Task<IActionResult> GetSingle([FromBody] IntId Id)

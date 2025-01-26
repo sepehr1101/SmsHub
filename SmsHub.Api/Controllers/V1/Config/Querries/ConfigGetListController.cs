@@ -7,7 +7,7 @@ using SmsHub.Domain.Features.Config.MediatorDtos.Queries;
 
 namespace SmsHub.Api.Controllers.V1.Config.Querries
 {
-    [Route(nameof(Config))]
+    [Route("config")]
     [ApiController]
     public class ConfigGetListController : BaseController
     {
@@ -19,7 +19,7 @@ namespace SmsHub.Api.Controllers.V1.Config.Querries
         }
 
         [HttpPost]
-        [Route(nameof(GetList))]
+        [Route("all")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<GetConfigDto>>), StatusCodes.Status200OK)]
 
         public async Task<IActionResult> GetList()

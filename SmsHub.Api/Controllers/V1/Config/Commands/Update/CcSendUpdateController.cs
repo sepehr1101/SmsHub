@@ -10,7 +10,7 @@ using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.V1.Config.Commands.Update
 {
-    [Route(nameof(CcSend))]
+    [Route("cc-send")]
     [ApiController]
     public class CcSendUpdateController : BaseController
     {
@@ -28,7 +28,7 @@ namespace SmsHub.Api.Controllers.V1.Config.Commands.Update
         }
 
         [HttpPost]
-        [Route(nameof(Update))]
+        [Route("update")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<UpdateCcSendDto>), StatusCodes.Status200OK)]
 
         public async Task<IActionResult> Update([FromBody] UpdateCcSendDto updateDto, CancellationToken cancellationToken)
