@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Security.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.Features.Security.Dtos;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
@@ -26,6 +27,8 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Update
 
         [HttpPost]
         [Route("update")]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<UpdateUserLineDto>), StatusCodes.Status200OK)]
+
         public async Task<IActionResult> Update([FromBody] UpdateUserLineDto updateDto, CancellationToken cancellationToken)
         {
             await _userLineUpdateHandler.Handle(updateDto, cancellationToken);

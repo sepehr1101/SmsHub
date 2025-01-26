@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Security.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Features.Security.Dtos;
 
 namespace SmsHub.Api.Controllers.V1.Security.Querries
 {
@@ -19,6 +21,8 @@ namespace SmsHub.Api.Controllers.V1.Security.Querries
 
         [HttpPost]
         [Route(nameof(GetAll))]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<GetServerUserDto>>), StatusCodes.Status200OK)]
+
         public async Task<IActionResult> GetAll()
         {
             var serverUsers = await _getAllHandler.Handle();

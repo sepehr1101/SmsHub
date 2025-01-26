@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Azure.Core;
 using FluentValidation;
 using SmsHub.Application.Features.Template.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;

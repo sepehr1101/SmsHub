@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Config.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
@@ -26,6 +27,7 @@ namespace SmsHub.Api.Controllers.V1.Config.Commands.Create
 
         [HttpPost]
         [Route(nameof(Create))]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<CreateConfigDto>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Create([FromBody] CreateConfigDto createDto, CancellationToken cancellationToken)
         {
             await _createCommandHandler.Handle(createDto, cancellationToken);

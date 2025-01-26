@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Template.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.BaseDomainEntities.Id;
+using SmsHub.Domain.Features.Template.MediatorDtos.Queries;
 
 namespace SmsHub.Api.Controllers.V1.Template.Querries
 {
@@ -19,6 +21,8 @@ namespace SmsHub.Api.Controllers.V1.Template.Querries
 
         [HttpPost]
         [Route("single")]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<GetTemplateDto>), StatusCodes.Status200OK)]
+
         public async Task<IActionResult> GetSingle([FromBody] IntId Id)
         {
             var template = await _getSingleHandler.Handle(Id);

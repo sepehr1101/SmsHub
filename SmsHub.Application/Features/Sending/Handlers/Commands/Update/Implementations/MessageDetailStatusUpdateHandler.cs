@@ -13,13 +13,11 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Update.Implement
         private readonly IMapper _mapper;
         private readonly IMessageDetailStatusCommandService _messageDetailStatusCommandService;
         private readonly IMessageDetailStatusQueryService _messageDetailStatusQueryService;
-        private readonly IValidator<UpdateMessageDetailStatusDto> _validator;
 
         public MessageDetailStatusUpdateHandler(
             IMapper mapper,
             IMessageDetailStatusCommandService messageDetailStatusCommandService,
-            IMessageDetailStatusQueryService messageDetailStatusQueryService,
-            IValidator<UpdateMessageDetailStatusDto> validator)
+            IMessageDetailStatusQueryService messageDetailStatusQueryService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
@@ -27,31 +25,18 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Update.Implement
             _messageDetailStatusCommandService = messageDetailStatusCommandService;
             _messageDetailStatusCommandService.NotNull(nameof(messageDetailStatusCommandService));
 
-            _messageDetailStatusQueryService= messageDetailStatusQueryService;
+            _messageDetailStatusQueryService = messageDetailStatusQueryService;
             _messageDetailStatusQueryService.NotNull(nameof(messageDetailStatusQueryService));
-
-            _validator = validator;
-            _validator.NotNull(nameof(validator));
         }
 
         public async Task Handle(UpdateMessageDetailStatusDto updateMessageDetailStatusDto, CancellationToken cancellationToken)
         {
-            await CheckValidator(updateMessageDetailStatusDto,cancellationToken);
-
-            var messageDetailStatus=await _messageDetailStatusQueryService.GetById(updateMessageDetailStatusDto.Id);
+            var messageDetailStatus = await _messageDetailStatusQueryService.GetById(updateMessageDetailStatusDto.Id);
             if (messageDetailStatus != null)
             {
                 _mapper.Map(updateMessageDetailStatusDto, messageDetailStatus);
             }
             throw new InvalidDataException();
-        }
-        private async Task CheckValidator(UpdateMessageDetailStatusDto updateMessageDetailStatusDto, CancellationToken cancellationToken)
-        {
-            var validationResult = await _validator.ValidateAsync(updateMessageDetailStatusDto, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
         }
 
 

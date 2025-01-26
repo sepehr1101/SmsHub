@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Consumer.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+using SmsHub.Domain.Features.Consumer.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Api.Controllers.V1.Consumer.Querries
@@ -19,6 +21,8 @@ namespace SmsHub.Api.Controllers.V1.Consumer.Querries
 
         [HttpPost]
         [Route(nameof(GetList))]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<GetConsumerLineDto>>), StatusCodes.Status200OK)]
+
         public async Task<IActionResult> GetList()
         {
             var consumerLines = await _getListHandler.Handle();

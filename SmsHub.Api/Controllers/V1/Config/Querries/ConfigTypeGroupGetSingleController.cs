@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Config.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.BaseDomainEntities.Id;
+using SmsHub.Domain.Features.Config.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Api.Controllers.V1.Config.Querries
@@ -20,6 +22,8 @@ namespace SmsHub.Api.Controllers.V1.Config.Querries
 
         [HttpPost]
         [Route(nameof(GetSingle))]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<GetConfigTypeGroupDto>), StatusCodes.Status200OK)]
+
         public async Task<IActionResult> GetSingle([FromBody] IntId Id)
         {
             var configTypeGroup = await _getSingleHandler.Handle(Id);

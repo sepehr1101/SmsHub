@@ -2,8 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Logging.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Features.Line.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Create;
+using SmsHub.Domain.Features.Logging.MediatorDtos.Queries;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.V1.Logging.Commands.Create
@@ -27,6 +30,8 @@ namespace SmsHub.Api.Controllers.V1.Logging.Commands.Create
 
         [HttpPost]
         [Route(nameof(Create))]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<CreateInformativeLogDto>), StatusCodes.Status200OK)]
+
         public async Task<IActionResult> Create([FromBody] CreateInformativeLogDto createDto, CancellationToken cancellationToken)
         {
             await _createCommandHandler.Handle(createDto, cancellationToken);

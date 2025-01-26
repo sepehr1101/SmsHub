@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Logging.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Features.Line.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Commands;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
@@ -27,6 +29,8 @@ namespace SmsHub.Api.Controllers.V1.Logging.Commands.Update
 
         [HttpPost]
         [Route(nameof(Update))]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<UpdateDeepLogDto>), StatusCodes.Status200OK)]
+
         public async Task<IActionResult> Update([FromBody] UpdateDeepLogDto updateDto, CancellationToken cancellationToken)
         {
             await _updateCommandHandler.Handle(updateDto, cancellationToken);

@@ -12,12 +12,10 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
     {
         private readonly IMapper _mapper;
         private readonly IMessageDetailStatusCommandService _messageDetailStatusCommandService;
-        private readonly IValidator<CreateMessageDetailStatusDto> _validator;
 
         public MessageDetailStatusCreateHandler(
             IMapper mapper,
-            IMessageDetailStatusCommandService messageDetailStatusCommandService,
-            IValidator<CreateMessageDetailStatusDto> validator)
+            IMessageDetailStatusCommandService messageDetailStatusCommandService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
@@ -25,26 +23,13 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
             _messageDetailStatusCommandService = messageDetailStatusCommandService;
             _messageDetailStatusCommandService.NotNull(nameof(messageDetailStatusCommandService));
 
-            _validator = validator;
-           _validator.NotNull(nameof(validator));
         }
         public async Task Handle(CreateMessageDetailStatusDto createMessageDetailStatusDto, CancellationToken cancellationToken)
         {
-            await CheckValidator(createMessageDetailStatusDto, cancellationToken);
-
             var messageDetailStatus = _mapper.Map<MessageDetailStatus>(createMessageDetailStatusDto);
             await _messageDetailStatusCommandService.Add(messageDetailStatus);
         }
 
-        private async Task CheckValidator(CreateMessageDetailStatusDto createMessageDetailStatusDto, CancellationToken cancellationToken)
-        {
-            var validationResult = await _validator.ValidateAsync(createMessageDetailStatusDto, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
-        }
-
-
+        
     }
 }

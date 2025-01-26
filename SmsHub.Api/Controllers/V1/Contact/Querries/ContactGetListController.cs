@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Contact.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+using SmsHub.Domain.Features.Contact.MediatorDtos.Queries;
 
 namespace SmsHub.Api.Controllers.V1.Contact.Querries
 {
@@ -19,6 +21,8 @@ namespace SmsHub.Api.Controllers.V1.Contact.Querries
 
         [HttpPost]
         [Route(nameof(GetList))]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<GetContactDto>>), StatusCodes.Status200OK)]
+
         public async Task<IActionResult> GetList()
         {
             var contacts = await _getListHandler.Handle();

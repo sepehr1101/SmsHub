@@ -80,14 +80,14 @@ namespace SmsHub.Persistence.DbSeeder.Implementations
                 Website = "parsgereen.com",
                 FallbackBaseUri = null,
                 Id=ProviderEnum.RahyabPayam,
-                CredentialTemplate= @"{'uname': '---','pass':'---' }"
+                CredentialTemplate= @"{'uname': '---' }"
             };
             var farazSms = new Provider()
             {
                 BaseUri = @"https://farazsms.com/api/",
                 BatchSize = 200,
                 DefaultPreNumber = null,
-                Title = "رهیاب پیام گستران",
+                Title = "فراز اس‌ام‌اس",
                 Website = "farazsms.com",
                 FallbackBaseUri = null,
                 Id=ProviderEnum.FarazSms,

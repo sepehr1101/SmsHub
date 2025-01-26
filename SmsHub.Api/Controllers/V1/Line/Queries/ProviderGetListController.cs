@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Line.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
-using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+using SmsHub.Domain.Features.Line.MediatorDtos.Queries;
 
 namespace SmsHub.Api.Controllers.V1.Line.Queries
 {
@@ -19,6 +20,7 @@ namespace SmsHub.Api.Controllers.V1.Line.Queries
 
         [HttpPost]
         [Route("all")]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<GetProviderDto>>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetList()
         {
             var providers = await _getListHandler.Handle();

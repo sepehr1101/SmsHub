@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Security.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+using SmsHub.Domain.Features.Security.Dtos;
 
 namespace SmsHub.Api.Controllers.V1.Security.Querries
 {
@@ -18,6 +20,8 @@ namespace SmsHub.Api.Controllers.V1.Security.Querries
 
         [HttpPost]
         [Route("lines/{userId}")]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<GetUserLineByUserIdDto>>), StatusCodes.Status200OK)]
+
         public async Task<IActionResult> Lines(Guid userId,CancellationToken cancellationToken)
         {
             var result=await _userLineGetByUserIdHandler.Handle(userId,cancellationToken);
