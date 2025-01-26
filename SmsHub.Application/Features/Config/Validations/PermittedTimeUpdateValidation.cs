@@ -11,15 +11,15 @@ namespace SmsHub.Application.Features.Config.Validations
         {
             RuleFor(x => x.FromTime)
                 .NotEmpty().WithMessage(MessageResources.ItemNotNull)
-                .Length(5).WithMessage(MessageResources.ItemNotMoreThan5)
-                .Must(ValidationAnsiString.ValidateAnsi)
-                .Must(ValidationAnsiString.CheckTime);
+                .Length(5).WithMessage(MessageResources.ItemEqual5)
+                .Must(ValidationAnsiString.CheckTime).WithMessage(MessageResources.ItemByInvalidFormatTime)
+                .Must(ValidationAnsiString.ValidateAnsi).WithMessage(MessageResources.ItemNotPersian);
 
             RuleFor(x => x.ToTime)
                 .NotEmpty().WithMessage(MessageResources.ItemNotNull)
-                .Length(5).WithMessage(MessageResources.ItemNotMoreThan5)
-                .Must(ValidationAnsiString.ValidateAnsi)
-                .Must(ValidationAnsiString.CheckTime);
+                .Length(5).WithMessage(MessageResources.ItemEqual5)
+                .Must(ValidationAnsiString.ValidateAnsi).WithMessage(MessageResources.ItemNotPersian)
+                .Must(ValidationAnsiString.CheckTime).WithMessage(MessageResources.ItemByInvalidFormatTime);
         }
     }
 }

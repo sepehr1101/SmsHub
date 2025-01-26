@@ -29,13 +29,13 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
 
         [HttpPost]
         [Route(nameof(Create))]
-        [ProducesResponseType(typeof(ApiResponseEnvelope<string>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<ApiKeyAndHash>), StatusCodes.Status200OK)]
 
         public async Task<IActionResult> Create([FromBody] CreateServerUserDto dto, CancellationToken cancellationToken)
         {
             var apiKeyAndHash = await _createServerUserHandler.Handle(dto, cancellationToken);
             await _uow.SaveChangesAsync(cancellationToken);
-            return Ok(apiKeyAndHash.ApiKey);
+            return Ok(apiKeyAndHash);
         }
     }
 }

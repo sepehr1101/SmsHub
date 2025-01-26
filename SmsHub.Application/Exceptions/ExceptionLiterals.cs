@@ -24,6 +24,6 @@ namespace SmsHub.Application.Exceptions
 
 
         public static string InvalidProviderResponse(string message, int statusCode) => $"خطا => {message} - {statusCode} ";
-
+        public static string FluentValidationMessage(string message) => $"خطا => {message}";
     }
 }

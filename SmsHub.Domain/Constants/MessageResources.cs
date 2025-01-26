@@ -2,6 +2,8 @@
 {
     public static class MessageResources
     {
+        public const string ItemByInvalidFormatTime = " فرمت ساعت وارد شده صحیح نیست   ";
+        public const string ItemNotPersian = "از درستی کیبورد خود مطمئن شوید";
         public const string ItemNotNull = "آیتم تهی وارد شده";
         public const string ItemIsInt = "آیتم باید با فرمت عددی باشد";
         public const string ItemIsShort = "آیتم وارد شده بیش از حد مجاز است";
@@ -16,7 +18,7 @@
         public const string ItemNotMoreThan63 = "تعداد کاراکتر باید کمتر از 63 باشد";
         public const string ItemNotMoreThan15 = "تعداد کاراکتر باید کمتر از 15 باشد";
         public const string ItemNotMoreThan11 = "تعداد کاراکتر باید کمتر از 11 باشد";
-        public const string ItemNotMoreThan5 = "تعداد کاراکتر باید کمتر از 5 باشد";
+        public const string ItemEqual5 = "تعداد کاراکتر باید برابر 5 باشد";
 
         public const string ItemNotLessThan3 = "تعداد کاراکتر نباید کمتر از 3 باشد";
         public const string ItemNotLessThan3_NotMoreThan255 = "تعداد کاراکتر باید بین 3 تا 255 باشد";
