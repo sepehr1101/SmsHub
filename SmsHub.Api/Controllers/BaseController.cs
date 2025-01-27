@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+using SmsHub.Domain.Features.Security.Dtos.ApplicationUser;
 using System.Net;
 using System.Runtime.InteropServices;
 
@@ -40,6 +41,14 @@ namespace Aban360.Api.Controllers.V1
         {
             var envelope = new ApiResponseEnvelope<object>((int)HttpStatusCode.BadRequest, null, new List<ApiError> {new ApiError(errorMessage) }, null, meta);
             return BadRequest(envelope);
+        }
+
+        public AppUser CurrentUser
+        {
+            get
+            {
+                return new AppUser(User);
+            }
         }
     }
 }

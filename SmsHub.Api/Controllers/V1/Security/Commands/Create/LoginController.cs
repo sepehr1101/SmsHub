@@ -84,7 +84,7 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
 
             //Policy
             var (userPolicy,resultPolicy)=await _userPolicy.Handle(loginDto,cancellationToken);
-            if (!resultPolicy || string.IsNullOrEmpty(userPolicy))
+            if (!resultPolicy || !string.IsNullOrEmpty(userPolicy))
             {
                 return ClientError(userPolicy);
             }
@@ -107,9 +107,11 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
         {
             var userLogin = await _userLoginFindHandler.Handle(loginDto, cancellationToken);
             if (userLogin == null)
-            {
-                return ClientError(MessageResources.InvalidConfirmCode);
+            {   
+                return ClientError(MessageResources.InvalidConfirmCode);               
             }
+            //userLogin.TwoStepWasSuccessful = true;
+            //await _uow.SaveChangesAsync(cancellationToken);
             var secondStepOutput = await GetSecondStepOutput(userLogin.User, cancellationToken);
             return Ok(secondStepOutput);
         }
@@ -130,12 +132,12 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
         { 
             var captchaParams= _captchaApiProvider.CreateDNTCaptcha(new DNTCaptchaTagHelperHtmlAttributes
             {
-                BackColor = "#f7f3f3",
+                BackColor = "#FFFFFF",
                 FontName = "Tahoma",
                 FontSize = 20,
                 ForeColor = "#111111",
                 Language = DNTCaptcha.Core.Language.Persian,
-                DisplayMode = DisplayMode.SumOfTwoNumbersToWords,
+                DisplayMode = DisplayMode.SumOfTwoNumbers,
                 Max = 90,
                 Min = 5
             });
