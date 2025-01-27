@@ -1,5 +1,7 @@
 ﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SmsHub.Api.Attributes;
 using SmsHub.Application.Features.Config.Handlers.Commands.Create.Contracts;
 using SmsHub.Application.Features.Logging.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
@@ -13,6 +15,7 @@ namespace SmsHub.Api.Controllers.V1.Config.Commands.Create
 {
     [Route("config")]
     [ApiController]
+    [Authorize]
     public class ConfigCreateController : BaseController
     {
         private readonly IUnitOfWork _uow;
@@ -29,28 +32,17 @@ namespace SmsHub.Api.Controllers.V1.Config.Commands.Create
             _createCommandHandler = createCommandHandler;
             _createCommandHandler.NotNull(nameof(createCommandHandler));
 
-            _informativeLogCreateHandler= informativeLogCreateHandler;
+            _informativeLogCreateHandler = informativeLogCreateHandler;
             _informativeLogCreateHandler.NotNull(nameof(informativeLogCreateHandler));
         }
 
         [HttpPost]
         [Route("create")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<CreateConfigDto>), StatusCodes.Status200OK)]
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.AddConfigDescription)]
         public async Task<IActionResult> Create([FromBody] CreateConfigDto createDto, CancellationToken cancellationToken)
         {
             await _createCommandHandler.Handle(createDto, cancellationToken);
-
-            //add InformativeLog
-            var informativeLog = new CreateInformativeLogDto()// *** UserID;
-            {
-                LogLevelId = LogLevelEnum.InternalOperation,
-                Section = LogLevelMessageResources.SendConfigSection,
-                Description = LogLevelMessageResources.AddConfigDescription,
-                UserId = new Guid(),//userId
-                UserInfo = " "
-            };
-            await _informativeLogCreateHandler.Handle(informativeLog, cancellationToken);
-
             await _uow.SaveChangesAsync(cancellationToken);
             return Ok(createDto);
         }

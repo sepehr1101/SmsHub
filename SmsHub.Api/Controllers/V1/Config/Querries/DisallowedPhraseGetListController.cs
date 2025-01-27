@@ -1,5 +1,7 @@
 ﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SmsHub.Api.Attributes;
 using SmsHub.Application.Features.Config.Handlers.Queries.Contracts;
 using SmsHub.Application.Features.Logging.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
@@ -12,6 +14,7 @@ namespace SmsHub.Api.Controllers.V1.Config.Querries
 {
     [Route("disallowed-phrase")]
     [ApiController]
+    [Authorize]
     public class DisallowedPhraseGetListController : BaseController
     {
         private readonly IDisallowedPhraseGetListHandler _getListHandler;
@@ -31,22 +34,10 @@ namespace SmsHub.Api.Controllers.V1.Config.Querries
         [HttpPost]
         [Route("all")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<GetDisallowedPhraseDto>>), StatusCodes.Status200OK)]
-
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.GetSumDisallowedPhraseDescription)]
         public async Task<IActionResult> GetList(CancellationToken cancellationToken)
         {
             var disallowedPhrases = await _getListHandler.Handle();
-
-            //add InformativeLog
-            var informativeLog = new CreateInformativeLogDto()// *** UserID;
-            {
-                LogLevelId = LogLevelEnum.InternalOperation,
-                Section = LogLevelMessageResources.SendConfigSection,
-                Description = LogLevelMessageResources.GetDisallowedPhraseDescription (disallowedPhrases.Count),
-                UserId = new Guid(),//userId
-                UserInfo = " "
-            };
-            await _informativeLogCreateHandler.Handle(informativeLog, cancellationToken);
-
             return Ok(disallowedPhrases);
         }
 

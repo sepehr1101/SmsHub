@@ -1,5 +1,7 @@
 ﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SmsHub.Api.Attributes;
 using SmsHub.Application.Features.Config.Handlers.Commands.Update.Contracts;
 using SmsHub.Application.Features.Logging.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
@@ -13,6 +15,7 @@ namespace SmsHub.Api.Controllers.V1.Config.Commands.Update
 {
     [Route("cc-send")]
     [ApiController]
+    [Authorize]
     public class CcSendUpdateController : BaseController
     {
         private readonly IUnitOfWork _uow;
@@ -38,22 +41,10 @@ namespace SmsHub.Api.Controllers.V1.Config.Commands.Update
         [HttpPost]
         [Route("update")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<UpdateCcSendDto>), StatusCodes.Status200OK)]
-
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.UpdateCcSendDescription)]
         public async Task<IActionResult> Update([FromBody] UpdateCcSendDto updateDto, CancellationToken cancellationToken)
         {
             await _updateCommandHandler.Handle(updateDto, cancellationToken);
-         
-            //add InformativeLog
-            var informativeLog = new CreateInformativeLogDto()// *** UserID;
-            {
-                LogLevelId = LogLevelEnum.InternalOperation,
-                Section = LogLevelMessageResources.SendConfigSection,
-                Description = LogLevelMessageResources.UpdateCcSendDescription,
-                UserId = new Guid(),//userId
-                UserInfo = " "
-            };
-            await _informativeLogCreateHandler.Handle(informativeLog, cancellationToken);
-
             await _uow.SaveChangesAsync(cancellationToken);
             return Ok(updateDto);
         }

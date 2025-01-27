@@ -1,5 +1,6 @@
 ﻿using Aban360.Api.Controllers.V1;
 using Microsoft.AspNetCore.Mvc;
+using SmsHub.Api.Attributes;
 using SmsHub.Application.Features.Config.Handlers.Queries.Contracts;
 using SmsHub.Application.Features.Logging.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
@@ -32,22 +33,10 @@ namespace SmsHub.Api.Controllers.V1.Config.Querries
         [HttpPost]
         [Route("single")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<GetPermittedTimeDto>), StatusCodes.Status200OK)]
-
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.GetOnePermittedTimeDescription)]
         public async Task<IActionResult> GetSingle([FromBody] IntId Id, CancellationToken cancellationToken)
         {
             var permittedTime = await _getSingleHandler.Handle(Id);
-
-            //add InformativeLog
-            var informativeLog = new CreateInformativeLogDto()// *** UserID;
-            {
-                LogLevelId = LogLevelEnum.InternalOperation,
-                Section = LogLevelMessageResources.SendConfigSection,
-                Description = LogLevelMessageResources.GetPermittedTimeDescription(1),
-                UserId = new Guid(),//userId
-                UserInfo = " "
-            };
-            await _informativeLogCreateHandler.Handle(informativeLog, cancellationToken);
-
             return Ok(permittedTime);
         }
     }

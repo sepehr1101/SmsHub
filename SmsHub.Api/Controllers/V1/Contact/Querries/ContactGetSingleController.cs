@@ -1,15 +1,19 @@
 ﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SmsHub.Api.Attributes;
 using SmsHub.Application.Features.Contact.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.BaseDomainEntities.Id;
+using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Contact.MediatorDtos.Queries;
 
 namespace SmsHub.Api.Controllers.V1.Contact.Querries
 {
     [Route(nameof(Contact))]
     [ApiController]
+    [Authorize]
     public class ContactGetSingleController : BaseController
     {
         private readonly IContactGetSingleHandler _getListHandler;
@@ -22,7 +26,7 @@ namespace SmsHub.Api.Controllers.V1.Contact.Querries
         [HttpPost]
         [Route(nameof(GetSingle))]
         [ProducesResponseType(typeof(ApiResponseEnvelope<GetContactDto>), StatusCodes.Status200OK)]
-
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.GetOneContactDescription)]
         public async Task<IActionResult> GetSingle([FromBody] IntId Id)
         {
             var contact = await _getListHandler.Handle(Id);

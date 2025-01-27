@@ -1,5 +1,7 @@
 ﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SmsHub.Api.Attributes;
 using SmsHub.Application.Features.Config.Handlers.Commands.Create.Contracts;
 using SmsHub.Application.Features.Logging.Handlers.Commands.Create.Contracts;
 using SmsHub.Application.Features.Logging.Handlers.Commands.Create.Implementations;
@@ -15,6 +17,7 @@ namespace SmsHub.Api.Controllers.V1.Config.Commands.Create
 {
     [Route("disallowed-phrase")]
     [ApiController]
+    [Authorize]
     public class DisallowedPhraseCreateController : BaseController
     {
         private readonly IUnitOfWork _uow;
@@ -38,23 +41,10 @@ namespace SmsHub.Api.Controllers.V1.Config.Commands.Create
         [HttpPost]
         [Route("create")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<CreateDisallowedPhraseDto>), StatusCodes.Status200OK)]
-
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.AddDisallowedPhraseDescription)]
         public async Task<IActionResult> Create([FromBody] CreateDisallowedPhraseDto createDto, CancellationToken cancellationToken)
         {
             await _createCommandHandler.Handle(createDto, cancellationToken);
-      
-            //add InformativeLog
-            var informativeLog = new CreateInformativeLogDto()// *** UserID;
-            {
-                LogLevelId = LogLevelEnum.InternalOperation,
-                Section = LogLevelMessageResources.SendConfigSection,
-                Description = LogLevelMessageResources.AddDisallowedPhraseDescription,
-                UserId = new Guid(),//userId
-                UserInfo = " "
-            };
-            await _informativeLogCreateHandler.Handle(informativeLog, cancellationToken);
-
-
             await _uow.SaveChangesAsync(cancellationToken);
             return Ok(createDto);
         }

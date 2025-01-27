@@ -1,5 +1,7 @@
 ﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SmsHub.Api.Attributes;
 using SmsHub.Application.Features.Config.Handlers.Commands.Delete.Contracts;
 using SmsHub.Application.Features.Logging.Handlers.Commands.Create.Contracts;
 using SmsHub.Application.Features.Logging.Handlers.Commands.Create.Implementations;
@@ -14,6 +16,7 @@ namespace SmsHub.Api.Controllers.V1.Config.Commands.Delete
 {
     [Route("config-type-group")]
     [ApiController]
+    [Authorize]
     public class ConfigTypeGroupDeleteController : BaseController
     {
         private readonly IUnitOfWork _uow;
@@ -38,23 +41,10 @@ namespace SmsHub.Api.Controllers.V1.Config.Commands.Delete
         [HttpPost]
         [Route("delete")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<DeleteConfigTypeGroupDto>), StatusCodes.Status200OK)]
-
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.DeleteConfigTypeGroupDescription)]
         public async Task<IActionResult> Delete([FromBody] DeleteConfigTypeGroupDto deleteDto, CancellationToken cancellationToken)
         {
             await _deleteCommandHandler.Handle(deleteDto, cancellationToken);
-
-            //add InformativeLog
-            var informativeLog = new CreateInformativeLogDto()// *** UserID;
-            {
-                LogLevelId = LogLevelEnum.InternalOperation,
-                Section = LogLevelMessageResources.SendConfigSection,
-                Description = LogLevelMessageResources.DeleteConfigTypeGroupDescription,
-                UserId = new Guid(),//userId
-                UserInfo = " "
-            };
-            await _informativeLogCreateHandler.Handle(informativeLog, cancellationToken);
-
-
             await _uow.SaveChangesAsync(cancellationToken);
             return Ok(deleteDto);
         }
