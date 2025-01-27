@@ -41,7 +41,7 @@ namespace SmsHub.Api.Controllers.V1.Config.Commands.Create
         [HttpPost]
         [Route("create")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<CreateDisallowedPhraseDto>), StatusCodes.Status200OK)]
-        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.AddDisallowedPhraseDescription)]
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.DisallowedPhrase+LogLevelMessageResources.SendConfigSection)]
         public async Task<IActionResult> Create([FromBody] CreateDisallowedPhraseDto createDto, CancellationToken cancellationToken)
         {
             await _createCommandHandler.Handle(createDto, cancellationToken);

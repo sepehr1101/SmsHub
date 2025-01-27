@@ -9,6 +9,7 @@ using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Config.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Create;
+using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.V1.Config.Querries
 {
@@ -19,28 +20,31 @@ namespace SmsHub.Api.Controllers.V1.Config.Querries
     {
         private readonly IConfigGetListHandler _getListHandler;
         private readonly IInformativeLogCreateHandler _informativeLogCreateHandler;
+        private readonly IUnitOfWork _uow;
 
         public ConfigGetListController(
             IConfigGetListHandler getListHandler,
-            IInformativeLogCreateHandler informativeLogCreateHandler)
+            IInformativeLogCreateHandler informativeLogCreateHandler, 
+            IUnitOfWork uow)
         {
             _getListHandler = getListHandler;
             _getListHandler.NotNull(nameof(getListHandler));
 
             _informativeLogCreateHandler = informativeLogCreateHandler;
             _informativeLogCreateHandler.NotNull(nameof(informativeLogCreateHandler));
+
+            _uow = uow;
+            _uow.NotNull(nameof(uow));
         }
 
         [HttpPost]
         [Route("all")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<GetConfigDto>>), StatusCodes.Status200OK)]
-        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.GetSumConfigDescription)]
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.Config + LogLevelMessageResources.GetDescription)]
         public async Task<IActionResult> GetList(CancellationToken cancellationToken)
         {
             var configs = await _getListHandler.Handle();
-
-            //add InformativeLog
-           
+            await _uow.SaveChangesAsync(cancellationToken);
             return Ok(configs);
         }
 

@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using SmsHub.Api.Attributes;
 using SmsHub.Application.Features.Sending.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Sending.Entities;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using SmsHub.Persistence.Contexts.UnitOfWork;
@@ -13,6 +16,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
 {
     [ApiController]
     [Route(nameof(Receiving))]
+    [Authorize]
     public class ReceiveMessageCreateController : Controller
     {
         private readonly IUnitOfWork _uow;
@@ -42,7 +46,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         [HttpGet]
         [Route("Receiving/{lineId}")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<Received>>), StatusCodes.Status200OK)]
-
+        [InformativeLogFilter(LogLevelEnum. Receive, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.ReceiveMessage + LogLevelMessageResources.AddDescription)]
         public async Task<IActionResult> Receiving(int lineId, CancellationToken cancellationToken)
         {
             var result = await _receiveManagerCreateHandler.Handle(lineId);

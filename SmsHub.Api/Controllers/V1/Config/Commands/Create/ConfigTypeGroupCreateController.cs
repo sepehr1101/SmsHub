@@ -39,7 +39,7 @@ namespace SmsHub.Api.Controllers.V1.Config.Commands.Create
         [HttpPost]
         [Route("create")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<CreateConfigTypeGroupDto>), StatusCodes.Status200OK)]
-        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.AddConfigTypeGroupDescription)]
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.ConfigTypeGroup+ LogLevelMessageResources.SendConfigSection)]
         public async Task<IActionResult> Create([FromBody] CreateConfigTypeGroupDto createDto, CancellationToken cancellationToken)
         {
             await _createCommandHandler.Handle(createDto, cancellationToken);

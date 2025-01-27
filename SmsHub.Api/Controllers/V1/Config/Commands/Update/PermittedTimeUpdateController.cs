@@ -40,7 +40,7 @@ namespace SmsHub.Api.Controllers.V1.Config.Commands.Update
         [HttpPost]
         [HttpPost("update")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<UpdatePermittedTimeDto>), StatusCodes.Status200OK)]
-        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.UpdatePermittedTimeDescription)]
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.PermittedTime + LogLevelMessageResources.UpdateDescription)]
         public async Task<IActionResult> Update([FromBody] UpdatePermittedTimeDto updateDto, CancellationToken cancellationToken)
         {
             await _updateCommandHandler.Handle(updateDto, cancellationToken);

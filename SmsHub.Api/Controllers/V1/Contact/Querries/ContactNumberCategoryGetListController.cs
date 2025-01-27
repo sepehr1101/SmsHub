@@ -8,6 +8,8 @@ using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Contact.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Entities;
+using SmsHub.Persistence.Contexts.UnitOfWork;
+using System.Threading;
 
 namespace SmsHub.Api.Controllers.V1.Contact.Querries
 {
@@ -17,19 +19,25 @@ namespace SmsHub.Api.Controllers.V1.Contact.Querries
     public class ContactNumberCategoryGetListController : BaseController
     {
         private readonly IContactNumberCategoryGetListHandler _getListHandler;
-        public ContactNumberCategoryGetListController(IContactNumberCategoryGetListHandler getListHandler)
+        private readonly IUnitOfWork _uow;
+        public ContactNumberCategoryGetListController(IContactNumberCategoryGetListHandler getListHandler,
+            IUnitOfWork uow)
         {
             _getListHandler = getListHandler;
             _getListHandler.NotNull(nameof(getListHandler));
+
+            _uow = uow;
+            _uow.NotNull(nameof(uow));
         }
 
         [HttpPost]
         [Route(nameof(GetList))]
         [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<GetContactNumberCategoryDto>>), StatusCodes.Status200OK)]
-        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.GetSumContactNumberCategoryDescription)]
-        public async Task<IActionResult> GetList()
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.ContactNumberCategory + LogLevelMessageResources.GetDescription)]
+        public async Task<IActionResult> GetList(CancellationToken cancellationToken)
         {
             var contactNumberCategories = await _getListHandler.Handle();
+            await _uow.SaveChangesAsync(cancellationToken);
             return Ok(contactNumberCategories);
         }
     }

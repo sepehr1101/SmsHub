@@ -3,6 +3,7 @@ using DNTCaptcha.Core;
 using DNTPersianUtils.Core;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SmsHub.Api.Attributes;
 using SmsHub.Application.Features.Auth.Handlers.Commands.Create.Contracts;
 using SmsHub.Application.Features.Auth.Services.Contracts;
 using SmsHub.Application.Features.Security.Handlers.Commands.Create.Contracts;
@@ -73,6 +74,7 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
         [Route("first-step")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<FirstStepOutput>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponseEnvelope<SecondStepOutput>), StatusCodes.Status200OK)]
+        [InformativeLogFilter(LogLevelEnum.Security, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.Provider + LogLevelMessageResources.AddDescription)]
         public async Task<IActionResult> PaceFirstStep([FromBody] FirstStepLoginInput loginDto, CancellationToken cancellationToken)
         {
             bool isCaptchaValid = HasRequestValidCaptchaEntry(loginDto);

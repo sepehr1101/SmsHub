@@ -1,8 +1,11 @@
 ﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SmsHub.Api.Attributes;
 using SmsHub.Application.Features.Template.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create;
 using SmsHub.Persistence.Contexts.UnitOfWork;
@@ -11,6 +14,7 @@ namespace SmsHub.Api.Controllers.V1.Template.Commands.Create
 {
     [Route("template-category")]
     [ApiController]
+    [Authorize]
     public class TemplateCategoryCreateController : BaseController
     {
         private readonly IUnitOfWork _uow;
@@ -29,7 +33,7 @@ namespace SmsHub.Api.Controllers.V1.Template.Commands.Create
         [HttpPost]
         [Route("create")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<CreateTemplateCategoryDto>), StatusCodes.Status200OK)]
-
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.TemplateCategory + LogLevelMessageResources.AddDescription)]
         public async Task<IActionResult> Create([FromBody] CreateTemplateCategoryDto createDto, CancellationToken cancellationToken)
         {
             await _createCommandHandler.Handle(createDto, cancellationToken);

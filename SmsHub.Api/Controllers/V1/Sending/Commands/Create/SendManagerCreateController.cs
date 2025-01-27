@@ -1,10 +1,13 @@
 ﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SmsHub.Api.Attributes;
 using SmsHub.Application.Features.Sending.Handlers.Commands.Create.Contracts;
 using SmsHub.Application.Features.Sending.Services.Contracts;
 using SmsHub.Application.Features.Template.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts;
 using SmsHub.Persistence.Contexts.UnitOfWork;
@@ -14,6 +17,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
 {
     [ApiController]
     [Route("Send")]
+    [Authorize]
     public class SendManagerCreateController : BaseController
     {
         private readonly ITemplateGetSingleHandler _templateGetSingleHandler;
@@ -40,7 +44,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         [HttpPost]
         [Route("by-template/{templateId}/{lineId}")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<MobileText>>), StatusCodes.Status200OK)]
-
+        [InformativeLogFilter(LogLevelEnum.Send, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.SendMessage + LogLevelMessageResources.AddDescription)]
         public async Task<IActionResult> SendManager(int templateId, int lineId, CancellationToken cancellationToken)
         {
             var messages = await _sendManagerCreateHandler.Handle(templateId, lineId, new CancellationToken());

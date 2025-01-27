@@ -9,6 +9,8 @@ using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Contact.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Entities;
+using SmsHub.Persistence.Contexts.UnitOfWork;
+using System.Threading;
 
 namespace SmsHub.Api.Controllers.V1.Contact.Querries
 {
@@ -18,19 +20,25 @@ namespace SmsHub.Api.Controllers.V1.Contact.Querries
     public class ContactNumberCategoryGetSingleController : BaseController
     {
         private readonly IContactNumberCategoryGetSingleHandler _getSingleHandler;
-        public ContactNumberCategoryGetSingleController(IContactNumberCategoryGetSingleHandler getSingleHandler)
+        private readonly IUnitOfWork _uow;
+        public ContactNumberCategoryGetSingleController(IContactNumberCategoryGetSingleHandler getSingleHandler,
+            IUnitOfWork uow)
         {
             _getSingleHandler = getSingleHandler;
             _getSingleHandler.NotNull(nameof(getSingleHandler));
+
+            _uow = uow;
+            _uow.NotNull(nameof(uow));
         }
 
         [HttpPost]
         [Route(nameof(GetSingle))]
         [ProducesResponseType(typeof(ApiResponseEnvelope<GetContactNumberCategoryDto>), StatusCodes.Status200OK)]
-        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.GetOneContactNumberCategoryDescription)]
-        public async Task<IActionResult> GetSingle([FromBody] IntId Id)
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.ContactNumberCategory + LogLevelMessageResources.GetDescription)]
+        public async Task<IActionResult> GetSingle([FromBody] IntId Id, CancellationToken cancellationToken)
         {
             var contactNumberCategory = await _getSingleHandler.Handle(Id);
+            await _uow.SaveChangesAsync(cancellationToken);
             return Ok(contactNumberCategory);
         }
     }

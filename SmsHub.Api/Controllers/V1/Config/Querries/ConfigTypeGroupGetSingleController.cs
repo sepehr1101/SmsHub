@@ -10,6 +10,7 @@ using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Config.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Create;
+using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.V1.Config.Querries
 {
@@ -20,25 +21,31 @@ namespace SmsHub.Api.Controllers.V1.Config.Querries
     {
         private readonly IConfigTypeGroupGetSingleHandler _getSingleHandler;
         private readonly IInformativeLogCreateHandler _informativeLogCreateHandler;
+        private readonly IUnitOfWork _uow;
 
         public ConfigTypeGroupGetSingleController(
             IConfigTypeGroupGetSingleHandler getSingleHandler, 
-            IInformativeLogCreateHandler informativeLogCreateHandler)
+            IInformativeLogCreateHandler informativeLogCreateHandler, 
+            IUnitOfWork uow)
         {
             _getSingleHandler = getSingleHandler;
             _getSingleHandler.NotNull(nameof(getSingleHandler));
 
             _informativeLogCreateHandler = informativeLogCreateHandler;
             _informativeLogCreateHandler.NotNull(nameof(informativeLogCreateHandler));
+
+            _uow = uow;
+            _uow.NotNull(nameof(uow));
         }
 
         [HttpPost]
         [Route("single")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<GetConfigTypeGroupDto>), StatusCodes.Status200OK)]
-        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.GetOneConfigTypeGroupDescription)]
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.ConfigTypeGroup + LogLevelMessageResources.GetDescription)]
         public async Task<IActionResult> GetSingle([FromBody] IntId Id, CancellationToken cancellationToken)
         {
             var configTypeGroup = await _getSingleHandler.Handle(Id);
+            await _uow.SaveChangesAsync(cancellationToken);
             return Ok(configTypeGroup);
         }
     }

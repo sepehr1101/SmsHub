@@ -1,8 +1,11 @@
 ﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SmsHub.Api.Attributes;
 using SmsHub.Application.Features.Sending.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Security.Dtos;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
@@ -12,6 +15,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
 {
     [Route(nameof(MessageBatch))]
     [ApiController]
+    [Authorize]
     public class MessageBatchCreateController : BaseController
     {
         private readonly IUnitOfWork _uow;
@@ -30,7 +34,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         [HttpPost]
         [Route(nameof(Create))]
         [ProducesResponseType(typeof(ApiResponseEnvelope<CreateMessageBatchDto>), StatusCodes.Status200OK)]
-
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.MessageBatch + LogLevelMessageResources.AddDescription)]
         public async Task<IActionResult> Create([FromBody] CreateMessageBatchDto createDto, CancellationToken cancellationToken)
         {
             await _createCommandHandler.Handle(createDto, cancellationToken);

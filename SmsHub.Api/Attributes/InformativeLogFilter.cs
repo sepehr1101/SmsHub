@@ -17,7 +17,7 @@ namespace SmsHub.Api.Attributes
         private readonly LogLevelEnum _logLevelId;
         private readonly string _section;
         private readonly string _description;
-        public InformativeLogFilter(LogLevelEnum logLevelId, string section, string description)
+        public InformativeLogFilter(LogLevelEnum logLevelId, string section="", string description = "")
         {
             _logLevelId = logLevelId;
             _section = section;
