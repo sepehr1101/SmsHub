@@ -1,10 +1,11 @@
-﻿using SmsHub.Domain.Features.Entities;
+﻿using SmsHub.Domain.Constants;
+using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Persistence.Features.Logging.Queries.Contracts
 {
     public interface ILogLevelQueryService
     {
         Task<ICollection<LogLevel>> Get();
-        Task<LogLevel> Get(int id);
+        Task<LogLevel> Get(LogLevelEnum id);
     }
 }

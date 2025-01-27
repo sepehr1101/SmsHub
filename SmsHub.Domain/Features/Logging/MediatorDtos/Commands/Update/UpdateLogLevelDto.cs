@@ -1,9 +1,10 @@
-﻿namespace SmsHub.Domain.Features.Logging.MediatorDtos.Commands
+﻿using SmsHub.Domain.Constants;
+
+namespace SmsHub.Domain.Features.Logging.MediatorDtos.Commands
 {
     public record UpdateLogLevelDto  
     {
-        public int Id { get; init; }
-        public string Title { get; init; } = null!;
+        public LogLevelEnum Id { get; init; }
         public string Css { get; init; } = null!;
     }
 }

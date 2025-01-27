@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Constants;
 
 namespace SmsHub.Persistence.Features.Logging.Queries.Implementations
 {
@@ -22,7 +23,7 @@ namespace SmsHub.Persistence.Features.Logging.Queries.Implementations
         {
             return await _logLevels.ToListAsync();
         }
-        public async Task<LogLevel> Get(int id)
+        public async Task<LogLevel> Get(LogLevelEnum id)
         {
            return await _uow.FindOrThrowAsync<LogLevel>(id);
         }

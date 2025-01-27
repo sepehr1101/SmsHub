@@ -1,7 +1,9 @@
-﻿namespace SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Delete
+﻿using SmsHub.Domain.Constants;
+
+namespace SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Delete
 {
     public record DeleteLogLevelDto  
     {
-        public int Id { get; init; }
+        public LogLevelEnum Id { get; init; }
     }
 }

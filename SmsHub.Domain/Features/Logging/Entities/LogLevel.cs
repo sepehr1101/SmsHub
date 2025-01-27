@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using SmsHub.Domain.Constants;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SmsHub.Domain.Features.Entities
 {
@@ -10,7 +11,7 @@ namespace SmsHub.Domain.Features.Entities
             InformativeLogs = new HashSet<InformativeLog>();
         }
 
-        public int Id { get; set; }
+        public LogLevelEnum Id { get; set; }
         public string Title { get; set; } = null!;
         public string Css { get; set; } = null!;
 

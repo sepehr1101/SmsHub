@@ -1,10 +1,8 @@
 ﻿using Aban360.Api.Controllers.V1;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Exceptions;
 using SmsHub.Application.Features.Auth.Handlers.Commands.Create.Contracts;
-using SmsHub.Common.Exceptions;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.Features.Security.Dtos;

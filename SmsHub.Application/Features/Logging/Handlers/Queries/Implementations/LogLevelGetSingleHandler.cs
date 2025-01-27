@@ -2,6 +2,7 @@
 using SmsHub.Application.Features.Logging.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.Id;
+using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Queries;
 using SmsHub.Persistence.Features.Logging.Queries.Contracts;
 
@@ -21,9 +22,9 @@ namespace SmsHub.Application.Features.Logging.Handlers.Queries.Implementations
             _logLevelQueryService = logLevelQueryService;
             _logLevelQueryService.NotNull(nameof(logLevelQueryService));
         }
-        public async Task<GetLogLevelDto> Handle(IntId Id)
+        public async Task<GetLogLevelDto> Handle(LogLevelEnum Id)
         {
-            var logLevels = await _logLevelQueryService.Get(Id.Id);
+            var logLevels = await _logLevelQueryService.Get(Id);
             return _mapper.Map<GetLogLevelDto>(logLevels);
         }
     }
