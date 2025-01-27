@@ -1,11 +1,13 @@
 ﻿using Aban360.Api.Controllers.V1;
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Config.Handlers.Queries.Contracts;
+using SmsHub.Application.Features.Logging.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.BaseDomainEntities.Id;
+using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Config.MediatorDtos.Queries;
-using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Create;
 
 namespace SmsHub.Api.Controllers.V1.Config.Querries
 {
@@ -14,19 +16,37 @@ namespace SmsHub.Api.Controllers.V1.Config.Querries
     public class DisallowedPhraseGetSingleController : BaseController
     {
         private readonly IDisallowedPhraseGetSingleHandler _getSingleHandler;
-        public DisallowedPhraseGetSingleController(IDisallowedPhraseGetSingleHandler getSingleHandler)
+        private readonly IInformativeLogCreateHandler _informativeLogCreateHandler;
+        public DisallowedPhraseGetSingleController(
+            IDisallowedPhraseGetSingleHandler getSingleHandler,
+            IInformativeLogCreateHandler informativeLogCreateHandler)
         {
             _getSingleHandler = getSingleHandler;
             _getSingleHandler.NotNull(nameof(_getSingleHandler));
+
+            _informativeLogCreateHandler = informativeLogCreateHandler;
+            _informativeLogCreateHandler.NotNull(nameof(informativeLogCreateHandler));
         }
 
         [HttpPost]
         [Route("single")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<GetDisallowedPhraseDto>), StatusCodes.Status200OK)]
 
-        public async Task<IActionResult> GetSingle([FromBody] IntId Id)
+        public async Task<IActionResult> GetSingle([FromBody] IntId Id, CancellationToken cancellationToken)
         {
             var disallowedPhrase = await _getSingleHandler.Handle(Id);
+
+            //add InformativeLog
+            var informativeLog = new CreateInformativeLogDto()// *** UserID;
+            {
+                LogLevelId = LogLevelEnum.InternalOperation,
+                Section = LogLevelMessageResources.SendConfigSection,
+                Description = LogLevelMessageResources.GetDisallowedPhraseDescription(1),
+                UserId = new Guid(),//userId
+                UserInfo = " "
+            };
+            await _informativeLogCreateHandler.Handle(informativeLog, cancellationToken);
+
             return Ok(disallowedPhrase);
         }
 

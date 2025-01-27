@@ -1,9 +1,11 @@
-﻿namespace SmsHub.Domain.Features.Logging.MediatorDtos.Queries
+﻿using SmsHub.Domain.Constants;
+
+namespace SmsHub.Domain.Features.Logging.MediatorDtos.Queries
 {
     public record GetInforamtaiveLogDto 
     {
         public long Id { get; init; }
-        public int LogLevelId { get; init; }
+        public LogLevelEnum LogLevelId { get; init; }
         public string Section { get; init; } = null!;
         public string Description { get; init; } = null!;
         public Guid? UserId { get; init; }

@@ -6,6 +6,8 @@ using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Create;
 using SmsHub.Application.Features.Logging.Handlers.Commands.Create.Contracts;
 using FluentValidation;
 using SmsHub.Application.Exceptions;
+using Microsoft.AspNetCore.Http;
+using System.Net.Http;
 
 namespace SmsHub.Application.Features.Logging.Handlers.Commands.Create.Implementations
 {
@@ -14,10 +16,12 @@ namespace SmsHub.Application.Features.Logging.Handlers.Commands.Create.Implement
         private readonly IMapper _mapper;
         private readonly IInformativeLogCommandService _informativeLogCommandService;
         private readonly IValidator<CreateInformativeLogDto> _validator;
+        private readonly IHttpContextAccessor _contextAccessor;
         public InformativeLogCreateHandler(
             IMapper mapper,
             IInformativeLogCommandService informativeLogCommandService, 
-            IValidator<CreateInformativeLogDto> validator)
+            IValidator<CreateInformativeLogDto> validator,
+            IHttpContextAccessor contextAccessor)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(_mapper));
@@ -27,6 +31,9 @@ namespace SmsHub.Application.Features.Logging.Handlers.Commands.Create.Implement
 
             _validator = validator;
             _validator.NotNull(nameof(_validator));
+
+            _contextAccessor = contextAccessor;
+            _contextAccessor.NotNull(nameof(_contextAccessor));
         }
 
         public async Task Handle(CreateInformativeLogDto createInformativeLogDto, CancellationToken cancellationToken)
@@ -34,6 +41,11 @@ namespace SmsHub.Application.Features.Logging.Handlers.Commands.Create.Implement
             await CheckValidator(createInformativeLogDto, cancellationToken);
 
             var informativeLog = _mapper.Map<Entities.InformativeLog>(createInformativeLogDto);
+
+            informativeLog.ClientInfo = GetClientInfo();
+            informativeLog.Ip = _contextAccessor.HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString();
+            informativeLog.InsertDateTime = DateTime.Now;
+
             await _informativeLogCommandService.Add(informativeLog);
         }
         private async Task CheckValidator(CreateInformativeLogDto createInformativeLogDto, CancellationToken cancellationToken)
@@ -45,6 +57,14 @@ namespace SmsHub.Application.Features.Logging.Handlers.Commands.Create.Implement
                 throw new FluentValidationException(message);
             }
         }
+        public string GetClientInfo()
+        {
+            var logInfo = DeviceDetection.GetLogInfo(_contextAccessor.HttpContext.Request);
+            var logInfoString = JsonOperation.Marshal(logInfo);
+
+            return logInfoString;
+        }
+
 
     }
 }
