@@ -38,7 +38,7 @@ namespace SmsHub.Api.Controllers.V1.Security.Querries
         [Route("all")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<UserQueryDto>>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAllUsers(CancellationToken cancellationToken)
-        {
+        {            
             var userQueryDtos = await _userGetAllHandler.Handle(cancellationToken);
             return Ok(userQueryDtos);
         }

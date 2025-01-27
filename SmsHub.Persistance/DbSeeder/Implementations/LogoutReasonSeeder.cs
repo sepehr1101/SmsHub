@@ -28,7 +28,7 @@ namespace SmsHub.Persistence.DbSeeder.Implementations
                 var ByUser = new LogoutReason()
                 {
                     Id = LogoutReasonEnum.ByUser,
-                    Title = MessageResources.ByAdmin
+                    Title = MessageResources.ByUser
                 };
                 var ByAdmin = new LogoutReason()
                 {

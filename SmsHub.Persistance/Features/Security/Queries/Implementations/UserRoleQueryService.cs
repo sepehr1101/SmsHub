@@ -23,5 +23,12 @@ namespace SmsHub.Persistence.Features.Security.Queries.Implementations
             return await _userRoles.Where(r => r.UserId == userId)
                 .ToListAsync();
         }
+        public async Task<ICollection<UserRole>> GetIncludeRoles(Guid userId)
+        {
+            return await _userRoles
+                .Where(r => r.UserId == userId)
+                .Include(ur=> ur.Role)
+                .ToListAsync();
+        }
     }
 }
