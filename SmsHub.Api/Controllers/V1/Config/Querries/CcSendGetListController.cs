@@ -2,11 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Config.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
+using SmsHub.Domain.Features.Config.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Api.Controllers.V1.Config.Querries
 {
-    [Route(nameof(CcSend))]
+    [Route("cc-send")]
     [ApiController]
     public class CcSendGetListController : BaseController
     {
@@ -18,7 +21,9 @@ namespace SmsHub.Api.Controllers.V1.Config.Querries
         }
 
         [HttpPost]
-        [Route(nameof(GetList))]
+        [Route("all")]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<GetCcSendDto>>), StatusCodes.Status200OK)]
+
         public async Task<IActionResult> GetList()
         {
             var ccSends = await _getListHandler.Handle();

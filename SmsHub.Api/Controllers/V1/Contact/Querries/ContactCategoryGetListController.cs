@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Contact.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+using SmsHub.Domain.Features.Contact.MediatorDtos.Commands.Delete;
+using SmsHub.Domain.Features.Contact.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Entities;
 
 namespace SmsHub.Api.Controllers.V1.Contact.Querries
@@ -19,6 +22,8 @@ namespace SmsHub.Api.Controllers.V1.Contact.Querries
 
         [HttpPost]
         [Route(nameof(GetList))]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<GetContactCategoryDto>>), StatusCodes.Status200OK)]
+
         public async Task<IActionResult> GetList()
         {
             var contactCategories = await _getListHandler.Handle();

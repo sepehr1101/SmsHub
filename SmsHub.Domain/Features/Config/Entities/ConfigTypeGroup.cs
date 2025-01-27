@@ -14,11 +14,9 @@ namespace SmsHub.Domain.Features.Entities
         }
 
         public int Id { get; set; }
-        public short ConfigTypeId { get; set; }
         public string Title { get; set; } = null!;
         public string Description { get; set; } = null!;
 
-        public virtual ConfigType ConfigType { get; set; } = null!;
         public virtual ICollection<CcSend> CcSends { get; set; }
         public virtual ICollection<Config> Configs { get; set; }
         public virtual ICollection<DisallowedPhrase> DisallowedPhrases { get; set; }

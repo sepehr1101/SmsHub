@@ -2,13 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Config.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Delete;
-using SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.V1.Config.Commands.Delete
 {
-    [Route(nameof(ConfigTypeGroup))]
+    [Route("config-type-group")]
     [ApiController]
     public class ConfigTypeGroupDeleteController : BaseController
     {
@@ -26,7 +26,9 @@ namespace SmsHub.Api.Controllers.V1.Config.Commands.Delete
         }
 
         [HttpPost]
-        [Route(nameof(Delete))]
+        [Route("delete")]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<DeleteConfigTypeGroupDto>), StatusCodes.Status200OK)]
+
         public async Task<IActionResult> Delete([FromBody] DeleteConfigTypeGroupDto deleteDto, CancellationToken cancellationToken)
         {
             await _deleteCommandHandler.Handle(deleteDto, cancellationToken);

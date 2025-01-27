@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Line.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Delete;
+using SmsHub.Domain.Features.Line.MediatorDtos.Queries;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.V1.Line.Commands.Delete
@@ -25,6 +27,8 @@ namespace SmsHub.Api.Controllers.V1.Line.Commands.Delete
         }
         [HttpPost]
         [Route("delete")]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<DeleteLineDto>), StatusCodes.Status200OK)]
+
         public async Task<IActionResult> Delete([FromBody] DeleteLineDto deleteDto, CancellationToken cancellationToken)
         {
             await _deleteCommandHandler.Handle(deleteDto, cancellationToken);

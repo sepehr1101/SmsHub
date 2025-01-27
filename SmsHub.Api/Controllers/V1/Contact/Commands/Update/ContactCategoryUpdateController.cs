@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Contact.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.Features.Contact.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Contact.MediatorDtos.Commands.Delete;
 using SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
@@ -27,6 +29,8 @@ namespace SmsHub.Api.Controllers.V1.Contact.Commands.Update
 
         [HttpPost]
         [Route(nameof(Update))]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<UpdateContactCategoryDto>), StatusCodes.Status200OK)]
+
         public async Task<IActionResult> Update([FromBody] UpdateContactCategoryDto updateDto, CancellationToken cancellationToken)
         {
             await _updateCommandHandler.Handle(updateDto, cancellationToken);

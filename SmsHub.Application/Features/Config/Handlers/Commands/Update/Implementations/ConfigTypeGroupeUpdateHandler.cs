@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using SmsHub.Application.Exceptions;
 using SmsHub.Application.Features.Config.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
@@ -13,8 +14,8 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Update.Implementa
         private readonly IConfigTypeGroupQueryService _configTypeGroupQueryService;
         private readonly IValidator<UpdateConfigTypeGroupDto> _validator;
         public ConfigTypeGroupeUpdateHandler(
-            IMapper mapper, 
-            IConfigTypeGroupQueryService configTypeGroupQueryService, 
+            IMapper mapper,
+            IConfigTypeGroupQueryService configTypeGroupQueryService,
             IValidator<UpdateConfigTypeGroupDto> validator)
         {
             _mapper = mapper;
@@ -28,14 +29,21 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Update.Implementa
         }
         public async Task Handle(UpdateConfigTypeGroupDto updateConfigTypeGroupDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(updateConfigTypeGroupDto, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
+            await CheckValidator(updateConfigTypeGroupDto, cancellationToken);
+
 
             var configTypeGroup = await _configTypeGroupQueryService.Get(updateConfigTypeGroupDto.Id);
             _mapper.Map(updateConfigTypeGroupDto, configTypeGroup);
+        }
+
+        private async Task CheckValidator(UpdateConfigTypeGroupDto updateConfigTypeGroupDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(updateConfigTypeGroupDto, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                var message = string.Join(",", validationResult.Errors.Select(x => x.ErrorMessage));
+                throw new FluentValidationException(message);
+            }
         }
     }
 }

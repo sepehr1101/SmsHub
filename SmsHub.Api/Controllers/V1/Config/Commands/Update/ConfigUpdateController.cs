@@ -2,12 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Config.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
+using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.V1.Config.Commands.Update
 {
-    [Route(nameof(Config))]
+    [Route("config")]
     [ApiController]
     public class ConfigUpdateController : BaseController
     {
@@ -25,7 +27,9 @@ namespace SmsHub.Api.Controllers.V1.Config.Commands.Update
         }
 
         [HttpPost]
-        [Route(nameof(Update))]
+        [Route("update")]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<UpdateConfigDto>), StatusCodes.Status200OK)]
+
         public async Task<IActionResult> Update([FromBody] UpdateConfigDto updateDto, CancellationToken cancellationToken)
         {
             await _updateCommandHandler.Handle(updateDto, cancellationToken);

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using SmsHub.Application.Exceptions;
 using SmsHub.Application.Features.Config.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
@@ -14,7 +15,7 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Update.Implementa
         private readonly IValidator<UpdateConfigDto> _validator;
         public ConfigUpdateHandler(
             IMapper mapper,
-            IConfigQueryService configQueryService, 
+            IConfigQueryService configQueryService,
             IValidator<UpdateConfigDto> validator)
         {
             _mapper = mapper;
@@ -28,14 +29,20 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Update.Implementa
         }
         public async Task Handle(UpdateConfigDto updateConfigDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(updateConfigDto, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
+            await CheckValidator(updateConfigDto, cancellationToken);
 
             var config = await _configQueryService.Get(updateConfigDto.Id);
             _mapper.Map(updateConfigDto, config);
+        }
+
+        private async Task CheckValidator(UpdateConfigDto updateConfigDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(updateConfigDto, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                var message = string.Join(",", validationResult.Errors.Select(x => x.ErrorMessage));
+                throw new FluentValidationException(message);
+            }
         }
     }
 }

@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Sending.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+using SmsHub.Domain.Features.Sending.Entities;
+using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Features.Receiving.Commands.Contracts;
 using SmsHub.Persistence.Features.Sending.Queries.Contracts;
@@ -38,6 +41,8 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
 
         [HttpGet]
         [Route("Receiving/{lineId}")]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<Received>>), StatusCodes.Status200OK)]
+
         public async Task<IActionResult> Receiving(int lineId, CancellationToken cancellationToken)
         {
             var result = await _receiveManagerCreateHandler.Handle(lineId);

@@ -2,13 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Config.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
-using SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.V1.Config.Commands.Create
 {
-    [Route(nameof(ConfigTypeGroup))]
+    [Route("config-type-group")]
     [ApiController]
     public class ConfigTypeGroupCreateController : BaseController
     {
@@ -26,7 +26,9 @@ namespace SmsHub.Api.Controllers.V1.Config.Commands.Create
         }
 
         [HttpPost]
-        [Route(nameof(Create))]
+        [Route("create")]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<CreateConfigTypeGroupDto>), StatusCodes.Status200OK)]
+
         public async Task<IActionResult> Create([FromBody] CreateConfigTypeGroupDto createDto, CancellationToken cancellationToken)
         {
             await _createCommandHandler.Handle(createDto, cancellationToken);

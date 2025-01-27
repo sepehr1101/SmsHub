@@ -22,7 +22,7 @@ namespace SmsHub.Application.Features.Config.Handlers.Queries.Implementations
         }
         public async Task<ICollection<GetConfigTypeGroupDto>> Handle()
         {
-           var configTypeGroups= await _configTypeGroupQueryService.Get();
+           var configTypeGroups= await _configTypeGroupQueryService.GetInclude();//i change Get() to GetInclude()
             return _mapper.Map<ICollection<GetConfigTypeGroupDto>>(configTypeGroups);
         }
     }

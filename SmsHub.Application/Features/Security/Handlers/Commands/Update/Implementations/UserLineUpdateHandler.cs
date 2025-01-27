@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using SmsHub.Application.Features.Security.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Security.Dtos;
@@ -25,13 +26,12 @@ namespace SmsHub.Application.Features.Security.Handlers.Commands.Update.Implemen
             _userLineQueryService.NotNull(nameof(userLineQueryService));
 
             _mapper= mapper;
-            _mapper.NotNull(nameof(mapper));
+            _mapper.NotNull(nameof(mapper));    
         }
 
         public async Task Handle(UpdateUserLineDto updateUserLineDto, CancellationToken cancellationToken)
         {
-            //todo: Validation
-            var userLine= await _userLineQueryService.GetById(updateUserLineDto.Id);
+            var userLine = await _userLineQueryService.GetById(updateUserLineDto.Id);
             if (userLine == null)
             {
                 throw new InvalidDataException();
@@ -39,5 +39,6 @@ namespace SmsHub.Application.Features.Security.Handlers.Commands.Update.Implemen
 
            var x= _mapper.Map( updateUserLineDto, userLine);
         }
+
     }
 }

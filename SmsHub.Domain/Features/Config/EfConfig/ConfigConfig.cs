@@ -13,11 +13,11 @@ namespace SmsHub.Domain.Features.EfConfig
                   .OnDelete(DeleteBehavior.ClientSetNull)
                   .HasConstraintName("FK_ConfigTypeGroup_REFERS_Config_ConfigTypeGroupId");
 
-            entity.HasOne(d => d.Template)
-                  .WithMany(p => p.Configs)
-                  .HasForeignKey(d => d.TemplateId)
-                  .OnDelete(DeleteBehavior.ClientSetNull)
-                  .HasConstraintName("FK_Template_REFERS_Config_TemplateId");
+            //entity.HasOne(d => d.Template)
+            //      .WithMany(p => p.Configs)
+            //      .HasForeignKey(d => d.TemplateId)
+            //      .OnDelete(DeleteBehavior.ClientSetNull)
+            //      .HasConstraintName("FK_Template_REFERS_Config_TemplateId");
         }
     }
 }

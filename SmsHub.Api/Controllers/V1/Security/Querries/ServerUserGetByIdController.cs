@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Security.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Features.Security.Dtos;
 
 namespace SmsHub.Api.Controllers.V1.Security.Querries
 {
@@ -20,6 +22,8 @@ namespace SmsHub.Api.Controllers.V1.Security.Querries
 
         [HttpPost]
         [Route(nameof(GetById))]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<GetServerUserDto>), StatusCodes.Status200OK)]
+
         public async Task<IActionResult> GetById([FromBody] IntId Id)
         {
             var serverUser = await _getByIdHandler.Handle(Id);

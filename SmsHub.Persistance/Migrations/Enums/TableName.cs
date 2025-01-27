@@ -35,7 +35,6 @@
         InformativeLog,
         OperationType,
         DeepLog,
-        ConfigType,
         ConfigTypeGroup,
         PermittedTime,
         DisallowedPhrase,

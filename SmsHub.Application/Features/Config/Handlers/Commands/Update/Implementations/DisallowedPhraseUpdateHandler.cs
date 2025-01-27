@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using SmsHub.Application.Exceptions;
 using SmsHub.Application.Features.Config.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
@@ -13,8 +14,8 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Update.Implementa
         private readonly IDisallowedPhraseQueryService _disallowedPhraseQueryService;
         private readonly IValidator<UpdateDisallowedPhraseDto> _validator;
         public DisallowedPhraseUpdateHandler(
-            IMapper mapper, 
-            IDisallowedPhraseQueryService disallowedPhraseQueryService, 
+            IMapper mapper,
+            IDisallowedPhraseQueryService disallowedPhraseQueryService,
             IValidator<UpdateDisallowedPhraseDto> validtor)
         {
             _mapper = mapper;
@@ -28,14 +29,20 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Update.Implementa
         }
         public async Task Handle(UpdateDisallowedPhraseDto updateDisallowedPhraseDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(updateDisallowedPhraseDto, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
+            await CheckValidator(updateDisallowedPhraseDto, cancellationToken);
 
             var disallowedPhrase = await _disallowedPhraseQueryService.Get(updateDisallowedPhraseDto.Id);
             _mapper.Map(updateDisallowedPhraseDto, disallowedPhrase);
+        }
+
+        private async Task CheckValidator(UpdateDisallowedPhraseDto updateDisallowedPhraseDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(updateDisallowedPhraseDto, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                var message = string.Join(",", validationResult.Errors.Select(x => x.ErrorMessage));
+                throw new FluentValidationException(message);
+            }
         }
     }
 }

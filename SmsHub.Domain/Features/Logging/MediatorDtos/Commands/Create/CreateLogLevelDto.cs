@@ -1,8 +1,10 @@
-﻿namespace SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Create
+﻿using SmsHub.Domain.Constants;
+
+namespace SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Create
 {
     public record CreateLogLevelDto  
     {
-        public int Id { get; set; } //todo: not identity
+        public LogLevelEnum Id { get; set; }
         public string Title { get; set; } = null!;
         public string Css { get; set; } = null!;
     }

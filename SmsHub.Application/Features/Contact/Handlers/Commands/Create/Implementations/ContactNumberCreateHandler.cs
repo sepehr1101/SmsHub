@@ -5,6 +5,7 @@ using SmsHub.Persistence.Features.Contact.Commands.Contracts;
 using SmsHub.Domain.Features.Contact.MediatorDtos.Commands.Create;
 using SmsHub.Application.Features.Contact.Handlers.Commands.Create.Contracts;
 using FluentValidation;
+using SmsHub.Application.Exceptions;
 
 namespace SmsHub.Application.Features.Contact.Handlers.Commands.Create.Implementations
 {
@@ -29,16 +30,23 @@ namespace SmsHub.Application.Features.Contact.Handlers.Commands.Create.Implement
             _validator.NotNull(nameof(_validator));
         }
 
-        public async Task Handle(CreateContactNumberDto request, CancellationToken cancellationToken)
+        public async Task Handle(CreateContactNumberDto createContactNumberDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
+            await CheckValidator(createContactNumberDto, cancellationToken);
 
-            var contactNumber = _mapper.Map<Entities.ContactNumber>(request);
+            var contactNumber = _mapper.Map<Entities.ContactNumber>(createContactNumberDto);
             await _contactNumberCommandService.Add(contactNumber);
         }
+
+        private async Task CheckValidator(CreateContactNumberDto createContactNumberDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(createContactNumberDto, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                var message = string.Join(",", validationResult.Errors.Select(x => x.ErrorMessage));
+                throw new FluentValidationException(message);
+            }
+        }
+
     }
 }

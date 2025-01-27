@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Security.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Security.Dtos;
 using SmsHub.Persistence.Contexts.UnitOfWork;
@@ -27,6 +28,8 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Delete
 
         [HttpPost]
         [Route(nameof(Delete))]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<DeleteServerUserDto>), StatusCodes.Status200OK)]
+
         public async Task<IActionResult> Delete([FromBody] DeleteServerUserDto deleteDto, CancellationToken cancellationToken)
         {
             await _deleteHandler.Handle(deleteDto, cancellationToken);

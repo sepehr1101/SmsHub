@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using MediatR;
 using SmsHub.Common.Extensions;
 using Entities = SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Features.Sending.Commands.Contracts;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using FluentValidation;
+using SmsHub.Application.Exceptions;
 
 namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implementations
 {
@@ -25,16 +25,24 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
             _validator.NotNull(nameof(_validator));
         }
 
-        public async Task Handle(CreateMessagesHolderDto request, CancellationToken cancellationToken)
+        public async Task Handle(CreateMessagesHolderDto createMessagesHolderDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
+            await CheckValidator(createMessagesHolderDto, cancellationToken);
 
-            var messageHolder = _mapper.Map<Entities.MessagesHolder>(request);
+            var messageHolder = _mapper.Map<Entities.MessagesHolder>(createMessagesHolderDto);
             await _messageHolderCommandService.Add(messageHolder);
         }
+
+        private async Task CheckValidator(CreateMessagesHolderDto createMessagesHolderDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(createMessagesHolderDto, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                var message = string.Join(",", validationResult.Errors.Select(x => x.ErrorMessage));
+                throw new FluentValidationException(message);
+            }
+        }
+
+
     }
 }

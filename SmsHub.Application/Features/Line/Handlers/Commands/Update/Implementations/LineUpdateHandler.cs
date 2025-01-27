@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using Azure.Core;
 using FluentValidation;
-using MediatR;
+using SmsHub.Application.Exceptions;
 using SmsHub.Application.Features.Line.Handlers.Commands.Update.Contracts;
 using SmsHub.Application.Features.Line.Validations;
 using SmsHub.Common.Extensions;
@@ -33,14 +32,21 @@ namespace SmsHub.Application.Features.Line.Handlers.Commands.Update.Implementati
         {
             LineCredentialValidation.ValidationUpdateLine(updateLineDto);
 
-            var validationResult = await _validator.ValidateAsync(updateLineDto, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
+            await CheckValidator(updateLineDto, cancellationToken);
 
             var line = await _lineQueryService.Get(updateLineDto.Id);
             _mapper.Map(updateLineDto, line);
         }
+
+        private async Task CheckValidator(UpdateLineDto updateLineDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(updateLineDto, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                var message = string.Join(",", validationResult.Errors.Select(x => x.ErrorMessage));
+                throw new FluentValidationException(message);
+            }
+        }
+
     }
 }

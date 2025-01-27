@@ -1,6 +1,6 @@
 ﻿namespace SmsHub.Domain.Features.Config.MediatorDtos.Commands.Delete
 {
-    public class DeleteCcSendDto
+    public record DeleteCcSendDto
     {
         public int Id { get; set; }
     }

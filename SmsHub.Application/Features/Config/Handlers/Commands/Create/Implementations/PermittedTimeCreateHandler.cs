@@ -5,6 +5,9 @@ using SmsHub.Persistence.Features.Config.Commands.Contracts;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
 using SmsHub.Application.Features.Config.Handlers.Commands.Create.Contracts;
 using FluentValidation;
+using System.Linq;
+using SmsHub.Common.Exceptions;
+using SmsHub.Application.Exceptions;
 
 namespace SmsHub.Application.Features.Config.Handlers.Commands.Create.Implementations
 {
@@ -28,16 +31,22 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Create.Implementa
             _validator.NotNull(nameof(_validator));
         }
 
-        public async Task Handle(CreatePermittedTimeDto request, CancellationToken cancellationToken)
+        public async Task Handle(CreatePermittedTimeDto createPermittedTimeDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
+            await CheckValidator(createPermittedTimeDto, cancellationToken);
 
-            var permittedTime = _mapper.Map<Entities.PermittedTime>(request);
+            var permittedTime = _mapper.Map<Entities.PermittedTime>(createPermittedTimeDto);
             await _permittedTimeCommandService.Add(permittedTime);
         }
+        private async Task CheckValidator(CreatePermittedTimeDto createPermittedTimeDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(createPermittedTimeDto, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                var message = string.Join(",", validationResult.Errors.Select(x => x.ErrorMessage));
+                throw new FluentValidationException(message);
+            }
+        }
+
     }
 }

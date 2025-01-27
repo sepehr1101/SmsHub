@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Line.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+using SmsHub.Domain.Features.Line.MediatorDtos.Queries;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Features.Line.Queries.Contracts;
 
@@ -20,6 +22,8 @@ namespace SmsHub.Api.Controllers.V1.Line.Queries
 
         [HttpGet]
         [Route("dictionary")]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<LineDictionary>>), StatusCodes.Status200OK)]
+
         public async Task<IActionResult> Dictionary()
         {
             var result = await _getLineDictionary.Handle();

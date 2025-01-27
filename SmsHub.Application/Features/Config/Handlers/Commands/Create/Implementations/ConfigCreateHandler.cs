@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using SmsHub.Application.Exceptions;
 using SmsHub.Application.Features.Config.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
@@ -27,16 +28,23 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Create.Implementa
             _validator= validator;
             _validator.NotNull(nameof(_validator)); 
         }
-        public async Task Handle(CreateConfigDto request, CancellationToken cancellationToken)
+        public async Task Handle(CreateConfigDto createConfigDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
+            await CheckValidator(createConfigDto, cancellationToken);
 
-            var config = _mapper.Map<Entities.Config>(request);
+            var config = _mapper.Map<Entities.Config>(createConfigDto);
             await _configCommandService.Add(config);
         }
+
+        private async Task CheckValidator(CreateConfigDto createConfigDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(createConfigDto, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                var message = string.Join(",", validationResult.Errors.Select(x => x.ErrorMessage));
+                throw new FluentValidationException(message);
+            }
+        }
+
     }
 }

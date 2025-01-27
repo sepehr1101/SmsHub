@@ -5,6 +5,7 @@ using SmsHub.Persistence.Features.Sending.Commands.Contracts;
 using SmsHub.Application.Features.Sending.Handlers.Commands.Create.Contracts;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using FluentValidation;
+using SmsHub.Application.Exceptions;
 
 namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implementations
 {
@@ -28,16 +29,23 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
             _validator.NotNull(nameof(_validator));
         }
 
-        public async Task Handle(CreateMessageStateCategoryDto request, CancellationToken cancellationToken)
+        public async Task Handle(CreateMessageStateCategoryDto createMessageStateCategoryDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
+            await CheckValidator(createMessageStateCategoryDto, cancellationToken);
 
-            var messageStateCategory = _mapper.Map<Entities.MessageStateCategory>(request);
+            var messageStateCategory = _mapper.Map<Entities.MessageStateCategory>(createMessageStateCategoryDto);
             await _messageStateCategoryCommandService.Add(messageStateCategory);
         }
+        private async Task CheckValidator(CreateMessageStateCategoryDto createMessageStateCategoryDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(createMessageStateCategoryDto, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                var message = string.Join(",", validationResult.Errors.Select(x => x.ErrorMessage));
+                throw new FluentValidationException(message);
+            }
+        }
+
+
     }
 }

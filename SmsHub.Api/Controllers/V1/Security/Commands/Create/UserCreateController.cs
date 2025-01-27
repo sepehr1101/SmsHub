@@ -1,11 +1,10 @@
 ﻿using Aban360.Api.Controllers.V1;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Exceptions;
 using SmsHub.Application.Features.Auth.Handlers.Commands.Create.Contracts;
-using SmsHub.Common.Exceptions;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.Features.Security.Dtos;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
@@ -30,6 +29,8 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
 
         [Route("create")]
         [HttpPost]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<UserCreateDto>), StatusCodes.Status200OK)]
+
         public async Task<IActionResult> CreateUser([FromBody]UserCreateDto userCreateDto, CancellationToken cancellationToken)
         {
             await _createUserHandler.Handle(userCreateDto, cancellationToken);

@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Security.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
@@ -26,10 +28,12 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Update
 
         [HttpPost]
         [Route(nameof(Update))]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<IntId>), StatusCodes.Status200OK)]
+
         public async Task<IActionResult> Update([FromBody] int id)
         {
-            await _updateApiKeyHandler.Handle(id);  
-            return Ok(id);
+            await _updateApiKeyHandler.Handle(id);
+            return Ok(new IntId(id));
         }
     }
 }

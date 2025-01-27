@@ -5,10 +5,11 @@ using SmsHub.Common.Extensions;
 using SmsHub.Application.Features.Consumer.Handlers.Commands.Create.Contracts;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Create;
 using FluentValidation;
+using SmsHub.Application.Exceptions;
 
 namespace SmsHub.Application.Features.Consumer.Handlers.Commands.Create.Implementations
 {
-    public class ConsumerCreateHandler :  IConsumerCreateHandler
+    public class ConsumerCreateHandler : IConsumerCreateHandler
     {
         private readonly IConsumerCommandService _consumerCommandService;
         private readonly IMapper _mapper;
@@ -27,16 +28,23 @@ namespace SmsHub.Application.Features.Consumer.Handlers.Commands.Create.Implemen
             _validator = validator;
             _validator.NotNull(nameof(_validator));
         }
-        public async Task Handle(CreateConsumerDto request, CancellationToken cancellationToken)
+        public async Task Handle(CreateConsumerDto createConsumerDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
+            await CheckValidator(createConsumerDto, cancellationToken);
 
-            var consumer = _mapper.Map<Entities.Consumer>(request);
+            var consumer = _mapper.Map<Entities.Consumer>(createConsumerDto);
             await _consumerCommandService.Add(consumer);
         }
+
+        private async Task CheckValidator(CreateConsumerDto createConsumerDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(createConsumerDto, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                var message = string.Join(",", validationResult.Errors.Select(x => x.ErrorMessage));
+                throw new FluentValidationException(message);
+            }
+        }
+
     }
 }

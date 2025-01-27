@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Contact.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.BaseDomainEntities.Id;
+using SmsHub.Domain.Features.Contact.MediatorDtos.Queries;
 
 namespace SmsHub.Api.Controllers.V1.Contact.Querries
 {
@@ -19,6 +21,8 @@ namespace SmsHub.Api.Controllers.V1.Contact.Querries
 
         [HttpPost]
         [Route(nameof(GetSingle))]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<GetContactDto>), StatusCodes.Status200OK)]
+
         public async Task<IActionResult> GetSingle([FromBody] IntId Id)
         {
             var contact = await _getListHandler.Handle(Id);

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using SmsHub.Application.Exceptions;
 using SmsHub.Application.Features.Logging.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Commands;
@@ -28,14 +29,20 @@ namespace SmsHub.Application.Features.Logging.Handlers.Commands.Update.Implement
         }
         public async Task Handle(UpdateDeepLogDto updateDeepLogDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(updateDeepLogDto, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
+            await CheckValidator(updateDeepLogDto, cancellationToken);
 
             var deepLog = await _deepLogQueryService.Get(updateDeepLogDto.Id);
             _mapper.Map(updateDeepLogDto, deepLog);
         }
+        private async Task CheckValidator(UpdateDeepLogDto updateDeepLogDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(updateDeepLogDto, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                var message = string.Join(",", validationResult.Errors.Select(x => x.ErrorMessage));
+                throw new FluentValidationException(message);
+            }
+        }
+
     }
 }

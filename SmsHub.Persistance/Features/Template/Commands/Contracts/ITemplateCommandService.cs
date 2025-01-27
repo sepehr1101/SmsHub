@@ -4,7 +4,7 @@ namespace SmsHub.Persistence.Features.Template.Commands.Contracts
 {
     public interface ITemplateCommandService
     {
-        Task Add(Entities.Template template);
+        Task<Entities.Template> Add(Entities.Template template);
         Task Add(ICollection<Entities.Template> templates);
         void Delete(Entities.Template template);
     }

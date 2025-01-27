@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using SmsHub.Application.Exceptions;
 using SmsHub.Application.Features.Config.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands;
@@ -28,14 +29,21 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Update.Implementa
         }
         public async Task Handle(UpdateCcSendDto updateCcSendDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(updateCcSendDto, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
+                   await CheckValidator(updateCcSendDto, cancellationToken);
 
             var ccSend = await _cSendQueryService.Get(updateCcSendDto.Id);
             _mapper.Map(updateCcSendDto, ccSend);
         }
+
+        private async Task CheckValidator(UpdateCcSendDto updateCcSendDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(updateCcSendDto, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                var message = string.Join(",", validationResult.Errors.Select(x => x.ErrorMessage));
+                throw new FluentValidationException(message);
+            }
+        }
+
     }
 }

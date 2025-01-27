@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using SmsHub.Application.Common.Services.Contracts;
+using SmsHub.Application.Exceptions;
 using SmsHub.Application.Features.Security.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Entities;
@@ -33,18 +34,25 @@ namespace SmsHub.Application.Features.Security.Handlers.Commands.Create.Implemen
             _validator= validator;
             _validator.NotNull(nameof(validator));
         }
-        public async Task<ApiKeyAndHash> Handle(CreateServerUserDto request, CancellationToken cancellationToken)
+        public async Task<ApiKeyAndHash> Handle(CreateServerUserDto createServerUserDto, CancellationToken cancellationToken)
         {
-            var validationResult=await _validator.ValidateAsync(request, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
-            var serverUser = _mapper.Map<ServerUser>(request);
+            await CheckValidator(createServerUserDto, cancellationToken);
+
+            var serverUser = _mapper.Map<ServerUser>(createServerUserDto);
             var apiKeyAndHash = await _apiKeyFactory.Create(serverUser.Username);
             serverUser.ApiKeyHash = apiKeyAndHash.Hash;
             await _userCommandService.Add(serverUser);
             return apiKeyAndHash;
         }
+        private async Task CheckValidator(CreateServerUserDto createServerUserDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(createServerUserDto, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                var message = string.Join(",", validationResult.Errors.Select(x => x.ErrorMessage));
+                throw new FluentValidationException(message);
+            }
+        }
+
     }
 }

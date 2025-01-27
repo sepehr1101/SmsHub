@@ -2,13 +2,15 @@
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Config.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Entities;
+using SmsHub.Domain.Features.Line.MediatorDtos.Queries;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.V1.Config.Commands.Create
 {
-    [Route(nameof(CcSend))]
+    [Route("cc-send")]
     [ApiController]
     public class CcSendCreateController : BaseController
     {
@@ -25,7 +27,8 @@ namespace SmsHub.Api.Controllers.V1.Config.Commands.Create
             _createCommandHandler.NotNull(nameof(createCommandHandler));
         }
         [HttpPost]
-        [Route(nameof(Create))]
+        [Route("create")]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<CreateCcSendDto>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Create([FromBody] CreateCcSendDto createDto, CancellationToken cancellationToken)
         {
             await _createCommandHandler.Handle(createDto, cancellationToken);

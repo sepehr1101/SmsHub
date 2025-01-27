@@ -56,9 +56,7 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn("RemoveLogInfo").AsString(int.MinValue).Nullable()
                 .WithColumn("ApiKey").AsString(_255).Nullable();
         }
-
-
-
+       
 
         private void CreateRole()
         {
@@ -137,6 +135,7 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn("LogInfo").AsAnsiString(int.MaxValue).NotNullable();
         }
 
+       
         private void CreateProvider()
         {
             Create.Table(nameof(TableName.Provider))
@@ -355,22 +354,16 @@ namespace SmsHub.Persistence.Migrations
                .WithColumn("InsertDateTime").AsDateTime()
                .WithColumn("ClientInfo").AsString(int.MaxValue);
         }
-        private void CreateConfigType()
-        {
-            Create.Table(nameof(TableName.ConfigType))
-                .WithColumn(Id).AsInt16().PrimaryKey(NamingHelper.Pk(TableName.ConfigType)).Identity()
-                .WithColumn("Title").AsString(_255)
-                .WithColumn("Description").AsString(int.MaxValue).Nullable();
-        }
+
+
         private void CreateConfigTypeGroup()
         {
             Create.Table(nameof(TableName.ConfigTypeGroup))
                 .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(TableName.ConfigTypeGroup)).Identity()
-                .WithColumn($"{nameof(TableName.ConfigType)}{Id}").AsInt16()
-                    .ForeignKey(NamingHelper.Fk(TableName.ConfigType, TableName.ConfigTypeGroup, Id), nameof(TableName.ConfigType), Id)
                 .WithColumn("Title").AsString(_255)
                 .WithColumn("Description").AsString(int.MaxValue).Nullable();
         }
+
         private void CreateDisallowedPhrase()
         {
             Create.Table(nameof(TableName.DisallowedPhrase))
@@ -400,7 +393,8 @@ namespace SmsHub.Persistence.Migrations
         {
             Create.Table(nameof(TableName.Config))
                 .WithColumn(Id).AsInt32().PrimaryKey(NamingHelper.Pk(TableName.Config)).Identity()
-                .WithColumn($"{nameof(TableName.ConfigTypeGroup)}{Id}").AsInt32()
+                //.WithColumn($"{nameof(TableName.ConfigTypeGroup)}{Id}").AsInt32()
+                .WithColumn("ConfigTypeGroupId").AsInt32()
                     .ForeignKey(NamingHelper.Fk(TableName.ConfigTypeGroup, TableName.Config), nameof(TableName.ConfigTypeGroup), Id)
                 .WithColumn($"{nameof(TableName.Template)}{Id}").AsInt32()
                     .ForeignKey(NamingHelper.Fk(TableName.Template, TableName.Config), nameof(TableName.Template), Id);

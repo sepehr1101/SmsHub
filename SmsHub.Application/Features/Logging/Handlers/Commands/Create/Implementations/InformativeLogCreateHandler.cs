@@ -5,6 +5,7 @@ using SmsHub.Persistence.Features.Logging.Commands.Contracts;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Create;
 using SmsHub.Application.Features.Logging.Handlers.Commands.Create.Contracts;
 using FluentValidation;
+using SmsHub.Application.Exceptions;
 
 namespace SmsHub.Application.Features.Logging.Handlers.Commands.Create.Implementations
 {
@@ -28,16 +29,22 @@ namespace SmsHub.Application.Features.Logging.Handlers.Commands.Create.Implement
             _validator.NotNull(nameof(_validator));
         }
 
-        public async Task Handle(CreateInformativeLogDto request, CancellationToken cancellationToken)
+        public async Task Handle(CreateInformativeLogDto createInformativeLogDto, CancellationToken cancellationToken)
         {
-            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                throw new InvalidDataException();
-            }
+            await CheckValidator(createInformativeLogDto, cancellationToken);
 
-            var informativeLog = _mapper.Map<Entities.InformativeLog>(request);
+            var informativeLog = _mapper.Map<Entities.InformativeLog>(createInformativeLogDto);
             await _informativeLogCommandService.Add(informativeLog);
         }
+        private async Task CheckValidator(CreateInformativeLogDto createInformativeLogDto, CancellationToken cancellationToken)
+        {
+            var validationResult = await _validator.ValidateAsync(createInformativeLogDto, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                var message = string.Join(",", validationResult.Errors.Select(x => x.ErrorMessage));
+                throw new FluentValidationException(message);
+            }
+        }
+
     }
 }

@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using SmsHub.Application.Features.Sending.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
-using SmsHub.Domain.Features.Sending.Entities;
-using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Delete;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Update;
 using SmsHub.Persistence.Features.Sending.Commands.Contracts;
 using SmsHub.Persistence.Features.Sending.Queries.Contracts;
@@ -26,18 +25,20 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Update.Implement
             _messageDetailStatusCommandService = messageDetailStatusCommandService;
             _messageDetailStatusCommandService.NotNull(nameof(messageDetailStatusCommandService));
 
-            _messageDetailStatusQueryService= messageDetailStatusQueryService;
+            _messageDetailStatusQueryService = messageDetailStatusQueryService;
             _messageDetailStatusQueryService.NotNull(nameof(messageDetailStatusQueryService));
         }
 
-        public async Task Handle(UpdateMessageDetailStatusDto request, CancellationToken cancellationToken)
+        public async Task Handle(UpdateMessageDetailStatusDto updateMessageDetailStatusDto, CancellationToken cancellationToken)
         {
-            var messageDetailStatus=await _messageDetailStatusQueryService.GetById(request.Id);
+            var messageDetailStatus = await _messageDetailStatusQueryService.GetById(updateMessageDetailStatusDto.Id);
             if (messageDetailStatus != null)
             {
-                _mapper.Map(request, messageDetailStatus);
+                _mapper.Map(updateMessageDetailStatusDto, messageDetailStatus);
             }
             throw new InvalidDataException();
         }
+
+
     }
 }

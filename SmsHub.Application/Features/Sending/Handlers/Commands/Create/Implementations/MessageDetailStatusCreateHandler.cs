@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using SmsHub.Application.Features.Sending.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Sending.Entities;
@@ -21,11 +22,14 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
 
             _messageDetailStatusCommandService = messageDetailStatusCommandService;
             _messageDetailStatusCommandService.NotNull(nameof(messageDetailStatusCommandService));
+
         }
-        public async Task Handle(CreateMessageDetailStatusDto request, CancellationToken cancellationToken)
+        public async Task Handle(CreateMessageDetailStatusDto createMessageDetailStatusDto, CancellationToken cancellationToken)
         {
-            var messageDetailStatus = _mapper.Map<MessageDetailStatus>(request);
+            var messageDetailStatus = _mapper.Map<MessageDetailStatus>(createMessageDetailStatusDto);
             await _messageDetailStatusCommandService.Add(messageDetailStatus);
         }
+
+        
     }
 }

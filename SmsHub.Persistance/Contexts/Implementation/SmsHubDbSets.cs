@@ -2,7 +2,6 @@
 using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Sending.Entities;
 using SmsHub.Domain.Features.Security.Entities;
-using SmsHub.Domain.Features.Sending.Entities;
 
 namespace SmsHub.Persistence.Contexts.Implementation
 {
@@ -10,7 +9,6 @@ namespace SmsHub.Persistence.Contexts.Implementation
     {
         public virtual DbSet<CcSend> CcSends { get; set; } = null!;
         public virtual DbSet<Config> Configs { get; set; } = null!;
-        public virtual DbSet<ConfigType> ConfigTypes { get; set; } = null!;
         public virtual DbSet<ConfigTypeGroup> ConfigTypeGroups { get; set; } = null!;
         public virtual DbSet<Consumer> Consumers { get; set; } = null!;
         public virtual DbSet<ConsumerLine> ConsumerLines { get; set; } = null!;

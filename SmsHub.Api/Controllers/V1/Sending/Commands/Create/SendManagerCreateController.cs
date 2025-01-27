@@ -1,17 +1,13 @@
 ﻿using Aban360.Api.Controllers.V1;
 using Microsoft.AspNetCore.Mvc;
-using SmsHub.Application.Common.Services.Implementations;
-using SmsHub.Application.Exceptions;
 using SmsHub.Application.Features.Sending.Handlers.Commands.Create.Contracts;
 using SmsHub.Application.Features.Sending.Services.Contracts;
 using SmsHub.Application.Features.Template.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
-using SmsHub.Domain.Constants;
-using SmsHub.Domain.Features.Sending.Entities;
-using SmsHub.Domain.Providers.Kavenegar.Entities.Requests;
+using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts;
 using SmsHub.Persistence.Contexts.UnitOfWork;
-using Entities = SmsHub.Domain.Features.Entities;
 
 
 namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
@@ -23,11 +19,6 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         private readonly ITemplateGetSingleHandler _templateGetSingleHandler;
         private readonly IUnitOfWork _uow;
         private readonly ISendManagerCreateHandler _sendManagerCreateHandler;
-
-        //remove
-        private readonly ISmsProvider _smsProvider;
-        private readonly IKavenegarHttpStatusService _statusService;
-
 
         public SendManagerCreateController(
                     ITemplateGetSingleHandler templateGetSingleHandler,
@@ -44,16 +35,12 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
 
             _sendManagerCreateHandler = sendManagerCreateHandler;
             _sendManagerCreateHandler.NotNull(nameof(sendManagerCreateHandler));
-
-            _smsProvider=smsProvider; 
-            _smsProvider.NotNull(nameof(_smsProvider));
-
-            _statusService= statusService;
-            _statusService.NotNull(nameof(_statusService));
         }
 
         [HttpPost]
         [Route("by-template/{templateId}/{lineId}")]
+        [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<MobileText>>), StatusCodes.Status200OK)]
+
         public async Task<IActionResult> SendManager(int templateId, int lineId, CancellationToken cancellationToken)
         {
             var messages = await _sendManagerCreateHandler.Handle(templateId, lineId, new CancellationToken());
