@@ -1,9 +1,12 @@
 ﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SmsHub.Api.Attributes;
 using SmsHub.Application.Features.Security.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.BaseDomainEntities.Id;
+using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
@@ -11,6 +14,7 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Update
 {
     [Route(nameof(ServerUser))]
     [ApiController]
+    [Authorize]
     public class ServerUserUpdateController : BaseController
     {
         private readonly IUnitOfWork _uow;
@@ -29,10 +33,11 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Update
         [HttpPost]
         [Route(nameof(Update))]
         [ProducesResponseType(typeof(ApiResponseEnvelope<IntId>), StatusCodes.Status200OK)]
-
-        public async Task<IActionResult> Update([FromBody] int id)
+        [InformativeLogFilter(LogLevelEnum.Security, LogLevelMessageResources.SecuritySection, LogLevelMessageResources.ServerUser + LogLevelMessageResources.UpdateDescription)]
+        public async Task<IActionResult> Update([FromBody] int id,CancellationToken cancellationToken)
         {
             await _updateApiKeyHandler.Handle(id);
+            await _uow.SaveChangesAsync(cancellationToken);
             return Ok(new IntId(id));
         }
     }

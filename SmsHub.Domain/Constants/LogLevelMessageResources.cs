@@ -48,6 +48,17 @@
         public const string MessageDetailStatus = "";
         public const string SendMessage = "";
         public const string ReceiveMessage = "";
+
+        public const string DeepLog = "";
+        public const string InformativeLog = "";
+        public const string OpetationType = "";
+        public const string LogLevel = "";
+
+        public const string Login= "";
+        public const string ServerUser= "";
+        public const string User= "";
+        public const string UserLine= "";
+        public const string Role= "";
         #endregion
 
     }

@@ -1,8 +1,11 @@
 ﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SmsHub.Api.Attributes;
 using SmsHub.Application.Features.Logging.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Line.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Create;
@@ -13,6 +16,7 @@ namespace SmsHub.Api.Controllers.V1.Logging.Commands.Create
 {
     [Route(nameof(InformativeLog))]
     [ApiController]
+    [Authorize]
     public class InformativeLogCreateController : BaseController
     {
         private readonly IUnitOfWork _uow;
@@ -31,7 +35,7 @@ namespace SmsHub.Api.Controllers.V1.Logging.Commands.Create
         [HttpPost]
         [Route(nameof(Create))]
         [ProducesResponseType(typeof(ApiResponseEnvelope<CreateInformativeLogDto>), StatusCodes.Status200OK)]
-
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.LoggingSection, LogLevelMessageResources.InformativeLog + LogLevelMessageResources.AddDescription)]
         public async Task<IActionResult> Create([FromBody] CreateInformativeLogDto createDto, CancellationToken cancellationToken)
         {
             await _createCommandHandler.Handle(createDto, cancellationToken);
