@@ -40,7 +40,7 @@ namespace SmsHub.Api.Controllers.V1.Contact.Commands.Create
         [HttpPost]
         [Route(nameof(Create))]
         [ProducesResponseType(typeof(ApiResponseEnvelope<CreateContactNumberDto>), StatusCodes.Status200OK)]
-        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.ContactNumber + LogLevelMessageResources.AddDescription)]
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.ContactSection, LogLevelMessageResources.ContactNumber + LogLevelMessageResources.AddDescription)]
         public async Task<IActionResult> Create([FromBody] CreateContactNumberDto createDto, CancellationToken cancellationToken)
         {
             await _createCommandHandler.Handle(createDto, cancellationToken);

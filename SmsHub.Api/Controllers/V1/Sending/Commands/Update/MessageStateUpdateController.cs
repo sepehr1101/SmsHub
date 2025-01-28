@@ -34,7 +34,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Update
         [HttpPost]
         [Route(nameof(Update))]
         [ProducesResponseType(typeof(ApiResponseEnvelope<UpdateMessageStateDto>), StatusCodes.Status200OK)]
-        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.MessageState + LogLevelMessageResources.UpdateDescription)]
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendSection, LogLevelMessageResources.MessageState + LogLevelMessageResources.UpdateDescription)]
         public async Task<IActionResult> Update([FromBody] UpdateMessageStateDto updateDto, CancellationToken cancellationToken)
         {
             await _updateCommandHandler.Handle(updateDto, cancellationToken);

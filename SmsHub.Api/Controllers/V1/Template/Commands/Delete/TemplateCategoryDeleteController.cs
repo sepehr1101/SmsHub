@@ -33,7 +33,7 @@ namespace SmsHub.Api.Controllers.V1.Template.Commands.Delete
         [HttpPost]
         [Route("delete")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<DeleteTemplateCategoryDto>), StatusCodes.Status200OK)]
-        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.TemplateCategory + LogLevelMessageResources.DeleteDescription)]
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.TemplateSection, LogLevelMessageResources.TemplateCategory + LogLevelMessageResources.DeleteDescription)]
         public async Task<IActionResult> Delete([FromBody] DeleteTemplateCategoryDto deleteDto, CancellationToken cancellationToken)
         {
             await _deleteCommandHandler.Handle(deleteDto, cancellationToken);

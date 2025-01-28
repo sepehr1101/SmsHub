@@ -33,7 +33,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         [HttpPost]
         [Route(nameof(Create))]
         [ProducesResponseType(typeof(ApiResponseEnvelope<CreateMessageStateDto>), StatusCodes.Status200OK)]
-        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.MessageState + LogLevelMessageResources.AddDescription)]
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendSection, LogLevelMessageResources.MessageState + LogLevelMessageResources.AddDescription)]
         public async Task<IActionResult> Create([FromBody] CreateMessageStateDto createDto, CancellationToken cancellationToken)
         {
             await _createCommandHandler.Handle(createDto, cancellationToken);

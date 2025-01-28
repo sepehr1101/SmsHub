@@ -34,7 +34,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Querries
         [HttpPost]
         [Route(nameof(GetSingle))]
         [ProducesResponseType(typeof(ApiResponseEnvelope<GetMessageHolderDto>), StatusCodes.Status200OK)]
-        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.MessageHolder + LogLevelMessageResources.GetDescription)]
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendSection, LogLevelMessageResources.MessageHolder + LogLevelMessageResources.GetDescription)]
         public async Task<IActionResult> GetSingle([FromBody] GuidId Id, CancellationToken cancellationToken)
         {
             var messageHolder = await _getSingleHolder.Handle(Id);

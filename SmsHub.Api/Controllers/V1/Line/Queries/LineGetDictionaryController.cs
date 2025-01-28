@@ -34,7 +34,7 @@ namespace SmsHub.Api.Controllers.V1.Line.Queries
         [HttpGet]
         [Route("dictionary")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<LineDictionary>>), StatusCodes.Status200OK)]
-        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.Line + LogLevelMessageResources.GetDescription)]
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.LineSection, LogLevelMessageResources.Line + LogLevelMessageResources.GetDescription)]
         public async Task<IActionResult> Dictionary(CancellationToken cancellationToken)
         {
             var result = await _getLineDictionary.Handle();

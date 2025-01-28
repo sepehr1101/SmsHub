@@ -32,7 +32,7 @@ namespace SmsHub.Api.Controllers.V1.Line.Queries
         [HttpPost]
         [Route("all")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<GetLineDto>>), StatusCodes.Status200OK)]
-        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.Line + LogLevelMessageResources.GetDescription)]
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.LineSection, LogLevelMessageResources.Line + LogLevelMessageResources.GetDescription)]
         public async Task<IActionResult> GetList(CancellationToken cancellationToken)
         {
             var lines = await _getListHandler.Handle();

@@ -33,7 +33,7 @@ namespace SmsHub.Api.Controllers.V1.Template.Querries
         [HttpPost]
         [Route("alll")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<GetTemplateCategoryDto>>), StatusCodes.Status200OK)]
-        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.TemplateCategory + LogLevelMessageResources.GetDescription)]
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.TemplateSection, LogLevelMessageResources.TemplateCategory + LogLevelMessageResources.GetDescription)]
         public async Task<IActionResult> GetList(CancellationToken cancellationToken)
         {
             var templateCategories = await _getListHandler.Handle();

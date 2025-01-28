@@ -4,9 +4,14 @@
     {
         #region Section
         public const string SendConfigSection = "کانفیگ ارسال";
+        public const string LineSection = "خط";
+        public const string LoggingSection = "ثبت نشان";
+        public const string SecuritySection = "امنیت";
+        public const string SendSection = "ارسال";
+        public const string TemplateSection = "قالب پیام";
+        public const string ContactSection = "Contact";
         #endregion
-        //other feature
-
+       
 
 
 

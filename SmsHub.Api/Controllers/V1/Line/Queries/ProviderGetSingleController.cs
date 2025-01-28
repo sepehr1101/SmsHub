@@ -33,7 +33,7 @@ namespace SmsHub.Api.Controllers.V1.Line.Queries
         [HttpPost]
         [Route("single")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<GetProviderDto>), StatusCodes.Status200OK)]
-        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.Provider + LogLevelMessageResources.GetDescription)]
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.LineSection, LogLevelMessageResources.Provider + LogLevelMessageResources.GetDescription)]
         public async Task<IActionResult> GetSingle([FromBody] ProviderEnum Id, CancellationToken cancellationToken)
         {
             var provider = await _getSingleHandler.Handle(Id);

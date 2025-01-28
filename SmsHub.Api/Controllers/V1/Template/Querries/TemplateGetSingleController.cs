@@ -33,7 +33,7 @@ namespace SmsHub.Api.Controllers.V1.Template.Querries
         [HttpPost]
         [Route("single")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<GetTemplateDto>), StatusCodes.Status200OK)]
-        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.Template + LogLevelMessageResources.GetDescription)]
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.TemplateSection, LogLevelMessageResources.Template + LogLevelMessageResources.GetDescription)]
         public async Task<IActionResult> GetSingle([FromBody] IntId Id, CancellationToken cancellationToken)
         {
             var template = await _getSingleHandler.Handle(Id);

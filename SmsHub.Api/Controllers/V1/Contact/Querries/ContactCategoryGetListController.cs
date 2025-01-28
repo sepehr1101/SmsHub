@@ -35,7 +35,7 @@ namespace SmsHub.Api.Controllers.V1.Contact.Querries
         [HttpPost]
         [Route(nameof(GetList))]
         [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<GetContactCategoryDto>>), StatusCodes.Status200OK)]
-        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.ContactCategory + LogLevelMessageResources.GetDescription)]
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.ContactSection, LogLevelMessageResources.ContactCategory + LogLevelMessageResources.GetDescription)]
         public async Task<IActionResult> GetList(CancellationToken cancellationToken)
         {
             var contactCategories = await _getListHandler.Handle();

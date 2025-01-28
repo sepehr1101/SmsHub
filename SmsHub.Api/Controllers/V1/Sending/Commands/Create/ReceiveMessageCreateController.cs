@@ -46,7 +46,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         [HttpGet]
         [Route("Receiving/{lineId}")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<Received>>), StatusCodes.Status200OK)]
-        [InformativeLogFilter(LogLevelEnum. Receive, LogLevelMessageResources.SendConfigSection, LogLevelMessageResources.ReceiveMessage + LogLevelMessageResources.AddDescription)]
+        [InformativeLogFilter(LogLevelEnum. Receive, LogLevelMessageResources.SendSection, LogLevelMessageResources.ReceiveMessage + LogLevelMessageResources.AddDescription)]
         public async Task<IActionResult> Receiving(int lineId, CancellationToken cancellationToken)
         {
             var result = await _receiveManagerCreateHandler.Handle(lineId);
