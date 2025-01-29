@@ -29,7 +29,6 @@ namespace SmsHub.Api.Controllers.V1.Consumer.Commands.Create
         [HttpPost]
         [Route(nameof(Create))]
         [ProducesResponseType(typeof(ApiResponseEnvelope<CreateConsumerLineDto>), StatusCodes.Status200OK)]
-
         public async Task<IActionResult> Create([FromBody] CreateConsumerLineDto createDto, CancellationToken cancellationToken)
         {
             await _createCommandHandler.Handle(createDto, cancellationToken);

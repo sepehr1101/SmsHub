@@ -55,17 +55,15 @@ namespace SmsHub.Application.Features.Template.Handlers.Commands.Create.Implemen
             
             await CheckValidator(createTemplateDto, cancellationToken);
 
-            //checking disallowedPhrase
             await _checkDisallowedPhraseService.Check(createTemplateDto.Expression);
 
 
             var template = _mapper.Map<Entities.Template>(createTemplateDto);
             var parameters = GetTemplateVariables(template.Expression);
             template.Parameters = parameters.Replace("\"", "'");
-            //template.Configs = null;
             var result = await _templateCommandService.Add(template);
 
-            //set templateId and ConfigTypeGroupId in Config
+
             await AddConfig(createTemplateDto, result);
             await _uow.SaveChangesAsync(cancellationToken);
 

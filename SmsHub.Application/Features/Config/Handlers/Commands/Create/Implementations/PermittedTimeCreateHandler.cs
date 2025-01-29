@@ -5,8 +5,6 @@ using SmsHub.Persistence.Features.Config.Commands.Contracts;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Create;
 using SmsHub.Application.Features.Config.Handlers.Commands.Create.Contracts;
 using FluentValidation;
-using System.Linq;
-using SmsHub.Common.Exceptions;
 using SmsHub.Application.Exceptions;
 
 namespace SmsHub.Application.Features.Config.Handlers.Commands.Create.Implementations
@@ -47,6 +45,5 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Create.Implementa
                 throw new FluentValidationException(message);
             }
         }
-
     }
 }

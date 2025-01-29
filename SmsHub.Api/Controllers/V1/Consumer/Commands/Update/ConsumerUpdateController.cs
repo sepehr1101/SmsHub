@@ -4,7 +4,6 @@ using SmsHub.Application.Features.Consumer.Handlers.Commands.Update.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands;
-using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Create;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.V1.Consumer.Commands.Update
@@ -29,7 +28,6 @@ namespace SmsHub.Api.Controllers.V1.Consumer.Commands.Update
         [HttpPost]
         [Route(nameof(Update))]
         [ProducesResponseType(typeof(ApiResponseEnvelope<UpdateConsumerDto>), StatusCodes.Status200OK)]
-
         public async Task<IActionResult> Update([FromBody] UpdateConsumerDto updateDto, CancellationToken cancellationToken)
         {
             await _updateCommandHandler.Handle(updateDto, cancellationToken);

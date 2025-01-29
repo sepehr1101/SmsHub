@@ -3,16 +3,20 @@ using DNTCaptcha.Core;
 using DNTPersianUtils.Core;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SmsHub.Application.Exceptions;
 using SmsHub.Application.Features.Auth.Handlers.Commands.Create.Contracts;
 using SmsHub.Application.Features.Auth.Services.Contracts;
+using SmsHub.Application.Features.Logging.Handlers.Commands.Create.Contracts;
 using SmsHub.Application.Features.Security.Handlers.Commands.Create.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.Constants;
+using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Security.Dtos;
 using SmsHub.Domain.Features.Security.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using System.Globalization;
+using System.Runtime.InteropServices;
 
 namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
 {
@@ -28,6 +32,7 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
         private readonly IDNTCaptchaApiProvider _captchaApiProvider;
         private readonly ICaptchaCryptoProvider _captchaCryptoProvider;
         private readonly IUserPolicy _userPolicy;
+        private readonly IInformativeLogCreateHandler _informativeLogCreateHandler;
 
         public LoginController(
             IUnitOfWork uow,
@@ -38,7 +43,8 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
             IUserLoginFindHandler userLoginFindUserHandler,
             IDNTCaptchaApiProvider captchaApiProvider,
             ICaptchaCryptoProvider captchaCryptoProvider,
-            IUserPolicy userPolicy)
+            IUserPolicy userPolicy,
+            IInformativeLogCreateHandler informativeLogCreateHandler)
         {
             _uow = uow;
             _uow.NotNull(nameof(uow));
@@ -66,6 +72,9 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
 
             _userPolicy = userPolicy;
             _userPolicy.NotNull(nameof(userPolicy));
+
+            _informativeLogCreateHandler = informativeLogCreateHandler;
+            _informativeLogCreateHandler.NotNull(nameof(informativeLogCreateHandler));
         }
 
         [AllowAnonymous]
@@ -79,22 +88,39 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
             var (user, result) = await _userFindByPasswordHandler.Handle(loginDto, cancellationToken);
             if (!result || user is null)
             {
+                var step1InvalidUnameOrPasswordMessage = $"{LogLevelMessageResources.Login} {LogLevelMessageResources.Step1InvalidUnameOrPassDescription}  {user.Username}";
+                await AddInformativeLogByNullUser(step1InvalidUnameOrPasswordMessage, cancellationToken);
+                await _uow.SaveChangesAsync(cancellationToken);
+
                 return ClientError(MessageResources.UserNotFound);
             }
 
             //Policy
-            var (userPolicy,resultPolicy)=await _userPolicy.Handle(loginDto,cancellationToken);
+            var (userPolicy, resultPolicy) = await _userPolicy.Handle(loginDto, cancellationToken);
             if (!resultPolicy || !string.IsNullOrEmpty(userPolicy))
             {
+                var step1InvalidPolicyMessage = $"{LogLevelMessageResources.Login} {LogLevelMessageResources.Step1InvalidPolicyDescription}";
+                await AddInformativeLog(step1InvalidPolicyMessage, cancellationToken, user.Id, user.FullName);
+                await _uow.SaveChangesAsync(cancellationToken);
+
                 return ClientError(userPolicy);
             }
 
             if (!user.HasTwoStepVerification)
             {
                 var secondStepOutput = await GetSecondStepOutput(user, cancellationToken);
+
+                var step1WithoutStep2Message = $"{LogLevelMessageResources.Login} {LogLevelMessageResources.Step1WithouStep2Description}";
+                await AddInformativeLog(step1WithoutStep2Message, cancellationToken, user.Id, user.FullName);
+                await _uow.SaveChangesAsync(cancellationToken);
+
                 return Ok(secondStepOutput);
             }
             var output = await _userLoginAddHandler.Handle(loginDto, user);
+
+            var step1ToStep2Message = $"{LogLevelMessageResources.Login} {LogLevelMessageResources.Step1ToStep2Description}";
+            await AddInformativeLog(step1ToStep2Message, cancellationToken, user.Id, user.FullName);
+
             await _uow.SaveChangesAsync(cancellationToken);
             return Ok(output, "second-step");
         }
@@ -105,14 +131,21 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
         [ProducesResponseType(typeof(ApiResponseEnvelope<SecondStepOutput>), StatusCodes.Status200OK)]
         public async Task<IActionResult> PaceSecondStep([FromBody] SecondStepLoginInput loginDto, CancellationToken cancellationToken)
         {
-            var userLogin = await _userLoginFindHandler.Handle(loginDto, cancellationToken);
-            if (userLogin == null)
-            {   
-                return ClientError(MessageResources.InvalidConfirmCode);               
+            var (userLogin, errorMessage) = await _userLoginFindHandler.Handle(loginDto, cancellationToken);
+            if (string.IsNullOrEmpty(errorMessage))
+            {
+                var invlidStep2Message = $"{LogLevelMessageResources.Login} {LogLevelMessageResources.Step2InvlidDescription}";
+                await AddInformativeLog(invlidStep2Message, cancellationToken, userLogin.UserId, userLogin.User.FullName);
+                await _uow.SaveChangesAsync(cancellationToken);
+
+                throw new MessageException(errorMessage);
             }
-            //userLogin.TwoStepWasSuccessful = true;
-            //await _uow.SaveChangesAsync(cancellationToken);
             var secondStepOutput = await GetSecondStepOutput(userLogin.User, cancellationToken);
+
+            var validStep2Message = $"{LogLevelMessageResources.Login} {LogLevelMessageResources.Step2ValidDescription}";
+            await AddInformativeLog(validStep2Message, cancellationToken, userLogin.UserId, userLogin.User.FullName);
+            await _uow.SaveChangesAsync(cancellationToken);
+
             return Ok(secondStepOutput);
         }
         private async Task<SecondStepOutput> GetSecondStepOutput(User user, CancellationToken cancellationToken)
@@ -129,8 +162,8 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
         [Route("captcha")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<DNTCaptchaApiResponse>), StatusCodes.Status200OK)]
         public IActionResult CreateCaptchaParams()
-        { 
-            var captchaParams= _captchaApiProvider.CreateDNTCaptcha(new DNTCaptchaTagHelperHtmlAttributes
+        {
+            var captchaParams = _captchaApiProvider.CreateDNTCaptcha(new DNTCaptchaTagHelperHtmlAttributes
             {
                 BackColor = "#FFFFFF",
                 FontName = "Tahoma",
@@ -145,9 +178,9 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
         }
 
         private bool HasRequestValidCaptchaEntry(FirstStepLoginInput input)
-        {           
+        {
             if (string.IsNullOrEmpty(input.CaptchaText))
-            {               
+            {
                 return false;
             }
             if (string.IsNullOrEmpty(input.CaptchaInputText))
@@ -171,6 +204,33 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
                 return false;
             }
             return true;
+        }
+
+
+        private async Task AddInformativeLog(string description, CancellationToken cancellationToken, [Optional] Guid? userId, [Optional] string? fullName)
+        {
+            CreateInformativeLogDto informativeLogDto = new
+            (
+                      LogLevelEnum.Security,
+                      LogLevelMessageResources.SecuritySection,
+                      description,
+                      userId ?? CurrentUser.UserId,
+                      fullName ?? CurrentUser.FullName
+            );
+            await _informativeLogCreateHandler.Handle(informativeLogDto, cancellationToken);
+        }
+
+        private async Task AddInformativeLogByNullUser(string description, CancellationToken cancellationToken)
+        {
+            CreateInformativeLogDto informativeLogDto = new
+            (
+                      LogLevelEnum.Security,
+                      LogLevelMessageResources.SecuritySection,
+                      description,
+                      null,
+                      string.Empty
+            );
+            await _informativeLogCreateHandler.Handle(informativeLogDto, cancellationToken);
         }
     }
 }
