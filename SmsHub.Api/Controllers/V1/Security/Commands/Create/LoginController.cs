@@ -88,11 +88,8 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
             var (user, result) = await _userFindByPasswordHandler.Handle(loginDto, cancellationToken);
             if (!result || user is null)
             {
-                await AddInformativeLogByNullUser
-                (
-                    LogLevelMessageResources.Login + $"مرحله اول - نام کاربری/رمزعبور:{loginDto.Username} ناصحیح",
-                    cancellationToken
-                );
+                var step1InvalidUnameOrPasswordMessage = $"{LogLevelMessageResources.Login} {LogLevelMessageResources.Step1InvalidUnameOrPassDescription}  {user.Username}";
+                await AddInformativeLogByNullUser(step1InvalidUnameOrPasswordMessage, cancellationToken);
                 await _uow.SaveChangesAsync(cancellationToken);
 
                 return ClientError(MessageResources.UserNotFound);
@@ -102,13 +99,8 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
             var (userPolicy, resultPolicy) = await _userPolicy.Handle(loginDto, cancellationToken);
             if (!resultPolicy || !string.IsNullOrEmpty(userPolicy))
             {
-                await AddInformativeLog
-               (
-                   LogLevelMessageResources.Login + "مرحله اول - نقض policy",
-                   cancellationToken,
-                   user.Id,
-                   user.FullName
-               );
+                var step1InvalidPolicyMessage = $"{LogLevelMessageResources.Login} {LogLevelMessageResources.Step1InvalidPolicyDescription}";
+                await AddInformativeLog(step1InvalidPolicyMessage, cancellationToken, user.Id, user.FullName);
                 await _uow.SaveChangesAsync(cancellationToken);
 
                 return ClientError(userPolicy);
@@ -118,26 +110,16 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
             {
                 var secondStepOutput = await GetSecondStepOutput(user, cancellationToken);
 
-                await AddInformativeLog
-              (
-                  LogLevelMessageResources.Login + "مرحله اول -  عدم نیاز به ورود دو مرحله",
-                  cancellationToken,
-                   user.Id,
-                   user.FullName
-              );
+                var step1WithoutStep2Message = $"{LogLevelMessageResources.Login} {LogLevelMessageResources.Step1WithouStep2Description}";
+                await AddInformativeLog(step1WithoutStep2Message, cancellationToken, user.Id, user.FullName);
                 await _uow.SaveChangesAsync(cancellationToken);
 
                 return Ok(secondStepOutput);
             }
             var output = await _userLoginAddHandler.Handle(loginDto, user);
 
-            await AddInformativeLog
-              (
-                  LogLevelMessageResources.Login + "مرحله اول - ورود کاربر به مرحله دوم احراز هویت",
-                  cancellationToken,
-                   user.Id,
-                   user.FullName
-              );
+            var step1ToStep2Message = $"{LogLevelMessageResources.Login} {LogLevelMessageResources.Step1ToStep2Description}";
+            await AddInformativeLog(step1ToStep2Message, cancellationToken, user.Id, user.FullName);
 
             await _uow.SaveChangesAsync(cancellationToken);
             return Ok(output, "second-step");
@@ -152,26 +134,16 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
             var (userLogin, errorMessage) = await _userLoginFindHandler.Handle(loginDto, cancellationToken);
             if (string.IsNullOrEmpty(errorMessage))
             {
-                await AddInformativeLog
-                  (
-                      LogLevelMessageResources.Login + "مرحله دوم - عدم احراز موفق ",
-                      cancellationToken,
-                      userLogin.UserId,
-                      userLogin.User.FullName
-                  );
+                var invlidStep2Message = $"{LogLevelMessageResources.Login} {LogLevelMessageResources.Step2InvlidDescription}";
+                await AddInformativeLog(invlidStep2Message, cancellationToken, userLogin.UserId, userLogin.User.FullName);
                 await _uow.SaveChangesAsync(cancellationToken);
 
                 throw new MessageException(errorMessage);
             }
             var secondStepOutput = await GetSecondStepOutput(userLogin.User, cancellationToken);
 
-            await AddInformativeLog
-              (
-                  LogLevelMessageResources.Login + "مرحله دوم - ورود کاربر تایید شد",
-                  cancellationToken,
-                  userLogin.UserId,
-                  userLogin.User.FullName
-              );
+            var validStep2Message = $"{LogLevelMessageResources.Login} {LogLevelMessageResources.Step2ValidDescription}";
+            await AddInformativeLog(validStep2Message, cancellationToken, userLogin.UserId, userLogin.User.FullName);
             await _uow.SaveChangesAsync(cancellationToken);
 
             return Ok(secondStepOutput);

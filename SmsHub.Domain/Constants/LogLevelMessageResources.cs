@@ -22,6 +22,13 @@
         public const string DeleteDescription = "حذف شد";
         public const string UpdateDescription = "ویرایش شد";
         public const string GetDescription = "نمایش داده شد ";
+        public const string Step2InvlidDescription = "مرحله دوم - عدم احراز موفق ";
+        public const string Step2ValidDescription = "مرحله دوم - ورود کاربر تایید شد";
+        public const string Step1ToStep2Description = "مرحله اول - ورود کاربر به مرحله دوم احراز هویت";
+        public const string Step1WithouStep2Description = "مرحله اول -  عدم نیاز به ورود دو مرحله";
+        public const string Step1InvalidPolicyDescription = "مرحله اول - نقض policy";
+        public const string Step1InvalidUnameOrPassDescription = "مرحله اول - نام کاربری/رمزعبور ناصحیح";
+
 
         public const string CcSend = " ارسال کپی پیامک , ";
         public const string Config = "تنظیمات , ";
