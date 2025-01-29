@@ -51,8 +51,7 @@ namespace SmsHub.Api.Controllers.V1.Security.Querries
         [HttpGet]
         [Route("query")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<UserQueryDto>>), StatusCodes.Status200OK)]
-        [InformativeLogFilter(LogLevelEnum.Security, LogLevelMessageResources.SecuritySection, LogLevelMessageResources.UserLine + LogLevelMessageResources.GetDescription)]
-     //what is sedtion , description
+        [InformativeLogFilter(LogLevelEnum.Security, LogLevelMessageResources.SecuritySection, LogLevelMessageResources.User + LogLevelMessageResources.GetDescription)]
         public async Task<IActionResult> GetUsersByQuery([FromQuery] GridifyQuery query, CancellationToken cancellationToken)
         {
             var userQueryDtos = await _userGetByQuery.Handle(query, cancellationToken); ;

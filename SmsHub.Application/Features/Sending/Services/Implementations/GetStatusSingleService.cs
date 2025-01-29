@@ -62,7 +62,6 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
         public async Task Trigger(long messageDetailId, ProviderEnum providerId)
         {
-            //TODO: get provider responser from new table MessageDetailStatus
             var responseStatusList = await _providerResponseStatusQueryService.Get();
             var deliveryStatusList=await _providerDeliveryStatusQueryService.Get();
             var messageDetail = await _messagesDetailQueryService.GetInclude(messageDetailId);

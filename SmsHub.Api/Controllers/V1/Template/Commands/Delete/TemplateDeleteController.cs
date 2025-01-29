@@ -6,7 +6,6 @@ using SmsHub.Application.Features.Template.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.Constants;
-using SmsHub.Domain.Features.Template.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Template.MediatorDtos.Commands.Delete;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 

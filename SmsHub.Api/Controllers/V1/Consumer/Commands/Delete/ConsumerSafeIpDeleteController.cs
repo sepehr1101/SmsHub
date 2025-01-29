@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Consumer.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
-using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Delete;
 using SmsHub.Domain.Features.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
@@ -30,7 +29,6 @@ namespace SmsHub.Api.Controllers.V1.Consumer.Commands.Delete
         [HttpPost]
         [HttpPost(nameof(Delete))]
         [ProducesResponseType(typeof(ApiResponseEnvelope<DeleteConsumerSafeIpDto>), StatusCodes.Status200OK)]
-
         public async Task<IActionResult> Delete([FromBody] DeleteConsumerSafeIpDto deleteDto, CancellationToken cancellationToken)
         {
             await _deleteCommandHandler.Handle(deleteDto, cancellationToken);

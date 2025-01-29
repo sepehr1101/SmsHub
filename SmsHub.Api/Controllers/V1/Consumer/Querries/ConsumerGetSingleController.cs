@@ -6,7 +6,6 @@ using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Queries;
 using SmsHub.Persistence.Contexts.UnitOfWork;
-using System.Threading;
 
 namespace SmsHub.Api.Controllers.V1.Consumer.Querries
 {
@@ -31,7 +30,6 @@ namespace SmsHub.Api.Controllers.V1.Consumer.Querries
         [HttpPost]
         [Route(nameof(GetSingle))]
         [ProducesResponseType(typeof(ApiResponseEnvelope<GetConsumerDto>), StatusCodes.Status200OK)]
-
         public async Task<IActionResult> GetSingle([FromBody] IntId Id, CancellationToken cancellationToken)
         {
             var consumers = await _getSingleHandler.Handle(Id);

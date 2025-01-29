@@ -46,19 +46,19 @@
         public const string MessageStateCategory = "";
         public const string MessageState = "";
         public const string MessageDetailStatus = "";
-        public const string SendMessage = "";
-        public const string ReceiveMessage = "";
+        public const string SendMessage = "ارسال پیامک";
+        public const string ReceiveMessage = "دریافت پیامک";
 
-        public const string DeepLog = "";
-        public const string InformativeLog = "";
-        public const string OpetationType = "";
-        public const string LogLevel = "";
+        public const string DeepLog = "ثبت نشان رخدادها";
+        public const string InformativeLog = " ثبت نشان اطلاع رسانی";
+        public const string OpetationType = "ثبت نشان";
+        public const string LogLevel = "دسته بندی ثبت نشان";
 
-        public const string Login= "";
+        public const string Login= ".ورود کاربر ";
         public const string ServerUser= "";
-        public const string User= "";
-        public const string UserLine= "";
-        public const string Role= "";
+        public const string User= "کاربر ";
+        public const string UserLine= "خط-کاربر";
+        public const string Role= "نقش";
         #endregion
 
     }

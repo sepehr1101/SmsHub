@@ -181,7 +181,6 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
                 Receptor = mobileText.Mobile,
                 LocalId = mobileText.LocalId,
                 Date = TimeExtension.DateTimeToUnixTime(DateTime.Now),
-                //todo : what is Hide and Type
             };
 
             var response = await _sendSimpleService.Trigger(sendSimpleDto, apiKey);

@@ -7,12 +7,12 @@ using SmsHub.Persistence.Features.Config.Queries.Contracts;
 
 namespace SmsHub.Application.Features.Config.Handlers.Queries.Implementations
 {
-    public class DisallowedPhraseGetSingleHandler: IDisallowedPhraseGetSingleHandler
+    public class DisallowedPhraseGetSingleHandler : IDisallowedPhraseGetSingleHandler
     {
         private readonly IMapper _mapper;
         private readonly IDisallowedPhraseQueryService _disallowedPhraseQueryService;
         public DisallowedPhraseGetSingleHandler(
-            IMapper mapper, 
+            IMapper mapper,
             IDisallowedPhraseQueryService disallowedPhraseQueryService)
         {
             _mapper = mapper;
@@ -23,8 +23,8 @@ namespace SmsHub.Application.Features.Config.Handlers.Queries.Implementations
         }
         public async Task<GetDisallowedPhraseDto> Handle(IntId Id)
         {
-           var disallowedPhrase= await _disallowedPhraseQueryService.Get(Id.Id);
-        return _mapper.Map<GetDisallowedPhraseDto>(disallowedPhrase);
+            var disallowedPhrase = await _disallowedPhraseQueryService.Get(Id.Id);
+            return _mapper.Map<GetDisallowedPhraseDto>(disallowedPhrase);
         }
     }
 }

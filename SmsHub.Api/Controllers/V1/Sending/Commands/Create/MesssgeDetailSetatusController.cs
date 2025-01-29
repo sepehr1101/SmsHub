@@ -10,7 +10,6 @@ using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Sending.Entities;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using SmsHub.Persistence.Contexts.UnitOfWork;
-using SmsHub.Persistence.Features.Sending.Queries.Contracts;
 
 namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
 {

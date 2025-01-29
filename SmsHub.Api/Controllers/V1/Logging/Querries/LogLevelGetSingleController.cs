@@ -5,11 +5,9 @@ using SmsHub.Api.Attributes;
 using SmsHub.Application.Features.Logging.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
-using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Queries;
 using SmsHub.Persistence.Contexts.UnitOfWork;
-using System.Threading;
 
 namespace SmsHub.Api.Controllers.V1.Logging.Querries
 {

@@ -8,7 +8,6 @@ using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Template.MediatorDtos.Queries;
 using SmsHub.Persistence.Contexts.UnitOfWork;
-using System.Threading;
 
 namespace SmsHub.Api.Controllers.V1.Template.Querries
 {

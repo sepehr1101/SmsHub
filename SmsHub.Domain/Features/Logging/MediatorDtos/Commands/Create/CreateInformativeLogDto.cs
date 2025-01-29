@@ -10,7 +10,7 @@ namespace SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Create
         public Guid? UserId { get; }
         public string? UserInfo { get; }
 
-        public CreateInformativeLogDto(LogLevelEnum logLevel, string section, string descrption, Guid userId, string userInfo)
+        public CreateInformativeLogDto(LogLevelEnum logLevel, string section, string descrption, Guid? userId, string userInfo)
         {
             LogLevelId = logLevel;
             Section = section;

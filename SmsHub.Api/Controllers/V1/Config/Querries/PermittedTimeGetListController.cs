@@ -7,7 +7,6 @@ using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Config.MediatorDtos.Queries;
-using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Create;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.V1.Config.Querries

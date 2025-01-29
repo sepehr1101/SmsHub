@@ -7,7 +7,6 @@ using SmsHub.Application.Features.Logging.Handlers.Commands.Create.Contracts;
 using FluentValidation;
 using SmsHub.Application.Exceptions;
 using Microsoft.AspNetCore.Http;
-using System.Net.Http;
 
 namespace SmsHub.Application.Features.Logging.Handlers.Commands.Create.Implementations
 {

@@ -10,7 +10,6 @@ using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Queries;
 using SmsHub.Persistence.Contexts.UnitOfWork;
-using System.Threading;
 
 namespace SmsHub.Api.Controllers.V1.Logging.Querries
 {

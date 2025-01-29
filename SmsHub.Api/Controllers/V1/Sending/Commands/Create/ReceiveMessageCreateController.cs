@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using SmsHub.Api.Attributes;
 using SmsHub.Application.Features.Sending.Handlers.Commands.Create.Contracts;
@@ -7,7 +6,6 @@ using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Sending.Entities;
-using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Features.Receiving.Commands.Contracts;
 using SmsHub.Persistence.Features.Sending.Queries.Contracts;

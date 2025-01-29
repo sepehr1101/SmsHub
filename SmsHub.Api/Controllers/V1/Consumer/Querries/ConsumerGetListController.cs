@@ -3,10 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using SmsHub.Application.Features.Consumer.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
-using SmsHub.Domain.Features.Consumer.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Consumer.MediatorDtos.Queries;
 using SmsHub.Persistence.Contexts.UnitOfWork;
-using System.Threading;
 
 namespace SmsHub.Api.Controllers.V1.Consumer.Querries
 {
@@ -31,7 +29,6 @@ namespace SmsHub.Api.Controllers.V1.Consumer.Querries
         [HttpPost]
         [Route(nameof(GetList))]
         [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<GetConsumerDto>>), StatusCodes.Status200OK)]
-
         public async Task<IActionResult> GetList(CancellationToken cancellationToken)
         {
             var consumers = await _getListHandler.Handle();

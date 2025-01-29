@@ -45,6 +45,5 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Create.Implementa
                 throw new FluentValidationException(message);
             }
         }
-
     }
 }

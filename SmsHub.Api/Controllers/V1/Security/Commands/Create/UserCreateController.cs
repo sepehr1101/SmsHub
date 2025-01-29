@@ -33,7 +33,6 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
         [HttpPost]
         [ProducesResponseType(typeof(ApiResponseEnvelope<UserCreateDto>), StatusCodes.Status200OK)]
         [InformativeLogFilter(LogLevelEnum.Security, LogLevelMessageResources.SecuritySection, LogLevelMessageResources.User + LogLevelMessageResources.AddDescription)]
-      //userId
         public async Task<IActionResult> CreateUser([FromBody]UserCreateDto userCreateDto, CancellationToken cancellationToken)
         {
             await _createUserHandler.Handle(userCreateDto, cancellationToken);
@@ -47,7 +46,6 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
         public IActionResult Test()
         {
             throw new InvalidLineException();
-            return Ok();
         }
     }
 }

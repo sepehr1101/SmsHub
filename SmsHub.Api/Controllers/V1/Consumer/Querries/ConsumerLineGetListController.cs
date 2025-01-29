@@ -30,7 +30,6 @@ namespace SmsHub.Api.Controllers.V1.Consumer.Querries
         [HttpPost]
         [Route(nameof(GetList))]
         [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<GetConsumerLineDto>>), StatusCodes.Status200OK)]
-
         public async Task<IActionResult> GetList(CancellationToken cancellationToken)
         {
             var consumerLines = await _getListHandler.Handle();

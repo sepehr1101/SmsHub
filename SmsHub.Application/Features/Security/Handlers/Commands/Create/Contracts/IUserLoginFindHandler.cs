@@ -5,6 +5,6 @@ namespace SmsHub.Application.Features.Security.Handlers.Commands.Create.Contract
 {
     public interface IUserLoginFindHandler
     {
-        Task<UserLogin> Handle(SecondStepLoginInput input, CancellationToken cancellationToken);
+        Task<(UserLogin, string)> Handle(SecondStepLoginInput input, CancellationToken cancellationToken);
     }
 }

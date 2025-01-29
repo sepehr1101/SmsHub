@@ -25,5 +25,7 @@ namespace SmsHub.Application.Exceptions
 
         public static string InvalidProviderResponse(string message, int statusCode) => $"خطا => {message} - {statusCode} ";
         public static string FluentValidationMessage(string message) => $"خطا => {message}";
+
+        public static string MessageError(string message) => $"{message} خطا در مرحله دوم احراز هویت : ";
     }
 }

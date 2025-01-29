@@ -4,12 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using SmsHub.Api.Attributes;
 using SmsHub.Application.Features.Config.Handlers.Commands.Delete.Contracts;
 using SmsHub.Application.Features.Logging.Handlers.Commands.Create.Contracts;
-using SmsHub.Application.Features.Logging.Handlers.Commands.Create.Implementations;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
 using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Config.MediatorDtos.Commands.Delete;
-using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Create;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
 namespace SmsHub.Api.Controllers.V1.Config.Commands.Delete
