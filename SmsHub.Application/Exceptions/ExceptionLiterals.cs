@@ -27,5 +27,6 @@ namespace SmsHub.Application.Exceptions
         public static string FluentValidationMessage(string message) => $"خطا => {message}";
 
         public static string MessageError(string message) => $"{message} خطا در مرحله دوم احراز هویت : ";
+        public static string InvalidForeignKey(string tebleName) => $"موجودیت {tebleName} ، با شناسه وارد شده یافت نشد";
     }
 }

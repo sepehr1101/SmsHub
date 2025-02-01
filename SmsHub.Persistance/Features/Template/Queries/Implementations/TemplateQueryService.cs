@@ -4,6 +4,7 @@ using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Features.Template.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Features.Template.MediatorDtos.Queries;
+using SmsHub.Domain.BaseDomainEntities.Id;
 
 namespace SmsHub.Persistence.Features.Template.Queries.Implementations
 {
@@ -28,9 +29,10 @@ namespace SmsHub.Persistence.Features.Template.Queries.Implementations
             return await _uow.FindOrThrowAsync<Entities.Template>(id);
         }
 
-        public async Task<ICollection<TemplateDictionary>> GetDictionary()
+        public async Task<ICollection<TemplateDictionary>> GetDictionary(IntId templateCategoryId)
         {
             return await _templates
+                .Where(x=>x.TemplateCategoryId == templateCategoryId.Id)
                 .Select(x => new TemplateDictionary(x.Id, x.Title))
                 .ToListAsync();
         }

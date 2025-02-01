@@ -81,8 +81,8 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
 
             var messageBatch = MessageBatchFactory.Create(mobileText, lineId, batchSize, "");
             var result = _messageBatchCommandService.Add(messageBatch);
-            messageBatch.MessagesHolders
-                .ForEach(m => BackgroundJob.Enqueue(() => _sendInBackgroundService.Trigger(m.Id, line.Provider.Id)));
+            //messageBatch.MessagesHolders
+            //    .ForEach(m => BackgroundJob.Enqueue(() => _sendInBackgroundService.Trigger(m.Id, line.Provider.Id)));
 
             return mobileText;
         }

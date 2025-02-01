@@ -5,6 +5,7 @@ using SmsHub.Api.Attributes;
 using SmsHub.Application.Features.Template.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+using SmsHub.Domain.BaseDomainEntities.Id;
 using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Template.MediatorDtos.Queries;
 using SmsHub.Persistence.Contexts.UnitOfWork;
@@ -16,9 +17,9 @@ namespace SmsHub.Api.Controllers.V1.Template.Querries
     [Authorize]
     public class TemplateGetDictionaryController:BaseController
     {
-        private readonly ITemplateGetAllDictionaryHandler _templateGetAllDictionaryHandler;
+        private readonly ITemplateGetDictionaryByTemplateCategoryIdHandler _templateGetAllDictionaryHandler;
         private readonly IUnitOfWork _uow;
-        public TemplateGetDictionaryController(ITemplateGetAllDictionaryHandler templateGetAllDictionaryHandler,
+        public TemplateGetDictionaryController(ITemplateGetDictionaryByTemplateCategoryIdHandler templateGetAllDictionaryHandler,
             IUnitOfWork uow)
         {
             _templateGetAllDictionaryHandler=templateGetAllDictionaryHandler;
@@ -28,13 +29,13 @@ namespace SmsHub.Api.Controllers.V1.Template.Querries
             _uow.NotNull(nameof(uow));
         }
 
-        [HttpGet]
-        [Route("dictionary")]
+        [HttpPost]
+        [Route("dictionary/{templateCategoryId}")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<TemplateDictionary>>), StatusCodes.Status200OK)]
         [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.TemplateSection, LogLevelMessageResources.TemplateCategory + LogLevelMessageResources.GetDescription)]
-        public async Task<IActionResult> Dictionary(CancellationToken cancellationToken)
+        public async Task<IActionResult> Dictionary(IntId templateCategoryId, CancellationToken cancellationToken)
         {
-            var result = await _templateGetAllDictionaryHandler.Handle();
+            var result = await _templateGetAllDictionaryHandler.Handle(templateCategoryId);
             await _uow.SaveChangesAsync(cancellationToken);
             return Ok(result);
         }
