@@ -9,5 +9,6 @@ namespace SmsHub.Persistence.Features.Template.Queries.Contracts
         Task<ICollection<Entities.Template>> Get();
         Task<Entities.Template> Get(int id);
         Task<ICollection<TemplateDictionary>> GetDictionary(IntId templateCategoryId);
+        Task<ICollection<TemplateDictionary>> GetDictionary();
     }
 }

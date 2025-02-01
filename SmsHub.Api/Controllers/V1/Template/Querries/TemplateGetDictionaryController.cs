@@ -17,27 +17,46 @@ namespace SmsHub.Api.Controllers.V1.Template.Querries
     [Authorize]
     public class TemplateGetDictionaryController:BaseController
     {
-        private readonly ITemplateGetDictionaryByTemplateCategoryIdHandler _templateGetAllDictionaryHandler;
+        private readonly ITemplateGetDictionaryByTemplateCategoryIdHandler _templateGetDictionaryHandler;
+        private readonly ITemplateGetAllDictionaryHandler _templateGetAllDictionaryHandler;
         private readonly IUnitOfWork _uow;
-        public TemplateGetDictionaryController(ITemplateGetDictionaryByTemplateCategoryIdHandler templateGetAllDictionaryHandler,
+        public TemplateGetDictionaryController(
+            ITemplateGetDictionaryByTemplateCategoryIdHandler templateGetDictionaryHandler,
+            ITemplateGetAllDictionaryHandler templateGetAllDictionaryHandler,
             IUnitOfWork uow)
         {
-            _templateGetAllDictionaryHandler=templateGetAllDictionaryHandler;
+            _templateGetDictionaryHandler=templateGetDictionaryHandler;
+            _templateGetDictionaryHandler.NotNull(nameof(templateGetDictionaryHandler));
+
+            _templateGetAllDictionaryHandler = templateGetAllDictionaryHandler;
             _templateGetAllDictionaryHandler.NotNull(nameof(templateGetAllDictionaryHandler));
 
             _uow = uow;
             _uow.NotNull(nameof(uow));
         }
 
+        
         [HttpPost]
-        [Route("dictionary/{templateCategoryId}")]
+        [Route("dictionary")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<TemplateDictionary>>), StatusCodes.Status200OK)]
         [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.TemplateSection, LogLevelMessageResources.TemplateCategory + LogLevelMessageResources.GetDescription)]
-        public async Task<IActionResult> Dictionary(IntId templateCategoryId, CancellationToken cancellationToken)
+        public async Task<IActionResult> Dictionary(CancellationToken cancellationToken)
         {
-            var result = await _templateGetAllDictionaryHandler.Handle(templateCategoryId);
+            var result = await _templateGetAllDictionaryHandler.Handle();
             await _uow.SaveChangesAsync(cancellationToken);
             return Ok(result);
         }
+
+        //[HttpPost]
+        //[Route("dictionary/{templateCategoryId}")]
+        //[ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<TemplateDictionary>>), StatusCodes.Status200OK)]
+        //[InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.TemplateSection, LogLevelMessageResources.TemplateCategory + LogLevelMessageResources.GetDescription)]
+        //public async Task<IActionResult> Dictionary(IntId templateCategoryId, CancellationToken cancellationToken)
+        //{
+        //    var result = await _templateGetDictionaryHandler.Handle(templateCategoryId);
+        //    await _uow.SaveChangesAsync(cancellationToken);
+        //    return Ok(result);
+        //}
+
     }
 }

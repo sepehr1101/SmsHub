@@ -32,7 +32,14 @@ namespace SmsHub.Persistence.Features.Template.Queries.Implementations
         public async Task<ICollection<TemplateDictionary>> GetDictionary(IntId templateCategoryId)
         {
             return await _templates
-                .Where(x=>x.TemplateCategoryId == templateCategoryId.Id)
+                .Where(x => x.TemplateCategoryId == templateCategoryId.Id)
+                .Select(x => new TemplateDictionary(x.Id, x.Title))
+                .ToListAsync();
+        }
+
+        public async Task<ICollection<TemplateDictionary>> GetDictionary()
+        {
+            return await _templates
                 .Select(x => new TemplateDictionary(x.Id, x.Title))
                 .ToListAsync();
         }
