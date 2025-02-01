@@ -7,6 +7,6 @@
         public string DisplayName { get; init; } = null!;
         public string Username { get; init; } = null!;
         public string Mobile { get; init; } = null!;
-        public ICollection<int>? RoleIds { get; set; }
+        public ICollection<int> RoleIds { get; set; }
     }
 }

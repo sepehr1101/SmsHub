@@ -28,5 +28,14 @@ namespace SmsHub.Persistence.Features.Security.Queries.Implementations
         {
             return await _uow.FindOrThrowAsync<Role>(id);
         }
+
+        public async Task<int> CheckRole(ICollection<int> roleIds)
+        {
+            return _roles
+                .Where(x => roleIds.Contains(x.Id))
+                .Count();
+
+
+        }
     }
 }

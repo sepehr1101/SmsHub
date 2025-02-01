@@ -7,7 +7,7 @@ using SmsHub.Persistence.Features.Config.Queries.Contracts;
 
 namespace SmsHub.Application.Features.Config.Handlers.Queries.Implementations
 {
-    public class ConfigTypeGroupGetSingleHandler: IConfigTypeGroupGetSingleHandler
+    public class ConfigTypeGroupGetSingleHandler : IConfigTypeGroupGetSingleHandler
     {
         private readonly IMapper _mapper;
         private readonly IConfigTypeGroupQueryService _configTypeGroupQueryService;
@@ -23,7 +23,7 @@ namespace SmsHub.Application.Features.Config.Handlers.Queries.Implementations
         }
         public async Task<GetConfigTypeGroupDto> Handle(IntId Id)
         {
-          var configTypeGroup=  await _configTypeGroupQueryService.Get(Id.Id);
+            var configTypeGroup = await _configTypeGroupQueryService.Get(Id.Id);
             return _mapper.Map<GetConfigTypeGroupDto>(configTypeGroup);
         }
     }

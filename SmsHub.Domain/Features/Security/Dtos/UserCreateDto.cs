@@ -7,6 +7,6 @@
         public string Username { get; init; } = null!;
         public string Password { get; init; } = null!;
         public string Mobile { get; init; } = null!;
-        public ICollection<int>? RoleIds { get; init; }
+        public ICollection<int> RoleIds { get; init; }
     }
 }

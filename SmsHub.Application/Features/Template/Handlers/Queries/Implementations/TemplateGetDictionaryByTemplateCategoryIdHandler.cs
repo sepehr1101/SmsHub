@@ -6,17 +6,17 @@ using SmsHub.Persistence.Features.Template.Queries.Contracts;
 
 namespace SmsHub.Application.Features.Template.Handlers.Queries.Implementations
 {
-    public class TemplateGetAllDictionaryHandler: ITemplateGetAllDictionaryHandler
+    public class TemplateGetDictionaryByTemplateCategoryIdHandler : ITemplateGetDictionaryByTemplateCategoryIdHandler
     {
         private readonly ITemplateQueryService _templateQueryService;
-        public TemplateGetAllDictionaryHandler(ITemplateQueryService templateQueryService)
+        public TemplateGetDictionaryByTemplateCategoryIdHandler(ITemplateQueryService templateQueryService)
         {
-            _templateQueryService = templateQueryService;
+             _templateQueryService = templateQueryService;
             _templateQueryService.NotNull(nameof(templateQueryService));
         }
-        public async Task<ICollection<TemplateDictionary>> Handle()
+        public async Task<ICollection<TemplateDictionary>> Handle(IntId templateCategoryId)
         {
-            var result = await _templateQueryService.GetDictionary();
+            var result = await _templateQueryService.GetDictionary(templateCategoryId);
             return result;
         }
     }
