@@ -35,6 +35,8 @@ namespace SmsHub.Api.Controllers.V1.Line.Commands.Delete
         [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.LineSection, LogLevelMessageResources.Provider + LogLevelMessageResources.DeleteDescription)]
         public async Task<IActionResult> Delete([FromBody] DeleteProviderDto deleteProviderDto, CancellationToken cancellationToken)
         {
+            return ClientError("ای بخش در دسترس نمی‌باشد");
+
             await _providerDeleteHandler.Handle(deleteProviderDto, cancellationToken);
             await _uow.SaveChangesAsync(cancellationToken);
             return Ok(deleteProviderDto);

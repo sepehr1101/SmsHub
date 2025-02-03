@@ -35,6 +35,8 @@ namespace SmsHub.Api.Controllers.V1.Line.Commands.Update
         [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.LineSection, LogLevelMessageResources.Provider + LogLevelMessageResources.UpdateDescription)]
         public async Task<IActionResult> Update([FromBody] UpdateProviderDto updateProviderDto, CancellationToken cancellationToken)
         {
+            return ClientError("ای بخش در دسترس نمی‌باشد");
+
             await _updateProviderHandler.Handle(updateProviderDto, cancellationToken);
             await _uow.SaveChangesAsync(cancellationToken);
             return Ok(updateProviderDto);
