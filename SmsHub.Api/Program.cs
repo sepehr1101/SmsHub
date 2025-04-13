@@ -1,4 +1,4 @@
-using SmsHub.Api.Extensions;
+﻿using SmsHub.Api.Extensions;
 using SmsHub.Persistence.Extensions;
 using SmsHub.Api.ExceptionHandlers;
 using Serilog;
@@ -36,10 +36,27 @@ var app = builder.Build();
 
 app.UseExceptionHandler("/error");
 
+
+//
+
+
+var uiPath = Path.Combine(Directory.GetCurrentDirectory(), "ui", "build");
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(uiPath),
+    RequestPath = "/ui"
+});
+
+// 📌 مرحله ۲: مسیریابی درخواست‌های React برای پشتیبانی از SPA
+app.MapFallbackToFile("/ui/{*path}", Path.Combine("ui", "build", "index.html"));
+
+
+//
+
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
 //{
-    app.AddSwaggerApp();
+app.AddSwaggerApp();
 //}
 
 //app.UseMiddleware<ApiKeyMiddleware>();
