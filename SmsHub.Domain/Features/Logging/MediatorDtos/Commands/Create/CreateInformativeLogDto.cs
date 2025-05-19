@@ -1,14 +1,22 @@
-﻿namespace SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Create
+﻿using SmsHub.Domain.Constants;
+
+namespace SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Create
 {
-    public record CreateInformativeLogDto 
-    { 
-        public int LogLevelId { get; init; }
-        public string Section { get; init; } = null!;
-        public string Description { get; init; }
-        public Guid? UserId { get; init; }
-        public string? UserInfo { get; init; }
-        public string? Ip { get; init; }
-        public DateTime InsertDateTime { get; init; }
-        public string ClientInfo { get; init; } = null!; 
+    public record CreateInformativeLogDto
+    {
+        public LogLevelEnum LogLevelId { get; }
+        public string Section { get; }
+        public string Description { get; }
+        public Guid? UserId { get; }
+        public string? UserInfo { get; }
+
+        public CreateInformativeLogDto(LogLevelEnum logLevel, string section, string descrption, Guid? userId, string userInfo)
+        {
+            LogLevelId = logLevel;
+            Section = section;
+            Description = descrption;
+            UserId = userId;
+            UserInfo = userInfo;
+        }
     }
 }

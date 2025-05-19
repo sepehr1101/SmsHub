@@ -15,24 +15,24 @@ namespace SmsHub.Application.Features.Security.Handlers.Commands.Create.Implemen
             _userLoginQueryService = userLoginQueryService;
             _userLoginQueryService.NotNull(nameof(userLoginQueryService));
         }
-        public async Task<UserLogin> Handle(SecondStepLoginInput input, CancellationToken cancellationToken)
+        public async Task<(UserLogin, string)> Handle(SecondStepLoginInput input, CancellationToken cancellationToken)
         {
             var userLogin = await _userLoginQueryService.Get(input.Id);
             userLogin.NotNull(nameof(userLogin));
             userLogin.TwoStepCode.NotEmptyString(userLogin.TwoStepCode);
             if (userLogin.TwoStepCode != input.ConfirmCode)
             {
-                throw new Exception("کد وارد شده صحیح نمیباشد");
+                return (userLogin, "کد وارد شده صحیح نمیباشد");
             }
             if (userLogin.TwoStepExpireDateTime > DateTime.Now)
             {
-                throw new Exception("زمان ورود کد منقضی شده است");
+                return (userLogin, "زمان ورود کد منقضی شده است");
             }
             if (userLogin.TwoStepWasSuccessful.HasValue)
             {
-                throw new Exception("این کد قبلا استفاده شده است");
+                return (userLogin, "این کد قبلا استفاده شده است");
             }
-            return userLogin;
+            return (userLogin, string.Empty);
         }
     }
 }

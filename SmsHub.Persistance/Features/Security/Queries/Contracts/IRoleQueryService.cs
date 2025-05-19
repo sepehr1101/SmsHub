@@ -6,5 +6,6 @@ namespace SmsHub.Persistence.Features.Security.Queries.Contracts
     {
         Task<ICollection<Role>> Get();
         Task<Role> Get(int id);
+        Task<int> CheckRole(ICollection<int> roleIds);
     }
 }

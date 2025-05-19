@@ -1,10 +1,12 @@
 ﻿using Aban360.Api.Controllers.V1;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SmsHub.Api.Attributes;
 using SmsHub.Application.Features.Logging.Handlers.Commands.Delete.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
+using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Entities;
-using SmsHub.Domain.Features.Line.MediatorDtos.Queries;
 using SmsHub.Domain.Features.Logging.MediatorDtos.Commands.Delete;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
@@ -12,6 +14,7 @@ namespace SmsHub.Api.Controllers.V1.Logging.Commands.Delete
 {
     [Route(nameof(OperationType))]
     [ApiController]
+    [Authorize]
     public class OperationTypeDeleteController : BaseController
     {
         private readonly IUnitOfWork _uow;
@@ -30,7 +33,7 @@ namespace SmsHub.Api.Controllers.V1.Logging.Commands.Delete
         [HttpPost]
         [Route(nameof(Delete))]
         [ProducesResponseType(typeof(ApiResponseEnvelope<DeleteOperationTypeDto>), StatusCodes.Status200OK)]
-
+        [InformativeLogFilter(LogLevelEnum.InternalOperation, LogLevelMessageResources.LoggingSection, LogLevelMessageResources.OpetationType + LogLevelMessageResources.DeleteDescription)]
         public async Task<IActionResult> Delete([FromBody] DeleteOperationTypeDto deleteDto, CancellationToken cancellationToken)
         {
             await _deleteCommandHandler.Handle(deleteDto, cancellationToken);

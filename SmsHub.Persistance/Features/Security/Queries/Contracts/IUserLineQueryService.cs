@@ -9,5 +9,6 @@ namespace SmsHub.Persistence.Features.Security.Queries.Contracts
         Task<ICollection<GetUserLineByUserIdDto>> GetUserLinesByUserId(Guid userId);
 
         Task<ICollection<GetUserLineByLineIdDto>> GetUserLinesByLineId(int LineId);
+        Task<bool> Any(int LineId, Guid userId);
     }
 }

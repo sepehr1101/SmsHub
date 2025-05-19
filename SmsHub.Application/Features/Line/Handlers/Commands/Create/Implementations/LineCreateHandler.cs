@@ -32,7 +32,7 @@ namespace SmsHub.Application.Features.Line.Handlers.Commands.Create.Implementati
 
         public async Task Handle(CreateLineDto createLineDto, CancellationToken cancellationToken)
         {
-            LineCredentialValidation.ValidationCreateLine(createLineDto);//todo: I move ValidationProvider  To LineCredentialValidation , true or not?
+            LineCredentialValidation.ValidationCreateLine(createLineDto);
 
             await CheckValidator(createLineDto, cancellationToken);
 

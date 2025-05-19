@@ -32,22 +32,25 @@ namespace SmsHub.Application.Features.Security.Handlers.Commands.Create.Implemen
         public async Task<(string, bool)> Handle(FirstStepLoginInput input, CancellationToken cancellationToken)
         {
             var user = await _userQueryService.Get(input.Username);
+            if (user.InvalidLoginAttemptCount > 3)
+            {
+               var userLogin= await GetUserLogin(InvalidLoginReasonEnum.LockedUser, input, user);
+                await _userLoginCommandService.Add(userLogin);
 
-            if (user.InvalidLoginAttemptCount > 3)//todo: check
-            {
-                await GetUserLogin(InvalidLoginReasonEnum.LockedUser, true, true, input, user);
-                return("به حداکثر تلاش مجاز رسیده اید",false);
+                return ("به حداکثر تلاش مجاز رسیده اید",false);
             }
-            else if (user.LockTimespan > DateTime.Now)//todo: check
+            else if (user.LockTimespan > DateTime.Now)
             {
-                await GetUserLogin(InvalidLoginReasonEnum.InactiveUser, true, true, input, user);
+                var userLogin = await GetUserLogin(InvalidLoginReasonEnum.InactiveUser, input, user);
+                await _userLoginCommandService.Add(userLogin);
+
                 var dateLock = user.LockTimespan.Value.Date;
                 var timeLock=user.LockTimespan.Value.TimeOfDay;
+                
                 return ($"حساب کاربری شما تاریخ {dateLock} - ساعت {timeLock} قفل می باشد ", false);
             }
-            else//valid
+            else
             {
-                //todo: when user validation was true, create userLogin or not??
                 return ("", true);
             }
         }
@@ -60,14 +63,14 @@ namespace SmsHub.Application.Features.Security.Handlers.Commands.Create.Implemen
             return logInfoString;
         }
 
-        private async Task GetUserLogin(InvalidLoginReasonEnum LoginReasonEnum, bool IsUserName, bool IsPassword, FirstStepLoginInput input,
+        private async Task<UserLogin> GetUserLogin(InvalidLoginReasonEnum LoginReasonEnum, FirstStepLoginInput input,
             User? user)
         {
             var userLogin = new UserLogin()
             {
                 Id = new Guid(),
-                Username = IsUserName ? input.Username : null,
-                WrongPassword = IsPassword ? input.Password : null,
+                Username = input.Username,
+                WrongPassword =input.Password,
                 UserId = user != null ? user.Id : null,
                 FirstStepSuccess = false,
                 AppVersion = input.AppVersion,
@@ -76,7 +79,7 @@ namespace SmsHub.Application.Features.Security.Handlers.Commands.Create.Implemen
                 Ip = _contextAccessor.HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString(),
                 InvalidLoginReasonId = LoginReasonEnum,
             };
-            await _userLoginCommandService.Add(userLogin);
+            return userLogin;
         }
     }
 }

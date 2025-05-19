@@ -82,7 +82,6 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
             await _messageBatchCommandService.Add(messageBatch);
             messageBatch.MessagesHolders
                 .ForEach(m => BackgroundJob.Schedule(() => _sendInBackgroundService.Trigger(m.Id, line.Provider.Id),TimeSpan.FromHours(1)));
-
             return mobileText;
         }
         private Dictionary<string, string> DeserializeToDictionary(string data)

@@ -56,6 +56,13 @@ namespace SmsHub.Persistence.Features.Security.Queries.Implementations
                 }).ToListAsync();
 
         }
+        
+        public async Task<bool> Any(int LineId,Guid userId)
+        {
+            return await  _userLine.AnyAsync(x=>x.UserId==userId && x.LineId==LineId);
+
+
+        }
 
     }
 }
