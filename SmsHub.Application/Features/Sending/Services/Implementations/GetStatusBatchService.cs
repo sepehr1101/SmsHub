@@ -1,16 +1,19 @@
 ﻿using AutoMapper;
+using Hangfire;
 using SmsHub.Application.Features.Sending.Factories;
 using SmsHub.Application.Features.Sending.Services.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Constants;
+using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Sending.Entities;
+using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Features.Sending.Commands.Contracts;
 using SmsHub.Persistence.Features.Sending.Queries.Contracts;
 
 namespace SmsHub.Application.Features.Sending.Services.Implementations
 {
-    public sealed class GetStatusBatchService : IGetStatusInBackgroundService
+    public sealed class GetStatusBatchService : IStatusInBackgroundService
     {
         private readonly IUnitOfWork _uow;
         private readonly IMapper _mapper;
@@ -62,10 +65,10 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
         public async Task Trigger(Guid messageHolderId, ProviderEnum providerId)
         {
-            var responseStatusList = await _providerResponseStatusQueryService.Get();
-            var deliveryStatusList = await _providerDeliveryStatusQueryService.Get();
-            var messageHolder = await _messagesHolderQueryService.GetIncludeLine(messageHolderId);
-            var statusInfoList = (await _messageDetailStatusQueryService.GetAll())
+            ICollection<ProviderResponseStatus> responseStatusList = await _providerResponseStatusQueryService.Get();
+            ICollection<ProviderDeliveryStatus> deliveryStatusList = await _providerDeliveryStatusQueryService.Get();
+            MessagesHolder messageHolder = await _messagesHolderQueryService.GetIncludeLine(messageHolderId);
+            List<MessageAndProviderIdDto> statusInfoList = (await _messageDetailStatusQueryService.GetAll())
                 .Where(x => x.MessagesHolderId == messageHolderId)
                 .Select(x => new MessageAndProviderIdDto()
                 {
@@ -73,28 +76,29 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
                     ProviderServerId = x.ProviderServerId,
                 }).ToList();
 
-            var smsProvider = _smsProviderFactory.Create(providerId);
-            var result = await smsProvider.GetState(messageHolder.MessageBatch.Line, statusInfoList, messageHolderId, responseStatusList, deliveryStatusList);
+            ISmsProvider smsProvider = _smsProviderFactory.Create(providerId);
+            ICollection<CreateMessageDetailStatusDto> result = await smsProvider.GetState(messageHolder.MessageBatch.Line, statusInfoList, messageHolderId, responseStatusList, deliveryStatusList);
 
             // delivery status
-            var messageDetailStatus = _mapper.Map<ICollection<MessageDetailStatus>>(result);
+            ICollection<MessageDetailStatus> messageDetailStatus = _mapper.Map<ICollection<MessageDetailStatus>>(result);
             await _messageDetailStatusCommandService.Add(messageDetailStatus);
-
             await _uow.SaveChangesAsync(CancellationToken.None);
 
-
-
             //recursive
-            var failedMessageDetailIdList =( await _messageDetailStatusQueryService.GetIncludeProviderResponseAndDelivery())
-                .Where(x=>x.ProviderDeliveryStatus.IsFinal==false )
-                .Select(x=>x.MessagesDetailId)
-                .ToList();
-
+            List<long> failedMessageDetailIdList = GetFailedMessageDetailIds(messageDetailStatus);
             foreach (var item in failedMessageDetailIdList)
-            {
-                await _getStatusSingleService.Trigger(item, providerId);
+            {                
+                BackgroundJob.Enqueue(() => _getStatusSingleService.Trigger(item, providerId));
             }
-
+        }
+        private List<long> GetFailedMessageDetailIds(ICollection<MessageDetailStatus> messageDetailStatuses)
+        {
+            var messageDetailStatueIds = 
+                messageDetailStatuses
+                .Where(x => !x.ProviderDeliveryStatus.IsFinal)
+                .Select(x => x.MessagesDetailId)
+                .ToList();
+            return messageDetailStatueIds;
         }
     }
 }

@@ -6,7 +6,6 @@ using SmsHub.Application.Features.Line.Handlers.Commands.Create.Contracts;
 using SmsHub.Application.Features.Line.Handlers.Queries.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.BaseDomainEntities.ApiResponse;
-using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Line.MediatorDtos.Commands.Create;
 using SmsHub.Domain.Features.Line.MediatorDtos.Queries;
 using SmsHub.Persistence.Contexts.UnitOfWork;
@@ -48,7 +47,5 @@ namespace SmsHub.Api.Controllers.V1.Line.Commands.Create
             await _uow.SaveChangesAsync(cancellationToken);
             return Ok(createDto);
         }
-
-
     }
 }

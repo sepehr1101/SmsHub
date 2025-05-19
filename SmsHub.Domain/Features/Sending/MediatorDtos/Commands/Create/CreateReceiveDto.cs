@@ -5,7 +5,6 @@ namespace SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create
 {
     public record CreateReceiveDto
     {
-
         public long? MessageId { get; private set; }
         public string MessageText { get; private set; }
         public string Sender { get; private set; }
@@ -31,7 +30,7 @@ namespace SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create
             MessageText = items.Body;
             Sender = items.SenderNubmer;
             Receptor = items.RecipientNumber;
-            ReceiveDateTime = items.Date;
+            ReceiveDateTime = DateTime.TryParse(items.Date, out DateTime receivedDate) ? receivedDate : DateTime.Now;
             InsertDateTime = DateTime.Now;
             LineId = lineId;
         }

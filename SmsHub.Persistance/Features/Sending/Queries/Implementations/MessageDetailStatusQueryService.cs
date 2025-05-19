@@ -20,10 +20,11 @@ namespace SmsHub.Persistence.Features.Sending.Queries.Implementations
             return await _messageDetailStatus.ToListAsync();
         }
 
-        public async Task<MessageDetailStatus> GetById(long Id)
+        public async Task<MessageDetailStatus> GetByIdIncludeDetails(long Id)
         {
             return await _messageDetailStatus
                 .Where(m => m.Id == Id)
+                .Include(m=> m.MessagesDetail)
                 .FirstAsync();
         }
 
@@ -34,21 +35,12 @@ namespace SmsHub.Persistence.Features.Sending.Queries.Implementations
                 .Where(m => m.MessagesDetailId == Id)
                 .ToListAsync();
         }
-
         public async Task<MessageDetailStatus> GetByProviderServerId(long Id)
         {
             return await _messageDetailStatus
                   .Include(m => m.MessagesDetail)
                   .Where(m => m.ProviderServerId == Id)
                   .FirstAsync();
-        }
-
-        public async Task<ICollection<MessageDetailStatus>> GetIncludeProviderResponseAndDelivery()
-        {
-            return await _messageDetailStatus
-                .Include(m => m.ProviderResponseStatus)
-                .Include(m=>m.ProviderDeliveryStatus)
-                .ToListAsync();
-        }
+        }       
     }
 }

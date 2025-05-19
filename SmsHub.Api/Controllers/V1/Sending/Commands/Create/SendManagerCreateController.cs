@@ -16,7 +16,6 @@ using SmsHub.Persistence.Features.Line.Queries.Contracts;
 using SmsHub.Persistence.Features.Line.Queries.Implementations;
 using SmsHub.Persistence.Features.Template.Queries.Contracts;
 
-
 namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
 {
     [ApiController]
@@ -63,7 +62,6 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
             await _uow.SaveChangesAsync(cancellationToken);
             return Ok(messages);
         }
-
     }
 
 }

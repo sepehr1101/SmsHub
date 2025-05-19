@@ -66,11 +66,10 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
 
         public async Task<ICollection<MobileText>> Handle(int templateId, int lineId, CancellationToken cancellationToken)
         {
-            var templateValue = await GetTemplateProperty(templateId);
-            var line = await GetLine(lineId);
-            var batchSize = line.Provider.BatchSize;
-            var requestBodyValue = await GetRequestBodyValue();
-
+            Dictionary<string,string> templateValue = await GetTemplateProperty(templateId);
+            Entities.Line line = await GetLine(lineId);
+            int batchSize = line.Provider.BatchSize;
+            ICollection<Dictionary<string,string>> requestBodyValue = await GetRequestBodyValue();
             requestBodyValue.ToList().ForEach(r => ValidationData(templateValue, r));
 
             ICollection<MobileText> mobileText = new List<MobileText>();
@@ -80,10 +79,9 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
             }
 
             var messageBatch = MessageBatchFactory.Create(mobileText, lineId, batchSize, "");
-            var result = _messageBatchCommandService.Add(messageBatch);
-            //messageBatch.MessagesHolders
-            //    .ForEach(m => BackgroundJob.Enqueue(() => _sendInBackgroundService.Trigger(m.Id, line.Provider.Id)));
-
+            await _messageBatchCommandService.Add(messageBatch);
+            messageBatch.MessagesHolders
+                .ForEach(m => BackgroundJob.Schedule(() => _sendInBackgroundService.Trigger(m.Id, line.Provider.Id),TimeSpan.FromHours(1)));
             return mobileText;
         }
         private Dictionary<string, string> DeserializeToDictionary(string data)
@@ -99,7 +97,6 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
             }
             return result;
         }
-
         private ICollection<Dictionary<string, string>> DeserializeToCollectionDictionary(string data)
         {
             ICollection<Dictionary<string, string>> result;
@@ -113,7 +110,6 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
             }
             return result;
         }
-
         private string CreateMessageToSend(Dictionary<string, string> data, string stringTemplate)
         {
             foreach (var item in data)
@@ -122,7 +118,6 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
             }
             return stringTemplate;
         }
-
         private void ValidationData(Dictionary<string, string> template, Dictionary<string, string> requestBody)
         {
             if (!requestBody.Keys.Select(k => k.ToLowerInvariant()).Contains(_Mobile))
@@ -137,13 +132,11 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
                     throw new InvalidUserDataException();
             }
         }
-
         private string FindMobileUser(Dictionary<string, string> requestBody)
         {
             var mobileData = requestBody.Where(x => x.Key.ToLower() == _Mobile).FirstOrDefault().Value;
             return mobileData;
         }
-
         private async Task<Entities.Template> GetTemplateById(int templateId)
         {
             var template = await _templateQueryService.Get(templateId);
@@ -160,7 +153,6 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
 
             return templateValue;
         }
-
         private async Task<Entities.Line> GetLine(int lineId)
         {
             var line = await _lineQueryService.GetIncludeProvider(lineId);
@@ -169,7 +161,6 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
 
             return line;
         }
-
         private async Task<ICollection<Dictionary<string, string>>> GetRequestBodyValue()
         {
             var requestBody = await new StreamReader(_contextAccessor.HttpContext.Request.Body).ReadToEndAsync();
@@ -177,7 +168,6 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
 
             return requestBodyValue;
         }
-
         private async Task<MobileText> GetMessageToSend(Dictionary<string, string> requestBodyValue, int templateId)
         {
             var template = await GetTemplateById(templateId);

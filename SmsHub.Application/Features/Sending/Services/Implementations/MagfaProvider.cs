@@ -20,7 +20,6 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         private readonly IMagfa300HttpMidService _magfaMidService;
         private readonly IMagfa300HttpMessagesService _magfaMessagesService;
 
-
         public MagfaProvider(
             IMagfa300HttpSendService magfaSendService,
             IMagfa300HttpStatusesService magfaStatusCodesService,
@@ -43,7 +42,6 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             _magfaMessagesService = magfaMessagesService;
             _magfaMessagesService.NotNull(nameof(magfaMessagesService));
         }
-
         public async Task<long> GetCredit(Entities.Line line, ICollection<ProviderResponseStatus> statusList)
         {
             var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
@@ -52,11 +50,9 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var password = magfaCredential.ClientSecret;
 
             var response = await _magfaBalanceService.GetBalances(domain, userName, password);
-
             var successstatusCode = statusList
-                .Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.IsSuccess == true)
+                .Where(x => x.ProviderId == ProviderEnum.Magfa && x.IsSuccess == true)
                 .Single().StatusCode;
-
             if (response.Status == successstatusCode)
             {
                 return response.Balance;
@@ -66,11 +62,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
                 var statusDetail = await GetProviderStatusByStatusCode(statusList, response.Status);
                 throw new ProviderResponseException(statusDetail.Message, statusDetail.StatusCode);
             }
-
         }
-
-
-
         public async Task<ICollection<CreateMessageDetailStatusDto>> GetState(Entities.Line line, ICollection<MessageAndProviderIdDto> statusListData, Guid holderId, ICollection<ProviderResponseStatus> responseStatusList, ICollection<ProviderDeliveryStatus> deliveryStatusList)
         {
             var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
@@ -81,14 +73,14 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var response = await _magfaStatusCodesService.GetStatuses(domain, userName, password, statusListData.Select(x=>x.ProviderServerId).ToList());
 
             var successstatusCode = responseStatusList
-                .Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.IsSuccess == true)
+                .Where(x => x.ProviderId == ProviderEnum.Magfa && x.IsSuccess == true)
                 .Single().StatusCode;
 
             if (response.Status == successstatusCode)
             {
                 ICollection<CreateMessageDetailStatusDto> messageDetailStatuses = new List<CreateMessageDetailStatusDto>();
                 var i = 0;
-                foreach (var item in response.Dlrs)
+                foreach (var item in response.Dlrs.Where(dlr=>dlr.Status>-1))
                 {
                     var deliveryStatusId = deliveryStatusList.Where(x => x.ProviderId == ProviderEnum.Magfa && x.StatusCode == 0).Single().Id;
                     var responseStatusId = responseStatusList.Where(x => x.ProviderId == ProviderEnum.Magfa && x.StatusCode == item.Status).Single().Id;
@@ -113,7 +105,6 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
                 throw new ProviderResponseException(statusDetail.Message, statusDetail.StatusCode);
             }
         }
-
         public async Task<CreateMessageDetailStatusDto> GetState(Entities.Line line, MessageAndProviderIdDto statusData, Guid holderId, ICollection<ProviderResponseStatus> responseStatusList, ICollection<ProviderDeliveryStatus> deliveryStatusList)
         {
             var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
@@ -124,10 +115,8 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var response = await _magfaStatusCodesService.GetStatuses(domain, userName, password, statusData.ProviderServerId);
 
             var successstatusCode = responseStatusList
-                .Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.IsSuccess == true)
+                .Where(x => x.ProviderId == ProviderEnum.Magfa && x.IsSuccess == true)
                 .Single().StatusCode;
-
-
             var deliveryStatusId = deliveryStatusList.Where(x => x.ProviderId == ProviderEnum.Magfa && x.StatusCode == 0).Single().Id;
             var responseStatusId = responseStatusList.Where(x => x.ProviderId == ProviderEnum.Magfa && x.StatusCode == response.Dlrs.First().Status).Single().Id;
 
@@ -150,10 +139,6 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
                 throw new ProviderResponseException(statusDetail.Message, statusDetail.StatusCode);
             }
         }
-
-
-
-
         public async Task<CreateMessageDetailStatusDto> Send(Entities.Line line, MobileText mobileText, Guid holderId, ICollection<ProviderResponseStatus> responseStatusList, ICollection<ProviderDeliveryStatus> deliveryStatusList)
         {
             var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
@@ -173,18 +158,18 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var response = await _magfaSendService.SendMessage(domain, userName, password, sendDto);
 
             var successstatusCode = responseStatusList
-               .Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.IsSuccess == true)
-            .Single().StatusCode;
+               .Where(x => x.ProviderId == ProviderEnum.Magfa && x.IsSuccess == true)
+               .Single().StatusCode;
 
             var deliveryStatusId = deliveryStatusList.Where(x => x.ProviderId == ProviderEnum.Magfa && x.StatusCode == 0).Single().Id;
-            var responseStatusId = responseStatusList.Where(x => x.ProviderId == ProviderEnum.Magfa && x.StatusCode == response.Message.First().Status).Single().Id;
+            var responseStatusId = responseStatusList.Where(x => x.ProviderId == ProviderEnum.Magfa && x.StatusCode == response.Messages.First().Status).Single().Id;
 
             if (response.Status == successstatusCode)
             {
                 var messageDetailStatus = new CreateMessageDetailStatusDto()
                 {
                     InsertDateTime = DateTime.Now,
-                    ProviderServerId = Convert.ToInt64(response.Message.First().Id),
+                    ProviderServerId = Convert.ToInt64(response.Messages.First().Id),
                     MessagesDetailId = mobileText.LocalId,
                     MessagesHolderId = holderId,
                     ProviderDeliveryStatusId = deliveryStatusId,
@@ -197,9 +182,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
                 var statusDetail = await GetProviderStatusByStatusCode(responseStatusList, response.Status);
                 throw new ProviderResponseException(statusDetail.Message, statusDetail.StatusCode);
             }
-
         }
-
         public async Task<ICollection<CreateMessageDetailStatusDto>> Send(Entities.Line line, ICollection<MobileText> mobileText, Guid holderId, ICollection<ProviderResponseStatus> responseStatusList, ICollection<ProviderDeliveryStatus> deliveryStatusList)
         {
             var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
@@ -226,14 +209,14 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var response = await _magfaSendService.SendMessage(domain, userName, password, sendDto);
 
             var successstatusCode = responseStatusList
-               .Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.IsSuccess == true)
+               .Where(x => x.ProviderId == ProviderEnum.Magfa && x.IsSuccess == true)
                .Single().StatusCode;
 
             if (response.Status == successstatusCode)
             {
                 //MessageDetailStatus
                 ICollection<CreateMessageDetailStatusDto> messageDetailStatuses = new List<CreateMessageDetailStatusDto>();
-                foreach (var item in response.Message)
+                foreach (var item in response.Messages)
                 {
                     var deliveryStatusId = deliveryStatusList.Where(x => x.ProviderId == ProviderEnum.Magfa && x.StatusCode == 0).Single().Id;
                     var responseStatusId = responseStatusList.Where(x => x.ProviderId == ProviderEnum.Magfa && x.StatusCode == item.Status).Single().Id;
@@ -257,10 +240,6 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
                 throw new ProviderResponseException(statusDetail.Message, statusDetail.StatusCode);
             }
         }
-
-
-
-
         private async Task Mid(Entities.Line line, long userId, ICollection<ProviderResponseStatus> statusList)
         {
             var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
@@ -271,7 +250,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var response = await _magfaMidService.GetMid(domain, userName, password, userId);
 
             var successstatusCode = statusList
-               .Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.IsSuccess == true)
+               .Where(x => x.ProviderId == ProviderEnum.Magfa && x.IsSuccess == true)
                .Single().StatusCode;
 
             if (response.Status == successstatusCode)
@@ -284,8 +263,6 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
                 throw new ProviderResponseException(statusDetail.Message, statusDetail.StatusCode);
             }
         }
-
-
         public async Task<ICollection<CreateReceiveDto>> Receive([Optional] Entities.Line line, ICollection<ProviderResponseStatus> statusList)
         {
             var magfaCredential = ProviderCredentialService.CheckMagfaValidCredential(line.Credential);
@@ -295,7 +272,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             var result = await _magfaMessagesService.GetMessages(domain, userName, password);
 
             var successstatusCode = statusList
-               .Where(x => x.ProviderId == ProviderEnum.Kavenegar && x.IsSuccess == true)
+               .Where(x => x.ProviderId == ProviderEnum.Magfa && x.IsSuccess == true)
                .Single().StatusCode;
 
             if (result.Status == successstatusCode)
@@ -315,18 +292,12 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
                 throw new ProviderResponseException(statusDetail.Message, statusDetail.StatusCode);
             }
         }
-
-
-        //
-
         private async Task<ProviderResponseStatus> GetProviderStatusByStatusCode(ICollection<ProviderResponseStatus> statusList, int statusCode)
         {
             var trueStatus = statusList
                .Where(s => s.ProviderId == ProviderEnum.Magfa & s.StatusCode == statusCode)
                .Single();
-
             return trueStatus;
         }
-
     }
 }
