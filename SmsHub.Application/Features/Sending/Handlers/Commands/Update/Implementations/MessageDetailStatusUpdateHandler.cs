@@ -31,7 +31,7 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Update.Implement
 
         public async Task Handle(UpdateMessageDetailStatusDto updateMessageDetailStatusDto, CancellationToken cancellationToken)
         {
-            var messageDetailStatus = await _messageDetailStatusQueryService.GetById(updateMessageDetailStatusDto.Id);
+            var messageDetailStatus = await _messageDetailStatusQueryService.GetByIdIncludeDetails(updateMessageDetailStatusDto.Id);
             if (messageDetailStatus != null)
             {
                 _mapper.Map(updateMessageDetailStatusDto, messageDetailStatus);

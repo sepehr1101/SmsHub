@@ -9,7 +9,6 @@ namespace SmsHub.Infrastructure.Providers.Magfa3000.Http.Implementations
     public class Magfa300HttpMessagesService : IMagfa300HttpMessagesService
     {
         private readonly IRestClient _restClient;
-
         public Magfa300HttpMessagesService(IRestClient restClient)
         {
             _restClient = restClient;
@@ -18,7 +17,7 @@ namespace SmsHub.Infrastructure.Providers.Magfa3000.Http.Implementations
         public async Task<MagfaResponse.ReceivedMessagesDto> GetMessages(string domain, string username, string password)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, Literals.MessagesUri);
-            request.AddBasicAuthentication($"{domain}/{username}", password);
+            request.AddBasicAuthentication($"{username}/{domain}", password);
             var response = await _restClient.Create(request.RequestUri).Execute<MagfaResponse.ReceivedMessagesDto>(request);
             return response;
         }

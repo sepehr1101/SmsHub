@@ -22,7 +22,6 @@ namespace SmsHub.Api.Controllers.V1.Line.Queries
         [HttpPost]
         [Route("single")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<GetLineDto>), StatusCodes.Status200OK)]
-
         public async Task<IActionResult> GetSingle(IntId Id)
         {
             var line = await _getSingleHandler.Handle(Id);

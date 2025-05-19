@@ -2,7 +2,7 @@
 
 namespace SmsHub.Application.Features.Sending.Services.Contracts
 {
-    public interface IGetStatusInBackgroundService
+    public interface IStatusInBackgroundService
     {
         Task Trigger(Guid messageHolderId, ProviderEnum providerId);
     }

@@ -3,7 +3,9 @@ using SmsHub.Application.Features.Sending.Factories;
 using SmsHub.Application.Features.Sending.Services.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Constants;
+using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Sending.Entities;
+using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Features.Sending.Commands.Contracts;
 using SmsHub.Persistence.Features.Sending.Queries.Contracts;
@@ -25,7 +27,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             IUnitOfWork uow,
             IMapper mapper,
             ISmsProviderFactory smsProviderFactory,
-            IMessageDetailStatusQueryService messagesDetailQueryService,
+            IMessagesDetailQueryService messagesDetailQueryService,
             IMessageDetailStatusCommandService messageDetailStatusCommandService,
             IMessagesHolderQueryService messagesHolderQueryService,
             IProviderResponseStatusQueryService providerResponseStatusQueryService,
@@ -40,6 +42,9 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
 
             _smsProviderFactory = smsProviderFactory;
             _smsProviderFactory.NotNull(nameof(smsProviderFactory));
+
+            _messagesDetailQueryService = messagesDetailQueryService;
+            _messagesDetailQueryService.NotNull(nameof(_messagesDetailQueryService));
 
             _messageDetailStatusCommandService = messageDetailStatusCommandService;
             _messageDetailStatusCommandService.NotNull(nameof(messageDetailStatusCommandService));
@@ -60,29 +65,27 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             _messageDetailStatusQueryService.NotNull(nameof(messageDetailStatusQueryService));
         }
 
-        public async Task Trigger(long messageDetailId, ProviderEnum providerId)
+        public async Task Trigger(long messageDetailStatusId, ProviderEnum providerId)
         {
             //TODO: get provider responser from new table MessageDetailStatus
-            var responseStatusList = await _providerResponseStatusQueryService.Get();
-            var deliveryStatusList=await _providerDeliveryStatusQueryService.Get();
-            var messageDetail = await _messagesDetailQueryService.GetInclude(messageDetailId);
-            var providerServer = await _messageDetailStatusQueryService.GetById(messageDetailId);
-            var smsProvider = _smsProviderFactory.Create(providerId);
+            ICollection<ProviderResponseStatus> responseStatusList = await _providerResponseStatusQueryService.Get();
+            ICollection<ProviderDeliveryStatus> deliveryStatusList=await _providerDeliveryStatusQueryService.Get();
+            MessageDetailStatus messageDetailStatus = await _messageDetailStatusQueryService.GetByIdIncludeDetails(messageDetailStatusId);
+            MessageDetail messageDetail = await _messagesDetailQueryService.GetInclude(messageDetailStatus.MessagesDetail.Id);
+           
+            ISmsProvider smsProvider = _smsProviderFactory.Create(providerId);
             var statusInfo = new MessageAndProviderIdDto()
             {
-                MessageDetailId = messageDetailId,
-                ProviderServerId=providerServer.ProviderServerId
+                MessageDetailId = messageDetailStatusId,
+                ProviderServerId=messageDetailStatus.ProviderServerId,
             };
-
-          var result=  await smsProvider.GetState(messageDetail.MessagesHolder.MessageBatch.Line,statusInfo,messageDetail.MessagesHolderId, responseStatusList,deliveryStatusList);
+            CreateMessageDetailStatusDto createMessageDetailStatusDto =  await smsProvider.GetState(messageDetail.MessagesHolder.MessageBatch.Line,statusInfo,messageDetail.MessagesHolderId, responseStatusList,deliveryStatusList);
 
             // delivery status
-            var messageDetailStatus = _mapper.Map<MessageDetailStatus>(result);
-            await _messageDetailStatusCommandService.Add(messageDetailStatus);
+            var newMessageDetailStatus = _mapper.Map<MessageDetailStatus>(createMessageDetailStatusDto);
+            await _messageDetailStatusCommandService.Add(newMessageDetailStatus);
 
             await _uow.SaveChangesAsync(CancellationToken.None);
         }
-
-     
     }
 }

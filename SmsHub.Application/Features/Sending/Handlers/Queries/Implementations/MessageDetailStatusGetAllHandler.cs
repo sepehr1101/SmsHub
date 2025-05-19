@@ -25,7 +25,7 @@ namespace SmsHub.Application.Features.Sending.Handlers.Queries.Implementations
 
         public async Task<GetMessageDetailStatusByIdDto> Handle(long Id)
         {
-            var messageDetailStatuses = await _messageDetailStatusQueryService.GetById(Id);
+            var messageDetailStatuses = await _messageDetailStatusQueryService.GetByIdIncludeDetails(Id);
             var getMessageDetailStatuses = _mapper
                 .Map<GetMessageDetailStatusByIdDto>(messageDetailStatuses);
 

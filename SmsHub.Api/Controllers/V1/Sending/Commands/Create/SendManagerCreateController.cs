@@ -9,7 +9,6 @@ using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using SmsHub.Infrastructure.Providers.Kavenegar.Http.Contracts;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 
-
 namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
 {
     [ApiController]
@@ -40,14 +39,12 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         [HttpPost]
         [Route("by-template/{templateId}/{lineId}")]
         [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<MobileText>>), StatusCodes.Status200OK)]
-
         public async Task<IActionResult> SendManager(int templateId, int lineId, CancellationToken cancellationToken)
         {
             var messages = await _sendManagerCreateHandler.Handle(templateId, lineId, new CancellationToken());
             await _uow.SaveChangesAsync(cancellationToken);
             return Ok(messages);
         }
-
     }
 
 }
