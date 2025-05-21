@@ -59,7 +59,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
             var line = await _lineGetSingleHandler.Handle(lineId);
             var template=await _templateGetSingleHandler.Handle(templateId);
 
-            var messages = await _sendManagerCreateHandler.Handle(templateId, lineId, new CancellationToken());
+            var messages = await _sendManagerCreateHandler.Handle(templateId, lineId,  cancellationToken);
             await _uow.SaveChangesAsync(cancellationToken);
             return Ok(messages);
         }
