@@ -7,5 +7,6 @@ namespace SmsHub.Persistence.Features.Config.Commands.Contracts
         Task Add(Entities.Config config);
         Task Add(ICollection<Entities.Config> configs);
         void Delete(Entities.Config config);
+        void Delete(ICollection<Entities.Config> configs);
     }
 }

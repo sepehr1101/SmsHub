@@ -6,5 +6,6 @@ namespace SmsHub.Persistence.Features.Config.Queries.Contracts
     {
         Task<ICollection<Entities.Config>> Get();
         Task<Entities.Config> Get(int id);
+        Task<ICollection<Entities.Config>> GetByConfigTypeGroupId(int id);
     }
 }

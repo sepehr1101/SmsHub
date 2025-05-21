@@ -13,10 +13,14 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Delete.Implementa
         private readonly IMapper _mapper;
         private readonly IConfigTypeGroupCommandService _configTypeGroupCommandService;
         private readonly IConfigTypeGroupQueryService _configTypeGroupQueryService;
+        private readonly IConfigQueryService _configQueryService;
+        private readonly IConfigCommandService _configCommandService;
         public ConfigTypeGroupDeleteHandler(
             IMapper mapper,
             IConfigTypeGroupCommandService configTypeGroupCommandService,
-            IConfigTypeGroupQueryService configTypeGroupQueryService)
+            IConfigTypeGroupQueryService configTypeGroupQueryService,
+            IConfigQueryService configQueryService,
+            IConfigCommandService configCommandService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
@@ -26,10 +30,21 @@ namespace SmsHub.Application.Features.Config.Handlers.Commands.Delete.Implementa
 
             _configTypeGroupQueryService = configTypeGroupQueryService;
             _configTypeGroupQueryService.NotNull(nameof(configTypeGroupQueryService));
+
+            _configQueryService = configQueryService;
+            _configQueryService.NotNull(nameof( configQueryService));
+
+            _configCommandService = configCommandService;
+            _configCommandService.NotNull(nameof( configCommandService));
         }
         public async Task Handle(DeleteConfigTypeGroupDto deleteConfigTypeGroupDto, CancellationToken cancellationToken)
         {
             var configTypeGroup = await _configTypeGroupQueryService.Get(deleteConfigTypeGroupDto.Id);
+            ICollection<SmsHub.Domain.Features.Entities.Config> configs = await _configQueryService.GetByConfigTypeGroupId(deleteConfigTypeGroupDto.Id);
+            if (configs != null)
+            {
+                _configCommandService.Delete(configs);
+            }
             _configTypeGroupCommandService.Delete(configTypeGroup);
         }
     }
