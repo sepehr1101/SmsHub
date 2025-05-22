@@ -81,7 +81,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             await _uow.SaveChangesAsync(CancellationToken.None);
 
             //Get Status
-            BackgroundJob.Enqueue(() => _statusInBackgroundService.Trigger(messageHolderId, providerId));
+            BackgroundJob.Schedule(() => _statusInBackgroundService.Trigger(messageHolderId, providerId), TimeSpan.FromMinutes(15));
         }
     }
 }
