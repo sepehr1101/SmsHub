@@ -34,12 +34,8 @@ namespace SmsHub.Persistence.Features.Line.Queries.Implementations
             var line = await _lines
                     .Include(x => x.Provider)
                     .Where(x => x.Id == id)
-                    .FirstOrDefaultAsync();
+                    .SingleAsync();
             return line;
-            //return await _lines
-            //        .Include(x => x.Provider)
-            //        .Where(x => x.Id == id)
-            //        .FirstOrDefaultAsync();
 
         }
 

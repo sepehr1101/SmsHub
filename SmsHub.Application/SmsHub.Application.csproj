@@ -10,6 +10,7 @@
     <None Remove="Features\Queries\**" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Common\Entities\" />
     <Folder Include="Features\Consumer\Notifications\" />
     <Folder Include="Providers\Kavenegar\Commands\" />
     <Folder Include="Providers\Kavenegar\Handlers\" />

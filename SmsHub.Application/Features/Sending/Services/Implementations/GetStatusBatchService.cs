@@ -88,7 +88,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             List<long> failedMessageDetailIdList = GetFailedMessageDetailIds(messageDetailStatus);
             foreach (var item in failedMessageDetailIdList)
             {                
-                BackgroundJob.Enqueue(() => _getStatusSingleService.Trigger(item, providerId));
+                BackgroundJob.Schedule(() => _getStatusSingleService.Trigger(item, providerId),TimeSpan.FromMinutes(15));
             }
         }
         private List<long> GetFailedMessageDetailIds(ICollection<MessageDetailStatus> messageDetailStatuses)
