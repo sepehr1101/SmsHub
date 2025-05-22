@@ -11,13 +11,13 @@
         public const string TemplateSection = "قالب پیام";
         public const string ContactSection = "Contact";
         #endregion
-       
+
 
 
 
         #region Description
 
-        
+        public const string AttemptDescription = "تلاش برای انجام";
         public const string AddDescription = "افزوده شد";
         public const string DeleteDescription = "حذف شد";
         public const string UpdateDescription = "ویرایش شد";

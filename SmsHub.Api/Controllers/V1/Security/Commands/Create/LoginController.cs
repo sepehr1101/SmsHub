@@ -22,7 +22,7 @@ namespace SmsHub.Api.Controllers.V1.Security.Commands.Create
 {
     [Route("login")]
     public class LoginController : BaseController
-    {
+    {       
         private readonly IUnitOfWork _uow;
         private readonly IUserFindByPasswordHandler _userFindByPasswordHandler;
         private readonly ITokenFactoryService _tokenFactoryService;

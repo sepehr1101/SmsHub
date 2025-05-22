@@ -1,12 +1,12 @@
 ﻿using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
-using System.Text;
+using System.Text.RegularExpressions;
 
 namespace SmsHub.Application.Features.Sending.Factories
 {
-    public static class MessageBatchFactory
+    internal static class MessageBatchFactory
     {
-        public static MessageBatch Create(ICollection<MobileText> mobileTexts, int lineId, int batchSize, object metadata)
+        internal static MessageBatch Create(ICollection<MobileText> mobileTexts, int lineId, int batchSize, object metadata)
         {
             var messageDetails = mobileTexts.Select(GetMessageDetail);
 
@@ -31,12 +31,12 @@ namespace SmsHub.Application.Features.Sending.Factories
         {
             return new MessagesHolder()
             {
-                Id = new Guid(),
+                Id = new Guid(),//TODO: after update to .net 9 user Guid.CreateVersion7()
                 InsertDateTime = DateTime.Now,
-                RetryCount = 2,
+                RetryCount = 0,
                 MessagesDetails = messagesDetail.ToList(),
                 DetailsSize = messagesDetail.Count(),
-                SendDone = true,
+                SendDone = false,
             };
         }
         private static MessageDetail GetMessageDetail(MobileText mobileText)
@@ -46,14 +46,55 @@ namespace SmsHub.Application.Features.Sending.Factories
                 Text = mobileText.Text,
                 Receptor = mobileText.Mobile,
                 SendDateTime = DateTime.Now,
-                SmsCount = GetMessageCount(mobileText.Text)
+                SmsCount = 10//SmsCounter.CountSmsMessages(mobileText.Text)
             };
         }
-        private static short GetMessageCount(string text)
+    }
+    file static class SmsCounter
+    {
+        internal static short CountSmsMessages(string text)
         {
-            var count = Convert.ToInt16(Encoding.UTF8.GetByteCount(text));
-            return count;
+            bool isNonAscii = true;//ContainsNonUnicodeCharacters(text);
+            int maxCharsFirstSms = isNonAscii ? 70 : 160;
+            int maxCharsSecondSms = isNonAscii ? 64 : 146;
+            int maxCharsSubsequentSms = isNonAscii ? 67 : 153;
+
+            short totalSms = 0;
+            int remainingChars = text.Length;
+
+            if (remainingChars <= maxCharsFirstSms)
+            {
+                return 1;
+            }
+            else
+            {
+                totalSms = 1;
+                remainingChars -= maxCharsFirstSms;
+
+                if (remainingChars <= maxCharsSecondSms)
+                {
+                    return (short)(totalSms + 1);
+                }
+                else
+                {
+                    totalSms += 1;
+                    remainingChars -= maxCharsSecondSms;
+
+                    // محاسبه پیامک‌های بعدی صفحه سوم به بعد
+                    totalSms += (short)Math.Ceiling((double)remainingChars / maxCharsSubsequentSms);
+                    return totalSms;
+                }
+            }
         }
 
+        private static bool ContainsNonUnicodeCharacters(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+                return false;
+
+            // الگوی تشخیص کاراکترهای غیر ASCII
+            Regex nonUnicodeRegex = new (@"[^\x00-\x7F]", RegexOptions.Compiled);
+            return nonUnicodeRegex.IsMatch(text);
+        }
     }
 }

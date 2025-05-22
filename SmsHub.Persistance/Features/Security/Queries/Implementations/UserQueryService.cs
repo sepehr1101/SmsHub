@@ -29,6 +29,16 @@ namespace SmsHub.Persistence.Features.Security.Queries.Implementations
                 .Where(u=> u.ValidTo==null)
                 .ToListAsync();
         }
+        public async Task<ICollection<User>> GetIncludeRole()
+        {
+            return await
+                _users
+                .AsNoTracking()
+                .Where(u => u.ValidTo == null)
+                .Include(u=>u.UserRoles)
+                .ThenInclude(ur=>ur.Role)
+                .ToListAsync();
+        }
         public async Task<User> Get(Guid id)
         {
             return await _uow.FindOrThrowAsync<User>(id);
