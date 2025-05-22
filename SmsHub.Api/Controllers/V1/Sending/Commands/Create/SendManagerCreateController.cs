@@ -27,7 +27,7 @@ namespace SmsHub.Api.Controllers.V1.Sending.Commands.Create
         [ProducesResponseType(typeof(ApiResponseEnvelope<ICollection<MobileText>>), StatusCodes.Status200OK)]
         [InformativeLogFilter(LogLevelEnum.Send, LogLevelMessageResources.SendSection, LogLevelMessageResources.SendMessage + LogLevelMessageResources.AttemptDescription)]
         public async Task<IActionResult> SendManager(int templateId, int lineId, CancellationToken cancellationToken)
-        {  
+        {
             var messages = await _sendManagerCreateHandler.Handle(templateId, lineId, CurrentUser, cancellationToken);
             return Ok(messages);
         }

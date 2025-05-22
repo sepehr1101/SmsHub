@@ -88,7 +88,7 @@ namespace SmsHub.Application.Features.Sending.Handlers.Commands.Create.Implement
             Dictionary<string, string> templateDictionary = GetTemplateDictionary(template.Parameters);
             ICollection<Dictionary<string, string>> requestBodyDictionaries = await GetRequestBodyDictionaries();
             Validate(requestBodyDictionaries, templateDictionary);
-
+            
             ICollection<MobileText> mobileText = GetMobileTexts(requestBodyDictionaries, template.Expression);
             MessageBatch messageBatch = MessageBatchFactory.Create(mobileText, lineId, line.Provider.BatchSize, string.Empty);
             await SaveAndEnqueue(messageBatch, line.Provider.Id, template.Title, currentUser, cancellationToken);

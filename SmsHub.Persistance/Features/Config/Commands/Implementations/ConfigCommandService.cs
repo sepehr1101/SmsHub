@@ -27,5 +27,9 @@ namespace SmsHub.Persistence.Features.Config.Commands.Implementations
         {
             _configs.Remove(config);
         }
+        public void Delete(ICollection<Entities.Config> configs)
+        {
+            _configs.RemoveRange(configs);
+        }
     }
 }

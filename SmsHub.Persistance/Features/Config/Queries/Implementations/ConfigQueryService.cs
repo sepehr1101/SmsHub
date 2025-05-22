@@ -26,6 +26,12 @@ namespace SmsHub.Persistence.Features.Config.Queries.Implementations
         {
             return await _uow.FindOrThrowAsync<Entities.Config>(id);
         }
+        public async Task<ICollection<Entities.Config>> GetByConfigTypeGroupId(int id)
+        {
+            return await _configs
+                .Where(c => c.ConfigTypeGroupId == id)
+                .ToListAsync();
+        }
 
     }
 }

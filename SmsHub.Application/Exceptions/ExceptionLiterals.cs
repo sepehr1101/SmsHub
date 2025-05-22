@@ -29,5 +29,7 @@ namespace SmsHub.Application.Exceptions
         public static string MessageError(string message) => $"{message} خطا در مرحله دوم احراز هویت : ";
         public static string InvalidForeignKey(string tebleName) => $"موجودیت {tebleName} ، با شناسه وارد شده یافت نشد";
         public static string DuplicateItem => "این آیتم قبلا قبلا ذخیره شده است";
+        public static string NotFoundItem => "آیتم یافت نشد";
+
     }
 }
