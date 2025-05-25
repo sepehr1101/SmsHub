@@ -2,6 +2,7 @@
 using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Sending.Entities;
 using SmsHub.Domain.Features.Security.Entities;
+using SmsHub.Domain.Features.Logging.Entities;
 
 namespace SmsHub.Persistence.Contexts.Implementation
 {
@@ -44,5 +45,6 @@ namespace SmsHub.Persistence.Contexts.Implementation
         public virtual DbSet<ProviderDeliveryStatus> ProviderDeliveryStatuses{ get; set; } 
         public virtual DbSet<UserLine> UserLine { get; set; }
         public virtual DbSet<MessageDetailStatus> MessageDetailStatuses { get; set; }
+        public virtual DbSet<HttpLog>  HttpLogs { get; set; }
     }
 }

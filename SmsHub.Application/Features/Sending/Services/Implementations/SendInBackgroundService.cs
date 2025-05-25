@@ -25,7 +25,6 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         private readonly IMessageDetailStatusCommandService _messageDetailStatusCommandService;
         private readonly IStatusInBackgroundService _statusInBackgroundService;
 
-
         public SendInBackgroundService(
             IMapper mapper,
             IUnitOfWork uow,
@@ -64,6 +63,8 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             _statusInBackgroundService=statusInBackgroundService; 
             _statusInBackgroundService.NotNull(nameof(statusInBackgroundService));
         }
+
+        [AutomaticRetry(Attempts =0)]
         public async Task Trigger(Guid messageHolderId, ProviderEnum providerId)
         {
             MessagesHolder messageHolder = await _messagesHolderQueryService.GetIncludeLine(messageHolderId);

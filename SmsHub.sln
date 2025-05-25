@@ -85,6 +85,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Asanak", "Asanak", "{2E2A56
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsHub.UnitTests.Common", "SmsHub.UnitTests.Common\SmsHub.UnitTests.Common.csproj", "{09196D99-BB47-47EB-9AEE-BE123E7C0028}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smshub.BridgeApi", "Smshub.BridgeApi\Smshub.BridgeApi.csproj", "{C955BDCC-7522-4914-B264-461692E2B7F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -139,6 +141,10 @@ Global
 		{09196D99-BB47-47EB-9AEE-BE123E7C0028}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09196D99-BB47-47EB-9AEE-BE123E7C0028}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09196D99-BB47-47EB-9AEE-BE123E7C0028}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C955BDCC-7522-4914-B264-461692E2B7F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C955BDCC-7522-4914-B264-461692E2B7F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C955BDCC-7522-4914-B264-461692E2B7F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C955BDCC-7522-4914-B264-461692E2B7F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -165,6 +171,7 @@ Global
 		{DDB190EA-0C8D-4888-B2B3-255E54CF9957} = {DE9F2511-05CA-4FEB-B757-B5B11D59A212}
 		{2E2A56CA-F3F3-4BCC-BDF0-87AA36B6381D} = {DE9F2511-05CA-4FEB-B757-B5B11D59A212}
 		{09196D99-BB47-47EB-9AEE-BE123E7C0028} = {FFE55C72-93D2-47ED-8E73-4292285FFAFD}
+		{C955BDCC-7522-4914-B264-461692E2B7F6} = {0C28B916-070B-4F7B-9226-4D9843C2C26D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7B76544C-4686-41B3-8D63-1F256465FA03}

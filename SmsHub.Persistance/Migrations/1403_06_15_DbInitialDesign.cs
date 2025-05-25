@@ -459,7 +459,22 @@ namespace SmsHub.Persistence.Migrations
                     .ForeignKey(NamingHelper.Fk(TableName.ProviderDeliveryStatus, TableName.MessageDetailStatus), nameof(TableName.ProviderDeliveryStatus), Id)
                 .WithColumn("ProviderResponseStatusId").AsInt32().Nullable()
                     .ForeignKey(NamingHelper.Fk(TableName.ProviderResponseStatus, TableName.MessageDetailStatus), nameof(TableName.ProviderResponseStatus), Id);
+        }
 
+        private void CreateHttpLog()
+        {
+            Create.Table(nameof(TableName.HttpLog))
+               .WithColumn("Id").AsInt64().PrimaryKey().Identity()
+               .WithColumn("RequestDateTime").AsDateTime2().NotNullable().WithDefaultValue(SystemMethods.CurrentDateTime)
+               .WithColumn("Method").AsString(10).NotNullable()
+               .WithColumn("Url").AsString(_1023).NotNullable() // NVARCHAR(MAX) equivalent
+               .WithColumn("RequestHeaders").AsString(int.MaxValue).Nullable()
+               .WithColumn("RequestBody").AsString(int.MaxValue).Nullable()
+               .WithColumn("StatusCode").AsInt32().Nullable()
+               .WithColumn("ReasonPhrase").AsString(50).Nullable()
+               .WithColumn("ResponseHeaders").AsString(int.MaxValue).Nullable()
+               .WithColumn("ResponseBody").AsString(int.MaxValue).Nullable()
+               .WithColumn("Duration").AsTime().Nullable();
 
         }
     }
