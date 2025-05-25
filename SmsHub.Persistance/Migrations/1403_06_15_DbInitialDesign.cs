@@ -53,7 +53,7 @@ namespace SmsHub.Persistence.Migrations
                 .WithColumn("ValidFrom").AsDateTime2().NotNullable()
                 .WithColumn("ValidTo").AsDateTime2().Nullable()
                 .WithColumn("InsertLogInfo").AsString(int.MaxValue).NotNullable()
-                .WithColumn("RemoveLogInfo").AsString(int.MinValue).Nullable()
+                .WithColumn("RemoveLogInfo").AsString(int.MaxValue).Nullable()
                 .WithColumn("ApiKey").AsString(_255).Nullable();
         }
        
