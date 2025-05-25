@@ -48,7 +48,5 @@ namespace SmsHub.Api.Controllers.V1.Line.Commands.Create
             await _uow.SaveChangesAsync(cancellationToken);
             return Ok(createDto);
         }
-
-
     }
 }

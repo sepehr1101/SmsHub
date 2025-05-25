@@ -4,7 +4,6 @@ using SmsHub.Domain.Constants;
 using SmsHub.Domain.Features.Sending.Entities;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.DbSeeder.Contracts;
-using System.Data;
 
 namespace SmsHub.Persistence.DbSeeder.Implementations
 {
@@ -28,11 +27,9 @@ namespace SmsHub.Persistence.DbSeeder.Implementations
             {
                 _providerDeliveryStatus.AddRange(GetKavenegarDeliveryStatus());
                 _providerDeliveryStatus.AddRange(GetMagfaDeliveryStatus());
-
                 _uow.SaveChanges();
             }
         }
-
         private List<ProviderDeliveryStatus> GetKavenegarDeliveryStatus()
         {
             var KavenegarDeliveryStatus = new List<ProviderDeliveryStatus>()
@@ -110,7 +107,6 @@ namespace SmsHub.Persistence.DbSeeder.Implementations
             };
             return KavenegarDeliveryStatus;
         }
-
         private List<ProviderDeliveryStatus> GetMagfaDeliveryStatus()
         {
             var MagfaDeliveryStatus = new List<ProviderDeliveryStatus>()
@@ -121,9 +117,36 @@ namespace SmsHub.Persistence.DbSeeder.Implementations
                      StatusCode = 0,
                      Message = "ارسال به Provider",
                      IsFinal = false,
+                },
+                new ProviderDeliveryStatus()
+                {
+                    ProviderId = ProviderEnum.Magfa,
+                     StatusCode = 1,
+                     Message = "رسیده به گوشی",
+                     IsFinal = true,
+                },
+                new ProviderDeliveryStatus()
+                {
+                    ProviderId = ProviderEnum.Magfa,
+                     StatusCode = 2,
+                     Message = "نرسیده به گوشی",
+                     IsFinal = true,
+                },
+                new ProviderDeliveryStatus()
+                {
+                    ProviderId = ProviderEnum.Magfa,
+                     StatusCode = 8,
+                     Message = "رسیده به مخابرات",
+                     IsFinal = false,
+                },
+                new ProviderDeliveryStatus()
+                {
+                    ProviderId = ProviderEnum.Magfa,
+                     StatusCode = 16,
+                     Message = "نرسیده به مخابرات",
+                     IsFinal = true,
                 }
             };
-
            return MagfaDeliveryStatus;
         }
     }

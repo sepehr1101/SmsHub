@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
+using Hangfire;
 using SmsHub.Application.Features.Sending.Factories;
 using SmsHub.Application.Features.Sending.Services.Contracts;
 using SmsHub.Common.Extensions;
 using SmsHub.Domain.Constants;
+using SmsHub.Domain.Features.Entities;
 using SmsHub.Domain.Features.Sending.Entities;
+using SmsHub.Domain.Features.Sending.MediatorDtos.Commands.Create;
 using SmsHub.Persistence.Contexts.UnitOfWork;
 using SmsHub.Persistence.Features.Sending.Commands.Contracts;
 using SmsHub.Persistence.Features.Sending.Queries.Contracts;
@@ -20,7 +23,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
         private readonly IProviderResponseStatusQueryService _providerResponseStatusQueryService;
         private readonly IProviderDeliveryStatusQueryService _providerDeliveryStatusQueryService;
         private readonly IMessageDetailStatusCommandService _messageDetailStatusCommandService;
-        private readonly IGetStatusInBackgroundService _getStatusInBackgroundService;
+        private readonly IStatusInBackgroundService _statusInBackgroundService;
 
 
         public SendInBackgroundService(
@@ -32,7 +35,7 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             IProviderResponseStatusQueryService providerResponseStatusQueryService,
             IProviderDeliveryStatusQueryService providerDeliveryStatusQueryService,
             IMessageDetailStatusCommandService messageDetailStatusCommandService,
-            IGetStatusInBackgroundService getStatusInBackgroundService)
+            IStatusInBackgroundService statusInBackgroundService)
         {
             _mapper = mapper;
             _mapper.NotNull(nameof(mapper));
@@ -58,29 +61,27 @@ namespace SmsHub.Application.Features.Sending.Services.Implementations
             _messageDetailStatusCommandService = messageDetailStatusCommandService;
             _messageDetailStatusCommandService.NotNull(nameof(messageDetailStatusCommandService));
 
-            _getStatusInBackgroundService=getStatusInBackgroundService; 
-            _getStatusInBackgroundService.NotNull(nameof(getStatusInBackgroundService));
-
+            _statusInBackgroundService=statusInBackgroundService; 
+            _statusInBackgroundService.NotNull(nameof(statusInBackgroundService));
         }
         public async Task Trigger(Guid messageHolderId, ProviderEnum providerId)
         {
-            var messageHolder = await _messagesHolderQueryService.GetIncludeLine(messageHolderId);
-            var mobileTextList = await _messagesDetailQueryService.GetMobileTextList(messageHolderId);
-            var smsProvider = _smsProviderFactory.Create(providerId);
+            MessagesHolder messageHolder = await _messagesHolderQueryService.GetIncludeLine(messageHolderId);
+            ICollection<MobileText> mobileTextList = await _messagesDetailQueryService.GetMobileTextList(messageHolderId);
+            ISmsProvider smsProvider = _smsProviderFactory.Create(providerId);
 
-            var responseStatusList = await _providerResponseStatusQueryService.Get();
-            var deliveryStatusList = await _providerDeliveryStatusQueryService.Get();
-            var result = await smsProvider.Send(messageHolder.MessageBatch.Line, mobileTextList, messageHolderId, responseStatusList, deliveryStatusList);
+            ICollection<ProviderResponseStatus> responseStatusList = await _providerResponseStatusQueryService.Get();
+            ICollection<ProviderDeliveryStatus> deliveryStatusList = await _providerDeliveryStatusQueryService.Get();
+            ICollection<CreateMessageDetailStatusDto> result = await smsProvider.Send(messageHolder.MessageBatch.Line, mobileTextList, messageHolderId, responseStatusList, deliveryStatusList);
 
-            // delivery status
+            //add to delivery status
             var messageDetailStatus = _mapper.Map<ICollection<MessageDetailStatus>>(result);
             await _messageDetailStatusCommandService.Add(messageDetailStatus);
 
             await _uow.SaveChangesAsync(CancellationToken.None);
 
             //Get Status
-           var getState= _getStatusInBackgroundService.Trigger(messageHolderId, providerId);
-
+            BackgroundJob.Schedule(() => _statusInBackgroundService.Trigger(messageHolderId, providerId), TimeSpan.FromMinutes(15));
         }
     }
 }

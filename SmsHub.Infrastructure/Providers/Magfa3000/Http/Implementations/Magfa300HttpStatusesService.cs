@@ -18,19 +18,18 @@ namespace SmsHub.Infrastructure.Providers.Magfa3000.Http.Implementations
         public async Task<magfaResponse.StatusesDto> GetStatuses(string domain, string username, string password, ICollection<long> id)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, Literals.GettatusesUri(id));
-            return await Implement(domain, username, password, request);
+            return await CallApi(domain, username, password, request);
         }
 
         public async Task<magfaResponse.StatusesDto> GetStatuses(string domain, string username, string password, long id)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, Literals.GettatusesUri(id));
-            return await Implement(domain,username,password,request);
+            return await CallApi(domain,username,password,request);
         }
-
-        //todo: change Implement Method Name
-        private async Task<magfaResponse.StatusesDto> Implement(string domain, string username, string password, HttpRequestMessage request)
+        
+        private async Task<magfaResponse.StatusesDto> CallApi(string domain, string username, string password, HttpRequestMessage request)
         {
-            request.AddBasicAuthentication($"{domain}/{username}", password);
+            request.AddBasicAuthentication($"{username}/{domain}", password);
             var response = await _restClient.Create(request.RequestUri).Execute<magfaResponse.StatusesDto>(request);
             return response;
         }

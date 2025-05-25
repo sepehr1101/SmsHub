@@ -29,11 +29,9 @@ namespace SmsHub.Infrastructure.BaseHttp.Client.Implementation
         public async Task<T?> Execute<T>(HttpRequestMessage requestMessage) where T : class
         {
             _httpClient.NotNull(nameof(_httpClient));
-            var response = await _httpClient.SendAsync(requestMessage);
-            var rawContent = await response.Content.ReadAsStringAsync();
-
-            var content = await response.Content.ReadFromJsonAsync<T>();
-            var curl= _httpClient.GenerateCurlInString(requestMessage);
+            HttpResponseMessage response = await _httpClient.SendAsync(requestMessage);
+            response.NotNull(nameof(response));
+            T? content = await response?.Content?.ReadFromJsonAsync<T>();
             return content;
         }
 

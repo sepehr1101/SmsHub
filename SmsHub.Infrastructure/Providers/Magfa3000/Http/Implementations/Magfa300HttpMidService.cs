@@ -18,7 +18,7 @@ namespace SmsHub.Infrastructure.Providers.Magfa3000.Http.Implementations
         public async Task<MagfaResponse.MidDto> GetMid(string domain, string username, string password,long uid)
         {
             var request = new HttpRequestMessage(HttpMethod.Get,  Literals.GetMidUri(uid));
-            request.AddBasicAuthentication($"{domain}/{username}", password);
+            request.AddBasicAuthentication($"{username}/{domain}", password);
             var response = await _restClient.Create(request.RequestUri).Execute<MagfaResponse.MidDto>(request);
             return response;
         }
