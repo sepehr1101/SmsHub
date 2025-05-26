@@ -43,6 +43,8 @@
         //todo: cost tables
         ServerUser,
         ProviderResponseStatus,
-        ProviderDeliveryStatus
+        ProviderDeliveryStatus,
+
+        HttpLog
     }
 }

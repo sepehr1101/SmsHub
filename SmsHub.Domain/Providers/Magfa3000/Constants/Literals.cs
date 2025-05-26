@@ -1,12 +1,11 @@
 ﻿using SmsHub.Common.Extensions;
-using System.Text;
 
 namespace SmsHub.Domain.Providers.Magfa3000.Constants
 {
     public static class Literals
-    {
-        public static string BaseUrl { get { return @"https://sms.magfa.com/api/http/sms/v2/"; } }
-
+    {        
+        public static string BaseUrl { get { return @"http://10.7.217.99/api/http/sms/v2/"; } }
+        //public static string BaseUrl { get { return @"https://sms.magfa.com/api/http/sms/v2/"; } }
 
         public static string BalanceUri { get { return $"{BaseUrl}balance"; } }
 

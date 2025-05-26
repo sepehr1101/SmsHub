@@ -20,7 +20,6 @@
     <Compile Remove="BaseHttp\Request\RestExtensions.Url.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BaseHttp\Interceptors\" />
     <Folder Include="BaseHttp\Response\" />
     <Folder Include="BaseHttp\Serializers\Json\" />
     <Folder Include="BaseHttp\Serializers\Xml\" />
@@ -41,5 +40,6 @@
   <ItemGroup>
     <ProjectReference Include="..\SmsHub.Common\SmsHub.Common.csproj" />
     <ProjectReference Include="..\SmsHub.Domain\SmsHub.Domain.csproj" />
+    <ProjectReference Include="..\SmsHub.Persistance\SmsHub.Persistence.csproj" />
   </ItemGroup>
 </Project>
